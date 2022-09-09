@@ -1,0 +1,270 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"almondmushroom": "game:block/plant/mushroom/almondmushroom/almondmushroom"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ], 
+			"to": [ 8.0, 0.0, 8.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#boletusedulis", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"east": { "texture": "#boletusedulis", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"south": { "texture": "#boletusedulis", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"west": { "texture": "#boletusedulis", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"up": { "texture": "#boletusedulis", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"down": { "texture": "#boletusedulis", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "large",
+					"from": [ 0.3, 0.5, 0.3 ], 
+					"to": [ 2.3, 3.0, 0.8 ], 
+					"rotationOrigin": [ 0.3, 0.5, 0.3 ],
+					"rotationX": 90.0,
+					"rotationZ": -27.0,
+					"faces": {
+						"north": { "texture": "#almondmushroom", "uv": [ 1.0, 9.0, 3.0, 11.5 ] },
+						"east": { "texture": "#almondmushroom", "uv": [ 0.0, 8.5, 0.5, 11.0 ] },
+						"south": { "texture": "#almondmushroom", "uv": [ 0.0, 9.0, 2.0, 11.5 ] },
+						"west": { "texture": "#almondmushroom", "uv": [ 1.0, 9.0, 1.5, 11.5 ] },
+						"up": { "texture": "#almondmushroom", "uv": [ 11.0, 0.0, 13.0, 0.5 ], "enabled": false },
+						"down": { "texture": "#almondmushroom", "uv": [ 0.5, 13.0, 2.5, 13.5 ] }
+					},
+					"children": [
+						{
+							"name": "cap1",
+							"from": [ -0.5, 2.5, -0.5 ], 
+							"to": [ 2.5, 5.0, 0.5 ], 
+							"rotationOrigin": [ 1.0, 0.0, 1.0 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 12.5, 5.5, 15.5, 8.0 ] },
+								"east": { "texture": "#almondmushroom", "uv": [ 10.0, 4.5, 11.0, 7.0 ] },
+								"south": { "texture": "#almondmushroom", "uv": [ 10.5, 5.0, 13.5, 7.5 ] },
+								"west": { "texture": "#almondmushroom", "uv": [ 8.0, 5.0, 9.0, 7.5 ] },
+								"up": { "texture": "#almondmushroom", "uv": [ 10.5, 2.0, 13.5, 3.0 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 10.0, 10.5, 13.0, 11.5 ] }
+							}
+						},
+						{
+							"name": "captop",
+							"from": [ 0.0, 5.0, 0.0 ], 
+							"to": [ 2.0, 5.5, 0.5 ], 
+							"rotationOrigin": [ -0.5, 2.5, -0.5 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 11.5, 4.5, 13.5, 5.0 ] },
+								"east": { "texture": "#almondmushroom", "uv": [ 10.5, 5.5, 11.0, 6.0 ] },
+								"south": { "texture": "#almondmushroom", "uv": [ 11.0, 6.0, 13.0, 6.5 ] },
+								"west": { "texture": "#almondmushroom", "uv": [ 11.0, 5.0, 11.5, 5.5 ] },
+								"up": { "texture": "#almondmushroom", "uv": [ 11.0, 2.0, 13.0, 2.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 7.0, 12.0, 9.0, 12.5 ], "enabled": false }
+							}
+						},
+						{
+							"name": "frill1",
+							"from": [ -0.2, 1.5, -0.2 ], 
+							"to": [ 2.2, 1.5, 0.5 ], 
+							"rotationOrigin": [ 1.0, 1.5, 1.0 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false },
+								"east": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"south": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false },
+								"west": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"up": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false }
+							}
+						}
+					]
+				},
+				{
+					"name": "large2",
+					"from": [ -2.3, 0.5, -5.7 ], 
+					"to": [ -0.3, 3.0, -5.2 ], 
+					"rotationOrigin": [ -2.3, 0.5, -5.7 ],
+					"rotationX": 90.0,
+					"rotationZ": 30.0,
+					"faces": {
+						"north": { "texture": "#almondmushroom", "uv": [ 1.0, 9.0, 3.0, 11.5 ] },
+						"east": { "texture": "#almondmushroom", "uv": [ 0.0, 8.5, 0.5, 11.0 ] },
+						"south": { "texture": "#almondmushroom", "uv": [ 0.0, 9.0, 2.0, 11.5 ] },
+						"west": { "texture": "#almondmushroom", "uv": [ 1.0, 9.0, 1.5, 11.5 ] },
+						"up": { "texture": "#almondmushroom", "uv": [ 11.0, 0.0, 13.0, 0.5 ], "enabled": false },
+						"down": { "texture": "#almondmushroom", "uv": [ 0.5, 13.0, 2.5, 13.5 ] }
+					},
+					"children": [
+						{
+							"name": "cap7",
+							"from": [ -0.5, 2.5, 0.0 ], 
+							"to": [ 2.5, 5.0, 0.5 ], 
+							"rotationOrigin": [ 1.0, 0.0, 1.5 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 12.5, 5.5, 15.5, 8.0 ] },
+								"east": { "texture": "#almondmushroom", "uv": [ 10.0, 4.5, 10.5, 7.0 ] },
+								"south": { "texture": "#almondmushroom", "uv": [ 10.5, 5.0, 13.5, 7.5 ] },
+								"west": { "texture": "#almondmushroom", "uv": [ 8.0, 5.0, 8.5, 7.5 ] },
+								"up": { "texture": "#almondmushroom", "uv": [ 10.5, 2.0, 13.5, 2.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 10.0, 10.5, 13.0, 11.0 ] }
+							}
+						},
+						{
+							"name": "captop8",
+							"from": [ 0.0, 5.0, 0.0 ], 
+							"to": [ 2.0, 5.5, 0.5 ], 
+							"rotationOrigin": [ -0.5, 2.5, -0.5 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 11.5, 4.5, 13.5, 5.0 ] },
+								"east": { "texture": "#almondmushroom", "uv": [ 10.5, 5.5, 11.0, 6.0 ] },
+								"south": { "texture": "#almondmushroom", "uv": [ 11.0, 6.0, 13.0, 6.5 ] },
+								"west": { "texture": "#almondmushroom", "uv": [ 11.0, 5.0, 11.5, 5.5 ] },
+								"up": { "texture": "#almondmushroom", "uv": [ 11.0, 2.0, 13.0, 2.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 7.0, 12.0, 9.0, 12.5 ], "enabled": false }
+							}
+						},
+						{
+							"name": "frill9",
+							"from": [ -0.2, 1.5, 0.0 ], 
+							"to": [ 2.2, 1.5, 0.5 ], 
+							"rotationOrigin": [ 1.0, 1.5, 1.2 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false },
+								"east": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"south": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false },
+								"west": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"up": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false }
+							}
+						}
+					]
+				},
+				{
+					"name": "large3",
+					"from": [ -4.7, 0.5, 1.8 ], 
+					"to": [ -2.7, 3.0, 2.3 ], 
+					"rotationOrigin": [ -4.7, 0.5, 1.8 ],
+					"rotationX": 90.0,
+					"rotationZ": -51.0,
+					"faces": {
+						"north": { "texture": "#almondmushroom", "uv": [ 1.0, 9.0, 3.0, 11.5 ] },
+						"east": { "texture": "#almondmushroom", "uv": [ 0.0, 8.5, 0.5, 11.0 ] },
+						"south": { "texture": "#almondmushroom", "uv": [ 0.0, 9.0, 2.0, 11.5 ] },
+						"west": { "texture": "#almondmushroom", "uv": [ 1.0, 9.0, 1.5, 11.5 ] },
+						"up": { "texture": "#almondmushroom", "uv": [ 11.0, 0.0, 13.0, 0.5 ], "enabled": false },
+						"down": { "texture": "#almondmushroom", "uv": [ 0.5, 13.0, 2.5, 13.5 ] }
+					},
+					"children": [
+						{
+							"name": "cap11",
+							"from": [ -0.5, 2.5, -0.5 ], 
+							"to": [ 2.5, 5.0, 0.5 ], 
+							"rotationOrigin": [ 1.0, 0.0, 1.0 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 12.5, 5.5, 15.5, 8.0 ] },
+								"east": { "texture": "#almondmushroom", "uv": [ 10.0, 4.5, 11.0, 7.0 ] },
+								"south": { "texture": "#almondmushroom", "uv": [ 10.5, 5.0, 13.5, 7.5 ] },
+								"west": { "texture": "#almondmushroom", "uv": [ 8.0, 5.0, 9.0, 7.5 ] },
+								"up": { "texture": "#almondmushroom", "uv": [ 10.5, 2.0, 13.5, 3.0 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 10.0, 10.5, 13.0, 11.5 ] }
+							}
+						},
+						{
+							"name": "captop12",
+							"from": [ 0.0, 5.0, 0.0 ], 
+							"to": [ 2.0, 5.5, 0.5 ], 
+							"rotationOrigin": [ -0.5, 2.5, -0.5 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 11.5, 4.5, 13.5, 5.0 ] },
+								"east": { "texture": "#almondmushroom", "uv": [ 10.5, 5.5, 11.0, 6.0 ] },
+								"south": { "texture": "#almondmushroom", "uv": [ 11.0, 6.0, 13.0, 6.5 ] },
+								"west": { "texture": "#almondmushroom", "uv": [ 11.0, 5.0, 11.5, 5.5 ] },
+								"up": { "texture": "#almondmushroom", "uv": [ 11.0, 2.0, 13.0, 2.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 7.0, 12.0, 9.0, 12.5 ], "enabled": false }
+							}
+						},
+						{
+							"name": "frill13",
+							"from": [ -0.2, 1.5, -0.2 ], 
+							"to": [ 2.2, 1.5, 0.5 ], 
+							"rotationOrigin": [ 1.0, 1.5, 1.0 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false },
+								"east": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"south": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false },
+								"west": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"up": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false }
+							}
+						}
+					]
+				},
+				{
+					"name": "large4",
+					"from": [ -0.9, 0.5, -2.7 ], 
+					"to": [ 1.1, 3.0, -2.2 ], 
+					"rotationOrigin": [ -0.9, 0.5, -2.7 ],
+					"rotationX": 90.0,
+					"rotationZ": -67.0,
+					"faces": {
+						"north": { "texture": "#almondmushroom", "uv": [ 1.0, 9.0, 3.0, 11.5 ] },
+						"east": { "texture": "#almondmushroom", "uv": [ 0.0, 8.5, 0.5, 11.0 ] },
+						"south": { "texture": "#almondmushroom", "uv": [ 0.0, 9.0, 2.0, 11.5 ] },
+						"west": { "texture": "#almondmushroom", "uv": [ 1.0, 9.0, 1.5, 11.5 ] },
+						"up": { "texture": "#almondmushroom", "uv": [ 11.0, 0.0, 13.0, 0.5 ], "enabled": false },
+						"down": { "texture": "#almondmushroom", "uv": [ 0.5, 13.0, 2.5, 13.5 ] }
+					},
+					"children": [
+						{
+							"name": "cap15",
+							"from": [ -0.5, 2.5, 0.0 ], 
+							"to": [ 2.5, 5.0, 0.5 ], 
+							"rotationOrigin": [ 1.0, 0.0, 1.5 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 12.5, 5.5, 15.5, 8.0 ] },
+								"east": { "texture": "#almondmushroom", "uv": [ 10.0, 4.5, 10.5, 7.0 ] },
+								"south": { "texture": "#almondmushroom", "uv": [ 10.5, 5.0, 13.5, 7.5 ] },
+								"west": { "texture": "#almondmushroom", "uv": [ 8.0, 5.0, 8.5, 7.5 ] },
+								"up": { "texture": "#almondmushroom", "uv": [ 10.5, 2.0, 13.5, 2.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 10.0, 10.5, 13.0, 11.0 ] }
+							}
+						},
+						{
+							"name": "captop16",
+							"from": [ 0.0, 5.0, 0.0 ], 
+							"to": [ 2.0, 5.5, 0.5 ], 
+							"rotationOrigin": [ -0.5, 2.5, -0.5 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 11.5, 4.5, 13.5, 5.0 ] },
+								"east": { "texture": "#almondmushroom", "uv": [ 10.5, 5.5, 11.0, 6.0 ] },
+								"south": { "texture": "#almondmushroom", "uv": [ 11.0, 6.0, 13.0, 6.5 ] },
+								"west": { "texture": "#almondmushroom", "uv": [ 11.0, 5.0, 11.5, 5.5 ] },
+								"up": { "texture": "#almondmushroom", "uv": [ 11.0, 2.0, 13.0, 2.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 7.0, 12.0, 9.0, 12.5 ], "enabled": false }
+							}
+						},
+						{
+							"name": "frill17",
+							"from": [ -0.2, 1.5, 0.0 ], 
+							"to": [ 2.2, 1.5, 0.5 ], 
+							"rotationOrigin": [ 1.0, 1.5, 1.2 ],
+							"faces": {
+								"north": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false },
+								"east": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"south": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false },
+								"west": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"up": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ] },
+								"down": { "texture": "#almondmushroom", "uv": [ 0.0, 0.0, 2.0, 0.5 ], "enabled": false }
+							}
+						}
+					]
+				}
+			]
+		}
+	]}

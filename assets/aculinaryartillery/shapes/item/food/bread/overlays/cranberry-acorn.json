@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"cranberry": "item/food/grain/overlays/cranberry"
+	},
+	"elements": [
+		{
+			"name": "acornbread 3",
+			"from": [ 6.49, -0.01, 4.99 ], 
+			"to": [ 9.51, 2.01, 11.01 ], 
+			"rotationOrigin": [ 7.99, 0.0, 7.99 ],
+			"faces": {
+				"north": { "texture": "#cranberry", "uv": [ 3.0, 5.5, 6.0, 7.5 ] },
+				"east": { "texture": "#cranberry", "uv": [ 4.5, 0.5, 10.5, 2.5 ], "rotation": 180 },
+				"south": { "texture": "#cranberry", "uv": [ 6.5, 0.0, 9.5, 2.0 ] },
+				"west": { "texture": "#cranberry", "uv": [ 12.0, 4.0, 14.0, 10.0 ], "rotation": 90 },
+				"up": { "texture": "#cranberry", "uv": [ 6.5, 8.0, 12.5, 11.0 ], "rotation": 90 },
+				"down": { "texture": "#cranberry", "uv": [ 3.5, 10.5, 9.5, 13.5 ], "rotation": 270 }
+			},
+			"children": [
+				{
+					"name": "acornbread 1 top4",
+					"from": [ 0.5, 2.01, 0.5 ], 
+					"to": [ 2.52, 2.52, 5.521 ], 
+					"faces": {
+						"north": { "texture": "#cranberry", "uv": [ 12.5, 5.5, 13.0, 7.5 ], "rotation": 90 },
+						"east": { "texture": "#cranberry", "uv": [ 12.0, 0.0, 12.5, 5.0 ], "rotation": 90 },
+						"south": { "texture": "#cranberry", "uv": [ 1.5, 14.5, 3.5, 15.0 ] },
+						"west": { "texture": "#cranberry", "uv": [ 14.5, 3.0, 15.0, 8.0 ], "rotation": 270 },
+						"up": { "texture": "#cranberry", "uv": [ 7.5, 12.0, 12.5, 14.0 ], "rotation": 90 },
+						"down": { "texture": "#cranberry", "uv": [ 11.0, 6.5, 13.0, 11.5 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

@@ -1,0 +1,52 @@
+{
+	"code": "mixingbowlmini",
+	"class": "BlockMixingBowl",
+	"entityClass": "MixingBowl",
+	"behaviors": [ { "name": "Container" } ],
+	"attributes": {
+		"capacityLitres": 6,
+		"handbook": {
+			"groupBy": [ "mixingbowl-*" ]
+		}
+	},
+	"creativeinventory": {
+		"general": [ "*" ],
+		"terrain": [ "*" ],
+		"aculinaryartillery": [ "*" ]
+	},
+	"shape": { "base": "aculinaryartillery:block/mixingbowlmini/complete" },
+	"blockmaterial": "Wood",
+	"textures": {
+		"material": { "base": "game:block/wood/planks/generic" },
+		"generic": { "base": "game:block/wood/planks/generic" },
+		"bowl": { "base": "game:block/clay/ceramic" }
+	},
+	"sidesolid": {
+		"all": false
+	},
+	"sideopaque": {
+		"all": false
+	},
+	"heldTpIdleAnimation": "holdbothhands",
+	"lightAbsorption": 1,
+	"replaceable": 600,
+	"resistance": 1.5,
+	"collisionSelectionBoxes": [
+		{
+			"x1": 0,
+			"y1": 0,
+			"z1": 0,
+			"x2": 1,
+			"y2": 0.275,
+			"z2": 1
+		},
+		{
+			"x1": 0.175,
+			"y1": 0.275,
+			"z1": 0.175,
+			"x2": 0.85,
+			"y2": 0.8125,
+			"z2": 0.85
+		}
+	]
+}

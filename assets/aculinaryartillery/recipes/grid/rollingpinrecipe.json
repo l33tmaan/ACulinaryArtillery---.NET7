@@ -1,0 +1,24 @@
+[
+  {
+	ingredientPattern: "_K_,SLS",
+	ingredients: {
+    		"K": {
+        		type: "item",
+        		code: "game:knife-*",
+        		isTool: true
+      		},
+		"S": { 
+			type: "item", 
+			code: "game:stick", 
+		},
+		"L": { 
+			type: "block", 
+			code: "game:log-placed-*-ud", 
+			name: "wood",
+		},
+	},
+	width: 3,
+	height: 2,
+	output: { type: "item", code: "rollingpin-{wood}"  }
+  }
+]

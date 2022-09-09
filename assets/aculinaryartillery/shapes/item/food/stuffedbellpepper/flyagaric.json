@@ -1,0 +1,56 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 8,
+	"textureHeight": 8,
+	"textures": {
+		"group2-soup-flyagaric-cactifruit-redmeat": "game:block/food/meal/group2-soup-flyagaric-cactifruit-redmeat"
+	},
+	"elements": [
+		{
+			"name": "vegetable",
+			"from": [ 7.5, 5.5, 7.5 ], 
+			"to": [ 7.5, 5.5, 7.5 ], 
+			"rotationOrigin": [ 7.5, 5.5, 7.5 ],
+			"faces": {
+				"north": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 6.75, 1.5, 7.0, 1.75 ] },
+				"east": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 5.25, 0.75, 5.5, 1.0 ] },
+				"south": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 4.75, 1.75, 5.0, 2.0 ] },
+				"west": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 7.25, 1.5, 7.5, 1.75 ] },
+				"up": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 6.5, 1.25, 6.75, 1.5 ] },
+				"down": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 6.5, 2.0, 6.75, 2.25 ] }
+			},
+			"children": [
+				{
+					"name": "veggies1",
+					"from": [ -0.75, 0.1, -0.75 ], 
+					"to": [ 1.75, 0.6, 1.75 ], 
+					"rotationOrigin": [ -0.75, 0.1, -0.75 ],
+					"faces": {
+						"north": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 5.25, 0.25, 7.75, 0.75 ] },
+						"east": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 5.5, 1.0, 8.0, 1.5 ] },
+						"south": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 5.5, 1.75, 8.0, 2.25 ] },
+						"west": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 4.75, 1.0, 7.25, 1.5 ] },
+						"up": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 5.5, 0.0, 8.0, 2.5 ] },
+						"down": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 4.75, 0.0, 7.25, 2.5 ] }
+					}
+				},
+				{
+					"name": "veggies2",
+					"from": [ -1.05, 0.04, -1.05 ], 
+					"to": [ 2.05, 0.29, 2.05 ], 
+					"rotationOrigin": [ -1.0, 0.1, -1.0 ],
+					"faces": {
+						"north": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 4.5, 0.75, 7.5, 1.0 ] },
+						"east": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 4.75, 0.75, 7.75, 1.0 ] },
+						"south": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 4.5, 0.5, 7.5, 0.75 ] },
+						"west": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 4.75, 1.5, 7.75, 1.75 ] },
+						"up": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 5.25, 0.0, 8.0, 3.0 ], "autoUv": false },
+						"down": { "texture": "#group2-soup-flyagaric-cactifruit-redmeat", "uv": [ 5.25, 0.0, 8.0, 3.0 ], "enabled": false, "autoUv": false }
+					}
+				}
+			]
+		}
+	]}

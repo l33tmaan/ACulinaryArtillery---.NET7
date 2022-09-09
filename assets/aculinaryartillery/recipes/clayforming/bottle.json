@@ -1,0 +1,35 @@
+{
+	ingredient: { type: "item", code: "game:clay-*", name: "type", allowedVariants: ["blue", "fire"] },
+	pattern: [[
+		"###",
+		"###",
+		"###",
+	],
+	[
+		"###",
+		"#_#",
+		"###",
+	],
+	[
+		"###",
+		"#_#",
+		"###",
+	],
+	[
+		"###",
+		"#_#",
+		"###",
+	],
+	[
+		"___",
+		"_#_",
+		"___",
+	],
+	[
+		"___",
+		"_#_",
+		"___",
+	]],
+	name: "bottle",
+	output: { type: "block", code: "aculinaryartillery:bottle-clay-raw" }
+}

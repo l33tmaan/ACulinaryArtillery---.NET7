@@ -1,0 +1,67 @@
+[
+  {
+    "op": "add",
+    "path": "/client/animations/-",
+    "value": {
+      "code": "holdbothhandsmedium",
+      "animation": "holdbothhandsmedium",
+      "blendMode": "Add",
+      "elementWeight": {
+        "UpperArmR": 4,
+        "LowerArmR": 4,
+        "UpperArmL": 12,
+        "LowerArmL": 12
+      },
+      "elementBlendMode": {
+        "UpperArmR": "AddAverage",
+        "LowerArmR": "AddAverage",
+        "UpperArmL": "AddAverage",
+        "LowerArmL": "AddAverage"
+      }
+    },
+    side: "server",
+    "file": "game:entities/humanoid/player.json"
+  },
+  {
+    "op": "add",
+    "path": "/client/animations/-",
+    "value": {
+      "code": "holdbothhandsverylarge",
+      "animation": "holdbothhandsverylarge",
+      "blendMode": "Add",
+      "elementWeight": {
+        "UpperArmR": 4,
+        "LowerArmR": 4,
+        "UpperArmL": 12,
+        "LowerArmL": 12
+      },
+      "elementBlendMode": {
+        "UpperArmR": "AddAverage",
+        "LowerArmR": "AddAverage",
+        "UpperArmL": "AddAverage",
+        "LowerArmL": "AddAverage"
+      }
+    },
+    side: "server",
+    "file": "game:entities/humanoid/player.json"
+  },
+  {
+    "op": "add",
+    "path": "/client/animations/-",
+    "value": {
+      "code": "eggcrackstart",
+      "animation": "eggcrackstart",
+      "blendMode": "Add",
+      "elementWeight": {
+        "UpperArmR": 4,
+        "LowerArmR": 4,
+      },
+      "elementBlendMode": {
+        "UpperArmR": "AddAverage",
+        "LowerArmR": "AddAverage",
+      }
+    },
+    side: "server",
+    "file": "game:entities/humanoid/player.json"
+  },
+]

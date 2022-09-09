@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"peach": "item/food/grain/overlays/peach"
+	},
+	"elements": [
+		{
+			"name": "acornbread 3",
+			"from": [ 6.49, -0.01, 4.99 ], 
+			"to": [ 9.51, 2.01, 11.01 ], 
+			"rotationOrigin": [ 7.99, 0.0, 7.99 ],
+			"faces": {
+				"north": { "texture": "#peach", "uv": [ 12.5, 7.5, 14.5, 10.5 ], "rotation": 90 },
+				"east": { "texture": "#peach", "uv": [ 8.5, 11.0, 14.5, 13.0 ] },
+				"south": { "texture": "#peach", "uv": [ 2.0, 7.5, 4.0, 10.5 ], "rotation": 270 },
+				"west": { "texture": "#peach", "uv": [ 3.5, 12.5, 9.5, 14.5 ], "rotation": 180 },
+				"up": { "texture": "#peach", "uv": [ 8.0, 9.5, 11.0, 15.5 ] },
+				"down": { "texture": "#peach", "uv": [ 8.5, 2.5, 11.5, 8.5 ], "rotation": 180 }
+			},
+			"children": [
+				{
+					"name": "acornbread 1 top4",
+					"from": [ 0.5, 2.01, 0.5 ], 
+					"to": [ 2.52, 2.52, 5.521 ], 
+					"faces": {
+						"north": { "texture": "#peach", "uv": [ 8.0, 7.0, 10.0, 7.5 ], "rotation": 180 },
+						"east": { "texture": "#peach", "uv": [ 9.0, 1.0, 9.5, 6.0 ], "rotation": 90 },
+						"south": { "texture": "#peach", "uv": [ 13.5, 12.5, 14.0, 14.5 ], "rotation": 90 },
+						"west": { "texture": "#peach", "uv": [ 1.0, 1.0, 1.5, 6.0 ], "rotation": 270 },
+						"up": { "texture": "#peach", "uv": [ 5.0, 6.5, 7.0, 11.5 ], "rotation": 180 },
+						"down": { "texture": "#peach", "uv": [ 10.5, 1.0, 12.5, 6.0 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"brambleberry": "item/food/grain/overlays/brambleberry"
+	},
+	"elements": [
+		{
+			"name": "overlay",
+			"from": [ 6.2, -0.01, 5.49 ], 
+			"to": [ 9.8, 1.51, 10.51 ], 
+			"rotationOrigin": [ 8.2, 0.0, 7.9 ],
+			"faces": {
+				"north": { "texture": "#brambleberry", "uv": [ 4.0, 1.0, 7.5, 2.5 ] },
+				"east": { "texture": "#brambleberry", "uv": [ 8.5, 10.0, 13.5, 11.5 ] },
+				"south": { "texture": "#brambleberry", "uv": [ 6.5, 9.5, 10.0, 11.0 ] },
+				"west": { "texture": "#brambleberry", "uv": [ 6.0, 11.0, 11.0, 12.5 ] },
+				"up": { "texture": "#brambleberry", "uv": [ 8.5, 3.0, 12.0, 8.0 ] },
+				"down": { "texture": "#brambleberry", "uv": [ 8.5, 10.5, 12.0, 15.5 ] }
+			},
+			"children": [
+				{
+					"name": "overlay 2",
+					"from": [ 0.5, 1.5, 0.5 ], 
+					"to": [ 3.06, 2.02, 4.52 ], 
+					"faces": {
+						"north": { "texture": "#brambleberry", "uv": [ 0.0, 12.5, 2.5, 13.0 ] },
+						"east": { "texture": "#brambleberry", "uv": [ 12.0, 10.0, 12.5, 14.0 ], "rotation": 90 },
+						"south": { "texture": "#brambleberry", "uv": [ 4.5, 6.5, 7.0, 7.0 ] },
+						"west": { "texture": "#brambleberry", "uv": [ 7.5, 3.5, 8.0, 7.5 ], "rotation": 90 },
+						"up": { "texture": "#brambleberry", "uv": [ 10.0, 1.5, 12.5, 5.5 ] },
+						"down": { "texture": "#brambleberry", "uv": [ 12.0, 4.5, 14.5, 8.5 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

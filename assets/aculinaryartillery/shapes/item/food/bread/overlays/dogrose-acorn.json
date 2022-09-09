@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"dogrose": "item/food/grain/overlays/dogrose"
+	},
+	"elements": [
+		{
+			"name": "acornbread 3",
+			"from": [ 6.49, -0.01, 4.99 ], 
+			"to": [ 9.51, 2.01, 11.01 ], 
+			"rotationOrigin": [ 7.99, 0.0, 7.99 ],
+			"faces": {
+				"north": { "texture": "#dogrose", "uv": [ 1.0, 1.5, 4.0, 3.5 ] },
+				"east": { "texture": "#dogrose", "uv": [ 3.5, 12.0, 9.5, 14.0 ], "rotation": 180 },
+				"south": { "texture": "#dogrose", "uv": [ 2.5, 5.5, 5.5, 7.5 ] },
+				"west": { "texture": "#dogrose", "uv": [ 4.0, 7.5, 6.0, 13.5 ], "rotation": 90 },
+				"up": { "texture": "#dogrose", "uv": [ 5.0, 10.5, 11.0, 13.5 ], "rotation": 90 },
+				"down": { "texture": "#dogrose", "uv": [ 0.5, 7.0, 6.5, 10.0 ], "rotation": 270 }
+			},
+			"children": [
+				{
+					"name": "acornbread 1 top4",
+					"from": [ 0.5, 2.01, 0.5 ], 
+					"to": [ 2.52, 2.52, 5.521 ], 
+					"faces": {
+						"north": { "texture": "#dogrose", "uv": [ 4.0, 3.5, 4.5, 5.5 ], "rotation": 90 },
+						"east": { "texture": "#dogrose", "uv": [ 8.0, 4.0, 8.5, 9.0 ], "rotation": 90 },
+						"south": { "texture": "#dogrose", "uv": [ 2.5, 0.0, 4.5, 0.5 ] },
+						"west": { "texture": "#dogrose", "uv": [ 13.5, 5.0, 14.0, 10.0 ], "rotation": 270 },
+						"up": { "texture": "#dogrose", "uv": [ 4.0, 5.0, 9.0, 7.0 ], "rotation": 90 },
+						"down": { "texture": "#dogrose", "uv": [ 3.0, 2.5, 5.0, 7.5 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

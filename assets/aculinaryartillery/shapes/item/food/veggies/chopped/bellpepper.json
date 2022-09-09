@@ -1,0 +1,154 @@
+{
+	"editor": {
+		"allAngles": true,
+		"entityTextureMode": false
+	},
+	"textureWidth": 8,
+	"textureHeight": 8,
+	"textureSizes": {
+	},
+	"textures": {
+		"bellpepper": "game:item/food/vegetable/bellpepper"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ], 
+			"to": [ 8.0, 0.0, 8.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"east": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"south": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"west": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"up": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"down": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "slice1",
+					"from": [ -2.0, 0.0, -1.0 ], 
+					"to": [ 2.0, 0.5, 1.0 ], 
+					"rotationOrigin": [ 0.0, 0.0, 0.0 ],
+					"rotationY": 59.0,
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 0.0, 3.0, 4.0, 3.5 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 0.5, 1.5, 2.5, 2.0 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 0.0, 0.5, 4.0, 1.0 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.0, 0.5, 2.0, 1.0 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 0.0, 4.5, 4.0, 6.5 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 0.0, 4.0, 4.0, 6.0 ] }
+					}
+				},
+				{
+					"name": "slice3",
+					"from": [ 1.0, 0.3, -2.0 ], 
+					"to": [ 3.0, 0.8, 2.0 ], 
+					"rotationOrigin": [ 2.0, 0.3, 0.0 ],
+					"rotationY": 22.5,
+					"rotationZ": -10.0,
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 1.0, 6.0, 3.0, 6.5 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 0.0, 6.5, 4.0, 7.0 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 1.0, 5.0, 3.0, 5.5 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.0, 5.5, 4.0, 6.0 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 1.0, 1.5, 3.0, 5.5 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 2.0, 4.0, 4.0, 8.0 ] }
+					}
+				},
+				{
+					"name": "slice4",
+					"from": [ -2.0, 0.5, 0.0 ], 
+					"to": [ 0.0, 1.0, 4.0 ], 
+					"rotationOrigin": [ -1.0, 0.5, 2.0 ],
+					"rotationY": 22.5,
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 1.5, 5.5, 3.5, 6.0 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 0.0, 6.5, 4.0, 7.0 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 1.0, 7.0, 3.0, 7.5 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.0, 5.0, 4.0, 5.5 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 2.0, 4.0, 4.0, 8.0 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 1.0, 4.0, 3.0, 8.0 ] }
+					}
+				},
+				{
+					"name": "slice5",
+					"from": [ -1.0, 0.0, 2.0 ], 
+					"to": [ 3.0, 0.5, 3.5 ], 
+					"rotationOrigin": [ 1.0, 0.0, 3.0 ],
+					"rotationY": 28.0,
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 4.0, 0.5 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 2.0, 1.5, 3.5, 2.0 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 0.0, 1.5, 4.0, 2.0 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 2.0, 1.5, 3.5, 2.0 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 0.0, 0.5, 4.0, 2.0 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 0.0, 1.5, 4.0, 3.0 ] }
+					}
+				},
+				{
+					"name": "slice6",
+					"from": [ -4.7, 0.0, 0.0 ], 
+					"to": [ -0.7, 0.5, 2.0 ], 
+					"rotationOrigin": [ -2.7, 0.0, 1.0 ],
+					"rotationY": 89.0,
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 0.0, 2.0, 4.0, 2.5 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 1.0, 1.5, 3.0, 2.0 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 0.0, 1.5, 4.0, 2.0 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.5, 3.0, 2.5, 3.5 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 0.0, 2.0, 4.0, 4.0 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 0.0, 2.0, 4.0, 4.0 ] }
+					}
+				},
+				{
+					"name": "slice7",
+					"from": [ -1.0, 0.5, -3.0 ], 
+					"to": [ 0.5, 1.0, 1.0 ], 
+					"rotationOrigin": [ 0.0, 0.5, -1.0 ],
+					"rotationX": -14.0,
+					"rotationY": 28.0,
+					"rotationZ": 14.0,
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 2.0, 6.0, 3.5, 6.5 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 0.0, 5.5, 4.0, 6.0 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 1.5, 6.0, 3.0, 6.5 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.5, 5.5, 4.5, 6.0 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 1.5, 4.0, 3.0, 8.0 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 2.0, 4.0, 3.5, 8.0 ] }
+					}
+				},
+				{
+					"name": "slice8",
+					"from": [ -4.7, 0.1, 2.0 ], 
+					"to": [ -3.2, 0.6, 5.0 ], 
+					"rotationOrigin": [ -3.7, 0.1, 4.0 ],
+					"rotationX": 14.0,
+					"rotationY": -53.0,
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 1.0, 6.0, 2.5, 6.5 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 0.0, 6.5, 3.0, 7.0 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 1.0, 5.0, 2.5, 5.5 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.0, 5.5, 3.0, 6.0 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 1.0, 4.0, 2.5, 7.0 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 2.0, 4.0, 3.5, 7.0 ] }
+					}
+				},
+				{
+					"name": "slice9",
+					"from": [ 0.0, 0.0, 4.0 ], 
+					"to": [ 4.0, 0.5, 5.0 ], 
+					"rotationOrigin": [ 2.0, 0.0, 5.0 ],
+					"rotationY": 3.0,
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 0.0, 2.5, 4.0, 3.0 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 0.5, 1.5, 1.5, 2.0 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 4.0, 0.5 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 1.0, 0.5 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 0.0, 1.5, 4.0, 2.5 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 0.0, 1.0, 4.0, 2.0 ] }
+					}
+				}
+			]
+		}
+	]}

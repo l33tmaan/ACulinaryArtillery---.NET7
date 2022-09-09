@@ -1,0 +1,180 @@
+{
+	"editor": {
+		"allAngles": true,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"chickenofthewoods": "game:block/plant/mushroom/chickenofthewoods/chickenofthewoods"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ], 
+			"to": [ 8.0, 0.0, 8.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#chickenofthewoods", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"east": { "texture": "#chickenofthewoods", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"south": { "texture": "#chickenofthewoods", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"west": { "texture": "#chickenofthewoods", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"up": { "texture": "#chickenofthewoods", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"down": { "texture": "#chickenofthewoods", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "bigSW",
+					"from": [ -4.5, 0.0, 1.0 ], 
+					"to": [ 0.5, 0.6, 6.0 ], 
+					"rotationOrigin": [ 0.5, 0.0, 1.0 ],
+					"rotationY": -22.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 3.0, 6.0, 8.0, 6.5 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 5.0, 6.5, 10.0, 7.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 9.0, 7.5, 14.0, 8.0 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 10.0, 7.5, 15.0, 8.0 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 0.0, 3.0, 5.0, 8.0 ] },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 10.5, 10.5, 15.5, 15.5 ] }
+					}
+				},
+				{
+					"name": "bigNE",
+					"from": [ 0.4, 0.0, -5.0 ], 
+					"to": [ 5.4, 0.6, 0.0 ], 
+					"rotationOrigin": [ 0.4, 0.0, 0.0 ],
+					"rotationY": 17.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 9.0, 7.5, 14.0, 8.0 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 10.0, 7.5, 15.0, 8.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 5.0, 6.0, 10.0, 6.5 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.0, 9.5, 6.5 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 0.0, 3.0, 5.0, 8.0 ], "rotation": 180 },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 0.0, 11.0, 5.0, 16.0 ], "rotation": 90 }
+					}
+				},
+				{
+					"name": "medSE",
+					"from": [ 2.5, 0.0, -0.5 ], 
+					"to": [ 6.5, 0.6, 3.5 ], 
+					"rotationOrigin": [ 2.5, 0.0, -0.5 ],
+					"rotationY": -36.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 5.5, 6.5, 9.5, 7.0 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 9.5, 7.5, 13.5, 8.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 3.5, 7.5, 7.5, 8.0 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.0, 8.5, 6.5 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 12.0, 4.0, 16.0, 8.0 ] },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 0.0, 11.5, 4.0, 15.5 ] }
+					}
+				},
+				{
+					"name": "medNW",
+					"from": [ -5.5, 0.0, -5.0 ], 
+					"to": [ -1.5, 0.6, -1.0 ], 
+					"rotationOrigin": [ -1.5, 0.0, -1.0 ],
+					"rotationY": -6.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 5.0, 7.5, 9.0, 8.0 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.5, 8.5, 7.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.5, 8.5, 7.0 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 11.5, 7.5, 15.5, 8.0 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 12.0, 4.0, 16.0, 8.0 ], "rotation": 180 },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 0.5, 11.0, 4.5, 15.0 ], "rotation": 180 }
+					}
+				},
+				{
+					"name": "medSW",
+					"from": [ -5.5, 0.6, 0.0 ], 
+					"to": [ -1.5, 1.2, 4.0 ], 
+					"rotationOrigin": [ -1.5, 0.6, 0.0 ],
+					"rotationY": -141.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 3.0, 6.0, 7.0, 6.5 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 5.0, 6.5, 9.0, 7.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 9.0, 7.5, 13.0, 8.0 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 10.0, 7.5, 14.0, 8.0 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 0.0, 4.0, 4.0, 8.0 ] },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 10.5, 10.5, 14.5, 14.5 ] }
+					}
+				},
+				{
+					"name": "medSW2",
+					"from": [ -4.0, 0.6, 0.5 ], 
+					"to": [ -0.5, 1.2, 4.0 ], 
+					"rotationOrigin": [ -0.5, 0.6, 0.5 ],
+					"rotationY": 75.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 3.0, 6.0, 6.5, 6.5 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 5.0, 6.5, 8.5, 7.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 9.0, 7.5, 12.5, 8.0 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 10.0, 7.5, 13.5, 8.0 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 0.0, 4.0, 3.5, 7.5 ] },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 12.5, 12.5, 16.0, 16.0 ] }
+					}
+				},
+				{
+					"name": "medNE2",
+					"from": [ 0.7, 0.6, -3.5 ], 
+					"to": [ 4.2, 1.2, 0.0 ], 
+					"rotationOrigin": [ 0.7, 0.6, 0.0 ],
+					"rotationY": -22.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 8.0, 7.5, 11.5, 8.0 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 7.0, 7.5, 10.5, 8.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 5.0, 6.0, 8.5, 6.5 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.0, 8.0, 6.5 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 0.0, 4.5, 3.5, 8.0 ], "rotation": 180 },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 0.0, 12.5, 3.5, 16.0 ], "rotation": 90 }
+					}
+				},
+				{
+					"name": "medNW2",
+					"from": [ -4.5, 0.6, -3.0 ], 
+					"to": [ -1.0, 1.2, 0.5 ], 
+					"rotationOrigin": [ -1.0, 0.6, 0.5 ],
+					"rotationY": 53.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 5.0, 7.5, 8.5, 8.0 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.5, 8.0, 7.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.5, 8.0, 7.0 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 11.5, 7.5, 15.0, 8.0 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 12.5, 4.5, 16.0, 8.0 ], "rotation": 180 },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 0.5, 12.0, 4.0, 15.5 ], "rotation": 180 }
+					}
+				},
+				{
+					"name": "smallNE",
+					"from": [ 0.0, 1.2, -2.5 ], 
+					"to": [ 2.5, 1.8, 0.0 ], 
+					"rotationOrigin": [ 0.0, 1.2, 0.0 ],
+					"rotationY": -83.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 8.0, 7.5, 10.5, 8.0 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 7.0, 7.5, 9.5, 8.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 5.0, 6.0, 7.5, 6.5 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.0, 7.0, 6.5 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 0.0, 5.5, 2.5, 8.0 ], "rotation": 180 },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 0.0, 13.5, 2.5, 16.0 ], "rotation": 90 }
+					}
+				},
+				{
+					"name": "smallSE",
+					"from": [ 0.0, 1.2, 0.0 ], 
+					"to": [ 2.5, 1.8, 2.5 ], 
+					"rotationOrigin": [ 0.0, 1.2, 0.0 ],
+					"rotationY": 169.0,
+					"faces": {
+						"north": { "texture": "#chickenofthewoods", "uv": [ 5.5, 6.5, 8.0, 7.0 ] },
+						"east": { "texture": "#chickenofthewoods", "uv": [ 9.5, 7.5, 12.0, 8.0 ] },
+						"south": { "texture": "#chickenofthewoods", "uv": [ 3.5, 7.5, 6.0, 8.0 ] },
+						"west": { "texture": "#chickenofthewoods", "uv": [ 4.5, 6.0, 7.0, 6.5 ] },
+						"up": { "texture": "#chickenofthewoods", "uv": [ 13.5, 5.5, 16.0, 8.0 ] },
+						"down": { "texture": "#chickenofthewoods", "uv": [ 0.0, 13.5, 2.5, 16.0 ] }
+					}
+				}
+			]
+		}
+	]}

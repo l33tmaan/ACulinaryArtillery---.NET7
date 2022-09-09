@@ -1,0 +1,68 @@
+[
+  {
+    ingredientPattern: "CA",
+    ingredients: {
+      "C": { type: "item", code: "game:chisel-*", name: "metal", isTool: true, toolDurabilityCost: 600 },
+      "A": { type: "block", code: "cauldron-copper" }
+    },
+    width: 1,
+    height: 2,
+    shapeless: true,
+    output: { type: "item", code: "game:ingot-copper", quantity: 5 }
+  },
+  {
+    ingredientPattern: "CA",
+    ingredients: {
+      "C": { type: "item", code: "game:chisel-*", name: "metal", isTool: true, toolDurabilityCost: 1000 },
+      "A": { type: "block", code: "cauldron-tinbronze" }
+    },
+    width: 1,
+    height: 2,
+    shapeless: true,
+    output: { type: "item", code: "game:ingot-tinbronze", quantity: 5 }
+  },
+  {
+    ingredientPattern: "CA",
+    ingredients: {
+      "C": { type: "item", code: "game:chisel-*", name: "metal", isTool: true, toolDurabilityCost: 1400 },
+      "A": { type: "block", code: "cauldron-blackbronze" }
+    },
+    width: 1,
+    height: 2,
+    shapeless: true,
+    output: { type: "item", code: "game:ingot-blackbronze", quantity: 5 }
+  },
+  {
+    ingredientPattern: "CA",
+    ingredients: {
+      "C": { type: "item", code: "game:chisel-*", name: "metal", isTool: true, toolDurabilityCost: 2000 },
+      "A": { type: "block", code: "cauldron-iron" }
+    },
+    width: 1,
+    height: 2,
+    shapeless: true,
+    output: { type: "item", code: "game:ingot-iron", quantity: 5 }
+  },
+  {
+    ingredientPattern: "CA",
+    ingredients: {
+      "C": { type: "item", code: "game:chisel-*", name: "metal", isTool: true, toolDurabilityCost: 2800 },
+      "A": { type: "block", code: "cauldron-meteoriciron" }
+    },
+    width: 1,
+    height: 2,
+    shapeless: true,
+    output: { type: "item", code: "game:ingot-meteoriciron", quantity: 5 }
+  },
+  {
+    ingredientPattern: "CA",
+    ingredients: {
+      "C": { type: "item", code: "game:chisel-*", name: "metal", isTool: true, toolDurabilityCost: 5000 },
+      "A": { type: "block", code: "cauldron-steel" }
+    },
+    width: 1,
+    height: 2,
+    shapeless: true,
+    output: { type: "item", code: "game:ingot-steel", quantity: 5 }
+  }
+]

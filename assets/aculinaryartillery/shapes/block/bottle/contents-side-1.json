@@ -1,0 +1,31 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+		"glass": [4,4],
+		"map": [8,8]
+	},
+	"textures": {
+	},
+	"elements": [
+		{
+			"name": "content",
+			"from": [ 6.7, 0.21, 6.7 ], 
+			"to": [ 9.3, 3.81, 7.35 ], 
+			"renderPass": 3,
+			"rotationOrigin": [ 8.0, 0.2, 8.0 ],
+			"rotationY": 180.0,
+			"faces": {
+				"north": { "texture": "#content", "uv": [ 1.0, 2.0, 3.5, 5.5 ], "rotation": 180 },
+				"east": { "texture": "#content", "uv": [ 1.5, 2.0, 5.0, 2.5 ], "rotation": 90 },
+				"south": { "texture": "#content", "uv": [ 9.0, 2.5, 11.5, 6.0 ] },
+				"west": { "texture": "#content", "uv": [ 10.5, 6.0, 14.0, 6.5 ], "rotation": 270 },
+				"up": { "texture": "#content", "uv": [ 13.0, 4.5, 15.5, 5.0 ] },
+				"down": { "texture": "#content", "uv": [ 7.0, 11.0, 9.5, 11.5 ] }
+			}
+		}
+	]}

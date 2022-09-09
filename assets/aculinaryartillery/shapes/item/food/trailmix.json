@@ -1,0 +1,22 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"elements": [
+		{
+			"name": "Cube1",
+			"from": [ 0.0, 0.0, 0.0 ], 
+			"to": [ 16.0, 0.1, 16.0 ], 
+			"faces": {
+				"north": { "texture": "#mix", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+				"east": { "texture": "#mix", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+				"south": { "texture": "#mix", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+				"west": { "texture": "#mix", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+				"up": { "texture": "#mix", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"down": { "texture": "#mix", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "enabled": false }
+			}
+		}
+	]}

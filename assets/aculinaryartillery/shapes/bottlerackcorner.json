@@ -1,0 +1,651 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"elements": [
+		{
+			"name": "base",
+			"from": [ 0.0, 0.0, 0.0 ], 
+			"to": [ 0.0, 0.0, 0.0 ], 
+			"faces": {
+				"north": { "texture": "#woodinterior", "uv": [ 4.5, 2.5, 5.0, 3.0 ] },
+				"east": { "texture": "#woodinterior", "uv": [ 1.5, 14.0, 2.0, 14.5 ] },
+				"south": { "texture": "#woodinterior", "uv": [ 9.5, 1.5, 10.0, 2.0 ] },
+				"west": { "texture": "#woodinterior", "uv": [ 11.5, 6.0, 12.0, 6.5 ] },
+				"up": { "texture": "#woodinterior", "uv": [ 6.0, 12.0, 6.5, 12.5 ] },
+				"down": { "texture": "#woodinterior", "uv": [ 9.5, 9.5, 10.0, 10.0 ] }
+			},
+			"children": [
+				{
+					"name": "bottle rack bottom 1",
+					"from": [ 0.5, 0.0, 0.0 ], 
+					"to": [ 4.0, 0.5, 6.0 ], 
+					"rotationOrigin": [ 0.5, 0.0, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.0, 11.0, 3.5, 11.5 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 9.5, 11.0, 15.5, 11.5 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.0, 11.0, 3.5, 11.5 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 0.0, 11.0, 6.0, 11.5 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 0.0, 5.5, 3.5, 11.5 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.0, 5.5, 3.5, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack column 1",
+					"from": [ 0.0, 0.0, 0.0 ], 
+					"to": [ 0.5, 16.0, 6.0 ], 
+					"rotationOrigin": [ 0.0, 0.0, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 0.0, 11.0, 16.0, 11.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 16.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 0.0, 11.0, 16.0, 11.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 16.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 10.0, 5.5, 16.0, 6.0 ], "rotation": 90 },
+						"down": { "texture": "#woodframe", "uv": [ 0.0, 11.0, 6.0, 11.5 ], "rotation": 90 }
+					}
+				},
+				{
+					"name": "bottle rack column 2",
+					"from": [ 3.5, 0.5, 0.0 ], 
+					"to": [ 4.0, 3.5, 6.0 ], 
+					"rotationOrigin": [ 3.5, 0.5, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 9.0, 10.5, 12.0, 11.0 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 9.0, 5.5, 12.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 9.0, 5.0, 12.0, 5.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 9.0, 5.5, 12.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 2.0, 0.5, 8.0, 1.0 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 2.0, 12.5, 8.0, 13.0 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 3",
+					"from": [ 3.5, 0.5, 6.0 ], 
+					"to": [ 4.0, 3.5, 12.0 ], 
+					"rotationOrigin": [ 4.0, 0.5, 6.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 12.5, 5.0, 15.5, 5.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 13.0, 5.5, 16.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 13.0, 10.5, 16.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 13.0, 5.5, 16.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 8.5, 8.0, 14.5, 8.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 9.0, 5.0, 15.0, 5.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 4",
+					"from": [ 6.5, 0.5, 9.0 ], 
+					"to": [ 7.5, 3.5, 15.0 ], 
+					"rotationOrigin": [ 7.0, 0.5, 9.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 4.0, 10.5, 7.0, 11.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 4.0, 5.5, 7.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 4.0, 10.5, 7.0, 11.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 4.0, 5.5, 7.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 5.0, 2.5, 11.0, 3.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 7.0, 1.0, 13.0, 2.0 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack row 1",
+					"from": [ 0.5, 3.5, 0.0 ], 
+					"to": [ 4.0, 4.5, 6.0 ], 
+					"rotationOrigin": [ 0.5, 3.5, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 4.0, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 10.5, 13.0 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 4.0, 6.0 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 9.5, 15.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 4.5, 11.5 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 4.0, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack row 2",
+					"from": [ 0.5, 7.5, 0.0 ], 
+					"to": [ 4.0, 8.5, 6.0 ], 
+					"rotationOrigin": [ 0.5, 7.5, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 10.5, 4.0, 11.5 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 7.0, 14.5, 13.0, 15.5 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 1.0, 10.5, 4.5, 11.5 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 5.0, 12.5, 11.0, 13.5 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 4.0, 11.5 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 4.0, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack row 3",
+					"from": [ 0.5, 11.5, 0.0 ], 
+					"to": [ 4.0, 12.5, 6.0 ], 
+					"rotationOrigin": [ 0.5, 11.5, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 10.5, 4.0, 11.5 ], "rotation": 180 },
+						"east": { "texture": "#woodinterior", "uv": [ 5.0, 2.5, 11.0, 3.5 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 4.0, 6.0 ], "rotation": 180 },
+						"west": { "texture": "#woodinterior", "uv": [ 5.0, 12.5, 11.0, 13.5 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 4.0, 11.5 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 4.0, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack column 5",
+					"from": [ 10.0, 0.0, 15.5 ], 
+					"to": [ 16.0, 16.0, 16.0 ], 
+					"rotationOrigin": [ 10.0, 0.0, 15.5 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 16.0, 11.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 16.0, 6.0 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 16.0, 11.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 16.0, 6.0 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 0.5, 5.5, 6.5, 6.0 ] },
+						"down": { "texture": "#woodframe", "uv": [ 9.5, 11.0, 15.5, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack top 1",
+					"from": [ 0.5, 15.5, 0.0 ], 
+					"to": [ 4.0, 16.0, 6.0 ], 
+					"rotationOrigin": [ 0.5, 15.5, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.0, 5.5, 3.5, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 7.5, 11.0, 13.5, 11.5 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.0, 11.0, 3.5, 11.5 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 0.0, 5.5, 6.0, 6.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 0.0, 5.5, 3.5, 11.5 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.0, 5.5, 3.5, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack column 6",
+					"from": [ 3.5, 4.5, 0.0 ], 
+					"to": [ 4.0, 7.5, 6.0 ], 
+					"rotationOrigin": [ 3.5, 4.5, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 6.0, 10.5, 9.0, 11.0 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 6.0, 5.5, 9.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 6.0, 5.0, 9.0, 5.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 6.0, 5.5, 9.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 2.0, 0.5, 8.0, 1.0 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 2.0, 12.5, 8.0, 13.0 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 7",
+					"from": [ 3.5, 8.5, 0.0 ], 
+					"to": [ 4.0, 11.5, 6.0 ], 
+					"rotationOrigin": [ 3.5, 8.5, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 3.0, 10.5, 6.0, 11.0 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 3.0, 5.5, 6.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 3.0, 5.0, 6.0, 5.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 3.0, 5.5, 6.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 2.0, 0.5, 8.0, 1.0 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 2.0, 12.5, 8.0, 13.0 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 8",
+					"from": [ 3.5, 12.5, 0.0 ], 
+					"to": [ 4.0, 15.5, 6.0 ], 
+					"rotationOrigin": [ 3.5, 12.5, 0.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 0.0, 10.5, 3.0, 11.0 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 0.0, 5.0, 3.0, 5.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 2.0, 0.5, 8.0, 1.0 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 2.0, 12.5, 8.0, 13.0 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 9",
+					"from": [ 3.5, 4.5, 6.0 ], 
+					"to": [ 4.0, 7.5, 12.0 ], 
+					"rotationOrigin": [ 4.0, 4.5, 6.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 12.0, 5.0, 15.0, 5.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 12.0, 5.5, 15.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 12.0, 10.5, 15.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 12.0, 5.5, 15.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 8.5, 8.0, 14.5, 8.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 9.0, 5.0, 15.0, 5.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 10",
+					"from": [ 3.5, 8.5, 6.0 ], 
+					"to": [ 4.0, 11.5, 12.0 ], 
+					"rotationOrigin": [ 4.0, 8.5, 6.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 9.5, 5.0, 12.5, 5.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 9.0, 5.5, 12.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 9.0, 10.5, 12.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 9.0, 5.5, 12.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 8.5, 8.0, 14.5, 8.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 9.0, 5.0, 15.0, 5.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 11",
+					"from": [ 3.5, 12.5, 6.0 ], 
+					"to": [ 4.0, 15.5, 12.0 ], 
+					"rotationOrigin": [ 4.0, 12.5, 6.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 6.0, 5.0, 9.0, 5.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 6.0, 5.5, 9.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 6.0, 10.5, 9.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 6.0, 5.5, 9.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 8.5, 8.0, 14.5, 8.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 9.0, 5.0, 15.0, 5.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 12",
+					"from": [ 6.5, 4.5, 9.0 ], 
+					"to": [ 7.5, 7.5, 15.0 ], 
+					"rotationOrigin": [ 7.0, 4.5, 9.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 7.0, 10.5, 10.0, 11.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 7.0, 5.5, 10.0, 11.5 ], "rotation": 270 },
+						"south": { "texture": "#woodframe", "uv": [ 7.0, 10.5, 10.0, 11.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 7.0, 5.5, 10.0, 11.5 ], "rotation": 270 },
+						"up": { "texture": "#woodframe", "uv": [ 5.0, 2.5, 11.0, 3.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 7.0, 1.0, 13.0, 2.0 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 13",
+					"from": [ 6.5, 8.5, 9.0 ], 
+					"to": [ 7.5, 11.5, 15.0 ], 
+					"rotationOrigin": [ 7.0, 8.5, 9.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 10.0, 10.5, 13.0, 11.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 10.0, 5.5, 13.0, 11.5 ], "rotation": 270 },
+						"south": { "texture": "#woodframe", "uv": [ 10.0, 10.5, 13.0, 11.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 10.0, 5.5, 13.0, 11.5 ], "rotation": 270 },
+						"up": { "texture": "#woodframe", "uv": [ 5.0, 2.5, 11.0, 3.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 7.0, 1.0, 13.0, 2.0 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 14",
+					"from": [ 9.15, 12.5, 11.65 ], 
+					"to": [ 9.65, 15.5, 17.65 ], 
+					"rotationOrigin": [ 9.65, 12.5, 11.65 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 13.0, 10.5, 16.0, 11.0 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 13.0, 5.5, 16.0, 11.5 ], "rotation": 270 },
+						"south": { "texture": "#woodframe", "uv": [ 13.0, 10.5, 16.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 13.0, 5.5, 16.0, 11.5 ], "rotation": 270 },
+						"up": { "texture": "#woodframe", "uv": [ 5.0, 2.5, 11.0, 3.0 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 7.0, 1.0, 13.0, 1.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack bottom 2",
+					"from": [ 10.0, 0.0, 12.0 ], 
+					"to": [ 16.0, 0.5, 15.5 ], 
+					"rotationOrigin": [ 10.0, 0.0, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.0, 11.0, 6.0, 11.5 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 9.5, 11.0, 13.0, 11.5 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 1.5, 11.0, 7.5, 11.5 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 0.5, 11.0, 4.0, 11.5 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 12.0, 5.5, 15.5, 11.5 ], "rotation": 90 },
+						"down": { "texture": "#woodinterior", "uv": [ 12.0, 5.5, 15.5, 11.5 ], "rotation": 270 }
+					}
+				},
+				{
+					"name": "bottle rack row 4",
+					"from": [ 10.0, 3.5, 12.0 ], 
+					"to": [ 16.0, 4.5, 15.5 ], 
+					"rotationOrigin": [ 10.0, 3.5, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 6.5, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 8.0, 13.0 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 6.5, 6.0 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 7.0, 15.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 7.0, 9.0 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 6.5, 9.0 ] }
+					}
+				},
+				{
+					"name": "bottle rack row 5",
+					"from": [ 10.0, 7.5, 12.0 ], 
+					"to": [ 16.0, 8.5, 15.5 ], 
+					"rotationOrigin": [ 10.0, 7.5, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 6.5, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 8.0, 13.0 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 6.5, 6.0 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 7.0, 15.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 7.0, 9.0 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 6.5, 9.0 ] }
+					}
+				},
+				{
+					"name": "bottle rack row 6",
+					"from": [ 10.0, 11.5, 12.0 ], 
+					"to": [ 16.0, 12.5, 15.5 ], 
+					"rotationOrigin": [ 10.0, 11.5, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 6.5, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 8.0, 13.0 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 6.5, 6.0 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 7.0, 15.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 7.0, 9.0 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 6.5, 9.0 ] }
+					}
+				},
+				{
+					"name": "bottle rack top 2",
+					"from": [ 10.0, 15.5, 12.0 ], 
+					"to": [ 16.0, 16.0, 15.5 ], 
+					"rotationOrigin": [ 10.0, 15.5, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.0, 5.5, 6.0, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 7.5, 11.0, 11.0, 11.5 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.0, 11.0, 6.0, 11.5 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 0.0, 5.5, 3.5, 6.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 12.0, 5.5, 15.5, 11.5 ], "rotation": 90 },
+						"down": { "texture": "#woodinterior", "uv": [ 12.0, 5.5, 15.5, 11.5 ], "rotation": 90 }
+					}
+				},
+				{
+					"name": "bottle rack column 15",
+					"from": [ 10.0, 12.5, 12.0 ], 
+					"to": [ 16.0, 15.5, 12.5 ], 
+					"rotationOrigin": [ 10.0, 12.5, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 0.0, 10.5, 3.0, 16.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 6.0 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 0.0, 5.0, 3.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 6.0 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 2.0, 0.5, 2.5, 6.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 2.0, 12.5, 2.5, 18.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 16",
+					"from": [ 10.0, 8.5, 12.0 ], 
+					"to": [ 16.0, 11.5, 12.5 ], 
+					"rotationOrigin": [ 10.0, 8.5, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 0.0, 10.5, 3.0, 16.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 6.0 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 0.0, 5.0, 3.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 6.0 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 2.0, 0.5, 2.5, 6.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 2.0, 12.5, 2.5, 18.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 17",
+					"from": [ 10.0, 4.5, 12.0 ], 
+					"to": [ 16.0, 7.5, 12.5 ], 
+					"rotationOrigin": [ 10.0, 4.5, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 0.0, 10.5, 3.0, 16.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 6.0 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 0.0, 5.0, 3.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 6.0 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 2.0, 0.5, 2.5, 6.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 2.0, 12.5, 2.5, 18.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 18",
+					"from": [ 10.0, 0.5, 12.0 ], 
+					"to": [ 16.0, 3.5, 12.5 ], 
+					"rotationOrigin": [ 10.0, 0.5, 12.0 ],
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 0.0, 10.5, 3.0, 16.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 6.0 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 0.0, 5.0, 3.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 5.5, 3.0, 6.0 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 2.0, 0.5, 2.5, 6.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 2.0, 12.5, 2.5, 18.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 19",
+					"from": [ 6.5, 12.5, 9.0 ], 
+					"to": [ 7.5, 15.5, 15.0 ], 
+					"rotationOrigin": [ 7.0, 12.5, 9.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 13.0, 10.5, 16.0, 11.5 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 13.0, 5.5, 16.0, 11.5 ], "rotation": 270 },
+						"south": { "texture": "#woodframe", "uv": [ 13.0, 10.5, 16.0, 11.5 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 13.0, 5.5, 16.0, 11.5 ], "rotation": 270 },
+						"up": { "texture": "#woodframe", "uv": [ 5.0, 2.5, 11.0, 3.5 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 7.0, 1.0, 13.0, 2.0 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 20",
+					"from": [ 9.15, 8.5, 11.65 ], 
+					"to": [ 9.65, 11.5, 17.65 ], 
+					"rotationOrigin": [ 9.65, 8.5, 11.65 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 10.0, 10.5, 13.0, 11.0 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 10.0, 5.5, 13.0, 11.5 ], "rotation": 270 },
+						"south": { "texture": "#woodframe", "uv": [ 10.0, 10.5, 13.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 10.0, 5.5, 13.0, 11.5 ], "rotation": 270 },
+						"up": { "texture": "#woodframe", "uv": [ 5.0, 2.5, 11.0, 3.0 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 7.0, 1.0, 13.0, 1.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 21",
+					"from": [ 9.15, 4.5, 11.65 ], 
+					"to": [ 9.65, 7.5, 17.65 ], 
+					"rotationOrigin": [ 9.65, 4.5, 11.65 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 7.0, 10.5, 10.0, 11.0 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 7.0, 5.5, 10.0, 11.5 ], "rotation": 270 },
+						"south": { "texture": "#woodframe", "uv": [ 7.0, 10.5, 10.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 7.0, 5.5, 10.0, 11.5 ], "rotation": 270 },
+						"up": { "texture": "#woodframe", "uv": [ 5.0, 2.5, 11.0, 3.0 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 7.0, 1.0, 13.0, 1.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack column 22",
+					"from": [ 9.15, 0.5, 11.65 ], 
+					"to": [ 9.65, 3.5, 17.65 ], 
+					"rotationOrigin": [ 9.65, 0.5, 11.65 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 4.0, 10.5, 7.0, 11.0 ], "rotation": 90 },
+						"east": { "texture": "#woodframe", "uv": [ 4.0, 5.5, 7.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#woodframe", "uv": [ 4.0, 10.5, 7.0, 11.0 ], "rotation": 90 },
+						"west": { "texture": "#woodframe", "uv": [ 4.0, 5.5, 7.0, 11.5 ], "rotation": 90 },
+						"up": { "texture": "#woodframe", "uv": [ 5.0, 2.5, 11.0, 3.0 ], "rotation": 90, "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 7.0, 1.0, 13.0, 1.5 ], "rotation": 90, "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack row 7",
+					"from": [ 10.0, 3.5, 12.0 ], 
+					"to": [ 18.5, 4.5, 18.0 ], 
+					"rotationOrigin": [ 10.0, 3.5, 12.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 10.5, 13.0 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 6.0 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 9.5, 15.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 9.5, 11.5 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 9.0, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack row 8",
+					"from": [ 10.0, 7.5, 12.0 ], 
+					"to": [ 18.5, 8.5, 18.0 ], 
+					"rotationOrigin": [ 10.0, 7.5, 12.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 10.5, 13.0 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 6.0 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 9.5, 15.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 9.5, 11.5 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 9.0, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack row 9",
+					"from": [ 10.0, 11.5, 12.0 ], 
+					"to": [ 18.5, 12.5, 18.0 ], 
+					"rotationOrigin": [ 10.0, 11.5, 12.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 6.0 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 10.5, 13.0 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 6.0 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 9.5, 15.0 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 9.5, 11.5 ] },
+						"down": { "texture": "#woodinterior", "uv": [ 0.5, 5.5, 9.0, 11.5 ] }
+					}
+				},
+				{
+					"name": "bottle rack bottom 3",
+					"from": [ 10.0, 0.0, 12.0 ], 
+					"to": [ 18.5, 0.5, 18.0 ], 
+					"rotationOrigin": [ 10.0, 0.0, 12.0 ],
+					"rotationY": 135.0,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 5.5 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 10.5, 12.5 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 5.5 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 9.5, 14.5 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 2.0, 5.5, 10.5, 11.5 ], "rotation": 180 },
+						"down": { "texture": "#woodinterior", "uv": [ 2.0, 5.5, 10.5, 11.5 ], "rotation": 180 }
+					}
+				},
+				{
+					"name": "bottle rack top 3",
+					"from": [ 10.0, 15.5, 12.0 ], 
+					"to": [ 18.5, 16.0, 18.0 ], 
+					"rotationOrigin": [ 10.0, 15.5, 12.0 ],
+					"rotationX": -179.9999678050824,
+					"rotationY": 44.99999171897202,
+					"rotationZ": -179.9999678050824,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 5.5 ] },
+						"east": { "texture": "#woodinterior", "uv": [ 4.5, 12.0, 10.5, 12.5 ] },
+						"south": { "texture": "#woodinterior", "uv": [ 0.5, 5.0, 9.0, 5.5 ] },
+						"west": { "texture": "#woodinterior", "uv": [ 3.5, 14.0, 9.5, 14.5 ] },
+						"up": { "texture": "#woodinterior", "uv": [ 2.0, 5.5, 10.5, 11.5 ], "rotation": 180 },
+						"down": { "texture": "#woodinterior", "uv": [ 2.0, 5.5, 10.5, 11.5 ], "rotation": 180 }
+					}
+				},
+				{
+					"name": "bottle rack wall 1",
+					"from": [ 4.0, 0.0, 0.0 ], 
+					"to": [ 8.6, 16.0, 0.01 ], 
+					"rotationOrigin": [ 4.0, 0.0, 0.0 ],
+					"rotationY": -22.50000022689532,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 1.5, 0.0, 6.5, 16.0 ], "autoUv": false },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 0.0, 0.5, 16.0 ], "enabled": false },
+						"south": { "texture": "#woodframe", "uv": [ 0.5, -1.0, 5.0, 15.0 ], "enabled": false },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 0.0, 0.5, 16.0 ], "enabled": false },
+						"up": { "texture": "#woodframe", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack wall 2",
+					"from": [ 14.25, 0.0, 7.75 ], 
+					"to": [ 18.85, 16.0, 7.76 ], 
+					"rotationOrigin": [ 14.25, 0.0, 7.75 ],
+					"rotationY": -67.5,
+					"faces": {
+						"north": { "texture": "#woodframe", "uv": [ 10.0, 0.0, 14.5, 16.0 ] },
+						"east": { "texture": "#woodframe", "uv": [ 0.0, 0.0, 0.5, 16.0 ], "enabled": false },
+						"south": { "texture": "#woodframe", "uv": [ 8.0, 0.0, 12.5, 16.0 ], "enabled": false },
+						"west": { "texture": "#woodframe", "uv": [ 0.0, 0.0, 0.5, 16.0 ], "enabled": false },
+						"up": { "texture": "#woodframe", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"down": { "texture": "#woodframe", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack top 4",
+					"from": [ 4.0, 15.89, 0.0 ], 
+					"to": [ 8.6, 15.99, 5.5 ], 
+					"rotationOrigin": [ 4.0, 15.89, 0.0 ],
+					"rotationY": -22.50000022689532,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"east": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 5.5, 0.5 ], "enabled": false },
+						"south": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"west": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 5.5, 0.5 ], "enabled": false },
+						"up": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 5.5, 11.5 ], "autoUv": false },
+						"down": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 5.5 ], "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack top 5",
+					"from": [ 14.25, 15.89, 7.75 ], 
+					"to": [ 18.85, 15.99, 13.25 ], 
+					"rotationOrigin": [ 14.25, 15.89, 7.75 ],
+					"rotationY": -67.5,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"east": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 5.5, 0.5 ], "enabled": false },
+						"south": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"west": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 5.5, 0.5 ], "enabled": false },
+						"up": { "texture": "#woodinterior", "uv": [ 8.0, 5.5, 12.5, 11.5 ], "autoUv": false },
+						"down": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 5.5 ], "enabled": false }
+					}
+				},
+				{
+					"name": "bottle rack bottom 4",
+					"from": [ 4.0, 0.01, 0.0 ], 
+					"to": [ 8.6, 0.11, 5.5 ], 
+					"rotationOrigin": [ 4.0, 0.01, 0.0 ],
+					"rotationY": -22.50000022689532,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"east": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 5.5, 0.5 ], "enabled": false },
+						"south": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"west": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 5.5, 0.5 ], "enabled": false },
+						"up": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 5.5 ], "enabled": false },
+						"down": { "texture": "#woodinterior", "uv": [ 1.0, 5.5, 5.5, 11.5 ], "autoUv": false }
+					}
+				},
+				{
+					"name": "bottle rack bottom 5",
+					"from": [ 14.25, 0.01, 7.75 ], 
+					"to": [ 18.85, 0.11, 13.25 ], 
+					"rotationOrigin": [ 14.25, 0.01, 7.75 ],
+					"rotationY": -67.5,
+					"faces": {
+						"north": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"east": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 5.5, 0.5 ], "enabled": false },
+						"south": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 0.5 ], "enabled": false },
+						"west": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 5.5, 0.5 ], "enabled": false },
+						"up": { "texture": "#woodinterior", "uv": [ 0.0, 0.0, 4.5, 5.5 ], "enabled": false },
+						"down": { "texture": "#woodinterior", "uv": [ 8.0, 5.5, 12.5, 11.5 ], "autoUv": false }
+					}
+				}
+			]
+		}
+	]}

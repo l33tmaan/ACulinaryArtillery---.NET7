@@ -1,0 +1,177 @@
+{
+	"code": "cauldronmini",
+	"class": "BlockSaucepan",
+	"behaviorsByType": {
+		"*": [
+			{ "name": "UnstableFalling" },
+			{ "name": "RightClickPickup" }
+		]
+	},
+	"entityClass": "Saucepan",
+	"attributesByType": {
+		"*": {
+			"lidSound": "game:sounds/block/metaldoor-place",
+			"canSeal": true,
+		    handbook: { "groupBy": ["cauldronmini-*"] },
+			"lidPerishRate": 0.75,
+			"maxTemperature": 900,
+			"maxFillLevel": 8,
+			"storageType": 1,
+			"maxContainerSlotStackSize": 20,
+			"cookingSlotCapacityLitres": 20,
+			"cookingContainerSlots": 4,
+			"liquidcontainer": true,
+			"capacityLitres": 20,
+			"canhold": [ "water-*" ],
+			"inFirePitProps": {
+				"transform": {
+					"translation": {
+						"x": 0,
+						"y": 0.2,
+						"z": 0
+					}
+				},
+				"useFirepitModel": "Wide"
+			}
+		}
+	},
+	"variantgroups": [
+		{
+			"code": "metal",
+			"states": [ "copper", "tinbronze", "blackbronze", "iron", "steel", "meteoriciron" ]
+		}
+	],
+	"creativeinventory": {
+		"general": [ "*" ],
+		"decorative": [ "*" ],
+		"aculinaryartillery": [ "*" ]
+	},
+	"shape": { "base": "block/cauldronmini/empty" },
+	"sidesolid": {
+		"all": false
+	},
+	"sideopaque": {
+		"all": false
+	},
+	"drawtype": "JSON",
+	"blockmaterial": "Metal",
+	"texturesbyType": {
+		"*-copper": {
+            "metal": { "base": "game:block/metal/sheet/copper1" },
+			"metal2": { "base": "game:block/metal/sheet/brass1" },
+			"metaldark": {
+				"base": "game:block/metal/sheet/copper1",
+				"overlays": [ "block/cauldron/metaloverlay" ]
+			},
+			"metalgradient": {
+				"base": "game:block/metal/sheet/copper1",
+				"overlays": [ "block/cauldron/metaloverlaygradient" ]
+			}
+		},
+		"*-tinbronze": {
+            "metal": { "base": "game:block/metal/sheet/tinbronze1" },
+			"metal2": { "base": "game:block/metal/sheet/bismuth1" },
+			"metaldark": {
+				"base": "game:block/metal/sheet/tinbronze1",
+				"overlays": [ "block/cauldron/metaloverlay" ]
+			},
+			"metalgradient": {
+				"base": "game:block/metal/sheet/tinbronze1",
+				"overlays": [ "block/cauldron/metaloverlaygradient" ]
+			}
+		},
+		"*-blackbronze": {
+            "metal": { "base": "game:block/metal/sheet/blackbronze1" },
+			"metal2": { "base": "game:block/metal/sheet/tinbronze1" },
+			"metaldark": {
+				"base": "game:block/metal/sheet/blackbronze1",
+				"overlays": [ "block/cauldron/metaloverlay" ]
+			},
+			"metalgradient": {
+				"base": "game:block/metal/sheet/blackbronze1",
+				"overlays": [ "block/cauldron/metaloverlaygradient" ]
+			}
+		},
+		"*-iron": {
+            "metal": { "base": "block/cauldron/castiron" },
+			"metal2": { "base": "game:block/metal/sheet/gold1" },
+			"metaldark": {
+				"base": "block/cauldron/castiron",
+				"overlays": [ "block/cauldron/metaloverlay" ]
+			},
+			"metalgradient": {
+				"base": "block/cauldron/castiron",
+				"overlays": [ "block/cauldron/metaloverlaygradient" ]
+			}
+		},
+		"*-steel": {
+            "metal": { "base": "game:block/metal/sheet/steel1" },
+			"metal2": { "base": "block/cauldron/castiron" },
+			"metaldark": {
+				"base": "game:block/metal/sheet/steel1",
+				"overlays": [ "block/cauldron/metaloverlay" ]
+			},
+			"metalgradient": {
+				"base": "game:block/metal/sheet/steel1",
+				"overlays": [ "block/cauldron/metaloverlaygradient" ]
+			}
+		},
+		"*-meteoriciron": {
+            "metal": { "base": "block/cauldron/meteoriciron" },
+			"metal2": { "base": "game:block/metal/sheet/tinbronze1" },
+			"metaldark": {
+				"base": "block/cauldron/meteoriciron",
+				"overlays": [ "block/cauldron/metaloverlay" ]
+			},
+			"metalgradient": {
+				"base": "block/cauldron/meteoriciron",
+				"overlays": [ "block/cauldron/metaloverlaygradient" ]
+			}
+		},
+	},
+	"replaceable": 500,
+	"resistance": 1.5,
+	"liquidSelectable": 1,
+	"lightAbsorption": 1,
+	"sounds": {
+		"place": "game:block/metaldoor-place",
+		"hit": "game:block/metaldoor-place",
+		"break": "game:block/metaldoor-place",
+		"walk": "game:walk/stone"
+	},
+	"collisionSelectionBoxes": [
+		{
+			"x1": 0.075,
+			"y1": 0,
+			"z1": 0.125,
+			"x2": 0.9,
+			"y2": 0.65,
+			"z2": 0.875
+		},
+	],
+	"materialDensity": 7870,
+	"tpHandTransform": {
+		"translation": {
+			"x": -0.86,
+			"y": -0.73,
+			"z": -1.14
+		},
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"scale": 0.55
+	},
+	"fpHandTransform": {
+		"scale": 1.5
+	},
+	"groundTransform": {
+		"origin": {
+			"x": 0.5,
+			"y": 0,
+			"z": 0.5
+		},
+		"scale": 5
+	}
+}

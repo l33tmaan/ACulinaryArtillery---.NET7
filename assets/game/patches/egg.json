@@ -1,0 +1,131 @@
+[
+  {
+    "op": "add",
+    "path": "/variantgroups/1/states/-",
+    "value": "boiled",
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "add",
+    "path": "/variantgroups/1/states/-",
+    "value": "pickled",
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "remove",
+    "path": "/texture",
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "remove",
+    "path": "/transitionableProps",
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "add",
+    "path": "/texturesByType",
+    "value": {
+      "*-pickled": {
+        "all": {
+          "base": "item/food/egg/pickled"
+        }
+      },
+      "*": {
+        "all": {
+          "base": "item/food/egg/chicken"
+        }
+      }
+    },
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "add",
+    "path": "/transitionablePropsByType",
+    "value": {
+      "*-pickled": [
+        {
+          "type": "Perish",
+          "freshHours": {
+            "avg": 400
+          },
+          "transitionHours": {
+            "avg": 72
+          },
+          "transitionedStack": {
+            "type": "item",
+            "code": "rot"
+          },
+          "transitionRatio": 0.5
+        }
+      ],
+      "*": [
+        {
+          "type": "Perish",
+          "freshHours": {
+            "avg": 120
+          },
+          "transitionHours": {
+            "avg": 24
+          },
+          "transitionedStack": {
+            "type": "item",
+            "code": "rot"
+          },
+          "transitionRatio": 0.5
+        }
+      ]
+    },
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "remove",
+    "path": "/attributes/nutritionPropsWhenInMeal",
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/nutritionPropsWhenInMealByType",
+    "value": {
+      "*-pickled": {
+        "saturation": 175,
+        "foodcategory": "Protein"
+      },
+      "*": {
+        "saturation": 200,
+        "foodcategory": "Protein"
+      }
+    },
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "add",
+    "path": "/nutritionPropsByType/*-pickled",
+    "value": {
+      "saturation": 140,
+      "foodcategory": "Protein"
+    },
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/inPiePropertiesByType",
+    "value": {
+      "*-raw": {
+        "texture": "game:block/food/pie/fill-egg",
+        "partType": "Filling"
+      },
+      "*-boiled": {
+        "texture": "game:block/food/pie/fill-egg",
+        "partType": "Filling"
+      }
+    },
+    "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "add",
+    "path": "/class",
+    "value": "EggCrack",
+    side: "server",
+    "file": "itemtypes/food/egg.json"
+  }
+]

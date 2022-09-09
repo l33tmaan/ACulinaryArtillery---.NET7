@@ -1,0 +1,19 @@
+{
+	ingredientPattern: "S,G",
+	ingredients: {
+		"S": { 
+			type: "item", 
+			code: "game:saw-*",
+			istool: "true",
+		},
+		"G": { 
+			type: "block", 
+			code: "game:glassslab-*-down-free", 
+			name: "color"
+		}
+	},
+	width: 1,
+	height: 2,
+	name: "glassbottle",
+	output: { type: "block", code: "bottle-{color}-burned", quantity: 4  }
+}

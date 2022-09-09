@@ -1,0 +1,10 @@
+{
+	ingredient: { type: "item", code: "game:ingot-*", name: "metal", allowedVariants: ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] },
+	pattern: [[
+		"####___",
+		"#__####",
+		"#______",
+	]],
+	name: "Bighook",
+	output: { type: "item", code: "bighook-{metal}"  }
+}

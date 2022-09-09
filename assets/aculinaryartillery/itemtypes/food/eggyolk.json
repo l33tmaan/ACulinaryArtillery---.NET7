@@ -1,0 +1,27 @@
+{
+	code: "eggyolk",
+	"class": "EggCrack",
+	maxstacksize: 32,
+	variantgroups: [
+		{ code: "source", states: ["chicken", "pheasant", "goldenpheasant", "capercaillie"] },
+	],
+	texture: { base: "item/food/eggyolk/{source}" },
+	creativeinventory: { "general": ["*"], "items": ["*"], "expandedfoods": ["*"], },
+	guiTransform: {
+		translation: { x: -2, y: -2, z: 0 },
+		rotation: { x: 1, y: 10, z: 0 },
+		origin: { x: 0.5, y: 0.5, z: 0.5 },
+		scale: 1.2
+	},
+	fpHandTransform: {
+		translation: { x: 0, y: -0.1, z: 0 },
+		rotation: { x: 180, y: 90, z: 22 }
+	},
+	transitionableProps: [{
+		type: "Perish",
+		freshHours: { avg: 24 },
+		transitionHours: { avg: 6 },
+		transitionedStack: { type: "item", code: "game:rot" },
+		transitionRatio: 0.5
+	}]
+}

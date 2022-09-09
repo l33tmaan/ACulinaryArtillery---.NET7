@@ -1,0 +1,12 @@
+{
+	ingredient: { type: "item", code: "game:ingot-*", name: "metal", allowedVariants: ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] },
+	pattern: [[
+		"#####",
+		"#####",
+	],[
+		"__##_",
+		"__##_",
+	]],
+	name: "Spile",
+	output: { type: "block", code: "spile-{metal}-north"  }
+}

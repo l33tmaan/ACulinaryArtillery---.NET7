@@ -1,0 +1,243 @@
+{
+  "code": "bottle",
+  "variantgroups": [
+    {
+      "code": "color",
+      "states": [ "clay", "green", "blue", "brown", "pink", "plain", "quartz", "red", "smoky", "vintage", "violet", "yellow" ]
+    },
+    {
+      "code": "type",
+      "states": [ "raw", "burned" ]
+    }
+  ],
+  "classByType": { "*-burned": "BlockBottle" },
+  "entityClassByType": { "*-burned": "Bottle" },
+  "creativeinventory": { "general": [ "*" ], "aculinaryartillery": ["*"] },
+  "attributes": {
+    "shelvable": true,
+    "bottlerackable": true,
+    "perishRate": 0.1,
+    "handbook": { "groupBy": [ "bottle-*" ] },
+    "bottleRackTransformByType": {
+      "*-burned": {
+        "translation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "origin": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": 1
+      }
+    },
+    "liquidContainerProps": {
+      "capacityLitres": 1,
+      "transferSizeLitres": 0.1,
+      "emptyShapeLoc": "aculinaryartillery:shapes/block/bottle/glassbottleempty",
+      "opaqueContentShapeLoc": "aculinaryartillery:shapes/block/bottle/glassbottle",
+      "liquidContentShapeLoc": "aculinaryartillery:shapes/block/bottle/glassbottle",
+      "liquidMaxYTranslate": 0.05
+    }
+  },
+  "skipVariants": [
+    "bottle-blue-raw",
+    "bottle-green-raw",
+    "bottle-brown-raw",
+    "bottle-pink-raw",
+    "bottle-plain-raw",
+    "bottle-quartz-raw",
+    "bottle-red-raw",
+    "bottle-smoky-raw",
+    "bottle-vintage-raw",
+    "bottle-violet-raw",
+    "bottle-yellow-raw"
+  ],
+  "drawtype": "JSON",
+  "replaceable": 1,
+  "behaviorsByType": {
+    "*-raw": [
+      { "name": "RightClickPickup" },
+      { "name": "SneakPlacing" },
+      {
+        "name": "GroundStorable",
+        "properties": {
+          "layout": "Quadrants",
+          "collisionBox": {
+            "x1": 0,
+            "y1": 0,
+            "z1": 0,
+            "x2": 1,
+            "y2": 0.125,
+            "z2": 1
+          }
+        }
+      },
+      {
+        "name": "Unplaceable",
+        "__comment": "The ground storable obsoletes this being a block. Should be an item, but is kept a block for backwards compatibility"
+      },
+      {
+        "name": "UnstableFalling",
+        "properties": {
+          "attachmentArea": {
+            "x1": 5,
+            "y1": 0,
+            "z1": 5,
+            "x2": 10,
+            "y2": 0,
+            "z2": 10
+          }
+        }
+      }
+    ],
+    "*": [
+      { "name": "RightClickPickup" },
+      { "name": "SneakPlacing" },
+      {
+        "name": "GroundStorable",
+        "properties": {
+          "layout": "Quadrants",
+          "collisionBox": {
+            "x1": 0,
+            "y1": 0,
+            "z1": 0,
+            "x2": 1,
+            "y2": 0.125,
+            "z2": 1
+          }
+        }
+      },
+      {
+        "name": "Unplaceable",
+        "__comment": "The ground storable obsoletes this being a block. Should be an item, but is kept a block for backwards compatibility"
+      },
+      {
+        "name": "UnstableFalling",
+        "properties": {
+          "attachmentArea": {
+            "x1": 5,
+            "y1": 0,
+            "z1": 5,
+            "x2": 10,
+            "y2": 0,
+            "z2": 10
+          }
+        }
+      }
+    ]
+  },
+  "combustiblePropsByType": {
+    "bottle-clay-raw": {
+      "meltingPoint": 600,
+      "meltingDuration": 30,
+      "smeltedRatio": 1,
+      "smeltingType": "fire",
+      "smeltedStack": {
+        "type": "block",
+        "code": "bottle-clay-burned"
+      },
+      "requiresContainer": false
+    }
+  },
+  "maxstacksizeByType": {
+    "*-raw": 64,
+    "*": 16
+  },
+  "blockmaterialByType": {
+    "*-clay-*": "Ceramic",
+    "*": "Glass"
+  },
+  "shapeByType": {
+    "*-clay-*": { "base": "aculinaryartillery:block/bottle/bottle" },
+    "*": { "base": "aculinaryartillery:block/bottle/glassbottleempty" }
+  },
+  "lightAbsorption": 0,
+  "sideopaque": { "all": false },
+  "sideao": { "all": true },
+  "emitsideao": { "all": false },
+  "sidesolid": { "all": false },
+  "renderpassByType": {
+    "*-clay-*": "opaque",
+    "*": "transparent"
+  },
+  "collisionbox": {
+    "x1": 0.4,
+    "y1": 0,
+    "z1": 0.4,
+    "x2": 0.6,
+    "y2": 0.375,
+    "z2": 0.6
+  },
+  "selectionbox": {
+    "x1": 0.35,
+    "y1": 0,
+    "z1": 0.35,
+    "x2": 0.65,
+    "y2": 0.375,
+    "z2": 0.65
+  },
+  "texturesByType": {
+    "*-raw": { "all": { "base": "game:block/clay/blueclay" } },
+    "*-clay-*": { "all": { "base": "game:block/clay/ceramic" } },
+    "*": {
+      "glass": { "base": "block/bottle/{color}" },
+      "map": { "base": "game:item/utility/map" }
+    }
+  },
+  "resistance": 0.5,
+  "guiTransform": {
+    "rotation": {
+      "x": -22.6,
+      "y": -125,
+      "z": 0
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.18,
+      "z": 0.5
+    },
+    "scale": 3.09
+  },
+  "groundTransform": {
+    "scale": 5
+  },
+  "fpHandTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0,
+      "z": 0.5
+    },
+    "origin": {
+      "x": 0.5,
+      "y": -0.5,
+      "z": 0.8
+    },
+    "scale": 2
+  },
+  "tpHandTransform": {
+    "translation": {
+      "x": -0.66,
+      "y": -0.03,
+      "z": -0.65
+    },
+    "rotation": {
+      "x": -139,
+      "y": 9,
+      "z": -118
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.01,
+      "z": 0.5
+    },
+    "scale": 0.81
+  }
+}

@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"cloudberry": "item/food/grain/overlays/cloudberry"
+	},
+	"elements": [
+		{
+			"name": "overlay",
+			"from": [ 6.2, -0.01, 5.49 ], 
+			"to": [ 9.8, 1.51, 10.51 ], 
+			"rotationOrigin": [ 8.2, 0.0, 7.9 ],
+			"faces": {
+				"north": { "texture": "#cloudberry", "uv": [ 1.5, 11.5, 5.0, 13.0 ] },
+				"east": { "texture": "#cloudberry", "uv": [ 10.0, 8.0, 15.0, 9.5 ] },
+				"south": { "texture": "#cloudberry", "uv": [ 2.0, 6.0, 5.5, 7.5 ] },
+				"west": { "texture": "#cloudberry", "uv": [ 0.0, 9.0, 5.0, 10.5 ] },
+				"up": { "texture": "#cloudberry", "uv": [ 8.0, 2.5, 11.5, 7.5 ] },
+				"down": { "texture": "#cloudberry", "uv": [ 10.5, 6.0, 14.0, 11.0 ] }
+			},
+			"children": [
+				{
+					"name": "overlay 2",
+					"from": [ 0.5, 1.5, 0.5 ], 
+					"to": [ 3.06, 2.02, 4.52 ], 
+					"faces": {
+						"north": { "texture": "#cloudberry", "uv": [ 12.5, 10.0, 15.0, 10.5 ] },
+						"east": { "texture": "#cloudberry", "uv": [ 6.0, 2.5, 6.5, 6.5 ], "rotation": 90 },
+						"south": { "texture": "#cloudberry", "uv": [ 0.0, 10.0, 2.5, 10.5 ] },
+						"west": { "texture": "#cloudberry", "uv": [ 12.0, 0.5, 12.5, 4.5 ], "rotation": 90 },
+						"up": { "texture": "#cloudberry", "uv": [ 6.5, 11.5, 9.0, 15.5 ] },
+						"down": { "texture": "#cloudberry", "uv": [ 11.5, 3.5, 14.0, 7.5 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

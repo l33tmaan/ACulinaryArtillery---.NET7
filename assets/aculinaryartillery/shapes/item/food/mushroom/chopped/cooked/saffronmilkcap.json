@@ -1,0 +1,310 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"saffronmilkcap": "game:block/plant/mushroom/saffronmilkcap/saffronmilkcap"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ], 
+			"to": [ 8.0, 0.0, 8.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"east": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"south": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"west": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"down": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "stem1",
+					"from": [ 1.0, 0.5, -1.0 ], 
+					"to": [ 2.0, 2.0, 0.0 ], 
+					"rotationOrigin": [ 1.5, 0.5, -0.5 ],
+					"rotationX": 90.0,
+					"rotationZ": 67.5,
+					"faces": {
+						"north": { "texture": "#saffronmilkcap", "uv": [ 1.0, 10.0, 2.0, 11.5 ] },
+						"east": { "texture": "#saffronmilkcap", "uv": [ 1.5, 11.0, 2.5, 12.5 ] },
+						"south": { "texture": "#saffronmilkcap", "uv": [ 1.0, 11.0, 2.0, 12.5 ] },
+						"west": { "texture": "#saffronmilkcap", "uv": [ 1.0, 11.0, 2.0, 12.5 ] },
+						"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+						"down": { "texture": "#saffronmilkcap", "uv": [ 1.0, 11.0, 2.0, 12.0 ] }
+					}
+				},
+				{
+					"name": "Cap1",
+					"from": [ -3.0, 0.0, -4.0 ], 
+					"to": [ -1.0, 1.0, -2.0 ], 
+					"rotationOrigin": [ -1.0, 0.0, -2.0 ],
+					"rotationX": 90.0,
+					"rotationZ": -77.5,
+					"faces": {
+						"north": { "texture": "#saffronmilkcap", "uv": [ 4.5, 10.5, 6.5, 11.5 ] },
+						"east": { "texture": "#saffronmilkcap", "uv": [ 5.5, 10.5, 7.5, 11.5 ] },
+						"south": { "texture": "#saffronmilkcap", "uv": [ 5.0, 9.5, 7.0, 10.5 ] },
+						"west": { "texture": "#saffronmilkcap", "uv": [ 6.0, 10.5, 8.0, 11.5 ] },
+						"up": { "texture": "#saffronmilkcap", "uv": [ 5.5, 1.0, 7.5, 3.0 ] },
+						"down": { "texture": "#saffronmilkcap", "uv": [ 3.0, 10.5, 5.0, 12.5 ] }
+					},
+					"children": [
+						{
+							"name": "gillsW",
+							"from": [ -0.1, -1.4, 1.49 ], 
+							"to": [ 1.5, -0.9, 1.99 ], 
+							"rotationOrigin": [ 1.9, -1.4, 2.0 ],
+							"rotationZ": -45.0,
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 4.0, 14.0, 5.5, 14.5 ] },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 10.5, 10.5, 11.0, 11.0 ], "enabled": false },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 4.0, 11.0, 5.5, 11.5 ] },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 9.0, 10.5, 9.5, 11.0 ], "enabled": false },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 10.0, 11.0, 11.5, 11.5 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 3.5, 12.5, 5.0, 13.0 ] }
+							}
+						},
+						{
+							"name": "gillsN",
+							"from": [ 1.49, -1.4, -0.1 ], 
+							"to": [ 1.99, -0.9, 1.5 ], 
+							"rotationOrigin": [ 2.0, -1.4, 1.9 ],
+							"rotationX": 45.0,
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 4.0, 12.0, 5.5, 12.5 ] },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 4.5, 12.0, 6.0, 12.5 ] },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 5.5, 1.5, 6.0, 3.0 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 3.0, 8.5, 3.5, 10.0 ] }
+							}
+						},
+						{
+							"name": "ring1",
+							"from": [ 1.4, -1.5, 1.4 ], 
+							"to": [ 2.0, 0.0, 2.0 ], 
+							"rotationOrigin": [ 2.0, -1.5, 2.0 ],
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 0.5, 7.5, 1.0, 9.0 ] },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 1.0, 8.0, 1.5, 9.5 ] },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 1.5, 7.0, 2.0, 8.5 ] },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 0.5, 5.0, 1.0, 6.5 ] },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
+							}
+						}
+					]
+				},
+				{
+					"name": "stem2",
+					"from": [ 0.0, 0.5, 0.5 ], 
+					"to": [ 1.0, 1.5, 1.5 ], 
+					"rotationOrigin": [ 0.5, 0.5, 1.0 ],
+					"rotationX": 90.0,
+					"rotationZ": 8.0,
+					"faces": {
+						"north": { "texture": "#saffronmilkcap", "uv": [ 1.0, 9.0, 2.0, 10.0 ] },
+						"east": { "texture": "#saffronmilkcap", "uv": [ 1.5, 10.0, 2.5, 11.0 ] },
+						"south": { "texture": "#saffronmilkcap", "uv": [ 1.0, 9.5, 2.0, 10.5 ] },
+						"west": { "texture": "#saffronmilkcap", "uv": [ 1.0, 9.5, 2.0, 10.5 ] },
+						"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 1.5, 1.0, 2.5 ] },
+						"down": { "texture": "#saffronmilkcap", "uv": [ 1.0, 9.5, 2.0, 10.5 ] }
+					}
+				},
+				{
+					"name": "Cap2",
+					"from": [ 1.0, 2.0, 1.0 ], 
+					"to": [ 3.0, 3.0, 3.0 ], 
+					"rotationOrigin": [ 3.0, 2.0, 3.0 ],
+					"rotationX": -90.0,
+					"rotationZ": -28.0,
+					"faces": {
+						"north": { "texture": "#saffronmilkcap", "uv": [ 7.5, 12.0, 9.5, 13.0 ] },
+						"east": { "texture": "#saffronmilkcap", "uv": [ 5.5, 12.5, 7.5, 13.5 ] },
+						"south": { "texture": "#saffronmilkcap", "uv": [ 5.0, 11.0, 7.0, 12.0 ] },
+						"west": { "texture": "#saffronmilkcap", "uv": [ 6.0, 12.0, 8.0, 13.0 ] },
+						"up": { "texture": "#saffronmilkcap", "uv": [ 5.5, 3.0, 7.5, 5.0 ] },
+						"down": { "texture": "#saffronmilkcap", "uv": [ 4.5, 10.5, 6.5, 12.5 ] }
+					},
+					"children": [
+						{
+							"name": "gillsW12",
+							"from": [ -0.1, -1.4, 0.01 ], 
+							"to": [ 1.4, -0.9, 0.51 ], 
+							"rotationOrigin": [ 1.9, -1.4, 0.5 ],
+							"rotationZ": -45.0,
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 5.5, 10.5, 7.0, 11.0 ] },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 10.5, 10.5, 11.0, 11.0 ], "enabled": false },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 7.5, 7.5, 9.0, 8.0 ] },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 9.0, 10.5, 9.5, 11.0 ], "enabled": false },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 10.0, 11.0, 11.5, 11.5 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 5.5, 11.0, 7.0, 11.5 ] }
+							}
+						},
+						{
+							"name": "gillsS13",
+							"from": [ 1.49, -1.0, 0.4 ], 
+							"to": [ 1.99, -0.5, 1.8 ], 
+							"rotationOrigin": [ 2.0, -1.0, 0.4 ],
+							"rotationX": -45.0,
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 10.0, 9.0, 10.5, 9.5 ], "enabled": false },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 6.0, 11.5, 7.0, 12.0 ] },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 5.5, 6.0, 6.0, 6.5 ], "enabled": false },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 8.5, 10.0, 9.5, 10.5 ] },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 1.0 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 9.0, 12.0, 9.5, 13.0 ] }
+							}
+						},
+						{
+							"name": "ring15",
+							"from": [ 1.4, -1.5, 0.0 ], 
+							"to": [ 2.0, 0.0, 0.6 ], 
+							"rotationOrigin": [ 2.0, -1.5, 0.6 ],
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 1.0, 6.0, 1.5, 7.5 ] },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 3.5, 6.0, 4.0, 7.5 ] },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 0.5, 5.5, 1.0, 7.0 ] },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 1.5, 5.0, 2.0, 6.5 ] },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 0.5, 0.5, 1.0, 1.0 ] }
+							}
+						}
+					]
+				},
+				{
+					"name": "Cap3",
+					"from": [ 1.0, 0.0, -5.0 ], 
+					"to": [ 3.0, 1.0, -3.0 ], 
+					"rotationOrigin": [ 3.0, 0.0, -3.0 ],
+					"rotationX": 90.0,
+					"rotationZ": -77.5,
+					"faces": {
+						"north": { "texture": "#saffronmilkcap", "uv": [ 5.0, 10.0, 7.0, 11.0 ] },
+						"east": { "texture": "#saffronmilkcap", "uv": [ 6.0, 10.0, 8.0, 11.0 ] },
+						"south": { "texture": "#saffronmilkcap", "uv": [ 5.0, 9.5, 7.0, 10.5 ] },
+						"west": { "texture": "#saffronmilkcap", "uv": [ 7.0, 11.5, 9.0, 12.5 ] },
+						"up": { "texture": "#saffronmilkcap", "uv": [ 6.5, 1.0, 8.5, 3.0 ] },
+						"down": { "texture": "#saffronmilkcap", "uv": [ 4.5, 11.0, 6.5, 13.0 ] }
+					},
+					"children": [
+						{
+							"name": "gillsE15",
+							"from": [ 0.6, -0.9, 1.49 ], 
+							"to": [ 2.1, -0.4, 1.99 ], 
+							"rotationOrigin": [ 0.6, -0.9, 2.0 ],
+							"rotationZ": 45.0,
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 5.5, 12.0, 7.0, 12.5 ] },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 8.5, 10.5, 9.0, 11.0 ], "enabled": false },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 6.0, 12.0, 7.5, 12.5 ] },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 11.5, 11.5, 12.0, 12.0 ], "enabled": false },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 10.0, 10.0, 11.5, 10.5 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 4.5, 10.5, 6.0, 11.0 ] }
+							}
+						},
+						{
+							"name": "gillsN17",
+							"from": [ 0.01, -1.4, -0.1 ], 
+							"to": [ 0.51, -0.9, 1.5 ], 
+							"rotationOrigin": [ 0.5, -1.4, 1.9 ],
+							"rotationX": 45.0,
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 6.5, 13.0, 8.0, 13.5 ] },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 6.0, 12.5, 7.5, 13.0 ] },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 5.5, 1.5, 6.0, 3.0 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 5.5, 9.0, 6.0, 10.5 ] }
+							}
+						},
+						{
+							"name": "ring18",
+							"from": [ 0.0, -1.5, 1.4 ], 
+							"to": [ 0.6, 0.0, 2.0 ], 
+							"rotationOrigin": [ 0.6, -1.5, 2.0 ],
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 2.0, 8.0, 2.5, 9.5 ] },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 2.5, 7.5, 3.0, 9.0 ] },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 2.5, 6.0, 3.0, 7.5 ] },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 1.0, 5.5, 1.5, 7.0 ] },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 1.5, 0.5, 2.0, 1.0 ] }
+							}
+						}
+					]
+				},
+				{
+					"name": "Cap4",
+					"from": [ -2.5, 2.0, 0.0 ], 
+					"to": [ -0.5, 3.0, 2.0 ], 
+					"rotationOrigin": [ -0.5, 2.0, 2.0 ],
+					"rotationX": -90.0,
+					"rotationZ": 42.5,
+					"faces": {
+						"north": { "texture": "#saffronmilkcap", "uv": [ 9.0, 12.0, 11.0, 13.0 ] },
+						"east": { "texture": "#saffronmilkcap", "uv": [ 5.5, 12.5, 7.5, 13.5 ] },
+						"south": { "texture": "#saffronmilkcap", "uv": [ 6.0, 11.0, 8.0, 12.0 ] },
+						"west": { "texture": "#saffronmilkcap", "uv": [ 5.5, 12.0, 7.5, 13.0 ] },
+						"up": { "texture": "#saffronmilkcap", "uv": [ 4.5, 3.0, 6.5, 5.0 ] },
+						"down": { "texture": "#saffronmilkcap", "uv": [ 5.5, 11.0, 7.5, 13.0 ] }
+					},
+					"children": [
+						{
+							"name": "gillsE18",
+							"from": [ 0.5, -1.0, 0.01 ], 
+							"to": [ 2.0, -0.5, 0.51 ], 
+							"rotationOrigin": [ 0.5, -1.0, 0.5 ],
+							"rotationZ": 45.0,
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 9.0, 11.5, 10.5, 12.0 ] },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 8.5, 10.5, 9.0, 11.0 ], "enabled": false },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 6.5, 12.5, 8.0, 13.0 ] },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 11.5, 11.5, 12.0, 12.0 ], "enabled": false },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 10.0, 10.0, 11.5, 10.5 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 6.5, 12.5, 8.0, 13.0 ] }
+							}
+						},
+						{
+							"name": "gillsS20",
+							"from": [ 0.01, -1.0, 0.4 ], 
+							"to": [ 0.51, -0.5, 1.8 ], 
+							"rotationOrigin": [ 0.5, -1.0, 0.4 ],
+							"rotationX": -45.0,
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 10.0, 9.0, 10.5, 9.5 ], "enabled": false },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 7.5, 12.5, 8.5, 13.0 ] },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 5.5, 6.0, 6.0, 6.5 ], "enabled": false },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 11.0, 9.5, 12.0, 10.0 ] },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 1.0 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 9.5, 11.0, 10.0, 12.0 ] }
+							}
+						},
+						{
+							"name": "ring21",
+							"from": [ 0.0, -1.5, 0.0 ], 
+							"to": [ 0.6, 0.0, 0.6 ], 
+							"rotationOrigin": [ 0.6, -1.5, 0.6 ],
+							"faces": {
+								"north": { "texture": "#saffronmilkcap", "uv": [ 1.0, 6.0, 1.5, 7.5 ] },
+								"east": { "texture": "#saffronmilkcap", "uv": [ 3.5, 6.0, 4.0, 7.5 ] },
+								"south": { "texture": "#saffronmilkcap", "uv": [ 0.5, 5.5, 1.0, 7.0 ] },
+								"west": { "texture": "#saffronmilkcap", "uv": [ 1.5, 5.0, 2.0, 6.5 ] },
+								"up": { "texture": "#saffronmilkcap", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+								"down": { "texture": "#saffronmilkcap", "uv": [ 0.5, 0.5, 1.0, 1.0 ] }
+							}
+						}
+					]
+				}
+			]
+		}
+	]}

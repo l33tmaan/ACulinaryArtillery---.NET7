@@ -1,0 +1,26 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal", "allowedVariants": ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] },
+	"pattern": [[
+		"______##_",
+		"#####_##_",
+		"#####_##_",
+		"______##_",
+		"_##___##_",
+		"_##______",
+		"_##_#####",
+		"_##_#####",
+		"_##______"
+	],[
+		"_________",
+		"__##_____",
+		"__##__##_",
+		"______##_",
+		"_________",
+		"_##______",
+		"_##__##__",
+		"_____##__",
+		"_________"
+	]],
+	"name": "4 Spile",
+	"output": { "type": "block", "code": "spile-{metal}-north", "stacksize":4  }
+}

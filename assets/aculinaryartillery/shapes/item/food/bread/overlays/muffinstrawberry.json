@@ -1,0 +1,102 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"strawberry": "item/food/grain/overlays/strawberry"
+	},
+	"elements": [
+		{
+			"name": "overlay1",
+			"from": [ 4.74, -0.01, 6.99 ], 
+			"to": [ 7.26, 1.49, 9.51 ], 
+			"rotationOrigin": [ 6.5, 0.0, 9.4 ],
+			"faces": {
+				"north": { "texture": "#strawberry", "uv": [ 7.0, 11.5, 9.5, 13.0 ] },
+				"east": { "texture": "#strawberry", "uv": [ 3.0, 8.0, 5.5, 9.5 ] },
+				"south": { "texture": "#strawberry", "uv": [ 10.5, 1.5, 13.0, 3.0 ] },
+				"west": { "texture": "#strawberry", "uv": [ 8.5, 4.0, 11.0, 5.5 ] },
+				"up": { "texture": "#strawberry", "uv": [ 3.0, 5.0, 5.5, 7.5 ], "enabled": false },
+				"down": { "texture": "#strawberry", "uv": [ 9.5, 9.5, 12.0, 12.0 ] }
+			},
+			"children": [
+				{
+					"name": "overlay top1",
+					"from": [ -0.5, 1.5, -0.5 ], 
+					"to": [ 3.02, 2.52, 3.02 ], 
+					"rotationOrigin": [ -1.0, 0.0, -1.0 ],
+					"faces": {
+						"north": { "texture": "#strawberry", "uv": [ 0.0, 0.0, 3.5, 1.0 ] },
+						"east": { "texture": "#strawberry", "uv": [ 9.5, 5.0, 10.5, 8.5 ], "rotation": 90 },
+						"south": { "texture": "#strawberry", "uv": [ 1.5, 6.0, 5.0, 7.0 ] },
+						"west": { "texture": "#strawberry", "uv": [ 5.0, 0.5, 6.0, 4.0 ], "rotation": 90 },
+						"up": { "texture": "#strawberry", "uv": [ 11.5, 10.5, 15.0, 14.0 ] },
+						"down": { "texture": "#strawberry", "uv": [ 5.5, 4.0, 9.0, 7.5 ] }
+					}
+				},
+				{
+					"name": "overlay top2",
+					"from": [ 0.0, 2.5, 0.0 ], 
+					"to": [ 2.52, 3.02, 2.52 ], 
+					"rotationOrigin": [ -0.5, 1.0, -0.5 ],
+					"faces": {
+						"north": { "texture": "#strawberry", "uv": [ 6.0, 1.5, 8.5, 2.0 ] },
+						"east": { "texture": "#strawberry", "uv": [ 0.5, 1.0, 1.0, 3.5 ], "rotation": 90 },
+						"south": { "texture": "#strawberry", "uv": [ 11.0, 4.0, 13.5, 4.5 ] },
+						"west": { "texture": "#strawberry", "uv": [ 13.5, 3.0, 14.0, 5.5 ], "rotation": 90 },
+						"up": { "texture": "#strawberry", "uv": [ 9.0, 11.5, 11.5, 14.0 ] },
+						"down": { "texture": "#strawberry", "uv": [ 9.0, 5.0, 11.5, 7.5 ], "enabled": false }
+					}
+				}
+			]
+		},
+		{
+			"name": "overlay2",
+			"from": [ 8.74, -0.01, 6.99 ], 
+			"to": [ 11.26, 1.49, 9.51 ], 
+			"rotationOrigin": [ 10.5, 0.0, 9.4 ],
+			"faces": {
+				"north": { "texture": "#strawberry", "uv": [ 12.5, 4.5, 15.0, 6.0 ] },
+				"east": { "texture": "#strawberry", "uv": [ 7.0, 2.0, 9.5, 3.5 ] },
+				"south": { "texture": "#strawberry", "uv": [ 8.0, 10.5, 10.5, 12.0 ] },
+				"west": { "texture": "#strawberry", "uv": [ 10.0, 0.5, 12.5, 2.0 ] },
+				"up": { "texture": "#strawberry", "uv": [ 6.5, 7.0, 9.0, 9.5 ], "enabled": false },
+				"down": { "texture": "#strawberry", "uv": [ 5.5, 3.0, 8.0, 5.5 ] }
+			},
+			"children": [
+				{
+					"name": "overlay top3",
+					"from": [ -0.5, 1.5, -0.5 ], 
+					"to": [ 3.02, 2.52, 3.02 ], 
+					"rotationOrigin": [ -1.0, 0.0, -1.0 ],
+					"faces": {
+						"north": { "texture": "#strawberry", "uv": [ 2.5, 10.5, 6.0, 11.5 ] },
+						"east": { "texture": "#strawberry", "uv": [ 10.0, 3.0, 11.0, 6.5 ], "rotation": 90 },
+						"south": { "texture": "#strawberry", "uv": [ 1.5, 8.5, 5.0, 9.5 ] },
+						"west": { "texture": "#strawberry", "uv": [ 6.0, 0.0, 7.0, 3.5 ], "rotation": 90 },
+						"up": { "texture": "#strawberry", "uv": [ 4.5, 9.0, 8.0, 12.5 ] },
+						"down": { "texture": "#strawberry", "uv": [ 5.5, 3.5, 9.0, 7.0 ] }
+					}
+				},
+				{
+					"name": "overlay top4",
+					"from": [ 0.0, 2.5, 0.0 ], 
+					"to": [ 2.52, 3.02, 2.52 ], 
+					"rotationOrigin": [ -0.5, 1.0, -0.5 ],
+					"faces": {
+						"north": { "texture": "#strawberry", "uv": [ 4.5, 3.0, 7.0, 3.5 ] },
+						"east": { "texture": "#strawberry", "uv": [ 5.5, 9.5, 6.0, 12.0 ], "rotation": 90 },
+						"south": { "texture": "#strawberry", "uv": [ 4.0, 4.0, 6.5, 4.5 ] },
+						"west": { "texture": "#strawberry", "uv": [ 2.0, 8.5, 2.5, 11.0 ], "rotation": 90 },
+						"up": { "texture": "#strawberry", "uv": [ 7.5, 4.5, 10.0, 7.0 ] },
+						"down": { "texture": "#strawberry", "uv": [ 0.5, 10.5, 3.0, 13.0 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

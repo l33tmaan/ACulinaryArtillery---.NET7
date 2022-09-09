@@ -1,0 +1,44 @@
+[
+{
+	ingredientPattern: "I,B",
+	ingredients: {
+		"B": { 
+			type: "block", 
+			code: "saucepan-burned"
+		},
+		"I": { 
+			type: "item", 
+			code: "game:stick"
+		}
+	},
+	width: 1,
+	height: 2,
+	output: { type: "block", code: "mixingbowlmini"  }
+},
+{
+	ingredientPattern: "M_,TS,A_",
+	ingredients: {
+		"M": { 
+			type: "block", 
+			code: "mixingbowlmini"
+		},
+		"T": { 
+			type: "block", 
+			code: "game:table-*",
+			name: "material"
+		},
+		"S": { 
+			type: "item", 
+			code: "game:saw-*",
+			istool: "true",
+		},
+		"A": { 
+			type: "block", 
+			code: "game:woodenaxle-ud"
+		},
+	},
+	width: 2,
+	height: 3,
+	output: { type: "block", code: "mixingbowl-{material}"  }
+},
+]

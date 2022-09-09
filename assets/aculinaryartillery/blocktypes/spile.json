@@ -1,0 +1,67 @@
+{
+	code: "spile",
+	behaviors: [{name: "HorizontalAttachable"}],
+	entityclass: "Spile",
+	class: "BlockSpile",
+	variantgroups: [
+		{ code:"material", states: ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] },
+		{ code:"side", loadFromProperties: "abstract/horizontalorientation" }
+	],
+	texture: { base: "game:block/metal/ingot/{material}" },
+	creativeinventory: { "general": ["*-north"], "decorative": ["*-north"], "aculinaryartillery": ["*-north"] },
+	shapebytype: {
+		"*-north": { base: "block/spile", rotateY: 0 },
+		"*-east": { base: "block/spile", rotateY: 270 },
+		"*-south": { base: "block/spile", rotateY: 180 },
+		"*-west": { base: "block/spile", rotateY: 90 }
+	},
+	blockmaterial: "Metal",
+	replaceable: 500,
+	lightAbsorption: 0,
+	rainPermeable: true,
+	sidesolid: {
+		all: false
+	},
+	sideopaque: {
+		all: false
+	},
+	sideAO: {
+		all: false
+	},
+	resistance: 1.25,
+	sounds: {
+		"place": "game:block/planks",
+		"hit": "game:block/planks",
+		"break": "game:block/planks",
+		"walk": "game:walk/wood"
+	},
+	collisionselectionbox: {
+		x1: 0.375, y1: 0, z1: 0,
+		x2: 0.625, y2: 0.5, z2: 0.3,
+		rotateYByType: {
+			"*-east": 270,
+			"*-south": 180,
+			"*-west": 90,
+			"*-north": 0
+		}
+	},
+	tpHandTransform: {
+		translation: { x: -1.1, y: -1.71, z: -1.5 },
+		rotation: { x: 0, y: -90, z: 0 }
+	},
+	groundTransform: {
+		translation: { x: 0, y: 0.08, z: 0 },
+		rotation: { x: -50, y: 0, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 1.5
+	},
+	fpHandTransform: {
+		translation: { x: 0, y: 0.06, z: 0.5 }
+	},
+	guiTransform: {
+		translation: { x: -17, y: -7, z: 0 },
+		rotation: { x: 0, y: -75, z: 0 },
+		scale: 1.5
+	},
+	materialDensity: 600
+}

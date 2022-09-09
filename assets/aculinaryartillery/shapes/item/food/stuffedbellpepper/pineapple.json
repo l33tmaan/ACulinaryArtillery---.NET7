@@ -1,0 +1,165 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 8,
+	"textureHeight": 8,
+	"textureSizes": {
+		"group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat": [8,8]
+	},
+	"textures": {
+		"group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat": "game:block/food/meal/group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat"
+	},
+	"elements": [
+		{
+			"name": "pineapple",
+			"from": [ 7.5, 5.6, 7.1 ], 
+			"to": [ 7.5, 5.6, 7.1 ], 
+			"rotationOrigin": [ 7.5, 5.6, 7.1 ],
+			"faces": {
+				"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 6.75, 6.75 ] },
+				"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 6.75, 6.25 ] },
+				"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 6.5, 6.25 ] },
+				"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.0, 6.5 ] },
+				"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 6.75, 7.25 ] },
+				"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 6.75, 6.75 ] }
+			},
+			"children": [
+				{
+					"name": "pineapple1",
+					"from": [ 0.0, 0.0, -0.1 ], 
+					"to": [ 1.0, 1.0, 0.4 ], 
+					"rotationOrigin": [ 0.0, 0.0, -0.1 ],
+					"rotationX": -22.5,
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.5, 7.5 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 7.0, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 7.25, 7.0 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.25, 7.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 7.5, 7.5 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.5, 7.0 ] }
+					}
+				},
+				{
+					"name": "pineapple2",
+					"from": [ 0.45, 0.0, 1.3 ], 
+					"to": [ 1.45, 1.0, 1.8 ], 
+					"rotationOrigin": [ 0.45, 0.0, 1.3 ],
+					"rotationX": 22.5,
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.5, 7.5 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 7.0, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 7.25, 7.0 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.25, 7.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 7.5, 7.5 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.5, 7.0 ] }
+					}
+				},
+				{
+					"name": "pineapple3",
+					"from": [ -0.3, -0.3, 1.45 ], 
+					"to": [ 0.2, 0.7, 1.95 ], 
+					"rotationOrigin": [ -0.3, -0.3, 1.45 ],
+					"rotationZ": 22.5,
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.5 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 7.0, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 6.75, 7.0 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.25, 7.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 7.0, 7.5 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.0 ] }
+					}
+				},
+				{
+					"name": "pineapple4",
+					"from": [ -0.3, -0.3, -0.15 ], 
+					"to": [ 0.2, 0.7, 0.85 ], 
+					"rotationOrigin": [ -0.3, -0.3, -0.15 ],
+					"rotationZ": 22.5,
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.5 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 7.5, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 6.75, 7.0 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.75, 7.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 7.0, 8.0 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.5 ] }
+					}
+				},
+				{
+					"name": "pineapple5",
+					"from": [ -0.25, -0.1, 0.9 ], 
+					"to": [ 0.25, 0.9, 1.4 ], 
+					"rotationOrigin": [ -0.25, -0.1, 0.9 ],
+					"rotationZ": 45.0,
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.5 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 7.0, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 6.75, 7.0 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.25, 7.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 7.0, 7.5 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.0 ] }
+					}
+				},
+				{
+					"name": "pineapple6",
+					"from": [ -0.1, 0.1, 1.15 ], 
+					"to": [ 0.4, 1.1, 1.65 ], 
+					"rotationOrigin": [ -0.1, 0.1, 1.15 ],
+					"rotationX": 45.0,
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.5 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 7.0, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 6.75, 7.0 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.25, 7.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 7.0, 7.5 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.0 ] }
+					}
+				},
+				{
+					"name": "pineapple7",
+					"from": [ 0.75, 0.1, 1.0 ], 
+					"to": [ 1.25, 1.1, 1.5 ], 
+					"rotationOrigin": [ 0.75, 0.1, 1.0 ],
+					"rotationZ": -45.0,
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.5 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 7.0, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 6.75, 7.0 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.25, 7.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 7.0, 7.5 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.0 ] }
+					}
+				},
+				{
+					"name": "pineapple8",
+					"from": [ 0.95, 0.1, -0.05 ], 
+					"to": [ 1.45, 1.1, 0.95 ], 
+					"rotationOrigin": [ 0.95, 0.1, -0.05 ],
+					"rotationZ": -22.5,
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.5 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.0, 7.5, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.25, 6.0, 6.75, 7.0 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.75, 6.25, 7.75, 7.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 7.0, 7.0, 8.0 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.5, 6.5, 7.0, 7.5 ] }
+					}
+				},
+				{
+					"name": "pineapple55",
+					"from": [ 0.0, -0.3, 0.0 ], 
+					"to": [ 1.5, 0.2, 1.5 ], 
+					"rotationOrigin": [ 0.0, -0.3, 0.0 ],
+					"faces": {
+						"north": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 5.25, 6.5, 6.75, 7.0 ] },
+						"east": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 5.0, 6.5, 6.5, 7.0 ] },
+						"south": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 5.75, 5.0, 7.25, 5.5 ] },
+						"west": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 6.0, 4.75, 7.5, 5.25 ] },
+						"up": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 4.75, 5.75, 6.25, 7.25 ] },
+						"down": { "texture": "#group7-honey-fieldmushroom-pineapple-scrambledegg-bushmeat", "uv": [ 5.75, 5.5, 7.25, 7.0 ] }
+					}
+				}
+			]
+		}
+	]}

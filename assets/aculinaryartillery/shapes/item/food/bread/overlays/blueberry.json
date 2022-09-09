@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"blueberry": "item/food/grain/overlays/blueberry"
+	},
+	"elements": [
+		{
+			"name": "overlay",
+			"from": [ 6.2, -0.01, 5.49 ], 
+			"to": [ 9.8, 1.51, 10.51 ], 
+			"rotationOrigin": [ 8.2, 0.0, 7.9 ],
+			"faces": {
+				"north": { "texture": "#blueberry", "uv": [ 8.5, 7.5, 12.0, 9.0 ] },
+				"east": { "texture": "#blueberry", "uv": [ 7.0, 9.0, 12.0, 10.5 ] },
+				"south": { "texture": "#blueberry", "uv": [ 0.0, 4.0, 3.5, 5.5 ] },
+				"west": { "texture": "#blueberry", "uv": [ 10.0, 12.5, 15.0, 14.0 ] },
+				"up": { "texture": "#blueberry", "uv": [ 7.0, 0.0, 10.5, 5.0 ] },
+				"down": { "texture": "#blueberry", "uv": [ 10.5, 2.0, 14.0, 7.0 ] }
+			},
+			"children": [
+				{
+					"name": "overlay 2",
+					"from": [ 0.5, 1.5, 0.5 ], 
+					"to": [ 3.06, 2.02, 4.52 ], 
+					"faces": {
+						"north": { "texture": "#blueberry", "uv": [ 9.0, 10.5, 11.5, 11.0 ] },
+						"east": { "texture": "#blueberry", "uv": [ 5.0, 11.5, 5.5, 15.5 ], "rotation": 90 },
+						"south": { "texture": "#blueberry", "uv": [ 6.0, 5.5, 8.5, 6.0 ] },
+						"west": { "texture": "#blueberry", "uv": [ 3.0, 6.0, 3.5, 10.0 ], "rotation": 90 },
+						"up": { "texture": "#blueberry", "uv": [ 9.5, 7.5, 12.0, 11.5 ] },
+						"down": { "texture": "#blueberry", "uv": [ 3.0, 5.5, 5.5, 9.5 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

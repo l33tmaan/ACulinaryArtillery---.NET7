@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"honeysuckle": "item/food/grain/overlays/honeysuckle"
+	},
+	"elements": [
+		{
+			"name": "overlay",
+			"from": [ 6.2, -0.01, 5.49 ], 
+			"to": [ 9.8, 1.51, 10.51 ], 
+			"rotationOrigin": [ 8.2, 0.0, 7.9 ],
+			"faces": {
+				"north": { "texture": "#honeysuckle", "uv": [ 10.0, 13.5, 13.5, 15.0 ] },
+				"east": { "texture": "#honeysuckle", "uv": [ 2.5, 14.0, 7.5, 15.5 ] },
+				"south": { "texture": "#honeysuckle", "uv": [ 5.5, 4.0, 9.0, 5.5 ] },
+				"west": { "texture": "#honeysuckle", "uv": [ 9.0, 13.0, 14.0, 14.5 ] },
+				"up": { "texture": "#honeysuckle", "uv": [ 10.5, 6.5, 14.0, 11.5 ] },
+				"down": { "texture": "#honeysuckle", "uv": [ 9.5, 8.0, 13.0, 13.0 ] }
+			},
+			"children": [
+				{
+					"name": "overlay 2",
+					"from": [ 0.5, 1.5, 0.5 ], 
+					"to": [ 3.06, 2.02, 4.52 ], 
+					"faces": {
+						"north": { "texture": "#honeysuckle", "uv": [ 1.5, 14.5, 4.0, 15.0 ] },
+						"east": { "texture": "#honeysuckle", "uv": [ 11.0, 5.5, 11.5, 9.5 ], "rotation": 90 },
+						"south": { "texture": "#honeysuckle", "uv": [ 8.0, 6.5, 10.5, 7.0 ] },
+						"west": { "texture": "#honeysuckle", "uv": [ 5.5, 5.5, 6.0, 9.5 ], "rotation": 90 },
+						"up": { "texture": "#honeysuckle", "uv": [ 7.0, 2.5, 9.5, 6.5 ] },
+						"down": { "texture": "#honeysuckle", "uv": [ 11.5, 4.5, 14.0, 8.5 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

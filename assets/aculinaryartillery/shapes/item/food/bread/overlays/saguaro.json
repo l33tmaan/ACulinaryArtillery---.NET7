@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"saguarosolid": "item/food/grain/overlays/saguaro"
+	},
+	"elements": [
+		{
+			"name": "overlay",
+			"from": [ 6.2, -0.01, 5.49 ], 
+			"to": [ 9.8, 1.51, 10.51 ], 
+			"rotationOrigin": [ 8.2, 0.0, 7.9 ],
+			"faces": {
+				"north": { "texture": "#saguarosolid", "uv": [ 3.5, 8.0, 7.0, 9.5 ] },
+				"east": { "texture": "#saguarosolid", "uv": [ 8.5, 11.0, 13.5, 12.5 ] },
+				"south": { "texture": "#saguarosolid", "uv": [ 10.0, 11.0, 13.5, 12.5 ] },
+				"west": { "texture": "#saguarosolid", "uv": [ 8.5, 8.5, 13.5, 10.0 ] },
+				"up": { "texture": "#saguarosolid", "uv": [ 7.5, 0.5, 11.0, 5.5 ] },
+				"down": { "texture": "#saguarosolid", "uv": [ 2.5, 5.5, 6.0, 10.5 ] }
+			},
+			"children": [
+				{
+					"name": "overlay 2",
+					"from": [ 0.5, 1.5, 0.5 ], 
+					"to": [ 3.06, 2.02, 4.52 ], 
+					"faces": {
+						"north": { "texture": "#saguarosolid", "uv": [ 6.0, 13.0, 8.5, 13.5 ] },
+						"east": { "texture": "#saguarosolid", "uv": [ 5.5, 7.5, 6.0, 11.5 ], "rotation": 90 },
+						"south": { "texture": "#saguarosolid", "uv": [ 2.0, 9.0, 4.5, 9.5 ] },
+						"west": { "texture": "#saguarosolid", "uv": [ 6.5, 0.0, 7.0, 4.0 ], "rotation": 90 },
+						"up": { "texture": "#saguarosolid", "uv": [ 8.0, 6.5, 10.5, 10.5 ] },
+						"down": { "texture": "#saguarosolid", "uv": [ 5.0, 5.0, 7.5, 9.0 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

@@ -1,0 +1,60 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 8,
+	"textureHeight": 8,
+	"textures": {
+		"cassava": "item/food/veggie/perfect/cassava"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ], 
+			"to": [ 8.0, 0.0, 8.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#cassava", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"east": { "texture": "#cassava", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"south": { "texture": "#cassava", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"west": { "texture": "#cassava", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"up": { "texture": "#cassava", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"down": { "texture": "#cassava", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "root",
+					"from": [ -1.0, 0.0, -2.0 ], 
+					"to": [ 1.0, 2.0, 3.0 ], 
+					"rotationOrigin": [ 0.0, 1.0, 0.0 ],
+					"rotationY": -67.5,
+					"faces": {
+						"north": { "texture": "#cassava", "uv": [ 6.0, 2.0, 8.0, 4.0 ] },
+						"east": { "texture": "#cassava", "uv": [ 0.0, 2.0, 5.0, 4.0 ] },
+						"south": { "texture": "#cassava", "uv": [ 6.0, 0.0, 8.0, 2.0 ] },
+						"west": { "texture": "#cassava", "uv": [ 0.0, 0.0, 5.0, 2.0 ] },
+						"up": { "texture": "#cassava", "uv": [ 0.0, 4.0, 5.0, 6.0 ], "rotation": 90 },
+						"down": { "texture": "#cassava", "uv": [ 0.0, 6.0, 5.0, 8.0 ], "rotation": 90 }
+					},
+					"children": [
+						{
+							"name": "tip",
+							"from": [ 0.1, 0.1, -0.9 ], 
+							"to": [ 1.9, 1.9, 0.1 ], 
+							"rotationOrigin": [ 1.0, 1.0, 0.1 ],
+							"rotationX": 5.0,
+							"faces": {
+								"north": { "texture": "#cassava", "uv": [ 0.0, 0.0, 1.5, 1.5 ] },
+								"east": { "texture": "#cassava", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+								"south": { "texture": "#cassava", "uv": [ 0.0, 0.0, 1.5, 1.5 ], "enabled": false },
+								"west": { "texture": "#cassava", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+								"up": { "texture": "#cassava", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+								"down": { "texture": "#cassava", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+							}
+						}
+					]
+				}
+			]
+		}
+	]}

@@ -1,0 +1,282 @@
+{
+	"editor": {
+		"allAngles": true,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"livermushroom": "game:block/plant/mushroom/livermushroom/livermushroom"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ], 
+			"to": [ 8.0, 0.0, 8.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#livermushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"east": { "texture": "#livermushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"south": { "texture": "#livermushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"west": { "texture": "#livermushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"up": { "texture": "#livermushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
+				"down": { "texture": "#livermushroom", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "large",
+					"from": [ -2.0, 0.0, 1.3 ], 
+					"to": [ -1.0, 1.0, 2.3 ], 
+					"rotationOrigin": [ -2.0, 0.0, 1.3 ],
+					"rotationY": -158.0,
+					"faces": {
+						"north": { "texture": "#livermushroom", "uv": [ 12.0, 13.0, 13.0, 14.0 ] },
+						"east": { "texture": "#livermushroom", "uv": [ 11.0, 13.5, 12.0, 14.5 ] },
+						"south": { "texture": "#livermushroom", "uv": [ 12.0, 14.0, 13.0, 15.0 ] },
+						"west": { "texture": "#livermushroom", "uv": [ 13.0, 13.0, 14.0, 14.0 ] },
+						"up": { "texture": "#livermushroom", "uv": [ 9.0, 13.5, 10.0, 14.5 ] },
+						"down": { "texture": "#livermushroom", "uv": [ 12.0, 15.0, 13.0, 16.0 ] }
+					}
+				},
+				{
+					"name": "cap large",
+					"from": [ -3.0, 0.6, -1.0 ], 
+					"to": [ -1.25, 1.2, 0.75 ], 
+					"rotationOrigin": [ -3.0, 0.6, -1.0 ],
+					"rotationX": 180.0,
+					"rotationY": 32.0,
+					"faces": {
+						"north": { "texture": "#livermushroom", "uv": [ 1.0, 4.5, 2.5, 5.0 ] },
+						"east": { "texture": "#livermushroom", "uv": [ 3.0, 2.0, 4.5, 2.5 ] },
+						"south": { "texture": "#livermushroom", "uv": [ 1.5, 3.5, 3.0, 4.0 ] },
+						"west": { "texture": "#livermushroom", "uv": [ 2.5, 3.0, 4.0, 3.5 ] },
+						"up": { "texture": "#livermushroom", "uv": [ 0.0, 5.0, 1.5, 6.5 ] },
+						"down": { "texture": "#livermushroom", "uv": [ 2.5, 2.5, 4.0, 4.0 ] }
+					},
+					"children": [
+						{
+							"name": "Cube18",
+							"from": [ -1.0, 0.1, -0.01 ], 
+							"to": [ 0.0, 0.6, 1.74 ], 
+							"rotationOrigin": [ 0.0, 0.6, 2.0 ],
+							"rotationZ": 14.0,
+							"faces": {
+								"north": { "texture": "#livermushroom", "uv": [ 2.5, 14.5, 3.5, 15.0 ] },
+								"east": { "texture": "#livermushroom", "uv": [ 3.0, 14.5, 4.5, 15.0 ] },
+								"south": { "texture": "#livermushroom", "uv": [ 1.5, 14.5, 2.5, 15.0 ] },
+								"west": { "texture": "#livermushroom", "uv": [ 1.5, 15.0, 3.0, 15.5 ] },
+								"up": { "texture": "#livermushroom", "uv": [ 8.5, 3.0, 9.5, 4.5 ] },
+								"down": { "texture": "#livermushroom", "uv": [ 4.5, 2.0, 5.5, 3.5 ] }
+							}
+						},
+						{
+							"name": "Cube20",
+							"from": [ -0.01, 0.1, -1.0 ], 
+							"to": [ 1.74, 0.6, 0.0 ], 
+							"rotationOrigin": [ 1.0, 0.6, 0.0 ],
+							"rotationX": -36.0,
+							"faces": {
+								"north": { "texture": "#livermushroom", "uv": [ 1.0, 14.0, 2.5, 14.5 ] },
+								"east": { "texture": "#livermushroom", "uv": [ 3.5, 14.0, 4.5, 14.5 ] },
+								"south": { "texture": "#livermushroom", "uv": [ 2.0, 9.5, 3.5, 10.0 ], "enabled": false },
+								"west": { "texture": "#livermushroom", "uv": [ 2.0, 13.5, 3.0, 14.0 ] },
+								"up": { "texture": "#livermushroom", "uv": [ 9.0, 5.0, 10.5, 6.0 ] },
+								"down": { "texture": "#livermushroom", "uv": [ 2.5, 2.0, 4.0, 3.0 ] }
+							}
+						}
+					]
+				},
+				{
+					"name": "Cube1",
+					"from": [ -1.0, 0.0, -3.6 ], 
+					"to": [ 0.0, 1.0, -2.6 ], 
+					"rotationOrigin": [ -1.0, 0.0, -3.6 ],
+					"rotationY": -57.0,
+					"faces": {
+						"north": { "texture": "#livermushroom", "uv": [ 12.5, 12.5, 13.5, 13.5 ] },
+						"east": { "texture": "#livermushroom", "uv": [ 10.0, 12.0, 11.0, 13.0 ] },
+						"south": { "texture": "#livermushroom", "uv": [ 9.5, 12.5, 10.5, 13.5 ] },
+						"west": { "texture": "#livermushroom", "uv": [ 10.5, 12.0, 11.5, 13.0 ] },
+						"up": { "texture": "#livermushroom", "uv": [ 10.5, 6.0, 11.5, 7.0 ] },
+						"down": { "texture": "#livermushroom", "uv": [ 11.5, 11.0, 12.5, 12.0 ] }
+					}
+				},
+				{
+					"name": "large2",
+					"from": [ 1.0, 0.0, 3.4 ], 
+					"to": [ 2.0, 1.0, 4.4 ], 
+					"rotationOrigin": [ 1.0, 0.0, 3.4 ],
+					"rotationY": 66.0,
+					"faces": {
+						"north": { "texture": "#livermushroom", "uv": [ 12.0, 12.0, 13.0, 13.0 ] },
+						"east": { "texture": "#livermushroom", "uv": [ 11.0, 12.5, 12.0, 13.5 ] },
+						"south": { "texture": "#livermushroom", "uv": [ 12.0, 13.0, 13.0, 14.0 ] },
+						"west": { "texture": "#livermushroom", "uv": [ 13.0, 12.0, 14.0, 13.0 ] },
+						"up": { "texture": "#livermushroom", "uv": [ 9.0, 12.5, 10.0, 13.5 ] },
+						"down": { "texture": "#livermushroom", "uv": [ 11.0, 15.0, 12.0, 16.0 ] }
+					}
+				},
+				{
+					"name": "Cube2",
+					"from": [ -0.9, 0.0, -0.2 ], 
+					"to": [ 0.1, 1.0, 0.8 ], 
+					"rotationOrigin": [ -0.9, 0.0, -0.2 ],
+					"rotationY": 72.0,
+					"faces": {
+						"north": { "texture": "#livermushroom", "uv": [ 12.5, 11.5, 13.5, 12.5 ] },
+						"east": { "texture": "#livermushroom", "uv": [ 10.0, 11.0, 11.0, 12.0 ] },
+						"south": { "texture": "#livermushroom", "uv": [ 9.5, 11.5, 10.5, 12.5 ] },
+						"west": { "texture": "#livermushroom", "uv": [ 10.5, 11.0, 11.5, 12.0 ] },
+						"up": { "texture": "#livermushroom", "uv": [ 10.5, 5.0, 11.5, 6.0 ] },
+						"down": { "texture": "#livermushroom", "uv": [ 11.5, 10.0, 12.5, 11.0 ] }
+					}
+				},
+				{
+					"name": "cap large2",
+					"from": [ -0.25, 0.6, 3.0 ], 
+					"to": [ 1.5, 1.2, 4.75 ], 
+					"rotationOrigin": [ -0.25, 0.6, 3.0 ],
+					"rotationX": 180.0,
+					"rotationY": -80.0,
+					"faces": {
+						"north": { "texture": "#livermushroom", "uv": [ 2.5, 4.5, 4.0, 5.0 ] },
+						"east": { "texture": "#livermushroom", "uv": [ 4.5, 2.0, 6.0, 2.5 ] },
+						"south": { "texture": "#livermushroom", "uv": [ 3.0, 3.5, 4.5, 4.0 ] },
+						"west": { "texture": "#livermushroom", "uv": [ 4.0, 3.0, 5.5, 3.5 ] },
+						"up": { "texture": "#livermushroom", "uv": [ 1.5, 5.0, 3.0, 6.5 ] },
+						"down": { "texture": "#livermushroom", "uv": [ 3.5, 2.5, 5.0, 4.0 ] }
+					},
+					"children": [
+						{
+							"name": "Cube12",
+							"from": [ 1.75, 0.1, -0.01 ], 
+							"to": [ 2.75, 0.6, 1.74 ], 
+							"rotationOrigin": [ 1.75, 0.6, 2.0 ],
+							"rotationZ": -36.0,
+							"faces": {
+								"north": { "texture": "#livermushroom", "uv": [ 4.0, 15.0, 5.0, 15.5 ] },
+								"east": { "texture": "#livermushroom", "uv": [ 1.5, 15.5, 3.0, 16.0 ] },
+								"south": { "texture": "#livermushroom", "uv": [ 1.5, 14.5, 2.5, 15.0 ] },
+								"west": { "texture": "#livermushroom", "uv": [ 7.5, 2.0, 9.0, 2.5 ], "enabled": false },
+								"up": { "texture": "#livermushroom", "uv": [ 9.0, 1.5, 10.0, 3.0 ] },
+								"down": { "texture": "#livermushroom", "uv": [ 5.0, 2.0, 6.0, 3.5 ] }
+							}
+						},
+						{
+							"name": "Cube15",
+							"from": [ -0.01, 0.1, -1.0 ], 
+							"to": [ 1.74, 0.6, 0.0 ], 
+							"rotationOrigin": [ 1.0, 0.6, 0.0 ],
+							"rotationX": -36.0,
+							"faces": {
+								"north": { "texture": "#livermushroom", "uv": [ 1.0, 14.0, 2.5, 14.5 ] },
+								"east": { "texture": "#livermushroom", "uv": [ 3.5, 14.0, 4.5, 14.5 ] },
+								"south": { "texture": "#livermushroom", "uv": [ 2.0, 9.5, 3.5, 10.0 ], "enabled": false },
+								"west": { "texture": "#livermushroom", "uv": [ 2.0, 13.5, 3.0, 14.0 ] },
+								"up": { "texture": "#livermushroom", "uv": [ 9.0, 5.0, 10.5, 6.0 ] },
+								"down": { "texture": "#livermushroom", "uv": [ 2.5, 2.0, 4.0, 3.0 ] }
+							}
+						}
+					]
+				},
+				{
+					"name": "cap large3",
+					"from": [ 0.0, 0.6, -1.75 ], 
+					"to": [ 1.75, 1.2, 0.0 ], 
+					"rotationOrigin": [ 0.0, 0.6, -1.75 ],
+					"rotationX": 180.0,
+					"rotationY": 55.0,
+					"faces": {
+						"north": { "texture": "#livermushroom", "uv": [ 3.0, 6.0, 4.5, 6.5 ] },
+						"east": { "texture": "#livermushroom", "uv": [ 3.0, 3.5, 4.5, 4.0 ] },
+						"south": { "texture": "#livermushroom", "uv": [ 1.5, 5.0, 3.0, 5.5 ] },
+						"west": { "texture": "#livermushroom", "uv": [ 2.5, 4.5, 4.0, 5.0 ] },
+						"up": { "texture": "#livermushroom", "uv": [ 0.0, 6.5, 1.5, 8.0 ] },
+						"down": { "texture": "#livermushroom", "uv": [ 2.5, 4.0, 4.0, 5.5 ] }
+					},
+					"children": [
+						{
+							"name": "Cube16",
+							"from": [ -1.0, 0.1, -0.01 ], 
+							"to": [ 0.0, 0.6, 1.74 ], 
+							"rotationOrigin": [ 0.0, 0.6, 2.0 ],
+							"rotationZ": 14.0,
+							"faces": {
+								"north": { "texture": "#livermushroom", "uv": [ 5.0, 14.5, 6.0, 15.0 ] },
+								"east": { "texture": "#livermushroom", "uv": [ 4.5, 14.5, 6.0, 15.0 ] },
+								"south": { "texture": "#livermushroom", "uv": [ 3.0, 14.5, 4.0, 15.0 ] },
+								"west": { "texture": "#livermushroom", "uv": [ 3.0, 15.0, 4.5, 15.5 ] },
+								"up": { "texture": "#livermushroom", "uv": [ 10.0, 3.0, 11.0, 4.5 ] },
+								"down": { "texture": "#livermushroom", "uv": [ 6.0, 2.0, 7.0, 3.5 ] }
+							}
+						},
+						{
+							"name": "Cube17",
+							"from": [ -0.01, 0.1, 1.75 ], 
+							"to": [ 1.74, 0.6, 2.75 ], 
+							"rotationOrigin": [ 1.0, 0.6, 1.75 ],
+							"rotationX": 36.0,
+							"faces": {
+								"north": { "texture": "#livermushroom", "uv": [ 5.0, 11.5, 6.5, 12.0 ], "enabled": false },
+								"east": { "texture": "#livermushroom", "uv": [ 4.5, 15.5, 5.5, 16.0 ] },
+								"south": { "texture": "#livermushroom", "uv": [ 1.0, 15.5, 2.5, 16.0 ] },
+								"west": { "texture": "#livermushroom", "uv": [ 3.0, 15.5, 4.0, 16.0 ] },
+								"up": { "texture": "#livermushroom", "uv": [ 8.5, 6.0, 10.0, 7.0 ] },
+								"down": { "texture": "#livermushroom", "uv": [ 1.5, 4.0, 3.0, 5.0 ] }
+							}
+						}
+					]
+				},
+				{
+					"name": "cap large4",
+					"from": [ 1.65, 0.6, -0.25 ], 
+					"to": [ 3.4, 1.2, 1.5 ], 
+					"rotationOrigin": [ 1.65, 0.6, -0.25 ],
+					"rotationX": 180.0,
+					"rotationY": 97.0,
+					"faces": {
+						"north": { "texture": "#livermushroom", "uv": [ 2.5, 6.0, 4.0, 6.5 ] },
+						"east": { "texture": "#livermushroom", "uv": [ 4.5, 3.5, 6.0, 4.0 ] },
+						"south": { "texture": "#livermushroom", "uv": [ 3.0, 5.0, 4.5, 5.5 ] },
+						"west": { "texture": "#livermushroom", "uv": [ 4.0, 4.5, 5.5, 5.0 ] },
+						"up": { "texture": "#livermushroom", "uv": [ 1.5, 6.5, 3.0, 8.0 ] },
+						"down": { "texture": "#livermushroom", "uv": [ 3.5, 4.0, 5.0, 5.5 ] }
+					},
+					"children": [
+						{
+							"name": "Cube22",
+							"from": [ 1.75, 0.1, -0.01 ], 
+							"to": [ 2.75, 0.6, 1.74 ], 
+							"rotationOrigin": [ 1.75, 0.6, 2.0 ],
+							"rotationZ": -36.0,
+							"faces": {
+								"north": { "texture": "#livermushroom", "uv": [ 4.0, 15.0, 5.0, 15.5 ] },
+								"east": { "texture": "#livermushroom", "uv": [ 1.5, 15.5, 3.0, 16.0 ] },
+								"south": { "texture": "#livermushroom", "uv": [ 1.5, 14.5, 2.5, 15.0 ] },
+								"west": { "texture": "#livermushroom", "uv": [ 7.5, 2.0, 9.0, 2.5 ], "enabled": false },
+								"up": { "texture": "#livermushroom", "uv": [ 9.0, 1.5, 10.0, 3.0 ] },
+								"down": { "texture": "#livermushroom", "uv": [ 5.0, 2.0, 6.0, 3.5 ] }
+							}
+						},
+						{
+							"name": "Cube23",
+							"from": [ -0.01, 0.1, 1.75 ], 
+							"to": [ 1.74, 0.6, 2.75 ], 
+							"rotationOrigin": [ 1.0, 0.6, 1.75 ],
+							"rotationX": 36.0,
+							"faces": {
+								"north": { "texture": "#livermushroom", "uv": [ 5.0, 11.5, 6.5, 12.0 ], "enabled": false },
+								"east": { "texture": "#livermushroom", "uv": [ 4.5, 15.0, 5.5, 15.5 ] },
+								"south": { "texture": "#livermushroom", "uv": [ 1.0, 15.0, 2.5, 15.5 ] },
+								"west": { "texture": "#livermushroom", "uv": [ 3.0, 15.0, 4.0, 15.5 ] },
+								"up": { "texture": "#livermushroom", "uv": [ 8.5, 4.5, 10.0, 5.5 ] },
+								"down": { "texture": "#livermushroom", "uv": [ 1.5, 2.5, 3.0, 3.5 ] }
+							}
+						}
+					]
+				}
+			]
+		}
+	]}

@@ -1,0 +1,309 @@
+﻿{
+  "editor": {
+    "allAngles": false,
+    "entityTextureMode": false
+  },
+  "textureWidth": 4,
+  "textureHeight": 4,
+  "textureSizes": {
+    "sushimushroomyellowhoney": [4,4],
+    "sushiroll": [4,4]
+  },
+  "textures": {
+    "sushimushroomyellowhoney": "item/food/sushi/vegetarian/sushimushroomyellowhoney",
+    "sushiroll": "item/food/sushi/sushiroll"
+  },
+  "elements": [
+    {
+      "name": "SushiRoll 2",
+      "from": [ 6.5, 0.5, 4.75 ], 
+      "to": [ 8.5, 2.5, 5.75 ], 
+      "rotationOrigin": [ 7.0, 0.5, 4.7 ],
+      "rotationX": 12.0,
+      "faces": {
+        "north": { "texture": "#sushimushroomyellowhoney", "uv": [ 0.5, 0.5, 3.5, 3.5 ], "autoUv": false },
+        "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+        "south": { "texture": "#sushimushroomyellowhoney", "uv": [ 0.5, 0.5, 3.5, 3.5 ], "autoUv": false },
+        "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+        "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+        "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 2.0, 1.0 ] }
+      },
+      "children": [
+        {
+          "name": "Cube7",
+          "from": [ 0.2, -0.2, 0.0 ], 
+          "to": [ 1.8, 0.0, 1.0 ], 
+          "rotationOrigin": [ 0.2, -0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube8",
+          "from": [ -0.2, 0.2, 0.0 ], 
+          "to": [ 0.0, 1.8, 1.0 ], 
+          "rotationOrigin": [ -0.2, 0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube9",
+          "from": [ 2.0, 0.2, 0.0 ], 
+          "to": [ 2.2, 1.8, 1.0 ], 
+          "rotationOrigin": [ 2.0, 0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube10",
+          "from": [ 0.2, 2.0, 0.0 ], 
+          "to": [ 1.8, 2.2, 1.0 ], 
+          "rotationOrigin": [ 0.2, 2.0, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SushiRoll 6",
+      "from": [ 6.5, 0.5, 6.25 ], 
+      "to": [ 8.5, 2.5, 7.25 ], 
+      "rotationOrigin": [ 7.0, 0.5, 6.2 ],
+      "rotationX": 12.0,
+      "faces": {
+        "north": { "texture": "#sushimushroomyellowhoney", "uv": [ 0.5, 0.5, 3.5, 3.5 ], "autoUv": false },
+        "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+        "south": { "texture": "#sushimushroomyellowhoney", "uv": [ 0.5, 0.5, 3.5, 3.5 ], "autoUv": false },
+        "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+        "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+        "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 2.0, 1.0 ] }
+      },
+      "children": [
+        {
+          "name": "Cube11",
+          "from": [ 0.2, -0.2, 0.0 ], 
+          "to": [ 1.8, 0.0, 1.0 ], 
+          "rotationOrigin": [ 0.2, -0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube11",
+          "from": [ -0.2, 0.2, 0.0 ], 
+          "to": [ 0.0, 1.8, 1.0 ], 
+          "rotationOrigin": [ -0.2, 0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube11",
+          "from": [ 2.0, 0.2, 0.0 ], 
+          "to": [ 2.2, 1.8, 1.0 ], 
+          "rotationOrigin": [ 2.0, 0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube11",
+          "from": [ 0.2, 2.0, 0.0 ], 
+          "to": [ 1.8, 2.2, 1.0 ], 
+          "rotationOrigin": [ 0.2, 2.0, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SushiRoll 11",
+      "from": [ 6.5, 0.5, 7.75 ], 
+      "to": [ 8.5, 2.5, 8.75 ], 
+      "rotationOrigin": [ 7.0, 0.5, 7.7 ],
+      "rotationX": 12.0,
+      "faces": {
+        "north": { "texture": "#sushimushroomyellowhoney", "uv": [ 0.5, 0.5, 3.5, 3.5 ], "autoUv": false },
+        "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+        "south": { "texture": "#sushimushroomyellowhoney", "uv": [ 0.5, 0.5, 3.5, 3.5 ], "autoUv": false },
+        "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+        "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+        "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 2.0, 1.0 ] }
+      },
+      "children": [
+        {
+          "name": "Cube12",
+          "from": [ 0.2, -0.2, 0.0 ], 
+          "to": [ 1.8, 0.0, 1.0 ], 
+          "rotationOrigin": [ 0.2, -0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube13",
+          "from": [ -0.2, 0.2, 0.0 ], 
+          "to": [ 0.0, 1.8, 1.0 ], 
+          "rotationOrigin": [ -0.2, 0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube14",
+          "from": [ 2.0, 0.2, 0.0 ], 
+          "to": [ 2.2, 1.8, 1.0 ], 
+          "rotationOrigin": [ 2.0, 0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube15",
+          "from": [ 0.2, 2.0, 0.0 ], 
+          "to": [ 1.8, 2.2, 1.0 ], 
+          "rotationOrigin": [ 0.2, 2.0, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SushiRoll 16",
+      "from": [ 6.5, 0.5, 9.25 ], 
+      "to": [ 8.5, 2.5, 10.25 ], 
+      "rotationOrigin": [ 7.0, 0.5, 9.2 ],
+      "rotationX": 12.0,
+      "faces": {
+        "north": { "texture": "#sushimushroomyellowhoney", "uv": [ 0.5, 0.5, 3.5, 3.5 ], "autoUv": false },
+        "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+        "south": { "texture": "#sushimushroomyellowhoney", "uv": [ 0.5, 0.5, 3.5, 3.5 ], "autoUv": false },
+        "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+        "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+        "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 2.0, 1.0 ] }
+      },
+      "children": [
+        {
+          "name": "Cube17",
+          "from": [ 0.2, -0.2, 0.0 ], 
+          "to": [ 1.8, 0.0, 1.0 ], 
+          "rotationOrigin": [ 0.2, -0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube18",
+          "from": [ -0.2, 0.2, 0.0 ], 
+          "to": [ 0.0, 1.8, 1.0 ], 
+          "rotationOrigin": [ -0.2, 0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube19",
+          "from": [ 2.0, 0.2, 0.0 ], 
+          "to": [ 2.2, 1.8, 1.0 ], 
+          "rotationOrigin": [ 2.0, 0.2, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.5 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 1.5 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 0.125, 1.0 ] }
+          }
+        },
+        {
+          "name": "Cube20",
+          "from": [ 0.2, 2.0, 0.0 ], 
+          "to": [ 1.8, 2.2, 1.0 ], 
+          "rotationOrigin": [ 0.2, 2.0, 0.0 ],
+          "faces": {
+            "north": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "east": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "south": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 0.125 ] },
+            "west": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.0, 0.125 ] },
+            "up": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] },
+            "down": { "texture": "#sushiroll", "uv": [ 0.0, 0.0, 1.5, 1.0 ] }
+          }
+        }
+      ]
+    }
+  ]}

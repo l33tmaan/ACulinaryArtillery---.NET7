@@ -1,0 +1,104 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 8,
+	"textureHeight": 8,
+	"textures": {
+		"group6-spelt-onion-redcurrant-egg-redmeatstew": "game:block/food/meal/group6-spelt-onion-redcurrant-egg-redmeatstew"
+	},
+	"elements": [
+		{
+			"name": "meat",
+			"from": [ 6.75, 5.24, 6.75 ], 
+			"to": [ 9.25, 5.99, 9.25 ], 
+			"rotationOrigin": [ 6.7, 5.24, 6.7 ],
+			"faces": {
+				"north": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 3.0, 5.25, 3.75 ], "rotation": 180 },
+				"east": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 4.75, 2.5, 5.5, 5.0 ], "rotation": 270 },
+				"south": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 4.5, 5.25, 5.25 ] },
+				"west": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 4.25, 5.25, 5.0 ] },
+				"up": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 5.25, 5.25 ] },
+				"down": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 5.25, 5.25 ] }
+			},
+			"children": [
+				{
+					"name": "meat1",
+					"from": [ 2.45, 0.225, 0.0 ], 
+					"to": [ 2.95, 0.725, 2.5 ], 
+					"rotationOrigin": [ 2.7, 0.225, 1.25 ],
+					"rotationZ": 47.5,
+					"faces": {
+						"north": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 3.0, 3.5, 3.5 ], "rotation": 180 },
+						"east": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 5.25, 3.25 ] },
+						"south": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 5.0, 3.25, 5.5 ] },
+						"west": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 4.5, 5.25, 5.0 ], "enabled": false },
+						"up": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 3.25, 5.25 ], "enabled": false },
+						"down": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 3.0, 5.5, 3.5 ], "rotation": 270 }
+					}
+				},
+				{
+					"name": "meat2",
+					"from": [ -0.45, 0.225, 0.0 ], 
+					"to": [ 0.05, 0.725, 2.5 ], 
+					"rotationOrigin": [ -0.2, 0.225, 1.25 ],
+					"rotationZ": -47.5,
+					"faces": {
+						"north": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 3.0, 3.5, 3.5 ], "rotation": 180 },
+						"east": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 5.0, 2.5, 5.5, 5.0 ], "rotation": 270, "enabled": false },
+						"south": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 4.5, 3.5, 5.0 ] },
+						"west": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 4.5, 5.25, 5.0 ] },
+						"up": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 3.25, 5.25 ], "enabled": false },
+						"down": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 3.25, 5.25 ] }
+					}
+				},
+				{
+					"name": "meat3",
+					"from": [ 1.0, 0.225, -1.45 ], 
+					"to": [ 1.5, 0.725, 1.05 ], 
+					"rotationOrigin": [ 1.25, 0.225, -0.2 ],
+					"rotationY": 90.0,
+					"rotationZ": 47.5,
+					"faces": {
+						"north": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 3.0, 3.5, 3.5 ], "rotation": 180 },
+						"east": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 5.0, 3.0, 5.5, 5.5 ], "rotation": 270 },
+						"south": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.25, 4.5, 3.75, 5.0 ] },
+						"west": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 4.5, 5.25, 5.0 ], "enabled": false },
+						"up": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 3.25, 5.25 ], "enabled": false },
+						"down": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 4.5, 2.75, 5.0, 5.25 ], "rotation": 180 }
+					}
+				},
+				{
+					"name": "meat4",
+					"from": [ 1.0, 0.225, 1.45 ], 
+					"to": [ 1.5, 0.725, 3.95 ], 
+					"rotationOrigin": [ 1.25, 0.225, 2.7 ],
+					"rotationY": 90.0,
+					"rotationZ": -47.5,
+					"faces": {
+						"north": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 3.0, 3.5, 3.5 ], "rotation": 180 },
+						"east": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 5.0, 2.5, 5.5, 5.0 ], "rotation": 270, "enabled": false },
+						"south": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 4.5, 3.25, 5.0 ] },
+						"west": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 4.5, 5.25, 5.0 ] },
+						"up": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 3.25, 5.25 ], "enabled": false },
+						"down": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 2.75, 3.25, 5.25 ] }
+					}
+				},
+				{
+					"name": "meat8",
+					"from": [ 0.25, 0.75, 0.25 ], 
+					"to": [ 2.25, 1.0, 2.25 ], 
+					"rotationOrigin": [ 0.25, 0.75, 0.25 ],
+					"faces": {
+						"north": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 4.5, 3.0, 4.75, 5.0 ], "rotation": 270 },
+						"east": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 3.0, 4.75, 3.25 ] },
+						"south": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 3.0, 3.25, 5.0 ], "rotation": 90 },
+						"west": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 5.0, 5.0, 5.25 ] },
+						"up": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 2.75, 3.0, 4.75, 5.0 ] },
+						"down": { "texture": "#group6-spelt-onion-redcurrant-egg-redmeatstew", "uv": [ 3.0, 3.0, 5.0, 5.0 ] }
+					}
+				}
+			]
+		}
+	]}

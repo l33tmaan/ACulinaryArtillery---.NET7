@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"lychee": "item/food/grain/overlays/lychee"
+	},
+	"elements": [
+		{
+			"name": "acornbread 3",
+			"from": [ 6.49, -0.01, 4.99 ], 
+			"to": [ 9.51, 2.01, 11.01 ], 
+			"rotationOrigin": [ 7.99, 0.0, 7.99 ],
+			"faces": {
+				"north": { "texture": "#lychee", "uv": [ 1.5, 10.5, 4.5, 12.5 ] },
+				"east": { "texture": "#lychee", "uv": [ 9.5, 13.5, 15.5, 15.5 ], "rotation": 180 },
+				"south": { "texture": "#lychee", "uv": [ 3.0, 7.5, 6.0, 9.5 ] },
+				"west": { "texture": "#lychee", "uv": [ 5.5, 0.5, 7.5, 6.5 ], "rotation": 90 },
+				"up": { "texture": "#lychee", "uv": [ 2.0, 1.5, 8.0, 4.5 ], "rotation": 90 },
+				"down": { "texture": "#lychee", "uv": [ 3.5, 3.0, 9.5, 6.0 ], "rotation": 270 }
+			},
+			"children": [
+				{
+					"name": "acornbread 1 top4",
+					"from": [ 0.5, 2.01, 0.5 ], 
+					"to": [ 2.52, 2.52, 5.521 ], 
+					"faces": {
+						"north": { "texture": "#lychee", "uv": [ 7.5, 5.0, 8.0, 7.0 ], "rotation": 90 },
+						"east": { "texture": "#lychee", "uv": [ 5.5, 3.0, 6.0, 8.0 ], "rotation": 90 },
+						"south": { "texture": "#lychee", "uv": [ 10.0, 8.0, 12.0, 8.5 ] },
+						"west": { "texture": "#lychee", "uv": [ 0.5, 5.0, 1.0, 10.0 ], "rotation": 270 },
+						"up": { "texture": "#lychee", "uv": [ 7.5, 1.0, 12.5, 3.0 ], "rotation": 90 },
+						"down": { "texture": "#lychee", "uv": [ 1.0, 6.0, 3.0, 11.0 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

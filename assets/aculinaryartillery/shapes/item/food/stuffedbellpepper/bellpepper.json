@@ -1,0 +1,56 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 8,
+	"textureHeight": 8,
+	"textures": {
+		"bellpepper": "item/food/veggie/perfect/bellpepper"
+	},
+	"elements": [
+		{
+			"name": "vegetable",
+			"from": [ 7.5, 5.5, 7.5 ], 
+			"to": [ 7.5, 5.5, 7.5 ], 
+			"rotationOrigin": [ 7.5, 5.5, 7.5 ],
+			"faces": {
+				"north": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.3333, 0.3333 ] },
+				"east": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.3333, 0.3333 ] },
+				"south": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.3333, 0.3333 ] },
+				"west": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.3333, 0.3333 ] },
+				"up": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.3333, 0.3333 ] },
+				"down": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 0.3333, 0.3333 ] }
+			},
+			"children": [
+				{
+					"name": "veggies1",
+					"from": [ -0.75, 0.1, -0.75 ], 
+					"to": [ 1.75, 0.6, 1.75 ], 
+					"rotationOrigin": [ -0.75, 0.1, -0.75 ],
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 2.5, 0.5 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 2.5, 0.5 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 2.5, 0.5 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 2.5, 0.5 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 1.0, 0.5, 3.5, 3.0 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 2.5, 2.5 ] }
+					}
+				},
+				{
+					"name": "veggies2",
+					"from": [ -1.05, 0.04, -1.05 ], 
+					"to": [ 2.05, 0.29, 2.05 ], 
+					"rotationOrigin": [ -1.0, 0.1, -1.0 ],
+					"faces": {
+						"north": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 3.0, 0.25 ] },
+						"east": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 3.0, 0.25 ] },
+						"south": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 3.0, 0.25 ] },
+						"west": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 3.0, 0.25 ] },
+						"up": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 3.0, 3.0 ] },
+						"down": { "texture": "#bellpepper", "uv": [ 0.0, 0.0, 3.0, 3.0 ] }
+					}
+				}
+			]
+		}
+	]}

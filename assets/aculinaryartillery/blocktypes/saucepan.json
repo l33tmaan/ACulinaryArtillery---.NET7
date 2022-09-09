@@ -1,0 +1,188 @@
+{
+	code: "saucepan",
+	classByType: {
+		"*-burned": "BlockSaucepan",
+		"*-raw": "Block"
+	},
+	behaviorsByType: {
+		"*-raw": [
+			{
+				name: "UnstableFalling"
+			},
+			{
+				name: "RightClickPickup"
+			},
+			{
+				name: "Unplaceable"
+			},
+			{
+				name: "GroundStorable",
+				"properties": {
+					"layout": "SingleCenter"
+				}
+			}
+		],
+		"*": [
+			{
+				name: "UnstableFalling"
+			},
+			{
+				name: "RightClickPickup"
+			}
+		],
+	},
+	entityClassByType: {
+		"*-burned": "Saucepan"
+	},
+	attributesByType: {
+		"saucepan-burned": {
+			"lidSound": "game:sounds/block/planks",
+			canSeal: true,
+			lidPerishRate: 0.9,
+			"maxTemperature": 400,
+			storageType: 1,
+			maxFillLevel: 2,
+			maxContainerSlotStackSize: 4,
+			cookingSlotCapacityLitres: 4,
+			cookingContainerSlots: 4,
+			"liquidContainerProps": {
+				"capacityLitres": 5,
+				"transferSizeLitres": 0.5,
+			},
+			canhold: [
+				"water-*"
+			],
+			inFirePitProps: {
+				transform: {
+					translation: {
+						x: 0,
+						y: 0.2,
+						z: 0
+					}
+				},
+				useFirepitModel: "Wide"
+			}
+		},
+		"*-raw": {
+			maxTemperature: 600,
+			inFirePitProps: {
+				transform: {
+					translation: {
+						x: 0,
+						y: 0.2,
+						z: 0
+					}
+				},
+				useFirepitModel: "Wide"
+			}
+		},
+	},
+	variantgroups: [
+		{
+			code: "type",
+			states: [
+				"raw",
+				"burned"
+			]
+		}
+	],
+	creativeinventory: {
+		general: ["*"],
+		decorative: ["*"],
+		"aculinaryartillery": ["*"]
+	},
+	shape: {
+		base: "block/saucepan/empty"
+	},
+	sidesolid: {
+		all: false
+	},
+	sideopaque: {
+		all: false
+	},
+	blockmaterial: "Ceramic",
+	texturesbyType: {
+		"*-raw": {
+			ceramic: {
+				base: "game:block/clay/blueclay"
+			}
+		},
+		"*": {
+			ceramic: {
+				base: "game:block/clay/ceramic"
+			}
+		},
+	},
+	combustiblePropsByType: {
+		"saucepan-raw": {
+			meltingPoint: 600,
+			meltingDuration: 450,
+			smeltedRatio: 1,
+			smeltingType: "fire",
+			smeltedStack: {
+				type: "block",
+				code: "saucepan-burned"
+			},
+			requiresContainer: false
+		}
+	},
+	replaceable: 500,
+	resistance: 1.5,
+	liquidSelectable: 1,
+	lightAbsorption: 0,
+	sounds: {
+		"place": "game:block/planks",
+		"hit": "game:block/planks",
+		"break": "game:block/planks",
+		"walk": "game:walk/wood"
+	},
+	collisionbox: {
+		x1: 0.125,
+		y1: 0,
+		z1: 0.125,
+		x2: 0.875,
+		y2: 0.275,
+		z2: 0.875
+	},
+	selectionbox: {
+		x1: 0.125,
+		y1: 0,
+		z1: 0.125,
+		x2: 0.875,
+		y2: 0.275,
+		z2: 0.875
+	},
+	materialDensity: 400,
+	tpHandTransform: {
+		translation: {
+			x: -0.86,
+			y: -0.73,
+			z: -1.14
+		},
+		rotation: {
+			x: 0,
+			y: 0,
+			z: 0
+		},
+		scale: 0.55
+	},
+	guiTransform: {
+		origin: {
+			x: 0.5,
+			y: 0.3,
+			z: 0.5
+		},
+		scale: 1.75
+	},
+	fpHandTransform: {
+		scale: 1.5
+	},
+	groundTransform: {
+		origin: {
+			x: 0.5,
+			y: 0,
+			z: 0.5
+		},
+		scale: 2
+	}
+}
