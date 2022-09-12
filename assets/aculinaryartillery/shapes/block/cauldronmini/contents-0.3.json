@@ -1,16 +1,10 @@
 {
 	"editor": {
-		"backDropShape": "C:/Users/andy-/Documents/GitHub/vs-expandedfoods/mods/vs-expandedfoods/assets/expandedfoods/shapes/block/cauldronmini/empty",
 		"allAngles": false,
 		"entityTextureMode": false
 	},
 	"textureWidth": 16,
 	"textureHeight": 16,
-	"textureSizes": {
-	},
-	"textures": {
-		"metal": "C:/Users/Tyler/Desktop/metal"
-	},
 	"elements": [
 		{
 			"name": "origin",

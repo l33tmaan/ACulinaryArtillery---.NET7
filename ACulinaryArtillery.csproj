@@ -3,7 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>9</LangVersion>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="assets\aculinaryartillery\textures\item\liquid\**" />
+    <EmbeddedResource Remove="assets\aculinaryartillery\textures\item\liquid\**" />
+    <None Remove="assets\aculinaryartillery\textures\item\liquid\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="assets\aculinaryartillery\blocktypes\bighookmold.json">
@@ -54,16 +63,13 @@
     <None Update="assets\aculinaryartillery\itemtypes\food\eggyolk.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\aculinaryartillery\itemtypes\food\limeegg.json">
+    <None Update="assets\aculinaryartillery\itemtypes\liquid\eggyolkfull.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\aculinaryartillery\itemtypes\liquids\eggyolkfull.json">
+    <None Update="assets\aculinaryartillery\itemtypes\liquid\eggyolk.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\aculinaryartillery\itemtypes\liquids\eggyolk.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\itemtypes\liquids\eggwhite.json">
+    <None Update="assets\aculinaryartillery\itemtypes\liquid\eggwhite.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\itemtypes\rollingpin.json">
@@ -136,9 +142,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\recipes\smithing\spile4.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\shapes\bighookmold.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\shapes\block\bighookmold.json">
@@ -330,31 +333,10 @@
     <None Update="assets\aculinaryartillery\shapes\block\spile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\aculinaryartillery\shapes\bottlerack.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\shapes\bottlerackcorner.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\shapes\cauldronminimold.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\shapes\cauldronmold.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\aculinaryartillery\shapes\item\bighook.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\shapes\item\rollingpinshape.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\shapes\meathooks.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\shapes\screwpress.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\shapes\spile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\sounds\block\mixing.ogg">
@@ -432,9 +414,6 @@
     <None Update="assets\game\patches\egg.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\game\textures\food\egg\pickled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\game\textures\item\liquid\eggyolkfull\capercaillie.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -475,49 +454,47 @@
 
   <ItemGroup>
     <Folder Include="assets\aculinaryartillery\textures\item\food\eggyolk\" />
-    <Folder Include="assets\aculinaryartillery\textures\item\liquid\" />
-    <Folder Include="assets\game\textures\food\egg\" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\Lib\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\0Harmony.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="cairo-sharp">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\Lib\cairo-sharp.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\cairo-sharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\Lib\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\Newtonsoft.Json.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\Lib\protobuf-net.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\protobuf-net.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VintagestoryAPI">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\VintagestoryAPI.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\VintagestoryAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VintagestoryLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\VintagestoryLib.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\VintagestoryLib.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSBuildLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\VSBuildLib.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\VSBuildLib.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSCreativeMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\Mods\VSCreativeMod.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSEssentials">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\Mods\VSEssentials.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSEssentials.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSSurvivalMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1173\Mods\VSSurvivalMod.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSSurvivalMod.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>

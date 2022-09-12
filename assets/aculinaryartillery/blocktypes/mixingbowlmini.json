@@ -4,10 +4,7 @@
 	"entityClass": "MixingBowl",
 	"behaviors": [ { "name": "Container" } ],
 	"attributes": {
-		"capacityLitres": 6,
-		"handbook": {
-			"groupBy": [ "mixingbowl-*" ]
-		}
+		"capacityLitres": 3,
 	},
 	"creativeinventory": {
 		"general": [ "*" ],
@@ -19,7 +16,10 @@
 	"textures": {
 		"material": { "base": "game:block/wood/planks/generic" },
 		"generic": { "base": "game:block/wood/planks/generic" },
-		"bowl": { "base": "game:block/clay/ceramic" }
+		"ceramic": { base: "game:block/clay/ceramic" },
+		"burned": { base: "game:block/clay/vessel/sides/burned" },
+		"ceramic-dark": { base: "game:block/clay/ceramic-dark" },
+		"sidesbucket": { "base": "game:block/wood/bucket/sides" },
 	},
 	"sidesolid": {
 		"all": false
@@ -27,7 +27,7 @@
 	"sideopaque": {
 		"all": false
 	},
-	"heldTpIdleAnimation": "holdbothhands",
+	heldTpIdleAnimation: "holdbothhandsmedium", heldTpUseAnimation: "twohandplaceblock", 
 	"lightAbsorption": 1,
 	"replaceable": 600,
 	"resistance": 1.5,
@@ -37,16 +37,42 @@
 			"y1": 0,
 			"z1": 0,
 			"x2": 1,
-			"y2": 0.275,
+			"y2": 0.25,
 			"z2": 1
 		},
 		{
-			"x1": 0.175,
-			"y1": 0.275,
-			"z1": 0.175,
-			"x2": 0.85,
-			"y2": 0.8125,
-			"z2": 0.85
+			"x1": 0.25,
+			"y1": 0.25,
+			"z1": 0.25,
+			"x2": 0.75,
+			"y2": 0.5,
+			"z2": 0.75
 		}
-	]
+	],
+	guiTransform: {
+		origin: {
+			x: 0.5,
+			y: 0.2,
+			z: 0.5
+		},
+		scale: 2
+	},
+	fpHandTransform: {
+		translation: {
+			x: 0,
+			y: 0,
+			z: 0
+		},
+		scale: 2
+	},
+	tpHandTransform: {
+		translation: { x: -1.1, y: -0.6, z: -0.35 },
+		rotation: { x: 100, y: -13, z: -105 },
+		scale: 0.8
+	},
+	groundTransform: {
+		rotation: { x: 0, y: -45, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 5
+	}
 }

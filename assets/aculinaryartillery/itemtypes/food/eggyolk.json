@@ -6,7 +6,7 @@
 		{ code: "source", states: ["chicken", "pheasant", "goldenpheasant", "capercaillie"] },
 	],
 	texture: { base: "item/food/eggyolk/{source}" },
-	creativeinventory: { "general": ["*"], "items": ["*"], "expandedfoods": ["*"], },
+	creativeinventory: { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },
 	guiTransform: {
 		translation: { x: -2, y: -2, z: 0 },
 		rotation: { x: 1, y: 10, z: 0 },

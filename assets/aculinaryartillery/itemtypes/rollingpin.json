@@ -55,7 +55,7 @@
 		"*-steel": 5,
 		"*": 1,
 	},
-	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"], "efrecipes": ["*"] },
+	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"], "aculinaryartillery": ["*"] },
 	combustiblePropsByType: {
 		"*-acacia": {
 			burnTemperature: 600,
@@ -117,9 +117,9 @@
 	guiTransformByType: {
 		"*":
 			{
-				translation: { x: -5, y: -25, z: 0 },
-				rotation: { x: 0, y: -19, z: 44 },
-				origin: { x: 0, y: 0, z: 0 },
+				translation: { x: 0, y: 0, z: 0 },
+				rotation: { x: 0, y: 0, z: 45 },
+				origin: { x: 0.5, y: 0.1, z: 0.6 },
 				scale: 2.5
 			}
 	},

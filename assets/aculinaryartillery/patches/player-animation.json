@@ -19,7 +19,7 @@
         "LowerArmL": "AddAverage"
       }
     },
-    side: "server",
+    "side": "server",
     "file": "game:entities/humanoid/player.json"
   },
   {
@@ -42,7 +42,7 @@
         "LowerArmL": "AddAverage"
       }
     },
-    side: "server",
+    "side": "server",
     "file": "game:entities/humanoid/player.json"
   },
   {
@@ -54,14 +54,14 @@
       "blendMode": "Add",
       "elementWeight": {
         "UpperArmR": 4,
-        "LowerArmR": 4,
+        "LowerArmR": 4
       },
       "elementBlendMode": {
         "UpperArmR": "AddAverage",
-        "LowerArmR": "AddAverage",
+        "LowerArmR": "AddAverage"
       }
     },
-    side: "server",
+    "side": "server",
     "file": "game:entities/humanoid/player.json"
-  },
+  }
 ]

@@ -5,11 +5,11 @@
     "cauldronminimold-burned": "BlockToolMold"
   },
   "behaviorsByType": {
-    "*-raw": [{ "name": "UnstableFalling" }, { "name": "RightClickPickup" }, {name: "Unplaceable"}, {name: "GroundStorable", "properties": { "layout": "SingleCenter" }}],
+    "*-raw": [{ "name": "UnstableFalling" }, { "name": "RightClickPickup" }, {"name": "Unplaceable"}, {"name": "GroundStorable", "properties": { "layout": "SingleCenter" }}],
     "*": [{ "name": "UnstableFalling" }]
   },
   "variantgroups": [
-    { "code": "materialtype", "states": ["raw", "burned"] },
+    { "code": "materialtype", "states": ["raw", "burned"] }
   ],
   "attributesByType": {
     "cauldronminimold-burned": {
@@ -21,7 +21,7 @@
         "code": "cauldronmini-{metal}",
         "quantity": 1
       }
-    },
+    }
   },
   "entityClassByType": {
     "cauldronminimold-burned": "ToolMold"
@@ -55,12 +55,12 @@
     }
   },
   "shape": {
-    "base": "block/cauldronminimold",
+    "base": "block/cauldronminimold"
   },
   "sounds": {
     "walk": "walk/stone"
   },
-    collisionbox: {
+    "collisionbox": {
 		"x1": 0.075,
 		"y1": 0,
 		"z1": 0.125,
@@ -68,7 +68,7 @@
 		"y2": 0.65,
         "z2": 0.875
     },
-    selectionbox: {
+    "selectionbox": {
         "x1": 0.075,
         "y1": 0,
         "z1": 0.125,

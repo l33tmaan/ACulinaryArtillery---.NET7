@@ -19,9 +19,9 @@
 	"creativeinventory": {
 		"general": [ "*" ],
 		"terrain": [ "*" ],
-		"expandedfoods": [ "*" ]
+		"aculinaryartillery": [ "*" ]
 	},
-	"shape": { "base": "expandedfoods:block/mixingbowl/complete" },
+	"shape": { "base": "aculinaryartillery:block/mixingbowl/complete" },
 	"blockmaterial": "Wood",
 	"texturesByType": {
 		"*-whitemarble": {
@@ -99,7 +99,8 @@
 	"lightAbsorption": 1,
 	"replaceable": 600,
 	"resistance": 1.5,
-	heldTpIdleAnimation: "holdbothhandsverylarge", heldTpUseAnimation: "twohandplaceblock", 
+	heldTpIdleAnimation: "holdbothhandsverylarge", 
+	heldTpUseAnimation: "twohandplaceblock", 
 	"collisionSelectionBoxes": [
 		{
 			"x1": 0.05,

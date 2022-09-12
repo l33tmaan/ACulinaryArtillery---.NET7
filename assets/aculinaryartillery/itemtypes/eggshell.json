@@ -12,7 +12,7 @@
 			},
 	},
 	texture: { base: "item/food/eggshell" },
-	creativeinventory: { "general": ["*"], "items": ["*"], "expandedfoods": ["*"], },
+	creativeinventory: { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },
 	guiTransform: {
 		translation: { x: -2, y: -2, z: 0 },
 		rotation: { x: 1, y: 10, z: 0 },

@@ -254,7 +254,7 @@ namespace ACulinaryArtillery
                 byEntity.World.PlaySoundAt(new AssetLocation("aculinaryartillery:sounds/player/eggcrack"), byEntity, null, true, 16, 0.5f);
 
                 // Primary Particles
-                var color = ColorUtil.ToRgba(50, 219, 206, 164);
+                var color = ColorUtil.ToRgba(255, 219, 206, 164);
 
                 particles = new SimpleParticleProperties(
                     4, 6, // quantity
