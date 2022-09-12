@@ -21,7 +21,7 @@
 		"terrain": [ "*" ],
 		"expandedfoods": [ "*" ]
 	},
-	"shape": { "base": "expandedfoods:block/mixingbowl/complete" },
+	"shape": { "base": "aculinaryartillery:block/mixingbowl/complete" },
 	"blockmaterial": "Wood",
 	"texturesByType": {
 		"*-whitemarble": {
