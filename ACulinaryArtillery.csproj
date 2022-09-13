@@ -8,6 +8,10 @@
     <StartupObject />
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="assets\aculinaryartillery\textures\item\liquid\**" />
     <EmbeddedResource Remove="assets\aculinaryartillery\textures\item\liquid\**" />
@@ -276,6 +280,15 @@
     <None Update="assets\aculinaryartillery\shapes\block\meathooks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\aculinaryartillery\shapes\block\mixingbowlmini\base.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\aculinaryartillery\shapes\block\mixingbowlmini\complete.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\aculinaryartillery\shapes\block\mixingbowlmini\top.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\aculinaryartillery\shapes\block\mixingbowl\base.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -345,6 +358,9 @@
     <None Update="assets\aculinaryartillery\sounds\lock.ogg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\aculinaryartillery\sounds\player\eggcrack.ogg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\aculinaryartillery\sounds\player\gulp.ogg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -393,6 +409,9 @@
     <None Update="assets\aculinaryartillery\textures\block\cauldron\meteoriciron.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\aculinaryartillery\textures\item\food\eggshell.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\aculinaryartillery\textures\item\food\eggyolk\capercaillie.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -403,9 +422,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\textures\item\food\eggyolk\pheasant.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\aculinaryartillery\textures\item\food\limeegg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\game\patches\clay-oven.json">
