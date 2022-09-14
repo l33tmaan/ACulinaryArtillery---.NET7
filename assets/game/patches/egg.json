@@ -5,5 +5,19 @@
     "value": "EggCrack",
     side: "server",
     "file": "itemtypes/food/egg.json"
+  },
+  {
+    "op": "add",
+    "path": "/dropsByType/*-broken",
+    "value": [
+      {
+        "type": "item",
+        "code": "expandedfoods:eggshell",
+        "quantity": {
+          "avg": 1
+        }
+      }
+    ],
+    "file": "blocktypes/food/egg.json"
   }
 ]
