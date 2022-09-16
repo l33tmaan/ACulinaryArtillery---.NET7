@@ -91,7 +91,19 @@
     <None Update="assets\aculinaryartillery\patches\compatibility\moreanimals\egg.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\aculinaryartillery\patches\compatibility\moreanimals\eggyolk.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\aculinaryartillery\patches\compatibility\moreanimals\eggyolkfull.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\aculinaryartillery\patches\compatibility\moreanimals\eggyolkportion.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\aculinaryartillery\patches\player-animation.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\aculinaryartillery\patches\seraph-faceless-animation.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\recipes\clayforming\bighookmold.json">

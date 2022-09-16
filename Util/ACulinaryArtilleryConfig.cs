@@ -23,11 +23,11 @@ namespace ACulinaryArtillery.Util
             ACulinaryArtilleryConfig defaultConfig = new();
 
             defaultConfig.OvenDTMod.ToString();
-            defaultConfig.BEExpandedOvenDTMod = 0.025f;
+            defaultConfig.BEExpandedOvenDTMod = 1f;
             defaultConfig.FuelBurnRateMod.ToString();
             defaultConfig.BEExpandedOvenFuelBurnRateMod = 1f;
             defaultConfig.OvenBakeTimeMod.ToString();
-            defaultConfig.BEExpandedOvenBakeTimeMod = 1.2f;
+            defaultConfig.BEExpandedOvenBakeTimeMod = 1f;
             return defaultConfig;
         }
     }
