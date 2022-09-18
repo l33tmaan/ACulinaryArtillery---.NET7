@@ -1,5 +1,6 @@
 ﻿{
   "block-meathooks-*": "Meat rack",
+  "blockdesc-meathooks-*": "Best placed somewhere cold and dry - sealed in stone.",
   "item-bighook-blackbronze": "Large hook (black bronze)",
   "item-bighook-brass": "Large hook (brass)",
   "item-bighook-copper": "Large hook (copper)",
@@ -7,26 +8,32 @@
   "item-bighook-tin": "Large hook (tin)",
   "item-bighook-tinbronze": "Large hook (tin bronze)",
   "item-bighook-titanium": "Large hook (titanium)",
+  "itemdesc-bighook-*": "It's lonely without its friends...",
 
   "block-bighookmold-raw": "Raw large hook mold",
   "block-bighookmold-burned": "Large hook mold",
 
     "block-mixingbowl-*" : "Powered mixing bowl",
+    "blockdesc-mixingbowl-*": "Creation, distilled into a bowl - powered by locomotion.",
+
     "block-spile-copper-*" : "Copper spile",
     "block-spile-brass-*" : "Brass spile",
     "block-spile-tinbronze-*" : "Tin bronze spile",
     "block-spile-blackbronze-*" : "Black bronze spile",
     "block-spile-titanium-*" : "Titanium spile",
-    "block-spile-steel-*" : "Steel spile",
+    "block-spile-steel-*": "Steel spile",
+    "blockdesc-spile-*": "Gently siphon the liquid nectar from the trees around you.",
+
     "block-saucepan-raw" : "Unfired saucepan",
+    "blockdesc-saucepan-*-raw": "Could probably use some heat.",
     "block-saucepan-burned" : "Saucepan",
+    "blockdesc-saucepan-burned": "This will keep your liquids safe... for a time.",
 
     "blockhelp-open": "Open lid",
     "blockhelp-close": "Close lid",
 
     "block-bottle-*-raw" : "Unfired bottle",
     "block-bottle-*-burned" : "Bottle",
-
 
     "efrecipes:Will make {0}" : "Will make {0}",
     "efrecipes:Squeezing x{0} {1}" : "Squeezing x{0} {1}",
@@ -71,6 +78,7 @@
   "block-cauldron-iron": "Cast iron cauldron",
   "block-cauldron-steel": "Steel cauldron",
   "block-cauldron-meteoriciron": "Meteoric iron cauldron",
+  "blockdesc-cauldron-*": "Double-sized, for boiling trouble...",
 
   "block-cauldronminimold-raw": "Raw small cauldron mold",
   "block-cauldronminimold-burned": "Small cauldron mold",
@@ -81,6 +89,7 @@
   "block-cauldronmini-iron": "Small cast iron cauldron",
   "block-cauldronmini-steel": "Small steel cauldron",
   "block-cauldronmini-meteoriciron": "Small meteoric iron cauldron",
+  "blockdesc-cauldronmini-*": "Fires burn and the cauldrons bubble...",
 
   "item-rollingpin-acacia": "Acacia rolling pin",
   "item-rollingpin-aged": "Aged rolling pin",
@@ -101,9 +110,12 @@
   "item-rollingpin-meteoriciron": "Meteoric iron rolling pin",
   "item-rollingpin-steel": "Steel rolling pin",
   "item-rollingpin-tinbronze": "Tin bronze rolling pin",
+  "itemdesc-rollingpin-*": "For smashing things that deserve it.",
 
   "block-bottlerack-*": "Bottle rack",
   "block-bottlerackcorner-*": "Bottle rack (corner)",
+  "blockdesc-bottlerack-*": "Glass soldiers stand ready for action.",
+  "blockdesc-bottlerackcorner-*": "Glass soldiers stand ready for action.",
 
     "heldhelp-drink": "Drink",
 
@@ -113,6 +125,7 @@
     "game:heldhelp-crack2": "Crack (full)",
 
     "item-eggshell": "Egg shells",
+    "itemdesc-eggshell": "Feed to animals... or the earth.",
 
   "item-eggyolkportion-chicken": "Chicken egg yolk portion",
   "game:recipeingredient-item-eggyolkportion-chicken": "chicken egg yolk",
@@ -149,7 +162,7 @@
    "item-eggyolk-goldenpheasant": "Cracked Golden Pheasant Egg",
    "item-eggyolk-capercaillie": "Cracked Capercaillie Egg",
 
-  "itemdesc-eggyolk-*": "Better hurry up and pour the yolk out!",
+  "itemdesc-eggyolk-*": "Better hurry up and pour the yolk out, before it's too late!",
 
   "item-eggyolkfullportion-chicken": "Liquid chicken egg portion",
   "game:recipeingredient-item-eggyolkfullportion-chicken": "liquid chicken egg",
