@@ -59,13 +59,14 @@
 	"blockhelp-mixingbowl-mix": "Mix",
 
   "blockdesc-bottle-*-raw": "Could probably use some heat.",
-  "blockdesc-bottle-*-burned": "Fill me!",
+  "blockdesc-bottle-*-burned": "An empty bottle becomes deseprate for purpose.",
 
   "(Locked) ": "(Locked) ",
   "blockhelp-mixingbowl-autolock": "Lock",
   "blockhelp-mixingbowl-autounlock": "Unlock",
 
   "block-mixingbowlmini": "Mixing bowl",
+  "blockdesc-mixingbowlmini-*": "Creation, distilled into a bowl - powered by weary hands.",
 
   "aculinaryartillery:Liquid Info:": "Liquid info:",
 
@@ -111,6 +112,9 @@
   "item-rollingpin-steel": "Steel rolling pin",
   "item-rollingpin-tinbronze": "Tin bronze rolling pin",
   "itemdesc-rollingpin-*": "For smashing things that deserve it.",
+  "itemdesc-rollingpin-iron": "For smashing things that <i>really</i> deserve it.",
+  "itemdesc-rollingpin-meteoriciron": "For smashing things that <i>really</i> deserve it.",
+  "itemdesc-rollingpin-steel": "For smashing things that <i>really</i> deserve it.",
 
   "block-bottlerack-*": "Bottle rack",
   "block-bottlerackcorner-*": "Bottle rack (corner)",
