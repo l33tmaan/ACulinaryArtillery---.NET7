@@ -58,6 +58,9 @@
     <None Update="assets\aculinaryartillery\blocktypes\spile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\aculinaryartillery\config\handbook\24-aculinaryartilleryguide.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\aculinaryartillery\itemtypes\bighook.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -104,6 +107,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\patches\seraph-faceless-animation.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\aculinaryartillery\patches\trader-foods.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\aculinaryartillery\recipes\clayforming\bighookmold.json">
