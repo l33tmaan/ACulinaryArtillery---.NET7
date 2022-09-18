@@ -1,4 +1,7 @@
-﻿~1.17_v1.0.0~
+﻿~1.17_v1.1.2~
+Recipe duplication fixed
+
+~1.17_v1.0.0~
 - Updated to 1.17
 - Added new shape files for saucepan and cauldron
 - Included egg breaking behavior
