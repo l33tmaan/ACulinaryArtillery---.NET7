@@ -9,7 +9,7 @@
 	"creativeinventory": {
 		"general": [ "*" ],
 		"terrain": [ "*" ],
-		"aculinaryartillery": [ "*" ]
+		"expandedfoods": [ "*" ]
 	},
 	"shape": { "base": "aculinaryartillery:block/mixingbowlmini/complete" },
 	"blockmaterial": "Wood",
