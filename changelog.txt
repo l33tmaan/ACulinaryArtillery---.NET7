@@ -1,4 +1,13 @@
-﻿~1.17_v1.0.4~
+﻿~1.17_v1.0.6~
+- Using multiple bottles on the saucepan/cauldron uses correct liquid values
+- Various utensils can be hung from the meat rack
+
+~1.17_v1.0.5~
+- Big hook mold outputs 8 hooks instead of 5, as intended
+- Blocks remap from Expanded Foods to ACA
+- Some text issues fixed
+
+~1.17_v1.0.4~
 - Handbook guide added
 
 ~1.17_v1.0.3~

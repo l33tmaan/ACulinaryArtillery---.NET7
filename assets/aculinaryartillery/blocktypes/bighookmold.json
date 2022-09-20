@@ -20,7 +20,7 @@
       "drop": {
         "type": "item",
         "code": "bighook-{metal}",
-        "quantity": 5
+        "quantity": 8
       }
     },
   },
