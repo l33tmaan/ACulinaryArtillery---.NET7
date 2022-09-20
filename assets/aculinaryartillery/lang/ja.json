@@ -1,25 +1,33 @@
 {
   "block-meathooks-*": "肉用乾燥棚",
+  "blockdesc-meathooks-*": "涼しくて乾燥した場所に置くのがベスト。 - 石で囲んで。",
   "item-bighook-blackbronze": "大きなフック(黒青銅)",
   "item-bighook-brass": "大きなフック(真鍮)",
   "item-bighook-copper": "大きなフック(銅)",
   "item-bighook-steel": "大きなフック(鋼)",
   "item-bighook-tin": "大きなフック(スズ)",
   "item-bighook-tinbronze": "大きなフック(スズ青銅)",
-  "item-bighook-titanium": "大きなフック(チタニウム)",
+  "item-bighook-titanium": "大きなフック(チタン)",
+  "itemdesc-bighook-*": "仲間がいないのは寂しい...。",  
 
   "block-bighookmold-raw": "大きなフックの鋳型(未焼成)",
   "block-bighookmold-burned": "大きなフックの鋳型",
 
   "block-mixingbowl-*" : "動力のあるミキシングボウル",
-    "block-spile-copper-*" : "銅の差し管",
-    "block-spile-brass-*" : "真鍮の差し管",
-    "block-spile-tinbronze-*" : "スズ青銅の差し管",
-    "block-spile-blackbronze-*" : "黒青銅の差し管",
-    "block-spile-titanium-*" : "チタンの差し管",
-    "block-spile-steel-*" : "鋼の差し管",
+  "blockdesc-mixingbowl-*": "創造を器に凝縮だ。 - 力を動力源に。",
+  
+  "block-spile-copper-*" : "銅の差し管",
+  "block-spile-brass-*" : "真鍮の差し管",
+  "block-spile-tinbronze-*" : "スズ青銅の差し管",
+  "block-spile-blackbronze-*" : "黒青銅の差し管",
+  "block-spile-titanium-*" : "チタンの差し管",
+  "block-spile-steel-*" : "鋼の差し管",
+  "blockdesc-spile-*": "周りの木々から液体の蜜をそっと吸い取る。",
+	
   "block-saucepan-raw" : "鍋（未焼成）",
+  "blockdesc-saucepan-*-raw": "熱を加えてもいいかもしれない。",  
   "block-saucepan-burned" : "鍋",
+  "blockdesc-saucepan-burned": "これで、しばらくの間、液体を安全に保管することが出来ます。",
 
   "blockhelp-open": "蓋を開ける",
   "blockhelp-close": "蓋を閉じる",
@@ -27,38 +35,38 @@
   "block-bottle-*-raw" : "ボトル（未焼成）",
   "block-bottle-*-burned" : "ボトル",
 
-
-    "efrecipes:Will make {0}" : "{0}を作る。",
-    "efrecipes:Squeezing x{0} {1}" : "Squeezing x{0} {1}",
-    "efrecipes:x{0} {1} inserted" : "x{0} {1} inserted",
-    "efrecipes:x{0} {1} leftover" : "x{0} {1} leftover",
-    "efrecipes:Extra Nutrients" : "余分な栄養分",
-    "efrecipes:- {0} {2} sat, {1} hp" : "- {0} {2} sat, {1} hp",
-    "efrecipes:- {0} {1} sat" : "- {0} {1} sat",
-    "efrecipes:made with " : "以下を使用 ",
-    "efrecipes:and " : "と ",
-    "efrecipes:Made with ": "以下を使用 ",
-    "efrecipes:Squeezing x{0} {1} for {2} hours": "Squeezing x{0} {1} for {2} hours",
+  "efrecipes:Will make {0}" : "{0}を作る。",
+  "efrecipes:Squeezing x{0} {1}" : "Squeezing x{0} {1}",
+  "efrecipes:x{0} {1} inserted" : "x{0} {1} inserted",
+  "efrecipes:x{0} {1} leftover" : "x{0} {1} leftover",
+  "efrecipes:Extra Nutrients" : "余分な栄養分",
+  "efrecipes:- {0} {2} sat, {1} hp" : "- {0} {2} sat, {1} hp",
+  "efrecipes:- {0} {1} sat" : "- {0} {1} sat",
+  "efrecipes:made with " : "以下を使用 ",
+  "efrecipes:and " : "と ",
+  "efrecipes:Made with ": "以下を使用 ",
+  "efrecipes:Squeezing x{0} {1} for {2} hours": "Squeezing x{0} {1} for {2} hours",
 
   "...kneading the dough." : "...生地を練る。",
   "Mixing Bowl" : "ミキシングボウル",
-    "The chef and the apprentice..." : "シェフと見習い...。",
-    "The butter and the bread..." : "...生地を練って、発酵させる。",
-    "The syrup and lard..." : "...ぐつぐつと煮えたぎり、やがて沸騰する。",
-    "blockhelp-screwpress-rightclick" : "アイテムを追加",
+  "The chef and the apprentice..." : "シェフと見習い...。",
+  "The butter and the bread..." : "...生地を練って、発酵させる。",
+  "The syrup and lard..." : "...ぐつぐつと煮えたぎり、やがて沸騰する。",
+  "blockhelp-screwpress-rightclick" : "アイテムを追加",
   "blockhelp-screwpress-shiftrightclick" : "アイテムを5個追加",
   "blockhelp-screwpress-liquid" : "液体を取り除く",
   "blockhelp-screwpress-crush" : "粉砕内容",
   "blockhelp-mixingbowl-mix": "混ぜる",
 
   "blockdesc-bottle-*-raw" : "熱を加えてもいいかもしれない。",
-  "blockdesc-bottle-*-burned" : "満タンにして！",
+  "blockdesc-bottle-*-burned": "空のボトルは、目的に応じて乾燥したものになります。",
 
   "(Locked) " : "(ロック済) ",
   "blockhelp-mixingbowl-autolock" : "ロック",
   "blockhelp-mixingbowl-autounlock" : "アンロック",
 
   "block-mixingbowlmini" : "ミキシングボウル",
+  "blockdesc-mixingbowlmini-*": "創造をボウルから取り出せ。 - 疲れた手に力を込めて。",
 
   "aculinaryartillery:Liquid Info:": "液体情報:",
 
@@ -71,9 +79,11 @@
   "block-cauldron-iron": "鉄の大鍋",
   "block-cauldron-steel": "鋼の大鍋",
   "block-cauldron-meteoriciron": "隕鉄の大鍋",
+  "blockdesc-cauldron-*": "面倒な煮込みはダブルサイズで...。",
 
   "block-cauldronminimold-raw": "小鍋の鋳型(未焼成)",
   "block-cauldronminimold-burned": "小鍋の鋳型",
+  "blockdesc-cauldronmini-*": "火は燃え、釜は泡立つ...。",
 
   "block-cauldronmini-copper": "銅の小鍋",
   "block-cauldronmini-tinbronze": "スズ青銅の小鍋",
@@ -101,18 +111,23 @@
   "item-rollingpin-meteoriciron": "隕鉄の麺棒",
   "item-rollingpin-steel": "鋼の麺棒",
   "item-rollingpin-tinbronze": "スズ青銅の麺棒",
+  "itemdesc-rollingpin-*": "叩きたいものを叩く為に。",
+  "itemdesc-rollingpin-iron": "<i>本当に</i>叩きたいものを叩く為に。",
+  "itemdesc-rollingpin-meteoriciron": "<i>本当に</i>叩きたいものを叩く為に。",
+  "itemdesc-rollingpin-steel": "<i>本当に</i>叩きたいものを叩く為に。",
 
   "block-bottlerack-*": "ボトルラック",
   "block-bottlerackcorner-*": "ボトルラック(角)",
 
   "heldhelp-drink": "飲み物",
 
-    "game:tabname-aculinaryartillery": "A Culinary Artillery",
+  "game:tabname-aculinaryartillery": "A Culinary Artillery(料理の戦い方)",
 
   "game:heldhelp-crack": "ちょっと割れている",
   "game:heldhelp-crack2": "完全に割れている",
 
   "item-eggshell": "卵のカラ",
+  "itemdesc-eggshell": "動物に与えるか...地球に返すか。",
 
   "item-eggyolkportion-chicken": "ニワトリの卵の卵黄",
   "game:recipeingredient-item-eggyolkportion-chicken": "ニワトリの卵の卵黄",
@@ -149,7 +164,7 @@
   "item-eggyolk-goldenpheasant": "割れたキンケイの卵",
   "item-eggyolk-capercaillie": "割れたキバシオオライチョウの卵",
 
-  "itemdesc-eggyolk-*": "早く卵黄を流し込むんだ！",
+  "itemdesc-eggyolk-*": "手遅れになる前に、急いで黄身を流し込むんだ！",
 
   "item-eggyolkfullportion-chicken": "割ったニワトリの卵",
   "game:recipeingredient-item-eggyolkfullportion-chicken": "割ったニワトリの卵",
@@ -174,4 +189,8 @@
   "recipeingredient-item-eggyolkfullportion-capercaillie-insturmentalcase": "割ったキバシオオライチョウの卵 ",
   "incontainer-item-eggyolkfullportion-capercaillie": "割ったキバシオオライチョウの卵 ",
   "game:incontainer-item-eggyolkfullportion-capercaillie": "割ったキバシオオライチョウの卵 ",
+  
+  "aculinaryartilleryguide-title": "A Culinary Artillery(料理の戦い方): 手引書",
+  "aculinaryartilleryguide-text": "<strong>A Culinary Artillery(料理の戦い方): 手引書</strong><br><i>創造の原点</i><br><br><strong>イントロダクション</strong><br>このMODは様々な調理器具を追加し、それ自体では何も出来ませんが、完全に利用する為にはExpanded Foodsのような別のMODを必要とする仕組みになっています。このMODは他のMODの為のライブラリに過ぎません！<br><br><strong>構文</strong><br>混乱を避ける為、特定の語彙をここで定義します。A Culinary Artilleryのガイドがこれらの単語を使用する場合、直接的かつ具体的な方法で使用されます。<br><br><i>焼く</i> - 高温の粘土釜にアイテムを入れる。<br><i>煮る</i> - 鍋や大鍋に入れたものを熱い焚き火台の上に置く。<br><i>調理</i> - 焚き火の上部スロットにアイテムを入れる。<br><i>乾燥</i> - 右クリックで肉用乾燥棚にアイテムを置き、乾燥するのを待ちます。乾燥前に肉が腐り始めると、乾燥しません。<br><i>捏ねる</i> - ミキシングボウルの上6つのスロットにアイテムを配置し、右クリックでアイテムを出力します。<br><i>混ぜる</i> - ミキシングボウルの左下のスロットに調理鍋を置き、上6つのスロットに食材を入れ、右クリックで料理を出力します。<br><i>搾る</i> - 果実搾り機にアイテムを重ねて入れ、右クリックで圧搾を開始します。<br><br><i>Expanded Food</i> - 複数の栄養種類を持つことが出来る特殊な食品。<br><br><strong><i>新しい調理ブロック</i></strong><br><br><strong><a href=\"handbook://block-aculinaryartillery:bottle-clay-burned\">ボトル</a></strong><br>粘土やガラスで作られたボトルは、ボウルと同じように液体を入れることが可能で、どこにでも置いたり、<a href=\"handbook://block-aculinaryartillery:bottlerack-acacia-acacia-north\">ボトルラック</a>に入れたりすることが出来ます。 飲み物の発酵や液体飲用に使用出来ます。<br><strong><a href=\"handbook://block-aculinaryartillery:meathooks-aged-copper-east\">肉用乾燥棚</a></strong><br>'meathookable'属性のアイテムは、肉用乾燥棚で乾燥させることが出来ます。乾燥させることで、肉が熟成され、栄養価もアップします。<br><strong><a href=\"handbook://block-aculinaryartillery:mixingbowl-normal\">ミキシングボウル</a></strong><br>多くのExpanded Foodsを作るために欠かせません。6スロットに食べ物や液体を取り込んで、新しいアイテムに練り上げることが出来ます。調理鍋を入れると、サラダなど特定の料理を混ぜることが出来ます。ブロックの上部または下部に軸を接続することで、機械的に動力を供給することが出来ます。<br>ミキシングボウルは、CTRL+右クリックでロックすることが出来ます。ロックされると、その中に入っていた材料と、その特定のスロットにある材料だけを受け入れるようになります。液体を自動的に受け入れることはできません。<br><strong><a href=\"handbook://block-aculinaryartillery:saucepan-raw\">鍋</a></strong><br>バケツと似たような機能ですが、焚き火の上に置いて中の液体を沸騰させることがで出来ます。鍋の中のものを沸騰させるには、鍋のスロットに入れなければなりません。固形物を液体にしたり、液体を固形物にしたりすることが出来ます。CTRL + SHIFT + 右クリックで蓋が可能で、中の液体の寿命が少し延びます。<br><strong><a href=\"handbook://block-aculinaryartillery:cauldron-iron\">大鍋</a></strong><br>大鍋は鍋を大きくしたもので、液体を沸騰させるのにも使われます。大鍋の鋳型に液体金属を流し込んで作ります。大釜に蓋をすることも出来ますが、鍋の蓋よりも効果的です。<br><strong><a href=\"handbook://block-aculinaryartillery:spile-copper-north\">差し管</a></strong><br>別のMODがインストールされている場合、これを木に差し込み、その下にバケツや鍋を置いて、特定の時期に木から樹液を採取します。<br><br><strong><i>新しい調理器具</i></strong><br><br><strong><a href=\"handbook://item-aculinaryartillery:rollingpin-maple\">麺棒</a></strong><br>丸太から削り出したり、鍛造したりして作ります。麺棒は肉やパスタの生地など、食品を平らにする為に使われます。また、弱い武器でもあります。<br><br><strong>卵の変化</strong><br>どんな卵でも、ボウルやバケツに割ることが出来ます。一部割ると<strong><a href=\"handbook://item-aculinaryartillery:eggwhiteportion\">卵白液</a></strong>0.1Lと<strong><a href=\"handbook://item-aculinaryartillery:eggyolk-chicken\">卵黄</a></strong>1個が出来、さらに割ると<strong><a href=\"handbook://item-aculinaryartillery:eggyolkportion-chicken\">卵黄液</a></strong>0.1Lが出来ます。これらはパン粉に使うことが出来、今後さらに用途が広がると思います。これらの液体を混ぜたり、卵を完全に割って0.1Lの<strong><a href=\"handbook://item-aculinaryartillery:eggyolkfullportion-chicken\">卵液</a></strong>を得ることが出来、多くのレシピで生卵の代わりに使用されます。卵を割ると<strong><a href=\"handbook://item-aculinaryartillery:eggshell\">卵のカラ</a></strong>が出来、肥料や家畜の飼料として利用出来ます。",
+
 }
