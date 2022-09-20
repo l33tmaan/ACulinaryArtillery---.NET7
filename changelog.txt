@@ -1,4 +1,16 @@
-﻿~1.17_v1.0.0~
+﻿~1.17_v1.0.4~
+- Handbook guide added
+
+~1.17_v1.0.3~
+- Reorganization of assets.
+
+~1.17_v1.0.2~
+- Recipe duplication fixed
+
+~1.17_v1.0.1~
+- General bugfixing
+
+~1.17_v1.0.0~
 - Updated to 1.17
 - Added new shape files for saucepan and cauldron
 - Included egg breaking behavior

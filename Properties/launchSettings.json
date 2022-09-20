@@ -2,8 +2,8 @@
   "profiles": {
     "ACulinaryArtillery": {
       "commandName": "Project",
-      "commandLineArgs": "--addModPath=\"C:\\Users\\Owner\\source\\repos\\ACulinaryArtillery\\ACulinaryArtillery\\bin\\Debug\" --addOrigin=\"C:\\Users\\Owner\\source\\repos\\ACulinaryArtillery\\ACulinaryArtillery\\assets\"",
-      "workingDirectory": "C:\\Users\\Owner\\AppData\\Roaming\\VintageStory\\1173\\"
+      "commandLineArgs": "--addModPath=\"C:\\Users\\Tyler\\source\\repos\\ACulinaryArtillery---l33tFork\\bin\\Debug\" --addOrigin=\"C:\\Users\\Tyler\\source\\repos\\ACulinaryArtillery---l33tFork\\assets\"",
+      "workingDirectory": "C:\\Users\\Tyler\\AppData\\Roaming\\Vintagestory"
     }
   }
 }

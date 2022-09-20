@@ -12,7 +12,7 @@
 		"*": {
 			"lidSound": "game:sounds/block/metaldoor-place",
 			"canSeal": true,
-		    handbook: { "groupBy": ["cauldron-*"] },
+		    "handbook": { "groupBy": ["cauldron-*"] },
 			"lidPerishRate": 0.75,
 			"maxTemperature": 900,
 			"maxFillLevel": 13,
@@ -55,6 +55,8 @@
 	},
 	"drawtype": "JSON",
 	"blockmaterial": "Metal",
+	"heldTpIdleAnimation": "holdbothhandsverylarge", 
+	"heldTpUseAnimation": "twohandplaceblock", 
 	"texturesbyType": {
 		"*-copper": {
             "metal": { "base": "game:block/metal/sheet/copper1" },
@@ -127,7 +129,7 @@
 				"base": "block/cauldron/meteoriciron",
 				"overlays": [ "block/cauldron/metaloverlaygradient" ]
 			}
-		},
+		}
 	},
 	"replaceable": 500,
 	"resistance": 1.5,
@@ -183,17 +185,9 @@
 	],
 	"materialDensity": 7870,
 	"tpHandTransform": {
-		"translation": {
-			"x": -0.86,
-			"y": -0.73,
-			"z": -1.14
-		},
-		"rotation": {
-			"x": 0,
-			"y": 0,
-			"z": 0
-		},
-		"scale": 0.55
+		"translation": { "x": -1.35, "y": -0.7, "z": -0.35 },
+		"rotation": { "x": -82, "y": 29, "z": -65 },
+		"scale": 0.75
 	},
 	"fpHandTransform": {
 		"scale": 1.5
