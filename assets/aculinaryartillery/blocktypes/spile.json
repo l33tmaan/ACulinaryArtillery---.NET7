@@ -17,7 +17,8 @@
 		groundStorageTransform: {
 			translation: { x: -0.075, y: -0.25, z: 0.175 },
 			rotation: { x: 0, y: 0, z: 90 },
-			scale: 0.8
+			scale: 0.8,
+		},	
 	},
 	entityclass: "Spile",
 	class: "BlockSpile",

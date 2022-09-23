@@ -61,7 +61,19 @@
 					}
 				},
 				useFirepitModel: "Wide"
-			}
+			},
+			meathookable: true,
+			meatHookTransform: {
+  				translation: { x: 0.0, y: 0.19, z: -0.45 },
+  				rotation: { x: -90, y: 90, z: 0 },
+  				origin: { x: 0.5, y: 0, z: 0.5 },
+  				scale: 0.8
+			},
+			shelvable: true,
+			"onDisplayTransform": {
+				"translation": { "x": 0, "y": -0.1, "z": 0 },
+				"scale": 0.8
+			},
 		},
 		"*-raw": {
 			maxTemperature: 600,

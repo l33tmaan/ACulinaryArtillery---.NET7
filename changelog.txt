@@ -1,10 +1,13 @@
-﻿~1.17_v1.0.6~
+﻿~1.17_v1.0.7~
 - Using multiple bottles on the saucepan/cauldron uses correct liquid values
-- Various utensils can be hung from the meat rack / vertical rack
-- Rolling pin & spiles are ground storable - DONE!!!
+- Saucepan simmer recipe crashing fixed
+
+~1.17_v1.0.6~
+- Meat hook dry rate cut by 1/20th
+- Saucepans and mini-cauldrons can be hung from the meat rack or placed on shelves
+- Rolling pin & spiles are ground storable
 - Saucepan claymaking recipe updated
-- Meat hook dry rate cut by 1/20th - DONE!!!
-- Fixed egg cracking issue - DONE!!!
+- Fixed egg cracking issue
 - Japanese translation updated (thanks to macoto_hino)
 
 ~1.17_v1.0.5~
