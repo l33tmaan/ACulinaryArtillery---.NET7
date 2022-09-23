@@ -284,11 +284,17 @@ namespace ACulinaryArtillery
             }
 
             slot.TakeOut(1);
-            slot.MarkDirty();
+			slot.MarkDirty();
+
+			var bowlCheck = api.World.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntityGroundStorage;
+            ItemSlot bowlSourceSlot = bowlCheck.Inventory.FirstOrDefault(aslot => !aslot.Empty);
+			var bowlCollectible = bowlSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
+            var bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
+            var bowlYolkContents = bowlCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
 
             IPlayer byPlayer = null;
             if (byEntity is EntityPlayer) byPlayer = world.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
-            if (eggType == "egg" || eggType == "limeegg")
+            if ((eggType == "egg" || eggType == "limeegg") && bowlSourceContents == "eggwhiteportion" )
             {
                 stack = new ItemStack(world.GetItem(new AssetLocation(eggYolkOutput)));
             }

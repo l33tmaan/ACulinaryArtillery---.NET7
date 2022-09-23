@@ -22,7 +22,7 @@
 	},
 	"attributes": {
 		"cureRate": 3,
-		"dryRate": 200,
+		"dryRate": 10,
 		"handbook": { "groupBy": ["meathooks-*"] }
 	},
 	"drawtype": "json",

@@ -106,6 +106,9 @@
     <None Update="assets\aculinaryartillery\patches\player-animation.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\aculinaryartillery\patches\remaps.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\aculinaryartillery\patches\seraph-faceless-animation.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
