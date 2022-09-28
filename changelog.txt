@@ -1,6 +1,8 @@
 ﻿~1.17_v1.0.7~
 - Using multiple bottles on the saucepan/cauldron uses correct liquid values
 - Saucepan simmer recipe crashing fixed
+- Mixing bowl client/server issues fixed
+- Cauldron & saucepan fit on meat hooks again - DONE!!!
 
 ~1.17_v1.0.6~
 - Meat hook dry rate cut by 1/20th
