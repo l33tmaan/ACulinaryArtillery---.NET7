@@ -3,6 +3,7 @@
 - Saucepan simmer recipe crashing fixed
 - Mixing bowl client/server issues fixed
 - Cauldron & saucepan fit on meat hooks again - DONE!!!
+- Spile can pour into any liquid container, not just buckets
 
 ~1.17_v1.0.6~
 - Meat hook dry rate cut by 1/20th
