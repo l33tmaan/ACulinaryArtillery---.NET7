@@ -1,6 +1,25 @@
 {
 	code: "spile",
-	behaviors: [{name: "HorizontalAttachable"}],
+	behaviors: [
+		{
+			name: "GroundStorable",
+			properties: {
+				layout: 'Quadrants',
+				collisionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.125, z2: 1 },
+			},
+		},
+		{
+			name: "HorizontalAttachable" 
+		} 	
+	],
+	attributes: {
+		handbook: { "groupBy": ["spile-*"] },
+		groundStorageTransform: {
+			translation: { x: -0.075, y: -0.25, z: 0.175 },
+			rotation: { x: 0, y: 0, z: 90 },
+			scale: 0.8,
+		},	
+	},
 	entityclass: "Spile",
 	class: "BlockSpile",
 	variantgroups: [
