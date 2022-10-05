@@ -157,13 +157,13 @@ namespace ACulinaryArtillery
                 }
             }
 
-            foreach (SimmerRecipe crec in MixingRecipeRegistry.Loaded.SimmerRecipes)
+            foreach (SimmerRecipe srec in MixingRecipeRegistry.Loaded.SimmerRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     BinaryWriter writer = new BinaryWriter(ms);
 
-                    crec.ToBytes(writer);
+                    srec.ToBytes(writer);
 
                     string value = Ascii85.Encode(ms.ToArray());
                     srecipes.Add(value);
