@@ -2,7 +2,7 @@
 - Using multiple bottles on the saucepan/cauldron uses correct liquid values
 - Saucepan simmer recipe crashing fixed
 - Mixing bowl client/server issues fixed
-- Cauldron & saucepan fit on meat hooks again - DONE!!!!
+- Cauldron & saucepan fit on meat hooks again - DONE!!!
 - Spile can pour into any liquid container, not just buckets
 - Large meat hook claymaking recipe updated
 
