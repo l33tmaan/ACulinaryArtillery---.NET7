@@ -1,4 +1,7 @@
-﻿~1.17_v1.0.7~
+﻿~1.17_v1.0.8~
+- Corrected bug with simmering recipes
+
+~1.17_v1.0.7~
 - Using multiple bottles on the saucepan/cauldron uses correct liquid values
 - Saucepan simmer recipe crashing fixed
 - Mixing bowl client/server issues fixed
