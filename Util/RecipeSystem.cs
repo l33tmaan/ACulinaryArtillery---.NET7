@@ -555,7 +555,7 @@ namespace ACulinaryArtillery
                             }
                         }
 
-                        rec.Output.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
+                        rec.Simmering.SmeltedStack.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                     }
 
                     first = false;
@@ -690,7 +690,7 @@ namespace ACulinaryArtillery
 
         public CombustibleProperties Simmering;
 
-        public JsonItemStack Output;
+        //public JsonItemStack Output;
 
         public ItemStack TryCraftNow(ICoreAPI api, ItemSlot[] inputslots)
         {
@@ -714,7 +714,7 @@ namespace ACulinaryArtillery
             foreach (var val in matched)
             {
 
-                val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Output.StackSize));
+                val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Simmering.SmeltedStack.StackSize));
                 val.Key.MarkDirty();
             }
 
@@ -735,6 +735,7 @@ namespace ACulinaryArtillery
 
         public int Match(List<ItemStack> Inputs)
         {
+            
             if (Inputs.Count != Ingredients.Length) return 0;
             List<CraftingRecipeIngredient> matched = new List<CraftingRecipeIngredient>();
             int amount = -1;
@@ -844,7 +845,7 @@ namespace ACulinaryArtillery
 
         public string GetOutputName()
         {
-            return Lang.Get("aculinaryartillery:Will make {0}", Output.ResolvedItemstack.GetName());
+            return Lang.Get("aculinaryartillery:Will make {0}", Simmering.SmeltedStack.ResolvedItemstack.GetName());
         }
 
         public bool Resolve(IWorldAccessor world, string sourceForErrorLogging)
@@ -869,25 +870,44 @@ namespace ACulinaryArtillery
             {
                 Ingredients[i].ToBytes(writer);
             }
-
-            Simmering.SmeltedStack.ToBytes(writer);
+            writer.Write(this.Simmering.MeltingPoint);
+            writer.Write(this.Simmering.MeltingDuration);
+            writer.Write(this.Simmering.SmeltedRatio);
+            writer.Write((ushort)this.Simmering.SmeltingType);
+            CombustibleProperties simmering = this.Simmering;
+            writer.Write(((simmering != null) ? simmering.SmeltedStack : null) != null);
+            CombustibleProperties simmering2 = this.Simmering;
+            if (((simmering2 != null) ? simmering2.SmeltedStack : null) != null)
+            {
+                this.Simmering.SmeltedStack.ToBytes(writer);
+            }
+            writer.Write(this.Simmering.RequiresContainer);
         }
 
         public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
         {
             Code = reader.ReadString();
             Ingredients = new CraftingRecipeIngredient[reader.ReadInt32()];
-
+            
             for (int i = 0; i < Ingredients.Length; i++)
             {
                 Ingredients[i] = new CraftingRecipeIngredient();
                 Ingredients[i].FromBytes(reader, resolver);
-                Ingredients[i].Resolve(resolver, "Dough Recipe (FromBytes)");
+                Ingredients[i].Resolve(resolver, "Simmer Recipe (FromBytes)");
             }
 
-            Output = new JsonItemStack();
-            Output.FromBytes(reader, resolver.ClassRegistry);
-            Output.Resolve(resolver, "Dough Recipe (FromBytes)");
+            this.Simmering = new CombustibleProperties();
+            this.Simmering.MeltingPoint = reader.ReadInt32();
+            this.Simmering.MeltingDuration = reader.ReadSingle();
+            this.Simmering.SmeltedRatio = reader.ReadInt32();
+            this.Simmering.SmeltingType = (EnumSmeltType)reader.ReadUInt16();
+            if (reader.ReadBoolean())
+            {
+                this.Simmering.SmeltedStack = new JsonItemStack();
+                this.Simmering.SmeltedStack.FromBytes(reader, resolver.ClassRegistry);
+                this.Simmering.SmeltedStack.Resolve(resolver, "Simmer Recipe (FromBytes)", true);
+            }
+            this.Simmering.RequiresContainer = reader.ReadBoolean();
         }
 
         public SimmerRecipe Clone()
@@ -900,7 +920,7 @@ namespace ACulinaryArtillery
 
             return new SimmerRecipe()
             {
-                Output = Output.Clone(),
+                Simmering = Simmering.Clone(),
                 Code = Code,
                 Enabled = Enabled,
                 Name = Name,
@@ -1013,6 +1033,7 @@ namespace ACulinaryArtillery
             {
                 Inputs[i].ToBytes(writer);
             }
+
         }
 
         public DoughIngredient Clone()

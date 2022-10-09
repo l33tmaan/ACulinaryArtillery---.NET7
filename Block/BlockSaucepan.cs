@@ -215,6 +215,7 @@ namespace ACulinaryArtillery
             {
                 SimmerRecipe match = null;
                 int amount = 0;
+                api.Logger.Debug("GetMeltingDuration 1 Reached with contents " + contents[0].Collectible.Code + " " + contents[1].Collectible.Code);
 
                 foreach (SimmerRecipe rec in simmerRecipes)
                 {
