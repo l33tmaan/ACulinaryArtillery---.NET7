@@ -8,6 +8,8 @@
 - Cauldron & saucepan fit on meat hooks again - DONE!!!
 - Spile can pour into any liquid container, not just buckets
 - Large meat hook claymaking recipe updated
+- Mixing recipes actually use their own perish timer instead of the first ingredient used
+- Clay bottles display liquid info (config option added to disable?)
 
 ~1.17_v1.0.6~
 - Meat hook dry rate cut by 1/20th
