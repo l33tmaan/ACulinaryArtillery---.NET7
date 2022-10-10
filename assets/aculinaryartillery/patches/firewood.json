@@ -1,0 +1,14 @@
+﻿[
+  {
+    "op": "add",
+    "path": "/attributes/onDisplayTransform",
+    "value": {
+      "rotation": {
+        "x": 0,
+        "y": 90,
+        "z": 0
+      }
+    },
+    "file": "game:itemtypes/resource/firewood.json"
+  }
+]
