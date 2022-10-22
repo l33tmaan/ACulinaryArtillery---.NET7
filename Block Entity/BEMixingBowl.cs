@@ -809,7 +809,7 @@ namespace ACulinaryArtillery
         public CookingRecipe GetMatchingMixingRecipe(IWorldAccessor world, ItemStack[] stacks)
         {
             if (Pot == null) return null;
-            var recipes = MixingRecipeRegistry.Loaded.MixingRecipes;
+            var recipes = MixingRecipeRegistry.Registry.MixingRecipes;
             if (recipes == null) return null;
 
             for (int j = 0; j < recipes.Count; j++)
@@ -828,7 +828,7 @@ namespace ACulinaryArtillery
         public DoughRecipe GetMatchingDoughRecipe(IWorldAccessor world, ItemSlot[] slots)
         {
             if (Pot != null) return null;
-            List<DoughRecipe> recipes = MixingRecipeRegistry.Loaded.KneadingRecipes;
+            List<DoughRecipe> recipes = MixingRecipeRegistry.Registry.KneadingRecipes;
             if (recipes == null) return null;
 
             for (int j = 0; j < recipes.Count; j++)

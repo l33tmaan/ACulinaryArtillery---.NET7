@@ -15,7 +15,7 @@ namespace ACulinaryArtillery
 
         public override void Start(ICoreAPI api)
         {
-            base.Start(api);
+            //base.Start(api);
 
             CookingRecipe.NamingRegistry["augratin"] = new acaRecipeNames();
             CookingRecipe.NamingRegistry["riceandbeans"] = new acaRecipeNames();
@@ -79,19 +79,19 @@ namespace ACulinaryArtillery
                 api.StoreModConfig(ACulinaryArtilleryConfig.Current, "aculinaryartillery.json");
             }
 
-                harmony ??= new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
-                harmony.PatchAll(Assembly.GetExecutingAssembly());
+            harmony ??= new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
         public override void Dispose()
         {
             harmony.UnpatchAll(harmony.Id);
-            base.Dispose();
+            //base.Dispose();
         }
 
         public override void StartServerSide(ICoreServerAPI api)
         {
-            base.StartServerSide(api);
+            //base.StartServerSide(api);
 
             api.RegisterCommand("efremap", "Remaps items in Expanded Foods", "",
                 //This can't possibly work XD
@@ -99,7 +99,7 @@ namespace ACulinaryArtillery
                 {
                     api.World.BlockAccessor.WalkBlocks(player.Entity.ServerPos.AsBlockPos.AddCopy(-10), player.Entity.ServerPos.AsBlockPos.AddCopy(10), (block, posX, posY, posZ) => {
 
-                        BottleFix(new BlockPos(posX, posY, posZ) , block, api.World);
+                        BottleFix(new BlockPos(posX, posY, posZ), block, api.World);
                     });
                 }, Privilege.chat);
         }

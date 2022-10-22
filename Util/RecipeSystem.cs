@@ -50,9 +50,22 @@ namespace ACulinaryArtillery
         }
     }
 
-    public class MixingRecipeRegistry
+    public sealed class MixingRecipeRegistry
     {
-        private static MixingRecipeRegistry loaded;
+        private MixingRecipeRegistry()
+        {
+            //do our intialisation stuff, only once!
+        }
+
+        private static readonly MixingRecipeRegistry registry = new MixingRecipeRegistry();
+        public static MixingRecipeRegistry Registry
+        {
+            get
+            {
+                return registry;
+            }
+        }
+
         private List<CookingRecipe> mixingRecipes = new List<CookingRecipe>();
         private List<DoughRecipe> kneadingRecipes = new List<DoughRecipe>();
         private List<SimmerRecipe> simmerRecipes = new List<SimmerRecipe>();
@@ -89,33 +102,6 @@ namespace ACulinaryArtillery
             {
                 simmerRecipes = value;
             }
-        }
-
-        public static MixingRecipeRegistry Create()
-        {
-            if (loaded == null)
-            {
-                loaded = new MixingRecipeRegistry();
-            }
-            return Loaded;
-        }
-
-        public static MixingRecipeRegistry Loaded
-        {
-            get
-            {
-                if (loaded == null)
-                {
-                    loaded = new MixingRecipeRegistry();
-                }
-                return loaded;
-            }
-        }
-
-        public static void Dispose()
-        {
-            if (loaded == null) return;
-            loaded = null;
         }
     }
 
@@ -383,26 +369,29 @@ namespace ACulinaryArtillery
             return 100;
         }
 
+        public override bool ShouldLoad(EnumAppSide side)
+        {
+            return side == EnumAppSide.Server;  //we only load recipes on the server
+        }
+
         public override void StartServerSide(ICoreServerAPI api)
         {
-            MixingRecipeRegistry.Create();
             this.api = api;
-            api.Event.SaveGameLoaded += LoadFoodRecipes;
         }
 
-        public override void Dispose()
+        public override void AssetsFinalize(ICoreAPI api)
         {
-            base.Dispose();
-            MixingRecipeRegistry.Dispose();
+            LoadFoodRecipes();
         }
 
-         public void LoadFoodRecipes()
-         {
-             LoadMixingRecipes();
-             LoadKneadingRecipes();
-             LoadSimmeringRecipes();
-         }
-        public override void AssetsLoaded(ICoreAPI api) {
+        public void LoadFoodRecipes()
+        {
+            LoadMixingRecipes();
+            LoadKneadingRecipes();
+            LoadSimmeringRecipes();
+        }
+        public override void AssetsLoaded(ICoreAPI api)
+        {
             //override to prevent double loading
             if (!(api is ICoreServerAPI sapi)) return;
             this.api = sapi;
@@ -421,7 +410,7 @@ namespace ACulinaryArtillery
                     if (!rec.Enabled) continue;
 
                     rec.Resolve(api.World, "mixing recipe " + val.Key);
-                    MixingRecipeRegistry.Loaded.MixingRecipes.Add(rec);
+                    MixingRecipeRegistry.Registry.MixingRecipes.Add(rec);
 
                     recipeQuantity++;
                 }
@@ -433,7 +422,7 @@ namespace ACulinaryArtillery
                         if (!rec.Enabled) continue;
 
                         rec.Resolve(api.World, "mixing recipe " + val.Key);
-                        MixingRecipeRegistry.Loaded.MixingRecipes.Add(rec);
+                        MixingRecipeRegistry.Registry.MixingRecipes.Add(rec);
 
                         recipeQuantity++;
                     }
@@ -573,7 +562,7 @@ namespace ACulinaryArtillery
                         quantityIgnored++;
                         continue;
                     }
-                    MixingRecipeRegistry.Loaded.SimmerRecipes.Add(subRecipe);
+                    MixingRecipeRegistry.Registry.SimmerRecipes.Add(subRecipe);
                     quantityRegistered++;
                 }
 
@@ -586,7 +575,7 @@ namespace ACulinaryArtillery
                     return;
                 }
 
-                MixingRecipeRegistry.Loaded.SimmerRecipes.Add(recipe);
+                MixingRecipeRegistry.Registry.SimmerRecipes.Add(recipe);
                 quantityRegistered++;
             }
         }
@@ -658,7 +647,7 @@ namespace ACulinaryArtillery
                         quantityIgnored++;
                         continue;
                     }
-                    MixingRecipeRegistry.Loaded.KneadingRecipes.Add(subRecipe);
+                    MixingRecipeRegistry.Registry.KneadingRecipes.Add(subRecipe);
                     quantityRegistered++;
                 }
 
@@ -671,7 +660,7 @@ namespace ACulinaryArtillery
                     return;
                 }
 
-                MixingRecipeRegistry.Loaded.KneadingRecipes.Add(recipe);
+                MixingRecipeRegistry.Registry.KneadingRecipes.Add(recipe);
                 quantityRegistered++;
             }
         }
@@ -733,39 +722,70 @@ namespace ACulinaryArtillery
             return outputStackSize >= 0;
         }
 
+        /// <summary>
+        /// Match a list of ingredients against the recipe and give back the amount that can be made with what's given
+        /// Will return 0 if the ingredients are NOT in the right proportions!
+        /// </summary>
+        /// <param name="Inputs">a list of item stacks</param>
+        /// <returns>the amount of the recipe that can be made</returns>
         public int Match(List<ItemStack> Inputs)
         {
-            
-            if (Inputs.Count != Ingredients.Length) return 0;
+            if (Inputs.Count != Ingredients.Length) //not the correct amount of ingredients for that recipe
+                return 0;
+
             List<CraftingRecipeIngredient> matched = new List<CraftingRecipeIngredient>();
-            int amount = -1;
+            int amountForTheRecipe = -1;
 
             foreach (ItemStack input in Inputs)
             {
                 CraftingRecipeIngredient match = null;
 
-                foreach (CraftingRecipeIngredient ing in Ingredients)
+                foreach (CraftingRecipeIngredient ing in Ingredients)   //check if this input item is in the recipe
                 {
-                    if ((ing.ResolvedItemstack == null && !ing.IsWildCard) || matched.Contains(ing) || !ing.SatisfiesAsIngredient(input)) continue;
-                    match = ing;
+                    if (
+                        (ing.ResolvedItemstack == null && !ing.IsWildCard)  //this ingredient is somehow null, but is not a wildcard
+                        || matched.Contains(ing)                            //this ingredient is already matched 
+                        || !ing.SatisfiesAsIngredient(input)                //the input does not match the ingredient
+                    )
+                        continue;
+
+                    match = ing;                                            //otherwise the input satisfies as a an ingredient, no need to look further
                     break;
                 }
 
-                if (match == null || input.StackSize % match.Quantity != 0 || (input.StackSize / match.Quantity) % Simmering.SmeltedRatio != 0) return 0;
+                if (
+                    match == null                                                           //didn't find a match for the input in previous step
+                    || input.StackSize % match.Quantity != 0                                //this particular ingredient is not in enough quantity for full portions
+                    || ((input.StackSize / match.Quantity) % Simmering.SmeltedRatio != 0)   //same but taking the smeltedRation into account ? would love to see an example where that's needed
+                    )
+                    return 0;
 
-                int maxAmount = (input.StackSize / match.Quantity) / Simmering.SmeltedRatio;
+                int amountForThisIngredient = (input.StackSize / match.Quantity) / Simmering.SmeltedRatio;
 
-                if (amount == -1) amount = maxAmount;
-                else if (maxAmount != amount) return 0;
+                if (amountForThisIngredient > 0)    //the ingredient can at least produce a portion
+                {
+                    if (amountForTheRecipe == -1)   //first match
+                    {
+                        amountForTheRecipe = amountForThisIngredient;   //we set the target amount of portions
+                    }
 
-                if (amount == 0) return amount;
+                    if (amountForThisIngredient == amountForTheRecipe)  //this ingredient matches the target amount, add it 
+                    {
+                        matched.Add(match);
+                    }
+                    else
+                    {
+                        return 0;   //we only want perfectly proportioned ingredients
+                    }
 
-                matched.Add(match);
-
-
+                }
+                else
+                {
+                    return 0;   //we need at least a full portion!
+                }
             }
 
-            return amount;
+            return amountForTheRecipe;
         }
 
         List<KeyValuePair<ItemSlot, CraftingRecipeIngredient>> pairInput(ItemSlot[] inputStacks)
@@ -786,7 +806,7 @@ namespace ACulinaryArtillery
 
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
-                
+
                     if (Ingredients[i].SatisfiesAsIngredient(inputSlot.Itemstack) && !alreadyFound.Contains(i))
                     {
                         matched.Add(new KeyValuePair<ItemSlot, CraftingRecipeIngredient>(inputSlot, Ingredients[i]));
@@ -888,7 +908,7 @@ namespace ACulinaryArtillery
         {
             Code = reader.ReadString();
             Ingredients = new CraftingRecipeIngredient[reader.ReadInt32()];
-            
+
             for (int i = 0; i < Ingredients.Length; i++)
             {
                 Ingredients[i] = new CraftingRecipeIngredient();

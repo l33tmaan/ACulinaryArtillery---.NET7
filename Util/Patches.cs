@@ -235,7 +235,7 @@ namespace ACulinaryArtillery
         static void recipeFix(ref CookingRecipe __result, BlockEntityCookedContainer __instance)
         {
             if (__result == null)
-                __result = MixingRecipeRegistry.Loaded.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
+                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
         }
 
         [HarmonyPrefix]
@@ -243,7 +243,7 @@ namespace ACulinaryArtillery
         static bool infoFix(IPlayer forPlayer, ref StringBuilder dsc, BlockEntityCookedContainer __instance)
         {
             ItemStack[] contentStacks = __instance.GetNonEmptyContentStacks();
-            CookingRecipe recipe = MixingRecipeRegistry.Loaded.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
+            CookingRecipe recipe = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
             if (recipe == null)
                 return true;
 
@@ -307,7 +307,7 @@ namespace ACulinaryArtillery
         static void recipeFix(ref CookingRecipe __result, BlockEntityMeal __instance)
         {
             if (__result == null)
-                __result = MixingRecipeRegistry.Loaded.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
+                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
         }
     }
 
@@ -326,7 +326,7 @@ namespace ACulinaryArtillery
         static void recipeFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
             if (__result == null)
-                __result = MixingRecipeRegistry.Loaded.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
 
         [HarmonyPostfix]
@@ -334,7 +334,7 @@ namespace ACulinaryArtillery
         static void mealFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
             if (__result == null)
-                __result = MixingRecipeRegistry.Loaded.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
     }
 
@@ -353,7 +353,7 @@ namespace ACulinaryArtillery
         static void recipeFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
             if (__result == null)
-                __result = MixingRecipeRegistry.Loaded.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
 
         /*
@@ -506,7 +506,7 @@ namespace ACulinaryArtillery
 
             BlockMeal mealblock = world.GetBlock(new AssetLocation("bowl-meal")) as BlockMeal;
 
-            CookingRecipe recipe = MixingRecipeRegistry.Loaded.MixingRecipes.FirstOrDefault((rec) => becrock.RecipeCode == rec.Code);
+            CookingRecipe recipe = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault((rec) => becrock.RecipeCode == rec.Code);
             ItemStack[] stacks = becrock.inventory.Where(slot => !slot.Empty).Select(slot => slot.Itemstack).ToArray();
 
             if (stacks == null || stacks.Length == 0)

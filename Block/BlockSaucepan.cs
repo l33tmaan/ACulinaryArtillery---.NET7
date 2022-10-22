@@ -11,6 +11,7 @@ using Vintagestory.GameContent;
 using Vintagestory.API.Datastructures;
 using System.IO;
 using static ACulinaryArtillery.acaRecipeLoader;
+using System.Linq;
 
 namespace ACulinaryArtillery
 {
@@ -20,7 +21,7 @@ namespace ACulinaryArtillery
         public override bool IsTopOpened => true;
         public override bool AllowHeldLiquidTransfer => true;
 
-        static List<SimmerRecipe> simmerRecipes = MixingRecipeRegistry.Loaded.SimmerRecipes;
+        private List<SimmerRecipe> simmerRecipes = MixingRecipeRegistry.Registry.SimmerRecipes;
 
         public bool isSealed;
         public override void OnLoaded(ICoreAPI api)
@@ -88,34 +89,42 @@ namespace ACulinaryArtillery
 
         public override bool CanSmelt(IWorldAccessor world, ISlotProvider cookingSlotsProvider, ItemStack inputStack, ItemStack outputStack)
         {
+            //if there is something in the output, or if your saucepan already contains stuff in it, you can't cook
             if (outputStack != null || GetContent(inputStack) != null) return false;
+
             List<ItemStack> stacks = new List<ItemStack>();
 
-            foreach (ItemSlot slot in cookingSlotsProvider.Slots)
+            foreach (ItemSlot slot in cookingSlotsProvider.Slots)   //the cookingSlots are not necessarily filled in order. We just want the ones that are.
             {
                 if (!slot.Empty) stacks.Add(slot.Itemstack);
             }
 
-            if (stacks.Count <= 0) return false;
-            else if (stacks.Count == 1)
+            if (stacks.Any())
             {
-                //stacks[0].Collectible.CombustibleProps?.SmeltedStack?.Resolve(world, "saucepan");
-                if (stacks[0].Collectible.CombustibleProps?.SmeltedStack?.ResolvedItemstack == null || !stacks[0].Collectible.CombustibleProps.RequiresContainer) return false;
-                return stacks[0].StackSize % stacks[0].Collectible.CombustibleProps.SmeltedRatio == 0;
-            }
-            else if (simmerRecipes != null)
-            {
-
-                return true;
+                //if it's just one stack, no need for an actual recipe, but we need to check the CombustibleProps 
+                if (stacks.Count == 1)
+                {
+                    if (
+                        (stacks[0].Collectible?.CombustibleProps?.SmeltedStack?.ResolvedItemstack != null)  //there is an output item defined and correctly resolved
+                        && (stacks[0].Collectible?.CombustibleProps?.RequiresContainer ?? false)              //it requires a container
+                        && (stacks[0].StackSize % stacks[0].Collectible.CombustibleProps.SmeltedRatio == 0) //there is a round number of items to smelt
+                        )
+                    {
+                        return true;
+                    }
+                }
+                else
+                    return simmerRecipes.Any(); //otherwise, there are more than 1 items in the saucepan, so we only check that there are recipes, for now. We check whether they match the recipe in DoSmelt().
             }
             return false;
         }
 
         public override void DoSmelt(IWorldAccessor world, ISlotProvider cookingSlotsProvider, ItemSlot inputSlot, ItemSlot outputSlot)
         {
-            if (!CanSmelt(world, cookingSlotsProvider, inputSlot.Itemstack, outputSlot.Itemstack)) return;
+            if (!CanSmelt(world, cookingSlotsProvider, inputSlot.Itemstack, outputSlot.Itemstack))
+                return;
 
-            List<ItemStack> contents = new List<ItemStack>();
+            List<ItemStack> contents = new List<ItemStack>();   //The inputSlots may not all be filled. This is more convenient.
             ItemStack product = null;
 
             foreach (ItemSlot slot in cookingSlotsProvider.Slots)
@@ -123,42 +132,42 @@ namespace ACulinaryArtillery
                 if (!slot.Empty) contents.Add(slot.Itemstack);
             }
 
-            if (contents.Count == 1)
+            if (contents.Count == 1)    //if there is only one ingredient, we have already checked it is adequate for smelting, so we immediately create the product using CombustibleProps
             {
-                //contents[0].Collectible.CombustibleProps.SmeltedStack.Resolve(world, "saucepan");
+                product = contents[0].Collectible.CombustibleProps.SmeltedStack.ResolvedItemstack.Clone();  //we create the unit output
 
-                product = contents[0].Collectible.CombustibleProps.SmeltedStack.ResolvedItemstack.Clone();
-
-                product.StackSize *= (contents[0].StackSize / contents[0].Collectible.CombustibleProps.SmeltedRatio);
+                product.StackSize *= (contents[0].StackSize / contents[0].Collectible.CombustibleProps.SmeltedRatio);   //we multiply if there is enough for more than one unit output
             }
-            else if (simmerRecipes != null && contents.Count > 1)
+            else if (contents.Count > 1)
             {
                 SimmerRecipe match = null;
-                int amount = 10;
+                int amountForTheseIngredients = 10;
 
                 foreach (SimmerRecipe rec in simmerRecipes)
                 {
-                    if (rec.Match(contents) > 0)
+                    int amountForThisRecipe = rec.Match(contents);
+                    if (amountForThisRecipe > 0)
                     {
-                         
                         match = rec;
-                        amount = rec.Match(contents);
+                        amountForTheseIngredients = amountForThisRecipe;
                         break;
                     }
                 }
 
-                if (match == null) return;
+                if (match == null) //none of the recipes matched
+                    return;
 
                 product = match.Simmering.SmeltedStack.ResolvedItemstack.Clone();
 
-                product.StackSize *= amount;
+                product.StackSize *= amountForTheseIngredients;
 
+                //if the recipe produces something from Expanded Foods
                 if (product.Collectible is IExpandedFood)
                 {
                     List<KeyValuePair<ItemSlot, CraftingRecipeIngredient>> input = new List<KeyValuePair<ItemSlot, CraftingRecipeIngredient>>();
                     List<ItemSlot> alreadyfound = new List<ItemSlot>();
 
-                    foreach (CraftingRecipeIngredient ing in match.Ingredients)
+                    foreach (CraftingRecipeIngredient ing in match.Ingredients) //for each ingredient in the recipe
                     {
                         foreach (ItemSlot slot in cookingSlotsProvider.Slots)
                         {
@@ -175,7 +184,8 @@ namespace ACulinaryArtillery
                 }
             }
 
-            if (product == null) return;
+            if (product == null)    //if we have no output to give
+                return;
 
             if (product.Collectible.Class == "ItemLiquidPortion" || product.Collectible is ItemExpandedLiquid || product.Collectible is ItemTransLiquid)
             {
@@ -215,11 +225,10 @@ namespace ACulinaryArtillery
             {
                 SimmerRecipe match = null;
                 int amount = 0;
-                api.Logger.Debug("GetMeltingDuration 1 Reached with contents " + contents[0].Collectible.Code + " " + contents[1].Collectible.Code);
 
                 foreach (SimmerRecipe rec in simmerRecipes)
                 {
-                    if (rec.Match(contents)>0)
+                    if (rec.Match(contents) > 0)
                     {
                         match = rec;
                         amount = rec.Match(contents);
@@ -251,7 +260,7 @@ namespace ACulinaryArtillery
 
                 foreach (SimmerRecipe rec in simmerRecipes)
                 {
-                    if (rec.Match(contents)>0)
+                    if (rec.Match(contents) > 0)
                     {
                         amount = rec.Match(contents);
                         match = rec;
