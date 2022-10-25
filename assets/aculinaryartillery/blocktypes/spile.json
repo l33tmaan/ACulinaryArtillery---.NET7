@@ -15,7 +15,7 @@
 	attributes: {
 		handbook: { "groupBy": ["spile-*"] },
 		groundStorageTransform: {
-			translation: { x: -0.075, y: -0.25, z: 0.175 },
+			translation: { x: -0.175, y: -0.4, z: 0.375 },
 			rotation: { x: 0, y: 0, z: 90 },
 			scale: 0.8,
 		},	

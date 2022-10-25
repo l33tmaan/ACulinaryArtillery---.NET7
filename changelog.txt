@@ -1,11 +1,15 @@
 ﻿
 ~1.17_v1.0.9~
 - Using multiple bottles on the saucepan/cauldron uses correct liquid values
-- Saucepan simmer recipe crashing fixed
 - Mixing bowl client/server issues fixed
 - Spile can pour into any liquid container, not just buckets
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
-- Clay bottles display liquid info (config option added to disable?)
+- Bottles no longer have duplicate liquid info - DONE!!!
+- Boiled/pickled eggs cannot be cracked
+- Spile ground transform fixed - DONE!!!
+- Spile clay mold created
+- Handbook guide mentions what buttons crack eggs
+- Logs look correct in oven (again, since this was a vanilla issue I accidentally "fixed")
 
 ~1.17_v1.0.8~
 - Corrected bug with simmering recipes

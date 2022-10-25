@@ -478,10 +478,15 @@
 
             if (content != null)
             {
+                string contentPath = content.Collectible.Code.Path;
+                string newDescription = content.Collectible.Code.Domain + ":itemdesc-" + contentPath;
+                string finalDescription = Lang.Get(newDescription);
+
                 var dummy = new DummySlot(content);
                 dsc.AppendLine();
-                dsc.AppendLine(Lang.Get("aculinaryartillery:Liquid Info:"));
-                content.Collectible.GetHeldItemInfo(dummy, dsc, world, withDebugInfo);
+           
+                if (finalDescription != newDescription)
+                { dsc.Append(finalDescription); }
             }
         }
 
