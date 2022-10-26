@@ -286,22 +286,36 @@ namespace ACulinaryArtillery
             slot.TakeOut(1);
 			slot.MarkDirty();
 
-			var bowlCheck = api.World.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntityGroundStorage;
-            ItemSlot bowlSourceSlot = bowlCheck.Inventory.FirstOrDefault(aslot => !aslot.Empty);
-			var bowlCollectible = bowlSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
-            var bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
-            var bowlYolkContents = bowlCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
+			var bowlCheck = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) as BlockEntityGroundStorage;
+            if ( bowlCheck != null )
+            {
+                ItemSlot bowlSourceSlot = bowlCheck.Inventory?.FirstOrDefault(aslot => !aslot.Empty);
+			    var bowlCollectible = bowlSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
+                var bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
+                var bowlYolkContents = bowlCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
 
-            IPlayer byPlayer = null;
-            if (byEntity is EntityPlayer) byPlayer = world.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
-            if ((eggType == "egg" || eggType == "limeegg") && bowlSourceContents == "eggwhiteportion" )
-            {
+                var bucketSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
+
+                if ( bowlCheck == null)
+                {
+			        var bucketCheck = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) as BlockEntityLiquidContainer;
+                    ItemSlot bucketSourceSlot = bucketCheck.Inventory?.FirstOrDefault(aslot => !aslot.Empty);
+			        var bucketCollectible = bucketSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
+                    bucketSourceContents = bucketCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
+                    var bucketYolkContents = bucketCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
+                }
+
+                IPlayer byPlayer = null;
+                if (byEntity is EntityPlayer) byPlayer = world.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
+                if ((eggType == "egg" || eggType == "limeegg") && ( bowlSourceContents == "eggwhiteportion" || bucketSourceContents == "eggwhiteportion") )
+                {
                 stack = new ItemStack(world.GetItem(new AssetLocation(eggYolkOutput)));
-            }
-            if (byPlayer?.InventoryManager.TryGiveItemstack(stack) == false)
-            {
+                }
+                if (byPlayer?.InventoryManager.TryGiveItemstack(stack) == false)
+                {
                 byEntity.World.SpawnItemEntity(stack, byEntity.SidedPos.XYZ);
-            }
+                }
+            }    
         }
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
         {

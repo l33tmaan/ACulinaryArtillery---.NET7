@@ -412,24 +412,38 @@
                 var dummy = new DummySlot(content);
                 if (vanilla)
                 {
+
                     var litres = this.GetCurrentLitres(slot.Itemstack);
                     var litresToDrink = litres >= 0.25f ? 0.25f : litres;
+
                     var state = this.UpdateAndGetTransitionState(this.api.World, slot, EnumTransitionType.Perish);
                     var spoilState = state != null ? state.TransitionLevel : 0;
-                    var satLossMul = GlobalConstants.FoodSpoilageSatLossMul(spoilState, slot.Itemstack, byEntity);
-                    var healthLossMul = GlobalConstants.FoodSpoilageHealthLossMul(spoilState, slot.Itemstack, byEntity);
-                    byEntity.ReceiveSaturation(nutriProps.Satiety * satLossMul, nutriProps.FoodCategory);
+                    var satLossMul = ( GlobalConstants.FoodSpoilageSatLossMul(spoilState, slot.Itemstack, byEntity) );
+                    var healthLossMul = ( GlobalConstants.FoodSpoilageHealthLossMul(spoilState, slot.Itemstack, byEntity) );
+
+                    var litresMult = 1.0f;
+
+                    if (litres == 1)
+					{ litresMult = 0.25f; }
+
+                    if (litres == 0.75)
+					{ litresMult = 0.3333f; }
+
+                    if (litres == 0.5)
+					{ litresMult = 0.5f; }
+
+                    byEntity.ReceiveSaturation(nutriProps.Satiety * litresMult * satLossMul, nutriProps.FoodCategory);
                     IPlayer player = null;
                     if (byEntity is EntityPlayer)
                     { player = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID); }
 
                     this.SplitStackAndPerformAction(byEntity, slot, (stack) => this.TryTakeLiquid(stack, litresToDrink)?.StackSize ?? 0);
 
-                    var healthChange = nutriProps.Health * healthLossMul;
+                    var healthChange = nutriProps.Health * litresMult * healthLossMul;
                     if (nutriProps.Intoxication > 0f)
                     {
                         var intox = byEntity.WatchedAttributes.GetFloat("intoxication");
-                        byEntity.WatchedAttributes.SetFloat("intoxication", Math.Min(litresToDrink, intox + nutriProps.Intoxication));
+                        byEntity.WatchedAttributes.SetFloat("intoxication", Math.Min(litresToDrink, intox + (nutriProps.Intoxication * litresMult )));
                     }
                     if (healthChange != 0)
                     {

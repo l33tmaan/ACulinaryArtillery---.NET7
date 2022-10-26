@@ -4,9 +4,11 @@
 - Mixing bowl client/server issues fixed
 - Spile can pour into any liquid container, not just buckets
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
+- Drinking from bottles gives consistent nutrition/HP - DONE!!!
 - Bottles no longer have duplicate liquid info - DONE!!!
 - Boiled/pickled eggs cannot be cracked
 - Spile ground transform fixed - DONE!!!
+- Eggs no longer crash when cracking into a bucket - DONE!!!
 - Spile clay mold created
 - Handbook guide mentions what buttons crack eggs
 - Logs look correct in oven (again, since this was a vanilla issue I accidentally "fixed")
