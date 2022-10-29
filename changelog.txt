@@ -1,17 +1,17 @@
-﻿
-~1.17_v1.0.9~
-- Using multiple bottles on the saucepan/cauldron uses correct liquid values
+﻿~1.17_v1.0.10~
+- Using multiple bottles/buckets on the saucepan/cauldron uses correct liquid values
 - Mixing bowl client/server issues fixed
-- Spile can pour into any liquid container, not just buckets
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
-- Drinking from bottles gives consistent nutrition/HP - DONE!!!
-- Bottles no longer have duplicate liquid info - DONE!!!
-- Boiled/pickled eggs cannot be cracked
-- Spile ground transform fixed - DONE!!!
-- Eggs no longer crash when cracking into a bucket - DONE!!!
+
+~1.17_v1.0.9~
+- Drinking from bottles gives consistent nutrition/HP
+- Bottles no longer have duplicate liquid info
+- Boiled/pickled eggs cannot be cracked (requires update in EF 1.6.4)
+- Spile can pour into saucepan & cauldrons, not just buckets
+- Spile ground transform fixed
 - Spile clay mold created
+- Eggs no longer crash when cracking into a bucket
 - Handbook guide mentions what buttons crack eggs
-- Logs look correct in oven (again, since this was a vanilla issue I accidentally "fixed")
 
 ~1.17_v1.0.8~
 - Corrected bug with simmering recipes

@@ -1,9 +1,11 @@
 [
   {
     "op": "add",
-    "path": "/class",
-    "value": "EggCrack",
-    side: "server",
+    "path": "/classByType",
+    "value": {
+      "*-raw": "EggCrack"
+    },
+    "side": "server",
     "file": "itemtypes/food/egg.json"
   },
   {
@@ -18,6 +20,7 @@
         }
       }
     ],
+    "side": "server",
     "file": "blocktypes/food/egg.json"
   }
 ]

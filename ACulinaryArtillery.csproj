@@ -136,6 +136,9 @@
 		<None Update="assets\aculinaryartillery\recipes\clayforming\saucepan.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\recipes\clayforming\spile.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\recipes\grid\blocks\bottlerack.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -369,6 +372,9 @@
 		</None>
 		<None Update="assets\aculinaryartillery\shapes\block\spile.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\shapes\block\spilemold.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\shapes\item\bighook.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
