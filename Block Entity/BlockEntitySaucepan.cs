@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -6,12 +7,11 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
-using static ACulinaryArtillery.acaRecipeLoader;
 
 namespace ACulinaryArtillery
 {
     public class BlockEntitySaucepan : BlockEntityBucket
-    { 
+    {
         MeshData currentRightMesh;
         BlockSaucepan ownBlock;
         public bool isSealed;
@@ -21,7 +21,7 @@ namespace ACulinaryArtillery
             base.Initialize(api);
 
             ownBlock = Block as BlockSaucepan;
-     
+
 
             if (Api.Side == EnumAppSide.Client)
             {
@@ -66,20 +66,11 @@ namespace ACulinaryArtillery
 
         public SimmerRecipe GetMatchingSimmerRecipe(IWorldAccessor world, ItemSlot[] slots)
         {
-            //if (Pot != null) return null;
-            List<SimmerRecipe> recipes = MixingRecipeRegistry.Loaded.SimmerRecipes;
-            if (recipes == null) return null;
+            List<SimmerRecipe> recipes = MixingRecipeRegistry.Registry.SimmerRecipes;
 
-            for (int j = 0; j < recipes.Count; j++)
-            {
-                if (recipes[j].Matches(world, slots))
-                {
-                    return recipes[j];
-                }
-            }
-
-            return null;
+            return recipes.FirstOrDefault(r => r.Matches(world, slots));
         }
+
         internal MeshData GenRightMesh()
         {
             if (ownBlock == null || ownBlock.Code.Path.Contains("clay")) return null;
@@ -100,12 +91,12 @@ namespace ACulinaryArtillery
 
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
         {
-			mesher.AddMeshData(currentRightMesh);
-			return true;
+            mesher.AddMeshData(currentRightMesh);
+            return true;
         }
 
         public void RedoMesh()
-        { 
+        {
             if (Api.Side == EnumAppSide.Client)
             {
                 currentRightMesh = GenRightMesh();
