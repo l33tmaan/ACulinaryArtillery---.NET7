@@ -1,15 +1,23 @@
-﻿~1.17_v1.0.8~
-- Corrected bug with simmering recipes
-
-~1.17_v1.0.7~
-- Using multiple bottles on the saucepan/cauldron uses correct liquid values
-- Saucepan simmer recipe crashing fixed
+﻿~1.17_v1.0.10~
+- Using multiple bottles/buckets on the saucepan/cauldron uses correct liquid values
 - Mixing bowl client/server issues fixed
-- Cauldron & saucepan fit on meat hooks again - DONE!!!
-- Spile can pour into any liquid container, not just buckets
-- Large meat hook claymaking recipe updated
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
-- Clay bottles display liquid info (config option added to disable?)
+
+~1.17_v1.0.9~
+- Drinking from bottles gives consistent nutrition/HP
+- Bottles no longer have duplicate liquid info
+- Boiled/pickled eggs cannot be cracked (requires update in EF 1.6.4)
+- Spile can pour into saucepan & cauldrons, not just buckets
+- Spile ground transform fixed
+- Spile clay mold created
+- Eggs no longer crash when cracking into a bucket
+- Handbook guide mentions what buttons crack eggs
+
+~1.17_v1.0.8~
+- Corrected bug with simmering recipes
+- Cauldron & saucepan fit on meat hooks again
+- Logs look correct in oven
+- Large meat hook claymaking recipe updated
 
 ~1.17_v1.0.6~
 - Meat hook dry rate cut by 1/20th

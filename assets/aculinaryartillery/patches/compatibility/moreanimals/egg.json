@@ -1,9 +1,11 @@
 [
   {
     "op": "add",
-    "path": "/class",
-    "value": "EggCrack",
-    side: "server",
+    "path": "/classByType",
+    "value": {
+      "*-raw": "EggCrack"
+    },
+    "side": "server",
     "file": "moreanimals:itemtypes/egg.json"
   }
 ]

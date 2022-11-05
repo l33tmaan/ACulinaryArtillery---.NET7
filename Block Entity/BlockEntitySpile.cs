@@ -27,10 +27,10 @@ namespace ACulinaryArtillery
 
         public void SapDrip(float dt)
         {
-            BlockPos bucketpos = posForward(0, -1, 0);
-            BlockBucket bucket = Api.World.BlockAccessor.GetBlock(bucketpos) as BlockBucket;
+            BlockPos containerpos = posForward(0, -1, 0);
+            BlockLiquidContainerBase container = Api.World.BlockAccessor.GetBlock(containerpos) as BlockLiquidContainerBase;
             Block log = Api.World.BlockAccessor.GetBlock(posForward(1, 0, 0));
-            if (bucket == null || log == null) return;
+            if (container == null || log == null) return;
             
             SapProperties xylem = log.Attributes?["sapProperties"]?.AsObject<SapProperties>();
             if (xylem == null) return;
@@ -43,7 +43,7 @@ namespace ACulinaryArtillery
 
                 ItemStack drip = new ItemStack(Api.World.GetItem(new AssetLocation(xylem.sap)));
 
-                bucket.TryPutLiquid(bucketpos, drip, xylem.dripCount);
+                container.TryPutLiquid(containerpos, drip, xylem.dripCount);
             }
         }
 

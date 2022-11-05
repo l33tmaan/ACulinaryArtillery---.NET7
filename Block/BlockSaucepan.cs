@@ -305,6 +305,44 @@ namespace ACulinaryArtillery
             }
         }
 
+        public override int TryPutLiquid(BlockPos pos, ItemStack liquidStack, float desiredLitres)
+        {
+            if (liquidStack == null) return 0;
+
+            var props = GetContainableProps(liquidStack);
+            int desiredItems = (int)(props.ItemsPerLitre * desiredLitres);
+            float availItems = liquidStack.StackSize;
+            float maxItems = CapacityLitres * props.ItemsPerLitre;
+
+            ItemStack stack = GetContent(pos);
+            if (stack == null)
+            {
+                if (props == null || !props.Containable) return 0;
+
+                int placeableItems = (int)GameMath.Min(desiredItems, maxItems, availItems);
+                int movedItems = Math.Min(desiredItems, placeableItems);
+
+                ItemStack placedstack = liquidStack.Clone();
+                placedstack.StackSize = movedItems;
+                SetContent(pos, placedstack);
+
+                return movedItems;
+            }
+            else
+            {
+                if (!stack.Equals(api.World, liquidStack, GlobalConstants.IgnoredStackAttributes)) return 0;
+
+                int placeableItems = (int)Math.Min(availItems, maxItems - (float)stack.StackSize);
+                int movedItems = Math.Min(placeableItems, desiredItems);
+
+                stack.StackSize += movedItems;
+                api.World.BlockAccessor.GetBlockEntity(pos).MarkDirty(true);
+                (api.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityContainer).Inventory[GetContainerSlotId(pos)].MarkDirty();
+
+                return movedItems;
+            }
+        }
+
         public static WaterTightContainableProps GetInContainerProps(ItemStack stack)
         {
             try
@@ -561,6 +599,7 @@ namespace ACulinaryArtillery
 
         private int splitStackAndPerformAction(Entity byEntity, ItemSlot slot, System.Func<ItemStack, int> action)
         {
+            if (slot.Itemstack == null) return 0;
             if (slot.Itemstack.StackSize == 1)
             {
                 int moved = action(slot.Itemstack);
