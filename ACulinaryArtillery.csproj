@@ -58,6 +58,9 @@
 		<None Update="assets\aculinaryartillery\blocktypes\spile.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\blocktypes\spilemold.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\config\handbook\24-aculinaryartilleryguide.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

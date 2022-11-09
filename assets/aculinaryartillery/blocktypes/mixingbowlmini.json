@@ -2,7 +2,7 @@
 	"code": "mixingbowlmini",
 	"class": "BlockMixingBowl",
 	"entityClass": "MixingBowl",
-	"behaviors": [ { "name": "Container" } ],
+	"behaviors": [ { "name": "Container" }, { "name": "UnstableFalling" } ],
 	"attributes": {
 		"capacityLitres": 3,
 	},
