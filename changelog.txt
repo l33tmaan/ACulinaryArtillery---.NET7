@@ -2,6 +2,13 @@
 - Using multiple bottles/buckets on the saucepan/cauldron uses correct liquid values
 - Mixing bowl client/server issues fixed
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
+- Added wine bottles
+- ExpandedFood & ExpandedLiquid class fixed; now works in meals
+- Mini mixing bowl casts no shadow
+- Bottles display extra nutrients properly
+- Drinking from a bottle actually raises the player's nutrition
+- Spanish translation added (thanks to Ziru) - DONE!!!
+- ExpandedFood class maintains nutrition after being grinded
 
 ~1.17_v1.0.10~
 - Japanese translation updated (thanks to macoto_hino)
