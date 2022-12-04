@@ -9,6 +9,8 @@
 - Drinking from a bottle actually raises the player's nutrition
 - Spanish translation added (thanks to Ziru) - DONE!!!
 - ExpandedFood class maintains nutrition after being grinded
+- Eggs give shells properly when cracked in buckets
+- Harmony patch issue fixed (thanks to Mister_Andy_Dandy)?
 
 ~1.17_v1.0.10~
 - Japanese translation updated (thanks to macoto_hino)
