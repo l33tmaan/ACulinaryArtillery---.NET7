@@ -63,7 +63,7 @@ namespace ACulinaryArtillery
                 }
             }
 
-            MixingRecipeRegistry.Loaded.KneadingRecipes = drecipes;
+            MixingRecipeRegistry.Registry.KneadingRecipes = drecipes;
 
             if (networkMessage.svalues != null)
             {
@@ -81,7 +81,7 @@ namespace ACulinaryArtillery
                 }
             }
 
-            MixingRecipeRegistry.Loaded.SimmerRecipes = srecipes;
+            MixingRecipeRegistry.Registry.SimmerRecipes = srecipes;
 
 
             if (networkMessage.cvalues != null)
@@ -99,9 +99,9 @@ namespace ACulinaryArtillery
                     }
                 }
             }
-            MixingRecipeRegistry.Loaded.MixingRecipes = crecipes;
+            MixingRecipeRegistry.Registry.MixingRecipes = crecipes;
 
-            System.Diagnostics.Debug.WriteLine(MixingRecipeRegistry.Loaded.KneadingRecipes.Count + " kneading recipes and " + MixingRecipeRegistry.Loaded.SimmerRecipes.Count + " simmer recipes loaded to client." + MixingRecipeRegistry.Loaded.MixingRecipes.Count + " mixing recipes loaded to client.");
+            System.Diagnostics.Debug.WriteLine(MixingRecipeRegistry.Registry.KneadingRecipes.Count + " kneading recipes and " + MixingRecipeRegistry.Registry.SimmerRecipes.Count + " simmer recipes loaded to client." + MixingRecipeRegistry.Registry.MixingRecipes.Count + " mixing recipes loaded to client.");
         }
 
         #endregion
@@ -131,7 +131,7 @@ namespace ACulinaryArtillery
             List<string> crecipes = new List<string>();
             List<string> srecipes = new List<string>();
 
-            foreach (DoughRecipe drec in MixingRecipeRegistry.Loaded.KneadingRecipes)
+            foreach (DoughRecipe drec in MixingRecipeRegistry.Registry.KneadingRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -144,7 +144,7 @@ namespace ACulinaryArtillery
                 }
             }
 
-            foreach (CookingRecipe crec in MixingRecipeRegistry.Loaded.MixingRecipes)
+            foreach (CookingRecipe crec in MixingRecipeRegistry.Registry.MixingRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -157,7 +157,7 @@ namespace ACulinaryArtillery
                 }
             }
 
-            foreach (SimmerRecipe srec in MixingRecipeRegistry.Loaded.SimmerRecipes)
+            foreach (SimmerRecipe srec in MixingRecipeRegistry.Registry.SimmerRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
