@@ -11,6 +11,8 @@
 - ExpandedFood class maintains nutrition after being grinded
 - Eggs give shells properly when cracked in buckets
 - Harmony patch issue fixed (thanks to Mister_Andy_Dandy)?
+- Wildcraft trees compatibility added
+- XSkills compatibility tweaked - DONE!!!
 
 ~1.17_v1.0.10~
 - Japanese translation updated (thanks to macoto_hino)
