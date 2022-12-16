@@ -142,17 +142,17 @@ namespace ACulinaryArtillery
                 tf.Translation.Set(Math.Min(0.6f, secondsUsed * 2), 0, 0); //-Math.Min(1.1f / 3, secondsUsed * 4 / 3f)
                 tf.Rotation.Y = Math.Min(20, secondsUsed * 90 * 2f);
 
-                if (secondsUsed > 1.5f)
+                if (secondsUsed > 0.37f)
                 {
                     tf.Translation.X += (float)Math.Sin(secondsUsed / 60);
                 }
 
-                if (secondsUsed > 1.6f)
+                if (secondsUsed > 0.4f)
                 {
                     tf.Translation.X += (float)Math.Sin(Math.Min(1.0, secondsUsed) * 5) * 0.75f;
                 }
 
-                if (secondsUsed > 1.95f)
+                if (secondsUsed > 0.49f)
                 {
                     byEntity.AnimManager.StopAnimation("eggcrackstart");
                 }
@@ -160,7 +160,7 @@ namespace ACulinaryArtillery
                 byEntity.Controls.UsingHeldItemTransformBefore = tf;
             }
 
-            return secondsUsed < 2f;
+            return secondsUsed < 0.5f;
         }
         public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason)
         {
@@ -172,7 +172,7 @@ namespace ACulinaryArtillery
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
             if (blockSel == null) return;
-            if (secondsUsed < 1.9f) return;
+            if (secondsUsed < 0.48f) return;
 
             byEntity.AnimManager.StopAnimation("eggcrackstart");
 
@@ -248,7 +248,6 @@ namespace ACulinaryArtillery
                 }
             }
 
-
             if (api.World.Side == EnumAppSide.Client)
             {
                 byEntity.World.PlaySoundAt(new AssetLocation("aculinaryartillery:sounds/player/eggcrack"), byEntity, null, true, 16, 0.5f);
@@ -287,35 +286,39 @@ namespace ACulinaryArtillery
 			slot.MarkDirty();
 
 			var bowlCheck = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) as BlockEntityGroundStorage;
-            if ( bowlCheck != null )
-            {
+			CollectibleObject bowlCollectible = null;
+            string bowlSourceContents = null;
+			string bowlYolkContents = null;
+            if (bowlCheck != null)
+			{
                 ItemSlot bowlSourceSlot = bowlCheck.Inventory?.FirstOrDefault(aslot => !aslot.Empty);
-			    var bowlCollectible = bowlSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
-                var bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
-                var bowlYolkContents = bowlCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
+			    bowlCollectible = bowlSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
+				bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
+                bowlYolkContents = bowlCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
+			}
 
-                var bucketSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
+			var bucketCheck = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) as BlockEntityLiquidContainer;
+			CollectibleObject bucketCollectible = null;
+            string bucketSourceContents = null;
+            string bucketYolkContents = null;
+            if (bucketCheck != null) 
+            {
+                ItemSlot bucketSourceSlot = bucketCheck.Inventory?.FirstOrDefault(aslot => !aslot.Empty);
+                bucketCollectible = bucketSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
+                bucketSourceContents = bucketCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
+                bucketYolkContents = bucketCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
+            }
 
-                if ( bowlCheck == null)
-                {
-			        var bucketCheck = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) as BlockEntityLiquidContainer;
-                    ItemSlot bucketSourceSlot = bucketCheck.Inventory?.FirstOrDefault(aslot => !aslot.Empty);
-			        var bucketCollectible = bucketSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
-                    bucketSourceContents = bucketCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
-                    var bucketYolkContents = bucketCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
-                }
-
-                IPlayer byPlayer = null;
-                if (byEntity is EntityPlayer) byPlayer = world.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
-                if ((eggType == "egg" || eggType == "limeegg") && ( bowlSourceContents == "eggwhiteportion" || bucketSourceContents == "eggwhiteportion") )
-                {
-                stack = new ItemStack(world.GetItem(new AssetLocation(eggYolkOutput)));
-                }
-                if (byPlayer?.InventoryManager.TryGiveItemstack(stack) == false)
-                {
-                byEntity.World.SpawnItemEntity(stack, byEntity.SidedPos.XYZ);
-                }
-            }    
+            IPlayer byPlayer = null;
+            if (byEntity is EntityPlayer) byPlayer = world.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
+            if ((eggType == "egg" || eggType == "limeegg") && ( bowlSourceContents == "eggwhiteportion"  || bucketSourceContents == "eggwhiteportion" ) )
+            {
+            stack = new ItemStack(world.GetItem(new AssetLocation(eggYolkOutput)));
+            }
+            if (byPlayer?.InventoryManager.TryGiveItemstack(stack) == false)
+            {
+            byEntity.World.SpawnItemEntity(stack, byEntity.SidedPos.XYZ);
+            }
         }
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
         {

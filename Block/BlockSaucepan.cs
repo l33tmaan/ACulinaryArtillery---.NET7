@@ -20,6 +20,7 @@ namespace ACulinaryArtillery
         public override bool CanDrinkFrom => true;
         public override bool IsTopOpened => true;
         public override bool AllowHeldLiquidTransfer => true;
+        public AssetLocation liquidFillSoundLocation => new AssetLocation("game:sounds/effect/water-fill");
 
         private List<SimmerRecipe> simmerRecipes = MixingRecipeRegistry.Registry.SimmerRecipes;
 
@@ -344,11 +345,11 @@ namespace ACulinaryArtillery
                 int placeableItems = (int)Math.Min(availItems, maxItems - (float)stack.StackSize);
                 int movedItems = Math.Min(placeableItems, desiredItems);
 
-                stack.StackSize += movedItems;
+                stack.StackSize += GameMath.Min(movedItems);
                 api.World.BlockAccessor.GetBlockEntity(pos).MarkDirty(true);
                 (api.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityContainer).Inventory[GetContainerSlotId(pos)].MarkDirty();
 
-                return movedItems;
+                return GameMath.Min(movedItems);
             }
         }
 
@@ -403,7 +404,7 @@ namespace ACulinaryArtillery
             bool singleTake = byPlayer.WorldData.EntityControls.Sneak;
             bool singlePut = byPlayer.WorldData.EntityControls.Sprint;
 
-            if (obj is ILiquidSource && !singleTake)
+        /*    if (obj is ILiquidSource && !singleTake)
             {
                 int moved = TryPutLiquid(blockSel.Position, (obj as ILiquidSource).GetContent(hotbarSlot.Itemstack), singlePut ? 1 : 9999);
 
@@ -447,11 +448,11 @@ namespace ACulinaryArtillery
                     (byPlayer as IClientPlayer)?.TriggerFpAnimation(EnumHandInteract.HeldItemInteract);
                     return true;
                 }
-            }
+            } */
 
             return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }
-
+   
         public override void OnHeldInteractStart(ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
             if (itemslot.Itemstack?.Attributes.GetBool("isSealed") == true) return;
