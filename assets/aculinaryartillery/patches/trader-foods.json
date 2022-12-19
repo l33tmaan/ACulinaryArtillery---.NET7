@@ -17,7 +17,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -37,7 +37,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -57,7 +57,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -77,7 +77,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -97,7 +97,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -117,7 +117,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -137,7 +137,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -157,7 +157,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -177,7 +177,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -197,7 +197,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -217,7 +217,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -237,7 +237,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -257,7 +257,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -277,7 +277,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -297,7 +297,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -317,7 +317,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -337,7 +337,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -357,7 +357,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -377,7 +377,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -397,7 +397,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -417,7 +417,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -437,7 +437,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -457,7 +457,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -477,7 +477,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -497,7 +497,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -517,7 +517,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -537,7 +537,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -557,7 +557,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -577,7 +577,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -597,7 +597,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -617,7 +617,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -637,7 +637,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -657,7 +657,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -677,7 +677,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -697,7 +697,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -717,7 +717,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -737,7 +737,7 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
   {
     "op": "addeach",
@@ -757,6 +757,6 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-foods.json"
+    "file": "game:entities/humanoid/trader-agriculture.json"
   },
 ]

@@ -6,13 +6,13 @@
 - ExpandedFood & ExpandedLiquid class fixed; now works in meals
 - Mini mixing bowl casts no shadow
 - Bottles display extra nutrients properly
-- Drinking from a bottle actually raises the player's nutrition
 - Spanish translation added (thanks to Ziru) - DONE!!!
 - ExpandedFood class maintains nutrition after being grinded
 - Eggs give shells properly when cracked in buckets - DONE!!!
 - Egg cracking sped up - DONE!!!
 - Wildcraft trees compatibility added
 - XSkills compatibility tweaked - DONE!!!
+- Trader filename updated; items should be buyable/sellable again - DONE!!!
 
 ~1.17_v1.0.10~
 - Japanese translation updated (thanks to macoto_hino)
