@@ -5,7 +5,7 @@
 - Added wine bottles
 - ExpandedFood & ExpandedLiquid class fixed; now works in meals
 - Mini mixing bowl casts no shadow - DONE!!!
-- Bottles display extra nutrients properly
+- Bottles display extra nutrients & ExpandedLiquid item description properly (thanks to SpearAndFang) - DONE!!!
 - Spanish translation added (thanks to Ziru) - DONE!!!
 - ExpandedFood class maintains nutrition after being grinded
 - Eggs give shells properly when cracked in buckets - DONE!!!
