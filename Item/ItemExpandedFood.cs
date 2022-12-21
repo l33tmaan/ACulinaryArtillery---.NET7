@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -62,14 +63,29 @@ namespace ACulinaryArtillery
                 {
                     float satLossMul = GlobalConstants.FoodSpoilageSatLossMul(spoilState, stack, entity);
                     float healthLossMul = GlobalConstants.FoodSpoilageHealthLossMul(spoilState, stack, entity);
-
-                    if (Math.Abs(props.Health * healthLossMul) > 0.001f)
+    
+                    if (stack.Collectible.MatterState == EnumMatterState.Liquid ) 
                     {
-                        dsc.AppendLine(Lang.Get("efrecipes:- {0} {2} sat, {1} hp", Math.Round(props.Satiety * satLossMul), props.Health * healthLossMul, props.FoodCategory.ToString()));
+                        float liquidVolume = stack.StackSize; 
+                        if (Math.Abs(props.Health * healthLossMul) > 0.001f)
+                        {
+                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {2} sat, {1} hp", Math.Round((props.Satiety * satLossMul) * (liquidVolume / 10 )), ((props.Health * healthLossMul) * (liquidVolume / 10 )), props.FoodCategory.ToString()));
+                        }
+                        else
+                        {
+                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {1} sat", Math.Round((props.Satiety * satLossMul) * (liquidVolume / 10 )), props.FoodCategory.ToString()));
+                        }
                     }
-                    else
+                    else 
                     {
-                        dsc.AppendLine(Lang.Get("efrecipes:- {0} {1} sat", Math.Round(props.Satiety * satLossMul), props.FoodCategory.ToString()));
+                        if (Math.Abs(props.Health * healthLossMul) > 0.001f)
+                        {
+                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {2} sat, {1} hp", Math.Round(props.Satiety * satLossMul), props.Health * healthLossMul, props.FoodCategory.ToString()));
+                        }
+                        else
+                        {
+                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {1} sat", Math.Round(props.Satiety * satLossMul), props.FoodCategory.ToString()));
+                        }
                     }
                 }
             }

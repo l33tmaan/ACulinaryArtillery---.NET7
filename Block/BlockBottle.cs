@@ -549,16 +549,17 @@
 
                     foreach (FoodNutritionProperties props in addProps)
                     {
+                        double liquidVolume = content.StackSize;
                         float satLossMul = GlobalConstants.FoodSpoilageSatLossMul(spoilState, content, entity);
                         float healthLossMul = GlobalConstants.FoodSpoilageHealthLossMul(spoilState, content, entity);
 
                         if (Math.Abs(props.Health * healthLossMul) > 0.001f)
                         {
-                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {2} sat, {1} hp", Math.Round(props.Satiety * satLossMul), props.Health * healthLossMul, props.FoodCategory.ToString()));
+                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {2} sat, {1} hp", Math.Round((props.Satiety * satLossMul) * (liquidVolume / 10 ), 1), ((props.Health * healthLossMul) * (liquidVolume / 10 )), props.FoodCategory.ToString()));
                         }
                         else
                         {
-                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {1} sat", Math.Round(props.Satiety * satLossMul), props.FoodCategory.ToString()));
+                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {1} sat", Math.Round((props.Satiety * satLossMul) * (liquidVolume / 10 )), props.FoodCategory.ToString()));
                         }
                     }
                 }

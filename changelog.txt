@@ -4,6 +4,7 @@
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
 - Added wine bottles
 - ExpandedFood & ExpandedLiquid class fixed; now works in meals
+- ExpandedLiquid class transfers extra nutrients properly when consumed
 - Mini mixing bowl casts no shadow - DONE!!!
 - Bottles display extra nutrients & ExpandedLiquid item description properly (thanks to SpearAndFang) - DONE!!!
 - Spanish translation added (thanks to Ziru) - DONE!!!
