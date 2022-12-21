@@ -404,9 +404,349 @@
     "path": "/attributes/tradeProps/buying/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:bottle-*-burned",
+      "code": "aculinaryartillery:bottle-clay-burned",
       "type": "block",
       "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    ],
+    "file": "game:entities/humanoid/trader-agriculture.json"
+  },
+  {
+    "op": "addeach",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "value": [
+    {
+      "code": "aculinaryartillery:bottle-green-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-blue-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-brown-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-pink-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-plain-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-quartz-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-red-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-smoky-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-vintage-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-violet-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-yellow-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    ],
+    "file": "game:entities/humanoid/trader-agriculture.json"
+  },
+  {
+    "op": "addeach",
+    "path": "/attributes/tradeProps/selling/list/-",
+    "value": [
+    {
+      "code": "aculinaryartillery:bottle-clay-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    ],
+    "file": "game:entities/humanoid/trader-agriculture.json"
+  },
+  {
+    "op": "addeach",
+    "path": "/attributes/tradeProps/selling/list/-",
+    "value": [
+    {
+      "code": "aculinaryartillery:bottle-green-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-blue-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-brown-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-pink-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-plain-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-quartz-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-red-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-smoky-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-vintage-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-violet-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-yellow-burned",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    ],
+    "file": "game:entities/humanoid/trader-agriculture.json"
+  },
+  {
+    "op": "addeach",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "value": [
+    {
+      "code": "aculinaryartillery:spile-copper-north",
+      "type": "block",
+      "stacksize": 2,
       "stock": {
         "avg": 2,
         "var": 1
@@ -424,47 +764,7 @@
     "path": "/attributes/tradeProps/selling/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:bottle-*-burned",
-      "type": "block",
-      "stacksize": 4,
-      "stock": {
-        "avg": 2,
-        "var": 1
-      },
-      "price": {
-        "avg": 2,
-        "var": 0.5
-      }
-    },
-    ],
-    "file": "game:entities/humanoid/trader-agriculture.json"
-  },
-  {
-    "op": "addeach",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "value": [
-    {
-      "code": "aculinaryartillery:spile-copper",
-      "type": "block",
-      "stacksize": 2,
-      "stock": {
-        "avg": 2,
-        "var": 1
-      },
-      "price": {
-        "avg": 1,
-        "var": 0.25
-      }
-    },
-    ],
-    "file": "game:entities/humanoid/trader-agriculture.json"
-  },
-  {
-    "op": "addeach",
-    "path": "/attributes/tradeProps/selling/list/-",
-    "value": [
-    {
-      "code": "aculinaryartillery:spile-copper",
+      "code": "aculinaryartillery:spile-copper-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -484,7 +784,7 @@
     "path": "/attributes/tradeProps/buying/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-brass",
+      "code": "aculinaryartillery:spile-brass-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -504,7 +804,7 @@
     "path": "/attributes/tradeProps/selling/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-brass",
+      "code": "aculinaryartillery:spile-brass-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -524,7 +824,7 @@
     "path": "/attributes/tradeProps/buying/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-tinbronze",
+      "code": "aculinaryartillery:spile-tinbronze-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -544,7 +844,7 @@
     "path": "/attributes/tradeProps/selling/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-tinbronze",
+      "code": "aculinaryartillery:spile-tinbronze-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -564,7 +864,7 @@
     "path": "/attributes/tradeProps/buying/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-blackbronze",
+      "code": "aculinaryartillery:spile-blackbronze-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -584,7 +884,7 @@
     "path": "/attributes/tradeProps/selling/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-blackbronze",
+      "code": "aculinaryartillery:spile-blackbronze-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -604,7 +904,7 @@
     "path": "/attributes/tradeProps/buying/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-titanium",
+      "code": "aculinaryartillery:spile-titanium-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -624,7 +924,7 @@
     "path": "/attributes/tradeProps/selling/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-titanium",
+      "code": "aculinaryartillery:spile-titanium-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -644,7 +944,7 @@
     "path": "/attributes/tradeProps/buying/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-steel",
+      "code": "aculinaryartillery:spile-steel-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -664,7 +964,7 @@
     "path": "/attributes/tradeProps/selling/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:spile-steel",
+      "code": "aculinaryartillery:spile-steel-north",
       "type": "block",
       "stacksize": 2,
       "stock": {
@@ -724,7 +1024,7 @@
     "path": "/attributes/tradeProps/buying/list/-",
     "value": [
     {
-      "code": "aculinaryartillery:mixingbowl-*",
+      "code": "aculinaryartillery:mixingbowl-normal",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -736,15 +1036,21 @@
         "var": 0.5
       }
     },
-    ],
-    "file": "game:entities/humanoid/trader-agriculture.json"
-  },
-  {
-    "op": "addeach",
-    "path": "/attributes/tradeProps/selling/list/-",
-    "value": [
     {
-      "code": "aculinaryartillery:mixingbowl-*",
+      "code": "aculinaryartillery:mixingbowl-aged",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-greenmarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -754,6 +1060,104 @@
       "price": {
         "avg": 4,
         "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-whitemarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-redmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    ],
+    "file": "game:entities/humanoid/trader-agriculture.json"
+  },
+  {
+    "op": "addeach",
+    "path": "/attributes/tradeProps/selling/list/-",
+    "value": [
+    {
+      "code": "aculinaryartillery:mixingbowl-normal",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-aged",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-whitemarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 8,
+        "var": 2
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-redmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 8,
+        "var": 2
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-greenmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 8,
+        "var": 2
       }
     },
     ],
