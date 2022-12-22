@@ -16,6 +16,7 @@
 - Glass bottle & marble mixing bowl prices doubled
 - Mini mixing bowl casts no shadow
 - Spanish translation added (thanks to Ziru)
+- pt-br translation added (I think this is Portuguese?) (thanks to Azuli_Yanazake)
 - XSkills compatibility tweaked
 
 ~1.17_v1.0.10~
