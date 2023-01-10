@@ -2,8 +2,13 @@ using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Vintagestory;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -11,6 +16,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
+//using CodeInstruction = System.Reflection.CodeIn
 
 namespace ACulinaryArtillery
 {
@@ -72,6 +78,8 @@ namespace ACulinaryArtillery
     [HarmonyPatch(typeof(BlockEntityShelf))]
     class ShelfPatches
     {
+        static MethodBase miBlockEntityShelf_GetBlockInfo = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.GetBlockInfo));
+        static MethodInfo miBlockEntityShelf_CrockInfoCompact = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.CrockInfoCompact));
         //[HarmonyPrepare]
         //static bool Prepare()
         //{
@@ -124,50 +132,113 @@ namespace ACulinaryArtillery
         }
         */
 
-        [HarmonyPrefix]
-        [HarmonyPatch("GetBlockInfo")]
-        static bool descFix(IPlayer forPlayer, StringBuilder sb, ref BlockEntityShelf __instance)
-        {
-            var rate = __instance.GetPerishRate();
-            sb.AppendLine(Lang.Get("Stored food perish speed: {0}x", Math.Round(rate, 2)));
+        [HarmonyTranspiler]
+        [HarmonyPatch(nameof(BlockEntityShelf.GetBlockInfo))]
+        /// <summary>
+        /// Modifes parts of the <see cref="BlockEntityShelf.GetBlockInfo" /> method:
+        /// Turns 
+        /// <code>
+        ///     ...
+        ///     if (stack.Collectible is BlockCrock) {
+        ///         sb.Append(this.CrockInfoCompact(this.inv[j]));
+        ///     } else if (...) {
+        ///         ...
+        ///     } 
+        ///     ...
+        /// </code>
+        /// into
+        /// <code>
+        ///     ...
+        ///     if (stack.Collectible is BlockCrock) {
+        ///         sb.Append(this.CrockInfoCompact(this.inv[j]));
+        ///     } else if (stack.Collectible is BlockLiquidContainerBase) {
+        ///         sb.Append(LiquidInfoCompact(this, this.inv[j]));
+        ///     } else if (...) {
+        ///         ...
+        ///     } 
+        ///     ...
+        /// </code>
+        /// </summary>
+        /// <remarks>
+        /// Don't use Prefixes. Prefixes are evil. Prefixes don't play with others.
+        /// </remarks>
+        public static IEnumerable<CodeInstruction> AddLiquidContainerInfo(IEnumerable<CodeInstruction> instructions, ILGenerator ilGen) {
+            // methods & types used for finding code instructions (or building them)
+            MethodInfo miItemStackGetCollectible = AccessTools.PropertyGetter(typeof(ItemStack), nameof(ItemStack.Collectible));
+            MethodInfo miCrockInfoCompact = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.CrockInfoCompact));
 
-            var ripenRate = GameMath.Clamp((1 - rate - 0.5f) * 3, 0, 1);
-            if (ripenRate > 0)
-            { sb.AppendLine("Suitable spot for food ripening."); }
+            Type typeBlockCrock = typeof(BlockCrock);
 
-            sb.AppendLine();
-            var up = forPlayer.CurrentBlockSelection != null && forPlayer.CurrentBlockSelection.SelectionBoxIndex > 1;
+            const string jumpNoCrockBranch = "branchNotACrock";
 
-            for (var j = 3; j >= 0; j--)
-            {
-                var i = j + (up ? 4 : 0);
-                i ^= 2;   //Display shelf contents text for items from left-to-right, not right-to-left
-                if (__instance.Inventory[i].Empty)
-                { continue; }
+            var matcher = new CodeMatcher(instructions, ilGen);
 
-                var stack = __instance.Inventory[i].Itemstack;
-                if (stack.Collectible is BlockCrock)
-                { sb.Append(__instance.CrockInfoCompact(__instance.Inventory[i])); }
-                else if (stack.Collectible is BlockBottle)
-                {
-                    sb.Append("Bottle (");
-                    (__instance.Inventory[i].Itemstack.Collectible as BlockBottle).GetContentInfo(__instance.Inventory[i], sb, __instance.Api.World);
-                    sb.AppendLine(")");
-                }
-                else
-                {
-                    if (stack.Collectible.TransitionableProps != null && stack.Collectible.TransitionableProps.Length > 0)
-                    { sb.Append(BlockEntityShelf.PerishableInfoCompact(__instance.Api, __instance.Inventory[i], ripenRate)); }
-                    else
-                    { sb.AppendLine(stack.GetName()); }
-                }
-            }
-            return false;
+            // find the start of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block
+            matcher.MatchStartForward(
+                    new CodeMatch(ci => ci.opcode == OpCodes.Ldloc || ci.opcode == OpCodes.Ldloc_S),                            // <c>???</c>  - _technically_ this matches on using _any_ local variable
+                    new CodeMatch(OpCodes.Callvirt, miItemStackGetCollectible),                                                 // <c>.Collectible</c>
+                    new CodeMatch(OpCodes.Isinst, typeBlockCrock),                                                              // <c>is BlockCrock</c>
+                    new CodeMatch(ci => ci.opcode == OpCodes.Brfalse || ci.opcode == OpCodes.Brfalse_S, jumpNoCrockBranch)      // <c>) {... </c>                                                                               
+                );
+            if (matcher.ReportFailure(miBlockEntityShelf_GetBlockInfo, Error))
+                return instructions;
+
+            // grab the jump to the "not a crock" branch for later
+            CodeInstruction ciBranchNoCrock = matcher.NamedMatch(jumpNoCrockBranch);
+            // we're going to copy a piece of code, remember where to start
+            int idxStart = matcher.Pos;
+
+            // find the end of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block
+            matcher
+                .MatchEndForward(
+                    new CodeMatch(ci => ci.opcode == OpCodes.Br || ci.opcode == OpCodes.Br_S)                                   // <c>... }</c>
+                );
+            if (matcher.ReportFailure(miBlockEntityShelf_GetBlockInfo, Error))
+                return instructions;
+
+            // we're going to copy a piece of code, remember where to stop
+            int idxEnd = matcher.Pos;
+
+            // create a copy of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block but
+            //   - replace <c>BlockCrock</c> with <c>BlockLiquidContainerBase</c>
+            //   - replace <c>CrockInfoCompact</c> call with <c>LiquidInfoCompact</c> call
+            var newBranch = matcher.InstructionsInRange(idxStart, idxEnd)
+                .Select(
+                    ci => {
+                        if (ci.opcode == OpCodes.Isinst && ci.operand as Type == typeBlockCrock)
+                            return new CodeInstruction(OpCodes.Isinst, typeof(BlockLiquidContainerBase));
+                        if (ci.opcode == OpCodes.Call && ci.operand as MethodInfo == miCrockInfoCompact)
+                            return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ShelfPatches), nameof(ShelfPatches.LiquidInfoCompact)));
+                        return new CodeInstruction(ci);
+                    });
+
+            // insert our new "if" block *after* the "if" block for the crock
+            matcher.Advance(1);
+            matcher.Insert(newBranch);
+
+            // make <c>(... is BlockCrock)</c> jump into our new branch on failure
+            matcher.CreateLabel(out Label newBranchLabel);
+            ciBranchNoCrock.operand = newBranchLabel;
+
+            return matcher.InstructionEnumeration();
         }
+
+        public static string LiquidInfoCompact(BlockEntityShelf f, ItemSlot slot) {
+            var sb = new StringBuilder();
+            (slot.Itemstack.Collectible as BlockLiquidContainerBase).GetContentInfo(slot, sb, f.Api.World);
+            return $"{slot.Itemstack.GetName()} ({sb.Replace(Environment.NewLine, " ").ToString().TrimEnd(' ')}){Environment.NewLine}";
+        }
+
+        internal static void Error(string message) {
+            ACulinaryArtillery.logger.Error(message);
+        }
+
+
+
     }
 
 
-    [HarmonyPatch(typeof(BlockEntityDisplay))]
+        [HarmonyPatch(typeof(BlockEntityDisplay))]
     class DisplayPatches
     {
         //[HarmonyPrepare]
