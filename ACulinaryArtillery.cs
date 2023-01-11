@@ -124,6 +124,10 @@ namespace ACulinaryArtillery
             }
         }
 
+        internal static void LogError(string message) {
+            logger.Error(message);
+        }
+
     }
 }
 

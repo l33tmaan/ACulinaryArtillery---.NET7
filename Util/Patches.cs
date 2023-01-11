@@ -1,3 +1,4 @@
+using ACulinaryArtillery.Util;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
@@ -174,51 +175,41 @@ namespace ACulinaryArtillery
             var matcher = new CodeMatcher(instructions, ilGen);
 
             // find the start of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block
-            matcher.MatchStartForward(
-                    new CodeMatch(ci => ci.opcode == OpCodes.Ldloc || ci.opcode == OpCodes.Ldloc_S),                            // <c>???</c>  - _technically_ this matches on using _any_ local variable
-                    new CodeMatch(OpCodes.Callvirt, miItemStackGetCollectible),                                                 // <c>.Collectible</c>
-                    new CodeMatch(OpCodes.Isinst, typeBlockCrock),                                                              // <c>is BlockCrock</c>
-                    new CodeMatch(ci => ci.opcode == OpCodes.Brfalse || ci.opcode == OpCodes.Brfalse_S, jumpNoCrockBranch)      // <c>) {... </c>                                                                               
-                );
-            if (matcher.ReportFailure(miBlockEntityShelf_GetBlockInfo, Error))
+            try {
+                matcher
+                    .MatchStartForward(
+                        new CodeMatch(ci => Instruction.IsLdLoc(ci, typeof(ItemStack))),                                                            // <c>???</c>  - _technically_ this matches on using _any_ ItemStack typed local variable
+                        new CodeMatch(ci => Instruction.IsCallVirt(ci, miItemStackGetCollectible)),                                                 // <c>.Collectible</c>
+                        new CodeMatch(ci => Instruction.IsInst(ci, typeBlockCrock)),                                                                // <c>is BlockCrock</c>                                                     
+                        new CodeMatch(Instruction.IsBrFalse, jumpNoCrockBranch)                                                                     // <c>) {... </c>                                                                               
+                    )
+                    .ThrowIfInvalid("Cannot find transpiler anchor")
+
+                    .RememberPositionIn(out var idxStart)                                                                                           // remember current instruction position
+                    .RememberNamedMatchIn(jumpNoCrockBranch, out var ciBranchNoCrock)                                                               // remember marked instruction
+
+                    .MatchEndForward(
+                        new CodeMatch(Instruction.IsBr)                                                                                             // <c>... }</c>
+                    )
+                    .ThrowIfInvalid("Cannot find branch block end")
+
+                    .RememberPositionIn(out var idxEnd)                                                                                             // remember current instruction position                                                                                                                                    
+
+                    .Advance(1)                                                                                                                     // insert our new "if" block *after* the "if" block for the crock
+                    .Insert(                        
+                        matcher
+                            .InstructionsInRange(idxStart, idxEnd)                                                                                  // create a copy of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block but
+                            .MethodReplacer(miCrockInfoCompact, AccessTools.Method(typeof(ShelfPatches), nameof(ShelfPatches.LiquidInfoCompact)))   //   - replace <c>CrockInfoCompact(...)</c> call with <c>LiquidInfoCompact(...)</c> call
+                            .Manipulator(ci => ci.IsInst(typeBlockCrock), ci => ci.operand = typeof(BlockLiquidContainerBase))                      //   - replace <c>is BlockCrock</c> with <c>is BlockLiquidContainerBase</c>
+                    )
+                    .CreateLabel(out Label newBranchLabel);
+                
+                ciBranchNoCrock.operand = newBranchLabel;                                                                                           // make <c>(... is BlockCrock)</c> jump into our new branch on failure
+
+            } catch (InvalidOperationException ex) {
+                ACulinaryArtillery.LogError(ex.Message);
                 return instructions;
-
-            // grab the jump to the "not a crock" branch for later
-            CodeInstruction ciBranchNoCrock = matcher.NamedMatch(jumpNoCrockBranch);
-            // we're going to copy a piece of code, remember where to start
-            int idxStart = matcher.Pos;
-
-            // find the end of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block
-            matcher
-                .MatchEndForward(
-                    new CodeMatch(ci => ci.opcode == OpCodes.Br || ci.opcode == OpCodes.Br_S)                                   // <c>... }</c>
-                );
-            if (matcher.ReportFailure(miBlockEntityShelf_GetBlockInfo, Error))
-                return instructions;
-
-            // we're going to copy a piece of code, remember where to stop
-            int idxEnd = matcher.Pos;
-
-            // create a copy of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block but
-            //   - replace <c>BlockCrock</c> with <c>BlockLiquidContainerBase</c>
-            //   - replace <c>CrockInfoCompact</c> call with <c>LiquidInfoCompact</c> call
-            var newBranch = matcher.InstructionsInRange(idxStart, idxEnd)
-                .Select(
-                    ci => {
-                        if (ci.opcode == OpCodes.Isinst && ci.operand as Type == typeBlockCrock)
-                            return new CodeInstruction(OpCodes.Isinst, typeof(BlockLiquidContainerBase));
-                        if (ci.opcode == OpCodes.Call && ci.operand as MethodInfo == miCrockInfoCompact)
-                            return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ShelfPatches), nameof(ShelfPatches.LiquidInfoCompact)));
-                        return new CodeInstruction(ci);
-                    });
-
-            // insert our new "if" block *after* the "if" block for the crock
-            matcher.Advance(1);
-            matcher.Insert(newBranch);
-
-            // make <c>(... is BlockCrock)</c> jump into our new branch on failure
-            matcher.CreateLabel(out Label newBranchLabel);
-            ciBranchNoCrock.operand = newBranchLabel;
+            }
 
             return matcher.InstructionEnumeration();
         }
@@ -229,16 +220,12 @@ namespace ACulinaryArtillery
             return $"{slot.Itemstack.GetName()} ({sb.Replace(Environment.NewLine, " ").ToString().TrimEnd(' ')}){Environment.NewLine}";
         }
 
-        internal static void Error(string message) {
-            ACulinaryArtillery.logger.Error(message);
-        }
-
-
 
     }
 
 
-        [HarmonyPatch(typeof(BlockEntityDisplay))]
+
+    [HarmonyPatch(typeof(BlockEntityDisplay))]
     class DisplayPatches
     {
         //[HarmonyPrepare]
@@ -305,8 +292,7 @@ namespace ACulinaryArtillery
         [HarmonyPatch("FromRecipe", MethodType.Getter)]
         static void recipeFix(ref CookingRecipe __result, BlockEntityCookedContainer __instance)
         {
-            if (__result == null)
-                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
+            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
         }
 
         [HarmonyPrefix]
@@ -377,8 +363,7 @@ namespace ACulinaryArtillery
         [HarmonyPatch("FromRecipe", MethodType.Getter)]
         static void recipeFix(ref CookingRecipe __result, BlockEntityMeal __instance)
         {
-            if (__result == null)
-                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
+            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
         }
     }
 
@@ -396,16 +381,14 @@ namespace ACulinaryArtillery
         [HarmonyPatch("GetCookingRecipe")]
         static void recipeFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
-            if (__result == null)
-                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
 
         [HarmonyPostfix]
         [HarmonyPatch("GetMealRecipe")]
         static void mealFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
-            if (__result == null)
-                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
     }
 
@@ -423,8 +406,7 @@ namespace ACulinaryArtillery
         [HarmonyPatch("GetCookingRecipe")]
         static void recipeFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
-            if (__result == null)
-                __result = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
 
         /*
