@@ -1,7 +1,9 @@
+using ACulinaryArtillery.Util;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Vintagestory.API.Client;
@@ -58,8 +60,38 @@ namespace ACulinaryArtillery
         /// </summary>
         [HarmonyPatch(nameof(InventorySmelting.GetSuitability))]
         [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> AddSaucePanToPrefereedSmeltingInputs(IEnumerable<CodeInstruction> instructions) {
-            return instructions;
+        public static IEnumerable<CodeInstruction> AddSaucePanToPreferredSmeltingInputs(IEnumerable<CodeInstruction> instructions) {
+            CodeMatcher matcher = new CodeMatcher(instructions);
+
+            try {
+                matcher
+                    .MatchEndForward(
+                        Code.Ldloc_0,
+                        Code.Callvirt,
+                        new CodeMatch(ci => Instruction.IsInst(ci, typeof(BlockSmeltingContainer))),
+                        new CodeMatch(Instruction.IsBrTrue)
+                    )
+
+                    .ThrowIfInvalid("Transpiler anchor not found")
+
+                    .RememberPositionIn(out var idxCheckEnd);
+
+                matcher
+                    .Advance(1)
+                    .Insert(
+                        matcher
+                            .InstructionsInRange(idxCheckEnd - 3, idxCheckEnd)
+                            .Manipulator(ci => ci.IsInst(typeof(BlockSmeltingContainer)), ci => ci.operand = typeof(BlockSaucepan))
+                        );
+
+
+                }
+            catch (InvalidOperationException ex) {
+                ACulinaryArtillery.LogError(ex.Message);
+                return instructions;
+            }
+
+            return matcher.InstructionEnumeration();
         }
     }
 
