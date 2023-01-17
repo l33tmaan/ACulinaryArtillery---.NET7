@@ -32,6 +32,35 @@ namespace ACulinaryArtillery
                 __result = (__instance[1].Itemstack.Collectible as BlockSaucepan).GetOutputText(__instance.Api.World, __instance);
             }
         }
+
+
+        /// <summary>
+        /// Turns the
+        /// <code>
+        ///     ...
+		///	    if (targetSlot == this.slots[1] && (stack.Collectible is BlockSmeltingContainer || stack.Collectible is BlockCookingContainer))
+		///	    {
+        ///	        ...
+		///	    }  
+        ///	    ...
+        /// </code>
+        /// block
+        /// into
+        /// <code>
+        ///     ...
+		///	    if (targetSlot == this.slots[1] && (stack.Collectible is BlockSmeltingContainer || stack.Collectible is BlockSaucePan || stack.Collectible is BlockCookingContainer))
+		///	    {
+        ///	        ...
+		///	    }  
+        ///	    ...
+        /// </code>
+        /// to make saucepans/cauldrons prefer a firepit's input slot.
+        /// </summary>
+        [HarmonyPatch(nameof(InventorySmelting.GetSuitability))]
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> AddSaucePanToPrefereedSmeltingInputs(IEnumerable<CodeInstruction> instructions) {
+            return instructions;
+        }
     }
 
     [HarmonyPatch(typeof(CookingRecipeIngredient))]
