@@ -12,6 +12,7 @@ namespace ACulinaryArtillery
     public class ACulinaryArtillery : ModSystem
     {
         private static Harmony harmony;
+        public static ILogger logger;
 
         public override void Start(ICoreAPI api)
         {
@@ -73,6 +74,7 @@ namespace ACulinaryArtillery
             }
 
             harmony ??= new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
+            logger = api.Logger;
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
@@ -120,6 +122,10 @@ namespace ACulinaryArtillery
                     }
                 }
             }
+        }
+
+        internal static void LogError(string message) {
+            logger.Error(message);
         }
 
     }

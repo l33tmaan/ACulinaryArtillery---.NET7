@@ -1,7 +1,9 @@
+using ACulinaryArtillery.Util;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Vintagestory.API.Client;
@@ -31,6 +33,65 @@ namespace ACulinaryArtillery
             {
                 __result = (__instance[1].Itemstack.Collectible as BlockSaucepan).GetOutputText(__instance.Api.World, __instance);
             }
+        }
+
+
+        /// <summary>
+        /// Turns the
+        /// <code>
+        ///     ...
+		///	    if (targetSlot == this.slots[1] && (stack.Collectible is BlockSmeltingContainer || stack.Collectible is BlockCookingContainer))
+		///	    {
+        ///	        ...
+		///	    }  
+        ///	    ...
+        /// </code>
+        /// block
+        /// into
+        /// <code>
+        ///     ...
+		///	    if (targetSlot == this.slots[1] && (stack.Collectible is BlockSmeltingContainer || stack.Collectible is BlockSaucePan || stack.Collectible is BlockCookingContainer))
+		///	    {
+        ///	        ...
+		///	    }  
+        ///	    ...
+        /// </code>
+        /// to make saucepans/cauldrons prefer a firepit's input slot.
+        /// </summary>
+        [HarmonyPatch(nameof(InventorySmelting.GetSuitability))]
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> AddSaucePanToPreferredSmeltingInputs(IEnumerable<CodeInstruction> instructions) {
+            CodeMatcher matcher = new CodeMatcher(instructions);
+
+            try {
+                matcher
+                    .MatchEndForward(
+                        Code.Ldloc_0,
+                        Code.Callvirt,
+                        new CodeMatch(ci => Instruction.IsInst(ci, typeof(BlockSmeltingContainer))),
+                        new CodeMatch(Instruction.IsBrTrue)
+                    )
+
+                    .ThrowIfInvalid("Transpiler anchor not found")
+
+                    .RememberPositionIn(out var idxCheckEnd);
+
+                matcher
+                    .Advance(1)
+                    .Insert(
+                        matcher
+                            .InstructionsInRange(idxCheckEnd - 3, idxCheckEnd)
+                            .Manipulator(ci => ci.IsInst(typeof(BlockSmeltingContainer)), ci => ci.operand = typeof(BlockSaucepan))
+                        );
+
+
+                }
+            catch (InvalidOperationException ex) {
+                ACulinaryArtillery.LogError(ex.Message);
+                return instructions;
+            }
+
+            return matcher.InstructionEnumeration();
         }
     }
 
