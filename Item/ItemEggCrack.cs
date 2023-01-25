@@ -291,9 +291,9 @@ namespace ACulinaryArtillery
 			string bowlYolkContents = null;
             if (bowlCheck != null)
 			{
-                ItemSlot bowlSourceSlot = bowlCheck.Inventory?.FirstOrDefault(aslot => !aslot.Empty);
-			    bowlCollectible = bowlSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
-				bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
+                ItemSlot bowlSourceSlot = bowlCheck.Inventory?.FirstOrDefault(aslot => { bool? x = aslot.Itemstack?.Block.Code.Path.Contains("bowl-f"); return x != null && (bool)x; });//MUST return bowl-fierd (!aslot.Empty can give you pot or jug (bowlCollectible == null when it happens) not bowl) to get eggyolk
+                bowlCollectible = bowlSourceSlot?.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
+                bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
                 bowlYolkContents = bowlCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
 			}
 
@@ -304,7 +304,7 @@ namespace ACulinaryArtillery
             if (bucketCheck != null) 
             {
                 ItemSlot bucketSourceSlot = bucketCheck.Inventory?.FirstOrDefault(aslot => !aslot.Empty);
-                bucketCollectible = bucketSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
+                bucketCollectible = bucketSourceSlot.Itemstack?.Collectible; //bucket has no "contents" tree attribute direct access thought Itemstack allow to access liquid to get eggyolk
                 bucketSourceContents = bucketCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
                 bucketYolkContents = bucketCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
             }
