@@ -26,11 +26,23 @@ namespace ACulinaryArtillery.Util {
             return matcher;
         }
 
+
+        /// <summary>
+        /// Extracts the current <see cref="Instruction"/> out of a <see cref="CodeMatcher"/>.
+        /// </summary>
+        public static CodeMatcher RememberInstructionIn(this CodeMatcher matcher, out CodeInstruction instruction) {
+            instruction = matcher.Instruction;
+            return matcher;
+        }
+
     }
 
     public static class Instruction {
         public static bool IsBrFalse(this CodeInstruction ci)
             => ci.opcode == OpCodes.Brfalse || ci.opcode == OpCodes.Brfalse_S;
+
+        public static bool IsBrTrue(this CodeInstruction ci)
+            => ci.opcode == OpCodes.Brtrue || ci.opcode == OpCodes.Brtrue_S;
 
         public static bool IsBr(this CodeInstruction ci)
             => ci.opcode == OpCodes.Br || ci.opcode == OpCodes.Br_S;
