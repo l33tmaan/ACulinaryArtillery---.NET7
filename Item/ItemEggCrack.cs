@@ -64,6 +64,7 @@ namespace ACulinaryArtillery
         {
             return null;
         }
+
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
         {
             if (blockSel == null || !byEntity.Controls.Sneak) return;
@@ -72,60 +73,25 @@ namespace ACulinaryArtillery
 
             Block block = byEntity.World.BlockAccessor.GetBlock(blockSel.Position);
 
-            bool crackDatEgg = false;
+            CollectibleObject targetCollectible = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) switch {
+                BlockEntityGroundStorage groundStorage => groundStorage.Inventory.FirstOrDefault(slot => !slot.Empty)?.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible,
+                BlockEntityLiquidContainer container => container.Inventory.FirstNonEmptySlot?.Itemstack.Collectible,
+                _ => null
+            };
 
-            string eggType = slot.Itemstack.Collectible.FirstCodePart(0);   //grabs currently held item's code
+            string eggType = slot.Itemstack.Collectible.FirstCodePart(0);      //grabs currently held item's code
             string eggVariant = slot.Itemstack.Collectible.FirstCodePart(1);   //grabs 1st variant in currently held item
 
-            var bowlCheck = api.World.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntityGroundStorage;
-            if (bowlCheck != null)
-            {
-                ItemSlot bowlSourceSlot = bowlCheck.Inventory.FirstOrDefault(aslot => !aslot.Empty);
-                if (bowlSourceSlot != null)
-                {
-                    var bowlCollectible = bowlSourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
-                    var bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
-                    var bowlYolkContents = bowlCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
+            bool canCrack = (targetCollectible, targetCollectible?.FirstCodePart(0), targetCollectible?.FirstCodePart(1)) switch {
+                (null, _, _)                            => false,                                                                                         // no collectible
+                (_, null, _)                            => CanSqueezeInto(block, blockSel.Position),                                                      // collectible empty
+                (_, "eggyolkfullportion", var yolk)     => byEntity.Controls.Sprint && (eggType == "egg" || eggType == "limeegg") && yolk == eggVariant,  // liquid egg in container, need to be full cracking, have right egg & matching yolks
+                (_, "eggwhiteportion", _)               => !byEntity.Controls.Sprint && (eggType == "egg" || eggType == "limeegg"),                       // egg white in container, partial cracking and right egg
+                (_, "eggyolkportion", var yolk)         => eggType == "eggyolk" && yolk == eggVariant,                                                    // yolk in container, need yolk of right type in hand
+                _ => false
+            };
 
-                    if (bowlSourceContents == null)
-                    {
-                        if (CanSqueezeInto(block, blockSel.Position))               //fill empty bowl
-                        { crackDatEgg = true; }
-                    }
-
-                    if (byEntity.Controls.Sprint && bowlSourceContents == "eggyolkfullportion" && (eggType == "egg" || eggType == "limeegg"))   //if sprint key is pressed & egg/limeegg in hand & eggyolkfullportion in bucket, crack
-                    { crackDatEgg = true; }
-                    else if (!byEntity.Controls.Sprint && bowlSourceContents == "eggwhiteportion" && (eggType == "egg" || eggType == "limeegg"))                //if egg/limeegg in hand & eggwhiteportion in bucket, crack
-                    { crackDatEgg = true; }
-                    else if ((bowlSourceContents == "eggyolkportion" && eggType == "eggyolk") && eggVariant == bowlYolkContents)             //if eggyolk in hand & eggyolkportion in bucket AND eggyolk variant matches bucket yolk variant, crack
-                    { crackDatEgg = true; }
-                }
-            }
-
-            if (crackDatEgg == false)
-            {
-                var bucketCheck = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) as BlockEntityLiquidContainer;
-                if (bucketCheck != null)
-                {
-                    var bucketCollectible = bucketCheck.Inventory.FirstNonEmptySlot?.Itemstack.Collectible;
-                    var bucketSourceContents = bucketCollectible?.FirstCodePart(0);             //grabs bucket liquid item's code
-                    var bucketYolkContents = bucketCollectible?.FirstCodePart(1);             //grabs 1st variant in bucket liquid item's code
-
-                    if (bucketSourceContents == null)
-                    {
-                        if (CanSqueezeInto(block, blockSel.Position))               //fill empty bucket
-                        { crackDatEgg = true; }
-                    }
-                    if ((byEntity.Controls.Sprint && bucketSourceContents == "eggyolkfullportion" && (eggType == "egg" || eggType == "limeegg")) && eggVariant == bucketYolkContents)             //if holding sprint key AND eggyolk in hand & eggyolkportion in bucket AND eggyolk variant matches bucket yolk variant, crack
-                    { crackDatEgg = true; }
-                    else if (!byEntity.Controls.Sprint && bucketSourceContents == "eggwhiteportion" && (eggType == "egg" || eggType == "limeegg"))             //if egg/limeegg in hand & eggwhiteportion in bucket, crack
-                    { crackDatEgg = true; }
-                    else if ((bucketSourceContents == "eggyolkportion" && eggType == "eggyolk") && eggVariant == bucketYolkContents)             //if eggyolk in hand & eggyolkportion in bucket AND eggyolk variant matches bucket yolk variant, crack
-                    { crackDatEgg = true; }
-                }
-            }
-            if (crackDatEgg)            //move to OnHeldInteractStep & play eggcrack.ogg
-            {
+            if (canCrack) {         //move to OnHeldInteractStep & play eggcrack.ogg
                 handling = EnumHandHandling.PreventDefault;
             }
         }
@@ -194,62 +160,32 @@ namespace ACulinaryArtillery
             ItemStack eggYolkFullStack = new ItemStack(world.GetItem(new AssetLocation(eggYolkFullLiquidAsset)), 99999);
             ItemStack stack = new ItemStack(world.GetItem(new AssetLocation(eggShellOutput)));
 
-            BlockLiquidContainerTopOpened blockCnt = block as BlockLiquidContainerTopOpened;
-            BlockEntityBucket blockInventory = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntityBucket;
-            if (blockCnt != null || blockInventory != null)
-            {
-                if (byEntity.Controls.Sprint && (eggType == "egg" || eggType == "limeegg"))
-                {
-                    blockCnt.TryPutLiquid(blockSel.Position, eggYolkFullStack, ContainedEggLitres);
-                }
-                else if (eggType == "egg" || eggType == "limeegg")
-                {
-                    blockCnt.TryPutLiquid(blockSel.Position, eggWhiteStack, ContainedEggLitres);
-                }
-                else if (eggType == "eggyolk")
-                {
-                    blockCnt.TryPutLiquid(blockSel.Position, eggYolkStack, ContainedEggLitres);
-                }
-                // if (blockCnt.TryPutLiquid(blockSel.Position, eggYolkStack, ContainedEggLitres) == 0) return;
-            }
-            else
-            {
-                var beg = api.World.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntityGroundStorage;
-                if (beg != null)
-                {
-                    ItemSlot sourceSlot = beg.Inventory.FirstOrDefault(aslot => !aslot.Empty);
-                    var sourceContents = sourceSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0");
 
-                    /* if (sourceContents != null)
-                    {
-                        //there's already something in the BOWL
-                        Debug.WriteLine(sourceContents.Collectible.Code.Path); //whats in the bowl?  eggwhite perhaps?
-                        Debug.WriteLine(sourceContents.StackSize); //how much stuff exactly is in the bowl?
-                    } */
-                    ItemSlot squeezeIntoSlot = beg.Inventory.FirstOrDefault(gslot => gslot.Itemstack?.Block != null && CanSqueezeInto(gslot.Itemstack.Block, null));
-                    string containerItemPath = squeezeIntoSlot.Itemstack.Collectible.Code.Path;     //path of the container I'm looking at
-                    if (squeezeIntoSlot != null)
-                    {
-                        blockCnt = squeezeIntoSlot.Itemstack.Block as BlockLiquidContainerTopOpened;
-                        if (byEntity.Controls.Sprint && (eggType == "egg" || eggType == "limeegg"))
-                        {
-                            blockCnt.TryPutLiquid(squeezeIntoSlot.Itemstack, eggYolkFullStack, ContainedEggLitres);
-                        }
-                        else if (eggType == "egg" || eggType == "limeegg")
-                        {
-                            blockCnt.TryPutLiquid(squeezeIntoSlot.Itemstack, eggWhiteStack, ContainedEggLitres);
-                        }
-                        else if (eggType == "eggyolk")
-                        {
-                            blockCnt.TryPutLiquid(squeezeIntoSlot.Itemstack, eggYolkStack, ContainedEggLitres);
-                        }
-                        beg.MarkDirty(true);
-                    }
-                }
+            BlockLiquidContainerTopOpened receptacle = null;
+            BlockEntityGroundStorage groundStorage = null;
+            if (block is BlockLiquidContainerTopOpened bltoDirect) {
+                receptacle = bltoDirect;
+                groundStorage = null;
+            } else { 
+                groundStorage = api.World.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntityGroundStorage;
+                receptacle = groundStorage?.Inventory.FirstOrDefault(gslot => gslot.Itemstack?.Block != null && CanSqueezeInto(gslot.Itemstack.Block, null))?.Itemstack.Block as BlockLiquidContainerTopOpened;
+            };
+
+            (ItemStack liquid, bool giveYolk) = (byEntity.Controls.Sprint, eggType) switch {
+                (true, "egg") or
+                (true, "limeegg")   => (eggYolkFullStack, false),
+                (false, "egg") or
+                (false, "limeegg")  => (eggWhiteStack, true),
+                (_, "eggyolk")      => (eggYolkStack, false),
+                _                   => (null, false)
+            };
+
+            if (liquid != null) {
+                receptacle?.TryPutLiquid(blockSel.Position, liquid, ContainedEggLitres);
+                groundStorage?.MarkDirty(true);
             }
 
-            if (api.World.Side == EnumAppSide.Client)
-            {
+            if (api.World.Side == EnumAppSide.Client) {
                 byEntity.World.PlaySoundAt(new AssetLocation("aculinaryartillery:sounds/player/eggcrack"), byEntity, null, true, 16, 0.5f);
 
                 // Primary Particles
@@ -271,8 +207,7 @@ namespace ACulinaryArtillery
                 particles.AddVelocity.Set(new Vec3f(-0.4f, 0.5f, -0.4f)); //add velocity
                 particles.SelfPropelled = true;
 
-                if (blockInventory != null)
-                {
+                if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBucket) {
                     particles.MinPos.Add(new Vec3d(-0.05, 0.5, -0.05)); //add block position
                 }
 
@@ -285,39 +220,13 @@ namespace ACulinaryArtillery
             slot.TakeOut(1);
 			slot.MarkDirty();
 
-			var bowlCheck = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) as BlockEntityGroundStorage;
-			CollectibleObject bowlCollectible = null;
-            string bowlSourceContents = null;
-			string bowlYolkContents = null;
-            if (bowlCheck != null)
-			{
-                ItemSlot bowlSourceSlot = bowlCheck.Inventory?.FirstOrDefault(aslot => { bool? x = aslot.Itemstack?.Block.Code.Path.Contains("bowl-f"); return x != null && (bool)x; });//MUST return bowl-fierd (!aslot.Empty can give you pot or jug (bowlCollectible == null when it happens) not bowl) to get eggyolk
-                bowlCollectible = bowlSourceSlot?.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0")?.Collectible;
-                bowlSourceContents = bowlCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
-                bowlYolkContents = bowlCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
-			}
-
-			var bucketCheck = api.World.BlockAccessor?.GetBlockEntity(blockSel.Position) as BlockEntityLiquidContainer;
-			CollectibleObject bucketCollectible = null;
-            string bucketSourceContents = null;
-            string bucketYolkContents = null;
-            if (bucketCheck != null) 
-            {
-                ItemSlot bucketSourceSlot = bucketCheck.Inventory?.FirstOrDefault(aslot => !aslot.Empty);
-                bucketCollectible = bucketSourceSlot.Itemstack?.Collectible; //bucket has no "contents" tree attribute direct access thought Itemstack allow to access liquid to get eggyolk
-                bucketSourceContents = bucketCollectible?.FirstCodePart(0); //grabs bowl liquid item's code
-                bucketYolkContents = bucketCollectible?.FirstCodePart(1); //grabs 1st variant in bowl liquid item
-            }
-
             IPlayer byPlayer = null;
             if (byEntity is EntityPlayer) byPlayer = world.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
-            if ((eggType == "egg" || eggType == "limeegg") && ( bowlSourceContents == "eggwhiteportion"  || bucketSourceContents == "eggwhiteportion" ) )
-            {
-            stack = new ItemStack(world.GetItem(new AssetLocation(eggYolkOutput)));
+            if (giveYolk) {
+                stack = new ItemStack(world.GetItem(new AssetLocation(eggYolkOutput)));
             }
-            if (byPlayer?.InventoryManager.TryGiveItemstack(stack) == false)
-            {
-            byEntity.World.SpawnItemEntity(stack, byEntity.SidedPos.XYZ);
+            if (byPlayer?.InventoryManager.TryGiveItemstack(stack) == false) {
+                byEntity.World.SpawnItemEntity(stack, byEntity.SidedPos.XYZ);
             }
         }
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)

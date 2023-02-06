@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net461</TargetFramework>
+		<TargetFramework>net462</TargetFramework>
 		<LangVersion>9</LangVersion>
 		<ApplicationIcon />
 		<OutputType>Library</OutputType>
@@ -515,6 +515,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Reference Include="0Harmony">
 			<HintPath>$(AppData)\Vintagestory\Lib\0Harmony.dll</HintPath>
 			<Private>false</Private>
@@ -537,10 +541,6 @@
 		</Reference>
 		<Reference Include="VintagestoryLib">
 			<HintPath>$(AppData)\Vintagestory\VintagestoryLib.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="VSBuildLib">
-			<HintPath>$(AppData)\Vintagestory\VSBuildLib.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
 		<Reference Include="VSCreativeMod">
