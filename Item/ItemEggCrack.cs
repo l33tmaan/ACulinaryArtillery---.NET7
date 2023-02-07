@@ -68,17 +68,30 @@ namespace ACulinaryArtillery
 
         /// <summary>
         /// <para>
-        /// Utility method to determine if and how to add a liquid to a target. 
+        /// A callback to use to add liquid to a targeted container.
+        /// </para>
+        /// </summary>
+        /// <remarks>Will also mark <see cref="BlockEntityGroundStorage"/> as dirty if applicable and liquid is added.</remarks>
+        /// <param name="liquid">Liquid to add.</param>
+        /// <param name="amount">Amount to add.</param>
+        /// <returns><see langword="true" /> if any amount of liquid is added; <see langword="false"/> otherwise.</returns>
+        private delegate bool TryAddLiquidHandler(ItemStack liquid, float amount);
+
+        /// <summary>
+        /// <para>
+        /// Utility method to determine if &amp; how to add a liquid to a target and what is potentially already in there.
         /// </para> 
         /// <para>
         /// Eliminates repetitions (and issues) across <see cref="OnHeldInteractStart(ItemSlot, EntityAgent, BlockSelection, EntitySelection, bool, ref EnumHandHandling)"/>
         /// &amp; <see cref="OnHeldInteractStop(float, ItemSlot, EntityAgent, BlockSelection, EntitySelection)"/>
         /// </para>
         /// </summary>
-        /// <param name="block">Targeted block</param>
-        /// <param name="pos">Targeted position</param>
+        /// <param name="accessor">Block accessor to use</param>
         /// <param name="selection">Targeted block selection</param>
-        /// <param name="targetStack">Stack the liquid will be added to. Will be <see langword="null" /> if the targeted container/bowl/etc is currently empty.</param>
+        /// <param name="block"><em>Optional</em> targeted block. If <see langword="null" /> is passed, will use <paramref name="accessor"/> to get the block for <paramref name="selection"/>. 
+        /// If callers have already retrieved the block (or need it for later processing anyway) can be supplied to cut down on block accessor usage.</param>
+        /// <param name="blockEntity"><em>Optional</em> targeted block entity. If <see langword="null" /> is passed, will use <paramref name="accessor"/> to get the block entity for <paramref name="selection"/>. 
+        /// If callers have already retrieved the block entity (or need it for later processing anyway) can be supplied to cut down on block accessor usage.</param>
         /// <param name="tryAddLiquidAction">
         /// <para>
         /// Callback to use to actually <em>add</em> the liquid. Will correctly switch between container &amp; ground based targets. Will mark target dirty is liquid was added.
@@ -87,55 +100,80 @@ namespace ACulinaryArtillery
         /// Callback will return <see langword="false"/> if no liquid was actually added (for example if the container was full), <see langword="true"/> otherwise.</para>
         /// </param>
         /// <returns>
-        /// <see langword="true"/> if liquid can be added for the <paramref name="block"/>, <paramref name="pos"/> &amp; <paramref name="selection"/>; 
-        /// <see langword="false"/> if there is no container to add liquid to (direct or as ground storage) <em>or</em> if the targeted container is full 
-        /// (see <see cref="ItemHoneyComb.CanSqueezeInto(Block, BlockPos)" />).
+        /// <list type="bullet">
+        /// <item><see langword="null"/> if there is no suitable container (direct or via ground storage) to add liquids to</item>
+        /// <item>otherwise a tuple with members 
+        /// <list type="table">
+        /// <item>
+        /// <term>ExistingStack</term>
+        /// <description>The <see cref="ItemStack"/> currently existing inside the targeted liquid container. Will be <see langword="null"/> if the targeted container is empty.</description>
+        /// </item>
+        /// <item>
+        /// <term>TryAddLiquid</term>
+        /// <description>A callback to use to try adding liquid to the targeted container. See also <seealso cref="TryAddLiquidHandler"/></description>
+        /// </item>
+        /// </list>
+        /// </item>
+        /// </list>
         /// </returns>
         /// <remarks>
         /// <em>Note:</em> This implementation <em>differs</em> from the default (honeycomb) target selection. Vanilla will always pick the "first available" ground stored 
         /// container. This implementation will pick the <em>targeted</em> container on the ground, and only if that is unavailable it will pick a "first available" fallback.
         /// </remarks>
-        public bool CanAddLiquid(Block block, BlockPos pos, BlockSelection selection, out ItemStack targetStack, out System.Func<ItemStack, float, bool> tryAddLiquidAction) {
-            if (block is BlockLiquidContainerTopOpened blcto && (pos == null || !blcto.IsFull(pos))) {
-                targetStack = blcto.GetContent(pos);
-                tryAddLiquidAction = (liquid, amount) => blcto.TryPutLiquid(pos, liquid, amount) != 0;
-                return true;
+        private (ItemStack ExistingStack, TryAddLiquidHandler TryAddLiquid)? GetLiquidOptions(
+            IBlockAccessor accessor, 
+            BlockSelection selection, 
+            Block block = null, 
+            BlockEntity blockEntity = null) {
+
+            // improve on vanilla implementation: dont just pick "first available" block, go with target selection, *then* first available
+            bool IsSuitableItemSlot(ItemSlot slot) {
+                return slot.Itemstack?.Block is Block slotBlock && this.CanSqueezeInto(slotBlock, null);
             }
-            if (pos != null) {
 
-                // improve on vanilla implementation: dont just pick "first available" block, go with target selection, *then* first available
-                bool IsSuitableItemSlot(ItemSlot slot) {
-                    return slot.Itemstack?.Block is Block slotBlock && this.CanSqueezeInto(slotBlock, null);
-                }
-
-                ItemSlot PickTargetSlot(BlockEntityGroundStorage storage) {
-                    return storage.GetSlotAt(selection) is ItemSlot targetedSlot && IsSuitableItemSlot(targetedSlot)
-                        ? targetedSlot                                                                                  // pick what player has targeted if suitable
-                        : storage.Inventory.FirstOrDefault(IsSuitableItemSlot);                                         // otherwise pick first available
-                }
-
-                if (                    
-                    this.api.World.BlockAccessor.GetBlockEntity(pos) is BlockEntityGroundStorage beg                    // there is a ground storage
-                    && PickTargetSlot(beg) is ItemSlot targetSlot                                                       // pick a target slot
-                    && targetSlot.Itemstack is ItemStack squeezeStack                                                   // remember the itemstack 
-                    && squeezeStack.Block is BlockLiquidContainerTopOpened groundBltco                                  // grab the 'container'
-                    && !groundBltco.IsFull(targetSlot.Itemstack)                                                        // make sure it's not full
-                ) {
-                    targetStack = targetSlot.Itemstack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0");
-                    tryAddLiquidAction = (liquid, amount) => {
-                        // note how the put liquid action uses a *different* overload than for the direct injection - see also <see cref="ItemHoneyComb.OnHeldInteractStop" />
-                        bool success = groundBltco.TryPutLiquid(squeezeStack, liquid, amount) != 0;
-                        // embed the dirtying into the "add liquid" action
-                        if (success)
-                            beg.MarkDirty(true);
-                        return success;
-                    };
-                    return true;
-                }
+            ItemSlot GetSuitableTargetSlot(BlockEntityGroundStorage storage) {
+                return storage.GetSlotAt(selection) is ItemSlot targetedSlot && IsSuitableItemSlot(targetedSlot)
+                    ? targetedSlot                                                                                  // pick what player has targeted if suitable
+                    : storage.Inventory.FirstOrDefault(IsSuitableItemSlot);                                         // otherwise pick first available
             }
-            targetStack = null;
-            tryAddLiquidAction = (_, __) => false;
-            return false;
+
+            BlockPos pos = selection.Position;
+
+            return (block ?? accessor.GetBlock(pos), blockEntity ?? accessor.GetBlockEntity(pos), pos) switch {
+                // direct container 
+                (BlockLiquidContainerTopOpened direct, _, _) 
+                    when pos == null || !direct.IsFull(pos) => (
+                        ExistingStack: direct.GetContent(pos),
+                        TryAddLiquid: (liquid, amount) => direct.TryPutLiquid(pos, liquid, amount) != 0
+                    ),
+                // no position - no other options
+                (_, _, null) => null,
+                // we have a position, and are looking at a ground storage
+                (_, BlockEntityGroundStorage groundStorage, _) 
+                    when GetSuitableTargetSlot(groundStorage) is ItemSlot groundSlot                                        // we have a target slot
+                        && groundSlot.Itemstack is ItemStack groundStack                                                    // (remember the itemstack) 
+                        && groundStack.Block is BlockLiquidContainerTopOpened containerInGoundStack                         // ensure its a valid container and remember it
+                        && !containerInGoundStack.IsFull(groundStack) => (                                                  // make sure its not full
+                            ExistingStack: groundStack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0"),
+                            TryAddLiquid: (liquid, amount) => {
+                                // note how the put liquid action uses a *different* overload than for the direct injection - see also <see cref="ItemHoneyComb.OnHeldInteractStop" />
+                                bool success = containerInGoundStack.TryPutLiquid(groundStack, liquid, amount) != 0;
+                                // embed the dirtying into the "add liquid" action
+                                if (success)
+                                    groundStorage.MarkDirty(true);
+                                return success;
+                            }
+                ),
+                _ => null
+            };
+        }
+        
+        /// <summary>
+        /// Utility method to check if an egg type is crackable.
+        /// </summary>
+        // TODO: move this to json attributes on the definitions????
+        public static bool IsCrackableEggType(string eggType) {
+            return eggType == "egg" || eggType == "limeegg";
         }
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
@@ -145,19 +183,18 @@ namespace ACulinaryArtillery
             byEntity.AnimManager.StartAnimation("eggcrackstart");
 
             IBlockAccessor blockAccessor = byEntity.World.BlockAccessor;
-            Block block = blockAccessor.GetBlock(blockSel.Position);
 
-            bool canAddLiquid = CanAddLiquid(block, blockSel.Position, blockSel, out var targetStack, out var _);
+            var liquidOptions = GetLiquidOptions(blockAccessor, blockSel);
 
             string eggType = slot.Itemstack.Collectible.FirstCodePart(0);      //grabs currently held item's code
             string eggVariant = slot.Itemstack.Collectible.FirstCodePart(1);   //grabs 1st variant in currently held item
 
-            bool canCrack = (canAddLiquid, targetStack, targetStack?.Collectible?.FirstCodePart(0), targetStack?.Collectible?.FirstCodePart(1)) switch {
-                (false, _, _, _)                            => false,                                                                                            // cant add liquid
-                (_, null, _, _)                             => true,                                                                                             // empty target stack - can always squeeze (CanAddLiquid already checks for CanSqueeze)
-                (_, _, "eggyolkfullportion", var yolk)      => byEntity.Controls.Sprint && (eggType == "egg" || eggType == "limeegg") && yolk == eggVariant,     // liquid egg in container, need to be full cracking, have right egg & matching yolks
-                (_, _, "eggwhiteportion", _)                => !byEntity.Controls.Sprint && (eggType == "egg" || eggType == "limeegg"),                          // egg white in container, partial cracking and right egg
-                (_, _, "eggyolkportion", var yolk)          => eggType == "eggyolk" && yolk == eggVariant,                                                       // yolks - egg variant must match
+            bool canCrack = (liquidOptions, liquidOptions?.ExistingStack?.Collectible?.FirstCodePart(0), liquidOptions?.ExistingStack?.Collectible?.FirstCodePart(1)) switch {
+                (null, _, _)                                => false,                                                                               // cant add liquid
+                ( { ExistingStack: null}, _, _)             => true,                                                                                // empty target stack - can always squeeze (CanAddLiquid already checks for CanSqueeze)
+                (_, "eggyolkfullportion", var yolk)         => byEntity.Controls.Sprint && IsCrackableEggType(eggType) && yolk == eggVariant,       // liquid egg in container, need to be full cracking, have right egg & matching yolks
+                (_, "eggwhiteportion", _)                   => !byEntity.Controls.Sprint && IsCrackableEggType(eggType),                            // egg white in container, partial cracking and right egg
+                (_, "eggyolkportion", var yolk)             => eggType == "eggyolk" && yolk == eggVariant,                                          // yolks - egg variant must match
                 _                                           => false
             };
 
@@ -215,7 +252,10 @@ namespace ACulinaryArtillery
             IWorldAccessor world = byEntity.World;
             IBlockAccessor blockAccessor = world.BlockAccessor;
             Block block = blockAccessor.GetBlock(blockSel.Position);
-            if (!CanSqueezeInto(block, blockSel.Position)) return;
+
+            var liquidOptions = GetLiquidOptions(blockAccessor, blockSel, block: block);
+            if (liquidOptions == null)
+                return;
 
             string eggType = slot.Itemstack.Collectible.FirstCodePart(0);   //grabs currently held item's code
             string eggVariant = slot.Itemstack.Collectible.FirstCodePart(1);   //grabs 1st variant in currently held item
@@ -230,20 +270,14 @@ namespace ACulinaryArtillery
             ItemStack eggYolkFullStack = new ItemStack(world.GetItem(new AssetLocation(eggYolkFullLiquidAsset)), 99999);
             ItemStack stack = new ItemStack(world.GetItem(new AssetLocation(eggShellOutput)));
 
-            bool canAddLiquid = CanAddLiquid(block, blockSel.Position, blockSel, out var _, out var tryPutLiquid);
-            if (!canAddLiquid)
-                return;
-
             (ItemStack liquid, bool giveYolk) = (byEntity.Controls.Sprint, eggType) switch {
-                (true, "egg") or
-                (true, "limeegg")       => (eggYolkFullStack, false),
-                (false, "egg") or
-                (false, "limeegg")      => (eggWhiteStack, true),
-                (_, "eggyolk")          => (eggYolkStack, false),
-                _                       => (null, false)
+                (true, var type) when IsCrackableEggType(type)  => (eggYolkFullStack, false),
+                (false, var type) when IsCrackableEggType(type) => (eggWhiteStack, true),
+                (_, "eggyolk")                                  => (eggYolkStack, false),
+                _                                               => (null, false)
             };
 
-            if (liquid != null && !tryPutLiquid(liquid, ContainedEggLitres)) {
+            if (liquid != null && !liquidOptions.Value.TryAddLiquid(liquid, ContainedEggLitres)) {
                 return;                
             }
 
