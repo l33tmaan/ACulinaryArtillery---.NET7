@@ -91,13 +91,7 @@ namespace ACulinaryArtillery
         /// <param name="block"><em>Optional</em> targeted block. If <see langword="null" /> is passed, will use <paramref name="accessor"/> to get the block for <paramref name="selection"/>. 
         /// If callers have already retrieved the block (or need it for later processing anyway) can be supplied to cut down on block accessor usage.</param>
         /// <param name="blockEntity"><em>Optional</em> targeted block entity. If <see langword="null" /> is passed, will use <paramref name="accessor"/> to get the block entity for <paramref name="selection"/>. 
-        /// If callers have already retrieved the block entity (or need it for later processing anyway) can be supplied to cut down on block accessor usage.</param>
-        /// <param name="tryAddLiquidAction">
-        /// <para>
-        /// Callback to use to actually <em>add</em> the liquid. Will correctly switch between container &amp; ground based targets. Will mark target dirty is liquid was added.
-        /// </para>
-        /// <para>
-        /// Callback will return <see langword="false"/> if no liquid was actually added (for example if the container was full), <see langword="true"/> otherwise.</para>
+        /// If callers have already retrieved the block entity (or need it for later processing anyway) can be supplied to cut down on block accessor usage.
         /// </param>
         /// <returns>
         /// <list type="bullet">
