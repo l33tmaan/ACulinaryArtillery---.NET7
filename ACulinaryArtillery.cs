@@ -125,7 +125,7 @@ namespace ACulinaryArtillery
         }
 
         internal static void LogError(string message) {
-            logger.Error(message);
+            logger.Error("(ACulinaryArtillery): {0}", message);
         }
 
     }

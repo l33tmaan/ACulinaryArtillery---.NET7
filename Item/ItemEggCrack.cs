@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+
+using ACulinaryArtillery.Util;
+
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
@@ -47,18 +50,17 @@ namespace ACulinaryArtillery
                         ActionLangCode = "heldhelp-crack",
                         HotKeyCode = "sneak",
                         MouseButton = EnumMouseButton.Right,
-                        Itemstacks = stacks.ToArray()
+                        Itemstacks = stacks.ToArray(),                        
                     },
                     new WorldInteraction()
                     {
                         ActionLangCode = "heldhelp-crack2",
                         HotKeyCodes = new string[] {"sneak", "sprint" },
                         MouseButton = EnumMouseButton.Right,
-                        Itemstacks = stacks.ToArray()
+                        Itemstacks = stacks.ToArray(),                        
                     }
                 };
             });
-
 
         }
         public override string GetHeldTpUseAnimation(ItemSlot activeHotbarSlot, Entity byEntity)
@@ -120,44 +122,41 @@ namespace ACulinaryArtillery
             Block block = null, 
             BlockEntity blockEntity = null) {
 
-            // improve on vanilla implementation: dont just pick "first available" block, go with target selection, *then* first available
-            bool IsSuitableItemSlot(ItemSlot slot) {
-                return slot.Itemstack?.Block is Block slotBlock && this.CanSqueezeInto(slotBlock, null);
-            }
-
-            ItemSlot GetSuitableTargetSlot(BlockEntityGroundStorage storage) {
-                return storage.GetSlotAt(selection) is ItemSlot targetedSlot && IsSuitableItemSlot(targetedSlot)
-                    ? targetedSlot                                                                                  // pick what player has targeted if suitable
-                    : storage.Inventory.FirstOrDefault(IsSuitableItemSlot);                                         // otherwise pick first available
-            }
-
             BlockPos pos = selection.Position;
 
             return (block ?? accessor.GetBlock(pos), blockEntity ?? accessor.GetBlockEntity(pos), pos) switch {
                 // direct container 
-                (BlockLiquidContainerTopOpened direct, _, _) 
-                    when pos == null || !direct.IsFull(pos) => (
-                        ExistingStack: direct.GetContent(pos),
-                        TryAddLiquid: (liquid, amount) => direct.TryPutLiquid(pos, liquid, amount) != 0
-                    ),
+                (ILiquidSink direct, var be, _) 
+                    when pos == null || !direct.IsFull(pos) 
+                        => be switch {
+                            BlockEntitySaucepan { isSealed: true } => null,
+                            _ => (
+                                ExistingStack: direct.GetContent(pos),
+                                TryAddLiquid: (liquid, amount) => direct.TryPutLiquid(pos, liquid, amount) != 0
+                            )
+                        },
                 // no position - no other options
                 (_, _, null) => null,
                 // we have a position, and are looking at a ground storage
                 (_, BlockEntityGroundStorage groundStorage, _) 
-                    when GetSuitableTargetSlot(groundStorage) is ItemSlot groundSlot                                        // we have a target slot
+                    when this.GetSuitableTargetSlot(groundStorage, selection) is ItemSlot groundSlot                        // we have a target slot
                         && groundSlot.Itemstack is ItemStack groundStack                                                    // (remember the itemstack) 
-                        && groundStack.Block is BlockLiquidContainerTopOpened containerInGoundStack                         // ensure its a valid container and remember it
-                        && !containerInGoundStack.IsFull(groundStack) => (                                                  // make sure its not full
-                            ExistingStack: groundStack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0"),
-                            TryAddLiquid: (liquid, amount) => {
-                                // note how the put liquid action uses a *different* overload than for the direct injection - see also <see cref="ItemHoneyComb.OnHeldInteractStop" />
-                                bool success = containerInGoundStack.TryPutLiquid(groundStack, liquid, amount) != 0;
-                                // embed the dirtying into the "add liquid" action
-                                if (success)
-                                    groundStorage.MarkDirty(true);
-                                return success;
-                            }
-                ),
+                        && groundStack.Block is ILiquidSink sinkInGroundStack                                               // ensure its a valid liquid sink and remember it
+                        && !sinkInGroundStack.IsFull(groundStack) 
+                            => sinkInGroundStack switch {                                                                   // make sure its not full
+                                BlockEntitySaucepan { isSealed: false }                                                     // ensure we're not a sealed cauldron - yes right now we're not groundstorable, but maybe we will
+                                or _ => (
+                                    ExistingStack: groundStack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0"),
+                                    TryAddLiquid: (liquid, amount) => {
+                                        // note how the put liquid action uses a *different* overload than for the direct injection - see also <see cref="ItemHoneyComb.OnHeldInteractStop" />
+                                        bool success = sinkInGroundStack.TryPutLiquid(groundStack, liquid, amount) != 0;
+                                        // embed the dirtying into the "add liquid" action
+                                        if (success)
+                                            groundStorage.MarkDirty(true);
+                                        return success;
+                                    }
+                                )
+                            },                                            
                 _ => null
             };
         }
