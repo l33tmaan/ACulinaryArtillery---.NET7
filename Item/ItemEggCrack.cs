@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Xml;
 
 using ACulinaryArtillery.Util;
 
@@ -69,99 +70,6 @@ namespace ACulinaryArtillery
         }
 
         /// <summary>
-        /// <para>
-        /// A callback to use to add liquid to a targeted container.
-        /// </para>
-        /// </summary>
-        /// <remarks>Will also mark <see cref="BlockEntityGroundStorage"/> as dirty if applicable and liquid is added.</remarks>
-        /// <param name="liquid">Liquid to add.</param>
-        /// <param name="amount">Amount to add.</param>
-        /// <returns><see langword="true" /> if any amount of liquid is added; <see langword="false"/> otherwise.</returns>
-        private delegate bool TryAddLiquidHandler(ItemStack liquid, float amount);
-
-        /// <summary>
-        /// <para>
-        /// Utility method to determine if &amp; how to add a liquid to a target and what is potentially already in there.
-        /// </para> 
-        /// <para>
-        /// Eliminates repetitions (and issues) across <see cref="OnHeldInteractStart(ItemSlot, EntityAgent, BlockSelection, EntitySelection, bool, ref EnumHandHandling)"/>
-        /// &amp; <see cref="OnHeldInteractStop(float, ItemSlot, EntityAgent, BlockSelection, EntitySelection)"/>
-        /// </para>
-        /// </summary>
-        /// <param name="accessor">Block accessor to use</param>
-        /// <param name="selection">Targeted block selection</param>
-        /// <param name="block"><em>Optional</em> targeted block. If <see langword="null" /> is passed, will use <paramref name="accessor"/> to get the block for <paramref name="selection"/>. 
-        /// If callers have already retrieved the block (or need it for later processing anyway) can be supplied to cut down on block accessor usage.</param>
-        /// <param name="blockEntity"><em>Optional</em> targeted block entity. If <see langword="null" /> is passed, will use <paramref name="accessor"/> to get the block entity for <paramref name="selection"/>. 
-        /// If callers have already retrieved the block entity (or need it for later processing anyway) can be supplied to cut down on block accessor usage.
-        /// </param>
-        /// <returns>
-        /// <list type="bullet">
-        /// <item><see langword="null"/> if there is no suitable container (direct or via ground storage) to add liquids to</item>
-        /// <item>otherwise a tuple with members 
-        /// <list type="table">
-        /// <item>
-        /// <term>ExistingStack</term>
-        /// <description>The <see cref="ItemStack"/> currently existing inside the targeted liquid container. Will be <see langword="null"/> if the targeted container is empty.</description>
-        /// </item>
-        /// <item>
-        /// <term>TryAddLiquid</term>
-        /// <description>A callback to use to try adding liquid to the targeted container. See also <seealso cref="TryAddLiquidHandler"/></description>
-        /// </item>
-        /// </list>
-        /// </item>
-        /// </list>
-        /// </returns>
-        /// <remarks>
-        /// <em>Note:</em> This implementation <em>differs</em> from the default (honeycomb) target selection. Vanilla will always pick the "first available" ground stored 
-        /// container. This implementation will pick the <em>targeted</em> container on the ground, and only if that is unavailable it will pick a "first available" fallback.
-        /// </remarks>
-        private (ItemStack ExistingStack, TryAddLiquidHandler TryAddLiquid)? GetLiquidOptions(
-            IBlockAccessor accessor, 
-            BlockSelection selection, 
-            Block block = null, 
-            BlockEntity blockEntity = null) {
-
-            BlockPos pos = selection.Position;
-
-            return (block ?? accessor.GetBlock(pos), blockEntity ?? accessor.GetBlockEntity(pos), pos) switch {
-                // direct container 
-                (ILiquidSink direct, var be, _) 
-                    when pos == null || !direct.IsFull(pos) 
-                        => be switch {
-                            BlockEntitySaucepan { isSealed: true } => null,
-                            _ => (
-                                ExistingStack: direct.GetContent(pos),
-                                TryAddLiquid: (liquid, amount) => direct.TryPutLiquid(pos, liquid, amount) != 0
-                            )
-                        },
-                // no position - no other options
-                (_, _, null) => null,
-                // we have a position, and are looking at a ground storage
-                (_, BlockEntityGroundStorage groundStorage, _) 
-                    when this.GetSuitableTargetSlot(groundStorage, selection) is ItemSlot groundSlot                        // we have a target slot
-                        && groundSlot.Itemstack is ItemStack groundStack                                                    // (remember the itemstack) 
-                        && groundStack.Block is ILiquidSink sinkInGroundStack                                               // ensure its a valid liquid sink and remember it
-                        && !sinkInGroundStack.IsFull(groundStack) 
-                            => sinkInGroundStack switch {                                                                   // make sure its not full
-                                BlockEntitySaucepan { isSealed: false }                                                     // ensure we're not a sealed cauldron - yes right now we're not groundstorable, but maybe we will
-                                or _ => (
-                                    ExistingStack: groundStack?.Attributes?.GetTreeAttribute("contents")?.GetItemstack("0"),
-                                    TryAddLiquid: (liquid, amount) => {
-                                        // note how the put liquid action uses a *different* overload than for the direct injection - see also <see cref="ItemHoneyComb.OnHeldInteractStop" />
-                                        bool success = sinkInGroundStack.TryPutLiquid(groundStack, liquid, amount) != 0;
-                                        // embed the dirtying into the "add liquid" action
-                                        if (success)
-                                            groundStorage.MarkDirty(true);
-                                        return success;
-                                    }
-                                )
-                            },                                            
-                _ => null
-            };
-        }
-        
-        /// <summary>
         /// Utility method to check if an egg type is crackable.
         /// </summary>
         // TODO: move this to json attributes on the definitions????
@@ -177,7 +85,7 @@ namespace ACulinaryArtillery
 
             IBlockAccessor blockAccessor = byEntity.World.BlockAccessor;
 
-            var liquidOptions = GetLiquidOptions(blockAccessor, blockSel);
+            var liquidOptions = this.GetLiquidOptions(blockAccessor, blockSel);
 
             string eggType = slot.Itemstack.Collectible.FirstCodePart(0);      //grabs currently held item's code
             string eggVariant = slot.Itemstack.Collectible.FirstCodePart(1);   //grabs 1st variant in currently held item
@@ -246,7 +154,7 @@ namespace ACulinaryArtillery
             IBlockAccessor blockAccessor = world.BlockAccessor;
             Block block = blockAccessor.GetBlock(blockSel.Position);
 
-            var liquidOptions = GetLiquidOptions(blockAccessor, blockSel, block: block);
+            var liquidOptions = this.GetLiquidOptions(blockAccessor, blockSel, block: block);
             if (liquidOptions == null)
                 return;
 
@@ -274,16 +182,25 @@ namespace ACulinaryArtillery
                 return;                
             }
 
+
             if (api.World.Side == EnumAppSide.Client) {
                 byEntity.World.PlaySoundAt(new AssetLocation("aculinaryartillery:sounds/player/eggcrack"), byEntity, null, true, 16, 0.5f);
-
+                 
                 // Primary Particles
                 var color = ColorUtil.ToRgba(255, 219, 206, 164);
 
                 particles = new SimpleParticleProperties(
                     4, 6, // quantity
                     color,
-                    new Vec3d(0.35, 0.1, 0.35), //min position
+                    // spawn particles above ellipses covering top plane of target block collision box:
+                    //  - at the edge, on a line facing the aiming point
+                    liquidOptions.Value.TargetBlock
+                        .GetCollisionBoxes(blockAccessor, null)
+                        .OrderByDescending(cf => cf.MaxY)
+                        .FirstOrDefault() switch {
+                            null => new Vec3d(0.35, 0.1, 0.35),
+                            var b => b.TopFaceEllipsesLineIntersection(blockSel.HitPosition.ToVec3f())
+                        }, 
                     new Vec3d(), //add position - see below
                     new Vec3f(0.2f, 0.5f, 0.2f), //min velocity
                     new Vec3f(), //add velocity - see below
@@ -296,12 +213,10 @@ namespace ACulinaryArtillery
                 particles.AddVelocity.Set(new Vec3f(-0.4f, 0.5f, -0.4f)); //add velocity
                 particles.SelfPropelled = true;
 
-                if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBucket) {
-                    particles.MinPos.Add(new Vec3d(-0.05, 0.5, -0.05)); //add block position
-                }
-
                 Vec3d pos = blockSel.Position.ToVec3d().Add(blockSel.HitPosition);
-                particles.MinPos.Add(blockSel.Position); //add block position
+
+                particles.MinPos.Add(blockSel.Position);                            // add selection position
+                particles.MinPos.Add(liquidOptions.Value.TargetBlock.TopMiddlePos); // add sub block selection position
                 particles.AddPos.Set(new Vec3d(0, 0, 0)); //add position
                 world.SpawnParticles(particles);
             }
