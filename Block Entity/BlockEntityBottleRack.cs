@@ -284,15 +284,16 @@ namespace ACulinaryArtillery
             var index = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
             if (!this.inventory[index].Empty)
             {
+                sb.AppendLine(this.inventory[index].Itemstack.GetName());
+#if FALSE
+                // TODO: decide if we *really* want to block display of items in racks when made out of clay...
                 var blockPath = this.inventory[index].Itemstack.Block.Code.Path;
-                if (!blockPath.Contains("-clay-"))
-                {
-                    (this.inventory[index].Itemstack.Collectible as BlockBottle).GetContentInfo(this.inventory[index], sb, Api.World);
-                }
-                else
-                {
-                    sb.AppendLine(this.inventory[index].Itemstack.GetName());
-                }
+                if (!blockPath.Contains("-clay-")) {
+#endif
+                (this.inventory[index].Itemstack.Collectible as BlockLiquidContainerBase)?.GetContentInfo(this.inventory[index], sb, Api.World);
+#if FALSE
+}
+#endif
             }
         }
     }

@@ -26,6 +26,7 @@ namespace ACulinaryArtillery.Util {
             return matcher;
         }
 
+
         /// <summary>
         /// Extracts the current <see cref="Instruction"/> out of a <see cref="CodeMatcher"/>.
         /// </summary>
@@ -33,7 +34,6 @@ namespace ACulinaryArtillery.Util {
             instruction = matcher.Instruction;
             return matcher;
         }
-
 
     }
 

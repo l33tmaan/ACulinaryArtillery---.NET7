@@ -239,7 +239,7 @@
         }
 
 
-        public string GetContainedInfo(ItemSlot inSlot)
+        public string GetContainedInfo(ItemSlot inSlot)           
         {
             var litres = this.GetCurrentLitres(inSlot.Itemstack);
             var contentStack = this.GetContent(inSlot.Itemstack);
