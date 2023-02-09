@@ -39,7 +39,7 @@ namespace ACulinaryArtillery.Util {
         /// </summary>
         /// <param name="box">Cube to use</param>
         /// <param name="point">Point to use</param>
-        /// <returns></returns>
+        /// <seealso href="https://mathworld.wolfram.com/Ellipse-LineIntersection.html"/>
         public static Vec3d TopFaceEllipsesLineIntersection(this Cuboidf box, Vec3f point) {
             var (a, b) = box.XZSize() / 2;
 
