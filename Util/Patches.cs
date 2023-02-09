@@ -449,15 +449,14 @@ namespace ACulinaryArtillery
 
             /// <summary>
             /// This is <em>kind of</em> a prefix for <see cref="ItemHoneyComb.CanSqueezeInto(Block, BlockPos)"/>, but it uses a different 
-            /// set of parameters. Still partially shadows call into there.
+            /// set of parameters. Still partially shadows calls into there.
             /// </summary>
             public static bool CanSqueezeInto(ItemHoneyComb instance, Block block, BlockSelection selection) {
                 return block switch {
                     ILiquidSink => instance.CanSqueezeInto(block, selection.Position),
                     _ => apiAccessor(instance) is var api
                         && api.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityGroundStorage beg
-                        && instance.GetSuitableTargetSlot(beg, selection) is ItemSlot slot
-                        && !(slot.Itemstack.Block as ILiquidSink).IsFull(slot.Itemstack)
+                        && instance.GetSuitableTargetSlot(beg, selection) is ItemSlot
                 };
             }
 
