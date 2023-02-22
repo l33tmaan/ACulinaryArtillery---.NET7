@@ -2,11 +2,11 @@
   "type": "code",
   "texturesize": 32,
   "name": "A Culinary Artillery",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "networkVersion": null,
   "description": "An armory of tools for food-based mods and modpack makers",
   "modID": "aculinaryartillery",
-  "authors": ["l33tmaan, jakecool19, SpearAndFang, Mister_Andy_Dandy, Vinter Nacht, Philippe"],
+  "authors": ["l33tmaan", "jakecool19", "SpearAndFang", "Mister_Andy_Dandy", "Vinter Nacht", "Philippe"],
 
   "dependencies": {}
 }

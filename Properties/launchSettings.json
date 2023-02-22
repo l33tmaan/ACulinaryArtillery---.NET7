@@ -1,9 +1,10 @@
 {
   "profiles": {
-    "ACulinaryArtillery": {
-      "commandName": "Project",
-      "commandLineArgs": "--addModPath=\"C:\\Users\\Tyler\\source\\repos\\ACulinaryArtillery--l33tFork\\bin\\Debug\" --addOrigin=\"C:\\Users\\Tyler\\source\\repos\\ACulinaryArtillery--l33tFork\\assets\"",
-      "workingDirectory": "C:\\Users\\Tyler\\AppData\\Roaming\\Vintagestory"
+    "VintageStory": {
+      "commandName": "Executable",
+      "executablePath": "$(APPDATA)\\VintageStory\\VintageStory.exe",
+      "commandLineArgs": "-openWorld=\"modsamplestest\" -pcreativebuilding",
+      "workingDirectory": "$(APPDATA)\\VintageStory\\"
     }
   }
 }

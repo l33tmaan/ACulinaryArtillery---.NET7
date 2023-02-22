@@ -2,7 +2,7 @@
 	"code": "mixingbowlmini",
 	"class": "BlockMixingBowl",
 	"entityClass": "MixingBowl",
-	"behaviors": [ { "name": "Container" } ],
+	"behaviors": [ { "name": "Container" }, { "name": "UnstableFalling" } ],
 	"attributes": {
 		"capacityLitres": 3,
 	},
@@ -28,7 +28,7 @@
 		"all": false
 	},
 	heldTpIdleAnimation: "holdbothhandsmedium", heldTpUseAnimation: "twohandplaceblock", 
-	"lightAbsorption": 1,
+	"lightAbsorption": 0,
 	"replaceable": 600,
 	"resistance": 1.5,
 	"collisionSelectionBoxes": [

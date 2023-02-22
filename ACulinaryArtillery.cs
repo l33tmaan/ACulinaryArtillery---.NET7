@@ -12,17 +12,11 @@ namespace ACulinaryArtillery
     public class ACulinaryArtillery : ModSystem
     {
         private static Harmony harmony;
+        public static ILogger logger;
 
         public override void Start(ICoreAPI api)
         {
             //base.Start(api);
-
-            CookingRecipe.NamingRegistry["augratin"] = new acaRecipeNames();
-            CookingRecipe.NamingRegistry["riceandbeans"] = new acaRecipeNames();
-            CookingRecipe.NamingRegistry["meatysalad"] = new acaRecipeNames();
-            CookingRecipe.NamingRegistry["yogurtmeal"] = new acaRecipeNames();
-            CookingRecipe.NamingRegistry["pastahot"] = new acaRecipeNames();
-            CookingRecipe.NamingRegistry["pastacold"] = new acaRecipeNames();
 
             api.RegisterBlockClass("BlockMeatHooks", typeof(BlockMeatHooks));
             api.RegisterBlockEntityClass("MeatHooks", typeof(BlockEntityMeatHooks));
@@ -80,6 +74,7 @@ namespace ACulinaryArtillery
             }
 
             harmony ??= new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
+            logger = api.Logger;
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
@@ -127,6 +122,10 @@ namespace ACulinaryArtillery
                     }
                 }
             }
+        }
+
+        internal static void LogError(string message) {
+            logger.Error("(ACulinaryArtillery): {0}", message);
         }
 
     }

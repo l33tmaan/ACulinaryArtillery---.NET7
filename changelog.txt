@@ -1,7 +1,28 @@
-﻿~1.17_v1.0.10~
-- Using multiple bottles/buckets on the saucepan/cauldron uses correct liquid values
+﻿~1.17_v1.0.12~
 - Mixing bowl client/server issues fixed
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
+- Added wine bottles
+- ExpandedFood & ExpandedLiquid class fixed; now works in meals
+- ExpandedLiquid class transfers extra nutrients properly when consumed
+- ExpandedFood class maintains nutrition after being grinded
+- Wildcraft trees compatibility added
+
+~1.17_v1.0.11~
+- Using multiple bottles/buckets on the saucepan/cauldron uses correct liquid values
+- Bottles display extra nutrients & ExpandedLiquid item description properly (thanks to SpearAndFang)
+- Eggs give shells properly when cracked in buckets
+- Egg cracking sped up
+- Trader filename updated; items should be buyable/sellable again
+- Glass bottle & marble mixing bowl prices doubled
+- Mini mixing bowl casts no shadow
+- Spanish translation added (thanks to Ziru)
+- pt-br translation added (I think this is Portuguese?) (thanks to Azuli_Yanazake)
+- XSkills compatibility tweaked
+
+~1.17_v1.0.10~
+- Japanese translation updated (thanks to macoto_hino)
+- Mini mixing bowl has gravity
+- Cauldron mold updated
 
 ~1.17_v1.0.9~
 - Drinking from bottles gives consistent nutrition/HP

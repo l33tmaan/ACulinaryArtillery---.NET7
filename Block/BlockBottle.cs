@@ -11,6 +11,7 @@
     using Vintagestory.API.Server;
     using Vintagestory.API.Util;
     using Vintagestory.GameContent;
+    using Vintagestory.API.Datastructures;
     using System.Diagnostics;
 
     public class BlockBottle : BlockLiquidContainerBase, IContainedMeshSource, IContainedCustomName
@@ -238,7 +239,7 @@
         }
 
 
-        public string GetContainedInfo(ItemSlot inSlot)
+        public string GetContainedInfo(ItemSlot inSlot)           
         {
             var litres = this.GetCurrentLitres(inSlot.Itemstack);
             var contentStack = this.GetContent(inSlot.Itemstack);
@@ -484,6 +485,36 @@
             return this.Attributes["cureRate"].AsFloat(1);
         }
 
+        public float SatMult
+        {
+            get { return Attributes?["satMult"].AsFloat(1f) ?? 1f; }
+        }
+
+        public FoodNutritionProperties[] GetPropsFromArray(float[] satieties)
+        {
+            if (satieties == null || satieties.Length < 6)
+                return null;
+
+            List<FoodNutritionProperties> props = new List<FoodNutritionProperties>();
+
+            if (satieties[(int)EnumNutritionMatch.Fruit] != 0)
+                props.Add(new FoodNutritionProperties() { FoodCategory = EnumFoodCategory.Fruit, Satiety = satieties[(int)EnumNutritionMatch.Fruit] * SatMult });
+            if (satieties[(int)EnumNutritionMatch.Grain] != 0)
+                props.Add(new FoodNutritionProperties() { FoodCategory = EnumFoodCategory.Grain, Satiety = satieties[(int)EnumNutritionMatch.Grain] * SatMult });
+            if (satieties[(int)EnumNutritionMatch.Vegetable] != 0)
+                props.Add(new FoodNutritionProperties() { FoodCategory = EnumFoodCategory.Vegetable, Satiety = satieties[(int)EnumNutritionMatch.Vegetable] * SatMult });
+            if (satieties[(int)EnumNutritionMatch.Protein] != 0)
+                props.Add(new FoodNutritionProperties() { FoodCategory = EnumFoodCategory.Protein, Satiety = satieties[(int)EnumNutritionMatch.Protein] * SatMult });
+            if (satieties[(int)EnumNutritionMatch.Dairy] != 0)
+                props.Add(new FoodNutritionProperties() { FoodCategory = EnumFoodCategory.Dairy, Satiety = satieties[(int)EnumNutritionMatch.Dairy] * SatMult });
+
+            if (satieties[0] != 0 && props.Count > 0)
+                props[0].Health = satieties[0] * SatMult;
+
+            return props.ToArray();
+        }
+
+
 
         public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
         {
@@ -494,16 +525,46 @@
             {
                 string contentPath = content.Collectible.Code.Path;
                 string newDescription = content.Collectible.Code.Domain + ":itemdesc-" + contentPath;
-                string finalDescription = Lang.Get(newDescription);
+                string finalDescription = Lang.GetMatching(newDescription);
 
                 var dummy = new DummySlot(content);
-                dsc.AppendLine();
            
                 if (finalDescription != newDescription)
-                { dsc.Append(finalDescription); }
+                {   dsc.AppendLine();
+                    dsc.Append(finalDescription); }
+
+                EntityPlayer entity = world.Side == EnumAppSide.Client ? (world as IClientWorldAccessor).Player.Entity : null;
+                float spoilState = AppendPerishableInfoText(dummy, new StringBuilder(), world);
+
+                var nutriProps = ItemExpandedRawFood.GetExpandedContentNutritionProperties(world, dummy, content, entity);
+                //FoodNutritionProperties nutriProps = GetNutritionProperties(world, content, entity);
+
+
+                FoodNutritionProperties[] addProps = GetPropsFromArray((content.Attributes["expandedSats"] as FloatArrayAttribute)?.value);
+
+                if (nutriProps != null && addProps?.Length > 0)
+                {
+                    dsc.AppendLine();
+                    dsc.AppendLine(Lang.Get("efrecipes:Extra Nutrients"));
+
+                    foreach (FoodNutritionProperties props in addProps)
+                    {
+                        double liquidVolume = content.StackSize;
+                        float satLossMul = GlobalConstants.FoodSpoilageSatLossMul(spoilState, content, entity);
+                        float healthLossMul = GlobalConstants.FoodSpoilageHealthLossMul(spoilState, content, entity);
+
+                        if (Math.Abs(props.Health * healthLossMul) > 0.001f)
+                        {
+                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {2} sat, {1} hp", Math.Round((props.Satiety * satLossMul) * (liquidVolume / 10 ), 1), ((props.Health * healthLossMul) * (liquidVolume / 10 )), props.FoodCategory.ToString()));
+                        }
+                        else
+                        {
+                            dsc.AppendLine(Lang.Get("efrecipes:- {0} {1} sat", Math.Round((props.Satiety * satLossMul) * (liquidVolume / 10 )), props.FoodCategory.ToString()));
+                        }
+                    }
+                }
             }
         }
-
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {

@@ -21,11 +21,6 @@ namespace ACulinaryArtillery
         public ItemSlot[] Slots { get { return slots; } }
         BlockEntityMixingBowl machine;
 
-        //xskills compatibility
-        public IPlayer LastModifiedBy { get; protected set; }
-        public IPlayer LastAccessedBy { get; protected set; }
-        public string LoadedOwner { get; protected set; }
-
         public InventoryMixingBowl(string inventoryID, ICoreAPI api, BlockEntityMixingBowl bowl) : base(inventoryID, api)
         {
             // slot 0 = pot
@@ -34,9 +29,6 @@ namespace ACulinaryArtillery
             machine = bowl;
             slots = GenEmptySlots(8);
 
-            LastModifiedBy = null;
-            LastAccessedBy = null;
-            LoadedOwner = null;
         }
 
 
@@ -73,15 +65,11 @@ namespace ACulinaryArtillery
                     (this[i] as ItemSlotMixingBowl).Set(machine, i - 2);
                 }
             }
-
-            LoadedOwner = tree.GetString("owner");
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
         {
             SlotsToTreeAttributes(slots, tree);
-
-            if (LastModifiedBy != null) tree.SetString("owner", LastModifiedBy.PlayerUID);
         }
 
         protected override ItemSlot NewSlot(int i)
@@ -112,23 +100,9 @@ namespace ACulinaryArtillery
         {
             bool result = base.CanPlayerAccess(player, position);
             if (!result) return result;
-            LastAccessedBy = player;
             return result;
         }
 
-        public override void OnItemSlotModified(ItemSlot slot)
-        {
-            base.OnItemSlotModified(slot);
-            if (LastAccessedBy == null) return;
-            if (slot == this[0] || slot == this[1]) return;
-            LastModifiedBy = LastAccessedBy;
-        }
-
-        public override object ActivateSlot(int slotId, ItemSlot sourceSlot, ref ItemStackMoveOperation op)
-        {
-            LastAccessedBy = op.ActingPlayer;
-            return base.ActivateSlot(slotId, sourceSlot, ref op);
-        }
     }
 
     public class ItemSlotMixingBowl : ItemSlot
