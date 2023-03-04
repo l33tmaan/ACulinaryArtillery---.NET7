@@ -11,7 +11,7 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class BlockEntityExpandedOven : BlockEntityDisplay, IHeatSource
+    public class BlockEntityExpandedOven : BlockEntityDisplayCase, IHeatSource
     {
         // One Vec3f object only, for performance
         static readonly Vec3f centre = new Vec3f(0.5f, 0, 0.5f);
@@ -96,8 +96,10 @@ namespace ACulinaryArtillery
                 bakingData[i] = new OvenItemData();
             }
             woodrand = new int[fuelitemCapacity];
-            ovenInv = new InventoryOven("oven-0", itemCapacity, fuelitemCapacity);
-            meshes = new MeshData[itemCapacity + fuelitemCapacity];
+            // ovenInv = new InventoryOven("oven-0", itemCapacity, fuelitemCapacity);
+            ovenInv = new InventoryOven("oven-0", itemCapacity);
+            // meshes = new MeshData[itemCapacity + fuelitemCapacity];
+            var meshes = new MeshData[itemCapacity];
         }
 
         public override InventoryBase Inventory => ovenInv;
@@ -750,11 +752,11 @@ namespace ACulinaryArtillery
             float scaleY = 0;
             if (index < itemCapacity)
             {
-                if (Inventory[index].Empty)
-                {
-                    meshes[index] = null;
-                    return;
-                }
+                //if (Inventory[index].Empty)
+                //{
+                //   meshes[index] = null;
+                //    return;
+                //}
                 stack = Inventory[index].Itemstack;
 
                 scaleY = bakingData[index].CurHeightMul;
@@ -762,11 +764,11 @@ namespace ACulinaryArtillery
             else
             {
                 int count = FuelSlot.Empty ? 0 : FuelSlot.Itemstack.StackSize;
-                if (count <= index - itemCapacity)
-                {
-                    meshes[index] = null;
-                    return;
-                }
+                //if (count <= index - itemCapacity)
+                //{
+                //    meshes[index] = null;
+                //    return;
+                //}
                 stack = FuelSlot.Itemstack.Clone();
                 stack.StackSize = 1;
                 isWood = stack.Collectible.Attributes?.IsTrue("isFirewood") == true;
@@ -779,12 +781,12 @@ namespace ACulinaryArtillery
                 if (props == null) return;
                 isLargeItem = props.LargeItem;
             }
-            MeshData mesh = genMesh(stack);
+            /* MeshData mesh = genMesh(stack);
             if (mesh != null)
             {
                 translateMesh(mesh, index, isWood, isLargeItem, scaleY);
                 meshes[index] = mesh;
-            }
+            } */
         }
 
         /// <summary>
