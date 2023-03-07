@@ -36,7 +36,7 @@ namespace ACulinaryArtillery
         /// <summary>
         /// The number of "regular" bread items the oven can accept
         /// </summary>
-        public virtual int itemCapacity => 4;
+        public virtual int bakeableCapacity => 4;
         /// <summary>
         /// The number of logs of firewood the oven can accept
         /// </summary>
@@ -87,36 +87,50 @@ namespace ACulinaryArtillery
         /// Slots 0-3: Baking items  -~-  Slot 4: Fuel
         /// </summary>
         internal InventoryOven ovenInv;
+        EnumOvenContentMode OvenContentMode
+        {
+            get
+            {
+                var slot = ovenInv.FirstNonEmptySlot;
+                if (slot == null) return EnumOvenContentMode.Firewood;
+
+                BakingProperties bakingProps = BakingProperties.ReadFrom(slot.Itemstack);
+                if (bakingProps == null) return EnumOvenContentMode.Firewood;
+
+                return bakingProps.LargeItem ? EnumOvenContentMode.SingleCenter : EnumOvenContentMode.Quadrants;
+            }
+        }
 
         public BlockEntityExpandedOven()
         {
-            bakingData = new OvenItemData[itemCapacity];
-            for (int i = 0; i < itemCapacity; i++)
+            bakingData = new OvenItemData[bakeableCapacity];
+            for (int i = 0; i < bakeableCapacity; i++)
             {
                 bakingData[i] = new OvenItemData();
             }
-            woodrand = new int[fuelitemCapacity];
+            // woodrand = new int[fuelitemCapacity];
             // ovenInv = new InventoryOven("oven-0", itemCapacity, fuelitemCapacity);
-            ovenInv = new InventoryOven("oven-0", itemCapacity);
+            ovenInv = new InventoryOven("oven-0", bakeableCapacity);
             // meshes = new MeshData[itemCapacity + fuelitemCapacity];
-            var meshes = new MeshData[itemCapacity];
         }
 
         public override InventoryBase Inventory => ovenInv;
 
         public override string InventoryClassName => "oven";
 
-        public ItemSlot FuelSlot { get { return ovenInv[itemCapacity]; } }
+        public ItemSlot FuelSlot { get { return ovenInv[0]; } }
+
+        public bool HasFuel => FuelSlot.Itemstack?.Collectible?.Attributes?.IsTrue("isClayOvenFuel") == true;
 
         public bool IsBurning { get { return burning; } }
 
-        public bool HasItems
+        public bool HasBakeables
         {
             get
             {
-                for (int i = 0; i < itemCapacity; i++)
+                for (int i = 0; i < bakeableCapacity; i++)
                 {
-                    if (!ovenInv[i].Empty) return true;
+                    if (!ovenInv[i].Empty && (i != 0 || !HasFuel)) return true;
                 }
                 return false;
             }
@@ -175,9 +189,9 @@ namespace ACulinaryArtillery
             else
             {
                 CollectibleObject colObj = slot.Itemstack.Collectible;
-                if (colObj.Attributes?.IsTrue("isFirewood") == true)
+                if (colObj.Attributes?.IsTrue("isClayOvenFuel") == true)
                 {
-                    if (TryFuel(slot))
+                    if (TryAddFuel(slot))
                     {
                         AssetLocation sound = slot.Itemstack?.Block?.Sounds?.Place;
                         Api.World.PlaySoundAt(sound != null ? sound : new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
@@ -234,9 +248,9 @@ namespace ACulinaryArtillery
             return false;
         }
 
-        protected virtual bool TryFuel(ItemSlot slot)
+        protected virtual bool TryAddFuel(ItemSlot slot)
         {
-            if (IsBurning || HasItems) return false;
+            if (IsBurning || HasBakeables) return false;
 
             if (FuelSlot.Empty || FuelSlot.Itemstack.StackSize < fuelitemCapacity)
             {
@@ -265,18 +279,12 @@ namespace ACulinaryArtillery
 
             // For large items (pies) check all 4 oven slots are empty before adding the item
 
-            if (bakingProps.LargeItem)
+            if (bakingProps.LargeItem && !ovenInv.Empty)
             {
-                for (int index = 0; index < itemCapacity; index++)
-                {
-                    if (!ovenInv[index].Empty)
-                    {
-                        return false;
-                    }
-                }
+                return false;
             }
 
-            for (int index = 0; index < itemCapacity; index++)
+            for (int index = 0; index < bakeableCapacity; index++)
             {
                 if (ovenInv[index].Empty)
                 {
@@ -307,9 +315,9 @@ namespace ACulinaryArtillery
 
         protected virtual bool TryTake(IPlayer byPlayer)
         {
-            for (int index = itemCapacity; index >= 0; index--)
+            for (int index = bakeableCapacity; index >= 0; index--)
             {
-                if (index == itemCapacity && !FuelSlot.Empty && FuelSlot.Itemstack.Collectible.Attributes?.IsTrue("isFirewood") == true)
+                if (index == bakeableCapacity && !FuelSlot.Empty && FuelSlot.Itemstack.Collectible.Attributes?.IsTrue("isFirewood") == true)
                     continue;
 
                 if (!ovenInv[index].Empty)
@@ -342,7 +350,7 @@ namespace ACulinaryArtillery
             if (IsBurning) return null;
             if (!FuelSlot.Empty) return null;
             if (ovenTemperature <= EnvironmentTemperature() + 25) return null;   // Don't invite player to insert bakeable items in a cold oven - 25 degrees allows some hysteresis if SEASONS causes changes in enviro temperature
-            for (int i = 0; i < itemCapacity; i++)
+            for (int i = 0; i < bakeableCapacity; i++)
             {
                 if (ovenInv[i].Empty) return itemstacks;
             }
@@ -352,7 +360,7 @@ namespace ACulinaryArtillery
         public virtual ItemStack[] CanAddAsFuel(ItemStack[] itemstacks)
         {
             if (IsBurning) return null;
-            for (int i = 0; i < itemCapacity; i++)
+            for (int i = 0; i < bakeableCapacity; i++)
             {
                 if (!ovenInv[i].Empty) return null;
             }
@@ -404,7 +412,7 @@ namespace ACulinaryArtillery
                     if (props?.SmeltedStack == null)
                     {
                         FuelSlot.Itemstack = null;
-                        for (int i = 0; i < itemCapacity; i++) bakingData[i].CurHeightMul = 1;
+                        for (int i = 0; i < bakeableCapacity; i++) bakingData[i].CurHeightMul = 1;
                     }
                     else
                     {
@@ -434,7 +442,7 @@ namespace ACulinaryArtillery
 
 
             // Sync to client every 500ms
-            if (++syncCount % 5 == 0 && (IsBurning || prevOvenTemperature != ovenTemperature || !Inventory.Empty))
+            if (++syncCount % 5 == 0 && (IsBurning || prevOvenTemperature != ovenTemperature || !Inventory[0].Empty || !Inventory[1].Empty || !Inventory[2].Empty || !Inventory[3].Empty))
             {
                 MarkDirty();
                 prevOvenTemperature = ovenTemperature;
@@ -443,7 +451,7 @@ namespace ACulinaryArtillery
 
         protected virtual void HeatInput(float dt)
         {
-            for (int slotIndex = 0; slotIndex < itemCapacity; slotIndex++)
+            for (int slotIndex = 0; slotIndex < bakeableCapacity; slotIndex++)
             {
                 ItemStack stack = ovenInv[slotIndex].Itemstack;
                 if (stack != null)
@@ -635,7 +643,7 @@ namespace ACulinaryArtillery
             ovenTemperature = tree.GetFloat("temp");
             fuelBurnTime = tree.GetFloat("tfuel");
 
-            for (int i = 0; i < itemCapacity; i++)
+            for (int i = 0; i < bakeableCapacity; i++)
             {
                 bakingData[i] = OvenItemData.ReadFromTree(tree, i);
             }
@@ -662,7 +670,7 @@ namespace ACulinaryArtillery
             tree.SetFloat("temp", ovenTemperature);
             tree.SetFloat("tfuel", fuelBurnTime);
 
-            for (int i = 0; i < itemCapacity; i++)
+            for (int i = 0; i < bakeableCapacity; i++)
             {
                 bakingData[i].WriteToTree(tree, i);
             }
@@ -685,7 +693,7 @@ namespace ACulinaryArtillery
 
             sb.AppendLine();
 
-            for (int index = 0; index < itemCapacity; index++)
+            for (int index = 0; index < bakeableCapacity; index++)
             {
                 if (!ovenInv[index].Empty)
                 {
@@ -743,13 +751,19 @@ namespace ACulinaryArtillery
 
 
         #region Rendering
-
+        /*
         protected override void updateMesh(int index)
         {
             if (Api == null || Api.Side == EnumAppSide.Server) return;
-            ItemStack stack;
+            ItemStack stack = null;
             bool isWood = false;
             float scaleY = 0;
+
+            if (stack == null)
+            {
+
+            }
+
             if (index < itemCapacity)
             {
                 //if (Inventory[index].Empty)
@@ -781,14 +795,14 @@ namespace ACulinaryArtillery
                 if (props == null) return;
                 isLargeItem = props.LargeItem;
             }
-            /* MeshData mesh = genMesh(stack);
-            if (mesh != null)
-            {
-                translateMesh(mesh, index, isWood, isLargeItem, scaleY);
-                meshes[index] = mesh;
-            } */
-        }
-
+            // MeshData mesh = genMesh(stack);
+            // if (mesh != null)
+            // {
+            //    translateMesh(mesh, index, isWood, isLargeItem, scaleY);
+            //    meshes[index] = mesh;
+            // } 
+        }    
+    
         /// <summary>
         /// Adjust the mesh of the in-oven item, whether it is firewood, bread or pie
         /// </summary>
@@ -843,6 +857,7 @@ namespace ACulinaryArtillery
             mesh.Translate(x - 0.5f, y, z - 0.5f);
             if (this.rotation > 0) mesh.Rotate(centre, 0, rotation * GameMath.DEG2RAD, 0);
         }
+            */  
 
         protected virtual void WoodRandomiserSetup()
         {
