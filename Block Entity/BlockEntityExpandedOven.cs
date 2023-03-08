@@ -11,7 +11,7 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class BlockEntityExpandedOven : BlockEntityDisplayCase, IHeatSource
+    public class BlockEntityExpandedOven : BlockEntityDisplayCase, IHeatSource, ITexPositionSource
     {
         // One Vec3f object only, for performance
         static readonly Vec3f centre = new Vec3f(0.5f, 0, 0.5f);
@@ -270,8 +270,10 @@ namespace ACulinaryArtillery
 
         protected virtual bool TryPut(ItemSlot slot)
         {
-            if (IsBurning || !FuelSlot.Empty) return false;
-
+            if (IsBurning || !FuelSlot.Empty) 
+            {
+                return false;
+            }
             BakingProperties bakingProps = BakingProperties.ReadFrom(slot.Itemstack);
             if (bakingProps == null) return false;
 
@@ -284,7 +286,7 @@ namespace ACulinaryArtillery
                 return false;
             }
 
-            for (int index = 0; index < bakeableCapacity; index++)
+            for (int index = 1; index < bakeableCapacity; index++)
             {
                 if (ovenInv[index].Empty)
                 {
@@ -306,7 +308,7 @@ namespace ACulinaryArtillery
                 {
                     // Disallow other items from being inserted if slot 0 holds a large item (a pie)
 
-                    BakingProperties slot0Props = BakingProperties.ReadFrom(ovenInv[index].Itemstack);
+                    BakingProperties slot0Props = BakingProperties.ReadFrom(ovenInv[0].Itemstack);
                     if (slot0Props != null && slot0Props.LargeItem) return false;
                 }
             }
@@ -317,7 +319,7 @@ namespace ACulinaryArtillery
         {
             for (int index = bakeableCapacity; index >= 0; index--)
             {
-                if (index == bakeableCapacity && !FuelSlot.Empty && FuelSlot.Itemstack.Collectible.Attributes?.IsTrue("isFirewood") == true)
+                if (index == bakeableCapacity && !FuelSlot.Empty && FuelSlot.Itemstack.Collectible.Attributes?.IsTrue("isClayOvenFuel") == true)
                     continue;
 
                 if (!ovenInv[index].Empty)
@@ -802,7 +804,7 @@ namespace ACulinaryArtillery
             //    meshes[index] = mesh;
             // } 
         }    
-    
+            */  
         /// <summary>
         /// Adjust the mesh of the in-oven item, whether it is firewood, bread or pie
         /// </summary>
@@ -819,9 +821,9 @@ namespace ACulinaryArtillery
                 if (!woodrandDone) WoodRandomiserSetup();
                 scaleDown = 0.46f;
                 scaleY = 1f;
-                float deg = (woodrand[index - itemCapacity] - 4) * 0.6f;
-                float offsetRandom = (woodrand[fuelitemCapacity - 1 - index + itemCapacity] - 4) / 256f;
-                if (index < itemCapacity + 3)
+                float deg = (woodrand[index - bakeableCapacity] - 4) * 0.6f;
+                float offsetRandom = (woodrand[fuelitemCapacity - 1 - index + bakeableCapacity] - 4) / 256f;
+                if (index < bakeableCapacity + 3)
                 {
                     x = 13 / 32f + offsetRandom;
                     y = -1.49f / 16f;
@@ -857,7 +859,7 @@ namespace ACulinaryArtillery
             mesh.Translate(x - 0.5f, y, z - 0.5f);
             if (this.rotation > 0) mesh.Rotate(centre, 0, rotation * GameMath.DEG2RAD, 0);
         }
-            */  
+            
 
         protected virtual void WoodRandomiserSetup()
         {
