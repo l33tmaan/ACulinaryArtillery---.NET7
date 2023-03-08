@@ -11,7 +11,7 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class BlockEntityExpandedOven : BlockEntityDisplayCase, IHeatSource, ITexPositionSource
+    public class BlockEntityExpandedOven : BlockEntityDisplay, IHeatSource, ITexPositionSource
     {
         // One Vec3f object only, for performance
         static readonly Vec3f centre = new Vec3f(0.5f, 0, 0.5f);
@@ -77,7 +77,7 @@ namespace ACulinaryArtillery
         /// <summary>
         /// For rendering: degrees of rotation of contents depending on block variant - 0 is east
         /// </summary>
-        private int rotation;
+        private int rotationDeg;
         Random prng;
         private int syncCount;
 
@@ -151,16 +151,16 @@ namespace ACulinaryArtillery
             switch (Block.Variant["side"])
             {
                 case "south":
-                    this.rotation = 270;
+                    this.rotationDeg = 270;
                     break;
                 case "west":
-                    this.rotation = 180;
+                    this.rotationDeg = 180;
                     break;
                 case "east":
-                    this.rotation = 0;
+                    this.rotationDeg = 0;
                     break;
                 default:
-                    this.rotation = 90;
+                    this.rotationDeg = 90;
                     break;
             }
         }
@@ -638,7 +638,7 @@ namespace ACulinaryArtillery
 
             ovenInv.FromTreeAttributes(tree);
             burning = tree.GetInt("burn") > 0;
-            rotation = tree.GetInt("rota");
+            rotationDeg = tree.GetInt("rota");
             ovenTemperature = tree.GetFloat("temp");
             fuelBurnTime = tree.GetFloat("tfuel");
 
@@ -665,7 +665,7 @@ namespace ACulinaryArtillery
 
             ovenInv.ToTreeAttributes(tree);
             tree.SetInt("burn", burning ? 1 : 0);
-            tree.SetInt("rota", rotation);
+            tree.SetInt("rota", rotationDeg);
             tree.SetFloat("temp", ovenTemperature);
             tree.SetFloat("tfuel", fuelBurnTime);
 
@@ -801,7 +801,6 @@ namespace ACulinaryArtillery
             //    meshes[index] = mesh;
             // } 
         }    
-            */  
         /// <summary>
         /// Adjust the mesh of the in-oven item, whether it is firewood, bread or pie
         /// </summary>
@@ -867,6 +866,111 @@ namespace ACulinaryArtillery
             }
             woodrandDone = true;
         }
+            */  
+
+        public override int DisplayedItems
+        {
+            get
+            {
+                if (OvenContentMode == EnumOvenContentMode.Quadrants) return 4;
+                return 1;
+            }
+        }
+
+        protected override float[][] genTransformationMatrices()
+        {
+            float[][] tfMatrices = new float[DisplayedItems][];
+            Vec3f[] offs = new Vec3f[DisplayedItems];
+
+            switch (OvenContentMode)
+            {
+                case EnumOvenContentMode.Firewood:
+                    offs[0] = new Vec3f();
+                    break;
+                case EnumOvenContentMode.Quadrants:
+                    // Top left
+                    offs[0] = new Vec3f(-2/16f, 1 / 16f, -2.5f / 16f);
+                    // Top right
+                    offs[1] = new Vec3f(-2 / 16f, 1 / 16f, 2.5f / 16f);
+                    // Bot left
+                    offs[2] = new Vec3f(3 / 16f, 1 / 16f, -2.5f / 16f);
+                    // Bot right
+                    offs[3] = new Vec3f(3 / 16f, 1 / 16f, 2.5f / 16f);
+                    break;
+                case EnumOvenContentMode.SingleCenter:
+                    offs[0] = new Vec3f(0, 1/16f, 0);
+                    break;
+            }
+
+            for (int i = 0; i < tfMatrices.Length; i++)
+            {
+                Vec3f off = offs[i];
+
+                float scaleY = OvenContentMode == EnumOvenContentMode.Firewood ? 0.9f : bakingData[i].CurHeightMul;
+
+                tfMatrices[i] =
+                    new Matrixf()
+                    .Translate(off.X, off.Y, off.Z)
+                    .Translate(0.5f, 0, 0.5f)
+                    .RotateYDeg(rotationDeg)
+                    .Scale(0.9f, scaleY, 0.9f)
+                    .Translate(-0.5f, 0, -0.5f)
+                    .Values
+                ;
+            }
+
+            return tfMatrices;
+        }
+
+        protected override string getMeshCacheKey(ItemStack stack)
+        {
+            string scaleY = "";
+            for (int i = 0; i < bakingData.Length; i++)
+            {
+                if (Inventory[i].Itemstack == stack)
+                {
+                    scaleY = "-" + bakingData[i].CurHeightMul;
+                    break;
+                }
+            }
+
+            return (OvenContentMode == EnumOvenContentMode.Firewood ? stack.StackSize + "x" : "") + base.getMeshCacheKey(stack) + scaleY;
+        }
+
+        public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tessThreadTesselator)
+        {
+            tfMatrices = genTransformationMatrices();
+
+            return base.OnTesselation(mesher, tessThreadTesselator);
+        }
+
+        protected override MeshData getOrCreateMesh(ItemStack stack, int index)
+        {
+            if (OvenContentMode == EnumOvenContentMode.Firewood)
+            {
+                MeshData mesh = getMesh(stack);
+                if (mesh != null) return mesh;
+
+                var loc = AssetLocation.Create(Block.Attributes["ovenFuelShape"].AsString(), Block.Code.Domain).WithPathPrefixOnce("shapes/").WithPathAppendixOnce(".json");
+                nowTesselatingShape = Shape.TryGet(capi, loc);
+                nowTesselatingObj = stack.Collectible;
+
+                if (nowTesselatingShape == null)
+                {
+                    capi.Logger.Error("Stacking model shape for collectible " + stack.Collectible.Code + " not found. Block will be invisible!");
+                    return null;
+                }
+
+                capi.Tesselator.TesselateShape("ovenFuelShape", nowTesselatingShape, out mesh, this, null, 0, 0, 0, stack.StackSize);
+
+                string key = getMeshCacheKey(stack);
+                MeshCache[key] = mesh;
+
+                return mesh;
+            }
+
+            return base.getOrCreateMesh(stack, index);
+        }
 
         public virtual void RenderParticleTick(IAsyncParticleManager manager, BlockPos pos, float windAffectednessAtPos, float secondsTicking, AdvancedParticleProperties[] particles)
         {
@@ -889,7 +993,7 @@ namespace ACulinaryArtillery
                 //adjust flames to the number of logs, if less than 3 logs
                 if (i >= 4 && logsCount < 3)
                 {
-                    bool rotated = this.rotation >= 180;
+                    bool rotated = this.rotationDeg >= 180;
                     if (!rotated && z[i % 2] > logsCount * 0.2f + 0.14f) continue;
                     if (rotated && z[i % 2] < (3 - logsCount) * 0.2f + 0.14f) continue;
                 }
@@ -903,12 +1007,12 @@ namespace ACulinaryArtillery
                 //i >= 4 is flames; i < 4 is smoke
                 if (i >= 4)
                 {
-                    bool rotate = this.rotation % 180 > 0;
+                    bool rotate = this.rotationDeg % 180 > 0;
                     if (fireFull) rotate = !rotate;
                     bps.basePos.Z += rotate ? x[i % 2] : z[i % 2];
                     bps.basePos.X += rotate ? z[i % 2] : x[i % 2];
                     bps.basePos.Y += (fireFull ? 4 : 3) / 32f;
-                    switch (this.rotation)
+                    switch (this.rotationDeg)
                     {
                         case 0:
                             bps.basePos.X -= fireFull ? 0.08f : 0.12f;
