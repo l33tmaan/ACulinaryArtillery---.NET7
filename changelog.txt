@@ -1,4 +1,5 @@
 ﻿~1.17_v1.0.12~
+- Updated to 1.18!
 - Mixing bowl client/server issues fixed
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
 - Added wine bottles
@@ -6,6 +7,13 @@
 - ExpandedLiquid class transfers extra nutrients properly when consumed
 - ExpandedFood class maintains nutrition after being grinded
 - Wildcraft trees compatibility added
+- Cookware trader added
+- Eggs give yolks properly when cracked in buckets or BlockEntityGroundStorage items (thanks to MAGGen-hub) - DONE!!!
+- You can now Shift+Left Click saucepans and cauldrons into the firepit (thanks to DoctorVanGogh) - DONE!!! 
+- Bottle racks now display liquid info for clay bottles (thanks to DoctorVanGogh)
+- Shelves display info for ALL liquid containers, not just bottles (thanks to DoctorVanGogh) 
+- Expanded liquids work properly in Expanded Foods
+- Chef hat added (thanks to Ruddi (LORD MIXELS) )
 
 ~1.17_v1.0.11~
 - Using multiple bottles/buckets on the saucepan/cauldron uses correct liquid values

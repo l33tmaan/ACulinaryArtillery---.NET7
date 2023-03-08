@@ -73,7 +73,7 @@ namespace ACulinaryArtillery
 
             IStandardShaderProgram prog = rpi.PreparedStandardShader(pos.X, pos.Y, pos.Z);
 
-            prog.Tex2D = capi.BlockTextureAtlas.AtlasTextureIds[0];
+            prog.Tex2D = capi.BlockTextureAtlas.AtlasTextures[0].TextureId;
             prog.DontWarpVertices = 0;
             prog.AddRenderFlags = 0;
             prog.RgbaAmbientIn = rpi.AmbientColor;

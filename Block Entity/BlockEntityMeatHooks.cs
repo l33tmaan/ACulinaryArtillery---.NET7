@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace ACulinaryArtillery
 {
-    public class BlockEntityMeatHooks : BlockEntityDisplay
+    public class BlockEntityMeatHooks : BlockEntityDisplayCase
     {
         public override string InventoryClassName => "meathooks";
         protected InventoryGeneric inventory;
@@ -20,7 +20,8 @@ namespace ACulinaryArtillery
         public BlockEntityMeatHooks()
         {
             inventory = new InventoryDisplayed(this, 4, "meathooks-0", null, null);
-            meshes = new MeshData[4];
+            // meshes = new MeshData[4];
+            var meshes = new MeshData[4];
         }
 
         public override void Initialize(ICoreAPI api)
@@ -149,7 +150,7 @@ namespace ACulinaryArtillery
             }
         }
 
-        public override void TranslateMesh(MeshData mesh, int index)
+        /* public override void TranslateMesh(MeshData mesh, int index)
         {
             float x = (index % 2 == 0) ? 5 / 16f : 11 / 16f;
             float y = 1 / 16f;
@@ -193,7 +194,7 @@ namespace ACulinaryArtillery
             }
             mesh.Rotate(new Vec3f(0.5f, 0, 0.5f), 0, rotY, 0);
             mesh.Translate(x - 0.5f, 0, z - 0.5f);
-        }
+        } */
 
         public string PerishableInfoCompact(ICoreAPI Api, ItemSlot contentSlot, float ripenRate, bool withStackName = true)
         {

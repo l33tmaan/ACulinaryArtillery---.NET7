@@ -11,7 +11,7 @@ namespace ACulinaryArtillery
     using Vintagestory.API.Util;
     //using System.Diagnostics;
 
-    public class BlockEntityBottleRack : BlockEntityDisplay, ITexPositionSource
+    public class BlockEntityBottleRack : BlockEntityDisplayCase, ITexPositionSource
     {
         private readonly int maxSlots = 16;
         public override string InventoryClassName => "bottlerack";
@@ -19,10 +19,12 @@ namespace ACulinaryArtillery
 
         public override InventoryBase Inventory => this.inventory;
 
+
         public BlockEntityBottleRack()
         {
             this.inventory = new InventoryGeneric(this.maxSlots, null, null);
-            this.meshes = new MeshData[this.maxSlots];
+            //this.meshes = new MeshData[this.maxSlots]; 1.18
+            var meshes = new MeshData[this.maxSlots];
         }
 
         internal bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
@@ -106,7 +108,7 @@ namespace ACulinaryArtillery
             return false;
         }
 
-        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolve)
+        /* public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolve)
         {
             base.FromTreeAttributes(tree, worldForResolve);
             if (this.Api != null)
@@ -140,7 +142,7 @@ namespace ACulinaryArtillery
             var mesh = this.GenMesh(this.Inventory[index].Itemstack);
             this.TranslateMesh(mesh, index);
             this.meshes[index] = mesh;
-        }
+        } */
 
         protected virtual MeshData GenMesh(ItemStack stack)
         {
