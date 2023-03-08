@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace ACulinaryArtillery
 {
-    public class BlockEntityMeatHooks : BlockEntityDisplayCase
+    public class BlockEntityMeatHooks : BlockEntityDisplay
     {
         public override string InventoryClassName => "meathooks";
         protected InventoryGeneric inventory;
@@ -150,51 +150,38 @@ namespace ACulinaryArtillery
             }
         }
 
-        /* public override void TranslateMesh(MeshData mesh, int index)
+        protected override float[][] genTransformationMatrices()
         {
-            float x = (index % 2 == 0) ? 5 / 16f : 11 / 16f;
-            float y = 1 / 16f;
-            float z = (index > 1) ? 11 / 16f : 5 / 16f;
-            float rotY = 0;
-            if (Block.Shape.rotateY == 0)
+            float[][] tfMatrices = new float[4][];
+
+            for (int index = 0; index < 4; index++)
             {
-                if (index == 2 || index == 3)
+                float x = (index % 2 == 0) ? 5 / 16f : 11 / 16f;
+                float y = 2 / 16f;
+                float z = (index > 1) ? 11 / 16f : 5 / 16f;
+
+                int rnd = GameMath.MurmurHash3Mod(Pos.X, Pos.Y + index * 50, Pos.Z, 30) - 15;
+                var collObjAttr = inventory[index]?.Itemstack?.Collectible?.Attributes;
+                if (collObjAttr != null && collObjAttr["randomizeInDisplayCase"].AsBool(true) == false)
                 {
-                    rotY = 180 * GameMath.DEG2RAD;
-				}
-			}
-            else if (Block.Shape.rotateY == 90)
-            {
-                if (index == 0 || index == 2)
-                {
-                    rotY = 0 * GameMath.DEG2RAD;
+                    rnd = 0;
                 }
-                else
-                {
-                    rotY = 180 * GameMath.DEG2RAD;
-                }
+
+                float degY = (90 + rnd);
+
+                tfMatrices[index] = 
+                    new Matrixf()
+                    .Translate(0.5f, 0, 0.5f)
+                    .Translate(x - 0.5f, y, z - 0.5f)
+                    .RotateYDeg(degY)
+                    .Scale(0.75f, 0.75f, 0.75f)
+                    .Translate(-0.5f, 0, -0.5f)
+                    .Values
+                ;
             }
-            else if (Block.Shape.rotateY == 180)
-            {
-                if (index == 0 || index == 1)
-                {
-                    rotY = 180 * GameMath.DEG2RAD;
-				}
-			}
-            else if (Block.Shape.rotateY == 270 )
-            {
-                if (index == 0 || index == 2)
-                {
-                    rotY = 180 * GameMath.DEG2RAD;
-                }
-                else
-                {
-                    rotY = 0 * GameMath.DEG2RAD;
-                }
-            }
-            mesh.Rotate(new Vec3f(0.5f, 0, 0.5f), 0, rotY, 0);
-            mesh.Translate(x - 0.5f, 0, z - 0.5f);
-        } */
+
+            return tfMatrices;
+        }
 
         public string PerishableInfoCompact(ICoreAPI Api, ItemSlot contentSlot, float ripenRate, bool withStackName = true)
         {
