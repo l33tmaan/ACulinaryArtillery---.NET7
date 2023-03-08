@@ -227,9 +227,9 @@ namespace ACulinaryArtillery
                             if (slot.Itemstack.Block?.GetBehavior<BlockBehaviorCanIgnite>() == null)
                             {
                                 ICoreClientAPI capi = Api as ICoreClientAPI;
-                                if (capi != null && slot.Empty) capi.TriggerIngameError(this, "notbakeable", Lang.Get("This item is not bakeable"));
-                                if (capi != null && !slot.Empty) capi.TriggerIngameError(this, "notbakeable", burning ? Lang.Get("Wait until the fire is out") : Lang.Get("Oven is full"));
-
+                                if (capi != null && (slot.Empty || slot.Itemstack.Attributes.GetBool("bakeable", true) == false)) capi.TriggerIngameError(this, "notbakeable", Lang.Get("This item is not bakeable."));
+                                else if (capi != null && !slot.Empty) capi.TriggerIngameError(this, "notbakeable", burning ? Lang.Get("Wait until the fire is out") : Lang.Get("Oven is full"));
+                                
                                 return true;
                             }
                         }
@@ -270,10 +270,7 @@ namespace ACulinaryArtillery
 
         protected virtual bool TryPut(ItemSlot slot)
         {
-            if (IsBurning || !FuelSlot.Empty) 
-            {
-                return false;
-            }
+            if (IsBurning || HasFuel) return false;
             BakingProperties bakingProps = BakingProperties.ReadFrom(slot.Itemstack);
             if (bakingProps == null) return false;
 
@@ -286,7 +283,7 @@ namespace ACulinaryArtillery
                 return false;
             }
 
-            for (int index = 1; index < bakeableCapacity; index++)
+            for (int index = 0; index < bakeableCapacity; index++)
             {
                 if (ovenInv[index].Empty)
                 {
