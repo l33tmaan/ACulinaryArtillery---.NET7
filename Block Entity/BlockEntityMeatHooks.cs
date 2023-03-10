@@ -173,7 +173,7 @@ namespace ACulinaryArtillery
                     new Matrixf()
                     .Translate(0.5f, 0, 0.5f)
                     .Translate(x - 0.5f, y, z - 0.5f)
-                    .RotateYDeg(degY)
+                    .RotateYDeg(Block.Shape.rotateY)
                     .Scale(0.75f, 0.75f, 0.75f)
                     .Translate(-0.5f, 0, -0.5f)
                     .Values
