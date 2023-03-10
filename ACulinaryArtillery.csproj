@@ -16,12 +16,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Remove="assets\aculinaryartillery\textures\item\liquid\**" />
-		<EmbeddedResource Remove="assets\aculinaryartillery\textures\item\liquid\**" />
-		<None Remove="assets\aculinaryartillery\textures\item\liquid\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Update="assets\aculinaryartillery\blocktypes\bighookmold.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -88,6 +82,9 @@
 		<None Update="assets\aculinaryartillery\itemtypes\rollingpin.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\itemtypes\wearable\chefhead.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\lang\en.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -125,9 +122,6 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\patches\seraph-faceless-animation.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\aculinaryartillery\patches\trader-foods.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\recipes\clayforming\bighookmold.json">
@@ -388,6 +382,15 @@
 		<None Update="assets\aculinaryartillery\shapes\block\spilemold.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\shapes\entity\humanoid\seraph\clothing\head\c-hat.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\shapes\entity\humanoid\seraph\clothing\head\c-hat1.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\shapes\entity\humanoid\seraph\clothing\head\c-hat2.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\shapes\item\bighook.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -450,6 +453,9 @@
 		</None>
 		<None Update="assets\aculinaryartillery\textures\block\cauldron\meteoriciron.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\textures\entity\humanoid\seraphclothes\head\c-hat.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\textures\item\food\eggshell.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -617,6 +623,8 @@
 	    <Private>false</Private>
 	  </Reference>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties assets_4aculinaryartillery_4patches_4survival-itemtypes-creature_1json__JsonSchema="https://docs.renovatebot.com/renovate-schema.json" /></VisualStudio></ProjectExtensions>
 
 
 </Project>

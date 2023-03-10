@@ -35,8 +35,8 @@
 			},
 			meathookable: true,
 			meatHookTransform: {
-  				translation: { x: 0.0, y: 0.43, z: -0.215 },
-  				rotation: { x: -93, y: 45, z: 180 },
+  				translation: { x: 0.0, y: 0.48, z: 0.25 },
+  				rotation: { x: -93, y: 45, z: 0 },
   				origin: { x: 0.5, y: 0, z: 0.5 },
   				scale: 0.6
 			},

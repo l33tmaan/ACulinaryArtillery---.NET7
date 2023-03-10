@@ -1,0 +1,59 @@
+{
+	code: "clothes",
+	class: "ItemWearable",
+	variantgroups: [
+		{ code: "category",  states: ["head"] },
+		{ code: "head", combine: "SelectiveMultiply", onVariant: "category", states: [ "c-hat", "c-hat1", "c-hat2" ] },
+	],
+	shapeByType: { 
+		"*-c-hat": { base: "entity/humanoid/seraph/clothing/head/c-hat" },
+		"*-c-hat1": { base: "entity/humanoid/seraph/clothing/head/c-hat1" },
+		"*-c-hat2": { base: "entity/humanoid/seraph/clothing/head/c-hat2" }
+	},
+	storageFlags: 128,
+	attributesByType: {
+		"@.*-(c-hat|c-hat1|c-hat2)": {
+			wearableAttachment: true,
+			clothescategory: "head",
+			disableElements: ["Ponytail1"]
+		}
+	},
+	texturesByType: {
+		"*-c-hat": { "seraph": { base: "game:block/transparent" } },
+		"*-c-hat1": { "seraph": { base: "game:block/transparent" } },
+		"*-c-hat2": { "seraph": { base: "game:block/transparent" } }
+	},
+	creativeinventory: { "general": ["*"], "items": ["*"], "clothing": ["*"] },
+	renderAlphaTest: 0.25,
+	fpHandTransformByType: {
+		"*": {
+			translation: { x: 0.6, y: -1.8, z: -0.5 },
+			rotation: { x: 180, y: -108, z: -180 },
+			origin: { x: 0.5, y: 1.6, z: 0.5 },
+			scale: 2.15
+		}
+	},
+	tpHandTransformByType: {
+		"*": {
+			translation: { x: -0.89, y: -2.6, z: -0.4 },
+			rotation: { x: -109, y: -80, z: 17 },
+			origin: { x: 0.5, y: 1.5, z: 0.5 },
+			scale: 0.63
+		}
+	},
+	guiTransformByType: {
+		"*": {
+			translation: { x: 0, y: 0, z: 19 },
+			rotation: { x: 174, y: -45, z: 23 },
+			origin: { x: 0.52, y: 1.96, z: 0.6 },
+			scale: 2.3
+		}
+	},
+	groundTransformByType: {
+		"*": {
+			translation: { x: 0.05, y: -0.3, z: 0 },
+			rotation: { x: 0, y: 0, z: 0 },
+			scale: 2
+		}
+	}
+}

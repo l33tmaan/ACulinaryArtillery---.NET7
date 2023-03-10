@@ -201,4 +201,11 @@
   "block-spilemold-raw": "Raw spile mold",
   "block-spilemold-burned": "Spile mold",
 
+  "game:item-creature-humanoid-trader-kitchenware": "Kitchenware Trader",
+  "game:tradingwindow-humanoid-trader-kitchenware": "Local goods - {0} the kitchenware trader",
+  "game:prefixandcreature-humanoidtraderkitchenware": "a trader",
+
+  "item-clothes-head-c-hat": "Chef's hat",
+  "item-clothes-head-c-hat1": "Chef's hat",
+  "item-clothes-head-c-hat2": "Chef's hat",
 }

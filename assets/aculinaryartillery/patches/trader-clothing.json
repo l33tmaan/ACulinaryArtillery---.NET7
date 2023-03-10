@@ -1,0 +1,48 @@
+﻿[
+  {
+    "op": "addeach",
+    "path": "/attributes/tradeProps/selling/list/-",
+    "value": [
+    {
+      "code": "aculinaryartillery:clothes-head-c-hat",
+      "type": "item",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 10,
+        "var": 2.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:clothes-head-c-hat1",
+      "type": "item",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 10,
+        "var": 2.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:clothes-head-c-hat2",
+      "type": "item",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 10,
+        "var": 2.5
+      }
+    },
+    ],
+    "file": "game:entities/humanoid/trader-clothing.json"
+  },
+]

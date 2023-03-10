@@ -1,0 +1,9 @@
+﻿[
+  {
+    "op": "add",
+    "path": "/variantgroups/0/states/-",
+    "value": "humanoid-trader-kitchenware",
+    "file": "game:itemtypes/creature.json",
+    "side": "Server"
+  }
+]
