@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace ACulinaryArtillery
 {
-    public class BlockEntityMeatHooks : BlockEntityDisplay
+    public class BlockEntityMeatHooks : BlockEntityDisplayCase, ITexPositionSource
     {
         public override string InventoryClassName => "meathooks";
         protected InventoryGeneric inventory;

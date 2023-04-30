@@ -23,7 +23,7 @@
 		"*-c-hat1": { "seraph": { base: "game:block/transparent" } },
 		"*-c-hat2": { "seraph": { base: "game:block/transparent" } }
 	},
-	creativeinventory: { "general": ["*"], "items": ["*"], "clothing": ["*"] },
+	creativeinventory: { "general": ["*"], "items": ["*"], "clothing": ["*"], "aculinaryartillery": [ "*" ], },
 	renderAlphaTest: 0.25,
 	fpHandTransformByType: {
 		"*": {

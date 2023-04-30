@@ -36,7 +36,7 @@
 	},
     attributes: {
 		tradeProps: {
-			money: { avg: 40, var: 10 },
+			money: { avg: 30, var: 10 },
 
     "selling": {
         "maxItems": 16,

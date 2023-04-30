@@ -2,17 +2,18 @@
 - Updated to 1.18!
 - Mixing bowl client/server issues fixed
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
-- Added wine bottles
 - ExpandedFood & ExpandedLiquid class fixed; now works in meals
 - ExpandedLiquid class transfers extra nutrients properly when consumed
 - ExpandedFood class maintains nutrition after being grinded
-- Wildcraft trees compatibility added
-- Cookware trader added - (needs dialogue and spawn rework?)
 - Expanded liquids work properly in Expanded Foods
-- Chef hat added (thanks to Ruddi (LORD MIXELS) & available at kitchenware/clothing traders ) - DONE!!!
+- Wildcraft trees compatibility added
+- Cookware trader added - (needs spawn rework?) - (move some dialogue into Expanded Foods) - DONE!!!
+- Chef hat added (thanks to Ruddi (LORD MIXELS) & available at kitchenware/clothing traders) - DONE!!!
 - Meat hook rotation fixed (thanks to Vinter Nacht) - DONE!!!
 - Mini cauldron meathook transform edited - DONE!!!
 - Added early-game fruit press?
+- Fixed boiling display issue??
+- DisplayFix fixed
 
 ~1.17_v1.0.12~ pre
 - Eggs give yolks properly when cracked in buckets or BlockEntityGroundStorage items (thanks to MAGGen-hub) - DONE!!!

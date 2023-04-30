@@ -207,7 +207,7 @@
 				{ value: "Can you tell me more about taking full advantage of the food I find?", jumpTo: "ingredients", conditions: [{ variable: "entity.ingredients", isValue: "true" }] },
 				{ value: "Do you have any cooking tips?", jumpTo: "cookingtips", conditions: [{ variable: "entity.ingredients", isValue: "true" }] },
 				{ value: "I want to learn as much about the culinary arts as possible. Can you teach me?", jumpTo: "bread", "conditions": [{ variable: "entity.breadreceived", isNotValue: "true" }] },
-				{ value: "Here's the bread you wanted. Am I a chef now?", jumpTo: "takebread", conditions: [{ variable: "entity.requestbread", isValue: "true" }, { variable: "entity.breadreceived", isNotValue: "true" }, { variable: "player.inventory", isValue: "{type: 'item', code: 'game:bread-spelt-perfect'}" } ] },
+				{ value: "Here's the bread you wanted. Am I a chef now?", jumpTo: "takebread", conditions: [{ variable: "entity.requestbread", isValue: "true" }, { variable: "entity.breadreceived", isNotValue: "true" }, { variable: "player.inventory", isValue: "{type: 'item', code: 'bread-spelt-perfect'}" } ] },
 			]
 		},
 		{
@@ -347,40 +347,7 @@
 				{ value: "Like what?", jumpTo: "ingredients" },
 			]
 		},
-
-		{
-			code: "ingredients",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "It depends on the kind of food you're interested in!" }
-			],
-			setVariables: { "entity.ingredients": "true" },
-		},
-		{
-			code: "ingredientsresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "I like meat - tell me more.", jumpTo: "ingredients-meat" },
-				{ value: "What about grain?", jumpTo: "ingredients-grain" },
-				{ value: "Can you tell me about vegetables?", jumpTo: "ingredients-vegetable" },
-				{ value: "Tell me what you know about dairy.", jumpTo: "ingredients-dairy" },
-				{ value: "How about fruit?", jumpTo: "ingredients-fruit" },
-				{ value: "Nevermind.", jumpTo: "suityourself" },
-			]
-		},
-
-		{
-			code: "suityourself",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Suit yourself." }
-			],
-			jumpTo: "main"
-		},
-
+		
 		{
 			code: "cookingtips",
 			owner: "trader",
@@ -395,10 +362,12 @@
 			type: "talk",
 			text: [
 				{ value: "I usually just cook food over a firepit.", jumpTo: "cookingtips-earlygame" },
-				{ value: "I've got a saucepan, how do I use it?", jumpTo: "cookingtips-saucepan", conditions: [{ variable: "entity.cookingtips.earlygame", isValue: "true" }] },
-				{ value: "If I can make metal, what cooking options do I have?", jumpTo: "cookingtips-metalage", conditions: [{ variable: "entity.cookingtips.saucepan", isValue: "true" }] },
-				{ value: "The fruit press, huh?", jumpTo: "cookingtips-fruitpress", conditions: [{ variable: "entity.cookingtips.metalage", isValue: "true" }] },
-				{ value: "What's a spile?", jumpTo: "cookingtips-spile", conditions: [{ variable: "entity.cookingtips.metalage", isValue: "true" }] },
+				{ value: "I've got a saucepan, how do I use it?", jumpTo: "cookingtips-saucepan", conditions: [{ variable: "entity.cookingtipsearlygame", isValue: "true" }] },
+				{ value: "A rolling pin? What's that for?", jumpTo: "cookingtips-rollingpin", conditions: [{ variable: "entity.cookingtipsearlygame", isValue: "true" }] },
+				{ value: "If I can make metal, what cooking options do I have?", jumpTo: "cookingtips-metalage", conditions: [{ variable: "entity.cookingtipsmidgame", isValue: "true" }] },
+				{ value: "The fruit press, huh?", jumpTo: "cookingtips-fruitpress", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
+				{ value: "What's a spile?", jumpTo: "cookingtips-spile", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
+				{ value: "You're telling me some meat can make hooks?", jumpTo: "cookingtips-meathooks", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
 				{ value: "Before the beginning. Forget I said this.", jumpTo: "anytime" },
 			]
 		},
@@ -407,9 +376,9 @@
 			owner: "trader",
 			type: "talk",
 			text: [
-				{ value: "That's the best you can do? First things first - get your hands on some clay and fire yourself up a saucepan. You'll need it if you plan on gettin' down to basics." }
+				{ value: "That's the best you can do? First things first - get your hands on some clay and fire yourself up a saucepan. You'll need it if you plan on gettin' down to basics. I'd recommend whittling a rolling pin out of some wood, too. If you've got enough clay to spare, fire up an oven and get cookin'." }
 			],
-			setVariables: { "entity.cookingtips.earlygame": "true" },
+			setVariables: { "entity.cookingtipsearlygame": "true" },
 			jumpTo: "main"
 		},
 		{
@@ -419,7 +388,17 @@
 			text: [
 				{ value: "Well, it can carry liquids. If ya place it on a firepit, then you can use it to open up a little menu where you can add ingredients to boil into something tasty." }
 			],
-			setVariables: { "entity.cookingtips.saucepan": "true" },
+			setVariables: { "entity.cookingtipsmidgame": "true" },
+			jumpTo: "main"
+		},
+		{
+			code: "cookingtips-rollingpin",
+			owner: "trader",
+			type: "talk",
+			text: [
+				{ value: "Rolling pins and hammers are great for tenderizing meat and flattening dough. The animals around here are tough - you'll need to tenderize their meat in order to chop it into fine, delectable bits." }
+			],
+			setVariables: { "entity.cookingtipsmidgame": "true" },
 			jumpTo: "main"
 		},
 		{
@@ -429,7 +408,34 @@
 			text: [
 				{ value: "You can start making barrels and buckets with a saw, but an important tool is your fruit press. Juice some fruit or vegetables and you've got a great way to use a ton of bottles. You could also cast metal to make spiles or meat hooks - or even cauldrons!" }
 			],
-			setVariables: { "entity.cookingtips.metalage": "true" },
+			setVariables: { "entity.cookingtipsmetalage": "true" },
+			jumpTo: "main"
+		},
+		{
+			code: "cookingtips-fruitpress",
+			owner: "trader",
+			type: "talk",
+			text: [
+				{ value: "Yes, a vital tool for rising above the culinary rabble. Lots of food is full of juice and other liquids that you can press out and use for other purposes. Store them in bottles or cauldrons and they typically last longer than their solid counterparts." }
+			],
+			jumpTo: "main"
+		},
+		{
+			code: "cookingtips-spile",
+			owner: "trader",
+			type: "talk",
+			text: [
+				{ value: "S'like a little spout you jam into a tree to make it leak sap. Don't forget to put a bucket or something underneath it. Trees don't always leak sap, too - make sure you're in the right season for it." }
+			],
+			jumpTo: "main"
+		},
+		{
+			code: "cookingtips-meathooks",
+			owner: "trader",
+			type: "talk",
+			text: [
+				{ value: "No... it's a hook that you hang meat from. See, if you let meat age in a cool, dry place like a cellar, the outside will harden while the inside grows soft and flavorful. Chop away the crust and you have some fine, aged meat. I can't get enough of the stuff, myself." }
+			],
 			jumpTo: "main"
 		},
 
@@ -471,5 +477,42 @@
 			setVariables: { "entity.breadreceived": "true" },
 			jumpTo: "main"
 		},
-	]
+
+
+
+		{
+			code: "ingredients",
+			owner: "trader",
+			type: "talk",
+			text: [
+				{ value: "It depends on the kind of food you're interested in!" }
+			],
+			setVariables: { "entity.ingredients": "true" },
+		},
+		{
+			code: "ingredientsresponse",
+			owner: "player",
+			type: "talk",
+			text: [
+				{ value: "I like meat - tell me more.", jumpTo: "ingredients-meat" },
+				{ value: "What about grain?", jumpTo: "ingredients-grain" },
+				{ value: "Can you tell me about vegetables?", jumpTo: "ingredients-vegetable" },
+				{ value: "Tell me what you know about dairy.", jumpTo: "ingredients-dairy" },
+				{ value: "How about fruit?", jumpTo: "ingredients-fruit" },
+				{ value: "Nevermind.", jumpTo: "suityourself" },
+			]
+		},
+
+		{
+			code: "suityourself",
+			owner: "trader",
+			type: "talk",
+			text: [
+				{ value: "Suit yourself." }
+			],
+			jumpTo: "main"
+		},
+	
+	
+]
 }
