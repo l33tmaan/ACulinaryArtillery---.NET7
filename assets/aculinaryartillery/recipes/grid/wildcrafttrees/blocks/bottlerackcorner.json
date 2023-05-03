@@ -1,11 +1,12 @@
-[
+﻿[
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 1,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-acacia-north",
+				code: "bottlerack-*-douglasfir-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -24,16 +25,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-acacia-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-douglasfir-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 2,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-baldcypress-north",
+				code: "bottlerack-*-willow-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -52,16 +54,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-baldcypress-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-willow-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 3,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-birch-north",
+				code: "bottlerack-*-honeylocust-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -80,16 +83,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-birch-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-honeylocust-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 4,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-ebony-north",
+				code: "bottlerack-*-bearnut-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -108,16 +112,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-ebony-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-bearnut-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 5,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-kapok-north",
+				code: "bottlerack-*-blackpoplar-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -136,16 +141,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-kapok-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-blackpoplar-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 6,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-larch-north",
+				code: "bottlerack-*-pyramidalpoplar-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -164,16 +170,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-larch-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-pyramidalpoplar-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 7,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-maple-north",
+				code: "bottlerack-*-catalpa-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -192,16 +199,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-maple-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-catalpa-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 8,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-oak-north",
+				code: "bottlerack-*-mahogany-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -220,16 +228,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-oak-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-mahogany-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 9,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-pine-north",
+				code: "bottlerack-*-sal-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -248,16 +257,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-pine-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-sal-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 10,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-purpleheart-north",
+				code: "bottlerack-*-saxaul-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -276,16 +286,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-purpleheart-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-saxaul-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 11,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-redwood-north",
+				code: "bottlerack-*-spruce-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -304,16 +315,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-redwood-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-spruce-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 12,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-walnut-north",
+				code: "bottlerack-*-sycamore-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -332,16 +344,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-walnut-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-sycamore-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 13,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "bottlerack-*-aged-north",
+				code: "bottlerack-*-elm-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -360,16 +373,104 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "aculinaryartillery:bottlerackcorner-{woodframe}-aged-north"
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-elm-north"
 		}
 	},	
 	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 14,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-beech-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-beech-north"
+		}
+	},	
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 15,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-eucalyptus-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-eucalyptus-north"
+		}
+	},	
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 16,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-cedar-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-cedar-north"
+		}
+	},	
+	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 1,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-acacia-north",
+				code: "aculinaryartillery:bottlerackcorner-*-douglasfir-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -388,16 +489,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-acacia-north"
+			code: "bottlerack-{woodframe}-douglasfir-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 2,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-baldcypress-north",
+				code: "aculinaryartillery:bottlerackcorner-*-willow-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -416,16 +518,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-baldcypress-north"
+			code: "bottlerack-{woodframe}-willow-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 3,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-birch-north",
+				code: "aculinaryartillery:bottlerackcorner-*-honeylocust-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -444,16 +547,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-birch-north"
+			code: "bottlerack-{woodframe}-honeylocust-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 4,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-ebony-north",
+				code: "aculinaryartillery:bottlerackcorner-*-bearnut-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -472,16 +576,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-ebony-north"
+			code: "bottlerack-{woodframe}-bearnut-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 5,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-kapok-north",
+				code: "aculinaryartillery:bottlerackcorner-*-blackpoplar-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -500,16 +605,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-kapok-north"
+			code: "bottlerack-{woodframe}-blackpoplar-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 6,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-larch-north",
+				code: "aculinaryartillery:bottlerackcorner-*-pyramidalpoplar-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -528,16 +634,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-larch-north"
+			code: "bottlerack-{woodframe}-pyramidalpoplar-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 7,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-maple-north",
+				code: "aculinaryartillery:bottlerackcorner-*-catalpa-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -556,16 +663,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-maple-north"
+			code: "bottlerack-{woodframe}-catalpa-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 8,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-oak-north",
+				code: "aculinaryartillery:bottlerackcorner-*-mahogany-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -584,16 +692,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-oak-north"
+			code: "bottlerack-{woodframe}-mahogany-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 9,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-pine-north",
+				code: "aculinaryartillery:bottlerackcorner-*-sal-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -612,16 +721,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-pine-north"
+			code: "bottlerack-{woodframe}-sal-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 10,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-purpleheart-north",
+				code: "aculinaryartillery:bottlerackcorner-*-saxaul-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -640,16 +750,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-purpleheart-north"
+			code: "bottlerack-{woodframe}-saxaul-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 11,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-redwood-north",
+				code: "aculinaryartillery:bottlerackcorner-*-spruce-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -668,16 +779,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-redwood-north"
+			code: "bottlerack-{woodframe}-spruce-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 12,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-walnut-north",
+				code: "aculinaryartillery:bottlerackcorner-*-sycamore-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -696,16 +808,17 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-walnut-north"
+			code: "bottlerack-{woodframe}-sycamore-north"
 		}
 	},
 	{
+		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 13,
 		ingredients: {
 			"B": {
 				type: "block",
-				code: "aculinaryartillery:bottlerackcorner-*-aged-north",
+				code: "aculinaryartillery:bottlerackcorner-*-elm-north",
 				name: "woodframe"
 			},
 			"S": {
@@ -724,7 +837,94 @@
 		shapeless: true,
 		output: {
 			type: "block",
-			code: "bottlerack-{woodframe}-aged-north"
+			code: "bottlerack-{woodframe}-elm-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 14,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-beech-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-beech-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 15,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-eucalyptus-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-eucalyptus-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 16,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-cedar-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-cedar-north"
 		}
 	},
 ]

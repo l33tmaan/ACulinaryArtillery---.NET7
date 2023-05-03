@@ -1,0 +1,338 @@
+﻿[
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 1,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-douglasfir",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-douglasfir-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 2,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-willow",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-willow-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 3,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-honeylocust",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-honeylocust-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 4,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-bearnut",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-bearnut-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 5,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-blackpoplar",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-blackpoplar-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 6,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-pyramidalpoplar",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-pyramidalpoplar-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 7,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-catalpa",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-catalpa-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 8,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-mahogany",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-mahogany-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 9,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-sal",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-sal-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 10,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-saxaul",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-saxaul-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 11,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-spruce",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-spruce-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 12,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-sycamore",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-sycamore-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 13,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-elm",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-elm-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 14,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-beech",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-beech-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 15,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-eucalyptus",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-eucalyptus-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 16,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "game:plank-cedar",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-cedar-{metal}-east"  }
+},
+]
