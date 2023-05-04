@@ -4,8 +4,8 @@
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
 - ExpandedFood & ExpandedLiquid class fixed; now works in meals
 - ExpandedLiquid class transfers extra nutrients properly when consumed
-- ExpandedFood class maintains nutrition after being grinded
 - Expanded liquids work properly in Expanded Foods
+- ExpandedFood class maintains nutrition after being grinded
 - Wildcraft trees compatibility added - DONE!!!
 - Cookware trader added - (needs spawn rework?) - (move some dialogue into Expanded Foods) - DONE!!!
 - Chef hat added (thanks to Ruddi (LORD MIXELS) & available at kitchenware/clothing traders) - DONE!!!
@@ -13,7 +13,7 @@
 - Mini cauldron meathook transform edited - DONE!!!
 - Fixed boiling display issue??
 - DisplayFix fixed
-- Added early-game fruit press?
+- Ukranian translation added (thanks to _epic_fish_!) - DONE!!!
 
 ~1.17_v1.0.12~ pre
 - Eggs give yolks properly when cracked in buckets or BlockEntityGroundStorage items (thanks to MAGGen-hub) - DONE!!!
