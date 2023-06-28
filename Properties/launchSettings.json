@@ -1,10 +1,8 @@
 {
   "profiles": {
-    "VintageStory": {
-      "commandName": "Executable",
-      "executablePath": "$(APPDATA)\\VintageStory\\VintageStory.exe",
-      "commandLineArgs": "-openWorld=\"modsamplestest\" -pcreativebuilding",
-      "workingDirectory": "$(APPDATA)\\VintageStory\\"
+    "ACulinaryArtillery": {
+      "commandName": "Project",
+      "nativeDebugging": true
     }
   }
 }

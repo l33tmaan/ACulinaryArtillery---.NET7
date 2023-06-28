@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net462</TargetFramework>
-		<LangVersion>9</LangVersion>
+		<TargetFramework>net7.0</TargetFramework>
+		<LangVersion>11</LangVersion>
 		<ApplicationIcon />
 		<OutputType>Library</OutputType>
 		<StartupObject />
@@ -14,6 +14,23 @@
 		<DefineConstants>TRACE</DefineConstants>
 		<Optimize>false</Optimize>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove=".vs\**" />
+	  <EmbeddedResource Remove=".vs\**" />
+	  <None Remove=".vs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Launcher.dll" />
+	  <None Remove="Launcher.pdb" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="obj\ACulinaryArtillery.csproj.nuget.dgspec.json" />
+	  <Content Include="obj\Debug\net7.0\ACulinaryArtillery.csproj.FileListAbsolute.txt" />
+	  <Content Include="obj\project.assets.json" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Update="assets\aculinaryartillery\blocktypes\bighookmold.json">
@@ -521,6 +538,21 @@
 
 	<ItemGroup>
 		<Folder Include="assets\aculinaryartillery\textures\item\food\eggyolk\" />
+		<Folder Include="bin\Debug\net7.0\" />
+		<Folder Include="obj\Debug\net7.0\refint\" />
+		<Folder Include="obj\Debug\net7.0\ref\" />
+		<Folder Include="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="obj\ACulinaryArtillery.csproj.nuget.g.props" />
+	  <None Include="obj\ACulinaryArtillery.csproj.nuget.g.targets" />
+	  <None Include="obj\Debug\net7.0\ACulinaryArtillery.AssemblyInfoInputs.cache" />
+	  <None Include="obj\Debug\net7.0\ACulinaryArtillery.assets.cache" />
+	  <None Include="obj\Debug\net7.0\ACulinaryArtillery.csproj.AssemblyReference.cache" />
+	  <None Include="obj\Debug\net7.0\ACulinaryArtillery.csproj.CoreCompileInputs.cache" />
+	  <None Include="obj\Debug\net7.0\ACulinaryArtillery.GeneratedMSBuildEditorConfig.editorconfig" />
+	  <None Include="obj\project.nuget.cache" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -530,101 +562,44 @@
 	<ItemGroup>
 	  <Reference Include="0Harmony">
 	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\0Harmony.dll</HintPath>
-	    <Private>false</Private>
+		<Private>false</Private>
 	  </Reference>
 	  <Reference Include="cairo-sharp">
 	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\cairo-sharp.dll</HintPath>
-	    <Private>false</Private>
+		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="Newtonsoft.Json">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\Newtonsoft.Json.dll</HintPath>
-	    <Private>false</Private>
+		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\Newtonsoft.Json.dll</HintPath>
+		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="protobuf-net">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\protobuf-net.dll</HintPath>
-	    <Private>false</Private>
-	  </Reference>
-	  <Reference Include="Vintagestory">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Vintagestory.exe</HintPath>
-	    <Private>false</Private>
+		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\protobuf-net.dll</HintPath>
+		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VintagestoryAPI">
 	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\VintagestoryAPI.dll</HintPath>
-	    <Private>false</Private>
+		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VintagestoryLib">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\VintagestoryLib.dll</HintPath>
-	    <Private>false</Private>
+		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\VintagestoryLib.dll</HintPath>
+		  <Private>false</Private>
+	  </Reference>
+	  <Reference Include="VSBuildLib">
+		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\VSBuildLib.dll</HintPath>
+		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VSCreativeMod">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
-	    <Private>false</Private>
+		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
+		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VSEssentials">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSEssentials.dll</HintPath>
-	    <Private>false</Private>
+		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSEssentials.dll</HintPath>
+		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VSSurvivalMod">
 	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSSurvivalMod.dll</HintPath>
-	    <Private>false</Private>
+		  <Private>false</Private>
 	  </Reference>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System.Core">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System.Data">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System.Drawing">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System.IO.Compression.FileSystem">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System.Numerics">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System.Runtime.Serialization">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System.Xml">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Update="System.Xml.Linq">
-	    <Private>false</Private>
-	  </Reference>
-	</ItemGroup>
-
-	<ProjectExtensions><VisualStudio><UserProperties assets_4aculinaryartillery_4patches_4survival-itemtypes-creature_1json__JsonSchema="https://docs.renovatebot.com/renovate-schema.json" /></VisualStudio></ProjectExtensions>
-
-
+    
 </Project>

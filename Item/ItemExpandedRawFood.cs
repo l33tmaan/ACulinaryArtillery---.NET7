@@ -14,7 +14,7 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class ItemExpandedRawFood : Item, IExpandedFood
+    public class ItemExpandedRawFood : Item, IExpandedFood, IContainedMeshSource
     {
         public float SatMult
         {
@@ -573,6 +573,31 @@ namespace ACulinaryArtillery
             }
 
             return mesh;
+        }
+
+
+        public MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos = null)
+        {
+            ICoreClientAPI capi = api as ICoreClientAPI;
+            var be = api.World.BlockAccessor.GetBlockEntity(atBlockPos);
+
+            string[] ings = (stack.Attributes?["madeWith"] as StringArrayAttribute)?.value;
+            if (ings == null || ings.Length <= 0)
+            {
+                capi.Tesselator.TesselateItem(stack.Item, out MeshData mesh, be as ITexPositionSource);   // This copies the default code for items in BlockEntityContainerDisplay.getOrCreateMesh()
+                mesh.RenderPassesAndExtraBits.Fill((short)EnumChunkRenderPass.BlendNoCull);
+                return mesh;
+            }
+
+            return GenMesh(capi, ings, new Vec3f(0, be.Block.Shape.rotateY, 0), capi.Tesselator);
+        }
+
+        public string GetMeshCacheKey(ItemStack stack)
+        {
+            string[] ings = (stack.Attributes?["madeWith"] as StringArrayAttribute)?.value;
+            if (ings == null) return Code.ToShortString();
+
+            return Code.ToShortString() + string.Join(",", ings);
         }
 
         /*
@@ -1796,7 +1821,6 @@ namespace ACulinaryArtillery
 
             return null;
         }
-
     }
 
     public interface IExpandedFood

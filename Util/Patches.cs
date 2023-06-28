@@ -65,7 +65,24 @@ namespace ACulinaryArtillery
         /// </code>
         /// to make saucepans/cauldrons prefer a firepit's input slot.
         /// </summary>
-        [HarmonyTranspiler]
+        /// 
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(InventorySmelting), nameof(InventorySmelting.GetSuitability))]
+        public static bool Harmony_InventorySmelting_GetSuitability_Prefix(
+            ItemSlot sourceSlot, ItemSlot targetSlot, ItemSlot[] ___slots, ref float __result)
+        {
+            var stack = sourceSlot.Itemstack;
+            if (targetSlot == ___slots[1] && stack.Collectible is BlockSaucepan)
+            {
+                __result = 2.2f;
+                return false;
+            }
+            return true;
+        }
+        // Thanks Apache!!!
+
+        /* [HarmonyTranspiler]
         [HarmonyPatch(nameof(InventorySmelting.GetSuitability))]
         public static IEnumerable<CodeInstruction> AddSaucePanToPreferredSmeltingInputs(IEnumerable<CodeInstruction> instructions) {
             CodeMatcher matcher = new CodeMatcher(instructions);
@@ -99,7 +116,7 @@ namespace ACulinaryArtillery
             }
 
             return matcher.InstructionEnumeration();
-        }
+        } */
     }
 
 
@@ -596,49 +613,6 @@ namespace ACulinaryArtillery
         //    return true;
         //}
 
-        [HarmonyPrefix]
-        [HarmonyPatch("genMesh")]
-        static bool displayFix(ItemStack stack, int index, ref MeshData __result, BlockEntityShelf __instance, ref Item ___nowTesselatingItem, ref Matrixf ___mat)
-        {
-            if (stack.Collectible is ItemExpandedRawFood)
-            {
-                string[] ings = (stack.Attributes?["madeWith"] as StringArrayAttribute)?.value;
-                if (ings == null || ings.Length <= 0) return true;
-
-                ___nowTesselatingItem = stack.Item;
-
-                __result = (stack.Collectible as ItemExpandedRawFood).GenMesh(__instance.Api as ICoreClientAPI, ings, new Vec3f(0, __instance.Block.Shape.rotateY, 0), (__instance.Api as ICoreClientAPI).Tesselator);
-                // __result = (stack.Collectible as ItemExpandedRawFood).GenMesh(__instance.Api as ICoreClientAPI, ings, __instance, new Vec3f(0, __instance.Block.Shape.rotateY, 0));
-                // __result.RenderPassesAndExtraBits.Fill((short)EnumChunkRenderPass.BlendNoCull);
-
-                float x = ((index % 4) >= 2) ? 12 / 16f : 4 / 16f;
-                float y = index >= 4 ? 10 / 16f : 2 / 16f;
-                float z = (index % 2 == 0) ? 4 / 16f : 10 / 16f;
-
-                Vec4f offset = ___mat.TransformVector(new Vec4f(x - 0.5f, y, z - 0.5f, 0));
-                __result.Translate(offset.XYZ);
-
-                return false;
-            }
-            if (stack.Collectible is BlockBottle && !stack.Collectible.Code.Path.Contains("clay"))
-            {
-                ItemStack content = (stack.Collectible as BlockBottle).GetContent(stack);
-                if (content == null) return true;
-                __result = (stack.Collectible as BlockBottle).GenMesh(__instance.Api as ICoreClientAPI, content);
-                //__result.RenderPasses.Fill((short)EnumChunkRenderPass.BlendNoCull);
-
-                float x = ((index % 4) >= 2) ? 12 / 16f : 4 / 16f;
-                float y = index >= 4 ? 10 / 16f : 2 / 16f;
-                float z = (index % 2 == 0) ? 4 / 16f : 10 / 16f;
-
-                Vec4f offset = ___mat.TransformVector(new Vec4f(x - 0.5f, y, z - 0.5f, 0));
-                __result.Translate(offset.XYZ);
-
-                return false;
-            }
-
-                return true;
-        }
 
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(BlockEntityShelf.GetBlockInfo))]
