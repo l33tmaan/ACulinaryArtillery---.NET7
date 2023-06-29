@@ -1,5 +1,5 @@
 ﻿~1.17_v1.0.12~
-- Updated to 1.18!
+- Updated to 1.18 & .NET7!
 - Mixing bowl client/server issues fixed
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
 - ExpandedFood & ExpandedLiquid class fixed; now works in meals
@@ -16,7 +16,7 @@
 - Fixed boiling display issue??
 - DisplayFix fixed
 - Ukranian translation added (thanks to _epic_fish_!) - DONE!!!
-- Expanded pies fixed
+- Expanded pies fixed (thanks Radfast!) - DONE!!!
 - Sideways barrels added? (see Ye Olde Keg)
 - Meat cleavers can be hung from meat racks
 

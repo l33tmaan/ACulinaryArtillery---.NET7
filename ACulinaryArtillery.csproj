@@ -584,10 +584,6 @@
 		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\VintagestoryLib.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
-	  <Reference Include="VSBuildLib">
-		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\VSBuildLib.dll</HintPath>
-		  <Private>false</Private>
-	  </Reference>
 	  <Reference Include="VSCreativeMod">
 		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
 		  <Private>false</Private>
