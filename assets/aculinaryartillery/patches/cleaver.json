@@ -1,0 +1,33 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes/meathookable",
+    "value": true,
+    "side": "server",
+    "file": "game:itemtypes/tool/cleaver.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/meatHookTransform",
+    "value": {
+      "translation": {
+        "x": 0.03,
+        "y": -0.24,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 285
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "scale": 0.9
+    },
+    "side": "server",
+    "file": "game:itemtypes/tool/cleaver.json"
+  }
+]
