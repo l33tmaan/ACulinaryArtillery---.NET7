@@ -6,18 +6,20 @@
 - ExpandedLiquid class transfers extra nutrients properly when consumed
 - Expanded liquids work properly in Expanded Foods
 - ExpandedFood class maintains nutrition after being grinded
-- Wildcraft trees compatibility added - DONE!!!
-- Eggshells drop properly when breaking laid eggs - DONE!!!
-- Cookware trader added - (needs spawn rework?) - (move some dialogue into Expanded Foods) - DONE!!!
-- Chef hat added (thanks to Ruddi (LORD MIXELS) & available at kitchenware/clothing traders) - DONE!!!
-- Meat hook rotation fixed (thanks to Vinter Nacht) - DONE!!!
-- Mini cauldron meathook transform edited - DONE!!!
-- Fixed boiling display issue??
-- DisplayFix fixed (thanks to Radfast!) - DONE!!!
-- Ukranian translation added (thanks to _epic_fish_!) - DONE!!!
-- Expanded pies fixed (thanks Radfast!) - DONE!!!
 - Sideways barrels added? (see Ye Olde Keg)
-- Meat cleavers can be hung from meat racks - DONE!!!
+- Fixed boiling display issue??
+
+~1.17_v1.0.12~ pre 2
+- Wildcraft trees compatibility added
+- Eggshells drop properly when breaking laid eggs
+- Cookware trader added - (needs spawn rework?) - (move some dialogue into Expanded Foods)
+- Chef hat added (thanks to Ruddi (LORD MIXELS) & available at kitchenware/clothing traders)
+- Meat hook rotation fixed (thanks to Vinter Nacht)
+- Mini cauldron meathook transform edited
+- Meat cleavers can be hung from meat racks
+- DisplayFix fixed (thanks to Radfast!)
+- Expanded pies fixed (thanks Radfast!)
+- Ukranian translation added (thanks to _epic_fish_!)
 
 ~1.17_v1.0.12~ pre
 - Eggs give yolks properly when cracked in buckets or BlockEntityGroundStorage items (thanks to MAGGen-hub) - DONE!!!
