@@ -1704,8 +1704,15 @@ namespace ACulinaryArtillery
                 for (int i = 0; i < propsm.Length; i++)
                 {
                     transitionedHours[i] = 0;
-                    freshHours[i] = propsm[i].FreshHours.nextFloat(1, world.Rand);
-                    transitionHours[i] = propsm[i].TransitionHours.nextFloat(1, world.Rand);
+                    if (propsm[i] != null)
+                    {
+                        freshHours[i] = propsm[i].FreshHours.nextFloat(1, world.Rand);
+                        transitionHours[i] = propsm[i].TransitionHours.nextFloat(1, world.Rand);
+                    } else
+                    {
+                        freshHours[i] = 0;
+                        transitionHours[i] = 0;
+                    }
                 }
 
                 attr["freshHours"] = new FloatArrayAttribute(freshHours);
@@ -1807,7 +1814,7 @@ namespace ACulinaryArtillery
         public override TransitionState UpdateAndGetTransitionState(IWorldAccessor world, ItemSlot inslot, EnumTransitionType type)
         {
             TransitionState[] states = UpdateAndGetTransitionStates(world, inslot);
-            TransitionableProperties[] propsm = GetTransitionableProperties(world, inslot.Itemstack, null);
+            TransitionableProperties[] propsm = GetTransitionableProperties(world, inslot?.Itemstack, null);
             if (propsm == null)
                 return null;
 
@@ -1815,7 +1822,7 @@ namespace ACulinaryArtillery
             {
                 if (i >= states.Length)
                     break;
-                if (propsm[i].Type == type)
+                if (propsm[i]?.Type == type)
                     return states[i];
             }
 
