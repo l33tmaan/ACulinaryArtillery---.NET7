@@ -17,12 +17,6 @@ namespace ACulinaryArtillery
         public List<string> svalues;
     }
 
-    [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
-    public class RecipeResponse
-    {
-        public string response;
-    }
-
     public class RecipeUploadSystem : ModSystem
     {
         #region Client
@@ -34,15 +28,16 @@ namespace ACulinaryArtillery
             clientApi = api;
 
             clientChannel =
-                api.Network.RegisterChannel("networkapitest")
+                api.Network.RegisterChannel("aculinaryartillery")
                 .RegisterMessageType(typeof(RecipeUpload))
-                .RegisterMessageType(typeof(RecipeResponse))
                 .SetMessageHandler<RecipeUpload>(OnServerMessage)
             ;
         }
 
         private void OnServerMessage(RecipeUpload networkMessage)
         {
+            if (!clientApi.PlayerReadyFired) return;
+            clientApi.Logger.VerboseDebug("Received ACA recipes from server");
             List<DoughRecipe> drecipes = new List<DoughRecipe>();
             List<CookingRecipe> crecipes = new List<CookingRecipe>();
             List<SimmerRecipe> srecipes = new List<SimmerRecipe>();
@@ -109,23 +104,48 @@ namespace ACulinaryArtillery
         #region Server
         IServerNetworkChannel serverChannel;
         ICoreServerAPI serverApi;
+        RecipeUpload cachedMessage;
 
         public override void StartServerSide(ICoreServerAPI api)
         {
             serverApi = api;
 
             serverChannel =
-                api.Network.RegisterChannel("networkapitest")
+                api.Network.RegisterChannel("aculinaryartillery")
                 .RegisterMessageType(typeof(RecipeUpload))
-                .RegisterMessageType(typeof(RecipeResponse))
-                .SetMessageHandler<RecipeResponse>(OnClientMessage)
             ;
 
-            api.RegisterCommand("recipeupload", "Resync recipes", "", OnRecipeUploadCmd, Privilege.chat);
-            api.Event.PlayerNowPlaying += (hmm) => { OnRecipeUploadCmd(); };
+            api.RegisterCommand("recipeupload", "Resync recipes", "", OnRecipeUploadCmd, Privilege.controlserver);
+            api.Event.PlayerNowPlaying += (player) => { SendRecepies(player); };
         }
 
         private void OnRecipeUploadCmd(IServerPlayer player = null, int groupId = 0, CmdArgs args = null)
+        {
+            BroadcastRecepies();
+        }
+
+        private void BroadcastRecepies()
+        {
+            RecipeUpload message = GetRecipeUploadMessage();
+            cachedMessage = message;
+
+            serverChannel.BroadcastPacket(message);
+        }
+
+        private void SendRecepies(IServerPlayer player, bool allowCache = true)
+        {
+            SendRecepies(new IServerPlayer[] { player }, allowCache);
+        }
+
+        private void SendRecepies(IServerPlayer[] players, bool allowCache = true)
+        {
+            if (!allowCache || cachedMessage == null)
+                cachedMessage = GetRecipeUploadMessage();
+
+            serverChannel.SendPacket(cachedMessage, players);
+        }
+
+        private RecipeUpload GetRecipeUploadMessage()
         {
             List<string> drecipes = new List<string>();
             List<string> crecipes = new List<string>();
@@ -170,17 +190,12 @@ namespace ACulinaryArtillery
                 }
             }
 
-            serverChannel.BroadcastPacket(new RecipeUpload()
+            return new RecipeUpload()
             {
                 dvalues = drecipes,
                 cvalues = crecipes,
                 svalues = srecipes
-            });
-        }
-
-        private void OnClientMessage(IPlayer fromPlayer, RecipeResponse networkMessage)
-        {
-            OnRecipeUploadCmd();
+            };
         }
 
 
