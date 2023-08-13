@@ -75,6 +75,9 @@
 		<None Update="assets\aculinaryartillery\blocktypes\spilemold.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\config\dialogue\trader-kitchenware.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\config\handbook\24-aculinaryartilleryguide.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -117,6 +120,12 @@
 		<None Update="assets\aculinaryartillery\lang\ru.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\lang\uk.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\cleaver.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\patches\compatibility\moreanimals\egg.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -129,6 +138,18 @@
 		<None Update="assets\aculinaryartillery\patches\compatibility\moreanimals\eggyolkportion.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\patches\compatibility\wildcrafttrees\bottlerack.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\compatibility\wildcrafttrees\bottlerackcorner.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\compatibility\wildcrafttrees\meathooks.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\compatibility\wildcrafttrees\rollingpin.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\patches\firewood.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -140,6 +161,12 @@
 		</None>
 		<None Update="assets\aculinaryartillery\patches\seraph-faceless-animation.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\survival-itemtypes-creature.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\trader-clothing.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\recipes\clayforming\bighookmold.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -176,6 +203,15 @@
 		</None>
 		<None Update="assets\aculinaryartillery\recipes\grid\blocks\mixingbowl.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttrees\blocks\bottlerack.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttrees\blocks\bottlerackcorner.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttrees\blocks\meathooks.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\recipes\grid\destroycauldron.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -489,11 +525,17 @@
 		<None Update="assets\aculinaryartillery\textures\item\food\eggyolk\pheasant.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\game\entities\humanoid\trader-kitchenware.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\game\patches\clay-oven.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\game\patches\egg.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\game\textures\entity\humanoid\traderclothes\set7.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\game\textures\item\liquid\eggyolkfull\capercaillie.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
