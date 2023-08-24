@@ -896,82 +896,35 @@ namespace ACulinaryArtillery
             __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
 
-        /*
-         SPANG - March 13, 2022
-         Don't call this shit
-         Replaced with GetExpandedContentNutritionProperties in ItemExpandedRawFood.cs
+        
         [HarmonyPrefix]
         [HarmonyPatch("GetContentNutritionProperties", typeof(IWorldAccessor), typeof(ItemSlot), typeof(ItemStack[]), typeof(EntityAgent), typeof(bool), typeof(float), typeof(float))]
         static bool nutriFix(IWorldAccessor world, ItemSlot inSlot, ItemStack[] contentStacks, EntityAgent forEntity, ref FoodNutritionProperties[] __result, bool mulWithStacksize = false, float nutritionMul = 1, float healthMul = 1)
         {
-            List<FoodNutritionProperties> foodProps = new List<FoodNutritionProperties>();
-            if (contentStacks == null)
-                return true;
+            List<FoodNutritionProperties> props = new List<FoodNutritionProperties>();
+
+            Dictionary<EnumFoodCategory, float> totalSaturation = new Dictionary<EnumFoodCategory, float>();
+            
 
             for (int i = 0; i < contentStacks.Length; i++)
             {
                 if (contentStacks[i] == null)
                     continue;
-
-                CollectibleObject obj = contentStacks[i].Collectible;
-                FoodNutritionProperties stackProps;
-
-                if (obj.CombustibleProps != null && obj.CombustibleProps.SmeltedStack != null)
-                {
-                    stackProps = obj.CombustibleProps.SmeltedStack.ResolvedItemstack.Collectible.GetNutritionProperties(world, obj.CombustibleProps.SmeltedStack.ResolvedItemstack, forEntity);
-                }
-                else
-                {
-                    stackProps = obj.GetNutritionProperties(world, contentStacks[i], forEntity);
-                }
-
-                if (obj.Attributes?["nutritionPropsWhenInMeal"].Exists == true)
-                {
-                    stackProps = obj.Attributes?["nutritionPropsWhenInMeal"].AsObject<FoodNutritionProperties>();
-                }
-
-                if (stackProps == null)
-                    continue;
-
-                float mul = mulWithStacksize ? contentStacks[i].StackSize : 1;
-
-                FoodNutritionProperties props = stackProps.Clone();
-
-                DummySlot slot = new DummySlot(contentStacks[i], inSlot.Inventory);
-                TransitionState state = contentStacks[i].Collectible.UpdateAndGetTransitionState(world, slot, EnumTransitionType.Perish);
-                float spoilState = state != null ? state.TransitionLevel : 0;
-
-                float satLossMul = GlobalConstants.FoodSpoilageSatLossMul(spoilState, slot.Itemstack, forEntity);
-                float healthLoss = GlobalConstants.FoodSpoilageHealthLossMul(spoilState, slot.Itemstack, forEntity);
-                props.Satiety *= satLossMul * nutritionMul * mul;
-                props.Health *= healthLoss * healthMul * mul;
-
-
-                if (obj is ItemExpandedRawFood && (contentStacks[i].Attributes["expandedSats"] as FloatArrayAttribute)?.value?.Length == 6)
-                {
-                    FoodNutritionProperties[] exProps = (obj as ItemExpandedRawFood).GetPropsFromArray((contentStacks[i].Attributes["expandedSats"] as FloatArrayAttribute).value);
-
-                    if (exProps == null || exProps.Length <= 0)
-                        continue;
-
-                    foreach (FoodNutritionProperties exProp in exProps)
-                    {
-                        exProp.Satiety *= satLossMul * mul * nutritionMul;
-                        exProp.Health *= healthLoss * healthMul * mul;
-
-                        foodProps.Add(exProp);
-                    }
-                }
-                else
-                {
-                    foodProps.Add(props);
-                }
+                props.AddRange( ItemExpandedRawFood.GetExpandedContentNutritionProperties(
+                                                                                            world,
+                                                                                            inSlot,
+                                                                                            contentStacks[i],
+                                                                                            forEntity,
+                                                                                            mulWithStacksize,
+                                                                                            nutritionMul,
+                                                                                            healthMul
+                                                                                            ) );
             }
 
-            __result = foodProps.ToArray();
+            __result = props.ToArray();
             return false;
         }
-        */
+        
 
         [HarmonyPrefix]
         [HarmonyPatch("GetContentNutritionFacts", typeof(IWorldAccessor), typeof(ItemSlot), typeof(ItemStack[]), typeof(EntityAgent), typeof(bool), typeof(float), typeof(float))]
