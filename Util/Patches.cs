@@ -513,7 +513,14 @@ namespace ACulinaryArtillery
                 var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
 #endif
 
-                MethodInfo firstOrDefault = typeof(Enumerable).GetMethods().FirstOrDefault(mi => mi.Name == "FirstOrDefault" && mi.GetParameters().Length == 2);
+                MethodInfo firstOrDefault = typeof(Enumerable)
+                    .GetMethods()
+                    .Single(
+                        mi => mi is { Name: nameof(Enumerable.FirstOrDefault), IsGenericMethod: true }                      // `Enumerable.FirstOrDefault<...>(...)` method
+                            && mi.GetParameters() is [_, { ParameterType: var pt }]                                         // with exactly **two** parameters
+                            && mi.GetGenericArguments() is [var ga]                                                         // with **one** generic type argument `<T>`
+                            && pt == typeof(System.Func<,>).MakeGenericType(ga, typeof(bool))                               // where the second parameter is of Type `Func<T, bool>`
+                    );
                 MethodInfo firstOrDefaultOfItemSlot = firstOrDefault.MakeGenericMethod(typeof(ItemSlot));
                 MethodInfo entityContainerInventoryGetter = AccessTools.PropertyGetter(typeof(BlockEntityContainer), nameof(BlockEntityContainer.Inventory));
 
@@ -531,7 +538,6 @@ namespace ACulinaryArtillery
                             Code.Newobj,
                             new CodeMatch(OpCodes.Call, firstOrDefaultOfItemSlot)
                         )
-
                         .ThrowIfInvalid("Could not find transpiler anchor")
 
                         .Advance(1)                                                                                         // step past the 'beg' local getter

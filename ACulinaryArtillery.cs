@@ -73,9 +73,16 @@ namespace ACulinaryArtillery
                 api.StoreModConfig(ACulinaryArtilleryConfig.Current, "aculinaryartillery.json");
             }
 
-            harmony ??= new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
             logger = api.Logger;
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            
+            if (harmony is null) {
+                /* there seems to be *repeated* calls to "Start" for the same process. 
+                 * Make sure we dont try to double/triple patch things (where we would possibly 
+                 * not find things as expected on the repeated attempts)                        */
+                harmony = new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
+                harmony.PatchAll(Assembly.GetExecutingAssembly());
+            }
+
         }
 
         public override void Dispose()
@@ -125,7 +132,7 @@ namespace ACulinaryArtillery
         }
 
         internal static void LogError(string message) {
-            logger.Error("(ACulinaryArtillery): {0}", message);
+            logger?.Error("(ACulinaryArtillery): {0}", message);
         }
 
     }
