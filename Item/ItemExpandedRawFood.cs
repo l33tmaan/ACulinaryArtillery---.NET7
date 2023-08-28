@@ -553,7 +553,7 @@ namespace ACulinaryArtillery
             MeshRef meshref;
             if (!meshrefs.TryGetValue(key, out meshref))
             {
-                MeshData mesh = GenMesh(capi, ings, new Vec3f(0, 0, 0));
+                MeshData mesh = GenMesh(capi, capi.ItemTextureAtlas, ings, new Vec3f(0, 0, 0));
                 if (mesh == null)
                     return;
 
@@ -564,8 +564,9 @@ namespace ACulinaryArtillery
                 renderinfo.ModelRef = meshref;
         }
 
-        public MeshData GenMesh(ICoreClientAPI capi, string[] ings, Vec3f rot = null, ITesselatorAPI tesselator = null)
+        public MeshData GenMesh(ICoreClientAPI capi, ITextureAtlasAPI targetAtlas, string[] ings, Vec3f rot = null, ITesselatorAPI tesselator = null)
         {
+            this.targetAtlas = targetAtlas;
             if (tesselator == null)
                 tesselator = capi.Tesselator;
 
@@ -603,7 +604,7 @@ namespace ACulinaryArtillery
                     Shape addShape;
                     if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
                         continue;
-                    tesselator.TesselateShape(this, addShape, out addIng, rot);
+                    tesselator.TesselateShape("ACA", addShape, out addIng, this, rot);
                     mesh.AddMeshData(addIng);
                 }
                 else
@@ -611,7 +612,7 @@ namespace ACulinaryArtillery
                     Shape addShape;
                     if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
                         continue;
-                    tesselator.TesselateShape(this, addShape, out mesh, rot);
+                    tesselator.TesselateShape("ACA", addShape, out mesh, this, rot);
                 }
             }
 
@@ -636,7 +637,7 @@ namespace ACulinaryArtillery
                 return mesh;
             }
 
-            return GenMesh(capi, ings, new Vec3f(0, be.Block.Shape.rotateY, 0), capi.Tesselator);
+            return GenMesh(capi, targetAtlas, ings, new Vec3f(0, be.Block.Shape.rotateY, 0), capi.Tesselator);
         }
 
         public string GetMeshCacheKey(ItemStack stack)
