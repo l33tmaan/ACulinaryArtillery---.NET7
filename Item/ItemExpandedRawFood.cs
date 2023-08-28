@@ -14,11 +14,54 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class ItemExpandedRawFood : Item, IExpandedFood, IContainedMeshSource
+    public class ItemExpandedRawFood : Item, IExpandedFood, ITexPositionSource, IContainedMeshSource
     {
+        public Size2i AtlasSize => targetAtlas.Size;
+        public TextureAtlasPosition this[string textureCode] => GetOrCreateTexPos(GetTexturePath(textureCode));
+        protected ITextureAtlasAPI targetAtlas;
+        protected Shape nowTesselatingShape;
+
         public float SatMult
         {
             get { return Attributes?["satMult"].AsFloat(1f) ?? 1f; }
+        }
+
+        protected AssetLocation GetTexturePath(string textureCode)
+        {
+            AssetLocation texturePath = null;
+            CompositeTexture tex;
+
+            // Prio 1: Get from collectible textures
+            if (Textures.TryGetValue(textureCode, out tex))
+                texturePath = tex.Baked.BakedName;
+            // Prio 2: Get from collectible textures, use "all" code
+            else if (Textures.TryGetValue("all", out tex))
+                texturePath = tex.Baked.BakedName;
+            // Prio 3: Get from currently tesselating shape
+            else
+                nowTesselatingShape?.Textures.TryGetValue(textureCode, out texturePath);
+
+            // Prio 4: The code is the path
+            if (texturePath == null)
+                texturePath = new AssetLocation(textureCode);
+
+            return texturePath;
+        }
+
+        protected TextureAtlasPosition GetOrCreateTexPos(AssetLocation texturePath)
+        {
+            ICoreClientAPI capi = api as ICoreClientAPI;
+            TextureAtlasPosition texpos = targetAtlas[texturePath];
+
+            if (texpos != null) return texpos;
+
+            IAsset texAsset = capi.Assets.TryGet(texturePath.Clone().WithPathPrefixOnce("textures/").WithPathAppendixOnce(".png"));
+            bool success = targetAtlas.GetOrInsertTexture(texturePath, out _, out texpos, () => texAsset?.ToBitmap(capi));
+            if (success) return texpos;
+
+            texpos = targetAtlas.UnknownTexturePosition;
+            capi.World.Logger.Warning("Item {0} defined texture {1}, but no such texture was found.", Code, texturePath);
+            return texpos;
         }
 
         public override void OnCreatedByCrafting(ItemSlot[] allInputslots, ItemSlot outputSlot, GridRecipe byRecipe)
@@ -578,13 +621,17 @@ namespace ACulinaryArtillery
 
         public MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos = null)
         {
+            this.targetAtlas = targetAtlas;
+            nowTesselatingShape = null;
             ICoreClientAPI capi = api as ICoreClientAPI;
             var be = api.World.BlockAccessor.GetBlockEntity(atBlockPos);
 
             string[] ings = (stack.Attributes?["madeWith"] as StringArrayAttribute)?.value;
             if (ings == null || ings.Length <= 0)
             {
-                capi.Tesselator.TesselateItem(stack.Item, out MeshData mesh, be as ITexPositionSource);   // This copies the default code for items in BlockEntityContainerDisplay.getOrCreateMesh()
+                if (stack.Item?.Shape?.Base != null)
+                    nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Item.Shape.Base);
+                capi.Tesselator.TesselateItem(stack.Item, out MeshData mesh, this);
                 mesh.RenderPassesAndExtraBits.Fill((short)EnumChunkRenderPass.BlendNoCull);
                 return mesh;
             }
