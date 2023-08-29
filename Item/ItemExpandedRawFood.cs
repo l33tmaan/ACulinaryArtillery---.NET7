@@ -553,7 +553,7 @@ namespace ACulinaryArtillery
             MeshRef meshref;
             if (!meshrefs.TryGetValue(key, out meshref))
             {
-                MeshData mesh = GenMesh(capi, capi.ItemTextureAtlas, ings, new Vec3f(0, 0, 0));
+                MeshData mesh = GenMesh(capi.ItemTextureAtlas, ings, new Vec3f(0, 0, 0));
                 if (mesh == null)
                     return;
 
@@ -564,9 +564,11 @@ namespace ACulinaryArtillery
                 renderinfo.ModelRef = meshref;
         }
 
-        public MeshData GenMesh(ICoreClientAPI capi, ITextureAtlasAPI targetAtlas, string[] ings, Vec3f rot = null, ITesselatorAPI tesselator = null)
+        public virtual MeshData GenMesh(ITextureAtlasAPI targetAtlas, string[] ings, Vec3f rot = null, ITesselatorAPI tesselator = null)
         {
             this.targetAtlas = targetAtlas;
+            nowTesselatingShape = null;
+            ICoreClientAPI capi = api as ICoreClientAPI;
             if (tesselator == null)
                 tesselator = capi.Tesselator;
 
@@ -594,33 +596,34 @@ namespace ACulinaryArtillery
             if (addShapes.Count <= 0)
                 return null;
 
+            // Render first added ingredient before everything else to avoid transparent bread
+            AssetLocation baseIngredient = addShapes.Last();
+            addShapes.Remove(baseIngredient);
+            addShapes.Insert(0, baseIngredient);
+
             MeshData mesh = null;
 
             for (int i = 0; i < addShapes.Count; i++)
             {
-                if (mesh != null)
-                {
-                    MeshData addIng;
-                    Shape addShape;
-                    if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
-                        continue;
-                    tesselator.TesselateShape("ACA", addShape, out addIng, this, rot);
-                    mesh.AddMeshData(addIng);
-                }
+                MeshData addIng;
+                Shape addShape;
+
+                if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
+                    continue;
+                tesselator.TesselateShape("ACA", addShape, out addIng, this, rot);
+
+                if (mesh == null)
+                    mesh = addIng;
                 else
-                {
-                    Shape addShape;
-                    if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
-                        continue;
-                    tesselator.TesselateShape("ACA", addShape, out mesh, this, rot);
-                }
+                    mesh.AddMeshData(addIng);
             }
 
+            mesh.RenderPassesAndExtraBits.Fill((short)EnumChunkRenderPass.BlendNoCull);
             return mesh;
         }
 
 
-        public MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos = null)
+        public virtual MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos = null)
         {
             this.targetAtlas = targetAtlas;
             nowTesselatingShape = null;
@@ -637,7 +640,7 @@ namespace ACulinaryArtillery
                 return mesh;
             }
 
-            return GenMesh(capi, targetAtlas, ings, new Vec3f(0, be.Block.Shape.rotateY, 0), capi.Tesselator);
+            return GenMesh(targetAtlas, ings, new Vec3f(0, be.Block.Shape.rotateY, 0), capi.Tesselator);
         }
 
         public string GetMeshCacheKey(ItemStack stack)
@@ -648,68 +651,7 @@ namespace ACulinaryArtillery
             return Code.ToShortString() + string.Join(",", ings);
         }
 
-        /*
-        public MeshData GenMesh(ICoreClientAPI capi, string[] ings, ITexPositionSource tex, Vec3f rot = null, ITesselatorAPI tesselator = null)
-        {
-            if (tesselator == null)
-                tesselator = capi.Tesselator;
-
-            List<AssetLocation> addShapes = new List<AssetLocation>();
-
-            TreeAttribute check = Attributes?["renderIngredients"].ToAttribute() as TreeAttribute;
-            List<string> chk = new List<string>();
-            if (check != null)
-                foreach (var val in check)
-                    chk.Add(val.Key);
-            else
-                return null;
-
-            for (int i = 0; i < ings.Length; i++)
-            {
-                string path = null;
-                path = Attributes?["renderIngredients"]?[FindMatch(ings[i], chk.ToArray())]?.AsString();
-                if (path == null)
-                    continue;
-                AssetLocation shape = new AssetLocation(path);
-                if (shape != null)
-                    addShapes.Add(shape);
-            }
-
-            if (addShapes.Count <= 0)
-                return new MeshData();
-
-            MeshData mesh = null;
-
-            for (int i = 0; i < addShapes.Count; i++)
-            {
-                if (mesh != null)
-                {
-                    MeshData addIng;
-                    Shape addShape;
-                    if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
-                        continue;
-                    tesselator.TesselateShape("expandedfood", addShape, out addIng, tex, rot);
-                    mesh.AddMeshData(addIng);
-                }
-                else
-                {
-                    Shape addShape;
-                    if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
-                        continue;
-                    tesselator.TesselateShape("expandedfood", addShape, out mesh, tex, rot);
-                }
-            }
-
-            if (mesh == null)
-                return null;
-            return mesh;
-        }
-
-        */
-
-
         public MeshData GenMesh(ICoreClientAPI capi, string[] ings, ItemStack stack, Vec3f rot = null, ITesselatorAPI tesselator = null)
-        //public MeshData GenMesh(ICoreClientAPI capi, string[] ings, ITexPositionSource tex, Vec3f rot = null, ITesselatorAPI tesselator = null)
         {
             if (tesselator == null)
                 tesselator = capi.Tesselator;
@@ -761,28 +703,6 @@ namespace ACulinaryArtillery
                 }
             }
 
-            /*
-            for (int i = 0; i < addShapes.Count; i++)
-            {
-                if (mesh != null)
-                {
-                    MeshData addIng;
-                    Shape addShape;
-                    if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null) continue;
-                    tesselator.TesselateShape("expandedfood", addShape, out addIng, tex, rot);
-                    mesh.AddMeshData(addIng);
-                }
-                else
-                {
-                    Shape addShape;
-                    if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null) continue;
-                    tesselator.TesselateShape("expandedfood", addShape, out mesh, tex, rot);
-                }
-            }
-            */
-
-            if (mesh == null)
-                return null;
             return mesh;
         }
 
