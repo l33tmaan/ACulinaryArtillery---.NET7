@@ -8,11 +8,12 @@
 - Fixed boiling display issue??
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
 - Pies can take syrup/sauce
+- Glass bottles shed light if contained liquid does too
 
 ~1.18_v1.0.15~
-- Visual bugs in oven/shelves/meat racks fixed (thanks to Dmitry221060!) - DONE!!!
-- Fix meals in bowls not providing all extra nutrients from complex ingredients (thanks to islasa1) - DONE!!!
-- Transpiler message removed (thanks to DoctorVanGogh) - DONE!!!
+- Visual bugs in oven/shelves/meat racks fixed (thanks to Dmitry221060!)
+- Fix meals in bowls not providing all extra nutrients from complex ingredients (thanks to islasa1)
+- Transpiler message removed (thanks to DoctorVanGogh)
 
 ~1.18_v1.0.14~
 - The server-client recipe refactor from the previous release, but this is for net7 releases.
