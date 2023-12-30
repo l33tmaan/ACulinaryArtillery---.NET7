@@ -125,7 +125,12 @@ namespace ACulinaryArtillery
 
             return base.OnBlockInteractStart(world, byPlayer, bs);
         }
-
+        EnumIgniteState IIgnitable.OnTryIgniteStack(EntityAgent byEntity, BlockPos pos, ItemSlot slot, float secondsIgniting)
+        {
+            BlockEntityExpandedOven beo = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityExpandedOven;
+            if (beo.IsBurning) return secondsIgniting > 2 ? EnumIgniteState.IgniteNow : EnumIgniteState.Ignitable;
+            return EnumIgniteState.NotIgnitable;
+        }
         public EnumIgniteState OnTryIgniteBlock(EntityAgent byEntity, BlockPos pos, float secondsIgniting)
         {
             BlockEntityExpandedOven beo = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityExpandedOven;
