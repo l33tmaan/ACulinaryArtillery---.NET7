@@ -134,7 +134,7 @@
 
             if (capi.ObjectCache.TryGetValue(this.MeshRefsCacheKey, out var obj))
             {
-                var meshrefs = obj as Dictionary<int, MeshRef>;
+                var meshrefs = obj as Dictionary<int, MultiTextureMeshRef>;
                 foreach (var val in meshrefs)
                 { val.Value.Dispose(); }
                 capi.ObjectCache.Remove(this.MeshRefsCacheKey);
