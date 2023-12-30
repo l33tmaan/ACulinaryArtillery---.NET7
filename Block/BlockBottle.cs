@@ -84,11 +84,11 @@
             if (this.Code.Path.Contains("clay"))
             { return; }
 
-            Dictionary<int, MeshRef> meshrefs;
+            Dictionary<int, MultiTextureMeshRef> meshrefs;
             if (capi.ObjectCache.TryGetValue(this.MeshRefsCacheKey, out var obj))
-            { meshrefs = obj as Dictionary<int, MeshRef>; }
+            { meshrefs = obj as Dictionary<int, MultiTextureMeshRef>; }
             else
-            { capi.ObjectCache[this.MeshRefsCacheKey] = meshrefs = new Dictionary<int, MeshRef>(); }
+            { capi.ObjectCache[this.MeshRefsCacheKey] = meshrefs = new Dictionary<int, MultiTextureMeshRef>(); }
 
             var contentStack = this.GetContent(itemstack);
             if (contentStack == null)
@@ -98,7 +98,7 @@
             if (!meshrefs.TryGetValue(hashcode, out var meshRef))
             {
                 var meshdata = this.GenMesh(capi, contentStack);
-                meshrefs[hashcode] = meshRef = capi.Render.UploadMesh(meshdata);
+                meshrefs[hashcode] = meshRef = capi.Render.UploadMultiTextureMesh(meshdata);
             }
             renderinfo.ModelRef = meshRef;
         }

@@ -664,17 +664,17 @@ namespace ACulinaryArtillery
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            Dictionary<int, MeshRef> meshrefs = null;
+            Dictionary<int, MultiTextureMeshRef> meshrefs = null;
             bool isSealed = itemstack.Attributes.GetBool("isSealed");
 
             object obj;
             if (capi.ObjectCache.TryGetValue((Variant["metal"]) + "MeshRefs", out obj))
             {
-                meshrefs = obj as Dictionary<int, MeshRef>;
+                meshrefs = obj as Dictionary<int, MultiTextureMeshRef>;
             }
             else
             {
-                capi.ObjectCache[(Variant["metal"]) + "MeshRefs"] = meshrefs = new Dictionary<int, MeshRef>();
+                capi.ObjectCache[(Variant["metal"]) + "MeshRefs"] = meshrefs = new Dictionary<int, MultiTextureMeshRef>();
             }
 
             ItemStack contentStack = GetContent(itemstack);
@@ -682,7 +682,7 @@ namespace ACulinaryArtillery
 
             int hashcode = GetSaucepanHashCode(capi.World, contentStack, isSealed);
 
-            MeshRef meshRef = null;
+            MultiTextureMeshRef meshRef = null;
 
             if (!meshrefs.TryGetValue(hashcode, out meshRef))
             {
@@ -690,7 +690,7 @@ namespace ACulinaryArtillery
                 //meshdata.Rgba2 = null;
 
 
-                meshrefs[hashcode] = meshRef = capi.Render.UploadMesh(meshdata);
+                meshrefs[hashcode] = meshRef = capi.Render.UploadMultiTextureMesh(meshdata);
 
             }
 
