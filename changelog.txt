@@ -1,4 +1,4 @@
-﻿~1.18_v1.0.16~
+﻿~1.18_v1.0.17~
 - Mixing bowl client/server issues fixed
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
 - ExpandedLiquid class transfers extra nutrients properly when consumed
@@ -9,6 +9,9 @@
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
 - Pies can take syrup/sauce
 - Glass bottles shed light if contained liquid does too
+
+~1.18_v1.0.16~
+ - Polish translation updated (thanks to Sako47)
 
 ~1.18_v1.0.15~
 - Visual bugs in oven/shelves/meat racks fixed (thanks to Dmitry221060!)
