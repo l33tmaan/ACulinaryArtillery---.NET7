@@ -544,20 +544,20 @@ namespace ACulinaryArtillery
             if (ings == null || ings.Length <= 0)
                 return;
 
-            Dictionary<string, MeshRef> meshrefs = ObjectCacheUtil.GetOrCreate(capi, "expandedFoodGuiMeshRefs", () =>
+            Dictionary<string, MultiTextureMeshRef> meshrefs = ObjectCacheUtil.GetOrCreate(capi, "expandedFoodGuiMeshRefs", () =>
             {
-                return new Dictionary<string, MeshRef>();
+                return new Dictionary<string, MultiTextureMeshRef>();
             });
 
             string key = Code.ToShortString() + string.Join("|", ings);
-            MeshRef meshref;
+            MultiTextureMeshRef meshref;
             if (!meshrefs.TryGetValue(key, out meshref))
             {
                 MeshData mesh = GenMesh(capi.ItemTextureAtlas, ings, new Vec3f(0, 0, 0));
                 if (mesh == null)
                     return;
 
-                meshrefs[key] = meshref = capi.Render.UploadMesh(mesh);
+                meshrefs[key] = meshref = capi.Render.UploadMultiTextureMesh(mesh);
             }
 
             if (meshref != null)

@@ -344,7 +344,7 @@ namespace ACulinaryArtillery
                             new CodeMatch(Instruction.IsBrFalse)
                         )
 
-                        .ThrowIfInvalid("Could not find transpiler anchor.");
+                        .ThrowIfInvalid("SaucePan issue - Could not find transpiler anchor.");
 
                     // remember jump target
                     var label = matcher.Operand;
@@ -469,7 +469,7 @@ namespace ACulinaryArtillery
             /// </summary>
             public static bool CanSqueezeInto(ItemHoneyComb instance, Block block, BlockSelection selection) {
                 return block switch {
-                    ILiquidSink => instance.CanSqueezeInto(block, selection.Position),
+                    ILiquidSink => instance.CanSqueezeInto(block, selection),
                     _ => apiAccessor(instance) is var api
                         && api.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityGroundStorage beg
                         && instance.GetSuitableTargetSlot(beg, selection) is ItemSlot
@@ -513,7 +513,7 @@ namespace ACulinaryArtillery
                 var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
 #endif
 
-                MethodInfo firstOrDefault = typeof(Enumerable)
+               /* MethodInfo firstOrDefault = typeof(Enumerable)
                     .GetMethods()
                     .Single(
                         mi => mi is { Name: nameof(Enumerable.FirstOrDefault), IsGenericMethod: true }                      // `Enumerable.FirstOrDefault<...>(...)` method
@@ -521,27 +521,28 @@ namespace ACulinaryArtillery
                             && mi.GetGenericArguments() is [var ga]                                                         // with **one** generic type argument `<T>`
                             && pt == typeof(System.Func<,>).MakeGenericType(ga, typeof(bool))                               // where the second parameter is of Type `Func<T, bool>`
                     );
-                MethodInfo firstOrDefaultOfItemSlot = firstOrDefault.MakeGenericMethod(typeof(ItemSlot));
-                MethodInfo entityContainerInventoryGetter = AccessTools.PropertyGetter(typeof(BlockEntityContainer), nameof(BlockEntityContainer.Inventory));
-
-
+               */
+                //MethodInfo firstOrDefaultOfItemSlot = firstOrDefault.MakeGenericMethod(typeof(ItemSlot));
+                //MethodInfo entityContainerInventoryGetter = AccessTools.PropertyGetter(typeof(BlockEntityContainer), nameof(BlockEntityContainer.Inventory));
+                MethodInfo getSlotMethod = AccessTools.Method(typeof(BlockEntityGroundStorage), nameof(BlockEntityGroundStorage.GetSlotAt));
                 CodeMatcher matcher = new CodeMatcher(instructions);
                 try {
-                    matcher
+                    matcher 
                         .End()
-                        // find the <c>beg.Inventory.FirstOrDefault(delegate ...) { ... }</c> block
+                        // find what was the <c>beg.Inventory.FirstOrDefault(delegate ...) { ... }</c> block
                         .MatchStartBackwards(
                             new CodeMatch(ci => Instruction.IsLdLoc(ci, typeof(BlockEntityGroundStorage))),
-                            new CodeMatch(ci => Instruction.IsCallVirt(ci, entityContainerInventoryGetter)),
-                            Code.Ldarg_0,
-                            Code.Ldftn,
-                            Code.Newobj,
-                            new CodeMatch(OpCodes.Call, firstOrDefaultOfItemSlot)
+                            Code.Ldarg_S,
+                            new CodeMatch(ci => Instruction.IsCallVirt(ci, getSlotMethod))
+                            //Code.Ldarg_0,
+                            //Code.Ldftn,
+                            //Code.Newobj,
+                            //new CodeMatch(OpCodes.Call, firstOrDefaultOfItemSlot)
                         )
-                        .ThrowIfInvalid("Could not find transpiler anchor")
+                        .ThrowIfInvalid("GroundStorage issue - Could not find transpiler anchor")
 
                         .Advance(1)                                                                                         // step past the 'beg' local getter
-                        .RemoveInstructions(5)                                                                              // remove <c>.Inventory.FirstOrDefault(delegate ...) { ... }</c> part
+                        .RemoveInstructions(2)                                                                              // remove <c>.Inventory.FirstOrDefault(delegate ...) { ... }</c> part
                         .Advance(-1)                                                                                        // step in front of the 'beg' local getter again
                         .Insert(new CodeInstruction(OpCodes.Ldarg_0))                                                       // add <c>this</c>
                         .Advance(2)                                                                                         // step past 'beg' again ;)
@@ -670,7 +671,7 @@ namespace ACulinaryArtillery
                         new CodeMatch(ci => Instruction.IsInst(ci, typeBlockCrock)),                                                                // <c>is BlockCrock</c>                                                     
                         new CodeMatch(Instruction.IsBrFalse, jumpNoCrockBranch)                                                                     // <c>) {... </c>                                                                               
                     )
-                    .ThrowIfInvalid("Cannot find transpiler anchor")
+                    .ThrowIfInvalid("LiquidContainerInfo issue - Cannot find transpiler anchor")
 
                     .RememberPositionIn(out var idxStart)                                                                                           // remember current instruction position
                     .RememberNamedMatchIn(jumpNoCrockBranch, out var ciBranchNoCrock)                                                               // remember marked instruction
