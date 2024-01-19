@@ -153,7 +153,8 @@ namespace ACulinaryArtillery
         protected override float[][] genTransformationMatrices()
         {
             float[][] tfMatrices = new float[4][];
-
+            //Api.Logger.Debug(Block.ToString());
+            //Api.Logger.Debug(Block.Shape.rotateY.ToString());
             for (int index = 0; index < 4; index++)
             {
                 float x = (index % 2 == 0) ? 5 / 16f : 11 / 16f;
@@ -162,18 +163,19 @@ namespace ACulinaryArtillery
 
                 int rnd = GameMath.MurmurHash3Mod(Pos.X, Pos.Y + index * 50, Pos.Z, 30) - 15;
                 var collObjAttr = inventory[index]?.Itemstack?.Collectible?.Attributes;
+                //Api.Logger.Debug(rnd.ToString());
                 if (collObjAttr != null && collObjAttr["randomizeInDisplayCase"].AsBool(true) == false)
                 {
                     rnd = 0;
                 }
 
-                float degY = (90 + rnd);
-
+                //float degY = (90 + rnd);
+                //Api.Logger.Debug(String.Format("Item:{0} | Index: {1}", inventory[index]?.Itemstack?.GetName(), index));
                 tfMatrices[index] = 
                     new Matrixf()
                     .Translate(0.5f, 0, 0.5f)
                     .Translate(x - 0.5f, y, z - 0.5f)
-                    .RotateYDeg(Block.Shape.rotateY)
+                    .RotateYDeg(getRotateOnHook(index)+rnd)
                     .Scale(0.75f, 0.75f, 0.75f)
                     .Translate(-0.5f, 0, -0.5f)
                     .Values
@@ -182,7 +184,16 @@ namespace ACulinaryArtillery
 
             return tfMatrices;
         }
-
+        private float getRotateOnHook(int index)
+        {
+            return Block.Shape.rotateY switch
+            {
+                90 => index % 2 == 0 ? Block.Shape.rotateY + 180 : Block.Shape.rotateY,
+                180 => index < 2 ? Block.Shape.rotateY : Block.Shape.rotateY + 180,
+                270 => index % 2 == 0 ? Block.Shape.rotateY : Block.Shape.rotateY + 180,
+                _ => index < 2 ? Block.Shape.rotateY + 180 : Block.Shape.rotateY,
+            };
+        }
         public string PerishableInfoCompact(ICoreAPI Api, ItemSlot contentSlot, float ripenRate, bool withStackName = true)
         {
             if (contentSlot.Empty) return "";
