@@ -1,0 +1,23 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes/creatureDiet/foodTags/-",
+    "value": "chickenfood",
+    "side": "server",
+    "file": "game:entities/land/chicken-rooster.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/creatureDiet/foodTags/-",
+    "value": "chickenfood",
+    "side": "server",
+    "file": "game:entities/land/chicken-hen.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/creatureDiet/foodTags/-",
+    "value": "chickenfood",
+    "side": "server",
+    "file": "game:entities/land/chicken-baby.json"
+  }
+]
