@@ -2,16 +2,24 @@
 - Mixing bowl client/server issues fixed
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
 - ExpandedLiquid class transfers extra nutrients properly when consumed
-- Expanded liquids work properly in Expanded Foods
 - ExpandedFood class maintains nutrition after being grinded
 - Sideways barrels added? (see Ye Olde Keg)
-- Fixed boiling display issue??
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
-- Pies can take syrup/sauce
+- Pies can take syrup/sauce 
 - Glass bottles shed light if contained liquid does too
 
 ~1.18_v1.0.16~
- - Polish translation updated (thanks to Sako47)
+- Polish translation updated (thanks to Sako47)
+- Russian translation updated (thanks to vulpeep)
+- French translation updated (thanks to PierreGac)
+- Updated to 1.19 (thanks to Pursec!)
+- Meat hook visuals fixed (thanks to Pursec!)
+- Expanded liquids work properly in Expanded Foods (thanks to Pursec!)
+- Fixed boiling display issue (hanks to Pursec!)
+- Added foodtag "chickenfood" to Egg Shells so they are eaten in the trough (thanks to Pursec!)
+- Bottle no longer crashes when right-clicking on water (thanks to Pursec!)
+
+
 
 ~1.18_v1.0.15~
 - Visual bugs in oven/shelves/meat racks fixed (thanks to Dmitry221060!)
