@@ -5,11 +5,12 @@
 		{ code: "source", states: ["" ] },
 	],
 	attributes: {
-		fertilizerProps: {
-				n: 2,
-				p: 1,
-				k: 0
-			},
+		"fertilizerProps": {
+			"n": 2,
+			"p": 1,
+			"k": 0
+		},
+		"foodTags": [ "chickenfood"]
 	},
 	texture: { base: "item/food/eggshell" },
 	creativeinventory: { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },

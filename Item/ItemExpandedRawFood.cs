@@ -128,10 +128,16 @@ namespace ACulinaryArtillery
                 {
                     string[] addIngs = (val.Key.Itemstack.Attributes["madeWith"] as StringArrayAttribute)?.value;
                     float[] addSat = (val.Key.Itemstack.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
-
+                    /*
+                    if (addSat != null)
+                    {
+                        api.Logger.Debug("Prezip addSat values: " + string.Join("\n", addSat));
+                        api.Logger.Debug("Quantity of item: " + val.Value.Quantity.ToString());
+                    }
+                    */
                     if (addSat != null && addSat.Length == 6)
-                        sat = sat.Zip(addSat, (x, y) => x + (y * val.Value.Quantity)).ToArray();
-
+                        sat = sat.Zip(addSat, (x, y) => x + (y * (val.Key.Itemstack.Collectible is ItemExpandedLiquid? val.Value.Quantity/10 : val.Value.Quantity))).ToArray();
+                    //api.Logger.Debug(string.Join("\n", sat));
                     if (addIngs != null && addIngs.Length > 0)
                     {
                         foreach (string aL in addIngs)
