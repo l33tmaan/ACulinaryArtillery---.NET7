@@ -35,10 +35,10 @@
 			},
 			meathookable: true,
 			meatHookTransform: {
-  				translation: { x: 0.0, y: 0.475, z: 0.25 },
+  				translation: { x: 0.0, y: 0.45, z: 0.3 },
   				rotation: { x: -93, y: 45, z: 0 },
   				origin: { x: 0.5, y: 0, z: 0.5 },
-  				scale: 0.6
+  				scale: 0.75
 			},
 			shelvable: true,
 		}

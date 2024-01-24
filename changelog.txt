@@ -16,7 +16,7 @@
 - French translation updated (thanks to PierreGac) - DONE!!!
 - Updated to 1.19 (thanks to Pursec!) - DONE!!!
 - Meat hook visuals fixed (thanks to Pursec!) - DONE!!!
-- Expanded liquids work properly in Expanded Foods (thanks to Pursec!)
+- Expanded liquids work properly in Expanded Foods (thanks to Pursec!) - DONE!!!
 - Fixed boiling display issue (hanks to Pursec!) - DONE!!!
 - Added foodtag "eggshell" to egg shells so they are eaten in the trough (thanks to Pursec!) - DONE!!!
 - Bottle no longer vanishes when right-clicking on water (thanks to Pursec!)  - DONE!!!
@@ -28,6 +28,7 @@
 - Eggs can be cracked again
 - Eggs updated to 1.19 visuals
 - Eggshells attract raccoons - DONE!!!
+- Two-handed holding animation fixed
 
 
 
