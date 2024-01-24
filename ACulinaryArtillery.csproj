@@ -123,6 +123,15 @@
 		<None Update="assets\aculinaryartillery\lang\uk.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\patches\raccoon.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\pigs.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\chickens.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\patches\cleaver.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

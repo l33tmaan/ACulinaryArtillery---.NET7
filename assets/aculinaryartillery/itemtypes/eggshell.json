@@ -10,7 +10,7 @@
 			"p": 1,
 			"k": 0
 		},
-		"foodTags": [ "chickenfood"]
+		"foodTags": [ "eggshell"]
 	},
 	texture: { base: "item/food/eggshell" },
 	creativeinventory: { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },

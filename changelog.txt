@@ -7,17 +7,27 @@
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
 - Pies can take syrup/sauce 
 - Glass bottles shed light if contained liquid does too
+- Bottles can go into scroll racks?
+- Bottle racks no longer have weird shadows when multiple are placed
 
 ~1.18_v1.0.16~
-- Polish translation updated (thanks to Sako47)
-- Russian translation updated (thanks to vulpeep)
-- French translation updated (thanks to PierreGac)
-- Updated to 1.19 (thanks to Pursec!)
-- Meat hook visuals fixed (thanks to Pursec!)
+- Polish translation updated (thanks to Sako47) - DONE!!!
+- Russian translation updated (thanks to vulpeep) - DONE!!!
+- French translation updated (thanks to PierreGac) - DONE!!!
+- Updated to 1.19 (thanks to Pursec!) - DONE!!!
+- Meat hook visuals fixed (thanks to Pursec!) - DONE!!!
 - Expanded liquids work properly in Expanded Foods (thanks to Pursec!)
-- Fixed boiling display issue (hanks to Pursec!)
-- Added foodtag "chickenfood" to Egg Shells so they are eaten in the trough (thanks to Pursec!)
-- Bottle no longer crashes when right-clicking on water (thanks to Pursec!)
+- Fixed boiling display issue (hanks to Pursec!) - DONE!!!
+- Added foodtag "eggshell" to egg shells so they are eaten in the trough (thanks to Pursec!) - DONE!!!
+- Bottle no longer vanishes when right-clicking on water (thanks to Pursec!)  - DONE!!!
+- Powered mixing bowl seals rooms (thanks to SalieriC for idea) - DONE!!!
+
+- Cookware trader actually spawns in-game
+- Holding animations adjusted for new first-person view
+- Mini-cauldrons made bigger when on meat hooks
+- Eggs can be cracked again
+- Eggs updated to 1.19 visuals
+- Eggshells attract raccoons - DONE!!!
 
 
 

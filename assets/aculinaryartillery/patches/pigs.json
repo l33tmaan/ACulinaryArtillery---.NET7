@@ -4,20 +4,20 @@
     "path": "/attributes/creatureDiet/foodTags/-",
     "value": "eggshell",
     "side": "server",
-    "file": "game:entities/land/chicken-rooster.json"
+    "file": "game:entities/land/pig-wild-female.json"
   },
   {
     "op": "add",
     "path": "/attributes/creatureDiet/foodTags/-",
     "value": "eggshell",
     "side": "server",
-    "file": "game:entities/land/chicken-hen.json"
+    "file": "game:entities/land/pig-wild-male.json"
   },
   {
     "op": "add",
     "path": "/attributes/creatureDiet/foodTags/-",
     "value": "eggshell",
     "side": "server",
-    "file": "game:entities/land/chicken-baby.json"
+    "file": "game:entities/land/pig-wild-piglet.json"
   }
 ]

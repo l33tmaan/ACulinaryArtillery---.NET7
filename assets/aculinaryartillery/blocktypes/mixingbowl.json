@@ -91,9 +91,11 @@
 		}
 	},
 	"sidesolid": {
+		"down": true,
 		"all": false
 	},
 	"sideopaque": {
+		"down": true,
 		"all": false
 	},
 	"lightAbsorption": 1,
