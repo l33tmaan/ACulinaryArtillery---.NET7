@@ -26,7 +26,7 @@
 - Mini-cauldrons made bigger when on meat hooks - DONE!!!
 - Eggs can be cracked again (thanks to Pursec!) - DONE!!!
 - Eggshells attract raccoons - DONE!!!
-- Egg shell and egg yolk items updated to 1.19 visuals
+- Egg shell and egg yolk items updated to 1.19 visuals - DONE!!!
 - Wild turkey egg yolk item & egg white/yolk/liquid added
 - Holding animations adjusted for new first-person view
 - Two-handed holding animation fixed

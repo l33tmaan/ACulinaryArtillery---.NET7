@@ -226,4 +226,19 @@
   "item-rollingpin-eucalyptus": "Eucalyptus rolling pin",
   "item-rollingpin-cedar": "Cedar rolling pin",
 
+
+  "item-eggyolk-wildturkey": "Cracked Wild Turkey Egg",
+
+  "item-eggyolkportion-wildturkey": "Wild turkey egg yolk portion",
+  "game:recipeingredient-item-eggyolkportion-wildturkey": "wild turkey egg yolk",
+  "recipeingredient-item-eggyolkportion-wildturkey-insturmentalcase": "wild turkey egg yolk",
+  "incontainer-item-eggyolkportion-wildturkey": "Wild turkey egg yolk",
+  "game:incontainer-item-eggyolkportion-wildturkey": "Wild turkey egg yolk",
+
+  "item-eggyolkfullportion-wildturkey": "Liquid wild turkey egg portion",
+  "game:recipeingredient-item-eggyolkfullportion-wildturkey": "liquid wild turkey egg",
+  "recipeingredient-item-eggyolkfullportion-wildturkey-insturmentalcase": "liquid wild turkey egg",
+  "incontainer-item-eggyolkfullportion-wildturkey": "Liquid wild turkey egg",
+  "game:incontainer-item-eggyolkfullportion-wildturkey": "Liquid wild turkey egg",
+
 }

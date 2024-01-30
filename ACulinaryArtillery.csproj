@@ -525,15 +525,6 @@
 		<None Update="assets\aculinaryartillery\textures\entity\humanoid\seraphclothes\head\c-hat.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\aculinaryartillery\textures\item\food\eggyolk\chicken.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\aculinaryartillery\textures\item\food\eggyolk\goldenpheasant.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\aculinaryartillery\textures\item\food\eggyolk\pheasant.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Update="assets\game\entities\humanoid\trader-kitchenware.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -555,6 +546,9 @@
 		<None Update="assets\game\textures\item\liquid\eggyolkfull\goldenpheasant.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\game\textures\item\liquid\eggyolkfull\wildturkey.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\game\textures\item\liquid\eggyolkfull\pheasant.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -569,6 +563,9 @@
 		</None>
 		<None Update="assets\game\textures\item\liquid\eggyolk\goldenpheasant.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\game\textures\item\liquid\eggyolk\wildturkey.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\game\textures\item\liquid\eggyolk\pheasant.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

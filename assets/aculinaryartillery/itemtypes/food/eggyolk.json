@@ -3,12 +3,12 @@
 	"class": "EggCrack",
 	maxstacksize: 32,
 	variantgroups: [
-		{ code: "source", states: ["chicken", "pheasant", "goldenpheasant", "capercaillie"] },
+		{ code: "source", states: ["chicken", "pheasant", "goldenpheasant", "capercaillie", "wildturkey"] },
 	],
 	shape: { base: "item/egg/eggyolk" },
 	textures: {
 		"egg": { "base": "game:block/wood/henbox/egg" },
-		"yolk": { base: "item/food/eggyolk/{source}" },
+		"yolk": { base: "game:item/liquid/eggyolk/{source}" },
 	},
 	creativeinventory: { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },
 	guiTransform: {
