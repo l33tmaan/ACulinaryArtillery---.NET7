@@ -89,7 +89,6 @@ namespace ACulinaryArtillery
 
             string eggType = slot.Itemstack.Collectible.FirstCodePart(0);      //grabs currently held item's code
             string eggVariant = slot.Itemstack.Collectible.FirstCodePart(1);   //grabs 1st variant in currently held item
-
             bool canCrack = (liquidOptions, liquidOptions?.ExistingStack?.Collectible?.FirstCodePart(0), liquidOptions?.ExistingStack?.Collectible?.FirstCodePart(1)) switch {
                 (null, _, _)                                => false,                                                                               // cant add liquid
                 ( { ExistingStack: null}, _, _)             => true,                                                                                // empty target stack - can always squeeze (CanAddLiquid already checks for CanSqueeze)
@@ -101,6 +100,11 @@ namespace ACulinaryArtillery
 
             if (canCrack) {         //move to OnHeldInteractStep & play eggcrack.ogg
                 handling = EnumHandHandling.PreventDefault;
+            }
+            else
+            {
+                EnumHandling passThroughHandling = EnumHandling.PreventDefault;
+                slot.Itemstack.Collectible.GetBehavior<CollectibleBehaviorGroundStorable>().OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling, ref passThroughHandling);
             }
         }
 

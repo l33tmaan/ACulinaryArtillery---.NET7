@@ -5,17 +5,31 @@
 	variantgroups: [
 		{ code: "source", states: ["chicken", "pheasant", "goldenpheasant", "capercaillie"] },
 	],
-	texture: { base: "item/food/eggyolk/{source}" },
+	shape: { base: "item/egg/eggyolk" },
+	textures: {
+		"egg": { "base": "game:block/wood/henbox/egg" },
+		"yolk": { base: "item/food/eggyolk/{source}" },
+	},
 	creativeinventory: { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },
 	guiTransform: {
-		translation: { x: -2, y: -2, z: 0 },
-		rotation: { x: 1, y: 10, z: 0 },
-		origin: { x: 0.5, y: 0.5, z: 0.5 },
-		scale: 1.2
+		translation: { x: 0, y: 0, z: 0 },
+		rotation: { x: -30, y: -20, z: 0 },
+		origin: { x: 0.5, y: 0.0, z: 0.5 },
+		scale: 5
+	},
+	tpHandTransform: {
+		translation: { x: -0.8, y: -0.25, z: -0.6 },
+		scale: 0.71
 	},
 	fpHandTransform: {
 		translation: { x: 0, y: -0.1, z: 0 },
 		rotation: { x: 180, y: 90, z: 22 }
+	},
+	groundTransform: {
+		translation: { x: 0, y: 0, z: 0 },
+		rotation: { x: 0, y: 0, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 5
 	},
 	transitionableProps: [{
 		type: "Perish",

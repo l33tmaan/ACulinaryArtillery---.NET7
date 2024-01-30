@@ -23,11 +23,12 @@
 - Powered mixing bowl seals rooms (thanks to SalieriC for idea) - DONE!!!
 
 - Cookware trader actually spawns in-game
-- Holding animations adjusted for new first-person view
-- Mini-cauldrons made bigger when on meat hooks
-- Eggs can be cracked again
-- Eggs updated to 1.19 visuals
+- Mini-cauldrons made bigger when on meat hooks - DONE!!!
+- Eggs can be cracked again (thanks to Pursec!) - DONE!!!
 - Eggshells attract raccoons - DONE!!!
+- Egg shell and egg yolk items updated to 1.19 visuals
+- Wild turkey egg yolk item & egg white/yolk/liquid added
+- Holding animations adjusted for new first-person view
 - Two-handed holding animation fixed
 
 

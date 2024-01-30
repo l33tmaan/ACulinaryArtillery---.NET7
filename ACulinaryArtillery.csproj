@@ -456,6 +456,12 @@
 		<None Update="assets\aculinaryartillery\shapes\item\bighook.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\shapes\item\egg\eggshell.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\shapes\item\egg\eggyolk.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\shapes\item\rollingpinshape.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -518,12 +524,6 @@
 		</None>
 		<None Update="assets\aculinaryartillery\textures\entity\humanoid\seraphclothes\head\c-hat.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\aculinaryartillery\textures\item\food\eggshell.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\aculinaryartillery\textures\item\food\eggyolk\capercaillie.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\textures\item\food\eggyolk\chicken.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -588,7 +588,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="assets\aculinaryartillery\textures\item\food\eggyolk\" />
 		<Folder Include="bin\Debug\net7.0\" />
 		<Folder Include="obj\Debug\net7.0\refint\" />
 		<Folder Include="obj\Debug\net7.0\ref\" />
