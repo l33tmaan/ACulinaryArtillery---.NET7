@@ -9,27 +9,27 @@
 - Glass bottles shed light if contained liquid does too
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
+- Cookware trader actually spawns in-game
 
 ~1.18_v1.0.16~
-- Polish translation updated (thanks to Sako47) - DONE!!!
-- Russian translation updated (thanks to vulpeep) - DONE!!!
-- French translation updated (thanks to PierreGac) - DONE!!!
-- Updated to 1.19 (thanks to Pursec!) - DONE!!!
-- Meat hook visuals fixed (thanks to Pursec!) - DONE!!!
-- Expanded liquids work properly in Expanded Foods (thanks to Pursec!) - DONE!!!
-- Fixed boiling display issue (hanks to Pursec!) - DONE!!!
-- Added foodtag "eggshell" to egg shells so they are eaten in the trough (thanks to Pursec!) - DONE!!!
-- Bottle no longer vanishes when right-clicking on water (thanks to Pursec!)  - DONE!!!
-- Powered mixing bowl seals rooms (thanks to SalieriC for idea) - DONE!!!
-
-- Cookware trader actually spawns in-game
-- Mini-cauldrons made bigger when on meat hooks - DONE!!!
-- Eggs can be cracked again (thanks to Pursec!) - DONE!!!
-- Eggshells attract raccoons - DONE!!!
-- Egg shell and egg yolk items updated to 1.19 visuals - DONE!!!
-- Wild turkey egg yolk item & egg white/yolk/liquid added - DONE!!!
+- Polish translation updated (thanks to Sako47)
+- Russian translation updated (thanks to vulpeep)
+- French translation updated (thanks to PierreGac)
+- Japanese translation updated (thanks to macoto_hino)
+- Numerous fixes tanks to Pursec:
+-- Updated to 1.19
+-- Meat hook visuals fixed
+-- Expanded liquids work properly in Expanded Foods
+-- Fixed boiling display issue
+-- Added foodtag "eggshell" to egg shells so they are eaten in the trough
+-- Bottle no longer vanishes when right-clicking on water 
+-- Eggs can be cracked again
+- Powered mixing bowl seals rooms (thanks to SalieriC for idea)
+- Mini-cauldrons made bigger when on meat hooks
+- Eggshells attract raccoons
+- Egg shell and egg yolk items updated to 1.19 visuals
+- Wild turkey egg yolk item & egg white/yolk/liquid added
 - Holding animations adjusted for new first-person view
-- Two-handed holding animation fixed
 
 
 

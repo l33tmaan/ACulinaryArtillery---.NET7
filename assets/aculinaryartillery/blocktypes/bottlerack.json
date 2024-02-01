@@ -48,8 +48,7 @@
     "blockmaterial": "Wood",
     "replaceable": 600,
     "resistance": 3,
-    "heldTpIdleAnimation": "holdbothhandslarge",
-    "heldTpUseAnimation": "twohandplaceblock",
+	heldTpIdleAnimation: "holdunderarm",
     "sounds": {
         "walk": "game:player/buildhigh"
     },
@@ -308,16 +307,16 @@
     },
     "tpHandTransform": {
         "translation": {
-            "x": -0.4,
-            "y": -0.8,
-            "z": -0.4
+            "x": -0.7,
+            "y": -0.55,
+            "z": -0.85
         },
         "rotation": {
             "x": 0,
-            "y": -71,
-            "z": 5
+            "y": 0,
+            "z": 0
         },
-        "scale": 0.75
+        "scale": 0.65
     },
     "groundTransform": {
         "translation": {

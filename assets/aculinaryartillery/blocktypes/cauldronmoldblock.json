@@ -49,6 +49,7 @@
   "resistance": 1.5,
   "maxStackSize": 8,
   "lightAbsorption": 0,
+  heldTpIdleAnimation: "holdunderarm",
   "texturesByType": {
     "cauldronmold-raw": { "floor": { "base": "game:block/clay/blueclay" }, "ceramic": { "base": "game:block/clay/blueclay" } },
     "cauldronmold-burned": { "floor": { "base": "game:block/clay/ceramic-dark" }, "ceramic": { "base": "game:block/clay/ceramic" }
@@ -69,6 +70,10 @@
     "all": false
   },
   "guiTransform": {"scale": 0.9  },
+  tpHandTransform: {
+	translation: { x: -1.5, y: -1.1, z: -1.05 },
+	rotation: { x: 0, y: 0, z: -20 }
+  },  
   "groundTransform": {
     "origin": { "x": 0.5, "y": 0, "z": 0.5 },
     "scale": 5

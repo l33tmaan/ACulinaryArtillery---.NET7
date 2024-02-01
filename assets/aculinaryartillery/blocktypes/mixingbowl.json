@@ -133,7 +133,7 @@
 		scale: 2
 	},
 	tpHandTransform: {
-		translation: { x: -1.35, y: -0.7, z: -0.35 },
+		translation: { x: -1.2, y: -0.7, z: -0.25 },
 		rotation: { x: -83, y: 29, z: -66 },
 		scale: 0.75
 	},

@@ -55,9 +55,8 @@
  origin: { x: 0.47, y: 0, z: 0.55 },
  scale: 7.5 },
 	tpHandTransform: {
- translation: { x: -0.44, y: -0.86, z: -0.55 },
- rotation: { x: -14, y: -180, z: -73 },
- origin: { x: 0.8, y: 0.5, z: 0 },
+ translation: { x: -0.55, y: -1, z: -0.5 },
+ rotation: { x: 0, y: -0, z: -180 },
  scale: 1
  },
 }

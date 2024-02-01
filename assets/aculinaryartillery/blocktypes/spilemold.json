@@ -48,6 +48,7 @@
   "resistance": 1.5,
   "maxStackSize": 8,
   "lightAbsorption": 0,
+  heldTpIdleAnimation: "holdunderarm",
   "texturesByType": {
     "spilemold-raw": { "floor": { "base": "game:block/clay/blueclay" },  "ceramic": { "base": "game:block/clay/blueclay" } },
     "spilemold-burned": {
@@ -102,6 +103,11 @@
       },
       "scale": 1.33
     }
+  },
+  tpHandTransform: {
+	translation: { x: -1, y: -0.5, z: -1.1 },
+	rotation: { x: -90, y: 0, z: 0 },
+	scale: 0.5
   },
   "groundTransform": {
     "translation": { "x": 0, "y": 0, "z": 0 },
