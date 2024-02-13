@@ -22,7 +22,7 @@ namespace ACulinaryArtillery
         public override bool AllowHeldLiquidTransfer => true;
         public AssetLocation liquidFillSoundLocation => new AssetLocation("game:sounds/effect/water-fill");
 
-        private List<SimmerRecipe> simmerRecipes = MixingRecipeRegistry.Registry.SimmerRecipes;
+        private List<SimmerRecipe> simmerRecipes => MixingRecipeRegistry.Registry.SimmerRecipes;
 
         public bool isSealed;
         public override void OnLoaded(ICoreAPI api)
@@ -124,7 +124,6 @@ namespace ACulinaryArtillery
         {
             if (!CanSmelt(world, cookingSlotsProvider, inputSlot.Itemstack, outputSlot.Itemstack))
                 return;
-
             List<ItemStack> contents = new List<ItemStack>();   //The inputSlots may not all be filled. This is more convenient.
             ItemStack product = null;
 
