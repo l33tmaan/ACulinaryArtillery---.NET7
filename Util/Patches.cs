@@ -34,11 +34,11 @@ namespace ACulinaryArtillery
 
         [HarmonyPostfix]
         [HarmonyPatch("GetOutputText")]
-         static void displayFix(ref string __result, InventorySmelting __instance)
-         {
-             if (__instance[1].Itemstack?.Collectible is BlockSaucepan)
-             {
-                 __result = (__instance[1].Itemstack.Collectible as BlockSaucepan).GetOutputText(__instance.Api.World, __instance);
+        static void displayFix(ref string __result, InventorySmelting __instance)
+        {
+            if (__instance[1].Itemstack?.Collectible is BlockSaucepan)
+            {
+                __result = (__instance[1].Itemstack.Collectible as BlockSaucepan).GetOutputText(__instance.Api.World, __instance);
             }
         }
 

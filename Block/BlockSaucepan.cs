@@ -22,7 +22,7 @@ namespace ACulinaryArtillery
         public override bool AllowHeldLiquidTransfer => true;
         public AssetLocation liquidFillSoundLocation => new AssetLocation("game:sounds/effect/water-fill");
 
-        private List<SimmerRecipe> simmerRecipes = MixingRecipeRegistry.Registry.SimmerRecipes;
+        private List<SimmerRecipe> simmerRecipes => MixingRecipeRegistry.Registry.SimmerRecipes;
 
         public bool isSealed;
         public override void OnLoaded(ICoreAPI api)
@@ -157,7 +157,7 @@ namespace ACulinaryArtillery
 
                 if (match == null) //none of the recipes matched
                     return;
-
+                match.Simmering.SmeltedStack.Resolve(world, "Saucepansimmerrecipesmeltstack");
                 product = match.Simmering.SmeltedStack.ResolvedItemstack.Clone();
 
                 product.StackSize *= amountForTheseIngredients;
@@ -187,7 +187,10 @@ namespace ACulinaryArtillery
 
             if (product == null)    //if we have no output to give
                 return;
-
+            //ACulinaryArtillery.logger.Debug("Product: " + product?.ToString());
+           // ACulinaryArtillery.logger.Debug("Itemstack class: " + product?.Class.ToString());
+            //ACulinaryArtillery.logger.Debug("Product class: " + product?.Collectible?.Class?.ToString());
+           // ACulinaryArtillery.logger.Debug("Product: " + product.GetName() + " Is liquid?: " + (product.Collectible.Class == "ItemLiquidPortion" || product.Collectible is ItemExpandedLiquid || product.Collectible is ItemTransLiquid));
             if (product.Collectible.Class == "ItemLiquidPortion" || product.Collectible is ItemExpandedLiquid || product.Collectible is ItemTransLiquid)
             {
                 for (int i = 0; i < cookingSlotsProvider.Slots.Length; i++)
@@ -196,7 +199,7 @@ namespace ACulinaryArtillery
                 }
 
                 outputSlot.Itemstack = inputSlot.TakeOut(1);
-
+                //ACulinaryArtillery.logger.Debug("OutputSlot: " + outputSlot.Itemstack.GetName());
                 (outputSlot.Itemstack.Collectible as BlockLiquidContainerBase).TryPutLiquid(outputSlot.Itemstack, product, product.StackSize);
 
             }
