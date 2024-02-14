@@ -33,12 +33,12 @@ namespace ACulinaryArtillery
         //}
 
         [HarmonyPostfix]
-        [HarmonyPatch(typeof(InventorySmelting),nameof(InventorySmelting.GetOutputText))]
-         static void displayFix(ref string __result, ItemSlot[] ___slots, ref InventorySmelting __instance)
-         {
-             if (___slots[1].Itemstack?.Collectible is BlockSaucepan)
+        [HarmonyPatch("GetOutputText")]
+        static void displayFix(ref string __result, InventorySmelting __instance)
+        {
+            if (__instance[1].Itemstack?.Collectible is BlockSaucepan)
             {
-                __result = (___slots[1].Itemstack.Collectible as BlockSaucepan).GetOutputText(__instance.Api.World, __instance);
+                __result = (__instance[1].Itemstack.Collectible as BlockSaucepan).GetOutputText(__instance.Api.World, __instance);
             }
         }
 

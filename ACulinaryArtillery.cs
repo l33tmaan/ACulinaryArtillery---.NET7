@@ -18,7 +18,7 @@ namespace ACulinaryArtillery
 
         public override void Start(ICoreAPI api)
         {
-            base.Start(api);
+            //base.Start(api);
 
             api.RegisterBlockClass("BlockMeatHooks", typeof(BlockMeatHooks));
             api.RegisterBlockEntityClass("MeatHooks", typeof(BlockEntityMeatHooks));
@@ -78,7 +78,8 @@ namespace ACulinaryArtillery
             logger = api.Logger;
 
             if (harmony is null) {
-                harmony = new Harmony("com.jakecool19.efrecipes.cookingoverhaul"); 
+                harmony = new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
+                
             }
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
@@ -88,11 +89,11 @@ namespace ACulinaryArtillery
         {
             logger.Debug("Unpatching harmony methods");
             harmony.UnpatchAll(harmony.Id);
-            base.Dispose();
+            //base.Dispose();
         }
         public override void StartServerSide(ICoreServerAPI api)
         {
-            base.StartServerSide(api);
+            //base.StartServerSide(api);
 
             api.RegisterCommand("efremap", "Remaps items in Expanded Foods", "",
                 //This can't possibly work XD
