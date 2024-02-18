@@ -377,10 +377,14 @@ namespace ACulinaryArtillery
         public override void StartServerSide(ICoreServerAPI api)
         {
             this.api = api;
+
         }
 
         public override void AssetsFinalize(ICoreAPI api)
         {
+            MixingRecipeRegistry.Registry.MixingRecipes.Clear();
+            MixingRecipeRegistry.Registry.KneadingRecipes.Clear();
+            MixingRecipeRegistry.Registry.SimmerRecipes.Clear();
             LoadFoodRecipes();
         }
 
