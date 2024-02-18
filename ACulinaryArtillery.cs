@@ -1,7 +1,9 @@
 ﻿using ACulinaryArtillery.Util;
 using HarmonyLib;
 using System;
+using System.Linq;
 using System.Reflection;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
@@ -74,23 +76,21 @@ namespace ACulinaryArtillery
             }
 
             logger = api.Logger;
-            
+
             if (harmony is null) {
-                /* there seems to be *repeated* calls to "Start" for the same process. 
-                 * Make sure we dont try to double/triple patch things (where we would possibly 
-                 * not find things as expected on the repeated attempts)                        */
                 harmony = new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
-                harmony.PatchAll(Assembly.GetExecutingAssembly());
+                
             }
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
 
         }
 
         public override void Dispose()
         {
+            logger.Debug("Unpatching harmony methods");
             harmony.UnpatchAll(harmony.Id);
             //base.Dispose();
         }
-
         public override void StartServerSide(ICoreServerAPI api)
         {
             //base.StartServerSide(api);

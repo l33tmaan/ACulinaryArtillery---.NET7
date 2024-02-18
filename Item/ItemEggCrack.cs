@@ -103,8 +103,11 @@ namespace ACulinaryArtillery
             }
             else
             {
-                EnumHandling passThroughHandling = EnumHandling.PreventDefault;
-                slot.Itemstack.Collectible.GetBehavior<CollectibleBehaviorGroundStorable>().OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling, ref passThroughHandling);
+                //ACulinaryArtillery.logger.Debug("Cant crack: " + slot.Itemstack.ToString());
+                //EnumHandling passThroughHandling = EnumHandling.PreventDefault;
+                handling = EnumHandHandling.PreventDefault;
+                base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
+                //slot.Itemstack.Collectible.GetBehavior<CollectibleBehaviorGroundStorable>().OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling, ref passThroughHandling);
             }
         }
 

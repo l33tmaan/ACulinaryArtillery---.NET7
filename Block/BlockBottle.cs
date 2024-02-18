@@ -31,7 +31,11 @@
 
         public AssetLocation liquidFillSoundLocation => new AssetLocation("game:sounds/effect/water-fill");
         public AssetLocation liquidDrinkSoundLocation => new AssetLocation("game:sounds/player/drink1");
-
+        public override byte[] GetLightHsv(IBlockAccessor blockAccessor, BlockPos pos, ItemStack stack = null)
+        {
+            //api.Logger.Debug("Getting Light HSV for: " + stack + " | " + this.GetContent(stack) + "|" + this.GetContent(stack)?.Item?.LightHsv?.ToString());
+            return this.GetContent(stack)?.Item?.LightHsv ?? base.GetLightHsv(blockAccessor, pos, stack);
+        }
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
