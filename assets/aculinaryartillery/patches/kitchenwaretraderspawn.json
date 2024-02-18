@@ -1,0 +1,32 @@
+﻿[
+  // New Traders
+  {
+    "op": "add",
+    "path": "/structures/-",
+    "value":   {
+      "code": "tradercavaran",
+      "group": "trader",
+      "minGroupDistance": 500, //700
+      "name": "Kitchenware Trader Home",
+      "chance": 10.0,
+      "offsetY": -2,
+      "schematics": [
+        "overground/tradeoutposts/settlement/kitchenwarespawnhouse"
+      ],
+      "buildProtected": true,
+      "buildProtectionName": "Trader",
+      "buildProtectionDesc": "Trader Perimenter",
+      "replacewithblocklayers": [
+        "packeddirt",
+        "game:packeddirt",
+        "cob-none",
+        "game:cob-none"
+      ],
+      "postPass": true,
+      "suppressTrees": true,
+      "placement": "surface"
+    },
+    "file": "game:worldgen/structures.json",
+    "side": "Server"
+  },
+]

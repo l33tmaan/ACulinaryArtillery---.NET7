@@ -111,6 +111,9 @@
 		<None Update="assets\aculinaryartillery\lang\es.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\lang\fr.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\lang\ja.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -121,6 +124,9 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\lang\uk.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\patches\kitchenwaretraderspawn.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\patches\raccoon.json">
@@ -572,6 +578,9 @@
 		</None>
 		<None Update="assets\game\textures\item\liquid\eggwhite.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\game\worldgen\schematics\overground\tradeoutposts\settlement\kitchenwarespawnhouse.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="changelog.txt">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
