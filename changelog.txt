@@ -7,7 +7,7 @@
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
 
-~1.18_v1.0.17~
+~1.18_v1.1.0~
 - Cookware trader actually spawns in-game
 - French translation actually included this time (sorry about that)
 - based bugfixes from Pursec:
