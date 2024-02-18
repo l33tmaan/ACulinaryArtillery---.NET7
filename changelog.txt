@@ -1,18 +1,21 @@
 ﻿~1.18_v1.0.18~
-- Mixing bowl client/server issues fixed
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
-- ExpandedLiquid class transfers extra nutrients properly when consumed
 - ExpandedFood class maintains nutrition after being grinded
 - Sideways barrels added? (see Ye Olde Keg)
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
 - Pies can take syrup/sauce 
-- Glass bottles shed light if contained liquid does too
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
 
 ~1.18_v1.0.17~
 - Cookware trader actually spawns in-game
 - French translation actually included this time (sorry about that)
+- based bugfixes from Pursec:
+-- Hopeful fix for liquid outputs to properly go into cauldron/saucepan
+-- Bottles can emit light when held
+-- Fixed dedicated server/subsequent rejoin patching issues and saucepan display issues
+-- Cracking eggs doesn't cause crashes anymore
+
 
 ~1.18_v1.0.16~
 - Polish translation updated (thanks to Sako47)

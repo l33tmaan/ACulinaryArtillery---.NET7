@@ -6,7 +6,7 @@
     "value":   {
       "code": "tradercavaran",
       "group": "trader",
-      "minGroupDistance": 500, //700
+      "minGroupDistance": 700, //700
       "name": "Kitchenware Trader Home",
       "chance": 10.0,
       "offsetY": -2,
