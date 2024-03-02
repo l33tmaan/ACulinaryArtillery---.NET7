@@ -6,9 +6,9 @@
     "value":   {
       "code": "tradercavaran",
       "group": "trader",
-      "minGroupDistance": 700, //700
+      "minGroupDistance": 2000, //700
       "name": "Kitchenware Trader Home",
-      "chance": 10.0,
+      "chance": 0.1,
       "offsetY": -2,
       "schematics": [
         "overground/tradeoutposts/settlement/kitchenwarespawnhouse"

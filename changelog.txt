@@ -7,7 +7,19 @@
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
 
-~1.18_v1.1.0~
+~1.19_v1.1.3~
+- Hotfix: Cookware trader spawn chance reduced from 1.0 to 0.1
+
+~1.19_v1.1.2~
+- Cookware trader minGroupDistance increased from 700 to 2000
+- Spawnhouse tools actually removed this time, I guess
+
+~1.19_v1.1.1~
+- Cookware trader spawn chance reduced from 10.0 to 1.0
+- ALL THE TRADER'S FANCY TOOLS AND CYLINDERS REMOVED BECAUSE THERE'S NO WAY TO PROTECT THEM (TYRON PLZ FUCKING FIX WAT DA HELL)
+- 2 secret bottles of Soulstorm Brew added to spawnhouse, for good luck
+
+~1.19_v1.1.0~
 - Cookware trader actually spawns in-game
 - French translation actually included this time (sorry about that)
 - based bugfixes from Pursec:
@@ -18,7 +30,7 @@
 -- Fix for Item ID outside of range crash
 
 
-~1.18_v1.0.16~
+~1.19_v1.0.16~
 - Polish translation updated (thanks to Sako47)
 - Russian translation updated (thanks to vulpeep)
 - French translation updated (thanks to PierreGac)
