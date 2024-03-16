@@ -7,6 +7,9 @@
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
 
+~1.19_v1.1.4~
+- "A Culinary Artillery: Primer" handbook title changed to "Cooking 100: A Culinary Artillery Guide" - DONE!!!
+
 ~1.19_v1.1.3~
 - Hotfix: Cookware trader spawn chance reduced from 1.0 to 0.1
 
