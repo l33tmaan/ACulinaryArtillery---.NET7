@@ -361,7 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/ACulinaryArtillery.csproj
+
 /post-build.bat
-/ACulinaryArtillery.cs
-/ACulinaryArtillery.csproj
+
