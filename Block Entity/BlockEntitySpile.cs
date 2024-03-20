@@ -34,7 +34,7 @@ namespace ACulinaryArtillery
             
             SapProperties xylem = log.Attributes?["sapProperties"]?.AsObject<SapProperties>();
             if (xylem == null) return;
-            
+
             while (Api.World.Calendar.TotalHours - timer >= xylem.dripTime)
             {
                 timer += xylem.dripTime;
