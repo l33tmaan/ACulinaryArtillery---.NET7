@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Vintagestory.API;
 using Vintagestory.API.Client;
@@ -21,6 +22,17 @@ namespace ACulinaryArtillery
         protected ITextureAtlasAPI targetAtlas;
         protected Shape nowTesselatingShape;
 
+        public override bool Satisfies(ItemStack thisStack, ItemStack otherStack)
+        {
+            if(thisStack.Class == otherStack.Class && thisStack.Id == otherStack.Id) 
+            {
+                if (!otherStack.Attributes.HasAttribute("madeWith") && thisStack.Attributes.HasAttribute("madeWith"))
+                {
+                    return true;
+                }
+            }
+            return base.Satisfies(thisStack, otherStack);
+        }
         public float SatMult
         {
             get { return Attributes?["satMult"].AsFloat(1f) ?? 1f; }

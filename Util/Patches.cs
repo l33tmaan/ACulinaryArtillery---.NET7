@@ -527,17 +527,17 @@ namespace ACulinaryArtillery
                 MethodInfo getSlotMethod = AccessTools.Method(typeof(BlockEntityGroundStorage), nameof(BlockEntityGroundStorage.GetSlotAt));
                 CodeMatcher matcher = new CodeMatcher(instructions);
                 try {
-                    matcher 
+                    matcher
                         .End()
                         // find what was the <c>beg.Inventory.FirstOrDefault(delegate ...) { ... }</c> block
                         .MatchStartBackwards(
                             new CodeMatch(ci => Instruction.IsLdLoc(ci, typeof(BlockEntityGroundStorage))),
                             Code.Ldarg_S,
                             new CodeMatch(ci => Instruction.IsCallVirt(ci, getSlotMethod))
-                            //Code.Ldarg_0,
-                            //Code.Ldftn,
-                            //Code.Newobj,
-                            //new CodeMatch(OpCodes.Call, firstOrDefaultOfItemSlot)
+                        //Code.Ldarg_0,
+                        //Code.Ldftn,
+                        //Code.Newobj,
+                        //new CodeMatch(OpCodes.Call, firstOrDefaultOfItemSlot)
                         )
                         .ThrowIfInvalid("GroundStorage issue - Could not find transpiler anchor")
 
