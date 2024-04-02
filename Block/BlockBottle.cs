@@ -13,6 +13,7 @@
     using Vintagestory.GameContent;
     using Vintagestory.API.Datastructures;
     using System.Diagnostics;
+    using Cairo.Freetype;
 
     public class BlockBottle : BlockLiquidContainerBase, IContainedMeshSource, IContainedCustomName
     {
@@ -168,9 +169,14 @@
             else
             {
                 var props = GetContainableProps(contentStack); //bottle with liquid
-                var contentSource = new BottleTextureSource(capi, contentStack, props.Texture, this);
+                if (props is null)
+                {
+                    ACulinaryArtillery.logger.Error(String.Format("Bottle with Item {0} does not have waterTightProps and will not render or work correctly. This is usually caused by removing mods. If not, check with the items author.", contentStack.Item.Code.ToString()));
+                }
 
-                var level = contentStack.StackSize / props.ItemsPerLitre;
+                var contentSource = new BottleTextureSource(capi, contentStack, props?.Texture, this);
+
+                var level = contentStack.StackSize / (props?.ItemsPerLitre ?? 1f);
 
                 var basePath = "aculinaryartillery:shapes/block/bottle/glassbottle";
                 if (level <= 0.25f && level > 0) //the > 0 because the oninteract logic below is a little bugged
@@ -206,13 +212,13 @@
             if (contentStack != null && (!this.Code.Path.Contains("clay")))
             {
                 var props = GetContainableProps(contentStack);
-                var contentSource = new BottleTextureSource(capi, contentStack, props.Texture, this);
+                var contentSource = new BottleTextureSource(capi, contentStack, props?.Texture, this);
 
                 var loc = props.IsOpaque ? this.ContentShapeLoc : this.LiquidContentShapeLoc;
                 //now let's immediately override that loc.  I know, right?
 
                 // unlike genmesh, were only rendering the contents at this point
-                var level = contentStack.StackSize / props.ItemsPerLitre;
+                var level = contentStack.StackSize / (props?.ItemsPerLitre ?? 1f);
                 var basePath = "aculinaryartillery:block/bottle/contents-";
                 if (level <= 0.25f)
                 { loc = new AssetLocationAndSource(basePath + "side-1"); }
@@ -323,6 +329,7 @@
             {
                 // dump contents on the ground when sprinting
                 this.SpillContents(itemslot, byEntity, blockSel);
+                handHandling = EnumHandHandling.PreventDefault;
                 return;
             }
 
@@ -332,7 +339,7 @@
                 {
                     // drinking vanilla liquids (milk, maybe others - honey?)
                     // base.tryEatBegin(itemslot, byEntity, ref handHandling, "drink", 4);
-                    // return;
+                    // return;  
                     base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
                     //byEntity.AnimManager?.StartAnimation("eat"); //was drink, but whatevs
                     //handHandling = EnumHandHandling.PreventDefault;
@@ -399,8 +406,8 @@
             }
             return true;
         }
-
-
+        //Should no longer be needed by overriding TryEatStop(), did not allow for collectibleBehaviors on bottle to be applied with previous implement
+        /*
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
             var content = this.GetContent(slot.Itemstack);
@@ -468,12 +475,67 @@
                     content.Collectible.OnHeldInteractStop(secondsUsed, dummy, byEntity, blockSel, entitySel);
                 }
                 this.SetContent(slot.Itemstack, dummy.StackSize > 0 ? dummy.Itemstack : null);
+                //ACulinaryArtillery.logger.Debug("Is smth fucked here? heldInteractStop current content: " + this.GetContent(slot.Itemstack)?.ToString());
                 slot.MarkDirty();
                 (byEntity as EntityPlayer)?.Player.InventoryManager.BroadcastHotbarSlot();
             }
         }
+        */
+        protected override void tryEatStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity)
+        {
+            
+            var content = this.GetContent(slot.Itemstack);
+            var nutriProps = this.GetNutritionProperties(byEntity.World, slot.Itemstack, byEntity);
 
+            if (byEntity.World is IServerWorldAccessor && nutriProps != null && secondsUsed >= 0.95f)
+            {
+                var dummy = new DummySlot(content);
+                var litres = this.GetCurrentLitres(slot.Itemstack);
+                var litresToDrink = litres >= 0.25f ? 0.25f : litres;
+                
+                var state = this.UpdateAndGetTransitionState(this.api.World, slot, EnumTransitionType.Perish);
+                var spoilState = state != null ? state.TransitionLevel : 0;
+                var satLossMul = (GlobalConstants.FoodSpoilageSatLossMul(spoilState, slot.Itemstack, byEntity));
+                var healthLossMul = (GlobalConstants.FoodSpoilageHealthLossMul(spoilState, slot.Itemstack, byEntity));
 
+                var litresMult = 1.0f;
+
+                if (litres == 1)
+                { litresMult = 0.25f; }
+
+                if (litres == 0.75)
+                { litresMult = 0.3333f; }
+
+                if (litres == 0.5)
+                { litresMult = 0.5f; }
+
+                byEntity.ReceiveSaturation(nutriProps.Satiety * litresMult * satLossMul, nutriProps.FoodCategory);
+                IPlayer player = null;
+                if (byEntity is EntityPlayer)
+                { player = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID); }
+
+                this.SplitStackAndPerformAction(byEntity, slot, (stack) => this.TryTakeLiquid(stack, litresToDrink)?.StackSize ?? 0);
+
+                var healthChange = nutriProps.Health * litresMult * healthLossMul;
+                if (nutriProps.Intoxication > 0f)
+                {
+                    var intox = byEntity.WatchedAttributes.GetFloat("intoxication");
+                    byEntity.WatchedAttributes.SetFloat("intoxication", Math.Min(litresToDrink, intox + (nutriProps.Intoxication * litresMult)));
+                }
+                if (healthChange != 0)
+                {
+                    byEntity.ReceiveDamage(new DamageSource() { Source = EnumDamageSource.Internal, Type = healthChange > 0 ? EnumDamageType.Heal : EnumDamageType.Poison }, Math.Abs(healthChange));
+                }
+                //this.SetCurrentLitres(slot.Itemstack, litres - litresToDrink);
+                //base.OnHeldInteractStop(secondsUsed, slot, byEntity, blockSel, entitySel);
+                slot.MarkDirty();
+                player.InventoryManager.BroadcastHotbarSlot();
+
+                if (this.GetCurrentLitres(slot.Itemstack) == 0)
+                { this.SetContent(slot.Itemstack, null); } //null it out
+                return;
+            }
+        }
         public override float GetContainingTransitionModifierContained(IWorldAccessor world, ItemSlot inSlot, EnumTransitionType transType)
         {
             if (transType == EnumTransitionType.Perish)
@@ -673,10 +735,10 @@
 
             var action = props.WhenSpilled.Action;
             var currentlitres = this.GetCurrentLitres(containerSlot.Itemstack);
-
+            
             if (currentlitres > 0 && currentlitres < 10)
             { action = WaterTightContainableProps.EnumSpilledAction.DropContents; }
-
+            //ACulinaryArtillery.logger.Debug("Action is drop contents?: " + (action == WaterTightContainableProps.EnumSpilledAction.DropContents).ToString());
             if (action == WaterTightContainableProps.EnumSpilledAction.PlaceBlock)
             {
                 var waterBlock = byEntity.World.GetBlock(props.WhenSpilled.Stack.Code);
@@ -724,7 +786,9 @@
         {
             if (slot.Itemstack.StackSize == 1)
             {
+                //ACulinaryArtillery.logger.Debug("slot stacksize == 1 | " + slot.Itemstack.GetName() + "contents: " + (slot.Itemstack.Collectible as BlockLiquidContainerBase).GetContent(slot.Itemstack).GetName());
                 var moved = action(slot.Itemstack);
+                //ACulinaryArtillery.logger.Debug("Moved = " + moved);
                 if (moved > 0)
                 {
                     var maxstacksize = slot.Itemstack.Collectible.MaxStackSize;
@@ -735,16 +799,16 @@
                         { return true; }
 
                         var mergableq = slot.Itemstack.Collectible.GetMergableQuantity(slot.Itemstack, pslot.Itemstack, EnumMergePriority.DirectMerge);
-
+                        //ACulinaryArtillery.logger.Debug("Num Mergable: " + mergableq);
                         if (mergableq == 0)
                         { return true; }
 
                         var selfLiqBlock = slot.Itemstack.Collectible as BlockLiquidContainerBase;
                         var invLiqBlock = pslot.Itemstack.Collectible as BlockLiquidContainerBase;
-
+                        //ACulinaryArtillery.logger.Debug(String.Format("Self contents: {0} | Inv contents: {1}", selfLiqBlock?.GetContent(slot.Itemstack)?.ToString(), invLiqBlock?.GetContent(pslot.Itemstack)?.ToString()));
                         if ((selfLiqBlock?.GetContent(slot.Itemstack)?.StackSize ?? 0) != (invLiqBlock?.GetContent(pslot.Itemstack)?.StackSize ?? 0))
                         { return true; }
-
+                        //ACulinaryArtillery.logger.Debug(String.Format("Slot: {0} | pslot: {1}", slot.Itemstack.ToString(), pslot.Itemstack.ToString()));
                         slot.Itemstack.StackSize += mergableq;
                         pslot.TakeOut(mergableq);
                         slot.MarkDirty();
@@ -756,10 +820,11 @@
             }
             else
             {
+                //ACulinaryArtillery.logger.Debug("slot stacksize > 1 | " + slot.Itemstack.GetName());
                 var containerStack = slot.Itemstack.Clone();
                 containerStack.StackSize = 1;
                 var moved = action(containerStack);
-
+                //ACulinaryArtillery.logger.Debug("Moved = " + moved);
                 if (moved > 0)
                 {
                     slot.TakeOut(1);
@@ -880,10 +945,10 @@
                 if (this.contentTextPos == null)
                 {
                     int textureSubId;
-                    textureSubId = ObjectCacheUtil.GetOrCreate<int>(this.capi, "contenttexture-" + this.contentTexture.ToString(), () =>
+                    textureSubId = ObjectCacheUtil.GetOrCreate<int>(this.capi, "contenttexture-" + this.contentTexture?.ToString() ?? "unkowncontent", () =>
                     {
                         var id = 0;
-                        var bmp = this.capi.Assets.TryGet(this.contentTexture.Base.Clone().WithPathPrefixOnce("textures/").WithPathAppendixOnce(".png"))?.ToBitmap(this.capi);
+                        var bmp = this.capi.Assets.TryGet(this.contentTexture?.Base.Clone().WithPathPrefixOnce("textures/").WithPathAppendixOnce(".png") ?? new AssetLocation("aculinaryartillery:textures/block/unknown.png"))?.ToBitmap(this.capi);
 
                         if (bmp != null)
                         {
@@ -901,8 +966,11 @@
                         }
                         return id;
                     });
+                    //ACulinaryArtillery.logger.Debug("Texture subId: " + textureSubId);
                     this.contentTextPos = this.capi.BlockTextureAtlas.Positions[textureSubId];
+                    //ACulinaryArtillery.logger.Debug(String.Format("Unkown text pos at: {0} {1} {2} {3}", this.capi.BlockTextureAtlas.UnknownTexturePosition.x1, this.capi.BlockTextureAtlas.UnknownTexturePosition.x2, this.capi.BlockTextureAtlas.UnknownTexturePosition.y1, this.capi.BlockTextureAtlas.UnknownTexturePosition.y2) + String.Format("Created new text pos at: {0} {1} {2} {3}", this.contentTextPos.x1, this.contentTextPos.x2, this.contentTextPos.y1, this.contentTextPos.y2));
                 }
+                //ACulinaryArtillery.logger.Debug(String.Format("Tex pos already existed at: {0} {1} {2} {3}", this.contentTextPos.x1, this.contentTextPos.x2, this.contentTextPos.y1, this.contentTextPos.y2));
                 return this.contentTextPos;
             }
         }

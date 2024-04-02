@@ -7,6 +7,7 @@
 		<OutputType>Library</OutputType>
 		<StartupObject />
 		<AutoGenerateBindingRedirects></AutoGenerateBindingRedirects>
+		<BaseOutputPath></BaseOutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -483,6 +484,9 @@
 		<None Update="assets\aculinaryartillery\sounds\player\gulp.ogg">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+    <None Update="assets\aculinaryartillery\textures\unkown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
 		<None Update="assets\aculinaryartillery\textures\block\bottle\blue.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -653,5 +657,9 @@
 		  <Private>false</Private>
 	  </Reference>
 	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="call post-build.bat $(Outdir)" />
+	</Target>
     
 </Project>

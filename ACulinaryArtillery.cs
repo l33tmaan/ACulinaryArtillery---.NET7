@@ -79,9 +79,9 @@ namespace ACulinaryArtillery
 
             if (harmony is null) {
                 harmony = new Harmony("com.jakecool19.efrecipes.cookingoverhaul");
-                
+                harmony.PatchAll(Assembly.GetExecutingAssembly());
             }
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            
 
         }
 
@@ -89,6 +89,7 @@ namespace ACulinaryArtillery
         {
             logger.Debug("Unpatching harmony methods");
             harmony.UnpatchAll(harmony.Id);
+            harmony = null;
             //base.Dispose();
         }
         public override void StartServerSide(ICoreServerAPI api)
