@@ -219,19 +219,19 @@
 		<None Update="assets\aculinaryartillery\recipes\grid\blocks\mixingbowl.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttrees\blocks\bottlerack.json">
+		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttree\blocks\bottlerack.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttrees\blocks\bottlerackcorner.json">
+		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttree\blocks\bottlerackcorner.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttrees\blocks\meathooks.json">
+		<None Update="assets\aculinaryartillery\recipes\grid\compatibility\wildcrafttree\blocks\meathooks.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\recipes\grid\destroycauldron.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\aculinaryartillery\recipes\grid\rollingpinrecipe.json">
+		<None Update="assets\aculinaryartillery\recipes\grid\rollingpin.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\recipes\smithing\bighook.json">

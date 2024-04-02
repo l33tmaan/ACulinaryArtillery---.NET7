@@ -16,10 +16,16 @@
 		"*-west": { "base": "aculinaryartillery:block/meathooks", "rotateY": 90 }
 	},
 	"creativeinventory": { "general": ["*-east"], "terrain": ["*-east"], "aculinaryartillery": ["*-east"] },
-	"textures": {
-		"wood": {"base": "game:block/wood/planks/{wood}1"},
-		"metal": {"base": "game:block/metal/ingot/{metal}"}
-	},
+    "texturesByType": {
+        "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified)-(copper|brass|tinbronze|blackbronze|titanium|steel)-(north|east|south|west)": {
+            "wood": { "base": "wildcrafttree:block/wood/planks/{wood}1" },
+			"metal": { "base": "game:block/metal/ingot/{metal}" }
+        },
+        "*": {
+			"wood": { "base": "game:block/wood/planks/{wood}1" },
+			"metal": { "base": "game:block/metal/ingot/{metal}" }
+        }
+    },
 	"attributes": {
 		"cureRate": 3,
 		"dryRate": 10,

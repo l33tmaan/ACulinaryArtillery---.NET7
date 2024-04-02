@@ -1,0 +1,674 @@
+﻿[
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 1,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-douglasfir",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-douglasfir-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 2,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-willow",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-willow-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 3,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-honeylocust",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-honeylocust-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 4,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-bearnut",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-bearnut-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 5,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-poplar",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-poplar-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 6,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-catalpa",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-catalpa-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 7,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-mahogany",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-mahogany-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 8,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-sal",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-sal-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 9,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-saxaul",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-saxaul-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 10,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-spruce",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-spruce-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 11,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-sycamore",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-sycamore-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 12,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-elm",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-elm-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 13,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-beech",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-beech-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 14,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-eucalyptus",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-eucalyptus-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 15,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-cedar",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-cedar-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 16,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-tuja",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-tuja-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 17,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-redcedar",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-redcedar-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 18,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-yew",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-yew-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 19,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-kauri",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-kauri-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 20,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-ginkgo",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-ginkgo-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 21,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-dalbergia",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-dalbergia-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 22,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-umnini",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-umnini-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 23,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-banyan",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-banyan-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 24,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-guajacum",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-guajacum-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 25,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-ghostgum",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-ghostgum-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 26,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-ohia",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-ohia-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 27,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-satinash",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-satinash-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 28,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-bluemahoe",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-bluemahoe-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 29,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-jacaranda",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-jacaranda-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 30,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-empresstree",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-empresstree-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 31,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-chlorociboria",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-chlorociboria-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 32,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-petrified",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-petrified-{metal}-east"  }
+},
+]

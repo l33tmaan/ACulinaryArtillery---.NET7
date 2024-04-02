@@ -2,9 +2,9 @@
     {
         "op": "addeach",
         "path": "/variantgroups/0/states/-",
-        "value": [ "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar" ],
+        "value": [ "douglasfir", "willow", "honeylocust", "bearnut", "poplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "tuja", "redcedar", "yew", "kauri", "ginkgo", "dalbergia", "umnini", "banyan", "guajacum", "ghostgum", "ohia", "satinash", "bluemahoe", "jacaranda", "empresstree", "chlorociboria", "petrified" ],
         "side": "server",
         "file": "aculinaryartillery:itemtypes/rollingpin.json",
-        dependsOn: [ { "modid": "wildcrafttrees" } ]
+        dependsOn: [ { "modid": "wildcrafttree" } ]
     },
 ]
