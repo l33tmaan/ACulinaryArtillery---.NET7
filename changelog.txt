@@ -9,7 +9,8 @@
 
 ~1.19_v1.1.4~
 - "A Culinary Artillery: Primer" handbook title changed to "A Culinary Artillery: Cooking 100" - DONE!!!
-- Pursec stuff:
+- Expanded Food items work properly with trader quests (thanks to Pursec) - DONE!!!
+- BlockBottle crashing fixed again (thanks to Pursec) - DONE!!!
 
 - Trader dialogue expanded
 - Wildcraft Trees re-integrated (bottle/meat racks & rolling pin work with new wood) - DONE!!!
