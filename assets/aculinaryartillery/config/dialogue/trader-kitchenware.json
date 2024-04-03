@@ -1,518 +1,508 @@
 ﻿{
-	components: [
-		{
-			code: "testhasmet",
-			owner: "trader",
-			type: "condition",
-			variable: "entity.hasmet",
-			isNotValue: "true",
-			thenJumpTo: "firstmeet",
-			elseJumpTo: "welcomeback"
-		},
-		{
-			code: "firstmeet",
-			owner: "trader",
-			type: "talk",
-			setVariables: { "entity.hasmet": "true" },
-			text: [
-				{ value: "You're new around here. Did you just wake up and smell my food a'cookin'?" },
-			],
-		},
-		{
-			code: "firstmeetresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "I don't know what you mean.", jumpTo: "bigfella" },
-				{ value: "I think so.", jumpTo: "morning" },
-				{ value: "I might still be dreaming.", jumpTo: "dream" },
-				{ value: "Damn it's good to see a friendly face.", jumpTo: "bold" },
-				{ value: "Yes, I awoke in rather hungry mood.", jumpTo: "hungry" }
-			],
-		},
+  components: [
+    {
+      code: "testhasmet",
+      owner: "trader",
+      type: "condition",
+      variable: "entity.hasmet",
+      isNotValue: "true",
+      thenJumpTo: "firstmeet",
+      elseJumpTo: "welcomeback"
+    },
+    {
+      code: "firstmeet",
+      owner: "trader",
+      type: "talk",
+      setVariables: { "entity.hasmet": "true" },
+      text: [
+        { value: "You're new around here. Did you just wake up and smell my food a'cookin'?" },
+      ],
+    },
+    {
+      code: "firstmeetresponse",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "I don't know what you mean.", jumpTo: "bigfella" },
+        { value: "I think so.", jumpTo: "morning" },
+        { value: "I might still be dreaming.", jumpTo: "dream" },
+        { value: "Damn it's good to see a friendly face.", jumpTo: "bold" },
+        { value: "Yes, I awoke in rather hungry mood.", jumpTo: "hungry" }
+      ],
+    },
 
-		{
-			code: "bigfella",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "I've seen some big fellas like you coming and goin' around here. I can't say anyone like y'all come through here before. Y'all ain't keen on telling us where you're from, either." }
-			],
-		},
-		{
-			code: "bigfellaresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "I'm sorry, it's better left unsaid.", jumpTo: "fairenough" },
-				{ value: "I'm not entirely sure myself.", jumpTo: "odd" },
-				{ value: "I'm just trying to survive. As always.", jumpTo: "always" },
-				{ value: "There are more out there... like this?", jumpTo: "likeyou" }
-			],
-		},
-		{
-			code: "fairenough",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Fair e'nuff, stranger. Figured I'd get the same from you." }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "odd",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Odd that some of ya don't seem too sure of your whereabouts." }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "always",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "<i>He nods soberly</i>Ain't we all, stranger?" }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "likeyou",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Ya mean like you? Giant, strange colored creatures wanderin' the earth for something? Yeah, they're around sometimes." }
-			],
-			jumpTo: "main"
-		},
+    {
+      code: "bigfella",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "I've seen some big fellas like you coming and goin' around here. I can't say anyone like y'all come through here before. Y'all ain't keen on telling us where you're from, either." }
+      ],
+    },
+    {
+      code: "bigfellaresponse",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "I'm sorry, it's better left unsaid.", jumpTo: "fairenough" },
+        { value: "I'm not entirely sure myself.", jumpTo: "odd" },
+        { value: "I'm just trying to survive. As always.", jumpTo: "always" },
+        { value: "There are more out there... like this?", jumpTo: "likeyou" }
+      ],
+    },
+    {
+      code: "fairenough",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Fair e'nuff, stranger. Figured I'd get the same from you." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "odd",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Odd that some of ya don't seem too sure of your whereabouts." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "always",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "He nods soberly. 'Ain't we all, stranger?'" }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "likeyou",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Ya mean like you? Giant, strange colored creatures wanderin' the earth for something? Yeah, they're around sometimes." }
+      ],
+      jumpTo: "main"
+    },
 
-		{
-			code: "morning",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Hmph, well good morning to ya. Name's {npcname}. I roam around these parts, finding and trading what I can." }
-			],
-			jumpTo: "main"
-		},
+    {
+      code: "morning",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Hmph, well good morning to ya. Name's {npcname}. I roam around these parts, finding and trading what I can." }
+      ],
+      jumpTo: "main"
+    },
 
-		{
-			code: "dream",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "I wish this was a dream, stranger." }
-			]
-		},
-		{
-			code: "dreamresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "I've seen worse.", jumpTo: "worse" },
-				{ value: "Can you not see how beautiful it is? The air, the sun, the fields... how can it be real?", jumpTo: "itsnot" },
-				{ value: "Perhaps you're right. There's still work to do.", jumpTo: "alwaysmore" },
-			],
-		},
-		{
-			code: "worse",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Worse? I'd hate to see where, especially once those horrible storms strike..." }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "itsnot",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "It's not, at least not to me. I can see this world for what it is - an empty pot, waiting to be filled, burned, and refined." }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "alwaysmore",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Aye, there's always more work to do." }
-			],
-			jumpTo: "main"
-		},
+    {
+      code: "dream",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "I wish this was a dream, stranger." }
+      ]
+    },
+    {
+      code: "dreamresponse",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "I've seen worse.", jumpTo: "worse" },
+        { value: "Can you not see how beautiful it is? The air, the sun, the fields... how can it be real?", jumpTo: "itsnot" },
+        { value: "Perhaps you're right. There's still work to do.", jumpTo: "alwaysmore" },
+      ],
+    },
+    {
+      code: "worse",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Worse? I'd hate to see where, especially once those horrible storms strike..." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "itsnot",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "It's not, at least not to me. I can see this world for what it is - an empty pot, waiting to be filled, burned, and refined." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "alwaysmore",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Aye, there's always more work to do." }
+      ],
+      jumpTo: "main"
+    },
 
-		{
-			code: "bold",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Hah, bold of you to assume I'm friendly! They call me {npcname}. Welcome to my home." }
-			],
-		},
-		{
-			code: "wellmet",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "Well met.", jumpTo: "main" }
-			],
-		},
-
-
-		{
-			code: "hungry",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "If I were as big as you, I'd figure I'd always be hungry! My name is {npcname}. This is my small corner of the world." }
-			],
-		},
-		{
-			code: "introduce",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "It's good to meet you, I'm {playername}. You look like you eat pretty well, {npcname}.", jumpTo: "eatwell" }
-			],
-		},
-		{
-			code: "eatwell",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Aye, I know a thing or two about the culinary arts. A balanced and healthy diet makes travelling this land a lot easier." }
-			],
-			jumpTo: "main"
-		},
-
-		{
-			code: "welcomeback",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Howdy, {playername}! How can I help you?" }
-			]
-		},
-		{
-			code: "main",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "Got anything to trade, {npcname}?", jumpTo: "opentrade" },
-				{ value: "Why gears?", jumpTo: "gears" },
-				{ value: "Why live out here like this?", jumpTo: "profit" },
-				{ value: "How do you get so healthy, anyway?", jumpTo: "healthy", conditions: [{ variable: "entity.ingredients", isNotValue: "true" }]  },
-				{ value: "Can you tell me more about taking full advantage of the food I find?", jumpTo: "ingredients", conditions: [{ variable: "entity.ingredients", isValue: "true" }] },
-				{ value: "Do you have any cooking tips?", jumpTo: "cookingtips", conditions: [{ variable: "entity.ingredients", isValue: "true" }] },
-				{ value: "I want to learn as much about the culinary arts as possible. Can you teach me?", jumpTo: "bread", "conditions": [{ variable: "entity.breadreceived", isNotValue: "true" }] },
-				{ value: "Here's the bread you wanted. Am I a chef now?", jumpTo: "takebread", conditions: [{ variable: "entity.requestbread", isValue: "true" }, { variable: "entity.breadreceived", isNotValue: "true" }, { variable: "player.inventory", isValue: "{type: 'item', code: 'bread-spelt-perfect'}" } ] },
-			]
-		},
-		{
-			code: "opentrade",
-			owner: "trader",
-			trigger: "opentrade"
-		},
-		{
-			code: "gears",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Well, they're limited, they're durable, and they're frankly useless to us. Perfect for currency. Wish they weren't so damn heavy, though." }
-			]
-		},
-		{
-			code: "gearsresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "Surely you could find something better to use?", jumpTo: "specialgears" },
-				{ value: "What, you can't reproduce them?", jumpTo: "rustygears" },
-				{ value: "I see.", jumpTo: "main" }
-			]
-		},
-		{
-			code: "specialgears",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Truth is, these gears mean something special to most folks. We have no idea why they`re out here, but you can find them in the old places of the world. Or deep under the surface, if you dare. They`re the seeds of the past, they`re a promise of the future. And like as not, many of us can feel God`s grace upon them. They`re a part of something greater, as are we all" }
-			]
-		},
-		{
-			code: "holysymbols",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "These are holy symbols to us, and what could make for better trade than that which is sacred?" }
-			],
-			jumpTo: "gearsresponse"
-		},
-		{
-			code: "rustygears",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "`Fraid not. You could always pour some ore in a mold and then leave it in the rain for a while. You`d have yourself a rusty gear sure, but there`s a precision and uniformity to these that`s remarkable. They`re tough as hell, too. We`re not sure what sort of alloy was used to make them. Some folks believe they weren`t made by human hands at all, but rather by something greater." }
-			],
-			jumpTo: "gearsresponse"
-		},
-		{
-			code: "profit",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Most people live in the villages, holed up and cautious of any threats. And there certainly are threats, as you`ve likely seen. Not me, though. I like it out here. And besides, there`s a profit to be made." }
-			]
-		},
-		{
-			code: "profitresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "What are those horrible creatures?", jumpTo: "drifters" },
-				{ value: "The beasts are ravenous. Is wealth really worth all the risk?", jumpTo: "wealth" },
-				{ value: "I'd live in a nice, safe village if I could.'", jumpTo: "main" }
-			]
-		},
-		{
-			code: "drifters",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Ah, those miserable <i>kurstzats</i>. Cursed ones. Drifters. They come and go, lost in grief and rage. Punished by God, they were. They could seek atonement, but nae all they wish to do is spread more misery" }
-			]
-		},
-		{
-			code: "driftersresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "Punished by God! What crime could lead to such a dreadful fate?", jumpTo: "challenged" },
-				{ value: "I saw them crawling out of a hole in the very air itself. I thought I had gone mad.", jumpTo: "bonds" },
-				{ value: "I had hoped the world could not house such horrors.", jumpTo: "afraidso" }
-			]
-		},
-		{
-			code: "challenged",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "They challenged God himself. And God cast them down into the earth to wriggle like worms. They remain there still, in the deep. It`s not safe down below. Not safe at all." }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "bonds",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Aye, sometimes they slip their bonds and flee to the surface. But they are truly lost creatures. They can only wander blindly, causing what pain they may before they are inexorably drawn into their prison again." }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "afraidso",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "I`m afraid so, friend. But God shares wonders in kind. He created this world and those who inhabit it. And when he shows His face to us the earth itself trembles and we tremble with it. In awe of His glory" }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "wealth",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Of course. Wealth is a virtue unto itself. There may yet come a time when the Great Arks appear before us and if that happens I would show them the fruits of my labor. I would lay out before them my gears, my gold and silver, and everything else I have gathered. And if I am deemed worthy, I will join them on their endless journey" }
-			],
-			jumpTo: "main"
-		},
-
-		{
-			code: "healthy",
-			owner: "trader",
-			type: "talk",
-			text: [ { value: "I stay full, my friend. A keen eye alerts me to all sorts of ingredients that the lesser learned would pass right up. " } ],
-			jumpTo: "lesserlearned"
-		},
-		{
-			code: "lesserlearned",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "Like what?", jumpTo: "ingredients" },
-			]
-		},
-		
-		{
-			code: "cookingtips",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "I sure do! Where's a good place to get started?" }
-			],
-		},
-		{
-			code: "cookingtipsresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "I usually just cook food over a firepit.", jumpTo: "cookingtips-earlygame" },
-				{ value: "I've got a saucepan, how do I use it?", jumpTo: "cookingtips-saucepan", conditions: [{ variable: "entity.cookingtipsearlygame", isValue: "true" }] },
-				{ value: "A rolling pin? What's that for?", jumpTo: "cookingtips-rollingpin", conditions: [{ variable: "entity.cookingtipsearlygame", isValue: "true" }] },
-				{ value: "If I can make metal, what cooking options do I have?", jumpTo: "cookingtips-metalage", conditions: [{ variable: "entity.cookingtipsmidgame", isValue: "true" }] },
-				{ value: "The fruit press, huh?", jumpTo: "cookingtips-fruitpress", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
-				{ value: "What's a spile?", jumpTo: "cookingtips-spile", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
-				{ value: "You're telling me some meat can make hooks?", jumpTo: "cookingtips-meathooks", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
-				{ value: "Before the beginning. Forget I said this.", jumpTo: "anytime" },
-			]
-		},
-		{
-			code: "cookingtips-earlygame",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "That's the best you can do? First things first - get your hands on some clay and fire yourself up a saucepan. You'll need it if you plan on gettin' down to basics. I'd recommend whittling a rolling pin out of some wood, too. If you've got enough clay to spare, fire up an oven and get cookin'." }
-			],
-			setVariables: { "entity.cookingtipsearlygame": "true" },
-			jumpTo: "main"
-		},
-		{
-			code: "cookingtips-saucepan",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Well, it can carry liquids. If ya place it on a firepit, then you can use it to open up a little menu where you can add ingredients to boil into something tasty." }
-			],
-			setVariables: { "entity.cookingtipsmidgame": "true" },
-			jumpTo: "main"
-		},
-		{
-			code: "cookingtips-rollingpin",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Rolling pins and hammers are great for tenderizing meat and flattening dough. The animals around here are tough - you'll need to tenderize their meat in order to chop it into fine, delectable bits." }
-			],
-			setVariables: { "entity.cookingtipsmidgame": "true" },
-			jumpTo: "main"
-		},
-		{
-			code: "cookingtips-metalage",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "You can start making barrels and buckets with a saw, but an important tool is your fruit press. Juice some fruit or vegetables and you've got a great way to use a ton of bottles. You could also cast metal to make spiles or meat hooks - or even cauldrons!" }
-			],
-			setVariables: { "entity.cookingtipsmetalage": "true" },
-			jumpTo: "main"
-		},
-		{
-			code: "cookingtips-fruitpress",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Yes, a vital tool for rising above the culinary rabble. Lots of food is full of juice and other liquids that you can press out and use for other purposes. Store them in bottles or cauldrons and they typically last longer than their solid counterparts." }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "cookingtips-spile",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "S'like a little spout you jam into a tree to make it leak sap. Don't forget to put a bucket or something underneath it. Trees don't always leak sap, too - make sure you're in the right season for it." }
-			],
-			jumpTo: "main"
-		},
-		{
-			code: "cookingtips-meathooks",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "No... it's a hook that you hang meat from. See, if you let meat age in a cool, dry place like a cellar, the outside will harden while the inside grows soft and flavorful. Chop away the crust and you have some fine, aged meat. I can't get enough of the stuff, myself." }
-			],
-			jumpTo: "main"
-		},
-
-		{
-			code: "anytime",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "I can share what I know anytime, friend." }
-			],
-			jumpTo: "main"
-		},
-		
-		{
-			code: "bread",
-			owner: "trader",
-			type: "talk",
-			text: [ { value: "There's a wide world of food out there, and you ain't even scratched the surface yet. I tell you what - I've got a hat that the ol' Gastronomist's Guild used to pass out to its members. If you promise to take yer nutrition seriously, then I'll part ways with it. I won't ask for much. Just bring me a humble loaf of bread and I'll accept it as a token of your membership." } ],
-			jumpTo: "main",
-			setVariables: { "entity.requestbread": "true" },
-		},
-		{
-			code: "takebread",
-			owner: "trader",
-			type: "talk",
-			text: [ { value: "Not bad. It's edible, I suppose." } ],
-			jumpTo: "chefhat",
-			trigger: "takefrominventory",
-			triggerdata: {type: 'item', code: 'bread-spelt-perfect'}
-		},
-		{
-			code: "chefhat",
-			owner: "trader",
-			type: "talk",
-			text: [ { value: "Wear this with pride. Few walk these lands with that atop their crown. I hope your friends look to you for guidance in these dark days. Be careful - that's the last one I have." } ],
-			jumpTo: "chefhat",
-			trigger: "giveitemstack",
-			triggerdata: { type: "item", code: "aculinaryartillery:clothes-head-c-hat", stacksize: 1 },
-			setVariables: { "entity.breadreceived": "true" },
-			jumpTo: "main"
-		},
+    {
+      code: "bold",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Hah, bold of you to assume I'm friendly! They call me {npcname}. Welcome to my home." }
+      ],
+    },
+    {
+      code: "wellmet",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "Well met.", jumpTo: "main" }
+      ],
+    },
 
 
+    {
+      code: "hungry",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "If I were as big as you, I'd figure I'd always be hungry! My name is {npcname}. This is my small corner of the world." }
+      ],
+    },
+    {
+      code: "introduce",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "It's good to meet you, I'm {playername}. You look like you eat pretty well, {npcname}.", jumpTo: "eatwell" }
+      ],
+    },
+    {
+      code: "eatwell",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Aye, I know a thing or two about the culinary arts. A balanced and healthy diet makes travelling this land a lot easier." }
+      ],
+      jumpTo: "main"
+    },
 
-		{
-			code: "ingredients",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "It depends on the kind of food you're interested in!" }
-			],
-			setVariables: { "entity.ingredients": "true" },
-		},
-		{
-			code: "ingredientsresponse",
-			owner: "player",
-			type: "talk",
-			text: [
-				{ value: "I like meat - tell me more.", jumpTo: "ingredients-meat" },
-				{ value: "What about grain?", jumpTo: "ingredients-grain" },
-				{ value: "Can you tell me about vegetables?", jumpTo: "ingredients-vegetable" },
-				{ value: "Tell me what you know about dairy.", jumpTo: "ingredients-dairy" },
-				{ value: "How about fruit?", jumpTo: "ingredients-fruit" },
-				{ value: "Nevermind.", jumpTo: "suityourself" },
-			]
-		},
+    {
+      code: "welcomeback",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Howdy, {playername}! How can I help you?" }
+      ]
+    },
+    {
+      code: "main",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "Got anything to trade, {npcname}?", jumpTo: "opentrade" },
+        { value: "Why gears?", jumpTo: "gears" },
+        { value: "Why live out here like this?", jumpTo: "profit" },
+        { value: "How do you get so healthy, anyway?", jumpTo: "healthy", conditions: [{ variable: "entity.ingredients", isNotValue: "true" }]  },
+        { value: "Do you have any cooking tips?", jumpTo: "cookingtips", conditions: [{ variable: "entity.ingredients", isValue: "true" }] },
+        { value: "I want to learn as much about the culinary arts as possible. Can you teach me?", jumpTo: "bread", "conditions": [{ variable: "entity.breadreceived", isNotValue: "true" }] },
+        { value: "Here's the spelt bread you wanted. Am I a chef now?", jumpTo: "takebread", conditions: [{ variable: "entity.requestbread", isValue: "true" }, { variable: "entity.breadreceived", isNotValue: "true" }, { variable: "player.inventory", isValue: "{type: 'item', code: 'bread-spelt-perfect'}" } ] },
+      ]
+    },
+    {
+      code: "opentrade",
+      owner: "trader",
+      trigger: "opentrade"
+    },
+    {
+      code: "gears",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Ya can't manufacture them and they can be scrounged up from ruins or those driftin' things. Easy to find and trade, but worthless on their own. Pretty convenient." }
+      ]
+    },
+    {
+      code: "gearsresponse",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "Surely you could find something better to use?", jumpTo: "specialgears" },
+        { value: "What, you can't reproduce them?", jumpTo: "rustygears" },
+        { value: "I see.", jumpTo: "main" }
+      ]
+    },
+    {
+      code: "specialgears",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Mayhaps, but you would be surprised how sentimental most folks are about them. Don't they invigorate your imagination, get you thinking about what life was like for their creators? I've seen other gears, too - these strange blue ones. I get an odd feeling when I look at 'em, like they're far beyond any of our understanding. In fact, I heard one trader has been gatherin' up as many as they can, on some kind of 'divine mandate'. That sounds fake to me, but as long as most people carry 'em, I'll trade for 'em." }
+      ]
+    },
+    {
+      code: "holysymbols",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "I think they're neat to look at, too. The more I look at it, the more I like it. I do think it's good. The fact is, no matter how closely I study it, no matter how I take it apart, now matter how I break it down... it remains consistent... I like it!" }
+      ],
+      jumpTo: "gearsresponse"
+    },
+    {
+      code: "rustygears",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "If you know how to mass-reproduce these on an industrial, microscopically consistent level using alloys lost to the ages, then sure you can. After that, you can just leave them in a cave full of skeletons for 1000 years. I'll just get gears quicker by selling my wares. I'm telling ya, it's like these things fell from the heavens just to show the rest of us how ignorant we are. Or maybe it's more accurate to say they rose from the earth...?" }
+      ],
+      jumpTo: "gearsresponse"
+    },
+    {
+      code: "profit",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "I like making food for people, but living around them is exasperatin'. All those rules and expectations... I prefer it out here, where I can grow and hunt what I need. I only have the freshest ingredients, and I pray before every meal to thank the earth and animals for sustaining the cycle of life even in these trying times. I can also charge people more for my goods since it's so remote! Hah!" }
+      ]
+    },
+    {
+      code: "profitresponse",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "What are those horrible creatures?", jumpTo: "drifters" },
+        { value: "The beasts are ravenous. Is wealth really worth all the risk?", jumpTo: "wealth" },
+        { value: "You pray to thank the animals and... eat them?", jumpTo: "eatanimals" },
+        { value: "I'd live in a nice, safe village if I could.", jumpTo: "main" }
+      ]
+    },
+    {
+      code: "drifters",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Cursed, wretched, unpitiable creatures. Drifters. Punished by God to 'drift' through space, burdened with immortality. They could seek atonement and be released to die naturally, but instead they spread like a plague, afflicting others with their own deserved misery. Some nights, I hear the groaning of gears outside and the sounds of a terrible, creaking storm bursting forth from a darkened void. I know anything that follows such an unearthly phenomenon ain't good." }
+      ]
+    },
+    {
+      code: "driftersresponse",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "Punished by God! What crime could lead to such a dreadful fate?", jumpTo: "challenged" },
+        { value: "I saw them crawling out of a hole in the very air itself. I thought I had gone mad.", jumpTo: "bonds" },
+        { value: "I had hoped the world could not house such horrors.", jumpTo: "afraidso" }
+      ]
+    },
+    {
+      code: "challenged",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "To challenge God is to challenge death. Challenge FATE! How could fate not intervene on its own behalf? It is much safer to challenge one's self than the entire universe. The consequences are much smaller." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "bonds",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Most are chained within the earth's bosom, as it protects us from their rage. Sometimes those chains loosen and they appear before us. In fact, if you're real unlucky, they appear right behind you without warning. They love inflictin' pain, as it distracts them from their own for a short time, until they're dragged back to whatever black hell they came from." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "afraidso",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "But it houses the glories of God, as well, my friend. It can be seen everywhere from the trees to the grass to a hot meal. If we could see any more of God than that, we'd go blind! Hah!" }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "wealth",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Wealth brings prosperity and deliverance, friend. Through labor, I grow wealthy and share in that wealth with others. I can only hope that I will live to see the Great Arks and be crowned a worthy passenger by my culinary arts. The pursuit of that eternal journey is what drives me, and living here challenges me to grow every day. I know, in time, I'll be ready." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "eatanimals",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Aye. And then I eat 'em." }
+      ],
+    },
+    {
+      code: "eatanimalsresponse",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "How could you do such a thing?", jumpTo: "wolfbait" },
+        { value: "Nod along.", jumpTo: "main" }
+      ]
+    },
+    {
+      code: "wolfbait",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Have you seen those wolves? Nasty, vicious creatures. Many of your kind have served as wolf bait in the past, and you'd do well to kill them on sight. Then turn 'em into sausage." },
+      ],
+      jumpTo: "main"
+    },
 
-		{
-			code: "suityourself",
-			owner: "trader",
-			type: "talk",
-			text: [
-				{ value: "Suit yourself." }
-			],
-			jumpTo: "main"
-		},
-	
-	
+    {
+      code: "healthy",
+      owner: "trader",
+      type: "talk",
+      text: [ { value: "I stay full, my friend. A keen eye alerts me to all sorts of ingredients that the lesser learned would pass right up." } ],
+      jumpTo: "lesserlearned"
+    },
+    {
+      code: "lesserlearned",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "Like what?", jumpTo: "ingredients" },
+      ]
+    },
+    
+    {
+      code: "cookingtips",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "I sure do! Where's a good place to get started?" }
+      ],
+    },
+    {
+      code: "cookingtipsresponse",
+      owner: "player",
+      type: "talk",
+      text: [
+        { value: "I usually just cook food over a firepit.", jumpTo: "cookingtips-earlygame" },
+        { value: "I've got a saucepan, how do I use it?", jumpTo: "cookingtips-saucepan", conditions: [{ variable: "entity.cookingtipsearlygame", isValue: "true" }] },
+        { value: "A rolling pin? What's that for?", jumpTo: "cookingtips-rollingpin", conditions: [{ variable: "entity.cookingtipsearlygame", isValue: "true" }] },
+        { value: "If I can make metal, what cooking options do I have?", jumpTo: "cookingtips-metalage", conditions: [{ variable: "entity.cookingtipsmidgame", isValue: "true" }] },
+        { value: "The fruit press, huh?", jumpTo: "cookingtips-fruitpress", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
+        { value: "What's a spile?", jumpTo: "cookingtips-spile", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
+        { value: "You're telling me some meat can make hooks?", jumpTo: "cookingtips-meathooks", conditions: [{ variable: "entity.cookingtipsmetalage", isValue: "true" }] },
+        { value: "Before the beginning. Forget I said this.", jumpTo: "anytime" },
+      ]
+    },
+    {
+      code: "cookingtips-earlygame",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "That's the best you can do? First things first - get your hands on some clay and fire yourself up a saucepan. You'll need it if you plan on gettin' down to basics. I'd recommend whittling a rolling pin out of some wood, too. If you've got enough clay to spare, fire up an oven and get cookin'." }
+      ],
+      setVariables: { "entity.cookingtipsearlygame": "true" },
+      jumpTo: "main"
+    },
+    {
+      code: "cookingtips-saucepan",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Well, it can carry liquids. If ya place it on a firepit, then you can use it to open up a little menu where you can add ingredients to boil into something tasty." }
+      ],
+      setVariables: { "entity.cookingtipsmidgame": "true" },
+      jumpTo: "main"
+    },
+    {
+      code: "cookingtips-rollingpin",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Rolling pins and hammers are great for tenderizing meat and flattening dough. The animals around here are tough - you'll need to tenderize their meat in order to chop it into fine, delectable bits." }
+      ],
+      setVariables: { "entity.cookingtipsmidgame": "true" },
+      jumpTo: "main"
+    },
+    {
+      code: "cookingtips-metalage",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "You can start making barrels and buckets with a saw, but an important tool is your fruit press. Juice some fruit or vegetables and you've got a great way to use a ton of bottles. You could also cast metal to make spiles or meat hooks - or even cauldrons!" }
+      ],
+      setVariables: { "entity.cookingtipsmetalage": "true" },
+      jumpTo: "main"
+    },
+    {
+      code: "cookingtips-fruitpress",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "Yes, a vital tool for rising above the culinary rabble. Lots of food is full of juice and other liquids that you can press out and use for other purposes. Store them in bottles or cauldrons and they typically last longer than their solid counterparts." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "cookingtips-spile",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "S'like a little spout you jam into a tree to make it leak sap. Don't forget to put a bucket or something underneath it. Trees don't always leak sap, too - make sure you're in the right season for it." }
+      ],
+      jumpTo: "main"
+    },
+    {
+      code: "cookingtips-meathooks",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "No... it's a hook that you hang meat from. See, if you let meat age in a cool, dry place like a cellar, the outside will harden while the inside grows soft and flavorful. Chop away the crust and you have some fine, aged meat. I can't get enough of the stuff, myself." }
+      ],
+      jumpTo: "main"
+    },
+
+    {
+      code: "anytime",
+      owner: "trader",
+      type: "talk",
+      text: [
+        { value: "I can share what I know anytime, friend." }
+      ],
+      jumpTo: "main"
+    },
+    
+    {
+      code: "bread",
+      owner: "trader",
+      type: "talk",
+      text: [ { value: "There's a wide world of food out there, and you ain't even scratched the surface yet. I tell you what - I've got a hat that the ol' Gastronomist's Guild used to pass out to its members. If you promise to take yer nutrition seriously, then I'll part ways with it. I won't ask for much. Just bring me a humble loaf of bread and I'll accept it as a token of your membership. I'm in the mood for spelt, though. Make sure ya don't burn the loaf!'" } ],
+      jumpTo: "main",
+      setVariables: { "entity.requestbread": "true" },
+    },
+    {
+      code: "takebread",
+      owner: "trader",
+      type: "talk",
+      text: [ { value: "Not bad. It's edible, I suppose." } ],
+      jumpTo: "chefhat",
+      trigger: "takefrominventory",
+      triggerdata: {type: 'item', code: 'bread-spelt-perfect'}
+    },
+    {
+      code: "chefhat",
+      owner: "trader",
+      type: "talk",
+      text: [ { value: "Wear this with pride. Few walk these lands with that atop their crown. I hope your friends look to you for guidance in these dark days. Be careful - that's the last one I have." } ],
+      jumpTo: "chefhat",
+      trigger: "giveitemstack",
+      triggerdata: { type: "item", code: "aculinaryartillery:clothes-head-c-hat", stacksize: 1 },
+      setVariables: { "entity.breadreceived": "true" },
+      jumpTo: "main"
+    },
+  
 ]
 }

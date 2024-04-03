@@ -1,4 +1,4 @@
-﻿~1.18_v1.0.18~
+﻿TO-DO WHENEVER:
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
 - ExpandedFood class maintains nutrition after being grinded
 - Sideways barrels added? (see Ye Olde Keg)
@@ -6,14 +6,14 @@
 - Pies can take syrup/sauce 
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
+- Bricklayers integration?
 
 ~1.19_v1.1.4~
-- "A Culinary Artillery: Primer" handbook title changed to "A Culinary Artillery: Cooking 100" - DONE!!!
+- "A Culinary Artillery: Primer" handbook title changed to "A Culinary Artillery: Cooking 100 - Your Tools" - DONE!!!
 - Expanded Food items work properly with trader quests (thanks to Pursec) - DONE!!!
 - BlockBottle crashing fixed again (thanks to Pursec) - DONE!!!
 - XSkills compatibility updated or something? (thanks to Xandu & Pursec) - DONE!!!
-
-- Trader dialogue expanded
+- Trader dialogue expanded (for now; some more will appear when Expanded Foods is installed) - DONE!!!
 - Wildcraft Trees re-integrated (bottle/meat racks & rolling pin work with new wood) - DONE!!!
 
 ~1.19_v1.1.3~
