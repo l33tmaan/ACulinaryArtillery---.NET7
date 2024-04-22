@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿//Left here for posterity and incase a future feature would require us to use a custom oven class, this had been made defunct by changes to the new BlockEntiyExpandedOven - Pursec(Goose)
+/*
+using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
@@ -9,26 +11,26 @@ namespace ACulinaryArtillery
 {
     public class BlockExpandedClayOven : Block, IIgnitable 
     {
-        /*
-         * TODO: Potential visual enhancements
+        
+         //* TODO: Potential visual enhancements
           
-        1. render logs burning stages to ash
-        2. render logs burning with red glow
-        3. custom renderer to draw the item meshes instead of updating the whole chunk each time an item changes
-        4. shader for gradual / intermediate levels of browning
-         * Potential environment enhancements
+        //1. render logs burning stages to ash
+        //2. render logs burning with red glow
+        //3. custom renderer to draw the item meshes instead of updating the whole chunk each time an item changes
+        //4. shader for gradual / intermediate levels of browning
+         //* Potential environment enhancements
           
-        5. oven responds to room warming when getting environment / base temperature?
-        6. rain / snow interactions with hot oven?
-         * Handbook & Firepit
+        //5. oven responds to room warming when getting environment / base temperature?
+        //6. rain / snow interactions with hot oven?
+         //* Handbook & Firepit
          
-        7. once kiln or pit kiln are ready for clay assets, remove "bake" as a firepit verb, replace it with "toast" - so "bake" is reserved for the oven
-         * New bakeable items
+        //7. once kiln or pit kiln are ready for clay assets, remove "bake" as a firepit verb, replace it with "toast" - so "bake" is reserved for the oven
+         //* New bakeable items
          
-        8. code for large items (e.g. pies) which take up the full oven render space, all 4 slots
-        9. could maybe also have long (2-slot) items in future?
-        10. maybe remove temperature display from blockInfo and replace with general words like "very hot" "hot" "warm"
-         */
+        //8. code for large items (e.g. pies) which take up the full oven render space, all 4 slots
+       // 9. could maybe also have long (2-slot) items in future?
+        //10. maybe remove temperature display from blockInfo and replace with general words like "very hot" "hot" "warm"
+        
 
 
 
@@ -56,7 +58,7 @@ namespace ACulinaryArtillery
                         List<ItemStack> stacks = obj.GetHandBookStacks(capi);
                         if (stacks != null) fuelStacklist.AddRange(stacks);
                     }
-                    else if (obj.Attributes?["bakingProperties"]?.AsObject<BakingProperties>() != null || obj.CombustibleProps?.SmeltingType == EnumSmeltType.Bake && obj.CombustibleProps.SmeltedStack != null && obj.CombustibleProps.MeltingPoint < BlockEntityExpandedOven.maxBakingTemperatureAccepted)
+                    else if (obj.Attributes?["bakingProperties"]?.AsObject<BakingProperties>() != null || obj.CombustibleProps?.SmeltingType == EnumSmeltType.Bake && obj.CombustibleProps.SmeltedStack != null && obj.CombustibleProps.MeltingPoint < BlockEntityExpandedOvenOLD.maxBakingTemperatureAccepted)
                     {
                         List<ItemStack> stacks = obj.GetHandBookStacks(capi);
                         if (stacks != null) bakeableStacklist.AddRange(stacks);
@@ -80,7 +82,7 @@ namespace ACulinaryArtillery
                         Itemstacks = bakeableStacklist.ToArray(),
                         GetMatchingStacks = (wi, bs, es) => {
                             if (wi.Itemstacks.Length == 0) return null;
-                            BlockEntityExpandedOven beo = api.World.BlockAccessor.GetBlockEntity(bs.Position) as BlockEntityExpandedOven;
+                            BlockEntityExpandedOvenOLD beo = api.World.BlockAccessor.GetBlockEntity(bs.Position) as BlockEntityExpandedOvenOLD;
                             return beo != null ? beo.CanAdd(wi.Itemstacks) : null;
                         }
                     },
@@ -92,7 +94,7 @@ namespace ACulinaryArtillery
                         Itemstacks = fuelStacklist.ToArray(),
                         GetMatchingStacks = (wi, bs, es) => {
                             //if (wi.Itemstacks.Length == 0) return null;
-                            BlockEntityExpandedOven beo = api.World.BlockAccessor.GetBlockEntity(bs.Position) as BlockEntityExpandedOven;
+                            BlockEntityExpandedOvenOLD beo = api.World.BlockAccessor.GetBlockEntity(bs.Position) as BlockEntityExpandedOvenOLD;
                             return beo != null ? beo.CanAddAsFuel(fuelStacklist.ToArray()) : null;
                         }
                     },
@@ -104,7 +106,7 @@ namespace ACulinaryArtillery
                         Itemstacks = canIgniteStacks.ToArray(),
                         GetMatchingStacks = (wi, bs, es) => {
                             if (wi.Itemstacks.Length == 0) return null;
-                            BlockEntityExpandedOven beo = api.World.BlockAccessor.GetBlockEntity(bs.Position) as BlockEntityExpandedOven;
+                            BlockEntityExpandedOvenOLD beo = api.World.BlockAccessor.GetBlockEntity(bs.Position) as BlockEntityExpandedOvenOLD;
                             return beo != null && beo.CanIgnite() ? wi.Itemstacks : null;
                         }
                     }
@@ -121,19 +123,19 @@ namespace ACulinaryArtillery
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection bs)
         {
-            if (world.BlockAccessor.GetBlockEntity(bs.Position) is BlockEntityExpandedOven beo) return beo.OnInteract(byPlayer, bs);
+            if (world.BlockAccessor.GetBlockEntity(bs.Position) is BlockEntityExpandedOvenOLD beo) return beo.OnInteract(byPlayer, bs);
 
             return base.OnBlockInteractStart(world, byPlayer, bs);
         }
         EnumIgniteState IIgnitable.OnTryIgniteStack(EntityAgent byEntity, BlockPos pos, ItemSlot slot, float secondsIgniting)
         {
-            BlockEntityExpandedOven beo = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityExpandedOven;
+            BlockEntityExpandedOvenOLD beo = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityExpandedOvenOLD;
             if (beo.IsBurning) return secondsIgniting > 2 ? EnumIgniteState.IgniteNow : EnumIgniteState.Ignitable;
             return EnumIgniteState.NotIgnitable;
         }
         public EnumIgniteState OnTryIgniteBlock(EntityAgent byEntity, BlockPos pos, float secondsIgniting)
         {
-            BlockEntityExpandedOven beo = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityExpandedOven;
+            BlockEntityExpandedOvenOLD beo = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityExpandedOvenOLD;
             if (beo == null || !beo.CanIgnite()) return EnumIgniteState.NotIgnitablePreventDefault;
 
             return secondsIgniting > 4 ? EnumIgniteState.IgniteNow : EnumIgniteState.Ignitable;
@@ -143,7 +145,7 @@ namespace ACulinaryArtillery
         {
             handling = EnumHandling.PreventDefault;
 
-            BlockEntityExpandedOven beo = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityExpandedOven;
+            BlockEntityExpandedOvenOLD beo = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityExpandedOvenOLD;
             beo?.TryIgnite();
         }
 
@@ -162,7 +164,7 @@ namespace ACulinaryArtillery
 
         public override void OnAsyncClientParticleTick(IAsyncParticleManager manager, BlockPos pos, float windAffectednessAtPos, float secondsTicking)
         {
-            BlockEntityExpandedOven beo = manager.BlockAccess.GetBlockEntity(pos) as BlockEntityExpandedOven;
+            BlockEntityExpandedOvenOLD beo = manager.BlockAccess.GetBlockEntity(pos) as BlockEntityExpandedOvenOLD;
             if (beo != null && beo.IsBurning) beo.RenderParticleTick(manager, pos, windAffectednessAtPos, secondsTicking, particles);
 
             base.OnAsyncClientParticleTick(manager, pos, windAffectednessAtPos, secondsTicking);
@@ -250,5 +252,6 @@ namespace ACulinaryArtillery
         }
     }
 
-    
 }
+
+*/

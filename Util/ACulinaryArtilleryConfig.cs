@@ -6,11 +6,11 @@ namespace ACulinaryArtillery.Util
 {
     class ACulinaryArtilleryConfig
     {
-        public string OvenDTMod = "Modifies The Rate At Which The Oven Heats, Cools, and Bakes";
+        public string OvenDTMod = "Modifies The Rate At Which The Oven Heats, Cools, and Bakes (1.25 for Vanilla)";
         public float BEExpandedOvenDTMod;
-        public string FuelBurnRateMod = "Multiplier Applied To BurnRate of Fuels Used In Oven";
+        public string FuelBurnRateMod = "Multiplier Applied To BurnRate of Fuels Used In Oven (1.25 for Vanilla)";
         public float BEExpandedOvenFuelBurnRateMod;
-        public string OvenBakeTimeMod = "Additional Direct Modifier To Bake Rate (Does Not Affect Heating/Cooling Time";
+        public string OvenBakeTimeMod = "Additional Direct Modifier To Bake Rate (Does Not Affect Heating/Cooling Time (1.2 for Vanilla)";
         public float BEExpandedOvenBakeTimeMod;
 
         public ACulinaryArtilleryConfig()
@@ -23,11 +23,11 @@ namespace ACulinaryArtillery.Util
             ACulinaryArtilleryConfig defaultConfig = new();
 
             defaultConfig.OvenDTMod.ToString();
-            defaultConfig.BEExpandedOvenDTMod = 1f;
+            defaultConfig.BEExpandedOvenDTMod = 1.25f;
             defaultConfig.FuelBurnRateMod.ToString();
-            defaultConfig.BEExpandedOvenFuelBurnRateMod = 1f;
+            defaultConfig.BEExpandedOvenFuelBurnRateMod = 1.25f;
             defaultConfig.OvenBakeTimeMod.ToString();
-            defaultConfig.BEExpandedOvenBakeTimeMod = 1f;
+            defaultConfig.BEExpandedOvenBakeTimeMod = 1.2f;
             return defaultConfig;
         }
     }

@@ -1,12 +1,6 @@
 [
   {
     "op": "replace",
-    "path": "/class",
-    "value": "BlockExpandedClayOven",
-    "file": "game:blocktypes/clay/oven.json"
-  },
-  {
-    "op": "replace",
     "path": "/entityClass",
     "value": "ExpandedOven",
     "file": "game:blocktypes/clay/oven.json"
