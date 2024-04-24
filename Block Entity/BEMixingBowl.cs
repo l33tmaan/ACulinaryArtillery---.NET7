@@ -297,20 +297,20 @@ namespace ACulinaryArtillery
             DoughRecipe drecipe = GetMatchingDoughRecipe(Api.World, IngredSlots);
             ItemStack mixedStack;
             int servings = 0;
-
+            ItemStack[] stacks = IngredStacks;
             if (recipe != null)
             {
                 Block cooked = Api.World.GetBlock(InputStack.Collectible.CodeWithVariant("type", "cooked"));
                 mixedStack = new ItemStack(cooked);
-                servings = recipe.GetQuantityServings(IngredStacks);
+                servings = recipe.GetQuantityServings(stacks);
 
-                for (int i = 0; i < IngredStacks.Length; i++)
+                for (int i = 0; i < stacks.Length; i++)
                 {
-                    CookingRecipeIngredient ingred = recipe.GetIngrendientFor(IngredStacks[i]);
-                    ItemStack cookedStack = ingred.GetMatchingStack(IngredStacks[i])?.CookedStack?.ResolvedItemstack.Clone();
+                    CookingRecipeIngredient ingred = recipe.GetIngrendientFor(stacks[i]);
+                    ItemStack cookedStack = ingred.GetMatchingStack(stacks[i])?.CookedStack?.ResolvedItemstack.Clone();
                     if (cookedStack != null)
                     {
-                        IngredStacks[i] = cookedStack;
+                        stacks[i] = cookedStack;
                     }
                 }
 
@@ -318,15 +318,15 @@ namespace ACulinaryArtillery
                 TransitionableProperties cookedPerishProps = recipe.PerishableProps.Clone();
                 cookedPerishProps.TransitionedStack.Resolve(Api.World, "cooking container perished stack");
 
-                CollectibleObject.CarryOverFreshness(Api, IngredSlots, IngredStacks, cookedPerishProps);
+                CollectibleObject.CarryOverFreshness(Api, IngredSlots, stacks, cookedPerishProps);
 
-                for (int i = 0; i < IngredStacks.Length; i++)
+                for (int i = 0; i < stacks.Length; i++)
                 {
-                    IngredStacks[i].StackSize /= servings; // whats this good for? Probably doesn't do anything meaningful
+                    stacks[i].StackSize /= servings; // whats this good for? Probably doesn't do anything meaningful
                 }
 
 
-                ((BlockCookedContainer)cooked).SetContents(recipe.Code, servings, mixedStack, IngredStacks);
+                ((BlockCookedContainer)cooked).SetContents(recipe.Code, servings, mixedStack, stacks);
 
                 inventory[0].TakeOut(1);
                 inventory[0].MarkDirty();

@@ -1622,11 +1622,18 @@ namespace ACulinaryArtillery
                 {
                     foreach (FoodNutritionProperties exProp in exProps)
                     {
-                        exProp.Satiety *= satLossMul * mul * nutritionMul;
-                        exProp.Health *= healthLoss * healthMul * mul;
+                        exProp.Satiety *= satLossMul * mul * nutritionMul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1);
+                        exProp.Health *= healthLoss * healthMul * mul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1);
 
                         foodProps.Add(exProp);
                     }
+                }
+                if (stackProps != null)
+                {   
+                    FoodNutritionProperties props = stackProps.Clone();
+                    props.Satiety *= satLossMul * nutritionMul * mul;
+                    props.Health *= healthLoss * healthMul * mul;
+                    foodProps.Add(props);
                 }
             }
             else if (stackProps != null)
