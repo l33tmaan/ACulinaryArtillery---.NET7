@@ -118,9 +118,8 @@ namespace ACulinaryArtillery
 
         public ItemStack TryCraftNow(ICoreAPI api, ItemSlot[] inputslots)
         {
-
             var matched = pairInput(inputslots);
-
+            
             ItemStack mixedStack = Output.ResolvedItemstack.Clone();
             mixedStack.StackSize = getOutputSize(matched);
 
@@ -143,7 +142,7 @@ namespace ACulinaryArtillery
                 val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Output.StackSize));
                 val.Key.MarkDirty();
             }
-
+            
             return mixedStack;
         }
 
@@ -385,6 +384,7 @@ namespace ACulinaryArtillery
             MixingRecipeRegistry.Registry.MixingRecipes.Clear();
             MixingRecipeRegistry.Registry.KneadingRecipes.Clear();
             MixingRecipeRegistry.Registry.SimmerRecipes.Clear();
+            if (!(api is ICoreServerAPI sapi)) return;
             LoadFoodRecipes();
         }
 

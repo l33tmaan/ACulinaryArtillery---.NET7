@@ -1050,7 +1050,7 @@ namespace ACulinaryArtillery
             return false;
         }
     }
-
+    
     [HarmonyPatch(typeof(BlockEntityPie))]
     class BlockEntityPiePatch
     {
@@ -1063,9 +1063,9 @@ namespace ACulinaryArtillery
 
         [HarmonyPrefix]
         [HarmonyPatch("TryAddIngredientFrom")]
-        static bool mulitPie(ref bool __result, BlockEntityPie __instance, ItemSlot slot, IPlayer byPlayer = null)
+        static bool mulitPie(ref bool __result, ref InventoryBase ___inv, BlockEntityPie __instance, ItemSlot slot, IPlayer byPlayer = null)
         {
-            InventoryBase inv = __instance.Inventory;
+            //InventoryBase inv = __instance.Inventory;
             ICoreClientAPI capi = __instance.Api as ICoreClientAPI;
 
             var pieProps = slot.Itemstack.ItemAttributes?["inPieProperties"]?.AsObject<InPieProperties>(null, slot.Itemstack.Collectible.Code.Domain);
@@ -1085,11 +1085,11 @@ namespace ACulinaryArtillery
                 return false;
             }
 
-            var pieBlock = (inv[0].Itemstack.Block as BlockPie);
+            var pieBlock = (___inv[0].Itemstack.Block as BlockPie);
             if (pieBlock == null)
             { __result = false; return false; }
 
-            ItemStack[] cStacks = pieBlock.GetContents(__instance.Api.World, inv[0].Itemstack);
+            ItemStack[] cStacks = pieBlock.GetContents(__instance.Api.World, ___inv[0].Itemstack);
 
             bool isFull = cStacks[1] != null && cStacks[2] != null && cStacks[3] != null && cStacks[4] != null;
             bool hasFilling = cStacks[1] != null || cStacks[2] != null || cStacks[3] != null || cStacks[4] != null;
@@ -1101,11 +1101,11 @@ namespace ACulinaryArtillery
                     if (cStacks[5] == null)
                     {
                         cStacks[5] = slot.TakeOut(2);
-                        pieBlock.SetContents(inv[0].Itemstack, cStacks);
+                        pieBlock.SetContents(___inv[0].Itemstack, cStacks);
                     }
                     else
                     {
-                        ItemStack stack = inv[0].Itemstack;
+                        ItemStack stack = ___inv[0].Itemstack;
                         stack.Attributes.SetInt("topCrustType", (stack.Attributes.GetInt("topCrustType") + 1) % 3);
                     }
                     __result = true;
@@ -1129,7 +1129,7 @@ namespace ACulinaryArtillery
             if (!hasFilling)
             {
                 cStacks[1] = slot.TakeOut(2);
-                pieBlock.SetContents(inv[0].Itemstack, cStacks);
+                pieBlock.SetContents(___inv[0].Itemstack, cStacks);
                 __result = true;
                 return false;
             }
@@ -1160,12 +1160,12 @@ namespace ACulinaryArtillery
             if (equal)
             {
                 cStacks[emptySlotIndex] = slot.TakeOut(2);
-                pieBlock.SetContents(inv[0].Itemstack, cStacks);
+                pieBlock.SetContents(___inv[0].Itemstack, cStacks);
                 __result = true;
                 return false;
             }
 
-            if (inv.Count < 0)
+            if (___inv.Count < 0)
             {
                 if (byPlayer != null && capi != null)
                     capi.TriggerIngameError(__instance, "piefullfilling", Lang.Get("Can't mix fillings from different food categories"));
@@ -1183,7 +1183,7 @@ namespace ACulinaryArtillery
                 }
 
                 cStacks[emptySlotIndex] = slot.TakeOut(2);
-                pieBlock.SetContents(inv[0].Itemstack, cStacks);
+                pieBlock.SetContents(___inv[0].Itemstack, cStacks);
                 __result = true;
                 return false;
             }

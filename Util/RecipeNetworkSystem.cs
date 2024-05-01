@@ -36,7 +36,7 @@ namespace ACulinaryArtillery
 
         private void OnServerMessage(RecipeUpload networkMessage)
         {
-            if (!clientApi.PlayerReadyFired) return;
+            if (clientApi.IsSinglePlayer || !clientApi.PlayerReadyFired ) return;
             clientApi.Logger.VerboseDebug("Received ACA recipes from server");
             List<DoughRecipe> drecipes = new List<DoughRecipe>();
             List<CookingRecipe> crecipes = new List<CookingRecipe>();
@@ -134,7 +134,8 @@ namespace ACulinaryArtillery
 
         private void SendRecepies(IServerPlayer player, bool allowCache = true)
         {
-            SendRecepies(new IServerPlayer[] { player }, allowCache);
+                SendRecepies(new IServerPlayer[] { player }, allowCache);
+            
         }
 
         private void SendRecepies(IServerPlayer[] players, bool allowCache = true)
