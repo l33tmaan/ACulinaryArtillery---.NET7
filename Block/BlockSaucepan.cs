@@ -280,6 +280,7 @@ namespace ACulinaryArtillery
             return temp;
         }
 
+        // We have overrides for TryPutLiquid, but these are almost carbon copies of the base method, wont remove *yet* incase we do want to write some custom behavior and the base code is a bit harder to read imo
         public override int TryPutLiquid(ItemStack containerStack, ItemStack liquidStack, float desiredLitres)
         {
             if (liquidStack == null) return 0;
@@ -312,8 +313,7 @@ namespace ACulinaryArtillery
                 float maxItems = sink.CapacityLitres * props.ItemsPerLitre;
                 int placeableItems = (int)(maxItems - (float)stack.StackSize);
 
-                stack.StackSize += Math.Min(placeableItems, desiredItems);
-
+                stack.StackSize += GameMath.Min(placeableItems, desiredItems, availItems);
                 return Math.Min(placeableItems, desiredItems);
             }
         }
