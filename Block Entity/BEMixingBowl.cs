@@ -677,7 +677,7 @@ namespace ACulinaryArtillery
                 Inventory.InvNetworkUtil.HandleClientPacket(player, packetid, data);
 
                 // Tell server to save this chunk to disk again
-                Api.World.BlockAccessor.GetChunkAtBlockPos(Pos.X, Pos.Y, Pos.Z).MarkModified();
+                Api.World.BlockAccessor.GetChunkAtBlockPos(Pos).MarkModified();
 
                 return;
             }
@@ -774,7 +774,7 @@ namespace ACulinaryArtillery
             }
         }
 
-        public override void OnLoadCollectibleMappings(IWorldAccessor worldForResolve, Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, int schematicSeed)
+        public override void OnLoadCollectibleMappings(IWorldAccessor worldForResolve, Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, int schematicSeed, bool resolveImports)
         {
             foreach (var slot in Inventory)
             {
@@ -809,7 +809,8 @@ namespace ACulinaryArtillery
         public CookingRecipe GetMatchingMixingRecipe(IWorldAccessor world, ItemStack[] stacks)
         {
             if (Pot == null) return null;
-            var recipes = MixingRecipeRegistry.Registry.MixingRecipes;
+            //var recipes = MixingRecipeRegistry.Registry.MixingRecipes;
+            var recipes = Api.GetMixingRecipes();
             if (recipes == null) return null;
 
             for (int j = 0; j < recipes.Count; j++)
@@ -828,7 +829,8 @@ namespace ACulinaryArtillery
         public DoughRecipe GetMatchingDoughRecipe(IWorldAccessor world, ItemSlot[] slots)
         {
             if (Pot != null) return null;
-            List<DoughRecipe> recipes = MixingRecipeRegistry.Registry.KneadingRecipes;
+            //List<DoughRecipe> recipes = MixingRecipeRegistry.Registry.KneadingRecipes;
+            var recipes = Api.GetKneadingRecipes();
             if (recipes == null) return null;
 
             for (int j = 0; j < recipes.Count; j++)

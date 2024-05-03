@@ -780,7 +780,7 @@ namespace ACulinaryArtillery
         [HarmonyPatch("FromRecipe", MethodType.Getter)]
         static void recipeFix(ref CookingRecipe __result, BlockEntityCookedContainer __instance)
         {
-            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
+            __result ??= __instance.Api.GetMixingRecipes().FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
         }
 
         [HarmonyPrefix]
@@ -788,7 +788,7 @@ namespace ACulinaryArtillery
         static bool infoFix(IPlayer forPlayer, ref StringBuilder dsc, BlockEntityCookedContainer __instance)
         {
             ItemStack[] contentStacks = __instance.GetNonEmptyContentStacks();
-            CookingRecipe recipe = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
+            CookingRecipe recipe = __instance.Api.GetMixingRecipes().FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
             if (recipe == null)
                 return true;
 
@@ -851,7 +851,7 @@ namespace ACulinaryArtillery
         [HarmonyPatch("FromRecipe", MethodType.Getter)]
         static void recipeFix(ref CookingRecipe __result, BlockEntityMeal __instance)
         {
-            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
+            __result ??= __instance.Api.GetMixingRecipes().FirstOrDefault(rec => rec.Code == __instance.RecipeCode);
         }
     }
 
@@ -869,14 +869,14 @@ namespace ACulinaryArtillery
         [HarmonyPatch("GetCookingRecipe")]
         static void recipeFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
-            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+            __result ??= world.Api.GetMixingRecipes().FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
 
         [HarmonyPostfix]
         [HarmonyPatch("GetMealRecipe")]
         static void mealFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
-            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+            __result ??= world.Api.GetMixingRecipes().FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
     }
 
@@ -894,7 +894,7 @@ namespace ACulinaryArtillery
         [HarmonyPatch("GetCookingRecipe")]
         static void recipeFix(ref CookingRecipe __result, ItemStack containerStack, IWorldAccessor world, BlockCookedContainerBase __instance)
         {
-            __result ??= MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
+            __result ??= world.Api.GetMixingRecipes().FirstOrDefault(rec => rec.Code == __instance.GetRecipeCode(world, containerStack));
         }
 
         
@@ -1000,7 +1000,7 @@ namespace ACulinaryArtillery
 
             BlockMeal mealblock = world.GetBlock(new AssetLocation("bowl-meal")) as BlockMeal;
 
-            CookingRecipe recipe = MixingRecipeRegistry.Registry.MixingRecipes.FirstOrDefault((rec) => becrock.RecipeCode == rec.Code);
+            CookingRecipe recipe = world.Api.GetMixingRecipes().FirstOrDefault((rec) => becrock.RecipeCode == rec.Code);
             ItemStack[] stacks = becrock.inventory.Where(slot => !slot.Empty).Select(slot => slot.Itemstack).ToArray();
 
             if (stacks == null || stacks.Length == 0)
@@ -1067,6 +1067,18 @@ namespace ACulinaryArtillery
         {
             //InventoryBase inv = __instance.Inventory;
             ICoreClientAPI capi = __instance.Api as ICoreClientAPI;
+            ILiquidSource container = slot.Itemstack.Collectible as ILiquidSource;
+            InPieProperties pieProps = null;
+            ItemStack contentStack = null;
+            if (container != null)
+            {
+                contentStack = container.GetContent(slot.Itemstack);
+                pieProps = contentStack.ItemAttributes?["inPieProperties"]?.AsObject<InPieProperties>(null, contentStack.Collectible.Code.Domain);
+            }
+            else
+            {
+                pieProps = slot.Itemstack.ItemAttributes?["inPieProperties"]?.AsObject<InPieProperties>(null, slot.Itemstack.Collectible.Code.Domain);
+            }
 
             var pieProps = slot.Itemstack.ItemAttributes?["inPieProperties"]?.AsObject<InPieProperties>(null, slot.Itemstack.Collectible.Code.Domain);
             if (pieProps == null)
@@ -1077,10 +1089,17 @@ namespace ACulinaryArtillery
                 return false;
             }
 
-            if (slot.StackSize < 2)
+            if (container is null && slot.StackSize < 2)
             {
                 if (byPlayer != null && capi != null)
                     capi.TriggerIngameError(__instance, "notpieable", Lang.Get("Need at least 2 items each"));
+                __result = false;
+                return false;
+            }
+            else if (container is not null && contentStack.StackSize < 20)
+            {
+                if (byPlayer != null && capi != null)
+                    capi.TriggerIngameError(__instance, "notpieable", Lang.Get("Need at least 0.2L liquid"));
                 __result = false;
                 return false;
             }
@@ -1128,7 +1147,8 @@ namespace ACulinaryArtillery
 
             if (!hasFilling)
             {
-                cStacks[1] = slot.TakeOut(2);
+                
+                cStacks[1] = container != null ? container.TryTakeContent(slot.Itemstack, 20): slot.TakeOut(2);
                 pieBlock.SetContents(___inv[0].Itemstack, cStacks);
                 __result = true;
                 return false;
@@ -1137,8 +1157,8 @@ namespace ACulinaryArtillery
             var foodCats = cStacks.Select(stack => stack?.Collectible.NutritionProps?.FoodCategory ?? stack?.ItemAttributes?["nutritionPropsWhenInMeal"]?.AsObject<FoodNutritionProperties>()?.FoodCategory ?? EnumFoodCategory.Vegetable).ToArray();
             var stackprops = cStacks.Select(stack => stack?.ItemAttributes["inPieProperties"]?.AsObject<InPieProperties>(null, stack.Collectible.Code.Domain)).ToArray();
 
-            ItemStack cstack = slot.Itemstack;
-            EnumFoodCategory foodCat = slot.Itemstack?.Collectible.NutritionProps?.FoodCategory ?? slot.Itemstack?.ItemAttributes?["nutritionPropsWhenInMeal"]?.AsObject<FoodNutritionProperties>()?.FoodCategory ?? EnumFoodCategory.Vegetable;
+            ItemStack cstack = contentStack != null ? contentStack : slot.Itemstack;
+            EnumFoodCategory foodCat = cstack?.Collectible.NutritionProps?.FoodCategory ?? cstack?.ItemAttributes?["nutritionPropsWhenInMeal"]?.AsObject<FoodNutritionProperties>()?.FoodCategory ?? EnumFoodCategory.Vegetable;
 
             bool equal = true;
             bool foodCatEquals = true;
@@ -1159,7 +1179,7 @@ namespace ACulinaryArtillery
 
             if (equal)
             {
-                cStacks[emptySlotIndex] = slot.TakeOut(2);
+                cStacks[emptySlotIndex] = container != null ? container.TryTakeContent(slot.Itemstack, 20) : slot.TakeOut(2);
                 pieBlock.SetContents(___inv[0].Itemstack, cStacks);
                 __result = true;
                 return false;
@@ -1182,7 +1202,7 @@ namespace ACulinaryArtillery
                     return false;
                 }
 
-                cStacks[emptySlotIndex] = slot.TakeOut(2);
+                cStacks[emptySlotIndex] = container != null ? container.TryTakeContent(slot.Itemstack, 20) : slot.TakeOut(2);
                 pieBlock.SetContents(___inv[0].Itemstack, cStacks);
                 __result = true;
                 return false;

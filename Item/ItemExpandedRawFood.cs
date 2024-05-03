@@ -1610,10 +1610,17 @@ namespace ACulinaryArtillery
             {
                 stackProps = obj.Attributes?["nutritionPropsWhenInMeal"].AsObject<FoodNutritionProperties>();
             }
+            if (obj.Attributes?["nutritionPropsWhenInPie"].Exists == true && mulWithStacksize)
+            {
+                stackProps = obj.Attributes?["nutritionPropsWhenInPie"].AsObject<FoodNutritionProperties>();
+            }
             float satLossMul = 1.0f;
             float healthLoss = 1.0f;
             float mul = mulWithStacksize ? contentStack.StackSize : 1;
-
+            if (BlockLiquidContainerBase.GetContainableProps(contentStack) != null && mulWithStacksize)
+            {
+                mul /= 10;
+            }
             if (obj is ItemExpandedRawFood && (contentStack.Attributes["expandedSats"] as FloatArrayAttribute)?.value?.Length == 6)
             {
                 FoodNutritionProperties[] exProps = (obj as ItemExpandedRawFood).GetPropsFromArray((contentStack.Attributes["expandedSats"] as FloatArrayAttribute).value);
@@ -1622,8 +1629,8 @@ namespace ACulinaryArtillery
                 {
                     foreach (FoodNutritionProperties exProp in exProps)
                     {
-                        exProp.Satiety *= satLossMul * mul * nutritionMul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1);
-                        exProp.Health *= healthLoss * healthMul * mul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1);
+                        exProp.Satiety *= satLossMul * nutritionMul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1 * mul);
+                        exProp.Health *= healthLoss * healthMul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1 * mul);
 
                         foodProps.Add(exProp);
                     }

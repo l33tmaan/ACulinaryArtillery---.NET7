@@ -22,7 +22,7 @@ namespace ACulinaryArtillery
         public override bool AllowHeldLiquidTransfer => true;
         public AssetLocation liquidFillSoundLocation => new AssetLocation("game:sounds/effect/water-fill");
 
-        private List<SimmerRecipe> simmerRecipes => MixingRecipeRegistry.Registry.SimmerRecipes;
+        private List<SimmerRecipe> simmerRecipes => api.GetSimmerRecipes();
 
         public bool isSealed;
         public override void OnLoaded(ICoreAPI api)
