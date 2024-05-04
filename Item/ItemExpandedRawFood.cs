@@ -11,6 +11,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
+using Vintagestory.Common;
 using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
@@ -1836,11 +1837,27 @@ namespace ACulinaryArtillery
             if (ings != null) newStack.Attributes["madeWith"] = new StringArrayAttribute(ings);
             if (sats != null) newStack.Attributes["expandedSats"] = new FloatArrayAttribute(sats);
         }
+        public void OnCreatedByGrinding(ItemStack input, ItemStack output)
+        {
+            string[] ings = (input?.Attributes["madeWith"] as StringArrayAttribute)?.value;
+            float[] sats = (input?.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
+            
+            
+            //dividedSats.Foreach(sat => { sat /= output.StackSize;});
+            if (ings != null) output.Attributes["madeWith"] = new StringArrayAttribute(ings);
+            if (sats != null) 
+            {
+                float[] dividedSats = Array.ConvertAll(sats, i => i / output.StackSize);
+                output.Attributes["expandedSats"] = new FloatArrayAttribute(dividedSats);
+            }
+            
+        }
     }
 
     public interface IExpandedFood
     {
         void OnCreatedByKneading(List<KeyValuePair<ItemSlot, CraftingRecipeIngredient>> input, ItemStack output);
+        void OnCreatedByGrinding(ItemStack input, ItemStack output);
     }
 
     public enum EnumNutritionMatch

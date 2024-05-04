@@ -2,6 +2,7 @@ using ACulinaryArtillery.Util;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 
 using System.Reflection;
@@ -903,10 +904,8 @@ namespace ACulinaryArtillery
         static bool nutriFix(IWorldAccessor world, ItemSlot inSlot, ItemStack[] contentStacks, EntityAgent forEntity, ref FoodNutritionProperties[] __result, bool mulWithStacksize = false, float nutritionMul = 1, float healthMul = 1)
         {
             List<FoodNutritionProperties> props = new List<FoodNutritionProperties>();
-
-            Dictionary<EnumFoodCategory, float> totalSaturation = new Dictionary<EnumFoodCategory, float>();
             
-
+            Dictionary<EnumFoodCategory, float> totalSaturation = new Dictionary<EnumFoodCategory, float>();
             for (int i = 0; i < contentStacks.Length; i++)
             {
                 if (contentStacks[i] == null)
@@ -1050,7 +1049,55 @@ namespace ACulinaryArtillery
             return false;
         }
     }
-    
+
+
+    [HarmonyPatch(typeof(BlockEntityQuern))]
+    class BlockEntityQuernPatch
+    {
+        [HarmonyPrefix]
+        [HarmonyPatch("grindInput")]
+        static bool grindInputWIthInheritedAttributes(ref int ___nowOutputFace, BlockEntityQuern __instance)
+        {
+            
+            ItemStack grindedStack = __instance.InputGrindProps.GroundStack.ResolvedItemstack.Clone();
+            IExpandedFood food;
+            if ((food = grindedStack.Collectible as IExpandedFood) != null)
+            {
+                food.OnCreatedByGrinding(__instance.InputStack, grindedStack);
+            }
+            else
+            {
+                return true;
+            }
+            if (__instance.OutputSlot.Itemstack == null)
+            {
+                __instance.OutputSlot.Itemstack = grindedStack;
+            }
+            else
+            {
+                int mergableQuantity = __instance.OutputSlot.Itemstack.Collectible.GetMergableQuantity(__instance.OutputSlot.Itemstack, grindedStack, EnumMergePriority.AutoMerge);
+
+                if (mergableQuantity > 0)
+                {
+                    __instance.OutputSlot.Itemstack.StackSize += grindedStack.StackSize;
+                }
+                else
+                {
+                    BlockFacing face = BlockFacing.HORIZONTALS[___nowOutputFace];
+                    ___nowOutputFace = (___nowOutputFace + 1) % 4;
+
+                    Block block = __instance.Api.World.BlockAccessor.GetBlock(__instance.Pos.AddCopy(face));
+                    if (block.Replaceable < 6000) return false;
+                    __instance.Api.World.SpawnItemEntity(grindedStack, __instance.Pos.ToVec3d().Add(0.5 + face.Normalf.X * 0.7, 0.75, 0.5 + face.Normalf.Z * 0.7), new Vec3d(face.Normalf.X * 0.02f, 0, face.Normalf.Z * 0.02f));
+                }
+            }
+
+            __instance.InputSlot.TakeOut(1);
+            __instance.InputSlot.MarkDirty();
+            __instance.OutputSlot.MarkDirty();
+            return false;
+        }
+    }
     [HarmonyPatch(typeof(BlockEntityPie))]
     class BlockEntityPiePatch
     {
@@ -1079,7 +1126,7 @@ namespace ACulinaryArtillery
             {
                 pieProps = slot.Itemstack.ItemAttributes?["inPieProperties"]?.AsObject<InPieProperties>(null, slot.Itemstack.Collectible.Code.Domain);
             }
-
+            
             if (pieProps == null)
             {
                 if (byPlayer != null && capi != null)
