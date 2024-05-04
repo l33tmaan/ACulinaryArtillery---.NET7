@@ -1080,7 +1080,6 @@ namespace ACulinaryArtillery
                 pieProps = slot.Itemstack.ItemAttributes?["inPieProperties"]?.AsObject<InPieProperties>(null, slot.Itemstack.Collectible.Code.Domain);
             }
 
-            var pieProps = slot.Itemstack.ItemAttributes?["inPieProperties"]?.AsObject<InPieProperties>(null, slot.Itemstack.Collectible.Code.Domain);
             if (pieProps == null)
             {
                 if (byPlayer != null && capi != null)
