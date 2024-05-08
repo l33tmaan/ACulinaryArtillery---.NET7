@@ -97,7 +97,7 @@ namespace ACulinaryArtillery
 
             foreach (ItemSlot slot in cookingSlotsProvider.Slots)   //the cookingSlots are not necessarily filled in order. We just want the ones that are.
             {
-                if (!slot.Empty) stacks.Add(slot.Itemstack);
+                if (!slot.Empty) stacks.Add(slot.Itemstack.Clone());
             }
 
             if (stacks.Any())
@@ -115,15 +115,27 @@ namespace ACulinaryArtillery
                     }
                 }
                 else
-                    return simmerRecipes.Any(); //otherwise, there are more than 1 items in the saucepan, so we only check that there are recipes, for now. We check whether they match the recipe in DoSmelt().
+                {
+                    //SimmerRecipe match = null;
+                    //int amountForTheseIngredients = 10;
+                    if (simmerRecipes == null) return false;
+                    foreach (SimmerRecipe rec in simmerRecipes)
+                    {
+                        if (rec.Match(stacks) >= 1)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                    //return simmerRecipes.Any(); //otherwise, there are more than 1 items in the saucepan, so we only check that there are recipes, for now. We check whether they match the recipe in DoSmelt().
             }
             return false;
         }
 
         public override void DoSmelt(IWorldAccessor world, ISlotProvider cookingSlotsProvider, ItemSlot inputSlot, ItemSlot outputSlot)
         {
-            if (!CanSmelt(world, cookingSlotsProvider, inputSlot.Itemstack, outputSlot.Itemstack))
-                return;
+            //if (!CanSmelt(world, cookingSlotsProvider, inputSlot.Itemstack, outputSlot.Itemstack))
+             //   return;
 
             List<ItemStack> contents = new List<ItemStack>();   //The inputSlots may not all be filled. This is more convenient.
             ItemStack product = null;
@@ -696,8 +708,8 @@ namespace ACulinaryArtillery
                 meshrefs[hashcode] = meshRef = capi.Render.UploadMultiTextureMesh(meshdata);
 
             }
+            if (meshRef != null) { renderinfo.ModelRef = meshRef; }
 
-            renderinfo.ModelRef = meshRef;
         }
 
         public string GetOutputText(IWorldAccessor world, InventorySmelting inv)
