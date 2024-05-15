@@ -8,13 +8,16 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
+~1.19_v1.1.5~
+-
+
 ~1.19_v1.1.4~
-- "A Culinary Artillery: Primer" handbook title changed to "A Culinary Artillery: Cooking 100 - Your Tools" - DONE!!!
-- Expanded Food items work properly with trader quests (thanks to Pursec) - DONE!!!
-- BlockBottle crashing fixed again (thanks to Pursec) - DONE!!!
-- XSkills compatibility updated or something? (thanks to Xandu & Pursec) - DONE!!!
-- Trader dialogue expanded (for now; some more will appear when Expanded Foods is installed) - DONE!!!
-- Wildcraft Trees re-integrated (bottle/meat racks & rolling pin work with new wood) - DONE!!!
+- "A Culinary Artillery: Primer" handbook title changed to "A Culinary Artillery: Cooking 100 - Your Tools"
+- Expanded Food items work properly with trader quests (thanks to Pursec)
+- BlockBottle crashing fixed again (thanks to Pursec)
+- XSkills compatibility updated or something? (thanks to Xandu & Pursec)
+- Trader dialogue expanded (for now; some more will appear when Expanded Foods is installed)
+- Wildcraft Trees re-integrated (bottle/meat racks & rolling pin work with new wood)
 
 ~1.19_v1.1.3~
 - Hotfix: Cookware trader spawn chance reduced from 1.0 to 0.1
