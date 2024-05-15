@@ -15,7 +15,7 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class ItemExpandedRawFood : Item, IExpandedFood, ITexPositionSource, IContainedMeshSource
+    public class ItemExpandedRawFood : Item, IExpandedFood, ITexPositionSource, IContainedMeshSource, IBakeableCallback
     {
         public Size2i AtlasSize => targetAtlas.Size;
         public TextureAtlasPosition this[string textureCode] => GetOrCreateTexPos(GetTexturePath(textureCode));
@@ -1813,6 +1813,14 @@ namespace ACulinaryArtillery
             }
 
             return null;
+        }   
+
+        public void OnBaked(ItemStack oldStack, ItemStack newStack)
+        {
+            string[] ings = (oldStack?.Attributes["madeWith"] as StringArrayAttribute)?.value;
+            float[] sats = (oldStack?.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
+            if (ings != null) newStack.Attributes["madeWith"] = new StringArrayAttribute(ings);
+            if (sats != null) newStack.Attributes["expandedSats"] = new FloatArrayAttribute(sats);
         }
     }
 
