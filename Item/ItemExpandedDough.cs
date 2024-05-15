@@ -1,30 +1,42 @@
 ﻿using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
+using Vintagestory.API.Server;
 using Vintagestory.API.Util;
+using Vintagestory.Common;
 using Vintagestory.GameContent;
+using Vintagestory.Server;
 
 namespace ACulinaryArtillery
 {
     public class ItemExpandedDough : ItemExpandedRawFood
     {
         ItemStack[] tableStacks;
-
         public override void OnLoaded(ICoreAPI api)
         {
-            List<ItemStack> tableStacks = new List<ItemStack>();
-            foreach (CollectibleObject obj in api.World.Collectibles)
+            if (tableStacks == null)
             {
-                if (obj is Block && (obj as Block).Attributes?.IsTrue("pieFormingSurface") == true)
+                List<ItemStack> stacks = new List<ItemStack>();
+                foreach (CollectibleObject obj in api.World.Collectibles)
                 {
-                    tableStacks.Add(new ItemStack(obj));
+                    if (obj is Block block && block.Attributes?.IsTrue("pieFormingSurface") == true)
+                    {
+                        stacks.Add(new ItemStack(obj));
+                    }
                 }
+
+                tableStacks = stacks.ToArray();
             }
-
-            this.tableStacks = tableStacks.ToArray();
+            base.OnLoaded(api);
+;
         }
-
+        public override void OnUnloaded(ICoreAPI api)
+        {
+            tableStacks = null;
+            base.OnUnloaded(api);
+        }
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
         {
@@ -43,12 +55,10 @@ namespace ACulinaryArtillery
                         ICoreClientAPI capi = api as ICoreClientAPI;
                         if (capi != null) capi.TriggerIngameError(this, "notpieable", Lang.Get("Need at least 2 dough"));
                     }
-
                     handling = EnumHandHandling.PreventDefault;
                     return;
                 }
             }
-
             base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
         }
 

@@ -11,6 +11,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
+using Vintagestory.Common;
 using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
@@ -1610,10 +1611,17 @@ namespace ACulinaryArtillery
             {
                 stackProps = obj.Attributes?["nutritionPropsWhenInMeal"].AsObject<FoodNutritionProperties>();
             }
+            if (obj.Attributes?["nutritionPropsWhenInPie"].Exists == true && mulWithStacksize)
+            {
+                stackProps = obj.Attributes?["nutritionPropsWhenInPie"].AsObject<FoodNutritionProperties>();
+            }
             float satLossMul = 1.0f;
             float healthLoss = 1.0f;
             float mul = mulWithStacksize ? contentStack.StackSize : 1;
-
+            if (BlockLiquidContainerBase.GetContainableProps(contentStack) != null && mulWithStacksize)
+            {
+                mul /= 10;
+            }
             if (obj is ItemExpandedRawFood && (contentStack.Attributes["expandedSats"] as FloatArrayAttribute)?.value?.Length == 6)
             {
                 FoodNutritionProperties[] exProps = (obj as ItemExpandedRawFood).GetPropsFromArray((contentStack.Attributes["expandedSats"] as FloatArrayAttribute).value);
@@ -1622,11 +1630,18 @@ namespace ACulinaryArtillery
                 {
                     foreach (FoodNutritionProperties exProp in exProps)
                     {
-                        exProp.Satiety *= satLossMul * mul * nutritionMul;
-                        exProp.Health *= healthLoss * healthMul * mul;
+                        exProp.Satiety *= satLossMul * nutritionMul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1 * mul);
+                        exProp.Health *= healthLoss * healthMul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1 * mul);
 
                         foodProps.Add(exProp);
                     }
+                }
+                if (stackProps != null)
+                {   
+                    FoodNutritionProperties props = stackProps.Clone();
+                    props.Satiety *= satLossMul * nutritionMul * mul;
+                    props.Health *= healthLoss * healthMul * mul;
+                    foodProps.Add(props);
                 }
             }
             else if (stackProps != null)
@@ -1822,11 +1837,27 @@ namespace ACulinaryArtillery
             if (ings != null) newStack.Attributes["madeWith"] = new StringArrayAttribute(ings);
             if (sats != null) newStack.Attributes["expandedSats"] = new FloatArrayAttribute(sats);
         }
+        public void OnCreatedByGrinding(ItemStack input, ItemStack output)
+        {
+            string[] ings = (input?.Attributes["madeWith"] as StringArrayAttribute)?.value;
+            float[] sats = (input?.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
+            
+            
+            //dividedSats.Foreach(sat => { sat /= output.StackSize;});
+            if (ings != null) output.Attributes["madeWith"] = new StringArrayAttribute(ings);
+            if (sats != null) 
+            {
+                float[] dividedSats = Array.ConvertAll(sats, i => i / output.StackSize);
+                output.Attributes["expandedSats"] = new FloatArrayAttribute(dividedSats);
+            }
+            
+        }
     }
 
     public interface IExpandedFood
     {
         void OnCreatedByKneading(List<KeyValuePair<ItemSlot, CraftingRecipeIngredient>> input, ItemStack output);
+        void OnCreatedByGrinding(ItemStack input, ItemStack output);
     }
 
     public enum EnumNutritionMatch

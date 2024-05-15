@@ -223,7 +223,7 @@ namespace ACulinaryArtillery
 
                     float transitionLevel = state.TransitionLevel;
                     float freshHoursLeft = state.FreshHoursLeft / perishRate;
-
+                    double hoursPerday = Api.World.Calendar.HoursPerDay;
                     switch (prop.Type)
                     {
                         case EnumTransitionType.Perish:
@@ -233,23 +233,22 @@ namespace ACulinaryArtillery
                             if (transitionLevel > 0)
                             {
                                 nowSpoiling = true;
-                                dsc.Append(", " + Lang.Get("{0}% spoiled", (int)Math.Round(transitionLevel * 100)));
+                                dsc.Append(",\n" + Lang.Get("itemstack-perishable-spoiling", (int)Math.Round(transitionLevel * 100)));
                             }
                             else
                             {
-                                double hoursPerday = Api.World.Calendar.HoursPerDay;
 
                                 if (freshHoursLeft / hoursPerday >= Api.World.Calendar.DaysPerYear)
                                 {
-                                    dsc.Append(", " + Lang.Get("fresh for {0} years", Math.Round(freshHoursLeft / hoursPerday / Api.World.Calendar.DaysPerYear, 1)));
+                                    dsc.Append(",\n" + Lang.Get("itemstack-perishable-fresh-years", Math.Round(freshHoursLeft / hoursPerday / Api.World.Calendar.DaysPerYear, 1)));
                                 }
                                 else if (freshHoursLeft > hoursPerday)
                                 {
-                                    dsc.Append(", " + Lang.Get("fresh for {0} days", Math.Round(freshHoursLeft / hoursPerday, 1)));
+                                    dsc.Append(",\n" + Lang.Get("itemstack-perishable-fresh-days", Math.Round(freshHoursLeft / hoursPerday, 1)));
                                 }
                                 else
                                 {
-                                    dsc.Append(", " + Lang.Get("fresh for {0} hours", Math.Round(freshHoursLeft, 1)));
+                                    dsc.Append(",\n" + Lang.Get("itemstack-perishable-fresh-hours", Math.Round(freshHoursLeft, 1)));
                                 }
                             }
                             break;
@@ -261,23 +260,36 @@ namespace ACulinaryArtillery
 
                             if (transitionLevel > 0)
                             {
-                                dsc.Append(", " + Lang.Get("{1:0.#} days left to cure ({0}%)", (int)Math.Round(transitionLevel * 100), (state.TransitionHours - state.TransitionedHours) / Api.World.Calendar.HoursPerDay / Block.Attributes["cureRate"].AsFloat(3f)));
-                            }
-                            else
-                            {
-                                double hoursPerday = Api.World.Calendar.HoursPerDay;
-
-                                if (freshHoursLeft / hoursPerday >= Api.World.Calendar.DaysPerYear)
+                                int hoursLeft = (int)((state.TransitionHours - (state.TransitionedHours - state.FreshHours)) / Block.Attributes["cureRate"].AsFloat(3f));
+                                dsc.Append(",\n" + Lang.Get("itemstack-curable-cured", Math.Round(transitionLevel * 100)));
+                                if (hoursLeft > hoursPerday)
                                 {
-                                    dsc.Append(", " + Lang.Get("will cure in {0} years", Math.Round(freshHoursLeft / hoursPerday / Api.World.Calendar.DaysPerYear, 1)));
-                                }
-                                else if (freshHoursLeft > hoursPerday)
-                                {
-                                    dsc.Append(", " + Lang.Get("will cure in {0} days", Math.Round(freshHoursLeft / hoursPerday, 1)));
+                                    dsc.Append(", " + Lang.Get("{0:0.#} days left", hoursLeft / hoursPerday));
                                 }
                                 else
                                 {
-                                    dsc.Append(", " + Lang.Get("will cure in {0} hours", Math.Round(freshHoursLeft, 1)));
+                                    dsc.Append(", " + Lang.Get("{0:0} hrs left", hoursLeft));
+                                }
+                                
+                                //dsc.Append(", " + Lang.Get("{1:0.#} days left to cure ({0}%)", (int)Math.Round(transitionLevel * 100), (state.TransitionHours - (state.TransitionedHours - state.FreshHours)) / Api.World.Calendar.HoursPerDay / Block.Attributes["cureRate"].AsFloat(3f)));
+                            }
+                            else
+                            {
+
+
+                                if (freshHoursLeft / hoursPerday >= Api.World.Calendar.DaysPerYear)
+                                {
+                                    dsc.Append(",\n" + Lang.Get("will cure in ") + Lang.Get("{0} years", Math.Round(freshHoursLeft / hoursPerday / Api.World.Calendar.DaysPerYear, 1)));
+                                }
+                                else if (freshHoursLeft > hoursPerday)
+                                {
+                                    //dsc.Append(", " + Lang.Get("will dry in ") + Lang.Get("{0} days", Math.Round(freshHoursLeft / hoursPerday, 1)));
+                                    dsc.Append(",\n" + Lang.Get("itemstack-curable-duration-days", Math.Round(freshHoursLeft / hoursPerday, 1)));
+                                }
+                                else
+                                {
+                                    //dsc.Append(", " + Lang.Get("will dry in ") + Lang.Get("{0} hours", Math.Round(freshHoursLeft, 1)));
+                                    dsc.Append(",\n" + Lang.Get("itemstack-curable-duration-hours", Math.Round(freshHoursLeft, 1)));
                                 }
                             }
                             break;
@@ -288,23 +300,36 @@ namespace ACulinaryArtillery
 
                             if (transitionLevel > 0)
                             {
-                                dsc.Append(", " + Lang.Get("{1:0.#} days left to dry ({0}%)", (int)Math.Round(transitionLevel * 100), (state.TransitionHours - state.TransitionedHours) / Api.World.Calendar.HoursPerDay / Block.Attributes["dryRate"].AsFloat(6f)));
-                            }
-                            else
-                            {
-                                double hoursPerday = Api.World.Calendar.HoursPerDay;
-
-                                if (freshHoursLeft / hoursPerday >= Api.World.Calendar.DaysPerYear)
+                                int hoursLeft = (int)((state.TransitionHours - (state.TransitionedHours - state.FreshHours)) / Block.Attributes["dryRate"].AsFloat(6f));
+                                dsc.Append(",\n" + Lang.Get("itemstack-dryable-dried", Math.Round(transitionLevel * 100)));
+                                if (hoursLeft > hoursPerday) 
                                 {
-                                    dsc.Append(", " + Lang.Get("will dry in {0} years", Math.Round(freshHoursLeft / hoursPerday / Api.World.Calendar.DaysPerYear, 1)));
-                                }
-                                else if (freshHoursLeft > hoursPerday)
-                                {
-                                    dsc.Append(", " + Lang.Get("will dry in {0} days", Math.Round(freshHoursLeft / hoursPerday, 1)));
+                                    dsc.Append(", " + Lang.Get("{0:0.#} days left", hoursLeft / hoursPerday));
                                 }
                                 else
                                 {
-                                    dsc.Append(", " + Lang.Get("will dry in {0} hours", Math.Round(freshHoursLeft, 1)));
+                                    dsc.Append(", " + Lang.Get("{0:0} hrs left", hoursLeft));
+                                }
+                                
+                                //dsc.Append(", " + Lang.Get("{1:0.#} days left to dry ({0}%)", (int)Math.Round(transitionLevel * 100), (state.TransitionHours - (state.TransitionedHours - state.FreshHours)) / Api.World.Calendar.HoursPerDay / Block.Attributes["dryRate"].AsFloat(6f)));
+                            }
+                            else
+                            {
+                                
+
+                                if (freshHoursLeft / hoursPerday >= Api.World.Calendar.DaysPerYear)
+                                {
+                                    dsc.Append(",\n" + Lang.Get("will dry in ") + Lang.Get("{0} years", Math.Round(freshHoursLeft / hoursPerday / Api.World.Calendar.DaysPerYear, 1)));
+                                }
+                                else if (freshHoursLeft > hoursPerday)
+                                {
+                                   // dsc.Append(", " + Lang.Get("will dry in ") + Lang.Get("{0} days", Math.Round(freshHoursLeft / hoursPerday, 1)));
+                                    dsc.Append(",\n" + Lang.Get("itemstack-dryable-duration-days", Math.Round(freshHoursLeft / hoursPerday, 1)));
+                                }
+                                else
+                                {
+                                    //dsc.Append(", " + Lang.Get("will dry in ") + Lang.Get("{0} hours", Math.Round(freshHoursLeft, 1)));
+                                    dsc.Append(",\n" + Lang.Get("itemstack-dryable-duration-hours", Math.Round(freshHoursLeft, 1)));
                                 }
                             }
                             break;

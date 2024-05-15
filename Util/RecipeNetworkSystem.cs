@@ -6,7 +6,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
-
+/*
 namespace ACulinaryArtillery
 {
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
@@ -36,7 +36,7 @@ namespace ACulinaryArtillery
 
         private void OnServerMessage(RecipeUpload networkMessage)
         {
-            if (!clientApi.PlayerReadyFired) return;
+            if (clientApi.IsSinglePlayer || !clientApi.PlayerReadyFired ) return;
             clientApi.Logger.VerboseDebug("Received ACA recipes from server");
             List<DoughRecipe> drecipes = new List<DoughRecipe>();
             List<CookingRecipe> crecipes = new List<CookingRecipe>();
@@ -78,7 +78,7 @@ namespace ACulinaryArtillery
 
             MixingRecipeRegistry.Registry.SimmerRecipes = srecipes;
 
-
+            /*
             if (networkMessage.cvalues != null)
             {
                 foreach (string crec in networkMessage.cvalues)
@@ -89,13 +89,17 @@ namespace ACulinaryArtillery
 
                         CookingRecipe retr = new CookingRecipe();
                         retr.FromBytes(reader, clientApi.World);
-
+                        if (!CookingRecipe.NamingRegistry.ContainsKey(retr.Code))
+                        {
+                            CookingRecipe.NamingRegistry[retr.Code] = new acaRecipeNames();
+                        }
                         crecipes.Add(retr);
                     }
                 }
             }
             MixingRecipeRegistry.Registry.MixingRecipes = crecipes;
-
+            */
+/*
             System.Diagnostics.Debug.WriteLine(MixingRecipeRegistry.Registry.KneadingRecipes.Count + " kneading recipes and " + MixingRecipeRegistry.Registry.SimmerRecipes.Count + " simmer recipes loaded to client." + MixingRecipeRegistry.Registry.MixingRecipes.Count + " mixing recipes loaded to client.");
         }
 
@@ -116,7 +120,7 @@ namespace ACulinaryArtillery
             ;
 
             api.RegisterCommand("recipeupload", "Resync recipes", "", OnRecipeUploadCmd, Privilege.controlserver);
-            api.Event.PlayerNowPlaying += (player) => { SendRecepies(player); };
+            //api.Event.PlayerNowPlaying += (player) => { SendRecepies(player); };
         }
 
         private void OnRecipeUploadCmd(IServerPlayer player = null, int groupId = 0, CmdArgs args = null)
@@ -134,7 +138,8 @@ namespace ACulinaryArtillery
 
         private void SendRecepies(IServerPlayer player, bool allowCache = true)
         {
-            SendRecepies(new IServerPlayer[] { player }, allowCache);
+                SendRecepies(new IServerPlayer[] { player }, allowCache);
+            
         }
 
         private void SendRecepies(IServerPlayer[] players, bool allowCache = true)
@@ -202,3 +207,4 @@ namespace ACulinaryArtillery
         #endregion
     }
 }
+*/
