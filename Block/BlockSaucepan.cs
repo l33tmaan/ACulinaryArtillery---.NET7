@@ -10,7 +10,7 @@ using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 using Vintagestory.API.Datastructures;
 using System.IO;
-using static ACulinaryArtillery.acaRecipeLoader;
+//using static ACulinaryArtillery.acaRecipeLoader;
 using System.Linq;
 
 namespace ACulinaryArtillery
@@ -22,7 +22,7 @@ namespace ACulinaryArtillery
         public override bool AllowHeldLiquidTransfer => true;
         public AssetLocation liquidFillSoundLocation => new AssetLocation("game:sounds/effect/water-fill");
 
-        private List<SimmerRecipe> simmerRecipes => MixingRecipeRegistry.Registry.SimmerRecipes;
+        private List<SimmerRecipe> simmerRecipes => api.GetSimmerRecipes();
 
         public bool isSealed;
         public override void OnLoaded(ICoreAPI api)
@@ -97,7 +97,7 @@ namespace ACulinaryArtillery
 
             foreach (ItemSlot slot in cookingSlotsProvider.Slots)   //the cookingSlots are not necessarily filled in order. We just want the ones that are.
             {
-                if (!slot.Empty) stacks.Add(slot.Itemstack);
+                if (!slot.Empty) stacks.Add(slot.Itemstack.Clone());
             }
 
             if (stacks.Any())
@@ -115,15 +115,27 @@ namespace ACulinaryArtillery
                     }
                 }
                 else
-                    return simmerRecipes.Any(); //otherwise, there are more than 1 items in the saucepan, so we only check that there are recipes, for now. We check whether they match the recipe in DoSmelt().
+                {
+                    //SimmerRecipe match = null;
+                    //int amountForTheseIngredients = 10;
+                    if (simmerRecipes == null) return false;
+                    foreach (SimmerRecipe rec in simmerRecipes)
+                    {
+                        if (rec.Match(stacks) >= 1)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                    //return simmerRecipes.Any(); //otherwise, there are more than 1 items in the saucepan, so we only check that there are recipes, for now. We check whether they match the recipe in DoSmelt().
             }
             return false;
         }
 
         public override void DoSmelt(IWorldAccessor world, ISlotProvider cookingSlotsProvider, ItemSlot inputSlot, ItemSlot outputSlot)
         {
-            if (!CanSmelt(world, cookingSlotsProvider, inputSlot.Itemstack, outputSlot.Itemstack))
-                return;
+            //if (!CanSmelt(world, cookingSlotsProvider, inputSlot.Itemstack, outputSlot.Itemstack))
+             //   return;
 
             List<ItemStack> contents = new List<ItemStack>();   //The inputSlots may not all be filled. This is more convenient.
             ItemStack product = null;
@@ -280,6 +292,7 @@ namespace ACulinaryArtillery
             return temp;
         }
 
+        // We have overrides for TryPutLiquid, but these are almost carbon copies of the base method, wont remove *yet* incase we do want to write some custom behavior and the base code is a bit harder to read imo
         public override int TryPutLiquid(ItemStack containerStack, ItemStack liquidStack, float desiredLitres)
         {
             if (liquidStack == null) return 0;
@@ -312,8 +325,7 @@ namespace ACulinaryArtillery
                 float maxItems = sink.CapacityLitres * props.ItemsPerLitre;
                 int placeableItems = (int)(maxItems - (float)stack.StackSize);
 
-                stack.StackSize += Math.Min(placeableItems, desiredItems);
-
+                stack.StackSize += GameMath.Min(placeableItems, desiredItems, availItems);
                 return Math.Min(placeableItems, desiredItems);
             }
         }
@@ -696,8 +708,8 @@ namespace ACulinaryArtillery
                 meshrefs[hashcode] = meshRef = capi.Render.UploadMultiTextureMesh(meshdata);
 
             }
+            if (meshRef != null) { renderinfo.ModelRef = meshRef; }
 
-            renderinfo.ModelRef = meshRef;
         }
 
         public string GetOutputText(IWorldAccessor world, InventorySmelting inv)

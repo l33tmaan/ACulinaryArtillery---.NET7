@@ -66,7 +66,7 @@ namespace ACulinaryArtillery
 
         public SimmerRecipe GetMatchingSimmerRecipe(IWorldAccessor world, ItemSlot[] slots)
         {
-            List<SimmerRecipe> recipes = MixingRecipeRegistry.Registry.SimmerRecipes;
+            List<SimmerRecipe> recipes = Api.GetSimmerRecipes();
 
             return recipes.FirstOrDefault(r => r.Matches(world, slots));
         }

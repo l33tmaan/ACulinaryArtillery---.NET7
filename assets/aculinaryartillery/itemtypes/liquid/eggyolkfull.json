@@ -6,28 +6,45 @@
 		{ code: "type", states: ["chicken", "pheasant", "goldenpheasant", "capercaillie", "wildturkey"] },
 	],
 	attributes: {
-		handbook: {
-			ignoreCreativeInvStacks: true
+		"handbook": {
+			"ignoreCreativeInvStacks": true
 		},
 		"inBowlShape": { "base": "game:block/food/meal/liquid" },
 		"nutritionPropsWhenInMealByType": {
 			"@*-(pheasant|goldenpheasant|capercaillie|wildturkey)": {
-				saturation: 280,
-				foodcategory: "Protein"
+				"saturation": 280,
+				"foodcategory": "Protein"
 			},
 			"*-chicken": {
-				saturation: 200,
-				foodcategory: "Protein"
-			},
+				"saturation": 200,
+				"foodcategory": "Protein"
+			}
 		},
-		waterTightContainerProps: {
-			containable: true,
-			itemsPerLitre: 100,
-			texture: { base: "game:item/liquid/eggyolkfull/{type}" },
-			allowSpill: true,
-			whenSpilled: {
-				action: "DropContents",
-				stack: { type: "item", code: "aculinaryartillery:eggyolkfullportion-{type}" }
+		"nutritionPropsWhenInPieByType": {
+			"@*-(pheasant|goldenpheasant|capercaillie|wildturkey)": {
+				"saturation": 280,
+				"foodcategory": "Protein"
+			},
+			"*-chicken": {
+				"saturation": 200,
+				"foodcategory": "Protein"
+			}
+		},
+		"inPieProperties": {
+			"texture": "game:item/liquid/eggyolkfull/{type}",
+			"partType": "Filling"
+		},
+		"waterTightContainerProps": {
+			"containable": true,
+			"itemsPerLitre": 100,
+			"texture": { "base": "game:item/liquid/eggyolkfull/{type}" },
+			"allowSpill": true,
+			"whenSpilled": {
+				"action": "DropContents",
+				"stack": {
+					"type": "item",
+					"code": "aculinaryartillery:eggyolkfullportion-{type}"
+				}
 			}
 		}
 	},

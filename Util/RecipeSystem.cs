@@ -10,6 +10,7 @@ using Vintagestory.API.Util;
 using Vintagestory.ServerMods;
 using Vintagestory.GameContent;
 using Vintagestory.API.Datastructures;
+using Microsoft.Win32;
 
 namespace ACulinaryArtillery
 {
@@ -49,7 +50,7 @@ namespace ACulinaryArtillery
             return full;
         }
     }
-
+    /*
     public sealed class MixingRecipeRegistry
     {
         private MixingRecipeRegistry()
@@ -104,7 +105,7 @@ namespace ACulinaryArtillery
             }
         }
     }
-
+    */
     public class DoughRecipe : IByteSerializable
     {
         public string Code = "something";
@@ -118,9 +119,8 @@ namespace ACulinaryArtillery
 
         public ItemStack TryCraftNow(ICoreAPI api, ItemSlot[] inputslots)
         {
-
             var matched = pairInput(inputslots);
-
+            
             ItemStack mixedStack = Output.ResolvedItemstack.Clone();
             mixedStack.StackSize = getOutputSize(matched);
 
@@ -143,7 +143,7 @@ namespace ACulinaryArtillery
                 val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Output.StackSize));
                 val.Key.MarkDirty();
             }
-
+            
             return mixedStack;
         }
 
@@ -359,7 +359,7 @@ namespace ACulinaryArtillery
             return mappings;
         }
     }
-
+    /*
     public class acaRecipeLoader : RecipeLoader
     {
         public ICoreServerAPI api;
@@ -385,14 +385,15 @@ namespace ACulinaryArtillery
             MixingRecipeRegistry.Registry.MixingRecipes.Clear();
             MixingRecipeRegistry.Registry.KneadingRecipes.Clear();
             MixingRecipeRegistry.Registry.SimmerRecipes.Clear();
+            if (!(api is ICoreServerAPI sapi)) return;
             LoadFoodRecipes();
         }
 
         public void LoadFoodRecipes()
         {
-            LoadMixingRecipes();
-            LoadKneadingRecipes();
-            LoadSimmeringRecipes();
+            //LoadMixingRecipes();
+            //LoadKneadingRecipes();
+            //LoadSimmeringRecipes();
         }
         public override void AssetsLoaded(ICoreAPI api)
         {
@@ -408,6 +409,7 @@ namespace ACulinaryArtillery
 
             foreach (var val in files)
             {
+                String recCode = null;
                 if (val.Value is JObject)
                 {
                     CookingRecipe rec = val.Value.ToObject<CookingRecipe>();
@@ -415,7 +417,7 @@ namespace ACulinaryArtillery
 
                     rec.Resolve(api.World, "mixing recipe " + val.Key);
                     MixingRecipeRegistry.Registry.MixingRecipes.Add(rec);
-
+                    recCode = rec.Code;
                     recipeQuantity++;
                 }
                 if (val.Value is JArray)
@@ -427,12 +429,20 @@ namespace ACulinaryArtillery
 
                         rec.Resolve(api.World, "mixing recipe " + val.Key);
                         MixingRecipeRegistry.Registry.MixingRecipes.Add(rec);
-
+                        recCode = rec.Code;
                         recipeQuantity++;
                     }
                 }
+                if (recCode is not null && !CookingRecipe.NamingRegistry.ContainsKey(recCode))
+                {
+                    //CookingRecipe.NamingRegistry[recCode] = new acaRecipeNames();
+                }
             }
-
+            //ICookingRecipeNamingHelper value;
+            
+            //CookingRecipe.NamingRegistry.TryGetValue("meatysalad", out value);
+           
+            //ACulinaryArtillery.logger.Debug("It worked?: " + (value is not null));
             api.World.Logger.Event("{0} mixing recipes loaded", recipeQuantity);
             api.World.Logger.StoryEvent(Lang.Get("aculinaryartillery:The chef and the apprentice..."));
         }
@@ -671,7 +681,7 @@ namespace ACulinaryArtillery
 
 
     }
-
+    */
     public class SimmerRecipe : IByteSerializable
     {
         public string Code = "something";
@@ -1074,5 +1084,335 @@ namespace ACulinaryArtillery
                 Inputs = newings
             };
         }
+    }
+
+    public class ACARecipeRegistrySystem : ModSystem
+    {
+        public static bool canRegister = true;
+
+        public List<CookingRecipe> MixingRecipes = new List<CookingRecipe>();
+
+        public List<DoughRecipe> DoughRecipes = new List<DoughRecipe>();
+
+        public List<SimmerRecipe> SimmerRecipes = new List<SimmerRecipe>();
+
+        public override double ExecuteOrder()
+        {
+            return 1.0;
+        }
+
+        public override void StartPre(ICoreAPI api)
+        {
+            canRegister = true;
+        }
+
+        public override void Start(ICoreAPI api)
+        {
+            MixingRecipes = api.RegisterRecipeRegistry<RecipeRegistryGeneric<CookingRecipe>>("mixingrecipes").Recipes;
+            DoughRecipes = api.RegisterRecipeRegistry<RecipeRegistryGeneric<DoughRecipe>>("doughrecipes").Recipes;
+            SimmerRecipes = api.RegisterRecipeRegistry<RecipeRegistryGeneric<SimmerRecipe>>("simmerrecipes").Recipes;
+        }
+
+        public override void AssetsLoaded(ICoreAPI api)
+        {
+            if (!(api is ICoreServerAPI coreServerAPI))
+            {
+                return;
+            }
+            loadMixingRecipes(coreServerAPI);
+            loadDoughRecipes(coreServerAPI);
+            loadSimmerRecipes(coreServerAPI);
+
+
+        }
+        void loadMixingRecipes(ICoreServerAPI coreServerAPI)
+        {
+            Dictionary<AssetLocation, JToken> files = coreServerAPI.Assets.GetMany<JToken>(coreServerAPI.Server.Logger, "recipes/mixing");
+            int recipeQuantity = 0;
+
+            foreach (var val in files)
+            {
+                String recCode = null;
+                if (val.Value is JObject)
+                {
+                    CookingRecipe rec = val.Value.ToObject<CookingRecipe>();
+                    if (!rec.Enabled) continue;
+
+                    rec.Resolve(coreServerAPI.World, "mixing recipe " + val.Key);
+                    RegisterCookingRecipe(rec);
+                    recCode = rec.Code;
+                    recipeQuantity++;
+                }
+                if (val.Value is JArray)
+                {
+                    foreach (var token in (val.Value as JArray))
+                    {
+                        CookingRecipe rec = token.ToObject<CookingRecipe>();
+                        if (!rec.Enabled) continue;
+
+                        rec.Resolve(coreServerAPI.World, "mixing recipe " + val.Key);
+                        RegisterCookingRecipe(rec);
+                        recCode = rec.Code;
+                        recipeQuantity++;
+                    }
+                }
+            }
+            coreServerAPI.World.Logger.Event("{0} mixing recipes loaded", recipeQuantity);
+            coreServerAPI.World.Logger.StoryEvent(Lang.Get("aculinaryartillery:The chef and the apprentice..."));
+        }
+        void loadDoughRecipes(ICoreServerAPI coreServerAPI)
+        {
+            Dictionary<AssetLocation, JToken> files = coreServerAPI.Assets.GetMany<JToken>(coreServerAPI.Server.Logger, "recipes/kneading");
+            int recipeQuantity = 0;
+            int ignored = 0;
+
+            foreach (var val in files)
+            {
+                if (val.Value is JObject)
+                {
+                    DoughRecipe rec = val.Value.ToObject<DoughRecipe>();
+                    if (!rec.Enabled) continue;
+
+                    LoadKneadingRecipe(val.Key, rec, coreServerAPI, ref recipeQuantity, ref ignored);
+                }
+                if (val.Value is JArray)
+                {
+                    foreach (var token in (val.Value as JArray))
+                    {
+                        DoughRecipe rec = token.ToObject<DoughRecipe>();
+                        if (!rec.Enabled) continue;
+
+                        LoadKneadingRecipe(val.Key, rec, coreServerAPI, ref recipeQuantity, ref ignored);
+                    }
+                }
+            }
+
+            coreServerAPI.World.Logger.Event("{0} kneading recipes loaded", recipeQuantity);
+            coreServerAPI.World.Logger.StoryEvent(Lang.Get("aculinaryartillery:The butter and the bread..."));
+        }
+        void loadSimmerRecipes(ICoreServerAPI coreServerAPI)
+        {
+            Dictionary<AssetLocation, JToken> files = coreServerAPI.Assets.GetMany<JToken>(coreServerAPI.Server.Logger, "recipes/simmering");
+            int recipeQuantity = 0;
+            int ignored = 0;
+
+            foreach (var val in files)
+            {
+                if (val.Value is JObject)
+                {
+                    SimmerRecipe rec = val.Value.ToObject<SimmerRecipe>();
+                    if (!rec.Enabled) continue;
+
+                    LoadSimmeringRecipe(val.Key, rec, coreServerAPI, ref recipeQuantity, ref ignored);
+                }
+                if (val.Value is JArray)
+                {
+                    foreach (var token in (val.Value as JArray))
+                    {
+                        SimmerRecipe rec = token.ToObject<SimmerRecipe>();
+                        if (!rec.Enabled) continue;
+
+                        LoadSimmeringRecipe(val.Key, rec, coreServerAPI, ref recipeQuantity, ref ignored);
+                    }
+                }
+            }
+            coreServerAPI.World.Logger.Event("{0} simmer recipes loaded", recipeQuantity);
+            coreServerAPI.World.Logger.StoryEvent(Lang.Get("aculinaryartillery:The syrup and lard..."));
+        }
+        void LoadSimmeringRecipe(AssetLocation path, SimmerRecipe recipe, ICoreServerAPI coreServerAPI, ref int quantityRegistered, ref int quantityIgnored)
+        {
+            if (!recipe.Enabled) return;
+            if (recipe.Name == null) recipe.Name = path;
+            string className = "simmer recipe";
+
+            Dictionary<string, string[]> nameToCodeMapping = recipe.GetNameToCodeMapping(coreServerAPI.World);
+
+            if (nameToCodeMapping.Count > 0)
+            {
+                List<SimmerRecipe> subRecipes = new List<SimmerRecipe>();
+
+                int qCombs = 0;
+                bool first = true;
+                foreach (var val2 in nameToCodeMapping)
+                {
+                    if (first) qCombs = val2.Value.Length;
+                    else qCombs *= val2.Value.Length;
+                    first = false;
+                }
+
+                first = true;
+                foreach (var val2 in nameToCodeMapping)
+                {
+                    string variantCode = val2.Key;
+                    string[] variants = val2.Value;
+
+                    for (int i = 0; i < qCombs; i++)
+                    {
+                        SimmerRecipe rec;
+
+                        if (first) subRecipes.Add(rec = recipe.Clone());
+                        else rec = subRecipes[i];
+
+                        if (rec.Ingredients != null)
+                        {
+                            foreach (var ingreds in rec.Ingredients)
+                            {
+                                if (rec.Ingredients.Length <= 0) continue;
+                                CraftingRecipeIngredient ingred = ingreds;
+
+                                if (ingred.Name == variantCode)
+                                {
+                                    ingred.Code = ingred.Code.CopyWithPath(ingred.Code.Path.Replace("*", variants[i % variants.Length]));
+                                }
+                            }
+                        }
+
+                        rec.Simmering.SmeltedStack.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
+                    }
+
+                    first = false;
+                }
+
+                if (subRecipes.Count == 0)
+                {
+                    coreServerAPI.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, className);
+                }
+
+                foreach (SimmerRecipe subRecipe in subRecipes)
+                {
+                    if (!subRecipe.Resolve(coreServerAPI.World, className + " " + path))
+                    {
+                        quantityIgnored++;
+                        continue;
+                    }
+                    RegisterSimmerRecipe(subRecipe);
+                    quantityRegistered++;
+                }
+
+            }
+            else
+            {
+                if (!recipe.Resolve(coreServerAPI.World, className + " " + path))
+                {
+                    quantityIgnored++;
+                    return;
+                }
+
+                RegisterSimmerRecipe(recipe);
+                quantityRegistered++;
+            }
+        }
+        void LoadKneadingRecipe(AssetLocation path, DoughRecipe recipe, ICoreServerAPI coreServerAPI, ref int quantityRegistered, ref int quantityIgnored)
+        {
+            if (!recipe.Enabled) return;
+            if (recipe.Name == null) recipe.Name = path;
+            string className = "kneading recipe";
+
+            Dictionary<string, string[]> nameToCodeMapping = recipe.GetNameToCodeMapping(coreServerAPI.World);
+
+            if (nameToCodeMapping.Count > 0)
+            {
+                List<DoughRecipe> subRecipes = new List<DoughRecipe>();
+
+                int qCombs = 0;
+                bool first = true;
+                foreach (var val2 in nameToCodeMapping)
+                {
+                    if (first) qCombs = val2.Value.Length;
+                    else qCombs *= val2.Value.Length;
+                    first = false;
+                }
+
+                first = true;
+                foreach (var val2 in nameToCodeMapping)
+                {
+                    string variantCode = val2.Key;
+                    string[] variants = val2.Value;
+
+                    for (int i = 0; i < qCombs; i++)
+                    {
+                        DoughRecipe rec;
+
+                        if (first) subRecipes.Add(rec = recipe.Clone());
+                        else rec = subRecipes[i];
+
+                        if (rec.Ingredients != null)
+                        {
+                            foreach (var ingreds in rec.Ingredients)
+                            {
+                                if (ingreds.Inputs.Length <= 0) continue;
+                                CraftingRecipeIngredient ingred = ingreds.Inputs[0];
+
+                                if (ingred.Name == variantCode)
+                                {
+                                    ingred.Code = ingred.Code.CopyWithPath(ingred.Code.Path.Replace("*", variants[i % variants.Length]));
+                                }
+                            }
+                        }
+
+                        rec.Output.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
+                    }
+
+                    first = false;
+                }
+
+                if (subRecipes.Count == 0)
+                {
+                    coreServerAPI.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, className);
+                }
+
+                foreach (DoughRecipe subRecipe in subRecipes)
+                {
+                    if (!subRecipe.Resolve(coreServerAPI.World, className + " " + path))
+                    {
+                        quantityIgnored++;
+                        continue;
+                    }
+                    RegisterDoughRecipe(subRecipe);
+                    quantityRegistered++;
+                }
+
+            }
+            else
+            {
+                if (!recipe.Resolve(coreServerAPI.World, className + " " + path))
+                {
+                    quantityIgnored++;
+                    return;
+                }
+
+                RegisterDoughRecipe(recipe);
+                quantityRegistered++;
+            }
+        }
+        public void RegisterCookingRecipe(CookingRecipe cookingrecipe)
+        {
+            if (!canRegister)
+            {
+                throw new InvalidOperationException("Coding error: Can no long register cooking recipes. Register them during AssetsLoad/AssetsFinalize and with ExecuteOrder < 99999");
+            }
+
+            MixingRecipes.Add(cookingrecipe);
+        }
+        public void RegisterDoughRecipe(DoughRecipe doughRecipe)
+        {
+            if (!canRegister)
+            {
+                throw new InvalidOperationException("Coding error: Can no long register dough recipes. Register them during AssetsLoad/AssetsFinalize and with ExecuteOrder < 99999");
+            }
+
+            DoughRecipes.Add(doughRecipe);
+        }
+        public void RegisterSimmerRecipe(SimmerRecipe simmerRecipe)
+        {
+            if (!canRegister)
+            {
+                throw new InvalidOperationException("Coding error: Can no long register simmering recipes. Register them during AssetsLoad/AssetsFinalize and with ExecuteOrder < 99999");
+            }
+
+            SimmerRecipes.Add(simmerRecipe);
+        }
+
+
     }
 }

@@ -21,8 +21,8 @@ namespace ACulinaryArtillery
         ICoreClientAPI capi;
         ItemStack stack;
 
-        MeshRef saucepanRef;
-        MeshRef topRef;
+        MultiTextureMeshRef saucepanRef;
+        MultiTextureMeshRef topRef;
         BlockPos pos;
         float temp;
 
@@ -45,12 +45,12 @@ namespace ACulinaryArtillery
             MeshData saucepanMesh;
             capi.Tesselator.TesselateShape(saucepanBlock, capi.Assets.TryGet("aculinaryartillery:shapes/block/" + saucepanBlock.FirstCodePart() + "/" + "empty.json").ToObject<Shape>(), out saucepanMesh); // Main Shape
             //potMesh.Rgba2 = null;
-            saucepanRef = capi.Render.UploadMesh(saucepanMesh);
+            saucepanRef = capi.Render.UploadMultiTextureMesh(saucepanMesh);
 
             MeshData topMesh;
             capi.Tesselator.TesselateShape(saucepanBlock, capi.Assets.TryGet("aculinaryartillery:shapes/block/" + saucepanBlock.FirstCodePart() + "/" + "lid-only.json").ToObject<Shape>(), out topMesh); // Lid
             //lidMesh.Rgba2 = null;
-            topRef = capi.Render.UploadMesh(topMesh);
+            topRef = capi.Render.UploadMultiTextureMesh(topMesh);
         
         }
 
@@ -98,7 +98,7 @@ namespace ACulinaryArtillery
             prog.ViewMatrix = rpi.CameraMatrixOriginf;
             prog.ProjectionMatrix = rpi.CurrentProjectionMatrix;
 
-            rpi.RenderMesh(saucepanRef);
+            rpi.RenderMultiTextureMesh(saucepanRef);
 
             if (!isInOutputSlot)
             {
@@ -121,7 +121,7 @@ namespace ACulinaryArtillery
                 prog.ProjectionMatrix = rpi.CurrentProjectionMatrix;
 
 
-                rpi.RenderMesh(topRef);
+                rpi.RenderMultiTextureMesh(topRef);
             }
 
             prog.Stop();

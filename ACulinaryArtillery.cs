@@ -134,7 +134,24 @@ namespace ACulinaryArtillery
                 }
             }
         }
-
+        public override void AssetsFinalize(ICoreAPI api)
+        {
+            base.AssetsFinalize(api);
+            api.GetCookingRecipes().ForEach(recipe =>
+            {
+                if (!CookingRecipe.NamingRegistry.ContainsKey(recipe.Code))
+                {
+                    CookingRecipe.NamingRegistry[recipe.Code] = new acaRecipeNames();
+                }
+            });
+            api.GetMixingRecipes().ForEach(recipe =>
+            {
+                if (!CookingRecipe.NamingRegistry.ContainsKey(recipe.Code))
+                {
+                    CookingRecipe.NamingRegistry[recipe.Code] = new acaRecipeNames();
+                }
+            });
+        }
         internal static void LogError(string message) {
             logger?.Error("(ACulinaryArtillery): {0}", message);
         }
