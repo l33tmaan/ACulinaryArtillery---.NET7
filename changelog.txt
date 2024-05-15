@@ -9,7 +9,18 @@
 - Bricklayers integration?
 
 ~1.19_v1.1.5~
--
+Pursec fixes:
+- Saucepan/Cauldron optimized and works with Level Up mod
+- Extra nutrition transfers through items ground in the quern
+- Added an API extension class for easy access to our recipes
+- Refactored network code to use vanillas recipeRegistry system to handle syncing for us
+- Added in support for liquid items for pie fillings, including a check for a new "nutritionPropsWhenInPie" attribute following the same structure as its meal equivalent.
+- Meat hook display fixed; cleaned up
+- Cauldron/Saucepan dupe bug fix; Updated our tryPutLiquid to match current vanilla implementation
+- Pie desync quashed?
+- Mixing meal related issues fixed: 
+-- No more premature rotting or failing to transfer expandedSats properly?
+-- Meals add in the correct base + expandedSats and properly scale the expandedSats of ExpandedLiquids based on the amount used to make a serving
 
 ~1.19_v1.1.4~
 - "A Culinary Artillery: Primer" handbook title changed to "A Culinary Artillery: Cooking 100 - Your Tools"
