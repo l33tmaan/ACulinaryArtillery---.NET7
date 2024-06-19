@@ -8,7 +8,15 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
+~1.19_v1.1.6~
+- Frying pan added?
+- Clay bottles and saucepans can fit on shelves
+- Meathook transform added to .tfedit command - DONE!!!
+- Meathook transforms re-fixed
+
 ~1.19_v1.1.5~
+- Blocks look correct on shelves/meat hooks
+
 Pursec fixes:
 - Saucepan/Cauldron optimized and works with Level Up mod
 - Extra nutrition transfers through items ground in the quern
