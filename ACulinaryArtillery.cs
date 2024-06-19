@@ -85,7 +85,16 @@ namespace ACulinaryArtillery
                 harmony.PatchAll(Assembly.GetExecutingAssembly());
             }
             
-
+        }
+        public override void StartClientSide(ICoreClientAPI api)
+        {
+            base.StartClientSide(api);
+            var meatHookTransformConfig = new TransformConfig
+            {
+                AttributeName = "meatHookTransform",
+                Title = "On Meathook"
+            };
+            GuiDialogTransformEditor.extraTransforms.Add(meatHookTransformConfig);
         }
 
         public override void Dispose()
