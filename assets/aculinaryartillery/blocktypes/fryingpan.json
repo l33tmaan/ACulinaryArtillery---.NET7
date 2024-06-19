@@ -28,10 +28,10 @@
         "rackable": true,
         "handbook": { "groupBy": [ "fryingpan-*" ] },
         "toolrackTransform": {
-            translation: { x: 0.3, y: 0.7, z: 0 },
-            rotation: { x: 0, y: 0, z: 180 },
+            translation: { x: -0.35, y: 0.65, z: 0.05 },
+            rotation: { x: 0, y: 90, z: 180 },
             origin: { x: 0.5, y: 0, z: 0.5 },
-            scale: 1.5
+            scale: 1.25
         },
         "groundStorageTransform": {
             "translation": { "x": 0, "y": 0, "z": -0.175 }
