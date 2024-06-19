@@ -157,9 +157,19 @@ namespace ACulinaryArtillery
             //Api.Logger.Debug(Block.Shape.rotateY.ToString());
             for (int index = 0; index < 4; index++)
             {
-                float x = (index % 2 == 0) ? 5 / 16f : 11 / 16f;
-                float y = 2 / 16f;
-                float z = (index > 1) ? 11 / 16f : 5 / 16f;
+                var selectionBox = this.Block.SelectionBoxes[index];
+                
+                float x;
+                float y;
+                float z;
+
+                //x = (index % 2 == 0) ? 5 / 16f : 11 / 16f;
+                //y = 2 / 16f;
+                //z = (index > 1) ? 11 / 16f : 5 / 16f;
+
+                x = selectionBox.MidX;
+                y = selectionBox.MaxY;
+                z = selectionBox.MidZ;
 
                 int rnd = GameMath.MurmurHash3Mod(Pos.X, Pos.Y + index * 50, Pos.Z, 30) - 15;
                 var collObjAttr = inventory[index]?.Itemstack?.Collectible?.Attributes;
