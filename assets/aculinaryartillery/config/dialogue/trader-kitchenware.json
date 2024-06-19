@@ -203,8 +203,7 @@
         { value: "Got anything to trade, {npcname}?", jumpTo: "opentrade" },
         { value: "Why gears?", jumpTo: "gears" },
         { value: "Why live out here like this?", jumpTo: "profit" },
-        { value: "How do you get so healthy, anyway?", jumpTo: "healthy", conditions: [{ variable: "entity.ingredients", isNotValue: "true" }]  },
-        { value: "Do you have any cooking tips?", jumpTo: "cookingtips", conditions: [{ variable: "entity.ingredients", isValue: "true" }] },
+        { value: "Do you have any cooking tips?", jumpTo: "cookingtips" },
         { value: "I want to learn as much about the culinary arts as possible. Can you teach me?", jumpTo: "bread", "conditions": [{ variable: "entity.breadreceived", isNotValue: "true" }] },
         { value: "Here's the spelt bread you wanted. Am I a chef now?", jumpTo: "takebread", conditions: [{ variable: "entity.requestbread", isValue: "true" }, { variable: "entity.breadreceived", isNotValue: "true" }, { variable: "player.inventory", isValue: "{type: 'item', code: 'bread-spelt-perfect'}" } ] },
       ]
@@ -357,23 +356,6 @@
       ],
       jumpTo: "main"
     },
-
-    {
-      code: "healthy",
-      owner: "trader",
-      type: "talk",
-      text: [ { value: "I stay full, my friend. A keen eye alerts me to all sorts of ingredients that the lesser learned would pass right up." } ],
-      jumpTo: "lesserlearned"
-    },
-    {
-      code: "lesserlearned",
-      owner: "player",
-      type: "talk",
-      text: [
-        { value: "Like what?", jumpTo: "ingredients" },
-      ]
-    },
-    
     {
       code: "cookingtips",
       owner: "trader",
