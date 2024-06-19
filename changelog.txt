@@ -11,7 +11,7 @@
 ~1.19_v1.1.6~
 - Frying pan added?
 - Clay bottles and saucepans can fit on shelves
-- Meathook transform added to .tfedit command
+- Meathook transform added to .tfedit command - DONE!!!
 
 ~1.19_v1.1.5~
 - Blocks look correct on shelves/meat hooks
