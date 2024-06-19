@@ -57,6 +57,9 @@
 		<None Update="assets\aculinaryartillery\blocktypes\cauldronmoldblock.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\blocktypes\fryingpan.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\blocktypes\meathooks.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -381,6 +384,9 @@
 		<None Update="assets\aculinaryartillery\shapes\block\cauldron\lid.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="assets\aculinaryartillery\shapes\block\fryingpan.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="assets\aculinaryartillery\shapes\block\meathooks.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -530,6 +536,9 @@
 		</None>
 		<None Update="assets\aculinaryartillery\textures\block\cauldron\meteoriciron.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\aculinaryartillery\textures\block\fryingpan\cleanrivets.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\textures\entity\humanoid\seraphclothes\head\c-hat.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -8,7 +8,12 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
+~1.19_v1.1.6~
+- Clay bottles and saucepans can fit on shelves
+
 ~1.19_v1.1.5~
+- Blocks look correct on shelves/meat hooks
+
 Pursec fixes:
 - Saucepan/Cauldron optimized and works with Level Up mod
 - Extra nutrition transfers through items ground in the quern

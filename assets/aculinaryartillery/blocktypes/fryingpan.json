@@ -1,0 +1,121 @@
+{
+    "code": "fryingpan",
+    "damagedby": [ "blockbreaking", "attacking" ],
+    "variantgroups": [
+        { "code": "type", "states": ["copper", "tinbronze", "blackbronze", "iron", "steel", "meteoriciron"] }
+    ],
+    "shape": { "base": "block/fryingpan" },
+    "heldTpHitAnimation": "breaktool",
+    "texturesByType": {
+        "*-iron": {
+            "metalclean": { "base": "block/cauldron/castiron" },
+			"metal": { "base": "block/cauldron/castiron", "overlays": [ "block/cauldron/metaloverlay" ] },
+			"metalgradient": { "base": "block/cauldron/castiron", "overlays": [ "block/cauldron/metaloverlaygradient" ] },
+        },
+        "*-meteoriciron": {
+            "metalclean": { "base": "block/cauldron/meteoriciron" },
+			"metal": { "base": "block/cauldron/meteoriciron", "overlays": [ "block/cauldron/metaloverlay" ] },
+			"metalgradient": { "base": "block/cauldron/meteoriciron", "overlays": [ "block/cauldron/metaloverlaygradient" ] },
+        },
+        "*": {
+            "metalclean": { "base": "game:block/metal/sheet/{type}1" },
+			"metal": { "base": "game:block/metal/sheet/{type}1", "overlays": [ "block/cauldron/metaloverlay" ] },
+			"metalgradient": { "base": "game:block/metal/sheet/{type}1", "overlays": [ "block/cauldron/metaloverlaygradient" ] },
+        },
+    },
+    "attackRange": 2,
+    "attributes": {
+        "rackable": true,
+        "handbook": { "groupBy": [ "fryingpan-*" ] },
+        "toolrackTransform": {
+            translation: { x: 0.3, y: 0.7, z: 0 },
+            rotation: { x: 0, y: 0, z: 180 },
+            origin: { x: 0.5, y: 0, z: 0.5 },
+            scale: 1.5
+        },
+        "groundStorageTransform": {
+            "translation": { "x": 0, "y": 0, "z": -0.175 }
+        },
+	    "meathookable": true,
+		"meatHookTransform": {
+  			translation: { x: 0.0, y: 0.45, z: 0.3 },
+  			rotation: { x: -93, y: 45, z: 0 },
+  			origin: { x: 0.5, y: 0, z: 0.5 },
+  			scale: 0.75
+		},
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "SingleCenter",
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 }
+            }
+        },
+        { "name": "UnstableFalling" },
+        { "name": "RightClickPickup" }
+    ],
+    "lightAbsorption": 0,
+    "sideopaque": { "all": false },
+    "sideao": { "all": true },
+    "emitsideao": { "all": false },
+    "sidesolid": { "all": false },
+    "collisionbox": {
+        "x1": 0,
+        "y1": 0,
+        "z1": 0,
+        "x2": 1,
+        "y2": 0.125,
+        "z2": 1
+    },
+    "selectionbox": {
+        "x1": 0,
+        "y1": 0,
+        "z1": 0,
+        "x2": 1,
+        "y2": 0.125,
+        "z2": 1
+    },
+    "durabilitybytype": {
+        "*-steel": 5000,
+        "*-meteoriciron": 2500,
+        "*-iron": 2100,
+        "*-blackbronze": 1300,
+        "*-tinbronze": 900,
+        "*-copper": 600
+    },
+    "attackpowerbytype": {
+        "*-steel": 5,
+        "*-meteoriciron": 4.75,
+        "*-iron": 4.5	,
+        "*-blackbronze": 4.25,
+        "*-tinbronze": 4,
+        "*-copper": 3.5,
+    },
+    "tooltierbytype": {
+        "*-copper": 2,
+        "@*-(tinbronze|blackbronze)": 3,
+        "@*-(iron|meteoriciron)": 4,
+        "*-steel": 5,
+    },
+    "creativeinventory": { "general": [ "*" ], "items": [ "*" ], "tools": [ "*" ], "aculinaryartillery": [ "*" ] },
+	"sounds": {
+		"hit": "game:block/metaldoor-place",
+	},
+	"guiTransform": {
+		translation: { x: 5, y: -15, z: 0 },
+		rotation: { x: -85, y: -66, z: -51 },
+		scale: 1.75
+	},
+	"groundTransform": {
+		translation: { x: 0, y: 0, z: 0 },
+		rotation: { x: 0, y: 0, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 5
+	},
+	tpHandTransform: {
+		translation: { x: -0.8, y: 0, z: -0.475 },
+		rotation: { x: 5, y: -90, z: 0 },
+		scale: 1
+	}
+}
