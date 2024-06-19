@@ -4,7 +4,7 @@
     "variantgroups": [
         { "code": "type", "states": ["copper", "tinbronze", "blackbronze", "iron", "steel", "meteoriciron"] }
     ],
-    "shape": { "base": "block/fryingpan" },
+    "shape": { "base": "item/fryingpan" },
     "heldTpHitAnimation": "breaktool",
     "texturesByType": {
         "*-iron": {

@@ -57,7 +57,7 @@
 		<None Update="assets\aculinaryartillery\blocktypes\cauldronmoldblock.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\aculinaryartillery\blocktypes\fryingpan.json">
+		<None Update="assets\aculinaryartillery\itemtypes\fryingpan.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\blocktypes\meathooks.json">
@@ -384,7 +384,7 @@
 		<None Update="assets\aculinaryartillery\shapes\block\cauldron\lid.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\aculinaryartillery\shapes\block\fryingpan.json">
+		<None Update="assets\aculinaryartillery\shapes\item\fryingpan.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="assets\aculinaryartillery\shapes\block\meathooks.json">

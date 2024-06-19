@@ -32,17 +32,17 @@
 			"children": [
 				{
 					"name": "cookingpan",
-					"from": [ 3.9, 0.0, 5.0 ], 
-					"to": [ 3.9, 0.0, 5.0 ], 
-					"rotationOrigin": [ 3.9, 0.0, 5.0 ],
+					"from": [ 3.9, 0.0, 5.25 ], 
+					"to": [ 3.9, 0.0, 5.25 ], 
+					"rotationOrigin": [ 3.9, 0.0, 5.25 ],
 					"rotationY": 45.0,
 					"faces": {
-						"north": { "texture": "#metal", "uv": [ 2.25, 3.25, 2.5, 3.5 ] },
-						"east": { "texture": "#metal", "uv": [ 1.25, 2.0, 1.5, 2.25 ] },
-						"south": { "texture": "#metal", "uv": [ 1.0, 7.5, 1.25, 7.75 ] },
-						"west": { "texture": "#metal", "uv": [ 1.25, 0.75, 1.5, 1.0 ] },
-						"up": { "texture": "#metal", "uv": [ 1.25, 1.0, 1.5, 1.25 ] },
-						"down": { "texture": "#metal", "uv": [ 1.25, 1.0, 1.5, 1.25 ] }
+						"north": { "texture": "#metal", "uv": [ 2.5, 3.5, 3.0, 4.0 ] },
+						"east": { "texture": "#metal", "uv": [ 1.5, 2.0, 2.0, 2.5 ] },
+						"south": { "texture": "#metal", "uv": [ 1.0, 7.5, 1.5, 8.0 ] },
+						"west": { "texture": "#metal", "uv": [ 1.5, 1.0, 2.0, 1.5 ] },
+						"up": { "texture": "#metal", "uv": [ 1.5, 1.0, 2.0, 1.5 ] },
+						"down": { "texture": "#metal", "uv": [ 1.5, 1.0, 2.0, 1.5 ] }
 					},
 					"children": [
 						{
@@ -452,6 +452,65 @@
 										"west": { "texture": "#metal", "uv": [ 0.75, 4.5, 2.0, 5.0 ] },
 										"up": { "texture": "#metal", "uv": [ 0.25, 1.5, 0.75, 2.75 ] },
 										"down": { "texture": "#metal", "uv": [ 0.5, 3.0, 1.0, 4.25 ] }
+									}
+								}
+							]
+						},
+						{
+							"name": "hook",
+							"from": [ 4.85, 0.5, -0.9 ], 
+							"to": [ 4.85, 0.5, 0.6 ], 
+							"rotationOrigin": [ 4.85, 0.5, -0.9 ],
+							"rotationY": 45.0,
+							"faces": {
+								"north": { "texture": "#metalgradient", "uv": [ 2.0, 1.5, 2.5, 2.0 ] },
+								"east": { "texture": "#metalgradient", "uv": [ 6.5, 6.0, 8.0, 6.5 ] },
+								"south": { "texture": "#metalgradient", "uv": [ 4.0, 6.0, 4.5, 6.5 ] },
+								"west": { "texture": "#metalclean", "uv": [ 3.5, 5.5, 5.0, 6.0 ] },
+								"up": { "texture": "#metalclean", "uv": [ 2.0, 5.5, 2.5, 7.0 ] },
+								"down": { "texture": "#metalgradient", "uv": [ 7.5, 7.0, 8.0, 8.5 ] }
+							},
+							"children": [
+								{
+									"name": "hook1",
+									"from": [ 0.5, 0.0, 0.0 ], 
+									"to": [ 1.0, 0.5, 2.5 ], 
+									"rotationOrigin": [ 0.5, 0.0, 0.0 ],
+									"faces": {
+										"north": { "texture": "#metalgradient", "uv": [ 6.0, 2.0, 6.5, 2.5 ] },
+										"east": { "texture": "#metalgradient", "uv": [ 5.0, 6.5, 7.5, 7.0 ] },
+										"south": { "texture": "#metalgradient", "uv": [ 7.0, 6.0, 7.5, 6.5 ] },
+										"west": { "texture": "#metalclean", "uv": [ 9.0, 5.5, 11.5, 6.0 ] },
+										"up": { "texture": "#metalclean", "uv": [ 8.0, 5.0, 8.5, 7.5 ] },
+										"down": { "texture": "#metalgradient", "uv": [ 12.0, 7.0, 12.5, 9.5 ] }
+									}
+								},
+								{
+									"name": "hook2",
+									"from": [ 0.0, 0.0, 0.0 ], 
+									"to": [ 0.5, 0.5, 0.5 ], 
+									"rotationOrigin": [ 0.0, 0.0, 0.0 ],
+									"faces": {
+										"north": { "texture": "#metalgradient", "uv": [ 6.0, 2.0, 6.5, 2.5 ] },
+										"east": { "texture": "#metalgradient", "uv": [ 8.0, 6.0, 8.5, 6.5 ] },
+										"south": { "texture": "#metalgradient", "uv": [ 9.5, 6.0, 10.0, 6.5 ] },
+										"west": { "texture": "#metalclean", "uv": [ 10.0, 5.5, 10.5, 6.0 ] },
+										"up": { "texture": "#metalclean", "uv": [ 11.0, 5.0, 11.5, 5.5 ] },
+										"down": { "texture": "#metalgradient", "uv": [ 13.5, 7.0, 14.0, 7.5 ] }
+									}
+								},
+								{
+									"name": "hook3",
+									"from": [ 0.0, 0.0, 2.0 ], 
+									"to": [ 0.5, 0.5, 2.5 ], 
+									"rotationOrigin": [ 0.0, 0.0, 2.0 ],
+									"faces": {
+										"north": { "texture": "#metalgradient", "uv": [ 1.0, 2.0, 1.5, 2.5 ] },
+										"east": { "texture": "#metalgradient", "uv": [ 1.0, 6.0, 1.5, 6.5 ] },
+										"south": { "texture": "#metalgradient", "uv": [ 1.5, 6.0, 2.0, 6.5 ] },
+										"west": { "texture": "#metalclean", "uv": [ 5.5, 5.5, 6.0, 6.0 ] },
+										"up": { "texture": "#metalclean", "uv": [ 4.0, 5.0, 4.5, 5.5 ] },
+										"down": { "texture": "#metalgradient", "uv": [ 3.5, 7.0, 4.0, 7.5 ] }
 									}
 								}
 							]
