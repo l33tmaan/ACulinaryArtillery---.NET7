@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -32,7 +32,7 @@
     <Content Include="obj\Debug\net7.0\ACulinaryArtillery.csproj.FileListAbsolute.txt" />
     <Content Include="obj\project.assets.json" />
   </ItemGroup>
-
+   
   <ItemGroup>
     <None Update="assets\aculinaryartillery\blocktypes\bighookmold.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
