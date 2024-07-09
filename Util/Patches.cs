@@ -24,20 +24,6 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    [HarmonyPatch(typeof(CollectibleBehaviorHandbookTextAndExtraInfo), nameof(CollectibleBehaviorHandbookTextAndExtraInfo.GetHandbookInfo))]
-    public static class GetHandbookInfoPatch
-    {
-        public static void Postfix(ref RichTextComponentBase[] __result, ItemSlot inSlot, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor)
-        {
-            List<RichTextComponentBase> list = __result.ToList();
-
-            list.addMixingIngredientForInfo(inSlot, capi, allStacks, openDetailPageFor);
-            list.addCreatedByMixingInfo(inSlot, capi, allStacks, openDetailPageFor);
-            list.addSimmerIngredientForInfo(inSlot, capi, allStacks, openDetailPageFor);
-            list.addCreatedBySimmeringInfo(inSlot, capi, allStacks, openDetailPageFor);
-            __result = list.ToArray();
-        }
-    }
     [HarmonyPatch(typeof(InventorySmelting))]
     class SmeltingInvPatches
     {
