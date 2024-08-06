@@ -1,0 +1,489 @@
+{
+  "code": "examplegozinaki",
+  "class": "ExpandedFood",
+  "maxstacksize": 32,
+  "variantgroups": [
+    {
+      "code": "state",
+      "states": [ "mashed", "cooked", "syrup" ]
+    }
+  ],
+  "attributes": {
+    "displaycaseable": true,
+    "shelvable": true,
+    "expandedNutritionProps": {
+      "game:salt": {
+        "saturation": 10,
+        "health": 0.5,
+        "foodcategory": "Fruit"
+      },
+      "game:honeyportion": {
+        "saturation": 4,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:fruitsyrupportion-saguaro": {
+        "saturation": 12,
+        "health": 0.2,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:fruitsyrupportion-*": {
+        "saturation": 12,
+        "health": 0.1,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-cloudberry": {
+        "saturation": 12,
+        "health": 0.5,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-husktomato": {
+        "saturation": 12,
+        "health": 0.3,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-juniper": {
+        "saturation": 12,
+        "health": 0.3,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-coralbead": {
+        "saturation": 12,
+        "health": -0.1,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-pokeberry": {
+        "saturation": 12,
+        "health": -0.25,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-snowberry": {
+        "saturation": 12,
+        "health": -0.25,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-falseorange": {
+        "saturation": 12,
+        "health": -0.25,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-blacknightshadeunripe": {
+        "saturation": 12,
+        "health": -1,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-bitternightshade": {
+        "saturation": 12,
+        "health": -2,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-wolfberry": {
+        "saturation": 12,
+        "health": -3,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-seamango": {
+        "saturation": 12,
+        "health": -4,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-crowseye": {
+        "saturation": 12,
+        "health": -5,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:wildfruitsyrupportion-*": {
+        "saturation": 12,
+        "health": 0.1,
+        "foodcategory": "Fruit"
+      },
+      "expandedfoods:treesyrupportion-*": {
+        "saturation": 9.6,
+        "health": 0.1,
+        "foodcategory": "Fruit"
+      }
+    },
+    "renderIngredientsByType": {
+      "*-cooked": {
+        "game:legume-peanut": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json",
+        "expandedfoods:acornportion": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json",
+        "expandedfoods:peanut-cooked": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json",
+        "expandedfoods:peanut-kernels": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json",
+        "game:grain-sunflower": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json"
+      },
+      "*-mashed": {
+        "game:legume-peanut": "expandedfoods:shapes/item/food/gozinaki/gozinakimashed.json",
+        "expandedfoods:acornportion": "expandedfoods:shapes/item/food/gozinaki/gozinakimashed.json",
+        "expandedfoods:peanut-cooked": "expandedfoods:shapes/item/food/gozinaki/gozinakimashed.json",
+        "expandedfoods:peanut-kernels": "expandedfoods:shapes/item/food/gozinaki/gozinakimashed.json",
+        "game:grain-sunflower": "expandedfoods:shapes/item/food/gozinaki/gozinakimashed.json"
+      },
+      "*-syrup": {
+        "game:legume-peanut": "expandedfoods:shapes/item/food/gozinaki/gozinakimashed.json",
+        "expandedfoods:acornportion": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json",
+        "expandedfoods:peanut-cooked": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json",
+        "expandedfoods:peanut-kernels": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json",
+        "game:grain-sunflower": "expandedfoods:shapes/item/food/gozinaki/gozinakicooked.json",
+        "expandedfoods:peanutliquid-paste": {
+          "shape": "expandedfoods:shapes/item/food/gozinaki/overlays/syrup.json",
+          "textureMap": { "syrup": "peanutbutter" }
+        },
+        "expandedfoods:treesyrupportion-birch": {
+          "shape": "expandedfoods:shapes/item/food/gozinaki/overlays/syrup.json",
+          "textureMap": { "syrup": "weaktannin" }
+        },
+        "expandedfoods:treesyrupportion-maple": {
+          "shape": "expandedfoods:shapes/item/food/gozinaki/overlays/syrup.json",
+          "textureMap": { "syrup": "strongtannin" }
+        },
+        "expandedfoods:fruitsyrupportion-*": {
+          "name": "type",
+          "shape": "expandedfoods:shapes/item/food/gozinaki/overlays/syrup.json",
+          "textureMap": { "syrup": "{type}" }
+        },
+        "expandedfoods:wildfruitsyrupportion-*": {
+          "name": "type",
+          "shape": "expandedfoods:shapes/item/food/gozinaki/overlays/syrup.json",
+          "textureMap": { "syrup": "fill-{type}" }
+        },
+    },
+    "onDisplayTransformByType": {
+      "*-mashed": {
+        "translation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": 1.0
+      },
+      "*-cooked": {
+        "rotation": {
+          "x": 0,
+          "y": 45,
+          "z": 0
+        },
+        "translation": {
+          "x": 0,
+          "y": -0.25,
+          "z": 0
+        },
+        "scale": 0.5
+      },
+      "*-syrup": {
+        "rotation": {
+          "x": 0,
+          "y": 45,
+          "z": 0
+        },
+        "translation": {
+          "x": 0,
+          "y": -0.25,
+          "z": 0
+        },
+        "scale": 0.5
+      }
+    },
+    "bakingPropertiesByType": {
+      "*-mashed": {
+        "temp": 130,
+        "levelFrom": 0.0,
+        "levelTo": 0.5,
+        "startScaleY": 1.0,
+        "endScaleY": 0.5,
+        "resultCode": "expandedfoods:gozinaki-cooked"
+      },
+      "*-cooked": {
+        "temp": 130,
+        "levelFrom": 0.5,
+        "levelTo": 1.0,
+        "startScaleY": 1.0,
+        "endScaleY": 1.0,
+        "initialCode": "expandedfoods:gozinaki-mashed"
+      }
+    }
+  },
+  "shapeByType": {
+    "*-mashed": { "base": "expandedfoods:item/food/gozinaki/gozinakimashed" },
+    "*-cooked": { "base": "expandedfoods:item/food/gozinaki/gozinakicooked" },
+    "*-syrup": { "base": "expandedfoods:item/food/gozinaki/gozinakicooked" }
+  },
+  "textures": {
+    "gozinaki": { "base": "expandedfoods:item/food/gozinaki" },
+    "cranberry": { "base": "game:block/food/pie/fill-cranberry" },
+    "blueberry": { "base": "game:block/food/pie/fill-blueberry" },
+    "redcurrant": { "base": "game:block/food/pie/fill-redcurrant" },
+    "blackcurrant": { "base": "game:block/food/pie/fill-blackcurrant" },
+    "whitecurrant": { "base": "game:block/food/pie/fill-whitecurrant" },
+    "pineapple": { "base": "game:block/food/pie/fill-pineapple" },
+    "weaktannin": { "base": "game:block/liquid/weaktannin" },
+    "strongtannin": { "base": "game:block/liquid/strongtannin" },
+    "saguaro": { "base": "game:block/food/pie/fill-saguaro" },
+    "peanutbutter": { "base": "item/food/peanut/butter" },
+    "fill-achacha": { "base": "wildcraftfruit:block/food/pie/fill-achacha" },
+    "fill-apricot": { "base": "wildcraftfruit:block/food/pie/fill-apricot" },
+    "fill-beachalmond": { "base": "wildcraftfruit:block/food/pie/fill-beachalmond" },
+    "fill-beautyberry": { "base": "wildcraftfruit:block/food/pie/fill-beautyberry" },
+    "fill-bitternightshade": { "base": "wildcraftfruit:block/food/pie/fill-bitternightshade" },
+    "fill-blacknightshade": { "base": "wildcraftfruit:block/food/pie/fill-blacknightshade" },
+    "fill-blacknightshadeunripe": { "base": "wildcraftfruit:block/food/pie/fill-blacknightshadeunripe" },
+    "fill-blueraspberry": { "base": "wildcraftfruit:block/food/pie/fill-blueraspberry" },
+    "fill-bluetongue": { "base": "wildcraftfruit:block/food/pie/fill-bluetongue" },
+    "fill-brambleberry": { "base": "wildcraftfruit:block/food/pie/fill-brambleberry" },
+    "fill-bunchberry": { "base": "wildcraftfruit:block/food/pie/fill-bunchberry" },
+    "fill-cashewapple": { "base": "wildcraftfruit:block/food/pie/fill-cashewapple" },
+    "fill-cheeseberry": { "base": "wildcraftfruit:block/food/pie/fill-cheeseberry" },
+    "fill-cherryplum": { "base": "wildcraftfruit:block/food/pie/fill-cherryplum" },
+    "fill-chinaberry": { "base": "wildcraftfruit:block/food/pie/fill-chinaberry" },
+    "fill-citron": { "base": "wildcraftfruit:block/food/pie/fill-citron" },
+    "fill-cloudberry": { "base": "wildcraftfruit:block/food/pie/fill-cloudberry" },
+    "fill-cocoa": { "base": "wildcraftfruit:block/food/pie/fill-cocoa" },
+    "fill-coralbead": { "base": "wildcraftfruit:block/food/pie/fill-coralbead" },
+    "fill-creepingpine": { "base": "wildcraftfruit:block/food/pie/fill-creepingpine" },
+    "fill-crowberry": { "base": "wildcraftfruit:block/food/pie/fill-crowberry" },
+    "fill-crowseye": { "base": "wildcraftfruit:block/food/pie/fill-crowseye" },
+    "fill-dogrose": { "base": "wildcraftfruit:block/food/pie/fill-dogrose" },
+    "fill-elderberry": { "base": "wildcraftfruit:block/food/pie/fill-elderberry" },
+    "fill-engkala": { "base": "wildcraftfruit:block/food/pie/fill-engkala" },
+    "fill-falseorange": { "base": "wildcraftfruit:block/food/pie/fill-falseorange" },
+    "fill-falsestrawberry": { "base": "wildcraftfruit:block/food/pie/fill-falsestrawberry" },
+    "fill-feijoa": { "base": "wildcraftfruit:block/food/pie/fill-feijoa" },
+    "fill-fig": { "base": "wildcraftfruit:block/food/pie/fill-fig" },
+    "fill-fingerlime": { "base": "wildcraftfruit:block/food/pie/fill-fingerlime" },
+    "fill-flaxlily": { "base": "wildcraftfruit:block/food/pie/fill-flaxlily" },
+    "fill-foxgrape": { "base": "wildcraftfruit:block/food/pie/fill-foxgrape" },
+    "fill-fractureberry": { "base": "wildcraftfruit:block/food/pie/fill-fractureberry" },
+    "fill-gardenstrawberry": { "base": "wildcraftfruit:block/food/pie/fill-gardenstrawberry" },
+    "fill-gooseberry": { "base": "wildcraftfruit:block/food/pie/fill-gooseberry" },
+    "fill-guajava": { "base": "wildcraftfruit:block/food/pie/fill-guajava" },
+    "fill-hawthorn": { "base": "wildcraftfruit:block/food/pie/fill-hawthorn" },
+    "fill-honeypots": { "base": "wildcraftfruit:block/food/pie/fill-honeypots" },
+    "fill-honeysuckle": { "base": "wildcraftfruit:block/food/pie/fill-honeysuckle" },
+    "fill-huckleberry": { "base": "wildcraftfruit:block/food/pie/fill-huckleberry" },
+    "fill-husktomato": { "base": "wildcraftfruit:block/food/pie/fill-husktomato" },
+    "fill-illawarra": { "base": "wildcraftfruit:block/food/pie/fill-illawarra" },
+    "fill-jujube": { "base": "wildcraftfruit:block/food/pie/fill-jujube" },
+    "fill-juniper": { "base": "wildcraftfruit:block/food/pie/fill-juniper" },
+    "fill-kakaha": { "base": "wildcraftfruit:block/food/pie/fill-kakaha" },
+    "fill-kawakawa": { "base": "wildcraftfruit:block/food/pie/fill-kawakawa" },
+    "fill-knyazberry": { "base": "wildcraftfruit:block/food/pie/fill-knyazberry" },
+    "fill-kumquat": { "base": "wildcraftfruit:block/food/pie/fill-kumquat" },
+    "fill-lemonaspen": { "base": "wildcraftfruit:block/food/pie/fill-lemonaspen" },
+    "fill-lillypillypink": { "base": "wildcraftfruit:block/food/pie/fill-lillypillypink" },
+    "fill-lingonberry": { "base": "wildcraftfruit:block/food/pie/fill-lingonberry" },
+    "fill-loquat": { "base": "wildcraftfruit:block/food/pie/fill-loquat" },
+    "fill-midyimberry": { "base": "wildcraftfruit:block/food/pie/fill-midyimberry" },
+    "fill-mingimingi": { "base": "wildcraftfruit:block/food/pie/fill-mingimingi" },
+    "fill-munthari": { "base": "wildcraftfruit:block/food/pie/fill-munthari" },
+    "fill-naranjilla": { "base": "wildcraftfruit:block/food/pie/fill-naranjilla" },
+    "fill-numnum": { "base": "wildcraftfruit:block/food/pie/fill-numnum" },
+    "fill-pandanbits": { "base": "wildcraftfruit:block/food/pie/fill-pandanbits" },
+    "fill-pilo": { "base": "wildcraftfruit:block/food/pie/fill-pilo" },
+    "fill-pineheath": { "base": "wildcraftfruit:block/food/pie/fill-pineheath" },
+    "fill-pokeberry": { "base": "wildcraftfruit:block/food/pie/fill-pokeberry" },
+    "fill-pomelo": { "base": "wildcraftfruit:block/food/pie/fill-pomelo" },
+    "fill-pricklyheath": { "base": "wildcraftfruit:block/food/pie/fill-pricklyheath" },
+    "fill-purpleplum": { "base": "wildcraftfruit:block/food/pie/fill-purpleplum" },
+    "fill-quince": { "base": "wildcraftfruit:block/food/pie/fill-quince" },
+    "fill-raspberry": { "base": "wildcraftfruit:block/food/pie/fill-raspberry" },
+    "fill-redgrape": { "base": "wildcraftfruit:block/food/pie/fill-redgrape" },
+    "fill-redquandong": { "base": "wildcraftfruit:block/food/pie/fill-redquandong" },
+    "fill-roseapple": { "base": "wildcraftfruit:block/food/pie/fill-roseapple" },
+    "fill-rowanberry": { "base": "wildcraftfruit:block/food/pie/fill-rowanberry" },
+    "fill-rubysaltbush": { "base": "wildcraftfruit:block/food/pie/fill-rubysaltbush" },
+    "fill-sallowthorn": { "base": "wildcraftfruit:block/food/pie/fill-sallowthorn" },
+    "fill-seamango": { "base": "wildcraftfruit:block/food/pie/fill-seamango" },
+    "fill-silvernettle": { "base": "wildcraftfruit:block/food/pie/fill-silvernettle" },
+    "fill-snowberry": { "base": "wildcraftfruit:block/food/pie/fill-snowberry" },
+    "fill-spindle": { "base": "wildcraftfruit:block/food/pie/fill-spindle" },
+    "fill-strawberry": { "base": "wildcraftfruit:block/food/pie/fill-strawberry" },
+    "fill-sumac": { "base": "wildcraftfruit:block/food/pie/fill-sumac" },
+    "fill-turkscap": { "base": "wildcraftfruit:block/food/pie/fill-turkscap" },
+    "fill-ugni": { "base": "wildcraftfruit:block/food/pie/fill-ugni" },
+    "fill-virgingrape": { "base": "wildcraftfruit:block/food/pie/fill-virgingrape" },
+    "fill-whitegrape": { "base": "wildcraftfruit:block/food/pie/fill-whitegrape" },
+    "fill-wolfberry": { "base": "wildcraftfruit:block/food/pie/fill-wolfberry" }
+  },
+  "creativeinventory": {
+    "general": [ "*" ],
+    "items": [ "*" ],
+    "expandedfoods": [ "*" ]
+  },
+  "nutritionPropsByType": {
+    "*-cooked": {
+      "saturation": 30,
+      "health": 0.5,
+      "foodcategory": "Fruit"
+    },
+    "*-syrup": {
+      "saturation": 30,
+      "health": 0.5,
+      "foodcategory": "Fruit"
+    }
+  },
+  "transitionablePropsByType": {
+    "*": [
+      {
+        "type": "Perish",
+        "freshHours": { "avg": 864 },
+        "transitionHours": { "avg": 72 },
+        "transitionedStack": {
+          "type": "item",
+          "code": "game:rot"
+        },
+        "transitionRatio": 1
+      }
+    ]
+  },
+  "materialDensity": 200,
+  "guiTransformByType": {
+    "*-mashed": {
+      "translation": {
+        "x": 3,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "x": -28,
+        "y": 23,
+        "z": 180
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0.07,
+        "z": 0.5
+      },
+      "scale": 4
+    },
+    "*": {
+      "translation": {
+        "x": 3,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "x": -40,
+        "y": 40,
+        "z": 180
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0.07,
+        "z": 0.5
+      },
+      "scale": 2
+    }
+  },
+  "groundTransformByType": {
+    "*-mashed": {
+      "translation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0,
+        "z": 0.5
+      },
+      "scale": 4
+    },
+    "*": {
+      "translation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0,
+        "z": 0.5
+      },
+      "scale": 2
+    }
+  },
+  "tpHandTransformByType": {
+    "*-mashed": {
+      "translation": {
+        "x": -0.54,
+        "y": -0.16,
+        "z": -0.4
+      },
+      "rotation": {
+        "x": 44,
+        "y": -69,
+        "z": 2
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0.13,
+        "z": 0.5
+      },
+      "scale": 1
+    },
+    "*": {
+      "translation": {
+        "x": -0.54,
+        "y": -0.46,
+        "z": -0.9
+      },
+      "rotation": {
+        "x": 14,
+        "y": 0,
+        "z": 0
+      },
+      "origin": {
+        "x": 0.3,
+        "y": 0.13,
+        "z": 0.4
+      },
+      "scale": 0.35
+    }
+  },
+  "fpHandTransformByType": {
+    "*-mashed": {
+      "translation": {
+        "x": 0,
+        "y": 0.24,
+        "z": 0.3
+      },
+      "rotation": {
+        "x": 72,
+        "y": 0,
+        "z": 0
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0.1,
+        "z": 0.5
+      },
+      "scale": 2
+    },
+    "*": {
+      "translation": {
+        "x": 0,
+        "y": 0.24,
+        "z": 0.3
+      },
+      "rotation": {
+        "x": 71,
+        "y": -3,
+        "z": 0
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0.1,
+        "z": 0.5
+      },
+      "scale": 1.1
+    }
+  }
+}
