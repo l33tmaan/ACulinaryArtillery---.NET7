@@ -629,39 +629,39 @@
 
 	<ItemGroup>
 	  <Reference Include="0Harmony">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\0Harmony.dll</HintPath>
+	    <HintPath>$(VINTAGE_STORY)\Lib\0Harmony.dll</HintPath>
 		<Private>false</Private>
 	  </Reference>
 	  <Reference Include="cairo-sharp">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\cairo-sharp.dll</HintPath>
+	    <HintPath>$(VINTAGE_STORY)\Lib\cairo-sharp.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="Newtonsoft.Json">
-		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\Newtonsoft.Json.dll</HintPath>
+		  <HintPath>$(VINTAGE_STORY)\Lib\Newtonsoft.Json.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="protobuf-net">
-		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Lib\protobuf-net.dll</HintPath>
+		  <HintPath>$(VINTAGE_STORY)\Lib\protobuf-net.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VintagestoryAPI">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\VintagestoryAPI.dll</HintPath>
+	    <HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VintagestoryLib">
-		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\VintagestoryLib.dll</HintPath>
+		  <HintPath>$(VINTAGE_STORY)\VintagestoryLib.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VSCreativeMod">
-		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
+		  <HintPath>$(VINTAGE_STORY)\Mods\VSCreativeMod.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VSEssentials">
-		  <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSEssentials.dll</HintPath>
+		  <HintPath>$(VINTAGE_STORY)\Mods\VSEssentials.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
 	  <Reference Include="VSSurvivalMod">
-	    <HintPath>..\..\..\AppData\Roaming\Vintagestory\Mods\VSSurvivalMod.dll</HintPath>
+	    <HintPath>$(VINTAGE_STORY)\Mods\VSSurvivalMod.dll</HintPath>
 		  <Private>false</Private>
 	  </Reference>
 	</ItemGroup>
