@@ -79,10 +79,11 @@ namespace ACulinaryArtillery.Util
                                 for (int i = 0; i < matches.Length; i++)
                                 {
                                     ItemStack matchedStack = new ItemStack(matches[i]);
-                                    if (matchedStack != null && ding.GetMatch(matchedStack) != null)
+
+                                    if (matchedStack != null && ding.GetMatch(matchedStack, false) != null)
                                     {
                                         matchedStack.StackSize = ting.Quantity;
-                                        inputs = inputs.Append(matchedStack);
+                                        inputs = inputs.Append(matchedStack.Clone());
                                     }
                                 }
                             }
@@ -90,7 +91,7 @@ namespace ACulinaryArtillery.Util
                             {
                                 ItemStack matchedStack = ting.ResolvedItemstack;
                                 matchedStack.StackSize = ting.Quantity;
-                                inputs = inputs.Append(matchedStack);
+                                inputs = inputs.Append(matchedStack.Clone());
                             }
 
                         }
@@ -263,7 +264,7 @@ namespace ACulinaryArtillery.Util
                                 if (matchedStack != null && ing.SatisfiesAsIngredient(matchedStack, false))
                                 {
                                     matchedStack.StackSize = ing.Quantity;
-                                    inputs = inputs.Append(matchedStack);
+                                    inputs = inputs.Append(matchedStack.Clone());
                                 }
                             }
                         }
@@ -271,7 +272,7 @@ namespace ACulinaryArtillery.Util
                         {
                             ItemStack matchedStack = ing.ResolvedItemstack;
                             matchedStack.StackSize = ing.Quantity;
-                            inputs = inputs.Append(matchedStack);
+                            inputs = inputs.Append(matchedStack.Clone());
                         }
                         if(inputs.Length <= 0) { continue; }
                         SlideshowItemstackTextComponent incomp = new SlideshowItemstackTextComponent(capi, inputs, 40.0, EnumFloat.Inline, delegate (ItemStack cs)
