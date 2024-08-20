@@ -1024,13 +1024,13 @@ namespace ACulinaryArtillery
     {
         public CraftingRecipeIngredient[] Inputs;
 
-        public CraftingRecipeIngredient GetMatch(ItemStack stack)
+        public CraftingRecipeIngredient GetMatch(ItemStack stack, bool checkStackSize = true)
         {
             if (stack == null) return null;
 
             for (int i = 0; i < Inputs.Length; i++)
             {
-                if (Inputs[i].SatisfiesAsIngredient(stack)) return Inputs[i];
+                if (Inputs[i].SatisfiesAsIngredient(stack, checkStackSize)) return Inputs[i];
             }
 
             return null;

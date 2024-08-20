@@ -16,7 +16,7 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class ItemExpandedRawFood : Item, IExpandedFood, ITexPositionSource, IContainedMeshSource, IBakeableCallback
+    public class ItemExpandedRawFood : Item, IExpandedFood, ITexPositionSource, IContainedMeshSource, IBakeableCallback, ICustomHandbookPageContent
     {
         public Size2i AtlasSize => targetAtlas.Size;
         public TextureAtlasPosition this[string textureCode] => GetOrCreateTexPos(GetTexturePath(textureCode));
@@ -25,7 +25,7 @@ namespace ACulinaryArtillery
 
         public override bool Satisfies(ItemStack thisStack, ItemStack otherStack)
         {
-            if(thisStack.Class == otherStack.Class && thisStack.Id == otherStack.Id) 
+            if (thisStack.Class == otherStack.Class && thisStack.Id == otherStack.Id)
             {
                 if (!otherStack.Attributes.HasAttribute("madeWith") && thisStack.Attributes.HasAttribute("madeWith"))
                 {
@@ -149,7 +149,7 @@ namespace ACulinaryArtillery
                     }
                     */
                     if (addSat != null && addSat.Length == 6)
-                        sat = sat.Zip(addSat, (x, y) => x + (y * (val.Key.Itemstack.Collectible is ItemExpandedLiquid? val.Value.Quantity/10 : val.Value.Quantity))).ToArray();
+                        sat = sat.Zip(addSat, (x, y) => x + (y * (val.Key.Itemstack.Collectible is ItemExpandedLiquid ? val.Value.Quantity / 10 : val.Value.Quantity))).ToArray();
                     //api.Logger.Debug(string.Join("\n", sat));
                     if (addIngs != null && addIngs.Length > 0)
                     {
@@ -1642,7 +1642,7 @@ namespace ACulinaryArtillery
             return components.ToArray();
         }
 
-       // Get Nutrition Properties for a SINGLE STACK
+        // Get Nutrition Properties for a SINGLE STACK
         // SPANG - March 13, 2022
         public static FoodNutritionProperties[] GetExpandedContentNutritionProperties(IWorldAccessor world, ItemSlot inSlot, ItemStack contentStack, EntityAgent forEntity, bool mulWithStacksize = false, float nutritionMul = 1f, float healthMul = 1f)
         {
@@ -1690,7 +1690,7 @@ namespace ACulinaryArtillery
                     }
                 }
                 if (stackProps != null)
-                {   
+                {
                     FoodNutritionProperties props = stackProps.Clone();
                     props.Satiety *= satLossMul * nutritionMul * mul;
                     props.Health *= healthLoss * healthMul * mul;
@@ -1711,7 +1711,7 @@ namespace ACulinaryArtillery
                 props.Health *= healthLoss * healthMul * mul;
                 foodProps.Add(props);
             }
-            return foodProps.ToArray(); 
+            return foodProps.ToArray();
         }
 
         class ExtraSection { public string Title = null; public string Text = null; }
@@ -1762,7 +1762,8 @@ namespace ACulinaryArtillery
                     {
                         freshHours[i] = propsm[i].FreshHours.nextFloat(1, world.Rand);
                         transitionHours[i] = propsm[i].TransitionHours.nextFloat(1, world.Rand);
-                    } else
+                    }
+                    else
                     {
                         freshHours[i] = 0;
                         transitionHours[i] = 0;
@@ -1881,7 +1882,7 @@ namespace ACulinaryArtillery
             }
 
             return null;
-        }   
+        }
 
         public void OnBaked(ItemStack oldStack, ItemStack newStack)
         {
@@ -1894,16 +1895,19 @@ namespace ACulinaryArtillery
         {
             string[] ings = (input?.Attributes["madeWith"] as StringArrayAttribute)?.value;
             float[] sats = (input?.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
-            
-            
+
+
             //dividedSats.Foreach(sat => { sat /= output.StackSize;});
             if (ings != null) output.Attributes["madeWith"] = new StringArrayAttribute(ings);
-            if (sats != null) 
+            if (sats != null)
             {
                 float[] dividedSats = Array.ConvertAll(sats, i => i / output.StackSize);
                 output.Attributes["expandedSats"] = new FloatArrayAttribute(dividedSats);
             }
-            
+
+        }
+        public void OnHandbookPageComposed(List<RichTextComponentBase> components, ItemSlot inSlot, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor)
+        {
         }
     }
 
