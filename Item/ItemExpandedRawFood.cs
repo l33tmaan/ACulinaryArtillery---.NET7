@@ -600,11 +600,34 @@ namespace ACulinaryArtillery
                     chk.Add(val.Key);
             else
                 return null;
-
+            Dictionary<String, String> textureMap = new Dictionary<String, String>();
             for (int i = 0; i < ings.Length; i++)
             {
                 string path = null;
-                path = Attributes?["renderIngredients"]?[FindMatch(ings[i], chk.ToArray())]?.AsString();
+                String match = FindMatch(ings[i], chk.ToArray());
+                var value = Attributes?["renderIngredients"]?[match];
+                if(value is not null && !((value.ToAttribute() as TreeAttribute) is null))
+                {
+                    String wildCard = WildcardUtil.GetWildcardValue(new AssetLocation(match), new AssetLocation(ings[i]));
+                    String name;
+                    //String itemForLog = Code.ToString();
+                    //String ingredientForLog = ings[i].ToString();
+                    TreeAttribute keyValuePairs = value.ToAttribute() as TreeAttribute;
+                    path = keyValuePairs.GetAsString("shape");
+                    name = keyValuePairs.GetAsString("name");
+                    TreeAttribute textureMappings = keyValuePairs.GetTreeAttribute("textureMap") as TreeAttribute;
+                    foreach (var key in textureMappings?.Keys)
+                    {
+                        String replacedString = textureMappings.GetString(key).Replace("{"+name+"}", wildCard);
+                        textureMap[key] = replacedString;
+                    }
+                }
+                else
+                {
+                    path = Attributes?["renderIngredients"]?[FindMatch(ings[i], chk.ToArray())]?.AsString();
+                }
+                
+                
                 if (path == null)
                     continue;
                 AssetLocation shape = new AssetLocation(path);
@@ -629,8 +652,38 @@ namespace ACulinaryArtillery
 
                 if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
                     continue;
-                tesselator.TesselateShape("ACA", addShape, out addIng, this, rot);
 
+                
+                var keys = (addShape.Textures?.Keys);
+                Shape clonedAddShape = addShape.Clone();
+                //clonedAddShape.Textures.Clear();
+                if(keys is not null)
+                {
+                    if (textureMap.Count > 0)
+                    {
+                        foreach (var key in textureMap.Keys)
+                        {
+                            AssetLocation ass = GetTexturePath(textureMap[key]); // path to desired texture
+                            if (clonedAddShape.Textures.ContainsKey(key))
+                            {
+                                clonedAddShape.Textures[key] = ass;
+                            }
+                            else
+                            {
+                                clonedAddShape.Textures[key] = GetTexturePath(key);
+                            }
+
+                        }
+                    }
+                    ShapeTextureSource textureSource = new ShapeTextureSource(capi, clonedAddShape, null);
+                    tesselator.TesselateShape("ACA", clonedAddShape, out addIng, textureSource, rot);
+                    
+                }
+                else
+                {
+                    tesselator.TesselateShape("ACA", clonedAddShape, out addIng, this, rot);
+                }
+                
                 if (mesh == null)
                     mesh = addIng;
                 else
