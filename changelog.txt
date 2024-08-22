@@ -13,6 +13,9 @@
 - Clay bottles and saucepans can fit on shelves
 - Meathook transform added to .tfedit command - DONE!!!
 - Meathook transforms re-fixed
+- Cauldrons and powered mixing bowls take up a backpack slot, work with CarryOn too
+- Egg liquids configurable via JSON attributes or something
+- Handbook recipes??????????????
 
 ~1.19_v1.1.5~
 - Blocks look correct on shelves/meat hooks
