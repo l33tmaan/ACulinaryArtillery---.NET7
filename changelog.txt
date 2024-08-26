@@ -8,14 +8,18 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.19_v1.1.6~
+~1.19_v1.2.0~
 - Frying pan added?
 - Clay bottles and saucepans can fit on shelves
-- Meathook transform added to .tfedit command - DONE!!!
 - Meathook transforms re-fixed
 - Cauldrons and powered mixing bowls take up a backpack slot, work with CarryOn too
 - Egg liquids configurable via JSON attributes or something
-- Handbook recipes??????????????
+- Add VS Code support and enable cross-platform development (thanks to matthewkaney)
+
+Pursec fixes: 
+- Handbook recipes at last: automatic handbook recipe population from loaded recipes
+- Adds in wildcard support for ItemExpandedFood's renderIngredients, an example has been added called "ExampleGozinaki"
+- Meathook transform added to .tfedit command
 
 ~1.19_v1.1.5~
 - Blocks look correct on shelves/meat hooks
