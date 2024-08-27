@@ -1,20 +1,20 @@
 ﻿TO-DO WHENEVER:
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
-- ExpandedFood class maintains nutrition after being grinded
-- Sideways barrels added? (see Ye Olde Keg)
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
-- Pies can take syrup/sauce 
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.19_v1.2.0~
+~1.19_v1.2.1~
 - Frying pan added?
-- Clay bottles and saucepans can fit on shelves
-- Meathook transforms re-fixed
-- Cauldrons and powered mixing bowls take up a backpack slot, work with CarryOn too
+
+~1.19_v1.2.0~
+- Saucepans can fit on shelves - DONE!!!
+- Meathook transforms re-fixed - DONE!!!
+- Cauldrons and powered mixing bowls work with CarryOn
 - Egg liquids configurable via JSON attributes or something
-- Add VS Code support and enable cross-platform development (thanks to matthewkaney)
+
+- Add VS Code support and enable cross-platform development (thanks to matthewkaney) - DONE!!!
 
 Pursec fixes: 
 - Handbook recipes at last: automatic handbook recipe population from loaded recipes
