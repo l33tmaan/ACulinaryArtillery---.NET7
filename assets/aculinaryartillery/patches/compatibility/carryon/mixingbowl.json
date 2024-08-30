@@ -1,0 +1,21 @@
+﻿[
+  {
+    "file": "aculinaryartillery:blocktypes/mixingbowl",
+    "side": "Server",
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "Carryable",
+      "properties": {
+        "interactDelay": 1.0,
+        "scale": 1.0,
+        "slots": {
+          "Hands": {
+            "walkSpeedModifier": -0.4
+          }
+        }
+      }
+    },
+    dependsOn: [{ "modid": "carryon" }]
+  }
+]

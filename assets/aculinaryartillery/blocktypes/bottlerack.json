@@ -62,7 +62,7 @@
     "blockmaterial": "Wood",
     "replaceable": 600,
     "resistance": 3,
-	heldTpIdleAnimation: "holdunderarm",
+	heldTpIdleAnimation: "holdbothhandslarge",
     "sounds": {
         "walk": "game:player/buildhigh"
     },
