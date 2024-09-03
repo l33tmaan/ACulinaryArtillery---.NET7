@@ -10,10 +10,10 @@
 
 ~1.19_v1.2.0~
 - Saucepans can fit on shelves - DONE!!!
-- Meathook transforms re-fixed - DONE!!!
+- Meathook transforms re-fixed - DONE!!! (check meat cleaver and other stuff)
 - Cauldrons, saucepans, mixing bowls, bottle racks, meat hooks work with CarryOn - DONE!!!
 - Egg liquids configurable via JSON attributes or something
-- Wildcraft Trees compatibility updated
+- Wildcraft Trees compatibility updated - DONE!!!
 
 - Add VS Code support and enable cross-platform development (thanks to matthewkaney) - DONE!!!
 
