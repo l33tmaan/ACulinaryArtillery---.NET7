@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="assets\aculinaryartillery\itemtypes\wearable\elkhat.json" />
     <None Remove="Launcher.dll" />
     <None Remove="Launcher.pdb" />
   </ItemGroup>
