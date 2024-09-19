@@ -21,6 +21,8 @@ Pursec fixes:
 - Handbook recipes at last: automatic handbook recipe population from loaded recipes
 - Adds in wildcard support for ItemExpandedFood's renderIngredients, an example has been added called "ExampleGozinaki"
 - Meathook transform added to .tfedit command
+- Changed textureMapping to be per shape rendered rather than for the entire mesh
+- Added automatic UV offsetting when using duplicate shapes in renderIngredients, mainly for issues with singular overlays that shared the same "base" texture with colorized variants. System is basic atm and non-configurable, will have an issue if more than one "group" of duplicates exist, where they will share the same incrementing offset. This will be worked on further.
 
 ~1.19_v1.1.5~
 - Blocks look correct on shelves/meat hooks
