@@ -1,0 +1,26 @@
+﻿[
+  {
+    "file": "aculinaryartillery:blocktypes/cauldronmini",
+    "side": "Server",
+    "op": "add",
+    "path": "/behaviorsByType/*/-",
+    "value": {
+      "name": "Carryable",
+      "properties": {
+        "interactDelay": 0.75,
+        "translation": [
+          -0.1,
+          -0.0,
+          -0.0
+        ],
+        "scale": 1.0,
+        "slots": {
+          "Hands": {
+            "walkSpeedModifier": -0.2
+          }
+        }
+      }
+    },
+    dependsOn: [{ "modid": "carryon" }]
+  }
+]

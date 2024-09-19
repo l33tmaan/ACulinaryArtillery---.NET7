@@ -6,29 +6,14 @@
 	},
 	behaviorsByType: {
 		"*-raw": [
-			{
-				name: "UnstableFalling"
-			},
-			{
-				name: "RightClickPickup"
-			},
-			{
-				name: "Unplaceable"
-			},
-			{
-				name: "GroundStorable",
-				"properties": {
-					"layout": "SingleCenter"
-				}
-			}
+			{ name: "UnstableFalling" },
+			{ name: "RightClickPickup" },
+			{ name: "Unplaceable" },
+			{ name: "GroundStorable", "properties": { "layout": "SingleCenter" } }
 		],
 		"*": [
-			{
-				name: "UnstableFalling"
-			},
-			{
-				name: "RightClickPickup"
-			}
+			{ name: "UnstableFalling" },
+			{ name: "RightClickPickup" }
 		],
 	},
 	entityClassByType: {
@@ -64,14 +49,14 @@
 			},
 			meathookable: true,
 			meatHookTransform: {
-  				translation: { x: 0.0, y: 0.31, z: 0.1 },
+  				translation: { x: 0.0, y: -0.86, z: 0.05 },
   				rotation: { x: -90, y: 90, z: 0 },
   				origin: { x: 0.5, y: 0, z: 0.5 },
   				scale: 0.8
 			},
 			shelvable: true,
 			"onDisplayTransform": {
-				"translation": { "x": 0, "y": -0.1, "z": 0 },
+				"translation": { "x": 0, "y": -0.15, "z": 0 },
 				"scale": 0.7
 			},
 		},

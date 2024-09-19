@@ -51,9 +51,7 @@
                 "layout": "SingleCenter",
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 }
             }
-        },
-        { "name": "UnstableFalling" },
-        { "name": "RightClickPickup" }
+        }
     ],
     "lightAbsorption": 0,
     "sideopaque": { "all": false },

@@ -1,18 +1,26 @@
 ﻿TO-DO WHENEVER:
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
-- ExpandedFood class maintains nutrition after being grinded
-- Sideways barrels added? (see Ye Olde Keg)
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
-- Pies can take syrup/sauce 
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.19_v1.1.6~
+~1.19_v1.2.1~
 - Frying pan added?
-- Clay bottles and saucepans can fit on shelves
-- Meathook transform added to .tfedit command - DONE!!!
-- Meathook transforms re-fixed
+
+~1.19_v1.2.0~
+- Saucepans can fit on shelves - DONE!!!
+- Meathook transforms re-fixed - DONE!!! (check meat cleaver and other stuff)
+- Cauldrons, saucepans, mixing bowls, bottle racks, meat hooks work with CarryOn - DONE!!!
+- Egg liquids configurable via JSON attributes or something
+- Wildcraft Trees compatibility updated - DONE!!!
+
+- Add VS Code support and enable cross-platform development (thanks to matthewkaney) - DONE!!!
+
+Pursec fixes: 
+- Handbook recipes at last: automatic handbook recipe population from loaded recipes
+- Adds in wildcard support for ItemExpandedFood's renderIngredients, an example has been added called "ExampleGozinaki"
+- Meathook transform added to .tfedit command
 
 ~1.19_v1.1.5~
 - Blocks look correct on shelves/meat hooks
