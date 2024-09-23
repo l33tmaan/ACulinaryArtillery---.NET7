@@ -17,7 +17,7 @@
 	},
 	"creativeinventory": { "general": ["*-east"], "terrain": ["*-east"], "aculinaryartillery": ["*-east"] },
     "texturesByType": {
-        "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified)-(copper|brass|tinbronze|blackbronze|titanium|steel)-(north|east|south|west)": {
+        "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(copper|brass|tinbronze|blackbronze|titanium|steel)-(north|east|south|west)": {
             "wood": { "base": "wildcrafttree:block/wood/planks/{wood}1" },
 			"metal": { "base": "game:block/metal/ingot/{metal}" }
         },
@@ -41,10 +41,10 @@
 		"walk": "player/buildhigh"
 	},
 	"collisionSelectionBoxes": [
-		{ "x1": 0.0625, "y1": 0.5, "z1": 0.0625, "x2": 0.5, "y2": 1, "z2": 0.5 },
-		{ "x1": 0.5, "y1": 0.5, "z1": 0.0625, "x2": 0.9375, "y2": 1, "z2": 0.5 },
-		{ "x1": 0.0625, "y1": 0.5, "z1": 0.5, "x2": 0.5, "y2": 1, "z2": 0.9375 },
-		{ "x1": 0.5, "y1": 0.5, "z1": 0.5, "x2": 0.9375, "y2": 1, "z2": 0.9375 }
+		{ "x1": 0.125, "y1": 0.5, "z1": 0.0625, "x2": 0.5, "y2": 1, "z2": 0.5 },
+		{ "x1": 0.5, "y1": 0.5, "z1": 0.0625, "x2": 0.875, "y2": 1, "z2": 0.5 },
+		{ "x1": 0.125, "y1": 0.5, "z1": 0.5, "x2": 0.5, "y2": 1, "z2": 0.9375 },
+		{ "x1": 0.5, "y1": 0.5, "z1": 0.5, "x2": 0.875, "y2": 1, "z2": 0.9375 }
 	],
 	"guiTransform": {
 		"origin": { "x": 0.5, "y": 0.75, "z": 0.5 },

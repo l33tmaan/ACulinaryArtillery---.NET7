@@ -2,7 +2,7 @@
   {
     "op": "addeach",
     "path": "/variantgroups/0/states/-",
-    "value": [ "douglasfir", "willow", "honeylocust", "bearnut", "poplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "tuja", "redcedar", "yew", "kauri", "ginkgo", "dalbergia", "umnini", "banyan", "guajacum", "ghostgum", "ohia", "satinash", "bluemahoe", "jacaranda", "empresstree", "chlorociboria", "petrified" ],
+    "value": [ "douglasfir", "willow", "honeylocust", "bearnut", "poplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "tuja", "redcedar", "yew", "kauri", "ginkgo", "dalbergia", "umnini", "banyan", "guajacum", "ghostgum", "ohia", "satinash", "bluemahoe", "jacaranda", "empresstree", "chlorociboria", "petrified", "fir", "tamanu", "spurgetree", "azobe", "leadwood", "linden", "horsechestnut", "tigerwood", "sapele", "ash", "mangrove", "charred" ],
     "side": "server",
     "file": "aculinaryartillery:blocktypes/bottlerack.json",
     dependsOn: [{ "modid": "wildcrafttree" }]
@@ -10,7 +10,7 @@
   {
     "op": "addeach",
     "path": "/variantgroups/1/states/-",
-    "value": [ "douglasfir", "willow", "honeylocust", "bearnut", "poplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "tuja", "redcedar", "yew", "kauri", "ginkgo", "dalbergia", "umnini", "banyan", "guajacum", "ghostgum", "ohia", "satinash", "bluemahoe", "jacaranda", "empresstree", "chlorociboria", "petrified" ],
+    "value": [ "douglasfir", "willow", "honeylocust", "bearnut", "poplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "tuja", "redcedar", "yew", "kauri", "ginkgo", "dalbergia", "umnini", "banyan", "guajacum", "ghostgum", "ohia", "satinash", "bluemahoe", "jacaranda", "empresstree", "chlorociboria", "petrified", "fir", "tamanu", "spurgetree", "azobe", "leadwood", "linden", "horsechestnut", "tigerwood", "sapele", "ash", "mangrove", "charred" ],
     "side": "server",
     "file": "aculinaryartillery:blocktypes/bottlerack.json",
     dependsOn: [{ "modid": "wildcrafttree" }]
@@ -283,6 +283,102 @@
     "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
     op: "replace", 
     path: "/33/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/34/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/35/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/36/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/37/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/38/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/39/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/40/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/41/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/42/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/43/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/44/enabled", 
+    value: "true",
+    "side": "server",
+    dependsOn: [{ "modid": "wildcrafttree" }]
+ },
+ {
+    "file": "aculinaryartillery:recipes/grid/compatibility/wildcrafttree/blocks/bottlerack.json",
+    op: "replace", 
+    path: "/45/enabled", 
     value: "true",
     "side": "server",
     dependsOn: [{ "modid": "wildcrafttree" }]

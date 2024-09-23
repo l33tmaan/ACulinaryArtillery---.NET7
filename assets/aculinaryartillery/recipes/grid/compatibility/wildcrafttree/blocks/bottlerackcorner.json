@@ -928,6 +928,354 @@
 		}
 	},
 	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 33,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-fir-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-fir-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 34,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-tamanu-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-tamanu-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 35,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-spurgetree-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-spurgetree-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 36,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-azobe-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-azobe-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 37,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-leadwood-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-leadwood-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 38,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-linden-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-linden-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 39,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-horsechestnut-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-horsechestnut-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 40,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-tigerwood-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-tigerwood-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 41,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-sapele-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-sapele-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 42,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-ash-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-ash-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 43,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-mangrove-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-mangrove-north"
+		}
+	},
+	{
+		"enabled": false,
+		ingredientPattern: "BSH",
+		recipeGroup: 44,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "bottlerack-*-charred-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "aculinaryartillery:bottlerackcorner-{woodframe}-charred-north"
+		}
+	},
+	{
 		"enabled":  false,
 		ingredientPattern: "BSH",
 		recipeGroup: 1,
@@ -1853,6 +2201,354 @@
 		output: {
 			type: "block",
 			code: "bottlerack-{woodframe}-petrified-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 33,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-fir-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-fir-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 34,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-tamanu-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-tamanu-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 35,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-spurgetree-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-spurgetree-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 36,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-azobe-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-azobe-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 37,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-leadwood-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-leadwood-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 38,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-linden-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-linden-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 39,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-horsechestnut-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-horsechestnut-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 40,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-tigerwood-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-tigerwood-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 41,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-sapele-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-sapele-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 42,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-ash-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-ash-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 43,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-mangrove-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-mangrove-north"
+		}
+	},
+	{
+		"enabled":  false,
+		ingredientPattern: "BSH",
+		recipeGroup: 44,
+		ingredients: {
+			"B": {
+				type: "block",
+				code: "aculinaryartillery:bottlerackcorner-*-charred-north",
+				name: "woodframe"
+			},
+			"S": {
+				type: "item",
+				code: "game:saw-*",
+				isTool: true,
+			},
+			"H": {
+				type: "item",
+				code: "game:hammer-*",
+				isTool: true,
+			},
+		},
+		width: 3,
+		height: 1,
+		shapeless: true,
+		output: {
+			type: "block",
+			code: "bottlerack-{woodframe}-charred-north"
 		}
 	},
 ]

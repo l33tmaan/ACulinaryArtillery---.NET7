@@ -671,4 +671,256 @@
 	height: 2,
 	output: { type: "block", code: "meathooks-petrified-{metal}-east"  }
 },
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 33,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-fir",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-fir-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 34,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-tamanu",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-tamanu-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 35,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-spurgetree",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-spurgetree-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 36,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-azobe",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-azobe-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 37,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-leadwood",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-leadwood-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 38,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-linden",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-linden-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 39,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-horsechestnut",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-horsechestnut-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 40,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-tigerwood",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-tigerwood-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 41,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-sapele",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-sapele-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 42,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-ash",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-ash-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 43,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-mangrove",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-mangrove-{metal}-east"  }
+},
+{
+	"enabled": false,
+	ingredientPattern: "PP,HH",
+	recipeGroup: 44,
+	ingredients: {
+		"P": { 
+			type: "item", 
+			code: "wildcrafttree:plank-charred",
+			name: "wood",
+		},
+		"H": { 
+			type: "item", 
+			code: "bighook-*",
+			name: "metal",
+			quantity: 2
+		},
+	},
+	width: 2,
+	height: 2,
+	output: { type: "block", code: "meathooks-charred-{metal}-east"  }
+},
 ]

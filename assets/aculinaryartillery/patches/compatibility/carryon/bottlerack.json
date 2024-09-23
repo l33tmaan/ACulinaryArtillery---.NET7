@@ -1,0 +1,31 @@
+﻿[
+  {
+    "file": "aculinaryartillery:blocktypes/bottlerack",
+    "side": "Server",
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "Carryable",
+      "properties": {
+        "interactDelay": 1.0,
+        "translation": [
+          0.0,
+          -0.1,
+          0.15
+        ],
+        "rotation": [
+          0,
+          90,
+          0
+        ],
+        "scale": 1.0,
+        "slots": {
+          "Hands": {
+            "walkSpeedModifier": -0.4
+          }
+        }
+      }
+    },
+    dependsOn: [{ "modid": "carryon" }]
+  }
+]
