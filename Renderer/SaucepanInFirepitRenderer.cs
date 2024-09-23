@@ -73,7 +73,6 @@ namespace ACulinaryArtillery
 
             IStandardShaderProgram prog = rpi.PreparedStandardShader(pos.X, pos.Y, pos.Z);
 
-            prog.Tex2D = capi.BlockTextureAtlas.AtlasTextures[0].TextureId;
             prog.DontWarpVertices = 0;
             prog.AddRenderFlags = 0;
             prog.RgbaAmbientIn = rpi.AmbientColor;
@@ -98,7 +97,7 @@ namespace ACulinaryArtillery
             prog.ViewMatrix = rpi.CameraMatrixOriginf;
             prog.ProjectionMatrix = rpi.CurrentProjectionMatrix;
 
-            rpi.RenderMultiTextureMesh(saucepanRef);
+            rpi.RenderMultiTextureMesh(saucepanRef, "tex");
 
             if (!isInOutputSlot)
             {
@@ -121,7 +120,7 @@ namespace ACulinaryArtillery
                 prog.ProjectionMatrix = rpi.CurrentProjectionMatrix;
 
 
-                rpi.RenderMultiTextureMesh(topRef);
+                rpi.RenderMultiTextureMesh(topRef, "tex");
             }
 
             prog.Stop();
