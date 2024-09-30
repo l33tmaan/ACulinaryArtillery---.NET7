@@ -16,7 +16,6 @@
 - Wildcraft Trees compatibility updated - DONE!!!
 
 - Add VS Code support and enable cross-platform development (thanks to matthewkaney) - DONE!!!
-- Chickens can actually eat egg shells now
 
 Pursec fixes: 
 - Handbook recipes at last: automatic handbook recipe population from loaded recipes
