@@ -7,15 +7,16 @@
 
 ~1.19_v1.2.1~
 - Frying pan added?
+- Egg liquids configurable via JSON attributes or something
 
 ~1.19_v1.2.0~
 - Saucepans can fit on shelves - DONE!!!
 - Meathook transforms re-fixed - DONE!!!
 - Cauldrons, saucepans, mixing bowls, bottle racks, meat hooks work with CarryOn - DONE!!!
-- Egg liquids configurable via JSON attributes or something
 - Wildcraft Trees compatibility updated - DONE!!!
 
 - Add VS Code support and enable cross-platform development (thanks to matthewkaney) - DONE!!!
+- Chickens can actually eat egg shells now
 
 Pursec fixes: 
 - Handbook recipes at last: automatic handbook recipe population from loaded recipes
@@ -23,6 +24,7 @@ Pursec fixes:
 - Meathook transform added to .tfedit command
 - Changed textureMapping to be per shape rendered rather than for the entire mesh
 - Added automatic UV offsetting when using duplicate shapes in renderIngredients, mainly for issues with singular overlays that shared the same "base" texture with colorized variants. System is basic atm and non-configurable, will have an issue if more than one "group" of duplicates exist, where they will share the same incrementing offset. This will be worked on further.
+- Cauldrons no longer render random textures in firepit
 
 ~1.19_v1.1.5~
 - Blocks look correct on shelves/meat hooks
