@@ -5,9 +5,13 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.19_v1.2.1~
+~1.19_v1.2.2~
 - Frying pan added?
 - Egg liquids configurable via JSON attributes or something
+
+~1.19_v1.2.1~
+Pursec fix:
+- Quick patch to fix null-ref crashing when desired rendered shape has a disabled face (such as muffin fruit overlays)
 
 ~1.19_v1.2.0~
 - Saucepans can fit on shelves - DONE!!!
