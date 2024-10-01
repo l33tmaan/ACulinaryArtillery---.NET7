@@ -698,6 +698,8 @@ namespace ACulinaryArtillery
                         {
                             foreach (ShapeElementFace face in elm.FacesResolved)
                             {
+                                if(face != null)
+                                {
                                 float faceWidth = Math.Abs(face.Uv[2] - face.Uv[0]);
                                 float faceHeight = Math.Abs(face.Uv[3] - face.Uv[1]);
                                 float ustart = (float)Math.Floor(uvoffset * (texWidth - faceWidth));
@@ -706,7 +708,7 @@ namespace ACulinaryArtillery
                                 face.Uv[1] = vstart;
                                 face.Uv[2] = ustart + faceWidth;
                                 face.Uv[3] = vstart + faceHeight;
-
+                                }
                             }
                         }
                         uvoffset += 0.0625f;
