@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -528,13 +527,13 @@ namespace ACulinaryArtillery
         {
             if (blockSel.SelectionBoxIndex == 1) return false;
 
+            
             if (Api.World is IServerWorldAccessor)
             {
                 ((ICoreServerAPI)Api).Network.SendBlockEntityPacket(
                     (IServerPlayer)byPlayer,
-                    Pos.X, Pos.Y, Pos.Z,
-                    (int)EnumBlockStovePacket.OpenGUI,
-                    null
+                    Pos,
+                    (int)EnumBlockStovePacket.OpenGUI
                 );
 
                 byPlayer.InventoryManager.OpenInventory(inventory);

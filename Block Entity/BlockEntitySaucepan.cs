@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using ACulinaryArtillery.Block_Entity;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
-using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
@@ -18,6 +16,7 @@ namespace ACulinaryArtillery
 
         public override void Initialize(ICoreAPI api)
         {
+            container = new BlockEntitySaucepanContainer(this, () => Inventory, "inventory");
             base.Initialize(api);
 
             ownBlock = Block as BlockSaucepan;
@@ -101,12 +100,6 @@ namespace ACulinaryArtillery
             {
                 currentRightMesh = GenRightMesh();
             }
-        }
-
-
-        public override float GetPerishRate()
-        {
-            return base.GetPerishRate() * (isSealed ? Block.Attributes["lidPerishRate"].AsFloat(0.5f) : 1f);
         }
     }
 }
