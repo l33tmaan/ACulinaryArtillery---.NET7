@@ -1,11 +1,11 @@
-﻿namespace ACulinaryArtillery
+﻿using Vintagestory.API.Client;
+using Vintagestory.API.Common;
+using Vintagestory.API.Datastructures;
+using Vintagestory.API.MathTools;
+using Vintagestory.GameContent;
+
+namespace ACulinaryArtillery
 {
-    using Vintagestory.API.Client;
-    using Vintagestory.API.Common;
-    using Vintagestory.API.Datastructures;
-    using Vintagestory.API.MathTools;
-    using Vintagestory.GameContent;
-    //using System.Diagnostics;
 
     public class BlockEntityBottle : BlockEntityContainer
     {
@@ -29,8 +29,16 @@
                 this.currentMesh = this.GenMesh();
                 this.MarkDirty(true);
             }
+
+            Inventory.OnAcquireTransitionSpeed += Inventory_OnAcquireTransitionSpeed1;
         }
 
+        private float Inventory_OnAcquireTransitionSpeed1(EnumTransitionType transType, ItemStack stack, float mulByConfig)
+        {
+            var mul = Inventory.GetTransitionSpeedMul(transType, stack);
+            mul *= this.ownBlock?.GetContainingTransitionModifierPlaced(this.Api.World, this.Pos, transType) ?? 1;
+            return mul;
+        }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)
         {
@@ -83,14 +91,6 @@
             { return false; }
             mesher.AddMeshData(this.currentMesh.Clone().Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0, 0, 0));
             return true;
-        }
-
-
-        protected override float Inventory_OnAcquireTransitionSpeed(EnumTransitionType transType, ItemStack stack, float baseMul)
-        {
-            var mul = base.Inventory_OnAcquireTransitionSpeed(transType, stack, baseMul);
-            mul *= this.ownBlock?.GetContainingTransitionModifierPlaced(this.Api.World, this.Pos, transType) ?? 1;
-            return mul;
         }
     }
 }

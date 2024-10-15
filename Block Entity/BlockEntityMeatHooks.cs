@@ -28,6 +28,19 @@ namespace ACulinaryArtillery
         {
             base.Initialize(api);
             RegisterGameTickListener(RotDrop, 3000);
+
+            Inventory.OnAcquireTransitionSpeed += Inventory_OnAcquireTransitionSpeed1; ;
+        }
+
+        private float Inventory_OnAcquireTransitionSpeed1(EnumTransitionType transType, ItemStack stack, float mulByConfig)
+        {
+            if (Api == null) return 1;
+
+            if (transType == EnumTransitionType.Cure) return Block.Attributes["cureRate"].AsFloat(3);
+            if (transType == EnumTransitionType.Dry) return Block.Attributes["dryRate"].AsFloat(3);
+
+
+            return Inventory.GetTransitionSpeedMul(transType, stack);
         }
 
         private void RotDrop(float dt)
@@ -69,18 +82,6 @@ namespace ACulinaryArtillery
 
 
             return false;
-        }
-
-        protected override float Inventory_OnAcquireTransitionSpeed(EnumTransitionType transType, ItemStack stack, float baseMul)
-        {
-            if (Api == null) return 1;
-
-            if (transType == EnumTransitionType.Cure) return Block.Attributes["cureRate"].AsFloat(3);
-            if (transType == EnumTransitionType.Dry) return Block.Attributes["dryRate"].AsFloat(3);
-
-
-            return base.Inventory_OnAcquireTransitionSpeed(transType, stack, baseMul);
-
         }
 
         private bool TryPut(ItemSlot slot, BlockSelection blockSel)
