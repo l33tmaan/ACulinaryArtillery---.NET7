@@ -12,7 +12,7 @@ namespace ACulinaryArtillery.Block_Entity
 
         public override float GetPerishRate()
         {
-            return GetPerishRate() * (blockEntitySaucepan.isSealed ? blockEntitySaucepan.Block.Attributes["lidPerishRate"].AsFloat(0.5f) : 1f);
+            return base.GetPerishRate() * (blockEntitySaucepan.isSealed ? blockEntitySaucepan.Block.Attributes["lidPerishRate"].AsFloat(0.5f) : 1f);
         }
     }
 }
