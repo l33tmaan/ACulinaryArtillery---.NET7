@@ -17,6 +17,7 @@ Pursec fixes:
 -Bug fix for textureMap per ingredient shape causing shapes to render with missing textures under certain ingredient combinations
 -Added support for Chef Hat on tamed Elk
 -Removed some extraneous code from GetHeldInfo for ItemExpandedRawFood as it shouldve just called its base instead
+-Bottle dissapearing into Grass fixed
 -Other misc changes ive forgotten already
 
 ~1.19_v1.2.1~
