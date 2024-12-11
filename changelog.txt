@@ -8,6 +8,7 @@
 ~1.19_v1.2.2~
 - Frying pan added?
 - Egg liquids configurable via JSON attributes or something
+- Ukranian translation updated (thanks to burunduk!)
 
 Pursec fixes:
 -Migrated transition and perish methods into their new event equivalencies
