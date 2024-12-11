@@ -24,6 +24,17 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
+    [HarmonyPatch(typeof(GuiHandbookItemStackPage), nameof(GuiHandbookItemStackPage.PageCodeForStack))]
+    public static class ExpandedFoodPageCodePatch
+    {
+        public static void Postfix(ref String __result, ItemStack stack)
+        {
+            if(stack.Collectible is ItemExpandedRawFood)
+            {
+                __result = stack.Class.Name() + "-" + stack.Collectible.Code.ToShortString();
+            }
+        }
+    }
     [HarmonyPatch(typeof(CollectibleBehaviorHandbookTextAndExtraInfo), nameof(CollectibleBehaviorHandbookTextAndExtraInfo.GetHandbookInfo))]
     public static class GetHandbookInfoPatch
     {
