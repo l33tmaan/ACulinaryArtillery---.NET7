@@ -1,4 +1,4 @@
-﻿{
+{
   "block-meathooks-*": "Стійка для м'яса",
   "blockdesc-meathooks-*": "Найкраще всього розмістити в холодному та сухому місці: запечатаним у камені.",
   "item-bighook-blackbronze": "Великий крюк з чорної бронзи",
@@ -9,10 +9,13 @@
   "item-bighook-tinbronze": "Великий крюк з олов'яної бронзи",
   "item-bighook-titanium": "Великий крюк з титану",
   "itemdesc-bighook-*": "Їм самотньо без їхніх друзів...",
+
   "block-bighookmold-raw": "Сира форма для великого крюка",
   "block-bighookmold-burned": "Форма для великого крюка",
+
   "block-mixingbowl-*": "Механічна чаша для змішування",
   "blockdesc-mixingbowl-*": "Замішується механічною силою.",
+
   "block-spile-copper-*": "Мідний краник",
   "block-spile-brass-*": "Латунний краник",
   "block-spile-tinbronze-*": "Краник з олов'яної бронзи",
@@ -20,14 +23,18 @@
   "block-spile-titanium-*": "Титановий краник",
   "block-spile-steel-*": "Сталевий краник",
   "blockdesc-spile-*": "Обережно відкачає сік з дерев навколо тебе.",
+
   "block-saucepan-raw": "Необпалений сотейник",
   "blockdesc-saucepan-*-raw": "Треба його спочатку обпалити.",
   "block-saucepan-burned": "Сотейник",
-  "blockdesc-saucepan-burned": "Чомусь ви вже чуєте відчуваєте згорілої їжі.",
+  "blockdesc-saucepan-burned": "Чомусь ви вже відчуваєте аромат згорілої їжі.",
+
   "blockhelp-open": "Відкрити кришку",
   "blockhelp-close": "Закрити кришку",
+
   "block-bottle-*-raw": "Необпалена пляшка",
   "block-bottle-*-burned": "Пляшка",
+
   "efrecipes:Will make {0}": "Приготує {0}",
   "efrecipes:Squeezing x{0} {1}": "Вичавлює x{0} {1}",
   "efrecipes:x{0} {1} inserted": "x{0} {1} вставлено",
@@ -39,6 +46,7 @@
   "efrecipes:and ": "і ",
   "efrecipes:Made with ": "Виготовлено з ",
   "efrecipes:Squeezing x{0} {1} for {2} hours": "Вичавлює x{0} {1} за {2} годин",
+
   "...kneading the dough.": "...замішування тіста.",
   "Mixing Bowl": "Чаша для змішування",
   "The chef and the apprentice...": "Шеф-кухар та учень...",
@@ -49,16 +57,22 @@
   "blockhelp-screwpress-liquid": "Спустошити",
   "blockhelp-screwpress-crush": "Вичавити вміст",
   "blockhelp-mixingbowl-mix": "Перемішати",
+
   "blockdesc-bottle-*-raw": "Треба його спочатку обпалити.",
   "blockdesc-bottle-*-burned": "Порожня пляшка яка шукає ціль у житті.",
+
   "(Locked) ": "(закрито) ",
   "blockhelp-mixingbowl-autolock": "Закрити",
   "blockhelp-mixingbowl-autounlock": "Відкрити",
+
   "block-mixingbowlmini": "Маленька чаша для змішування",
   "blockdesc-mixingbowlmini-*": "Замішується руками.",
+
   "aculinaryartillery:Liquid Info:": "Інформація про рідину:",
+
   "block-cauldronmold-raw": "Сира форма для казана",
   "block-cauldronmold-burned": "Форма для казана",
+
   "block-cauldron-copper": "Мідний казан",
   "block-cauldron-tinbronze": "Казан з олов'яної бронзи",
   "block-cauldron-blackbronze": "Казан з чорної бронзи",
@@ -66,8 +80,10 @@
   "block-cauldron-steel": "Сталевий казан",
   "block-cauldron-meteoriciron": "Казан з метеоритного заліза",
   "blockdesc-cauldron-*": "Великий казан, для великих проблем...",
+
   "block-cauldronminimold-raw": "Сира форма для малого казана",
   "block-cauldronminimold-burned": "Форма для малого казана",
+
   "block-cauldronmini-copper": "Малий мідний казан",
   "block-cauldronmini-tinbronze": "Малий казан з олов'яної бронзи",
   "block-cauldronmini-blackbronze": "Малий казан з чорної бронзи",
@@ -75,12 +91,13 @@
   "block-cauldronmini-steel": "Малий сталевий казан",
   "block-cauldronmini-meteoriciron": "Малий казан з метеоритного заліза",
   "blockdesc-cauldronmini-*": "Приготуй усе! Й свої нерви також...",
+
   "item-rollingpin-acacia": "Качалка з акації",
   "item-rollingpin-aged": "Стародавня качалка",
   "item-rollingpin-baldcypress": "Качалка з болотяного кипариса",
   "item-rollingpin-birch": "Качалка з берези",
   "item-rollingpin-ebony": "Качалка з гебану",
-  "item-rollingpin-kapok": "Качалка з капоку",
+  "item-rollingpin-kapok": "Качалка з капка",
   "item-rollingpin-larch": "Качалка з модрини",
   "item-rollingpin-maple": "Качалка з клену",
   "item-rollingpin-oak": "Качалка з дуба",
@@ -98,70 +115,158 @@
   "itemdesc-rollingpin-iron": "Для роздавлювання речей, які <i>дійсно</i> заслуговують цього.",
   "itemdesc-rollingpin-meteoriciron": "Для роздавлювання речей, які <i>дійсно</i> заслуговують цього.",
   "itemdesc-rollingpin-steel": "Для роздавлювання речей, які <i>дійсно</i> заслуговують цього.",
+
   "block-bottlerack-*": "Стелаж для пляшок",
   "block-bottlerackcorner-*": "Кутова стійка для пляшок",
+
   "heldhelp-drink": "Пити",
+
   "game:tabname-aculinaryartillery": "Кулінарна артилерія",
+
   "game:heldhelp-crack": "Підбити",
   "game:heldhelp-crack2": "Розбити",
+
   "item-eggshell": "Яєчна шкаралупа",
   "itemdesc-eggshell": "Годуйте тварин... або землю.",
+
   "item-eggyolkportion-chicken": "Порція курячого жовтка",
   "game:recipeingredient-item-eggyolkportion-chicken": "курячий жовток",
   "recipeingredient-item-eggyolkportion-chicken-insturmentalcase": "курячий жовток",
   "incontainer-item-eggyolkportion-chicken": "Курячий жовток",
   "game:incontainer-item-eggyolkportion-chicken": "Курячий жовток",
+
   "item-eggyolkportion-pheasant": "Порція жовтка фазану",
   "game:recipeingredient-item-eggyolkportion-pheasant": "жовток фазана",
   "recipeingredient-item-eggyolkportion-pheasant-insturmentalcase": "жовток фазана",
   "incontainer-item-eggyolkportion-pheasant": "Жовток фазана",
   "game:incontainer-item-eggyolkportion-pheasant": "Жовток фазана",
+
   "item-eggyolkportion-goldenpheasant": "Порція жовтка золотого фазану",
   "game:recipeingredient-item-eggyolkportion-goldenpheasant": "жовток золотого фазана",
   "recipeingredient-item-eggyolkportion-goldenpheasant-insturmentalcase": "жовток золотого фазана",
   "incontainer-item-eggyolkportion-goldenpheasant": "Жовток золотого фазана",
   "game:incontainer-item-eggyolkportion-goldenpheasant": "Жовток золотого фазана",
+
   "item-eggyolkportion-capercaillie": "Порція жовтка глухаря",
   "game:recipeingredient-item-eggyolkportion-capercaillie": "жовток глухаря",
   "recipeingredient-item-eggyolkportion-capercaillie-insturmentalcase": "жовток глухаря",
   "incontainer-item-eggyolkportion-capercaillie": "Жовток глухаря",
   "game:incontainer-item-eggyolkportion-capercaillie": "Жовток глухаря",
+
   "item-eggwhiteportion": "Порція яєчного білка",
   "game:recipeingredient-item-eggwhiteportion": "яєчний білок",
   "recipeingredient-item-eggwhiteportion-insturmentalcase": "яєчний білок",
   "incontainer-item-eggwhiteportion": "Яєчний білок",
   "game:incontainer-item-eggwhiteportion": "Яєчний білок",
-  "item-eggyolk-chicken": "Потріскане яйце куриці",
+
+  "item-eggyolk-chicken": "Потріскане яйце курки",
   "item-eggyolk-pheasant": "Потріскане яйце фазана",
   "item-eggyolk-goldenpheasant": "Потріскане яйце золотого фазана",
   "item-eggyolk-capercaillie": "Потріскане Яйце глухаря",
+
   "itemdesc-eggyolk-*": "Краще поспішіть і вилийте жовток, поки не пізно!",
+
   "item-eggyolkfullportion-chicken": "Порція рідких курячих яєць",
   "game:recipeingredient-item-eggyolkfullportion-chicken": "рідке куряче яйце",
   "recipeingredient-item-eggyolkfullportion-chicken-insturmentalcase": "рідке куряче яйце",
   "incontainer-item-eggyolkfullportion-chicken": "Рідке куряче яйце",
   "game:incontainer-item-eggyolkfullportion-chicken": "Рідке куряче яйце",
+
   "item-eggyolkfullportion-pheasant": "Порція рідких яєць фазану",
   "game:recipeingredient-item-eggyolkfullportion-pheasant": "рідке яйце фазану",
   "recipeingredient-item-eggyolkfullportion-pheasant-insturmentalcase": "рідке яйце фазану",
   "incontainer-item-eggyolkfullportion-pheasant": "Рідке яйце фазану",
   "game:incontainer-item-eggyolkfullportion-pheasant": "Рідке яйце фазану",
+
   "item-eggyolkfullportion-goldenpheasant": "Порція рідких яєць золотого фазану",
   "game:recipeingredient-item-eggyolkfullportion-goldenpheasant": "рідке яйце золотого фазану",
   "recipeingredient-item-eggyolkfullportion-goldenpheasant-insturmentalcase": "рідке яйце золотого фазану",
   "incontainer-item-eggyolkfullportion-goldenpheasant": "Рідке яйце золотого фазану",
   "game:incontainer-item-eggyolkfullportion-goldenpheasant": "Рідке яйце золотого фазану",
+
   "item-eggyolkfullportion-capercaillie": "Порція рідких яєць глухаря",
   "game:recipeingredient-item-eggyolkfullportion-capercaillie": "Рідке яйце глухаря",
   "recipeingredient-item-eggyolkfullportion-capercaillie-insturmentalcase": "Рідке яйце глухаря ",
   "incontainer-item-eggyolkfullportion-capercaillie": "Рідке яйце глухаря ",
   "game:incontainer-item-eggyolkfullportion-capercaillie": "Рідке яйце глухаря ",
-  "aculinaryartilleryguide-title": "Кулінарна Артилерія (інформація про мод)",
-  "aculinaryartilleryguide-text": "<strong>Culinary Artillery (інформація про мод)</strong><br><br><strong>Ведення</strong><br>Цей мод додає багато кулінарних знарядь та механік, які нічого не роблять самі по собі: вони потребують інший мод такий як Expanded Foods, для повного використання. Ця модифікація є ТІЛЬКИ бібліотекою для інших модифікацій!<br><br><strong>Терміни</strong><br>Щоб запобігти плутанини, тут будуть визначені декілька термінів. Якщо якесь керівництво використовує ці терміни, то воно їх використовує в прямому й конкретному значенні.<br><br><i>Запекти</i> - Покласти предмет у розпечену глиняну піч<br><i>Закип’ятити\\Зварити\\Випарювати</i> - Покласти предмет у сотейник або казан на гарячому багатті<br><i>Приготувати</i> - Покласти предмет у верхній слот багаття<br><i>В’ялити</i> - Повісити предмет у стійку для м’яса (У стійці має бути хоча б 1 крюк), правою кнопкою миші, а потім зачекати, доки предмет пройде процес витримки. Якщо м’ясо почне гнити під час витримки, то воно не стане в’яленим.<br><i>Замішати</i> - Покласти предмети у верхні 6 слотів чаші для змішування та правою кнопкою миші забрати результат замішування.<br><i>Перемішати</i> - Покласти горщик для приготування їжі у нижній лівий слот чаші для змішування, а потім додати їжу у верхні 6 слотів та правою кнопкою миші забрати готову страву.<br><i>Вичавити</i> - Покласти стак предметів у фруктовий прес та правою кнопкою миші почати вичавлювати їх<br><br><i>Розширена їжа</i> - Особливий тип їжі який має різноманітну харчову цінність.<br><br><strong><i>Нове Кулінарне Знаряддя</i></strong><br><br><strong><a href=\"handbook://block-aculinaryartillery:bottle-clay-burned\">Пляжки</a></strong><br>Створюється з глини або скла, можуть бути розміщені на блоці, полиці або у спеціальному <a href=«handbook://block-aculinaryartillery:bottlerack-acacia-acacia-north»>стелажі для пляшок</a>. Пляшки можуть бути використані для ферментування напоїв або зберігання рідини.<br><strong><a href=\"handbook://block-aculinaryartillery:meathooks-aged-copper-east\">Стійка для м’яса</a></strong><br>Предмети з атрибутом ‘meathookable’ можна повісити для в’ялення у м’ясну стійку. Процес в’ялення зістарює м’ясо та збільшує його харчову цінність.<br><strong><a href=\"handbook://block-aculinaryartillery:mixingbowl-normal\">Чаша для змішування</a></strong><br>Необхідне знаряддя для приготування розширеної їжі. У чаші є 6 слотів у які можна покласти їжу або рідину, а потім замішати це у новий предмет. Якщо ви покладете туди горщик, то ви зможете перемішати його вміст. А також чашу можна автоматизувати, приєднавши вал знизу або зверху.<br>Чашу можна закрити за допомогою CTRL + <icon>rightmousebutton</icon>по ній. Якщо чаша закрита то вона прийматиме тільки ті інгредієнти які є у ній. Також вона автоматично не прийматиме рідину.<br><strong><a href=\"handbook://block-aculinaryartillery:saucepan-raw\">Сотейник</a></strong><br>Працює так само як і відро, але на відміну від відра, сотейник можна поставити на багаття та випарювати у ньому рідину. Щоб закип’ятити щось у сотейнику, ви має покласти це у його слоти. Також він здатний перетворювати деякі тверді речовини у рідкі, а також деякі рідин— у тверді речовини. Ще ви можете продовжити термін зберігання рідини у сотейнику закривши його кришку, для цього натисніть CTRL + SHIFT + <icon>rightmousebutton</icon> по сотейнику.<br><strong><a href=\"handbook://block-aculinaryartillery:cauldron-iron\">Казан</a></strong><br>Казан це більша версія сотейнику, й так само використовується для кип’ятіння рідини. Казан створюється за допомогою виливання рідкого металу у спеціальну форму. Також у казана можна закрити кришку, і це так само продовжить термін зберігання їжі, але це буде набагато ефективніше ніж у сотейника.<br><strong><a href=\"handbook://block-aculinaryartillery:spile-copper-north\">Краник</a></strong><br>Якщо потрібний мод встановлено, то ви можете збирати сік з дерев за допомогою нього (у певну пору року), для цього вставте краник у дерево, а під ним розмістіть відро або сотейник, далі зачекайте поки витече достатня кількість соку. <br><br><strong><a href=\"handbook://item-aculinaryartillery:rollingpin-maple\">Качалка</a></strong><br>Вирізається з дерева або виковується, качалки використовують для розпластування їжі, такої як м’ясо або макаронне тісто. Скалка також є слабкою зброєю.<br><br><strong>Перероблені Яйця</strong><br>Тепер будь яке яйце можна розбити у миску або відро. Якщо яйце частино розбити то воно дасть 0.1 л <strong><a href=\"handbook://item-aculinaryartillery:eggwhiteportion\"> яєчного білка</a></strong> та <strong><a href=\"handbook://item-aculinaryartillery:eggyolk-chicken\">яєчний жовток</a></strong>, який може бути розбитий знову у 0.1 л <strong><a href=\"handbook://item-aculinaryartillery:eggyolkportion-chicken\">рідкого яєчного жовтка</a></strong>. Його можна використовувати для паніровки, але у майбутньому для цього знайдеться більше призначень. Також ви можете перемішати ці рідини та отримати 0.1 л <strong><a href=\"handbook://item-aculinaryartillery:eggyolkfullportion-chicken\">рідкого яйця</a></strong> (якщо яйце робити повністю то ви одразу отримаєте рідке яйце), воно використовується в багатьох рецептах замість сирого яйця. Розбивання яйця також дає <strong><a href=\"handbook://item-aculinaryartillery:eggshell\">яєчну шкарлупу</a></strong>, яку можна використовувати як добриво або як корм для тварин.<br>Щоб частино розбити яйце натисніть CTRL + <icon>leftmousebutton</icon> та CTRL + SHIFT + <icon>leftmousebutton</icon> щоб повністю розбити.",
+
+  "aculinaryartilleryguide-title": "Кулінарна Артилерія (інформація про модифікацію)",
+  "aculinaryartilleryguide-text": "<strong>Culinary Artillery (інформація про модифікацію)</strong><br><i>The font of creation</i><br><br><strong>Ведення</strong><br>Ця модифікація додає багато кулінарних знарядь та механік, які нічого не роблять самі по собі: вони потребують інші модифікації, наприклад Expanded Foods, для повного використання. Ця модифікація є ТІЛЬКИ бібліотекою для інших модифікацій!<br><br><strong>Терміни</strong><br>Аби запобігти плутанині, тут будуть визначені декілька термінів. Якщо якесь керівництво використовує ці терміни, то воно їх використовує в прямому й конкретному значенні.<br><br><i>Запекти</i> — Покласти предмет у розпечену глиняну піч<br><i>Закип'ятити\\Зварити\\Випарювати</i> — Покласти предмет у сотейник або казан на гарячому багатті<br><i>Приготувати</i> — Покласти предмет у верхній слот багаття<br><i>В'ялити</i> — Повісити предмет у стійку для м'яса (У стійці має бути хоча б один крюк), правою кнопкою миші, а потім зачекати, доки предмет пройде процес витримки. Якщо м'ясо почне гнити під час витримки, то воно не стане в'яленим.<br><i>Замішати</i> — Покласти предмети у верхні 6 слотів чаші для змішування та правою кнопкою миші забрати результат замішування.<br><i>Перемішати</i> — Покласти горщик для приготування їжі у нижній лівий слот чаші для змішування, а потім додати їжу у верхні 6 слотів та правою кнопкою миші забрати готову страву.<br><i>Вичавити</i> — Покласти стак предметів у фруктовий прес та правою кнопкою миші почати вичавлювати їх.<br><br><i>Розширена їжа</i> — Особливий тип їжі який має різноманітну харчову цінність.<br><br><strong><i>Нове Кулінарне Знаряддя</i></strong><br><br><strong><a href=\"handbook://block-aculinaryartillery:bottle-clay-burned\">Пляшки</a></strong><br>Створюється з глини або скла, можуть бути розміщені на блоці, полиці або у спеціальному <a href=\"handbook://block-aculinaryartillery:bottlerack-acacia-acacia-north\">стелажі для пляшок</a>. Пляшки можуть бути використані для ферментування напоїв або зберігання рідини.<br><strong><a href=\"handbook://block-aculinaryartillery:meathooks-aged-copper-east\">Стійка для м'яса</a></strong><br>Предмети з атрибутом «meathookable» можна повісити для в'ялення у м'ясну стійку. Процес в'ялення зістарює м'ясо та збільшує його харчову цінність.<br><strong><a href=\"handbook://block-aculinaryartillery:mixingbowl-normal\">Чаша для змішування</a></strong><br>Необхідне знаряддя для приготування розширеної їжі. У чаші є 6 слотів у які можна покласти їжу або рідину, а потім замішати це у новий предмет. Якщо ви покладете туди горщик, то ви зможете перемішати його вміст. А також чашу можна автоматизувати, приєднавши вал знизу або зверху.<br>Чашу можна закрити за допомогою CTRL + <icon>rightmousebutton</icon> по ній. Якщо чаша закрита, то вона прийматиме тільки ті інгредієнти які є у ній. Також вона автоматично не прийматиме рідину.<br><strong><a href=\"handbook://block-aculinaryartillery:saucepan-raw\">Сотейник</a></strong><br>Працює так само як і відро, але на відміну від відра, сотейник можна поставити на багаття та випарювати у ньому рідину. Щоб закип'ятити щось у сотейнику, ви маєте покласти це у його слоти. Також він здатний перетворювати деякі тверді речовини у рідкі, а також деякі рідини — у тверді речовини. Ще ви можете продовжити термін зберігання рідини у сотейнику закривши його кришку, для цього натисніть CTRL + SHIFT + <icon>rightmousebutton</icon> по сотейнику.<br><strong><a href=\"handbook://block-aculinaryartillery:cauldron-iron\">Казан</a></strong><br>Казан це більша версія сотейника, й так само використовується для кип'ятіння рідини. Казан створюється за допомогою виливання рідкого металу у спеціальну форму. Також у казана можна закрити кришку, і це так само продовжить термін зберігання їжі, але це буде набагато ефективніше ніж у сотейника.<br><strong><a href=\"handbook://block-aculinaryartillery:spile-copper-north\">Краник</a></strong><br>Якщо необхідна модифікація встановлена, то ви можете збирати сік з дерев за допомогою нього (у певну пору року), для цього вставте краник у дерево, а під ним розмістіть відро або сотейник, далі зачекайте поки витече достатня кількість соку. <br><br><strong><i>НОВІ ПРЕДМЕТИ ДЛЯ ГОТОВКИ</i></strong><br><br><strong><a href=\"handbook://item-aculinaryartillery:rollingpin-maple\">Качалка</a></strong><br>Вирізається з дерева або виковується, качалки використовують для розпластування їжі, такої як м'ясо або макаронне тісто. Качалка також є слабкою зброєю.<br><br><strong>Змінено приготування яєць</strong><br>Тепер будь-яке яйце можна розбити у миску або відро. Якщо яйце частино розбити, то воно дасть 0.1 л <strong><a href=\"handbook://item-aculinaryartillery:eggwhiteportion\">яєчного білка</a></strong> та <strong><a href=\"handbook://item-aculinaryartillery:eggyolk-chicken\">яєчний жовток</a></strong>, який може бути розбитий знову у 0.1 л <strong><a href=\"handbook://item-aculinaryartillery:eggyolkportion-chicken\">рідкого яєчного жовтка</a></strong>. Його можна використовувати для панірування, але у майбутньому для цього знайдеться більше призначень. Також ви можете перемішати ці рідини та отримати 0.1 л <strong><a href=\"handbook://item-aculinaryartillery:eggyolkfullportion-chicken\">рідкого яйця</a></strong> (якщо яйце розбити повністю, то ви одразу отримаєте рідке яйце), воно використовується в багатьох рецептах замість сирого яйця. Розбивання яйця також дає <strong><a href=\"handbook://item-aculinaryartillery:eggshell\">яєчну шкарлупу</a></strong>, яку можна використовувати як добриво або як корм для тварин.<br>Аби частково розбити яйце натисніть CTRL + <icon>leftmousebutton</icon> та CTRL + SHIFT + <icon>leftmousebutton</icon>, аби повністю розбити.",
+
   "aculinaryartillery:Will make {0}": "Створить {0}",
   "aculinaryartillery:made with ": "виготовлено з ",
   "aculinaryartillery:and ": "і ",
   "aculinaryartillery:Made with ": "Виготовлено з ",
+
   "block-spilemold-raw": "Сира форма для краника",
-  "block-spilemold-burned": "Форма для краника"
+  "block-spilemold-burned": "Форма для краника",
+
+  "game:item-creature-humanoid-trader-kitchenware": "Торговець посудом",
+  "game:tradingwindow-humanoid-trader-kitchenware": "Тутешні товари - {0} торговець посудом",
+  "game:prefixandcreature-humanoidtraderkitchenware": "торговцем",
+
+  "item-clothes-head-c-hat": "Капелюх шеф-кухара",
+  "item-clothes-head-c-hat1": "Капелюх шеф-кухара",
+  "item-clothes-head-c-hat2": "Капелюх шеф-кухара",
+
+  "item-rollingpin-douglasfir": "Дерев'яна качалка",
+  "item-rollingpin-willow": "Дерев'яна качалка",
+  "item-rollingpin-honeylocust": "Дерев'яна качалка",
+  "item-rollingpin-bearnut": "Дерев'яна качалка",
+  "item-rollingpin-poplar": "Дерев'яна качалка",
+  "item-rollingpin-catalpa": "Дерев'яна качалка",
+  "item-rollingpin-mahogany": "Дерев'яна качалка",
+  "item-rollingpin-sal": "Дерев'яна качалка",
+  "item-rollingpin-saxaul": "Дерев'яна качалка",
+  "item-rollingpin-spruce": "Дерев'яна качалка",
+  "item-rollingpin-sycamore": "Дерев'яна качалка",
+  "item-rollingpin-elm": "Дерев'яна качалка",
+  "item-rollingpin-beech": "Дерев'яна качалка",
+  "item-rollingpin-eucalyptus": "Дерев'яна качалка",
+  "item-rollingpin-cedar": "Дерев'яна качалка",
+  "item-rollingpin-tuja": "Дерев'яна качалка",
+  "item-rollingpin-redcedar": "Дерев'яна качалка",
+  "item-rollingpin-yew": "Дерев'яна качалка",
+  "item-rollingpin-kauri": "Дерев'яна качалка",
+  "item-rollingpin-ginkgo": "Дерев'яна качалка",
+  "item-rollingpin-dalbergia": "Дерев'яна качалка",
+  "item-rollingpin-umnini": "Дерев'яна качалка",
+  "item-rollingpin-banyan": "Дерев'яна качалка",
+  "item-rollingpin-guajacum": "Дерев'яна качалка",
+  "item-rollingpin-ghostgum": "Дерев'яна качалка",
+  "item-rollingpin-ohia": "Дерев'яна качалка",
+  "item-rollingpin-satinash": "Дерев'яна качалка",
+  "item-rollingpin-bluemahoe": "Дерев'яна качалка",
+  "item-rollingpin-jacaranda": "Дерев'яна качалка",
+  "item-rollingpin-empresstree": "Дерев'яна качалка",
+  "item-rollingpin-chlorociboria": "Дерев'яна качалка",
+  "item-rollingpin-petrified": "Дерев'яна качалка",
+  "item-rollingpin-fir": "Дерев'яна качалка",
+  "item-rollingpin-tamanu": "Дерев'яна качалка",
+  "item-rollingpin-spurgetree": "Дерев'яна качалка",
+  "item-rollingpin-azobe": "Дерев'яна качалка",
+  "item-rollingpin-leadwood": "Дерев'яна качалка",
+  "item-rollingpin-linden": "Дерев'яна качалка",
+  "item-rollingpin-horsechestnut": "Дерев'яна качалка",
+  "item-rollingpin-tigerwood": "Дерев'яна качалка",
+  "item-rollingpin-sapele": "Дерев'яна качалка",
+  "item-rollingpin-ash": "Дерев'яна качалка",
+  "item-rollingpin-mangrove": "Дерев'яна качалка",
+  "item-rollingpin-charred": "Дерев'яна качалка",
+
+
+  "item-eggyolk-wildturkey": "Розбите яйце дикого індика",
+
+  "item-eggyolkportion-wildturkey": "Порція індичого жовтка",
+  "game:recipeingredient-item-eggyolkportion-wildturkey": "індичий жовток",
+  "recipeingredient-item-eggyolkportion-wildturkey-insturmentalcase": "індичий жовток",
+  "incontainer-item-eggyolkportion-wildturkey": "Індичий жовток",
+  "game:incontainer-item-eggyolkportion-wildturkey": "Індичий жовток",
+
+  "item-eggyolkfullportion-wildturkey": "Порція рідких індичих яєць",
+  "game:recipeingredient-item-eggyolkfullportion-wildturkey": "рідке індиче яйце",
+  "recipeingredient-item-eggyolkfullportion-wildturkey-insturmentalcase": "рідке індиче яйце",
+  "incontainer-item-eggyolkfullportion-wildturkey": "Рідке індиче яйце",
+  "game:incontainer-item-eggyolkfullportion-wildturkey": "Рідке індиче яйце",
+
 }
