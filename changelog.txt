@@ -9,6 +9,15 @@
 - Frying pan added?
 - Egg liquids configurable via JSON attributes or something
 
+Pursec fixes:
+-Migrated transition and perish methods into their new event equivalencies
+-Minor refactor to use new InWorldContainer
+^Thanks to Bosek for the initial work on these two documented in his PR, was a good base to learn the new changes and implement.
+-Bug fix for textureMap per ingredient shape causing shapes to render with missing textures under certain ingredient combinations
+-Added support for Chef Hat on tamed Elk
+-Removed some extraneous code from GetHeldInfo for ItemExpandedRawFood as it shouldve just called its base instead
+-Other misc changes ive forgotten already
+
 ~1.19_v1.2.1~
 Pursec fix:
 - Quick patch to fix null-ref crashing when desired rendered shape has a disabled face (such as muffin fruit overlays)
