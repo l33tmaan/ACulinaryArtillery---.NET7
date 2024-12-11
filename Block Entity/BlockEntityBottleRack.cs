@@ -15,7 +15,7 @@ namespace ACulinaryArtillery
     {
         private readonly int maxSlots = 16;
         public override string InventoryClassName => "bottlerack";
-        protected InventoryGeneric inventory;
+        //protected InventoryGeneric inventory;
 
         public override InventoryBase Inventory => this.inventory;
 
