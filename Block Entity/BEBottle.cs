@@ -23,7 +23,7 @@
         {
             base.Initialize(api);
             this.ownBlock = this.Block as BlockBottle;
-
+            this.Inventory.OnAcquireTransitionSpeed += Inventory_OnAcquireTransitionSpeed1;
             if (this.Api.Side == EnumAppSide.Client)
             {
                 this.currentMesh = this.GenMesh();
@@ -35,7 +35,6 @@
         public override void OnBlockPlaced(ItemStack byItemStack = null)
         {
             base.OnBlockPlaced(byItemStack);
-
             if (this.Api.Side == EnumAppSide.Client)
             {
                 this.currentMesh = this.GenMesh();
@@ -43,6 +42,11 @@
             }
         }
 
+        private float Inventory_OnAcquireTransitionSpeed1(EnumTransitionType transType, ItemStack stack, float baseMul)
+        {
+            float mul = baseMul * this.ownBlock?.GetContainingTransitionModifierPlaced(this.Api.World, this.Pos, transType) ?? 1;
+            return mul;
+        }
 
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
         {
@@ -85,12 +89,13 @@
             return true;
         }
 
-
+        /*
         protected override float Inventory_OnAcquireTransitionSpeed(EnumTransitionType transType, ItemStack stack, float baseMul)
         {
             var mul = base.Inventory_OnAcquireTransitionSpeed(transType, stack, baseMul);
             mul *= this.ownBlock?.GetContainingTransitionModifierPlaced(this.Api.World, this.Pos, transType) ?? 1;
             return mul;
         }
+        */
     }
 }

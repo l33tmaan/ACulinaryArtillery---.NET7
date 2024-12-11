@@ -339,7 +339,8 @@
                 {
                     // drinking vanilla liquids (milk, maybe others - honey?)
                     // base.tryEatBegin(itemslot, byEntity, ref handHandling, "drink", 4);
-                    // return;  
+                    // return;
+                    //base.tryEatBegin(itemslot, byEntity, ref handHandling, "drink", 4);
                     base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
                     //byEntity.AnimManager?.StartAnimation("eat"); //was drink, but whatevs
                     //handHandling = EnumHandHandling.PreventDefault;
@@ -363,6 +364,11 @@
                 //not sure that this next line really does anything
                 byEntity.AnimManager?.StartAnimation("drink");
                 handHandling = EnumHandHandling.PreventDefault;
+            }
+            if (AllowHeldLiquidTransfer || CanDrinkFrom)
+            {
+                // Prevent placing on normal use
+                handHandling = EnumHandHandling.PreventDefaultAction;
             }
         }
 
@@ -782,7 +788,7 @@
         }
 
 
-        private int SplitStackAndPerformAction(Entity byEntity, ItemSlot slot, System.Func<ItemStack, int> action)
+        private new int SplitStackAndPerformAction(Entity byEntity, ItemSlot slot, System.Func<ItemStack, int> action)
         {
             if (slot.Itemstack.StackSize == 1)
             {

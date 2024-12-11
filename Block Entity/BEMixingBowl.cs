@@ -532,9 +532,8 @@ namespace ACulinaryArtillery
             {
                 ((ICoreServerAPI)Api).Network.SendBlockEntityPacket(
                     (IServerPlayer)byPlayer,
-                    Pos.X, Pos.Y, Pos.Z,
-                    (int)EnumBlockStovePacket.OpenGUI,
-                    null
+                    Pos,
+                    (int)EnumBlockStovePacket.OpenGUI
                 );
 
                 byPlayer.InventoryManager.OpenInventory(inventory);

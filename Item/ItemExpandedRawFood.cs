@@ -14,7 +14,6 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.Common;
 using Vintagestory.GameContent;
-using VintagestoryAPI.Util;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace ACulinaryArtillery
@@ -378,185 +377,7 @@ namespace ACulinaryArtillery
         public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
         {
             ListIngredients(inSlot, dsc, world, withDebugInfo);
-            ItemStack stack = inSlot.Itemstack;
-
-            string descLangCode = Code?.Domain + AssetLocation.LocationSeparator + ItemClass.ToString().ToLowerInvariant() + "desc-" + Code?.Path;
-            string descText = Lang.GetMatching(descLangCode);
-            if (descText == descLangCode)
-                descText = "";
-            else
-                descText = descText + "\n";
-
-            dsc.Append((withDebugInfo ? "Id: " + Id + "\n" : ""));
-            dsc.Append((withDebugInfo ? "Code: " + Code + "\n" : ""));
-
-            int durability = GetMaxDurability(stack);
-
-            if (durability > 1)
-            {
-                dsc.AppendLine(Lang.Get("Durability: {0} / {1}", stack.Attributes.GetInt("durability", durability), durability));
-            }
-
-
-            if (MiningSpeed != null && MiningSpeed.Count > 0)
-            {
-                dsc.AppendLine(Lang.Get("Tool Tier: {0}", ToolTier));
-
-                dsc.Append(Lang.Get("item-tooltip-miningspeed"));
-                int i = 0;
-                foreach (var val in MiningSpeed)
-                {
-                    if (val.Value < 1.1)
-                        continue;
-
-                    if (i > 0)
-                        dsc.Append(", ");
-                    dsc.Append(Lang.Get(val.Key.ToString()) + " " + val.Value.ToString("#.#") + "x");
-                    i++;
-                }
-
-                dsc.Append("\n");
-
-            }
-
-            if (IsBackPack(stack))
-            {
-                dsc.AppendLine(Lang.Get("Quantity Slots: {0}", QuantityBackPackSlots(stack)));
-                ITreeAttribute backPackTree = stack.Attributes.GetTreeAttribute("backpack");
-                if (backPackTree != null)
-                {
-                    bool didPrint = false;
-
-                    ITreeAttribute slotsTree = backPackTree.GetTreeAttribute("slots");
-
-                    foreach (var val in slotsTree)
-                    {
-                        ItemStack cstack = (ItemStack)val.Value?.GetValue();
-
-                        if (cstack != null && cstack.StackSize > 0)
-                        {
-                            if (!didPrint)
-                            {
-                                dsc.AppendLine(Lang.Get("Contents: "));
-                                didPrint = true;
-                            }
-                            cstack.ResolveBlockOrItem(world);
-                            dsc.AppendLine("- " + cstack.StackSize + "x " + cstack.GetName());
-                        }
-                    }
-
-                    if (!didPrint)
-                    {
-                        dsc.AppendLine(Lang.Get("Empty"));
-                    }
-
-                }
-            }
-
-            EntityPlayer entity = world.Side == EnumAppSide.Client ? (world as IClientWorldAccessor).Player.Entity : null;
-
-            float spoilState = AppendPerishableInfoText(inSlot, dsc, world);
-
-            FoodNutritionProperties nutriProps = GetNutritionProperties(world, stack, entity);
-            if (nutriProps != null)
-            {
-                float satLossMul = GlobalConstants.FoodSpoilageSatLossMul(spoilState, stack, entity);
-                float healthLossMul = GlobalConstants.FoodSpoilageHealthLossMul(spoilState, stack, entity);
-
-                if (Math.Abs(nutriProps.Health * healthLossMul) > 0.001f)
-                {
-                    dsc.AppendLine(Lang.Get("When eaten: {0} sat, {1} hp", Math.Round(nutriProps.Satiety * satLossMul), nutriProps.Health * healthLossMul));
-                }
-                else
-                {
-                    dsc.AppendLine(Lang.Get("When eaten: {0} sat", Math.Round(nutriProps.Satiety * satLossMul)));
-                }
-
-                dsc.AppendLine(Lang.Get("Food Category: {0}", Lang.Get("foodcategory-" + nutriProps.FoodCategory.ToString().ToLowerInvariant())));
-            }
-
-
-
-            if (GrindingProps != null)
-            {
-                dsc.AppendLine(Lang.Get("When ground: Turns into {0}x {1}", GrindingProps.GroundStack.ResolvedItemstack.StackSize, GrindingProps.GroundStack.ResolvedItemstack.GetName()));
-            }
-
-            if (CrushingProps != null)
-            {
-                dsc.AppendLine(Lang.Get("When pulverized: Turns into {0}x {1}", CrushingProps.CrushedStack.ResolvedItemstack.StackSize, CrushingProps.CrushedStack.ResolvedItemstack.GetName()));
-                dsc.AppendLine(Lang.Get("Requires Pulverizer tier: {0}", CrushingProps.HardnessTier));
-            }
-
-            if (GetAttackPower(stack) > 0.5f)
-            {
-                dsc.AppendLine(Lang.Get("Attack power: -{0} hp", GetAttackPower(stack).ToString("0.#")));
-                dsc.AppendLine(Lang.Get("Attack tier: {0}", ToolTier));
-            }
-
-            if (GetAttackRange(stack) > GlobalConstants.DefaultAttackRange)
-            {
-                dsc.AppendLine(Lang.Get("Attack range: {0} m", GetAttackRange(stack).ToString("0.#")));
-            }
-
-            if (CombustibleProps != null)
-            {
-                if (CombustibleProps.BurnTemperature > 0)
-                {
-                    dsc.AppendLine(Lang.Get("Burn temperature: {0}°C", CombustibleProps.BurnTemperature));
-                    dsc.AppendLine(Lang.Get("Burn duration: {0}s", CombustibleProps.BurnDuration));
-                }
-
-
-                string smelttype = CombustibleProps.SmeltingType.ToString().ToLowerInvariant();
-                if (CombustibleProps.MeltingPoint > 0)
-                {
-                    dsc.AppendLine(Lang.Get("game:smeltpoint-" + smelttype, CombustibleProps.MeltingPoint));
-                }
-
-                if (CombustibleProps.SmeltedStack?.ResolvedItemstack != null)
-                {
-                    int instacksize = CombustibleProps.SmeltedRatio;
-                    int outstacksize = CombustibleProps.SmeltedStack.ResolvedItemstack.StackSize;
-
-
-                    string str = instacksize == 1 ?
-                        Lang.Get("game:smeltdesc-" + smelttype + "-singular", outstacksize, CombustibleProps.SmeltedStack.ResolvedItemstack.GetName()) :
-                        Lang.Get("game:smeltdesc-" + smelttype + "-plural", instacksize, outstacksize, CombustibleProps.SmeltedStack.ResolvedItemstack.GetName())
-                    ;
-
-                    dsc.AppendLine(str);
-                }
-            }
-
-            if (descText.Length > 0 && dsc.Length > 0)
-                dsc.Append("\n");
-            dsc.Append(descText);
-
-            if (Attributes?["pigment"]?["color"].Exists == true)
-            {
-                dsc.AppendLine(Lang.Get("Pigment: {0}", Lang.Get(Attributes["pigment"]["name"].AsString())));
-            }
-
-
-            JsonObject obj = Attributes?["fertilizerProps"];
-            if (obj != null && obj.Exists)
-            {
-                FertilizerProps props = obj.AsObject<FertilizerProps>();
-                if (props != null)
-                {
-                    dsc.AppendLine(Lang.Get("Fertilizer: {0}% N, {1}% P, {2}% K", props.N, props.P, props.K));
-                }
-            }
-
-
-
-
-            float temp = GetTemperature(world, stack);
-            if (temp > 20)
-            {
-                dsc.AppendLine(Lang.Get("Temperature: {0}°C", (int)temp));
-            }
+            base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
         }
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
@@ -652,10 +473,10 @@ namespace ACulinaryArtillery
             // Render first added ingredient before everything else to avoid transparent bread
             AssetLocation baseIngredient = addShapes.Last();
             Dictionary<String, String> baseMapping = texureMappingsPerShape.Last();
-            texureMappingsPerShape.Remove(baseMapping);
-            texureMappingsPerShape.Insert(0, baseMapping);
-            addShapes.Remove(baseIngredient);
-            addShapes.Insert(0, baseIngredient);
+            //texureMappingsPerShape.Remove(baseMapping);
+            //texureMappingsPerShape.Insert(0, baseMapping);
+            //addShapes.Remove(baseIngredient);
+            //addShapes.Insert(0, baseIngredient);
 
             MeshData mesh = null;
             float uvoffset = 0;
@@ -670,6 +491,11 @@ namespace ACulinaryArtillery
 
                 var keys = (addShape.Textures?.Keys);
                 Shape clonedAddShape = addShape.Clone();
+                if(addShape.Textures != null)
+                {
+                    clonedAddShape.Textures = new Dictionary<string, AssetLocation>(addShape.Textures);
+                }
+                
                 //clonedAddShape.Textures.Clear();
                 if (keys is not null && texureMappingsPerShape[i].Count() > 0)
                 {
@@ -700,14 +526,14 @@ namespace ACulinaryArtillery
                             {
                                 if(face != null)
                                 {
-                                float faceWidth = Math.Abs(face.Uv[2] - face.Uv[0]);
-                                float faceHeight = Math.Abs(face.Uv[3] - face.Uv[1]);
-                                float ustart = (float)Math.Floor(uvoffset * (texWidth - faceWidth));
-                                float vstart = (float)Math.Floor(uvoffset * (texHeight - faceHeight));
-                                face.Uv[0] = ustart;
-                                face.Uv[1] = vstart;
-                                face.Uv[2] = ustart + faceWidth;
-                                face.Uv[3] = vstart + faceHeight;
+                                    float faceWidth = Math.Abs(face.Uv[2] - face.Uv[0]);
+                                    float faceHeight = Math.Abs(face.Uv[3] - face.Uv[1]);
+                                    float ustart = (float)Math.Floor(uvoffset * (texWidth - faceWidth));
+                                    float vstart = (float)Math.Floor(uvoffset * (texHeight - faceHeight));
+                                    face.Uv[0] = ustart;
+                                    face.Uv[1] = vstart;
+                                    face.Uv[2] = ustart + faceWidth;
+                                    face.Uv[3] = vstart + faceHeight;
                                 }
                             }
                         }
