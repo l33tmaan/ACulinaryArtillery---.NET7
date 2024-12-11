@@ -491,7 +491,11 @@ namespace ACulinaryArtillery
 
                 var keys = (addShape.Textures?.Keys);
                 Shape clonedAddShape = addShape.Clone();
-                clonedAddShape.Textures = new Dictionary<string, AssetLocation>(addShape.Textures);
+                if(addShape.Textures != null)
+                {
+                    clonedAddShape.Textures = new Dictionary<string, AssetLocation>(addShape.Textures);
+                }
+                
                 //clonedAddShape.Textures.Clear();
                 if (keys is not null && texureMappingsPerShape[i].Count() > 0)
                 {
