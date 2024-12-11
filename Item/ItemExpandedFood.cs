@@ -7,6 +7,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.Server;
+using static HarmonyLib.Code;
 
 namespace ACulinaryArtillery
 {
@@ -29,6 +30,7 @@ namespace ACulinaryArtillery
 
                 foreach (FoodNutritionProperties prop in addProps)
                 {
+                    //ACulinaryArtillery.logger.Debug("Eated: " + prop.FoodCategory.ToString() + ": " + prop.Satiety.ToString());
                     byEntity.ReceiveSaturation(prop.Satiety * satLossMul, prop.FoodCategory);
 
                     float healthChange = prop.Health * healthLossMul;
@@ -63,6 +65,7 @@ namespace ACulinaryArtillery
                 {
                     float satLossMul = GlobalConstants.FoodSpoilageSatLossMul(spoilState, stack, entity);
                     float healthLossMul = GlobalConstants.FoodSpoilageHealthLossMul(spoilState, stack, entity);
+                    //ACulinaryArtillery.logger.Debug(props.FoodCategory.ToString() + ": " + props.Satiety.ToString());
     
                     if (stack.Collectible.MatterState == EnumMatterState.Liquid ) 
                     {

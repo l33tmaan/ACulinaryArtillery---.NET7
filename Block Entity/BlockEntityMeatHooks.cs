@@ -13,7 +13,7 @@ namespace ACulinaryArtillery
     public class BlockEntityMeatHooks : BlockEntityDisplayCase, ITexPositionSource
     {
         public override string InventoryClassName => "meathooks";
-        protected InventoryGeneric inventory;
+        //protected InventoryGeneric inventory;
         public override string AttributeTransformCode => "meatHookTransform";
         public override InventoryBase Inventory => inventory;
 
@@ -28,6 +28,7 @@ namespace ACulinaryArtillery
         {
             base.Initialize(api);
             RegisterGameTickListener(RotDrop, 3000);
+            Inventory.OnAcquireTransitionSpeed += Inventory_OnAcquireTransitionSpeed;
         }
 
         private void RotDrop(float dt)
@@ -71,15 +72,12 @@ namespace ACulinaryArtillery
             return false;
         }
 
-        protected override float Inventory_OnAcquireTransitionSpeed(EnumTransitionType transType, ItemStack stack, float baseMul)
+        private float Inventory_OnAcquireTransitionSpeed(EnumTransitionType transType, ItemStack stack, float baseMul)
         {
             if (Api == null) return 1;
-
             if (transType == EnumTransitionType.Cure) return Block.Attributes["cureRate"].AsFloat(3);
             if (transType == EnumTransitionType.Dry) return Block.Attributes["dryRate"].AsFloat(3);
-
-
-            return base.Inventory_OnAcquireTransitionSpeed(transType, stack, baseMul);
+            return baseMul;
 
         }
 
@@ -132,7 +130,7 @@ namespace ACulinaryArtillery
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder sb)
         {
-            base.GetBlockInfo(forPlayer, sb);
+            //base.GetBlockInfo(forPlayer, sb);
 
             sb.AppendLine();
 

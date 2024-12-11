@@ -1,7 +1,7 @@
 ﻿[
   {
     "op": "addeach",
-    "path": "/attributes/tradeProps/selling/list/-",
+    "path": "/selling/list/-",
     "value": [
     {
       "code": "aculinaryartillery:clothes-head-c-hat",
@@ -43,6 +43,6 @@
       }
     },
     ],
-    "file": "game:entities/humanoid/trader-clothing.json"
+    "file": "game:config/tradelists/trader-clothing.json"
   },
 ]

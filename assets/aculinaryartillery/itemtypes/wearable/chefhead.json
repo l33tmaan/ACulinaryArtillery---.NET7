@@ -15,7 +15,13 @@
 		"@.*-(c-hat|c-hat1|c-hat2)": {
 			wearableAttachment: true,
 			clothescategory: "head",
-			disableElements: ["Ponytail1"]
+			disableElements: ["Ponytail1"],
+			attachableToEntity: {
+				"categoryCode": "bridle"
+			},
+			"attachedShapeBySlotCode": {
+				"*-head": {"base":  "entity/humanoid/serpah/clothing/head/{head}"}
+			}
 		}
 	},
 	texturesByType: {

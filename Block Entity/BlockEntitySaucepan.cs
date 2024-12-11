@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ACulinaryArtillery.Block_Entity;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
@@ -15,11 +16,14 @@ namespace ACulinaryArtillery
         MeshData currentRightMesh;
         BlockSaucepan ownBlock;
         public bool isSealed;
-
+        public BlockEntitySaucepan()
+        {
+            container = new BESaucepanContainer(this,() => Inventory, "inventory");
+        }
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
-
+            //Inventory.OnAcquireTransitionSpeed += Inventory_OnAcquireTransitionSpeed;
             ownBlock = Block as BlockSaucepan;
 
 
@@ -29,6 +33,16 @@ namespace ACulinaryArtillery
                 MarkDirty(true);
             }
         }
+
+        /*
+        private float Inventory_OnAcquireTransitionSpeed(EnumTransitionType transType, ItemStack stack, float mulByConfig)
+        {
+            float rate = container.GetPerishRate() * (isSealed ? Block.Attributes["lidPerishRate"].AsFloat(0.5f) : 1f);
+            float mul = Inventory.GetTransitionSpeedMul(transType, stack);
+            return mul * rate;
+
+        }
+        */
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)
         {
@@ -103,10 +117,11 @@ namespace ACulinaryArtillery
             }
         }
 
-
+        /*
         public override float GetPerishRate()
         {
             return base.GetPerishRate() * (isSealed ? Block.Attributes["lidPerishRate"].AsFloat(0.5f) : 1f);
         }
+        */
     }
 }
