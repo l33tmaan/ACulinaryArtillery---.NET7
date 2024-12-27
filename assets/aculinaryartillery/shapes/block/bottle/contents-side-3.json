@@ -10,7 +10,7 @@
 			"name": "content",
 			"from": [ 6.7, 0.21, 6.7 ], 
 			"to": [ 9.3, 3.81, 8.65 ], 
-			"renderPass": 3,
+			"renderPass": 4,
 			"rotationOrigin": [ 8.0, 0.2, 8.0 ],
 			"rotationY": 180.0,
 			"faces": {
