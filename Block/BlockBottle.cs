@@ -189,6 +189,20 @@
                 { shape = capi.Assets.TryGet(basePath + ".json").ToObject<Shape>(); }
 
                 capi.Tesselator.TesselateShape("bucket", shape, out bucketmesh, contentSource, new Vec3f(this.Shape.rotateX, this.Shape.rotateY, this.Shape.rotateZ));
+                for (int i = 0; i < bucketmesh.Flags.Length; i++)
+                {
+                    bucketmesh.Flags[i] = bucketmesh.Flags[i] & ~(1 << 12); // Remove water waving flag
+                }
+                // Water flags
+
+                if (forBlockPos != null)
+                {
+                    bucketmesh.CustomInts = new CustomMeshDataPartInt(bucketmesh.FlagsCount);
+                    bucketmesh.CustomInts.Count = bucketmesh.FlagsCount;
+                    bucketmesh.CustomInts.Values.Fill(0x4000000); // light foam only
+                    bucketmesh.CustomFloats = new CustomMeshDataPartFloat(bucketmesh.FlagsCount * 2);
+                    bucketmesh.CustomFloats.Count = bucketmesh.FlagsCount * 2;
+                }
             }
             return bucketmesh;
         }
@@ -235,7 +249,22 @@
 
                 shape = asset.ToObject<Shape>();
                 capi.Tesselator.TesselateShape(this.GetType().Name, shape, out var contentMesh, contentSource, new Vec3f(this.Shape.rotateX, this.Shape.rotateY, this.Shape.rotateZ));
+                for (int i = 0; i < contentMesh.Flags.Length; i++)
+                {
+                    contentMesh.Flags[i] = contentMesh.Flags[i] & ~(1 << 12); // Remove water waving flag
+                }
+                // Water flags
+
+                if (forBlockPos != null)
+                {
+                    contentMesh.CustomInts = new CustomMeshDataPartInt(contentMesh.FlagsCount);
+                    contentMesh.CustomInts.Count = contentMesh.FlagsCount;
+                    contentMesh.CustomInts.Values.Fill(0x4000000); // light foam only
+                    contentMesh.CustomFloats = new CustomMeshDataPartFloat(contentMesh.FlagsCount * 2);
+                    contentMesh.CustomFloats.Count = contentMesh.FlagsCount * 2;
+                }
                 bucketmesh.AddMeshData(contentMesh);
+
             }
             return bucketmesh;
         }
