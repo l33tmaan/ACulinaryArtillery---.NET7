@@ -5,10 +5,15 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.19_v1.2.2~
+~1.20_v1.2.3~
 - Frying pan added?
 - Egg liquids configurable via JSON attributes or something
+
+~1.20_v1.2.2~
 - Ukranian translation updated (thanks to burunduk!)
+- en.json updated so blocks have line breaks
+- Bottle rack grid recipe updated to require nails - DONE!!!
+- Seaweed patch fixed
 
 Pursec fixes:
 -Migrated transition and perish methods into their new event equivalencies

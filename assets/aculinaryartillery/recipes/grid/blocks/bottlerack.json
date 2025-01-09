@@ -1,6 +1,6 @@
 [
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 1,
 		ingredients: {
 			"P": {
@@ -12,6 +12,10 @@
 				type: "item",
 				code: "game:plank-acacia",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -22,7 +26,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 2,
 		ingredients: {
 			"P": {
@@ -34,6 +38,10 @@
 				type: "item",
 				code: "game:plank-baldcypress",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -44,7 +52,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 3,
 		ingredients: {
 			"P": {
@@ -56,6 +64,10 @@
 				type: "item",
 				code: "game:plank-birch",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -66,7 +78,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 4,
 		ingredients: {
 			"P": {
@@ -78,6 +90,10 @@
 				type: "item",
 				code: "game:plank-ebony",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -88,7 +104,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 5,
 		ingredients: {
 			"P": {
@@ -100,6 +116,10 @@
 				type: "item",
 				code: "game:plank-kapok",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -110,7 +130,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 6,
 		ingredients: {
 			"P": {
@@ -122,6 +142,10 @@
 				type: "item",
 				code: "game:plank-larch",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -132,7 +156,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 7,
 		ingredients: {
 			"P": {
@@ -144,6 +168,10 @@
 				type: "item",
 				code: "game:plank-maple",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -154,7 +182,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 8,
 		ingredients: {
 			"P": {
@@ -166,6 +194,10 @@
 				type: "item",
 				code: "game:plank-oak",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -176,7 +208,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 9,
 		ingredients: {
 			"P": {
@@ -188,6 +220,10 @@
 				type: "item",
 				code: "game:plank-pine",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -198,7 +234,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 10,
 		ingredients: {
 			"P": {
@@ -210,6 +246,10 @@
 				type: "item",
 				code: "game:plank-purpleheart",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -220,7 +260,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 11,
 		ingredients: {
 			"P": {
@@ -232,6 +272,10 @@
 				type: "item",
 				code: "game:plank-redwood",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -242,7 +286,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 12,
 		ingredients: {
 			"P": {
@@ -254,6 +298,10 @@
 				type: "item",
 				code: "game:plank-walnut",
 			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
+			},
 		},
 		width: 3,
 		height: 3,
@@ -264,7 +312,7 @@
 		}
 	},
 	{
-		ingredientPattern: "PLP,PLP,PLP",
+		ingredientPattern: "PLP,PLP,PLN",
 		recipeGroup: 13,
 		ingredients: {
 			"P": {
@@ -275,6 +323,10 @@
 			"L": {
 				type: "item",
 				code: "game:plank-aged",
+			},
+			"N": {
+				type: "item",
+				code: "game:metalnailsandstrips-*",
 			},
 		},
 		width: 3,
