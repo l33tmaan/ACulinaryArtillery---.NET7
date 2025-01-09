@@ -12,6 +12,7 @@ using Vintagestory.API.Datastructures;
 using System.IO;
 //using static ACulinaryArtillery.acaRecipeLoader;
 using System.Linq;
+using Vintagestory.ServerMods;
 
 namespace ACulinaryArtillery
 {
@@ -938,26 +939,24 @@ namespace ACulinaryArtillery
                         contentMesh.Rgba[i] = (byte)((contentMesh.Rgba[i] * rgba[i % 4]) / 255);
                     }
                 }
-
                 for (int i = 0; i < contentMesh.Flags.Length; i++)
                 {
                     contentMesh.Flags[i] = contentMesh.Flags[i] & ~(1 << 12); // Remove water waving flag
                 }
 
                 bucketmesh.AddMeshData(contentMesh);
-
                 // Water flags
+                
                 if (forBlockPos != null)
                 {
                     bucketmesh.CustomInts = new CustomMeshDataPartInt(bucketmesh.FlagsCount);
                     bucketmesh.CustomInts.Count = bucketmesh.FlagsCount;
                     bucketmesh.CustomInts.Values.Fill(0x4000000); // light foam only
-
                     bucketmesh.CustomFloats = new CustomMeshDataPartFloat(bucketmesh.FlagsCount * 2);
                     bucketmesh.CustomFloats.Count = bucketmesh.FlagsCount * 2;
                 }
+                
             }
-
 
             return bucketmesh;
         }

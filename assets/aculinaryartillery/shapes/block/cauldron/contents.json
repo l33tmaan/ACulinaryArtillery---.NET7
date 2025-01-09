@@ -1,0 +1,72 @@
+{
+	"editor": {
+		"backDropShape": "C:/Users/Sevastations/source/repos/ACulinaryArtillery---.NET7---1.19Update/assets/aculinaryartillery/shapes/block/cauldron/empty",
+		"collapsedPaths": "Root/BowlBase",
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"whiskey": "block/liquid/whiskey"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 0.0, 0.0, 0.0 ],
+			"to": [ 0.0, 0.0, 0.0 ],
+			"renderInEditor": false,
+			"faces": {
+				"north": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"east": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"south": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"west": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"up": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"down": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
+			}
+		},
+		{
+			"name": "Cube2",
+			"from": [ 3.5, 2.1, 3.5 ],
+			"to": [ 12.5, 4.1, 12.5 ],
+			"renderPass": 4,
+			"rotationOrigin": [ 3.5, 2.1, 3.5 ],
+			"faces": {
+				"north": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 2.0 ] },
+				"east": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 2.0 ] },
+				"south": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 2.0 ] },
+				"west": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 2.0 ] },
+				"up": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 9.0 ] }
+			}
+		},
+		{
+			"name": "Cube3",
+			"from": [ 2.5, 4.0, 2.5 ],
+			"to": [ 13.5, 9.0, 13.5 ],
+			"renderPass": 4,
+			"rotationOrigin": [ 2.5, 4.0, 2.5 ],
+			"faces": {
+				"north": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 11.0, 5.0 ] },
+				"east": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 11.0, 5.0 ] },
+				"south": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 11.0, 5.0 ] },
+				"west": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 11.0, 5.0 ] },
+				"up": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 11.0, 11.0 ] }
+			}
+		},
+		{
+			"name": "Cube4",
+			"from": [ 3.5, 10.0, 3.5 ],
+			"to": [ 12.5, 12.0, 12.5 ],
+			"renderPass": 4,
+			"rotationOrigin": [ 3.5, 10.0, 3.5 ],
+			"faces": {
+				"north": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 2.0 ] },
+				"east": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 2.0 ] },
+				"south": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 2.0 ] },
+				"west": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 2.0 ] },
+				"up": { "texture": "#whiskey", "uv": [ 0.0, 0.0, 9.0, 9.0 ] }
+			}
+		}
+	]}

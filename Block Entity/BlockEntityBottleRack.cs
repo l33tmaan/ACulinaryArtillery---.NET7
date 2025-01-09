@@ -258,7 +258,7 @@ namespace ACulinaryArtillery
                         var content = (this.inventory[i].Itemstack.Collectible as BlockBottle).GetContent(this.inventory[i].Itemstack);
                         if (content != null) //glass bottle with contents
                         {
-                            mesh = (this.inventory[i].Itemstack.Collectible as BlockBottle).GenMeshSideways(this.Api as ICoreClientAPI, content, null);
+                            mesh = (this.inventory[i].Itemstack.Collectible as BlockBottle).GenMeshSideways(this.Api as ICoreClientAPI, content, this.Pos);
                             mesh = this.TransformBottleMesh(mesh, i, block.FirstCodePart(), block.LastCodePart());
                             mesher.AddMeshData(mesh);
                         }
