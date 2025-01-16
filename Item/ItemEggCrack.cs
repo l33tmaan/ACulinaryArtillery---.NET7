@@ -10,6 +10,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
@@ -27,7 +28,16 @@ namespace ACulinaryArtillery
 
         public override void OnLoaded(ICoreAPI api)
         {
-            if (api.Side != EnumAppSide.Client) return;
+            if (api.Side == EnumAppSide.Server)
+            {
+                JsonObject jsonLitres = Attributes?["containedEggLitres"];
+                if (jsonLitres?.Exists == true)
+                {
+                    ContainedEggLitres = jsonLitres.AsFloat();
+                }
+                return;
+            }
+
             ICoreClientAPI capi = api as ICoreClientAPI;
 
             interactions = ObjectCacheUtil.GetOrCreate(api, "eggInteractions", () =>
