@@ -5,9 +5,12 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.20_v1.2.3~
+~1.20_v1.2.4~
 - Frying pan added?
-- Egg liquids configurable via JSON attributes or something
+
+~1.20_v1.2.3~
+- Tentative fix for bottle rack issues
+- Allow setting ContainedEggLitres from item json attributes (thanks to sekelsta!)
 
 ~1.20_v1.2.2~
 - Ukranian translation updated (thanks to burunduk!)
