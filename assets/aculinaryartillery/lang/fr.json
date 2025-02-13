@@ -160,8 +160,8 @@
   "game:incontainer-item-eggwhiteportion": "Blanc d'œuf", 
 
    "item-eggyolk-chicken": "Œuf de poule cassé",
-   "item-eggyolk-pheasant": "Œuf de faisan cassé",
-   "item-eggyolk-goldenpheasant": "Œuf de faisan doré cassé",
+   "item-eggyolk-pheasant": "Œuf de faisane cassé",
+   "item-eggyolk-goldenpheasant": "Œuf de faisane doré cassé",
    "item-eggyolk-capercaillie": "Œuf de grand tétras cassé",
 
   "itemdesc-eggyolk-*": "Il vaudrait mieux se dépêcher et déverser le jaune avant qu'il ne soit trop tard !",
