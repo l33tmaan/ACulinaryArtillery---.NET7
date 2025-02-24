@@ -751,7 +751,23 @@ namespace ACulinaryArtillery
                 product = match.Simmering.SmeltedStack.ResolvedItemstack;
 
                 if (product == null) return null;
+                if (product?.Collectible.Attributes?["waterTightContainerProps"].Exists == true)
+                {
+                    float litreFloat = amount * (product.StackSize / BlockLiquidContainerBase.GetContainableProps(product).ItemsPerLitre);
+                    //float litreFloat = (float)amount / BlockLiquidContainerBase.GetContainableProps(product).ItemsPerLitre;
+                    string litres;
 
+                    if (litreFloat < 0.1)
+                    {
+                        litres = Lang.Get("{0} mL", (int)(litreFloat * 1000));
+                    }
+                    else
+                    {
+                        litres = Lang.Get("{0:0.##} L", litreFloat);
+                    }
+
+                    return Lang.Get("mealcreation-nonfood-liquid", litres, product.GetName());
+                }
                 return Lang.Get("firepit-gui-willcreate", amount, product.GetName());
             }
 
