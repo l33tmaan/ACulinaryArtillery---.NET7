@@ -11,7 +11,7 @@
 ~1.20_v1.2.4~
 - Trader clothing patches fixed
 - Mini-cauldron capacity increased from 20L to 25L
-- French translation updated
+- French translation updated (thanks to Mokrad1)
 - Polish translation updated (thanks to lucznik49)
 - Spanish translation updated (thanks to tomandoawa)
 
