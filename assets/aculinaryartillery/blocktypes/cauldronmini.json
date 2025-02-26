@@ -17,11 +17,11 @@
 			"maxTemperature": 900,
 			"maxFillLevel": 8,
 			"storageType": 1,
-			"maxContainerSlotStackSize": 20,
-			"cookingSlotCapacityLitres": 20,
+			"maxContainerSlotStackSize": 25,
+			"cookingSlotCapacityLitres": 25,
 			"cookingContainerSlots": 4,
 			"liquidcontainer": true,
-			"capacityLitres": 20,
+			"capacityLitres": 25,
 			"canhold": [ "water-*" ],
 			"inFirePitProps": {
 				"transform": {

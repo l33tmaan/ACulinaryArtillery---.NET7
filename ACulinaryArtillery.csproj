@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="assets\aculinaryartillery\lang\pl.json" />
     <None Remove="Launcher.dll" />
     <None Remove="Launcher.pdb" />
   </ItemGroup>
