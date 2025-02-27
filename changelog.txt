@@ -5,8 +5,11 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.20_v1.2.5~
+~1.20_v1.2.6~
 - Frying pan added?
+
+~1.20_v1.2.5~
+- Japanese translation updated (thanks to macoto_hino)
 
 ~1.20_v1.2.4~
 - Trader clothing patches fixed
