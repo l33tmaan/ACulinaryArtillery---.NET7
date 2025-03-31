@@ -56,6 +56,8 @@ namespace ACulinaryArtillery
         public float inputMixTime;
         public float prevInputMixTime;
         public int CapacityLitres { get; set; }
+        public int MaxContainerSlotStackSize { get; set; }
+        public const int DefaultMaxContainerSlotStackSize = 6;
 
         //For automation
         public bool invLocked;
@@ -150,9 +152,7 @@ namespace ACulinaryArtillery
             inventory = new InventoryMixingBowl(null, null, this);
             inventory.SlotModified += OnSlotModifid;
         }
-
-
-
+        
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
@@ -166,7 +166,16 @@ namespace ACulinaryArtillery
             {
                 CapacityLitres = Block.Attributes["capacityLitres"].AsInt(CapacityLitres);
             }
-
+            if (Block.Attributes["maxContainerSlotStackSize"].Exists == true)
+            {
+                MaxContainerSlotStackSize = Block.Attributes["maxContainerSlotStackSize"].AsInt(DefaultMaxContainerSlotStackSize);
+            }
+            else
+            {
+                // This is the default if no maxContainerSlotStackSize is specified.
+                // Needed for backwards compatibility.
+                MaxContainerSlotStackSize = DefaultMaxContainerSlotStackSize;
+            }
             if (ambientSound == null && api.Side == EnumAppSide.Client)
             {
                 ambientSound = ((IClientWorldAccessor)api.World).LoadSound(new SoundParams()

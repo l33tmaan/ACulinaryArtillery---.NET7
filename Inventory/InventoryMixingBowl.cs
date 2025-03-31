@@ -28,7 +28,6 @@ namespace ACulinaryArtillery
             //slots 2-7 = ingredients
             machine = bowl;
             slots = GenEmptySlots(8);
-
         }
 
 
@@ -61,8 +60,8 @@ namespace ACulinaryArtillery
             {
                 for (int i = 2; i < this.Count; i++)
                 {
-                    this[i].MaxSlotStackSize = 6;
-                    (this[i] as ItemSlotMixingBowl).Set(machine, i - 2);
+                    this[i].MaxSlotStackSize = machine.MaxContainerSlotStackSize;
+                    (this[i] as ItemSlotMixingBowl)?.Set(machine, i - 2);
                 }
             }
         }
@@ -109,10 +108,9 @@ namespace ACulinaryArtillery
     {
         BlockEntityMixingBowl machine;
         int stackNum;
-
+        
         public ItemSlotMixingBowl(InventoryBase inventory, BlockEntityMixingBowl bowl, int itemNumber) : base(inventory)
         {
-            MaxSlotStackSize = 6;
             machine = bowl;
             stackNum = itemNumber;
         }
@@ -120,6 +118,14 @@ namespace ACulinaryArtillery
         public override bool CanTakeFrom(ItemSlot sourceSlot, EnumMergePriority priority = EnumMergePriority.AutoMerge)
         {
             return base.CanTakeFrom(sourceSlot, priority) && locked(sourceSlot);
+        }
+        
+        public override int MaxSlotStackSize
+        {
+            get
+            {
+                return machine.MaxContainerSlotStackSize;
+            }
         }
 
         public override bool CanHold(ItemSlot sourceSlot)
