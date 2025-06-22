@@ -1,9 +1,17 @@
 {
 	code: "eggyolk",
-	"class": "EggCrack",
 	maxstacksize: 32,
 	variantgroups: [
 		{ code: "source", states: ["chicken", "pheasant", "goldenpheasant", "capercaillie", "wildturkey"] },
+	],
+	behaviors: [
+			{
+        name: "EggCrack",
+				properties: {
+					isEggYolk: true,
+					partialLiquidCode: "aculinaryartillery:eggyolkportion-{source}",
+				}
+      }
 	],
 	shape: { base: "item/egg/eggyolk" },
 	textures: {

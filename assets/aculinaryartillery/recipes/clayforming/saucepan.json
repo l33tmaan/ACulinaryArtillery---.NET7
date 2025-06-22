@@ -1,5 +1,5 @@
 {
-	ingredient: { type: "item", code: "game:clay-*", name: "type", allowedVariants: ["blue", "fire", "red"] },
+	ingredient: { type: "item", code: "game:clay-*", name: "color", allowedVariants: ["blue", "fire", "red"] },
 	pattern: [
 		[
 			"____________",
@@ -39,5 +39,5 @@
 		]	
 	],
 	name: "Saucepan",
-	output: { type: "block", code: "aculinaryartillery:saucepan-raw" }
+	output: { type: "block", code: "aculinaryartillery:saucepan-{color}-raw" }
 }

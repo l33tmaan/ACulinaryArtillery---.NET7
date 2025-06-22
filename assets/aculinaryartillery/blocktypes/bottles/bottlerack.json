@@ -1,0 +1,353 @@
+{
+    "code": "bottlerack",
+    "class": "BlockBottleRack",
+    "entityClass": "BottleRack",
+    "attributes": {
+		"handbook": { "groupBy": ["bottlerack-*"] }
+    },
+    "behaviors": [ { "name": "HorizontalOrientable" } ],
+    "variantgroups": [
+        {
+            "code": "woodframe",
+            "states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut", "aged" ]
+        },
+        {
+            "code": "woodinterior",
+            "states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut", "aged" ]
+        },
+        {
+            "code": "side",
+            "loadFromProperties": "abstract/horizontalorientation"
+        }
+    ],
+    "shape": {
+        "base": "block/bottlerack",
+        "rotateYByType": {
+            "*-west": 90,
+            "*-south": 180,
+            "*-east": 270
+        }
+    },
+    "drops": [
+        {
+            "type": "block",
+            "code": "bottlerack-{woodframe}-{woodinterior}-north",
+            "quantity": { "avg": 1 }
+        }
+    ],
+    "creativeinventory": {
+        "general": [ "*-north" ],
+        "terrain": [ "*-north" ],
+        "aculinaryartillery": ["*-north"]
+    },
+    "texturesByType": {
+        "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(north|east|south|west)": {
+            "woodframe": { "base": "wildcrafttree:block/wood/planks/{woodframe}1" },
+            "woodinterior": { "base": "wildcrafttree:block/wood/planks/{woodinterior}1" }
+        },
+        "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(aged|birch|oak|maple|pine|acacia|kapok|baldcypress|larch|redwood|ebony|walnut|purpleheart)-(north|east|south|west)": {
+            "woodframe": { "base": "wildcrafttree:block/wood/planks/{woodframe}1" },
+            "woodinterior": { "base": "game:block/wood/planks/{woodinterior}1" }
+        },
+        "@*-(aged|birch|oak|maple|pine|acacia|kapok|baldcypress|larch|redwood|ebony|walnut|purpleheart)-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(north|east|south|west)": {
+            "woodframe": { "base": "game:block/wood/planks/{woodframe}1" },
+            "woodinterior": { "base": "wildcrafttree:block/wood/planks/{woodinterior}1" }
+        },
+        "*": {
+            "woodframe": { "base": "game:block/wood/planks/{woodframe}1" },
+            "woodinterior": { "base": "game:block/wood/planks/{woodinterior}1" }
+        }
+    },
+    "drawtype": "json",
+    "blockmaterial": "Wood",
+    "replaceable": 600,
+    "resistance": 3,
+	"heldTpIdleAnimation": "holdbothhandslarge",
+    "sounds": {
+        "walk": "game:player/buildhigh"
+    },
+    "sideopaque": { "all": false },
+    "sideao": { "all": true },
+    "emitsideao": { "all": false },
+    "sidesolid": { "all": false },
+    "CollisionBox": {
+        "x1": 0,
+        "y1": 0,
+        "z1": 0,
+        "x2": 1,
+        "y2": 1,
+        "z2": 0.5,
+        "rotateYByType": {
+            "*-west": 90,
+            "*-south": 180,
+            "*-east": 270
+        }
+    },
+    "SelectionBoxes": [
+        {
+            "x1": 0,
+            "y1": 0,
+            "z1": 0,
+            "x2": 0.25,
+            "y2": 0.25,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.25,
+            "y1": 0,
+            "z1": 0,
+            "x2": 0.5,
+            "y2": 0.25,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.5,
+            "y1": 0,
+            "z1": 0,
+            "x2": 0.75,
+            "y2": 0.25,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.75,
+            "y1": 0,
+            "z1": 0,
+            "x2": 1,
+            "y2": 0.25,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0,
+            "y1": 0.25,
+            "z1": 0,
+            "x2": 0.25,
+            "y2": 0.5,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.25,
+            "y1": 0.25,
+            "z1": 0,
+            "x2": 0.5,
+            "y2": 0.5,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.5,
+            "y1": 0.25,
+            "z1": 0,
+            "x2": 0.75,
+            "y2": 0.5,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.75,
+            "y1": 0.25,
+            "z1": 0,
+            "x2": 1,
+            "y2": 0.5,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0,
+            "y1": 0.5,
+            "z1": 0,
+            "x2": 0.25,
+            "y2": 0.75,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.25,
+            "y1": 0.5,
+            "z1": 0,
+            "x2": 0.5,
+            "y2": 0.75,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.5,
+            "y1": 0.5,
+            "z1": 0,
+            "x2": 0.75,
+            "y2": 0.75,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.75,
+            "y1": 0.5,
+            "z1": 0,
+            "x2": 1,
+            "y2": 0.75,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0,
+            "y1": 0.75,
+            "z1": 0,
+            "x2": 0.25,
+            "y2": 1,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.25,
+            "y1": 0.75,
+            "z1": 0,
+            "x2": 0.5,
+            "y2": 1,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.5,
+            "y1": 0.75,
+            "z1": 0,
+            "x2": 0.75,
+            "y2": 1,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        },
+        {
+            "x1": 0.75,
+            "y1": 0.75,
+            "z1": 0,
+            "x2": 1,
+            "y2": 1,
+            "z2": 0.4,
+            "rotateYByType": {
+                "*-west": 90,
+                "*-south": 180,
+                "*-east": 270
+            }
+        }
+    ],
+    "guiTransform": {
+        "translation": {
+            "x": -5,
+            "y": -3,
+            "z": 0
+        },
+        "rotation": {
+            "x": -20,
+            "y": -30,
+            "z": 0
+        },
+        "scale": 1.25
+    },
+    "fpHandTransform": {
+        "translation": {
+            "x": 0,
+            "y": 0,
+            "z": 0.5
+        },
+        "rotation": {
+            "x": -5,
+            "y": -40,
+            "z": 0
+        },
+        "scale": 2.0
+    },
+    "tpHandTransform": {
+        "translation": {
+            "x": -0.7,
+            "y": -0.55,
+            "z": -0.85
+        },
+        "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "scale": 0.65
+    },
+    "groundTransform": {
+        "translation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "origin": {
+            "x": 0.5,
+            "y": 0,
+            "z": 0.5
+        },
+        "scale": 5.0
+    }
+}

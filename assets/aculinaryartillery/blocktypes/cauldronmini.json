@@ -15,14 +15,18 @@
 		    "handbook": { "groupBy": ["cauldronmini-*"] },
 			"lidPerishRate": 0.75,
 			"maxTemperature": 900,
-			"maxFillLevel": 8,
 			"storageType": 1,
 			"maxContainerSlotStackSize": 25,
 			"cookingSlotCapacityLitres": 25,
 			"cookingContainerSlots": 4,
-			"liquidcontainer": true,
-			"capacityLitres": 25,
-			"canhold": [ "water-*" ],
+			"liquidContainerProps": {
+				"capacityLitres": 25,
+				"transferSizeLitres": 2.5,
+				"emptyShapeLoc": "aculinaryartillery:shapes/block/cauldronmini/empty",
+				"opaqueContentShapeLoc": "aculinaryartillery:shapes/block/cauldronmini/contents",
+				"liquidContentShapeLoc": "aculinaryartillery:shapes/block/cauldronmini/contents",
+				"liquidMaxYTranslate": 0.311875
+			},
 			"inFirePitProps": {
 				"transform": {
 					"translation": {

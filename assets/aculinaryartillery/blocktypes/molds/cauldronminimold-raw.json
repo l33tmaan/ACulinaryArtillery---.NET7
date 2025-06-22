@@ -1,0 +1,103 @@
+{
+	"code": "cauldronminimold",
+	"behaviors": [{ "name": "UnstableFalling" }, { "name": "RightClickPickup" }, {"name": "Unplaceable"}, {"name": "GroundStorable", "properties": { "layout": "SingleCenter" }}],
+	"variantgroups": [
+		{ "code": "color", "states": ["blue", "fire", "red" ] },
+		{ "code": "materialtype", "states": ["raw"] }
+	],
+	"attributes": {
+		"handbook": { "groupBy": [ "cauldronminimold-*-raw" ] }
+	},
+	attributesByType:{
+		"cauldronminimold-red-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:cauldronminimold-tan-fired" },
+				"1": { "type": "block", "code": "aculinaryartillery:cauldronminimold-orange-fired" },
+				"2": { "type": "block", "code": "aculinaryartillery:cauldronminimold-red-fired" },
+				"3": { "type": "block", "code": "aculinaryartillery:cauldronminimold-brown-fired" }
+			}
+		},
+		"cauldronminimold-blue-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:cauldronminimold-cream-fired"},
+				"1": { "type": "block", "code": "aculinaryartillery:cauldronminimold-gray-fired"},
+				"2": { "type": "block", "code": "aculinaryartillery:cauldronminimold-black-fired"},
+				"3": { "type": "block", "code": "aculinaryartillery:cauldronminimold-black-fired"}
+			}
+		},
+		"cauldronminimold-fire-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:cauldronminimold-fire-fired"},
+				"1": { "type": "block", "code": "aculinaryartillery:cauldronminimold-fire-fired"},
+				"2": { "type": "block", "code": "aculinaryartillery:cauldronminimold-fire-fired"},
+				"3": { "type": "block", "code": "aculinaryartillery:cauldronminimold-fire-fired"}
+			}
+		}
+	},
+	"combustiblePropsByType": {
+		"cauldronminimold-red-raw": {
+			"meltingPoint": 600,
+			"meltingDuration": 45,
+			"smeltedRatio": 1,
+			"smeltingType": "fire",
+			"smeltedStack": { "type": "block", "code": "cauldronminimold-blue-fired" },
+			"requiresContainer": false
+		},
+		"*": {
+			"meltingPoint": 600,
+			"meltingDuration": 45,
+			"smeltedRatio": 1,
+			"smeltingType": "fire",
+			"smeltedStack": { "type": "block", "code": "cauldronminimold-{color}-fired" },
+			"requiresContainer": false
+		}
+	},
+	"blockmaterial": "Ceramic",
+	"creativeinventory": { "general": ["*"], "construction": ["*"], "aculinaryartillery": [ "*" ] },
+	"replaceable": 700,
+	"resistance": 1.5,
+	"maxStackSize": 8,
+	"lightAbsorption": 0,
+	heldTpIdleAnimation: "holdunderarm",
+	"textures": {
+		"floor": { "base": "game:block/clay/{color}clay" },
+		"ceramic": { "base": "game:block/clay/{color}clay" }
+	},
+	"shape": {
+		"base": "block/cauldronminimold"
+	},
+	"sounds": {
+		"walk": "walk/stone"
+	},
+	"collisionbox": {
+	"x1": 0.075,
+	"y1": 0,
+	"z1": 0.125,
+	"x2": 0.9,
+	"y2": 0.65,
+			"z2": 0.875
+	},
+	"selectionbox": {
+			"x1": 0.075,
+			"y1": 0,
+			"z1": 0.125,
+			"x2": 0.9,
+			"y2": 0.65,
+			"z2": 0.875
+	},
+	"sideopaque": {
+		"all": false
+	},
+	"sidesolid": {
+		"all": false
+	},
+	"guiTransform": {"scale": 0.9	},
+	tpHandTransform: {
+	translation: { x: -1.5, y: -1.1, z: -1.05 },
+	rotation: { x: 0, y: 0, z: -20 }
+	},	
+	"groundTransform": {
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 5
+	}
+}

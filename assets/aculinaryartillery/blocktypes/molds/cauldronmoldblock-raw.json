@@ -1,0 +1,89 @@
+{
+	"code": "cauldronmold",
+	"behaviors": [{ "name": "UnstableFalling" }, { "name": "RightClickPickup" }, {name: "Unplaceable"}, {name: "GroundStorable", "properties": { "layout": "SingleCenter" }}],
+	"variantgroups": [
+		{ "code": "color", "states": ["blue", "fire", "red" ] },
+		{ "code": "materialtype", "states": ["raw"] },
+	],
+	"attributes": {
+		"handbook": { "groupBy": [ "cauldronmold-*-raw" ] }
+	},
+	attributesByType:{
+		"cauldronmold-red-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:cauldronmold-tan-fired" },
+				"1": { "type": "block", "code": "aculinaryartillery:cauldronmold-orange-fired" },
+				"2": { "type": "block", "code": "aculinaryartillery:cauldronmold-red-fired" },
+				"3": { "type": "block", "code": "aculinaryartillery:cauldronmold-brown-fired" }
+			}
+		},
+		"cauldronmold-blue-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:cauldronmold-cream-fired"},
+				"1": { "type": "block", "code": "aculinaryartillery:cauldronmold-gray-fired"},
+				"2": { "type": "block", "code": "aculinaryartillery:cauldronmold-black-fired"},
+				"3": { "type": "block", "code": "aculinaryartillery:cauldronmold-black-fired"}
+			}
+		},
+		"cauldronmold-fire-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:cauldronmold-fire-fired"},
+				"1": { "type": "block", "code": "aculinaryartillery:cauldronmold-fire-fired"},
+				"2": { "type": "block", "code": "aculinaryartillery:cauldronmold-fire-fired"},
+				"3": { "type": "block", "code": "aculinaryartillery:cauldronmold-fire-fired"}
+			}
+		}
+	},
+	"combustiblePropsByType": {
+		"cauldronmold-red-raw": {
+			"meltingPoint": 600,
+			"meltingDuration": 45,
+			"smeltedRatio": 1,
+			"smeltingType": "fire",
+			"smeltedStack": { "type": "block", "code": "cauldronmold-blue-fired" },
+			"requiresContainer": false
+		},
+		"*-raw": {
+			"meltingPoint": 600,
+			"meltingDuration": 45,
+			"smeltedRatio": 1,
+			"smeltingType": "fire",
+			"smeltedStack": { "type": "block", "code": "cauldronmold-{color}-fired" },
+			"requiresContainer": false
+		}
+	},
+	"blockmaterial": "Ceramic",
+	"creativeinventory": { "general": ["*"], "construction": ["*"], "aculinaryartillery": ["*"] },
+	"replaceable": 700,
+	"resistance": 1.5,
+	"maxStackSize": 8,
+	"lightAbsorption": 0,
+	heldTpIdleAnimation: "holdunderarm",
+	"textures": {
+		"floor": { "base": "game:block/clay/{color}clay" },
+		"ceramic": { "base": "game:block/clay/{color}clay" }
+	},
+	"shape": {
+		"base": "block/cauldronmold",
+	},
+	"sounds": {
+		"walk": "walk/stone"
+	},
+	collisionbox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 1, z2: 1 },
+	selectionbox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 1, z2: 1 },
+	"sideopaque": {
+		"all": false
+	},
+	"sidesolid": {
+		"all": false
+	},
+	"guiTransform": {"scale": 0.9	},
+	tpHandTransform: {
+	translation: { x: -1.5, y: -1.1, z: -1.05 },
+	rotation: { x: 0, y: 0, z: -20 }
+	},	
+	"groundTransform": {
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 5
+	}
+}

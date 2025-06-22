@@ -1,31 +1,41 @@
-﻿using ACulinaryArtillery.Block_Entity;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
-using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
+    public class BlockEntitySaucepanContainer : InWorldContainer
+    {
+        private BlockEntitySaucepan BESaucepan;
+
+        public BlockEntitySaucepanContainer(BlockEntitySaucepan blockEntitySaucepan, InventorySupplierDelegate inventorySupplier, string treeAttrKey) : base(inventorySupplier, treeAttrKey)
+        {
+            BESaucepan = blockEntitySaucepan;
+        }
+
+        public override float GetPerishRate()
+        {
+            return base.GetPerishRate() * (BESaucepan.isSealed ? BESaucepan.Block.Attributes["lidPerishRate"].AsFloat(0.5f) : 1f);
+        }
+    }
+
     public class BlockEntitySaucepan : BlockEntityBucket
     {
-        MeshData currentRightMesh;
-        BlockSaucepan ownBlock;
+        MeshData? currentRightMesh;
         public bool isSealed;
+
+        BlockSaucepan? ownBlock => Block as BlockSaucepan;
+
         public BlockEntitySaucepan()
         {
-            container = new BESaucepanContainer(this,() => Inventory, "inventory");
+            container = new BlockEntitySaucepanContainer(this, () => Inventory, "inventory");
         }
+
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
-            //Inventory.OnAcquireTransitionSpeed += Inventory_OnAcquireTransitionSpeed;
-            ownBlock = Block as BlockSaucepan;
-
 
             if (Api.Side == EnumAppSide.Client)
             {
@@ -34,21 +44,11 @@ namespace ACulinaryArtillery
             }
         }
 
-        /*
-        private float Inventory_OnAcquireTransitionSpeed(EnumTransitionType transType, ItemStack stack, float mulByConfig)
-        {
-            float rate = container.GetPerishRate() * (isSealed ? Block.Attributes["lidPerishRate"].AsFloat(0.5f) : 1f);
-            float mul = Inventory.GetTransitionSpeedMul(transType, stack);
-            return mul * rate;
-
-        }
-        */
-
-        public override void OnBlockPlaced(ItemStack byItemStack = null)
+        public override void OnBlockPlaced(ItemStack? byItemStack = null)
         {
             base.OnBlockPlaced(byItemStack);
 
-            if (byItemStack != null) isSealed = byItemStack.Attributes.GetBool("isSealed");
+            isSealed = byItemStack?.Attributes.TryGetBool("isSealed") ?? false;
 
             if (Api.Side == EnumAppSide.Client)
             {
@@ -78,20 +78,18 @@ namespace ACulinaryArtillery
             tree.SetBool("isSealed", isSealed);
         }
 
-        public SimmerRecipe GetMatchingSimmerRecipe(IWorldAccessor world, ItemSlot[] slots)
+        public SimmerRecipe? GetMatchingSimmerRecipe(IWorldAccessor world, ItemSlot[] slots)
         {
-            List<SimmerRecipe> recipes = Api.GetSimmerRecipes();
-
-            return recipes.FirstOrDefault(r => r.Matches(world, slots));
+            return Api.GetSimmerRecipes().FirstOrDefault(r => r.Matches(world, slots));
         }
 
-        internal MeshData GenRightMesh()
+        internal MeshData? GenRightMesh()
         {
-            if (ownBlock == null || ownBlock.Code.Path.Contains("clay")) return null;
+            if (Api is not ICoreClientAPI capi || ownBlock == null) return null;
 
-            MeshData mesh = ownBlock.GenRightMesh(Api as ICoreClientAPI, GetContent(), Pos, isSealed);
+            MeshData? mesh = ownBlock.GenRightMesh(capi, GetContent(), Pos, isSealed);
 
-            if (mesh.CustomInts != null)
+            if (mesh?.CustomInts != null)
             {
                 for (int i = 0; i < mesh.CustomInts.Count; i++)
                 {
@@ -116,12 +114,5 @@ namespace ACulinaryArtillery
                 currentRightMesh = GenRightMesh();
             }
         }
-
-        /*
-        public override float GetPerishRate()
-        {
-            return base.GetPerishRate() * (isSealed ? Block.Attributes["lidPerishRate"].AsFloat(0.5f) : 1f);
-        }
-        */
     }
 }

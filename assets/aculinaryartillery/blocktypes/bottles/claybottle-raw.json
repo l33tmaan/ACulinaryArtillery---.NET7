@@ -1,0 +1,103 @@
+{
+	"code": "bottle",
+	"variantgroups": [
+		{ "code": "material", "states": [ "clay" ] },
+		{ "code": "color", "states": ["blue", "fire", "red" ] },
+		{ "code": "type", "states": [ "raw"] }
+	],
+	"creativeinventory": { "general": [ "*" ], "aculinaryartillery": ["*"] },
+	"attributes": {
+		"shelvable": true,
+		"bottlerackable": true,
+		"perishRate": 0.1,
+		"handbook": { "groupBy": [ "bottle-clay-*-raw" ] }
+	},
+	attributesByType:{
+		"bottle-clay-red-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:bottle-clay-tan-fired" },
+				"1": { "type": "block", "code": "aculinaryartillery:bottle-clay-orange-fired" },
+				"2": { "type": "block", "code": "aculinaryartillery:bottle-clay-red-fired" },
+				"3": { "type": "block", "code": "aculinaryartillery:bottle-clay-brown-fired" }
+			}
+		},
+		"bottle-clay-blue-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:bottle-clay-cream-fired"},
+				"1": { "type": "block", "code": "aculinaryartillery:bottle-clay-gray-fired"},
+				"2": { "type": "block", "code": "aculinaryartillery:bottle-clay-black-fired"},
+				"3": { "type": "block", "code": "aculinaryartillery:bottle-clay-black-fired"}
+			}
+		},
+		"bottle-clay-fire-raw":{
+			beehivekiln:{
+				"0": { "type": "block", "code": "aculinaryartillery:bottle-clay-fire-fired"},
+				"1": { "type": "block", "code": "aculinaryartillery:bottle-clay-fire-fired"},
+				"2": { "type": "block", "code": "aculinaryartillery:bottle-clay-fire-fired"},
+				"3": { "type": "block", "code": "aculinaryartillery:bottle-clay-fire-fired"}
+			}
+		}
+	},
+	"drawtype": "JSON",
+	"replaceable": 1,
+	"behaviors": [
+		{ "name": "GroundStorable", "properties": { "layout": "Quadrants", "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 } } },
+		{ "name": "Unplaceable", "__comment": "The ground storable obsoletes this being a block. Should be an item, but is kept a block for backwards compatibility"},
+	],
+	"combustiblePropsByType": {
+		"*-red-raw": {
+			"meltingPoint": 600,
+			"meltingDuration": 30,
+			"smeltedRatio": 1,
+			"smeltingType": "fire",
+			"smeltedStack": {"type": "block", "code": "bottle-{material}-blue-fired" },
+			"requiresContainer": false
+		},
+		"*": {
+			"meltingPoint": 600,
+			"meltingDuration": 30,
+			"smeltedRatio": 1,
+			"smeltingType": "fire",
+			"smeltedStack": {"type": "block", "code": "bottle-{material}-{color}-fired" },
+			"requiresContainer": false
+		},
+	},
+	"maxstacksize": 64,
+	"blockmaterial": "Ceramic",
+	"shape": { "base": "aculinaryartillery:block/bottle/openedbottle" },
+	"lightAbsorption": 0,
+	"sideopaque": { "all": false },
+	"sideao": { "all": true },
+	"emitsideao": { "all": false },
+	"sidesolid": { "all": false },
+	"renderpass": "opaque",
+	"collisionbox": {
+		"x1": 0.4, "y1": 0, "z1": 0.4,
+		"x2": 0.6, "y2": 0.375, "z2": 0.6
+	},
+	"selectionbox": {
+		"x1": 0.35, "y1": 0, "z1": 0.35,
+		"x2": 0.65, "y2": 0.375, "z2": 0.65
+	},
+	"textures": { "all": { "base": "game:block/clay/{color}clay" } },
+	"resistance": 0.5,
+	"guiTransform": {
+		"rotation": { "x": -22.6, "y": -125, "z": 0 },
+		"origin": { "x": 0.5, "y": 0.18, "z": 0.5 },
+		"scale": 3.09
+	},
+	"groundTransform": {
+		"scale": 5
+	},
+	"fpHandTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0.5 },
+		"origin": { "x": 0.5, "y": -0.5, "z": 0.8 },
+		"scale": 2
+	},
+	"tpHandTransform": {
+		"translation": { "x": -0.66, "y": -0.03, "z": -0.65 },
+		"rotation": { "x": -139, "y": 9, "z": -118 },
+		"origin": { "x": 0.5, "y": 0.01, "z": 0.5 },
+		"scale": 0.81
+	}
+}

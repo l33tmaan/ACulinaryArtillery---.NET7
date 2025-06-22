@@ -1,5 +1,5 @@
 ﻿{
-	ingredient: { type: "item", code: "game:clay-*", name: "type", allowedVariants: ["blue", "fire", "red"] },
+	ingredient: { type: "item", code: "game:clay-*", name: "color", allowedVariants: ["blue", "fire", "red"] },
 	pattern: [[
 		"################",
 		"################",
@@ -73,5 +73,5 @@
 		"################",
 	],],
 	name: "Spile Mold",
-	output: { type: "block", code: "aculinaryartillery:spilemold-raw"  }
+	output: { type: "block", code: "aculinaryartillery:spilemold-{color}-raw"  }
 }

@@ -1,9 +1,22 @@
 [
   {
-    "op": "add",
-    "path": "/classByType",
+    "op": "addmerge",
+    "path": "/behaviorsByType",
     "value": {
-      "*-raw": "EggCrack"
+      "*-raw": [{
+        name: "EggCrack",
+        properties: {
+          fullLiquidCode: "aculinaryartillery:eggyolkfullportion-{source}",
+          eggYolkCode: "aculinaryartillery:eggyolk-{source}"
+        }
+      },
+      {
+        name: "GroundStorable",
+        properties: {
+          layout: 'Quadrants',
+          collisionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.125, z2: 1 }
+        }
+      }]
     },
     "side": "server",
     "file": "itemtypes/food/egg.json"

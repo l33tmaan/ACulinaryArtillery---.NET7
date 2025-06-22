@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
 using Vintagestory.API.MathTools;
 
-namespace ACulinaryArtillery.Util {
-    internal static class MathHelper {
-
-        public static Vec3f Center(this Cuboidf cubeoid) {
+namespace ACulinaryArtillery.Util
+{
+    internal static class MathHelper
+    {
+        public static Vec3f Center(this Cuboidf cubeoid)
+        {
             return new Vec3f(cubeoid.MidX, cubeoid.MidY, cubeoid.MidZ);
         }
 
-        public static Vec2f XZSize(this Cuboidf cubeoid) {
+        public static Vec2f XZSize(this Cuboidf cubeoid)
+        {
             return new Vec2f(cubeoid.Width, cubeoid.Height);
         }
 
         public static Vec2f ToXZ(this Vec3f v)
             => new Vec2f(v.X, v.Z);
 
-
-        public static void Deconstruct(this Vec2f v, out double a, out double b) {
+        public static void Deconstruct(this Vec2f v, out double a, out double b)
+        {
             a = v.X;
             b = v.Y;
         }
@@ -40,7 +37,8 @@ namespace ACulinaryArtillery.Util {
         /// <param name="box">Cube to use</param>
         /// <param name="point">Point to use</param>
         /// <seealso href="https://mathworld.wolfram.com/Ellipse-LineIntersection.html"/>
-        public static Vec3d TopFaceEllipsesLineIntersection(this Cuboidf box, Vec3f point) {
+        public static Vec3d TopFaceEllipsesLineIntersection(this Cuboidf box, Vec3f point)
+        {
             var (a, b) = box.XZSize() / 2;
 
             Vec3f cubeCenter = box.Center();
@@ -53,6 +51,5 @@ namespace ACulinaryArtillery.Util {
 
             return new Vec3d(f * x, 0, f * z);
         }
-
     }
 }

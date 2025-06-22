@@ -3,6 +3,9 @@
 	"class": "BlockMixingBowl",
 	"entityClass": "MixingBowl",
 	"behaviors": [ { "name": "Container" }, { "name": "UnstableFalling" } ],
+	variantgroups: [
+		{ "code": "color", "states": ["blue", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan"] }
+	],
 	"attributes": {
 		"capacityLitres": 3,
 	},
@@ -16,9 +19,9 @@
 	"textures": {
 		"material": { "base": "game:block/wood/planks/generic" },
 		"generic": { "base": "game:block/wood/planks/generic" },
-		"ceramic": { base: "game:block/clay/ceramic" },
-		"burned": { base: "game:block/clay/vessel/sides/burned" },
-		"ceramic-dark": { base: "game:block/clay/ceramic-dark" },
+		"ceramic": { base: "game:block/clay/hardened/{color}" },
+		"burned": { base: "game:block/clay/hardened/{color}" },
+		"ceramic-dark": { base: "game:block/clay/hardened/{color}" },
 		"sidesbucket": { "base": "game:block/wood/bucket/sides" },
 	},
 	"sidesolid": {

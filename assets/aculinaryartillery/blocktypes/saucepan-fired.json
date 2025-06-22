@@ -1,0 +1,116 @@
+{
+	code: "saucepan",
+	class: "BlockSaucepan",
+	behaviors: [
+		{ name: "UnstableFalling" },
+		{ name: "RightClickPickup" }
+	],
+	entityClass: "Saucepan",
+	attributes: {
+		"lidSound": "game:sounds/block/planks",
+		canSeal: true,
+		lidPerishRate: 0.9,
+		"handbook": { "groupBy": ["saucepan-*-fired"] },
+		"maxTemperature": 400,
+		storageType: 1,
+		maxContainerSlotStackSize: 4,
+		cookingSlotCapacityLitres: 4,
+		cookingContainerSlots: 4,
+		"liquidContainerProps": {
+			"capacityLitres": 5,
+			"transferSizeLitres": 0.5,
+			"emptyShapeLoc": "aculinaryartillery:shapes/block/saucepan/empty",
+			"opaqueContentShapeLoc": "aculinaryartillery:shapes/block/saucepan/contents",
+			"liquidContentShapeLoc": "aculinaryartillery:shapes/block/saucepan/contents",
+			"liquidMaxYTranslate": 0.09375
+		},
+		inFirePitProps: {
+			transform: {
+				translation: {
+					x: 0,
+					y: 0.2,
+					z: 0
+				}
+			},
+			useFirepitModel: "Wide"
+		},
+		meathookable: true,
+		meatHookTransform: {
+			translation: { x: 0.0, y: -0.86, z: 0.05 },
+			rotation: { x: -90, y: 90, z: 0 },
+			origin: { x: 0.5, y: 0, z: 0.5 },
+			scale: 0.8
+		},
+		shelvable: true,
+		"onDisplayTransform": {
+			"translation": { "x": 0, "y": -0.15, "z": 0 },
+			"scale": 0.7
+		},
+	},
+	variantgroups: [
+		{ "code": "color", "states": ["blue", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan"] },
+		{ code: "type", states: [ "fired" ] }
+	],
+	creativeinventory: { general: ["*"], decorative: ["*"], "aculinaryartillery": ["*"] },
+	shape: { base: "aculinaryartillery:block/saucepan/empty" },
+	sidesolid: { all: false },
+	sideopaque: { all: false },
+	blockmaterial: "Ceramic",
+	heldTpIdleAnimation: "holdbothhandsmedium", heldTpUseAnimation: "twohandplaceblock", 
+	textures: {
+		"ceramic": { base: "game:block/clay/hardened/{color}" },
+		"burned": { base: "game:block/clay/hardened/{color}" },
+		"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
+	},
+	replaceable: 500,
+	resistance: 1.5,
+	liquidSelectable: 1,
+	lightAbsorption: 0,
+	sounds: {
+		"place": "game:block/planks",
+		"hit": "game:block/planks",
+		"break": "game:block/planks",
+		"walk": "game:walk/wood"
+	},
+	collisionbox: {
+		x1: 0,
+		y1: 0,
+		z1: 0,
+		x2: 1,
+		y2: 0.25,
+		z2: 1
+	},
+	selectionbox: {
+		x1: 0,
+		y1: 0,
+		z1: 0,
+		x2: 1,
+		y2: 0.25,
+		z2: 1
+	},
+	materialDensity: 400,
+	tpHandTransform: {
+		translation: { x: -1.125, y: -0.55, z: -0.33 },
+		rotation: { x: 100, y: -25, z: -107 },
+		scale: 0.8
+	},
+	guiTransform: {
+		origin: {
+			x: 0.5,
+			y: 0.15,
+			z: 0.5
+		},
+		scale: 3
+	},
+	fpHandTransform: {
+		scale: 2
+	},
+	groundTransform: {
+		origin: {
+			x: 0.5,
+			y: 0,
+			z: 0.5
+		},
+		scale: 3
+	}
+}
