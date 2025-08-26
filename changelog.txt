@@ -5,8 +5,19 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.20_v1.2.4~
+~1.20_v1.2.6~
 - Frying pan added?
+
+~1.20_v1.2.5~
+- Japanese translation updated (thanks to macoto_hino)
+
+~1.20_v1.2.4~
+- Trader clothing patches fixed
+- Mini-cauldron capacity increased from 20L to 25L
+- French translation updated (thanks to Mokrad1)
+- Polish translation updated (thanks to lucznik49)
+- Spanish translation updated (thanks to tomandoawa)
+
 
 ~1.20_v1.2.3~
 - Tentative fix for bottle rack issues
@@ -15,7 +26,7 @@
 ~1.20_v1.2.2~
 - Ukranian translation updated (thanks to burunduk!)
 - en.json updated so blocks have line breaks
-- Bottle rack grid recipe updated to require nails - DONE!!!
+- Bottle rack grid recipe updated to require nails
 - Seaweed patch fixed
 
 Pursec fixes:
