@@ -49,692 +49,711 @@ namespace ACulinaryArtillery
             __result = list.ToArray();
         }
     }
-    [HarmonyPatch(typeof(InventorySmelting))]
-    class SmeltingInvPatches
-    {
-        //[HarmonyPrepare]
-        //static bool Prepare()
-        //{
-        //    return true;
-        //}
-
-        [HarmonyPostfix]
-        [HarmonyPatch("GetOutputText")]
-        static void displayFix(ref string __result, InventorySmelting __instance)
+    [HarmonyPatch(typeof(ModSystemSurvivalHandbook), "onCreatePagesAsync")]
+    public static class ModSystemSurvivalHandbookPatch {
+        public static void Postfix(ref List<GuiHandbookPage> __result, ModSystemSurvivalHandbook __instance, ref ICoreClientAPI ___capi, ref ItemStack[] ___allstacks)
         {
-            if (__instance[1].Itemstack?.Collectible is BlockSaucepan)
+            foreach (var recipe in ___capi.GetMixingRecipes())
             {
-                __result = (__instance[1].Itemstack.Collectible as BlockSaucepan).GetOutputText(__instance.Api.World, __instance);
-            }
-        }
+                if (___capi.IsShuttingDown) break;
+                if (recipe.CooksInto == null)
+                {
+                    GuiHandbookMealRecipePage elem = new GuiHandbookMealRecipePage(___capi, recipe, ___allstacks, 6)
+                    {
+                        Visible = true
+                    };
 
 
-        /// <summary>
-        /// Turns the
-        /// <code>
-        ///     ...
-		///	    if (targetSlot == this.slots[1] && (stack.Collectible is BlockSmeltingContainer || stack.Collectible is BlockCookingContainer))
-		///	    {
-        ///	        ...
-		///	    }  
-        ///	    ...
-        /// </code>
-        /// block
-        /// into
-        /// <code>
-        ///     ...
-		///	    if (targetSlot == this.slots[1] && (stack.Collectible is BlockSmeltingContainer || stack.Collectible is BlockSaucePan || stack.Collectible is BlockCookingContainer))
-		///	    {
-        ///	        ...
-		///	    }  
-        ///	    ...
-        /// </code>
-        /// to make saucepans/cauldrons prefer a firepit's input slot.
-        /// </summary>
-        /// 
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(InventorySmelting), nameof(InventorySmelting.GetSuitability))]
-        public static bool Harmony_InventorySmelting_GetSuitability_Prefix(
-            ItemSlot sourceSlot, ItemSlot targetSlot, ItemSlot[] ___slots, ref float __result)
-        {
-            var stack = sourceSlot.Itemstack;
-            if (targetSlot == ___slots[1] && stack.Collectible is BlockSaucepan)
-            {
-                __result = 2.2f;
-                return false;
-            }
-            return true;
-        }
-        // Thanks Apache!!!
-
-        /* [HarmonyTranspiler]
-        [HarmonyPatch(nameof(InventorySmelting.GetSuitability))]
-        public static IEnumerable<CodeInstruction> AddSaucePanToPreferredSmeltingInputs(IEnumerable<CodeInstruction> instructions) {
-            CodeMatcher matcher = new CodeMatcher(instructions);
-
-            try {
-                matcher
-                    .MatchEndForward(
-                        Code.Ldloc_0,
-                        Code.Callvirt,
-                        new CodeMatch(ci => Instruction.IsInst(ci, typeof(BlockSmeltingContainer))),
-                        new CodeMatch(Instruction.IsBrTrue)
-                    )
-
-                    .ThrowIfInvalid("Transpiler anchor not found")
-
-                    .RememberPositionIn(out var idxCheckEnd);
-
-                matcher
-                    .Advance(1)
-                    .Insert(
-                        matcher
-                            .InstructionsInRange(idxCheckEnd - 3, idxCheckEnd)
-                            .Manipulator(ci => ci.IsInst(typeof(BlockSmeltingContainer)), ci => ci.operand = typeof(BlockSaucepan))
-                        );
-
-
+                    __result.Add(elem);
                 }
-            catch (InvalidOperationException ex) {
-                ACulinaryArtillery.LogError(ex.Message);
-                return instructions;
+            }
+        }
+        [HarmonyPatch(typeof(InventorySmelting))]
+        class SmeltingInvPatches
+        {
+            //[HarmonyPrepare]
+            //static bool Prepare()
+            //{
+            //    return true;
+            //}
+
+            [HarmonyPostfix]
+            [HarmonyPatch("GetOutputText")]
+            static void displayFix(ref string __result, InventorySmelting __instance)
+            {
+                if (__instance[1].Itemstack?.Collectible is BlockSaucepan)
+                {
+                    __result = (__instance[1].Itemstack.Collectible as BlockSaucepan).GetOutputText(__instance.Api.World, __instance);
+                }
             }
 
-            return matcher.InstructionEnumeration();
-        } */
-    }
+
+            /// <summary>
+            /// Turns the
+            /// <code>
+            ///     ...
+            ///	    if (targetSlot == this.slots[1] && (stack.Collectible is BlockSmeltingContainer || stack.Collectible is BlockCookingContainer))
+            ///	    {
+            ///	        ...
+            ///	    }  
+            ///	    ...
+            /// </code>
+            /// block
+            /// into
+            /// <code>
+            ///     ...
+            ///	    if (targetSlot == this.slots[1] && (stack.Collectible is BlockSmeltingContainer || stack.Collectible is BlockSaucePan || stack.Collectible is BlockCookingContainer))
+            ///	    {
+            ///	        ...
+            ///	    }  
+            ///	    ...
+            /// </code>
+            /// to make saucepans/cauldrons prefer a firepit's input slot.
+            /// </summary>
+            /// 
+
+            [HarmonyPrefix]
+            [HarmonyPatch(typeof(InventorySmelting), nameof(InventorySmelting.GetSuitability))]
+            public static bool Harmony_InventorySmelting_GetSuitability_Prefix(
+                ItemSlot sourceSlot, ItemSlot targetSlot, ItemSlot[] ___slots, ref float __result)
+            {
+                var stack = sourceSlot.Itemstack;
+                if (targetSlot == ___slots[1] && stack.Collectible is BlockSaucepan)
+                {
+                    __result = 2.2f;
+                    return false;
+                }
+                return true;
+            }
+            // Thanks Apache!!!
+
+            /* [HarmonyTranspiler]
+            [HarmonyPatch(nameof(InventorySmelting.GetSuitability))]
+            public static IEnumerable<CodeInstruction> AddSaucePanToPreferredSmeltingInputs(IEnumerable<CodeInstruction> instructions) {
+                CodeMatcher matcher = new CodeMatcher(instructions);
+
+                try {
+                    matcher
+                        .MatchEndForward(
+                            Code.Ldloc_0,
+                            Code.Callvirt,
+                            new CodeMatch(ci => Instruction.IsInst(ci, typeof(BlockSmeltingContainer))),
+                            new CodeMatch(Instruction.IsBrTrue)
+                        )
+
+                        .ThrowIfInvalid("Transpiler anchor not found")
+
+                        .RememberPositionIn(out var idxCheckEnd);
+
+                    matcher
+                        .Advance(1)
+                        .Insert(
+                            matcher
+                                .InstructionsInRange(idxCheckEnd - 3, idxCheckEnd)
+                                .Manipulator(ci => ci.IsInst(typeof(BlockSmeltingContainer)), ci => ci.operand = typeof(BlockSaucepan))
+                            );
 
 
-    class SqueezeHoneyAndCrackEggPatches {
+                    }
+                catch (InvalidOperationException ex) {
+                    ACulinaryArtillery.LogError(ex.Message);
+                    return instructions;
+                }
 
-        static Type[] ParameterSet_BlockPos = new[] { typeof(BlockPos) };
-        static Type[] ParameterSet_BlockPosItemStackFloat = new[] { typeof(BlockPos), typeof(ItemStack), typeof(float) };
-        static Type[] ParameterSet_ItemStack = new[] { typeof(ItemStack) };
-        static Type[] ParameterSet_ItemStackItemStackFloat = new[] { typeof(ItemStack), typeof(ItemStack), typeof(float) };
+                return matcher.InstructionEnumeration();
+            } */
+        }
 
-        static MethodInfo BlockLiquidContainerBase_IsFull_ByPos = AccessTools.Method(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.IsFull), ParameterSet_BlockPos);
-        static MethodInfo BlockLiquidContainerBase_IsFull_ByStack = AccessTools.Method(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.IsFull), ParameterSet_ItemStack);
-        static MethodInfo BlockLiquidContainerBase_TryPutLiquid_ByPos = AccessTools.Method(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.TryPutLiquid), ParameterSet_BlockPosItemStackFloat);
-        static MethodInfo BlockLiquidContainerBase_TryPutLiquid_ByStack = AccessTools.Method(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.TryPutLiquid), ParameterSet_ItemStackItemStackFloat);
 
-        static MethodInfo ILiquidInterface_IsFull_ByPos = AccessTools.Method(typeof(ILiquidInterface), nameof(ILiquidInterface.IsFull), ParameterSet_BlockPos);
-        static MethodInfo ILiquidInterface_IsFull_ByStack = AccessTools.Method(typeof(ILiquidInterface), nameof(ILiquidInterface.IsFull), ParameterSet_ItemStack);
-        static MethodInfo ILiquidSink_TryPutLiquid_ByPos = AccessTools.Method(typeof(ILiquidSink), nameof(ILiquidSink.TryPutLiquid), ParameterSet_BlockPosItemStackFloat);
-        static MethodInfo ILiquidSink_TryPutLiquid_ByStack = AccessTools.Method(typeof(ILiquidSink), nameof(ILiquidSink.TryPutLiquid), ParameterSet_ItemStackItemStackFloat);
+        class SqueezeHoneyAndCrackEggPatches {
 
-        /// <summary>
-        /// Harmony transpiler. Changes the execution of <see cref="ItemHoneyComb.CanSqueezeInto"/> &amp; <see cref="ItemHoneyComb.OnHeldInteractStop"/> in multiple ways:
-        /// <list type="bullet">
-        /// <item>
-        /// Any
-        /// <code><![CDATA[as BlockLiquidContainerTopOpened]]></code>
-        /// or
-        /// <code><![CDATA[is BlockLiquidContainerTopOpened]]></code>
-        /// get replaced with 
-        /// <code><![CDATA[as ILiquidSink]]></code>
-        /// or
-        /// <code><![CDATA[is ILiquidSink]]></code>
-        /// respectively
-        /// </item>
-        /// <item>
-        /// <para>
-        /// Any calls to
-        /// <code><![CDATA[BlockLiquidContainerBase.IsFull]]></code>
-        /// or
-        /// <code><![CDATA[BlockLiquidContainerBase.TryPutLiquid]]></code>
-        /// get replaced with calls to
-        /// <code><![CDATA[ILiquidInterface.IsFull]]></code>
-        /// or
-        /// <code><![CDATA[ILiquidSink.TryPutLiquid]]></code>
-        /// respectively. 
-        /// </para>
-        /// <para>
-        /// Applies to both overloads for each method.
-        /// </para>
-        /// </item>
-        /// <item>
-        /// Any assignments of <see cref="BlockLiquidContainerBase"/> local variables like
-        /// <code><![CDATA[BlockLiquidContainerTopOpened blcto = ...]]></code>
-        /// or uses of those variables get redirected to a new local variable
-        /// <code><![CDATA[ILiquidSink ls = ...]]></code> and use that when referenced.
-        /// </item>
-        /// </list>
-        /// </summary>
-        [HarmonyPatch(typeof(ItemHoneyComb))]
-        public class HoneyCombPatches_Part1 {
+            static Type[] ParameterSet_BlockPos = new[] { typeof(BlockPos) };
+            static Type[] ParameterSet_BlockPosItemStackFloat = new[] { typeof(BlockPos), typeof(ItemStack), typeof(float) };
+            static Type[] ParameterSet_ItemStack = new[] { typeof(ItemStack) };
+            static Type[] ParameterSet_ItemStackItemStackFloat = new[] { typeof(ItemStack), typeof(ItemStack), typeof(float) };
 
-            [HarmonyTargetMethods]
-            public static IEnumerable<MethodInfo> TargetMethods() {
-                return new[] {
+            static MethodInfo BlockLiquidContainerBase_IsFull_ByPos = AccessTools.Method(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.IsFull), ParameterSet_BlockPos);
+            static MethodInfo BlockLiquidContainerBase_IsFull_ByStack = AccessTools.Method(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.IsFull), ParameterSet_ItemStack);
+            static MethodInfo BlockLiquidContainerBase_TryPutLiquid_ByPos = AccessTools.Method(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.TryPutLiquid), ParameterSet_BlockPosItemStackFloat);
+            static MethodInfo BlockLiquidContainerBase_TryPutLiquid_ByStack = AccessTools.Method(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.TryPutLiquid), ParameterSet_ItemStackItemStackFloat);
+
+            static MethodInfo ILiquidInterface_IsFull_ByPos = AccessTools.Method(typeof(ILiquidInterface), nameof(ILiquidInterface.IsFull), ParameterSet_BlockPos);
+            static MethodInfo ILiquidInterface_IsFull_ByStack = AccessTools.Method(typeof(ILiquidInterface), nameof(ILiquidInterface.IsFull), ParameterSet_ItemStack);
+            static MethodInfo ILiquidSink_TryPutLiquid_ByPos = AccessTools.Method(typeof(ILiquidSink), nameof(ILiquidSink.TryPutLiquid), ParameterSet_BlockPosItemStackFloat);
+            static MethodInfo ILiquidSink_TryPutLiquid_ByStack = AccessTools.Method(typeof(ILiquidSink), nameof(ILiquidSink.TryPutLiquid), ParameterSet_ItemStackItemStackFloat);
+
+            /// <summary>
+            /// Harmony transpiler. Changes the execution of <see cref="ItemHoneyComb.CanSqueezeInto"/> &amp; <see cref="ItemHoneyComb.OnHeldInteractStop"/> in multiple ways:
+            /// <list type="bullet">
+            /// <item>
+            /// Any
+            /// <code><![CDATA[as BlockLiquidContainerTopOpened]]></code>
+            /// or
+            /// <code><![CDATA[is BlockLiquidContainerTopOpened]]></code>
+            /// get replaced with 
+            /// <code><![CDATA[as ILiquidSink]]></code>
+            /// or
+            /// <code><![CDATA[is ILiquidSink]]></code>
+            /// respectively
+            /// </item>
+            /// <item>
+            /// <para>
+            /// Any calls to
+            /// <code><![CDATA[BlockLiquidContainerBase.IsFull]]></code>
+            /// or
+            /// <code><![CDATA[BlockLiquidContainerBase.TryPutLiquid]]></code>
+            /// get replaced with calls to
+            /// <code><![CDATA[ILiquidInterface.IsFull]]></code>
+            /// or
+            /// <code><![CDATA[ILiquidSink.TryPutLiquid]]></code>
+            /// respectively. 
+            /// </para>
+            /// <para>
+            /// Applies to both overloads for each method.
+            /// </para>
+            /// </item>
+            /// <item>
+            /// Any assignments of <see cref="BlockLiquidContainerBase"/> local variables like
+            /// <code><![CDATA[BlockLiquidContainerTopOpened blcto = ...]]></code>
+            /// or uses of those variables get redirected to a new local variable
+            /// <code><![CDATA[ILiquidSink ls = ...]]></code> and use that when referenced.
+            /// </item>
+            /// </list>
+            /// </summary>
+            [HarmonyPatch(typeof(ItemHoneyComb))]
+            public class HoneyCombPatches_Part1 {
+
+                [HarmonyTargetMethods]
+                public static IEnumerable<MethodInfo> TargetMethods() {
+                    return new[] {
                     AccessTools.Method(typeof(ItemHoneyComb), nameof(ItemHoneyComb.CanSqueezeInto)),
                     AccessTools.Method(typeof(ItemHoneyComb), nameof(ItemHoneyComb.OnHeldInteractStop))
                 };
-            }
+                }
 
-            /// <inheritdoc cref="HoneyCombPatches_Part1" />  
-            [HarmonyTranspiler]
-            public static IEnumerable<CodeInstruction> AllowSqueezeIntoAnyLiquidSink(
-                IEnumerable<CodeInstruction> instructions, 
-                ILGenerator ilGen
+                /// <inheritdoc cref="HoneyCombPatches_Part1" />  
+                [HarmonyTranspiler]
+                public static IEnumerable<CodeInstruction> AllowSqueezeIntoAnyLiquidSink(
+                    IEnumerable<CodeInstruction> instructions,
+                    ILGenerator ilGen
 #if DEBUG
-                , MethodBase target
+                    , MethodBase target
 #endif
-                ) {
+                    ) {
 #if DEBUG
-                var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+                    var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
 #endif
 
-                // method replacement map
-                IDictionary<MethodInfo, MethodInfo> methodCallRedirects = new Dictionary<MethodInfo, MethodInfo> {
+                    // method replacement map
+                    IDictionary<MethodInfo, MethodInfo> methodCallRedirects = new Dictionary<MethodInfo, MethodInfo> {
                     { BlockLiquidContainerBase_IsFull_ByPos, ILiquidInterface_IsFull_ByPos },
                     { BlockLiquidContainerBase_IsFull_ByStack, ILiquidInterface_IsFull_ByStack },
                     { BlockLiquidContainerBase_TryPutLiquid_ByPos, ILiquidSink_TryPutLiquid_ByPos },
                     { BlockLiquidContainerBase_TryPutLiquid_ByStack, ILiquidSink_TryPutLiquid_ByStack }
                 };
 
-                CodeMatcher matcher = new CodeMatcher(instructions, ilGen);
-                try {
-                    // if there is no use of a <see cref="BlockLiquidContainerTopOpened" /> local we dont need a new local, so create redirection local lazyly
-                    Lazy<LocalBuilder> optionalReplacementLocal = new Lazy<LocalBuilder>(() => ilGen.DeclareLocal(typeof(ILiquidSink)));
+                    CodeMatcher matcher = new CodeMatcher(instructions, ilGen);
+                    try {
+                        // if there is no use of a <see cref="BlockLiquidContainerTopOpened" /> local we dont need a new local, so create redirection local lazyly
+                        Lazy<LocalBuilder> optionalReplacementLocal = new Lazy<LocalBuilder>(() => ilGen.DeclareLocal(typeof(ILiquidSink)));
 
-                    // keep a dictionary of how many different locals use a <see cref="BlockLiquidContainerTopOpened" /> and how to find & replace them
-                    IDictionary<(OpCode, object operand), (Predicate<CodeInstruction> predicate, Action<CodeInstruction> mutator)> localReplacements
-                        = new Dictionary<(OpCode, object operand), (Predicate<CodeInstruction> predicate, Action<CodeInstruction> mutator)>();
+                        // keep a dictionary of how many different locals use a <see cref="BlockLiquidContainerTopOpened" /> and how to find & replace them
+                        IDictionary<(OpCode, object operand), (Predicate<CodeInstruction> predicate, Action<CodeInstruction> mutator)> localReplacements
+                            = new Dictionary<(OpCode, object operand), (Predicate<CodeInstruction> predicate, Action<CodeInstruction> mutator)>();
 
-                    // find all local variable uses of the replaced type casts, store lookup predicates & mutators to redirect them to our new local
-                    while (matcher.Remaining > 0) {
-                        matcher.MatchEndForward(
-                                new CodeMatch(ci => Instruction.IsInst(ci, typeof(BlockLiquidContainerTopOpened))),
-                                new CodeMatch(Instruction.IsAnyStLoc)
+                        // find all local variable uses of the replaced type casts, store lookup predicates & mutators to redirect them to our new local
+                        while (matcher.Remaining > 0) {
+                            matcher.MatchEndForward(
+                                    new CodeMatch(ci => Instruction.IsInst(ci, typeof(BlockLiquidContainerTopOpened))),
+                                    new CodeMatch(Instruction.IsAnyStLoc)
+                                );
+
+                            if (matcher.IsValid) {
+                                var (localStoreMatcher, localStoreMutator, capturesOperand) = LocalRedirector.Instance[matcher.Instruction, optionalReplacementLocal.Value].Value;
+
+                                var operand = capturesOperand
+                                    ? matcher.Operand
+                                    : null;
+
+                                localReplacements[(matcher.Opcode, operand)] = (localStoreMatcher, localStoreMutator);
+                            }
+                        }
+
+                        // we want to replace
+                        // - all <c>as BlockLiquidContainerTopOpened</c> checks with <c>as ILiquidSink</c>
+                        // - all <c>BlockLiquidContainerBase.IsFull/TryPutLiquid</c> calls with <c>ILiquidInterface.IsFull/ILiquidSink.TryPutLiquid</c> calls
+                        System.Func<CodeInstruction, bool> predicate = ci => ci switch {
+                            var c when c.opcode == OpCodes.Isinst => c.operand as Type == typeof(BlockLiquidContainerTopOpened),
+                            var c when c.opcode == OpCodes.Callvirt => methodCallRedirects.ContainsKey(c.operand as MethodInfo),
+                            _ => false
+                        };
+                        Action<CodeInstruction> mutator = ci => {
+                            if (ci.opcode == OpCodes.Isinst) {
+                                ci.operand = typeof(ILiquidSink);
+                            } else if (ci.opcode == OpCodes.Callvirt && methodCallRedirects.TryGetValue(ci.operand as MethodInfo, out var redirect)) {
+                                ci.operand = redirect;
+                            }
+                        };
+
+                        // **additionally** we want to replace all uses (stores & retrievals) of any local of <c>BlockLiquidContainerTopOpened</c> with
+                        // our new local of <c>ILiquidSink</c>
+                        // NOTE: this may need additional base replacements if more than just <c>IsFull/TryPutLiquid</c> is called on these local(s)
+                        (predicate, mutator) = localReplacements
+                            .Aggregate(
+                                (predicate, mutator),
+                                (aggregate, entry) => {
+                                    var (currentPredicate, currentMutator) = aggregate;
+                                    return (
+                                        ci => currentPredicate(ci) || entry.Value.predicate(ci),
+                                        ci => {
+                                            if (entry.Value.predicate(ci))
+                                                entry.Value.mutator(ci);
+                                            else
+                                                currentMutator(ci);
+                                        }
+                                    );
+                                }
                             );
 
-                        if (matcher.IsValid) {
-                            var (localStoreMatcher, localStoreMutator, capturesOperand) = LocalRedirector.Instance[matcher.Instruction, optionalReplacementLocal.Value].Value;
+                        var result = instructions.Manipulator(
+                            predicate,
+                            mutator)
+                            .ToList();
 
-                            var operand = capturesOperand
-                                ? matcher.Operand
-                                : null;
+#if DEBUG
+                        var after = result.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
 
-                            localReplacements[(matcher.Opcode, operand)] = (localStoreMatcher, localStoreMutator);
-                        }
+                        System.Diagnostics.Debug.WriteLine($"--- {target.DeclaringType}.{target.Name}, Patch {nameof(HoneyCombPatches_Part1)}.{nameof(AllowSqueezeIntoAnyLiquidSink)} ---");
+                        System.Diagnostics.Debug.Write(before);
+                        System.Diagnostics.Debug.WriteLine("=>");
+                        System.Diagnostics.Debug.Write(after);
+                        System.Diagnostics.Debug.WriteLine("---------------------------------");
+#endif
+                        return result;
+
+                    } catch (InvalidOperationException ex) {
+                        ACulinaryArtillery.LogError(ex.Message);
+                        return instructions;
                     }
-
-                    // we want to replace
-                    // - all <c>as BlockLiquidContainerTopOpened</c> checks with <c>as ILiquidSink</c>
-                    // - all <c>BlockLiquidContainerBase.IsFull/TryPutLiquid</c> calls with <c>ILiquidInterface.IsFull/ILiquidSink.TryPutLiquid</c> calls
-                    System.Func<CodeInstruction, bool> predicate = ci => ci switch {
-                        var c when c.opcode == OpCodes.Isinst => c.operand as Type == typeof(BlockLiquidContainerTopOpened),
-                        var c when c.opcode == OpCodes.Callvirt => methodCallRedirects.ContainsKey(c.operand as MethodInfo),
-                        _ => false
-                    };
-                    Action<CodeInstruction> mutator = ci => {
-                        if (ci.opcode == OpCodes.Isinst) {
-                            ci.operand = typeof(ILiquidSink);
-                        } else if (ci.opcode == OpCodes.Callvirt && methodCallRedirects.TryGetValue(ci.operand as MethodInfo, out var redirect)) {
-                            ci.operand = redirect;
-                        }
-                    };
-
-                    // **additionally** we want to replace all uses (stores & retrievals) of any local of <c>BlockLiquidContainerTopOpened</c> with
-                    // our new local of <c>ILiquidSink</c>
-                    // NOTE: this may need additional base replacements if more than just <c>IsFull/TryPutLiquid</c> is called on these local(s)
-                    (predicate, mutator) = localReplacements
-                        .Aggregate(
-                            (predicate, mutator),
-                            (aggregate, entry) => {
-                                var (currentPredicate, currentMutator) = aggregate;
-                                return (
-                                    ci => currentPredicate(ci) || entry.Value.predicate(ci),
-                                    ci => {
-                                        if (entry.Value.predicate(ci))
-                                            entry.Value.mutator(ci);
-                                        else
-                                            currentMutator(ci);
-                                    }                                
-                                );
-                            }
-                        );
-
-                    var result = instructions.Manipulator(
-                        predicate,
-                        mutator)
-                        .ToList();
-
-#if DEBUG
-                    var after = result.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
-
-                    System.Diagnostics.Debug.WriteLine($"--- {target.DeclaringType}.{target.Name}, Patch {nameof(HoneyCombPatches_Part1)}.{nameof(AllowSqueezeIntoAnyLiquidSink)} ---");
-                    System.Diagnostics.Debug.Write(before);
-                    System.Diagnostics.Debug.WriteLine("=>");
-                    System.Diagnostics.Debug.Write(after);
-                    System.Diagnostics.Debug.WriteLine("---------------------------------");
-#endif
-                    return result;
-
-                } catch (InvalidOperationException ex) {
-                    ACulinaryArtillery.LogError(ex.Message);
-                    return instructions;
-                }
-            }
-        }
-
-        /// <summary>
-        /// <para>
-        /// Patches <see cref="ItemHoneyComb.CanSqueezeInto"/> to not allow squeezing into a sealed <see cref="BlockEntitySaucepan"/> 
-        /// </para>
-        /// <para>
-        /// Changes the excution flow from
-        /// <code><![CDATA[
-        /// if (... != null) {
-		///     ...
-		/// }
-        /// ]]>
-        /// </code>
-        /// into
-        /// <code><![CDATA[
-        /// if (... != null && !HoneyCombPatches_Part2.IsSealedSaucePan(this.api, pos)) {
-		///     ...
-		/// }
-        /// ]]>
-        /// </code>
-        /// </para>
-        /// </summary>
-        /// <remarks>Functionality to allow squeezing into <see cref="BlockEntitySaucepan"/>s is actually added by another transpiler. 
-        /// So yes, this is not a nonsensical patch just because it prevents something which vanilla would never do anyway ;)
-        /// See <see cref="HoneyCombPatches_Part1"/>.</remarks>
-        [HarmonyPatch(typeof(ItemHoneyComb), nameof(ItemHoneyComb.CanSqueezeInto))]
-        public class HoneyCombPatches_Part2 {
-
-            /// <inheritdoc cref="HoneyCombPatches_Part2" />  
-            [HarmonyTranspiler]
-            public static IEnumerable<CodeInstruction> BlockSqueezingOnSealedSaucepans(
-                IEnumerable<CodeInstruction> instructions, 
-                ILGenerator ilGen
-#if DEBUG
-                , MethodBase target
-#endif
-                ) {
-#if DEBUG
-                var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
-#endif
-
-                FieldInfo fieldApi = AccessTools.Field(typeof(CollectibleObject), "api");
-                MethodInfo getInventoryAccessor = AccessTools.PropertyGetter(typeof(BlockEntityContainer), nameof(BlockEntityContainer.Inventory));
-
-                var matcher = new CodeMatcher(instructions);
-                try {
-                   
-                    // find first <c>... != null</c> instruction
-                    matcher.MatchEndForward(
-                            new CodeMatch(Instruction.IsBrFalse)
-                        )
-
-                        .ThrowIfInvalid("SaucePan issue - Could not find transpiler anchor.");
-
-                    // remember jump target
-                    var label = matcher.Operand;
-
-                    // add <c>&& !IsSealedSaucePan(this.api, pos)</c> into if check
-                    matcher.Advance(1);
-                    matcher.Insert(
-                        new CodeInstruction(OpCodes.Ldarg_0),                                                                                                       // <c>this</c>
-                        new CodeInstruction(OpCodes.Ldfld, fieldApi),                                                                                               // <c>.api</c>
-                        new CodeInstruction(OpCodes.Ldarg_2),                                                                                                       // <c>, pos</c>
-                        new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(HoneyCombPatches_Part2), nameof(HoneyCombPatches_Part2.IsSealedSaucePan))),   // <c>IsSealedSaucePan(...)
-                        new CodeInstruction(OpCodes.Brtrue, label));                                                                                               // <c>&& !...)
-
-                    // dont need to touch 'BlockEntityGroundStorage beg' branch in the same manner since that recursively calls back into itself via the block branch.                    
-
-                    var result = matcher.InstructionEnumeration().ToList();
-#if DEBUG
-                    var after = result.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
-
-                    System.Diagnostics.Debug.WriteLine($"--- {target.DeclaringType}.{target.Name}, Patch {nameof(HoneyCombPatches_Part2)}.{nameof(BlockSqueezingOnSealedSaucepans)} ---");
-                    System.Diagnostics.Debug.Write(before);
-                    System.Diagnostics.Debug.WriteLine("=>");
-                    System.Diagnostics.Debug.Write(after);
-                    System.Diagnostics.Debug.WriteLine("---------------------------------");
-#endif
-
-                    return result;                   
-
-                } catch (InvalidOperationException ex) {
-                    ACulinaryArtillery.LogError(ex.Message);
-                    return instructions;
                 }
             }
 
-            public static bool IsSealedSaucePan(ICoreAPI api, BlockPos pos) {
-                return pos != null && api.World.BlockAccessor.GetBlockEntity(pos) is BlockEntitySaucepan bs && bs.isSealed;
+            /// <summary>
+            /// <para>
+            /// Patches <see cref="ItemHoneyComb.CanSqueezeInto"/> to not allow squeezing into a sealed <see cref="BlockEntitySaucepan"/> 
+            /// </para>
+            /// <para>
+            /// Changes the excution flow from
+            /// <code><![CDATA[
+            /// if (... != null) {
+            ///     ...
+            /// }
+            /// ]]>
+            /// </code>
+            /// into
+            /// <code><![CDATA[
+            /// if (... != null && !HoneyCombPatches_Part2.IsSealedSaucePan(this.api, pos)) {
+            ///     ...
+            /// }
+            /// ]]>
+            /// </code>
+            /// </para>
+            /// </summary>
+            /// <remarks>Functionality to allow squeezing into <see cref="BlockEntitySaucepan"/>s is actually added by another transpiler. 
+            /// So yes, this is not a nonsensical patch just because it prevents something which vanilla would never do anyway ;)
+            /// See <see cref="HoneyCombPatches_Part1"/>.</remarks>
+            [HarmonyPatch(typeof(ItemHoneyComb), nameof(ItemHoneyComb.CanSqueezeInto))]
+            public class HoneyCombPatches_Part2 {
+
+                /// <inheritdoc cref="HoneyCombPatches_Part2" />  
+                [HarmonyTranspiler]
+                public static IEnumerable<CodeInstruction> BlockSqueezingOnSealedSaucepans(
+                    IEnumerable<CodeInstruction> instructions,
+                    ILGenerator ilGen
+#if DEBUG
+                    , MethodBase target
+#endif
+                    ) {
+#if DEBUG
+                    var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+#endif
+
+                    FieldInfo fieldApi = AccessTools.Field(typeof(CollectibleObject), "api");
+                    MethodInfo getInventoryAccessor = AccessTools.PropertyGetter(typeof(BlockEntityContainer), nameof(BlockEntityContainer.Inventory));
+
+                    var matcher = new CodeMatcher(instructions);
+                    try {
+
+                        // find first <c>... != null</c> instruction
+                        matcher.MatchEndForward(
+                                new CodeMatch(Instruction.IsBrFalse)
+                            )
+
+                            .ThrowIfInvalid("SaucePan issue - Could not find transpiler anchor.");
+
+                        // remember jump target
+                        var label = matcher.Operand;
+
+                        // add <c>&& !IsSealedSaucePan(this.api, pos)</c> into if check
+                        matcher.Advance(1);
+                        matcher.Insert(
+                            new CodeInstruction(OpCodes.Ldarg_0),                                                                                                       // <c>this</c>
+                            new CodeInstruction(OpCodes.Ldfld, fieldApi),                                                                                               // <c>.api</c>
+                            new CodeInstruction(OpCodes.Ldarg_2),                                                                                                       // <c>, pos</c>
+                            new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(HoneyCombPatches_Part2), nameof(HoneyCombPatches_Part2.IsSealedSaucePan))),   // <c>IsSealedSaucePan(...)
+                            new CodeInstruction(OpCodes.Brtrue, label));                                                                                               // <c>&& !...)
+
+                        // dont need to touch 'BlockEntityGroundStorage beg' branch in the same manner since that recursively calls back into itself via the block branch.                    
+
+                        var result = matcher.InstructionEnumeration().ToList();
+#if DEBUG
+                        var after = result.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+
+                        System.Diagnostics.Debug.WriteLine($"--- {target.DeclaringType}.{target.Name}, Patch {nameof(HoneyCombPatches_Part2)}.{nameof(BlockSqueezingOnSealedSaucepans)} ---");
+                        System.Diagnostics.Debug.Write(before);
+                        System.Diagnostics.Debug.WriteLine("=>");
+                        System.Diagnostics.Debug.Write(after);
+                        System.Diagnostics.Debug.WriteLine("---------------------------------");
+#endif
+
+                        return result;
+
+                    } catch (InvalidOperationException ex) {
+                        ACulinaryArtillery.LogError(ex.Message);
+                        return instructions;
+                    }
+                }
+
+                public static bool IsSealedSaucePan(ICoreAPI api, BlockPos pos) {
+                    return pos != null && api.World.BlockAccessor.GetBlockEntity(pos) is BlockEntitySaucepan bs && bs.isSealed;
+                }
             }
-        }
 
 
-        /// <summary>
-        /// Harmony transpiler. Changes the execution of <see cref="ItemHoneyComb.OnHeldInteractStop(float, ItemSlot, EntityAgent, BlockSelection, EntitySelection)"/> 
-        /// &amp; <see cref="ItemHoneyComb.OnHeldInteractStart(ItemSlot, EntityAgent, BlockSelection, EntitySelection, bool, ref EnumHandHandling)"/> by replacing any call of
-        /// <code><![CDATA[
-        /// ....CanSqueezeInto(..., blockSel.Position)
-        /// ]]></code>
-        /// with
-        /// <code><![CDATA[
-        /// HoneyCombPatches_Part3.CanSqueezeInto(..., ..., blockSel)
-        /// ]]></code>
-        /// The effect is that ground storage now uses that <c>blockSel</c> parameter to <em>choose</em> which container to squeeze into (if available). Makes the 
-        /// bahaviour consistent with egg cracking.
-        /// </summary>
-        /// <remarks>
-        /// Effect cannot be achieved by transpiling <see cref="ItemHoneyComb.CanSqueezeInto" /> since a required parameter is not even passed to
-        /// that method.</remarks>        
-        [HarmonyPatch(typeof(ItemHoneyComb))]
-        public class HoneyCombPatches_Part3 {
+            /// <summary>
+            /// Harmony transpiler. Changes the execution of <see cref="ItemHoneyComb.OnHeldInteractStop(float, ItemSlot, EntityAgent, BlockSelection, EntitySelection)"/> 
+            /// &amp; <see cref="ItemHoneyComb.OnHeldInteractStart(ItemSlot, EntityAgent, BlockSelection, EntitySelection, bool, ref EnumHandHandling)"/> by replacing any call of
+            /// <code><![CDATA[
+            /// ....CanSqueezeInto(..., blockSel.Position)
+            /// ]]></code>
+            /// with
+            /// <code><![CDATA[
+            /// HoneyCombPatches_Part3.CanSqueezeInto(..., ..., blockSel)
+            /// ]]></code>
+            /// The effect is that ground storage now uses that <c>blockSel</c> parameter to <em>choose</em> which container to squeeze into (if available). Makes the 
+            /// bahaviour consistent with egg cracking.
+            /// </summary>
+            /// <remarks>
+            /// Effect cannot be achieved by transpiling <see cref="ItemHoneyComb.CanSqueezeInto" /> since a required parameter is not even passed to
+            /// that method.</remarks>        
+            [HarmonyPatch(typeof(ItemHoneyComb))]
+            public class HoneyCombPatches_Part3 {
 
-            private static  AccessTools.FieldRef<ItemHoneyComb, ICoreAPI> apiAccessor = AccessTools.FieldRefAccess<ItemHoneyComb, ICoreAPI>("api");
+                private static AccessTools.FieldRef<ItemHoneyComb, ICoreAPI> apiAccessor = AccessTools.FieldRefAccess<ItemHoneyComb, ICoreAPI>("api");
 
-            [HarmonyTargetMethods]
-            public static IEnumerable<MethodInfo> TargetMethods() {
-                return new[] {
+                [HarmonyTargetMethods]
+                public static IEnumerable<MethodInfo> TargetMethods() {
+                    return new[] {
                     AccessTools.Method(typeof(ItemHoneyComb), nameof(ItemHoneyComb.OnHeldInteractStart)),
                     AccessTools.Method(typeof(ItemHoneyComb), nameof(ItemHoneyComb.OnHeldInteractStop))
                 };
-            }
+                }
 
-            /// <inheritdoc cref="HoneyCombPatches_Part3" />         
-            [HarmonyTranspiler]
-            public static IEnumerable<CodeInstruction> ReplaceCanSqueezeIntoCalls(
-                IEnumerable<CodeInstruction> instructions
+                /// <inheritdoc cref="HoneyCombPatches_Part3" />         
+                [HarmonyTranspiler]
+                public static IEnumerable<CodeInstruction> ReplaceCanSqueezeIntoCalls(
+                    IEnumerable<CodeInstruction> instructions
 #if DEBUG
-                , MethodBase target
+                    , MethodBase target
 #endif
-                ) {
+                    ) {
 #if DEBUG
-                var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+                    var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
 #endif
 
-                MethodInfo targetMethod = AccessTools.Method(typeof(ItemHoneyComb), nameof(ItemHoneyComb.CanSqueezeInto));
-                MethodInfo redirectMethod = AccessTools.Method(typeof(HoneyCombPatches_Part3), nameof(HoneyCombPatches_Part3.CanSqueezeInto));
-                FieldInfo positionField = AccessTools.Field(typeof(BlockSelection), nameof(BlockSelection.Position));
+                    MethodInfo targetMethod = AccessTools.Method(typeof(ItemHoneyComb), nameof(ItemHoneyComb.CanSqueezeInto));
+                    MethodInfo redirectMethod = AccessTools.Method(typeof(HoneyCombPatches_Part3), nameof(HoneyCombPatches_Part3.CanSqueezeInto));
+                    FieldInfo positionField = AccessTools.Field(typeof(BlockSelection), nameof(BlockSelection.Position));
 
-                CodeMatcher matcher = new CodeMatcher(instructions);
-                try {
-                    while (matcher.Remaining > 0) {
-                        matcher.MatchStartForward(
-                            new CodeMatch(OpCodes.Ldfld, positionField),
-                            new CodeMatch(OpCodes.Call, targetMethod)
-                        );
+                    CodeMatcher matcher = new CodeMatcher(instructions);
+                    try {
+                        while (matcher.Remaining > 0) {
+                            matcher.MatchStartForward(
+                                new CodeMatch(OpCodes.Ldfld, positionField),
+                                new CodeMatch(OpCodes.Call, targetMethod)
+                            );
 
-                        if (matcher.IsValid) {
-                            matcher.SetOpcodeAndAdvance( OpCodes.Nop );     // remove the <c>.Position</c> call
-                            matcher.SetOperandAndAdvance(redirectMethod);
+                            if (matcher.IsValid) {
+                                matcher.SetOpcodeAndAdvance(OpCodes.Nop);     // remove the <c>.Position</c> call
+                                matcher.SetOperandAndAdvance(redirectMethod);
+                            }
                         }
+
+                        var result = matcher.InstructionEnumeration().ToList();
+#if DEBUG
+                        var after = result.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+
+                        System.Diagnostics.Debug.WriteLine($"--- {target.DeclaringType}.{target.Name}, Patch {nameof(HoneyCombPatches_Part3)}.{nameof(ReplaceCanSqueezeIntoCalls)} ---");
+                        System.Diagnostics.Debug.Write(before);
+                        System.Diagnostics.Debug.WriteLine("=> => =>");
+                        System.Diagnostics.Debug.Write(after);
+                        System.Diagnostics.Debug.WriteLine("---------------------------------");
+#endif
+
+                        return result;
+                    } catch (InvalidOperationException ex) {
+                        ACulinaryArtillery.LogError(ex.Message);
+                        return instructions;
                     }
 
-                    var result = matcher.InstructionEnumeration().ToList();
-#if DEBUG
-                    var after = result.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+                }
 
-                    System.Diagnostics.Debug.WriteLine($"--- {target.DeclaringType}.{target.Name}, Patch {nameof(HoneyCombPatches_Part3)}.{nameof(ReplaceCanSqueezeIntoCalls)} ---");
-                    System.Diagnostics.Debug.Write(before);
-                    System.Diagnostics.Debug.WriteLine("=> => =>");
-                    System.Diagnostics.Debug.Write(after);
-                    System.Diagnostics.Debug.WriteLine("---------------------------------");
-#endif
-
-                    return result;
-                } catch (InvalidOperationException ex) {
-                    ACulinaryArtillery.LogError(ex.Message);
-                    return instructions;
+                /// <summary>
+                /// This is <em>kind of</em> a prefix for <see cref="ItemHoneyComb.CanSqueezeInto(Block, BlockPos)"/>, but it uses a different 
+                /// set of parameters. Still partially shadows calls into there.
+                /// </summary>
+                public static bool CanSqueezeInto(ItemHoneyComb instance, Block block, BlockSelection selection) {
+                    return block switch {
+                        ILiquidSink => instance.CanSqueezeInto(block, selection),
+                        _ => apiAccessor(instance) is var api
+                            && api.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityGroundStorage beg
+                            && instance.GetSuitableTargetSlot(beg, selection) is ItemSlot
+                    };
                 }
 
             }
 
             /// <summary>
-            /// This is <em>kind of</em> a prefix for <see cref="ItemHoneyComb.CanSqueezeInto(Block, BlockPos)"/>, but it uses a different 
-            /// set of parameters. Still partially shadows calls into there.
+            /// Harmony transpiler. Changes the execution flow of <see cref="ItemHoneyComb.OnHeldInteractStop"/> so that
+            /// <code><![CDATA[
+            /// ...
+            /// ItemSlot squeezeIntoSlot = beg.Inventory.FirstOrDefault(delegate (ItemSlot gslot)
+            /// {
+            ///     ItemStack itemstack = gslot.Itemstack;
+            ///     return ((itemstack != null) ? itemstack.Block : null) != null && this.CanSqueezeInto(gslot.Itemstack.Block, null);
+            /// });
+            /// ...
+            /// ]]>
+            /// </code>
+            /// gets replaced with
+            /// <code><![CDATA[
+            /// ...
+            /// ItemSlot squeezeIntoSlot = SqueezeHelper.GetSuitableTargetSlot(this, beg, blockSel);
+            /// ...
+            /// ]]>
+            /// </code>
             /// </summary>
-            public static bool CanSqueezeInto(ItemHoneyComb instance, Block block, BlockSelection selection) {
-                return block switch {
-                    ILiquidSink => instance.CanSqueezeInto(block, selection),
-                    _ => apiAccessor(instance) is var api
-                        && api.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityGroundStorage beg
-                        && instance.GetSuitableTargetSlot(beg, selection) is ItemSlot
-                };
-            }
+            [HarmonyPatch(typeof(ItemHoneyComb), nameof(ItemHoneyComb.OnHeldInteractStop))]
+            public class HoneyCombPatches_Part4 {
 
+                /// <inheritdoc cref="HoneyCombPatches_Part4" />         
+                [HarmonyTranspiler]
+                public static IEnumerable<CodeInstruction> ReplaceGroundStorageSqueezeTargetSelection(
+                    IEnumerable<CodeInstruction> instructions
+#if DEBUG
+                    , MethodBase target
+#endif
+                    ) {
+#if DEBUG
+                    var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+#endif
+
+                    /* MethodInfo firstOrDefault = typeof(Enumerable)
+                         .GetMethods()
+                         .Single(
+                             mi => mi is { Name: nameof(Enumerable.FirstOrDefault), IsGenericMethod: true }                      // `Enumerable.FirstOrDefault<...>(...)` method
+                                 && mi.GetParameters() is [_, { ParameterType: var pt }]                                         // with exactly **two** parameters
+                                 && mi.GetGenericArguments() is [var ga]                                                         // with **one** generic type argument `<T>`
+                                 && pt == typeof(System.Func<,>).MakeGenericType(ga, typeof(bool))                               // where the second parameter is of Type `Func<T, bool>`
+                         );
+                    */
+                    //MethodInfo firstOrDefaultOfItemSlot = firstOrDefault.MakeGenericMethod(typeof(ItemSlot));
+                    //MethodInfo entityContainerInventoryGetter = AccessTools.PropertyGetter(typeof(BlockEntityContainer), nameof(BlockEntityContainer.Inventory));
+                    MethodInfo getSlotMethod = AccessTools.Method(typeof(BlockEntityGroundStorage), nameof(BlockEntityGroundStorage.GetSlotAt));
+                    CodeMatcher matcher = new CodeMatcher(instructions);
+                    try {
+                        matcher
+                            .End()
+                            // find what was the <c>beg.Inventory.FirstOrDefault(delegate ...) { ... }</c> block
+                            .MatchStartBackwards(
+                                new CodeMatch(ci => Instruction.IsLdLoc(ci, typeof(BlockEntityGroundStorage))),
+                                Code.Ldarg_S,
+                                new CodeMatch(ci => Instruction.IsCallVirt(ci, getSlotMethod))
+                            //Code.Ldarg_0,
+                            //Code.Ldftn,
+                            //Code.Newobj,
+                            //new CodeMatch(OpCodes.Call, firstOrDefaultOfItemSlot)
+                            )
+                            .ThrowIfInvalid("GroundStorage issue - Could not find transpiler anchor")
+
+                            .Advance(1)                                                                                         // step past the 'beg' local getter
+                            .RemoveInstructions(2)                                                                              // remove <c>.Inventory.FirstOrDefault(delegate ...) { ... }</c> part
+                            .Advance(-1)                                                                                        // step in front of the 'beg' local getter again
+                            .Insert(new CodeInstruction(OpCodes.Ldarg_0))                                                       // add <c>this</c>
+                            .Advance(2)                                                                                         // step past 'beg' again ;)
+                            .Insert(
+                                new CodeInstruction(OpCodes.Ldarg_S, 4),                                                        // add <c>blockSel</c>
+                                new CodeInstruction(
+                                    OpCodes.Call,
+                                    AccessTools.Method(typeof(SqueezeHelper), nameof(SqueezeHelper.GetSuitableTargetSlot)))     // call <c>SqueezeHelper.GetSuitableTargetSlot</c>
+                            );
+
+                        var result = matcher.InstructionEnumeration().ToList();
+#if DEBUG
+                        var after = result.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+
+                        System.Diagnostics.Debug.WriteLine($"--- {target.DeclaringType}.{target.Name}, Patch {nameof(HoneyCombPatches_Part4)}.{nameof(ReplaceGroundStorageSqueezeTargetSelection)} ---");
+                        System.Diagnostics.Debug.Write(before);
+                        System.Diagnostics.Debug.WriteLine("=> => =>");
+                        System.Diagnostics.Debug.Write(after);
+                        System.Diagnostics.Debug.WriteLine("---------------------------------");
+#endif
+
+                        return result;
+                    } catch (InvalidOperationException ex) {
+                        ACulinaryArtillery.LogError(ex.Message);
+                        return instructions;
+                    }
+
+                }
+            }
         }
 
-        /// <summary>
-        /// Harmony transpiler. Changes the execution flow of <see cref="ItemHoneyComb.OnHeldInteractStop"/> so that
-        /// <code><![CDATA[
-        /// ...
-        /// ItemSlot squeezeIntoSlot = beg.Inventory.FirstOrDefault(delegate (ItemSlot gslot)
-        /// {
-        ///     ItemStack itemstack = gslot.Itemstack;
-        ///     return ((itemstack != null) ? itemstack.Block : null) != null && this.CanSqueezeInto(gslot.Itemstack.Block, null);
-        /// });
-        /// ...
-        /// ]]>
-        /// </code>
-        /// gets replaced with
-        /// <code><![CDATA[
-        /// ...
-        /// ItemSlot squeezeIntoSlot = SqueezeHelper.GetSuitableTargetSlot(this, beg, blockSel);
-        /// ...
-        /// ]]>
-        /// </code>
-        /// </summary>
-        [HarmonyPatch(typeof(ItemHoneyComb), nameof(ItemHoneyComb.OnHeldInteractStop))]
-        public class HoneyCombPatches_Part4 {
+        [HarmonyPatch(typeof(CookingRecipeIngredient))]
+        class CookingIngredientPatches
+        {
+            //[HarmonyPrepare]
+            //static bool Prepare()
+            //{
+            //    return true;
+            //}
 
-            /// <inheritdoc cref="HoneyCombPatches_Part4" />         
+            [HarmonyPrefix]
+            [HarmonyPatch("GetMatchingStack")]
+            static bool displayFix(ItemStack inputStack, ref CookingRecipeStack __result, CookingRecipeIngredient __instance)
+            {
+                if (inputStack == null)
+                { __result = null; return false; }
+
+                for (int i = 0; i < __instance.ValidStacks.Length; i++)
+                {
+                    bool isWildCard = __instance.ValidStacks[i].Code.Path.Contains("*");
+                    bool found =
+                        (isWildCard && inputStack.Collectible.WildCardMatch(__instance.ValidStacks[i].Code))
+                        || (!isWildCard && inputStack.Equals(__instance.world, __instance.ValidStacks[i].ResolvedItemstack, GlobalConstants.IgnoredStackAttributes.Concat(new string[] { "madeWith", "expandedSats" }).ToArray()))
+                        || (__instance.ValidStacks[i].CookedStack?.ResolvedItemstack != null && inputStack.Equals(__instance.world, __instance.ValidStacks[i].ResolvedItemstack, GlobalConstants.IgnoredStackAttributes.Concat(new string[] { "madeWith", "expandedSats" }).ToArray()))
+                    ;
+
+                    if (found)
+                    { __result = __instance.ValidStacks[i]; return false; }
+                }
+
+
+                __result = null;
+                return false;
+            }
+        }
+        /*
+        [HarmonyPatch(typeof(BlockEntityShelf))]
+        class ShelfPatches
+        {
+            static MethodBase miBlockEntityShelf_GetBlockInfo = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.GetBlockInfo));
+            static MethodInfo miBlockEntityShelf_CrockInfoCompact = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.CrockInfoCompact));
+            //[HarmonyPrepare]
+            //static bool Prepare()
+            //{
+            //    return true;
+            //}
+
+
             [HarmonyTranspiler]
-            public static IEnumerable<CodeInstruction> ReplaceGroundStorageSqueezeTargetSelection(
-                IEnumerable<CodeInstruction> instructions
-#if DEBUG
-                , MethodBase target
-#endif
-                ) {
-#if DEBUG
-                var before = instructions.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
-#endif
+            [HarmonyPatch(nameof(BlockEntityShelf.GetBlockInfo))]
+            /// <summary>
+            /// Modifes parts of the <see cref="BlockEntityShelf.GetBlockInfo" /> method:
+            /// Turns 
+            /// <code>
+            ///     ...
+            ///     if (stack.Collectible is BlockCrock) {
+            ///         sb.Append(this.CrockInfoCompact(this.inv[j]));
+            ///     } else if (...) {
+            ///         ...
+            ///     } 
+            ///     ...
+            /// </code>
+            /// into
+            /// <code>
+            ///     ...
+            ///     if (stack.Collectible is BlockCrock) {
+            ///         sb.Append(this.CrockInfoCompact(this.inv[j]));
+            ///     } else if (stack.Collectible is BlockLiquidContainerBase) {
+            ///         sb.Append(LiquidInfoCompact(this, this.inv[j]));
+            ///     } else if (...) {
+            ///         ...
+            ///     } 
+            ///     ...
+            /// </code>
+            /// </summary>
+            /// <remarks>
+            /// Don't use Prefixes. Prefixes are evil. Prefixes don't play with others.
+            /// </remarks>
+            public static IEnumerable<CodeInstruction> AddLiquidContainerInfo(IEnumerable<CodeInstruction> instructions, ILGenerator ilGen) {
+                // methods & types used for finding code instructions (or building them)
+                MethodInfo miItemStackGetCollectible = AccessTools.PropertyGetter(typeof(ItemStack), nameof(ItemStack.Collectible));
+                MethodInfo miCrockInfoCompact = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.CrockInfoCompact));
 
-               /* MethodInfo firstOrDefault = typeof(Enumerable)
-                    .GetMethods()
-                    .Single(
-                        mi => mi is { Name: nameof(Enumerable.FirstOrDefault), IsGenericMethod: true }                      // `Enumerable.FirstOrDefault<...>(...)` method
-                            && mi.GetParameters() is [_, { ParameterType: var pt }]                                         // with exactly **two** parameters
-                            && mi.GetGenericArguments() is [var ga]                                                         // with **one** generic type argument `<T>`
-                            && pt == typeof(System.Func<,>).MakeGenericType(ga, typeof(bool))                               // where the second parameter is of Type `Func<T, bool>`
-                    );
-               */
-                //MethodInfo firstOrDefaultOfItemSlot = firstOrDefault.MakeGenericMethod(typeof(ItemSlot));
-                //MethodInfo entityContainerInventoryGetter = AccessTools.PropertyGetter(typeof(BlockEntityContainer), nameof(BlockEntityContainer.Inventory));
-                MethodInfo getSlotMethod = AccessTools.Method(typeof(BlockEntityGroundStorage), nameof(BlockEntityGroundStorage.GetSlotAt));
-                CodeMatcher matcher = new CodeMatcher(instructions);
+                Type typeBlockCrock = typeof(BlockCrock);
+
+                const string jumpNoCrockBranch = "branchNotACrock";
+
+                var matcher = new CodeMatcher(instructions, ilGen);
+
+                // find the start of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block
                 try {
                     matcher
-                        .End()
-                        // find what was the <c>beg.Inventory.FirstOrDefault(delegate ...) { ... }</c> block
-                        .MatchStartBackwards(
-                            new CodeMatch(ci => Instruction.IsLdLoc(ci, typeof(BlockEntityGroundStorage))),
-                            Code.Ldarg_S,
-                            new CodeMatch(ci => Instruction.IsCallVirt(ci, getSlotMethod))
-                        //Code.Ldarg_0,
-                        //Code.Ldftn,
-                        //Code.Newobj,
-                        //new CodeMatch(OpCodes.Call, firstOrDefaultOfItemSlot)
+                        .MatchStartForward(
+                            new CodeMatch(ci => Instruction.IsLdLoc(ci, typeof(ItemStack))),                                                            // <c>???</c>  - _technically_ this matches on using _any_ ItemStack typed local variable
+                            new CodeMatch(ci => Instruction.IsCallVirt(ci, miItemStackGetCollectible)),                                                 // <c>.Collectible</c>
+                            new CodeMatch(ci => Instruction.IsInst(ci, typeBlockCrock)),                                                                // <c>is BlockCrock</c>                                                     
+                            new CodeMatch(Instruction.IsBrFalse, jumpNoCrockBranch)                                                                     // <c>) {... </c>                                                                               
                         )
-                        .ThrowIfInvalid("GroundStorage issue - Could not find transpiler anchor")
+                        .ThrowIfInvalid("LiquidContainerInfo issue - Cannot find transpiler anchor")
 
-                        .Advance(1)                                                                                         // step past the 'beg' local getter
-                        .RemoveInstructions(2)                                                                              // remove <c>.Inventory.FirstOrDefault(delegate ...) { ... }</c> part
-                        .Advance(-1)                                                                                        // step in front of the 'beg' local getter again
-                        .Insert(new CodeInstruction(OpCodes.Ldarg_0))                                                       // add <c>this</c>
-                        .Advance(2)                                                                                         // step past 'beg' again ;)
-                        .Insert(
-                            new CodeInstruction(OpCodes.Ldarg_S, 4),                                                        // add <c>blockSel</c>
-                            new CodeInstruction(
-                                OpCodes.Call, 
-                                AccessTools.Method(typeof(SqueezeHelper), nameof(SqueezeHelper.GetSuitableTargetSlot)))     // call <c>SqueezeHelper.GetSuitableTargetSlot</c>
-                        );
+                        .RememberPositionIn(out var idxStart)                                                                                           // remember current instruction position
+                        .RememberNamedMatchIn(jumpNoCrockBranch, out var ciBranchNoCrock)                                                               // remember marked instruction
 
-                    var result = matcher.InstructionEnumeration().ToList();
-#if DEBUG
-                    var after = result.Aggregate(new StringBuilder(), (sb, ci) => sb.AppendLine(ci.ToString()));
+                        .MatchEndForward(
+                            new CodeMatch(Instruction.IsBr)                                                                                             // <c>... }</c>
+                        )
+                        .ThrowIfInvalid("Cannot find branch block end")
 
-                    System.Diagnostics.Debug.WriteLine($"--- {target.DeclaringType}.{target.Name}, Patch {nameof(HoneyCombPatches_Part4)}.{nameof(ReplaceGroundStorageSqueezeTargetSelection)} ---");
-                    System.Diagnostics.Debug.Write(before);
-                    System.Diagnostics.Debug.WriteLine("=> => =>");
-                    System.Diagnostics.Debug.Write(after);
-                    System.Diagnostics.Debug.WriteLine("---------------------------------");
-#endif
+                        .RememberPositionIn(out var idxEnd)                                                                                             // remember current instruction position                                                                                                                                    
 
-                    return result;
+                        .Advance(1)                                                                                                                     // insert our new "if" block *after* the "if" block for the crock
+                        .Insert(                        
+                            matcher
+                                .InstructionsInRange(idxStart, idxEnd)                                                                                  // create a copy of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block but
+                                .MethodReplacer(miCrockInfoCompact, AccessTools.Method(typeof(ShelfPatches), nameof(ShelfPatches.LiquidInfoCompact)))   //   - replace <c>CrockInfoCompact(...)</c> call with <c>LiquidInfoCompact(...)</c> call
+                                .Manipulator(ci => ci.IsInst(typeBlockCrock), ci => ci.operand = typeof(BlockLiquidContainerBase))                      //   - replace <c>is BlockCrock</c> with <c>is BlockLiquidContainerBase</c>
+                        )
+                        .CreateLabel(out Label newBranchLabel);
+
+                    ciBranchNoCrock.operand = newBranchLabel;                                                                                           // make <c>(... is BlockCrock)</c> jump into our new branch on failure
+
                 } catch (InvalidOperationException ex) {
                     ACulinaryArtillery.LogError(ex.Message);
                     return instructions;
                 }
 
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(CookingRecipeIngredient))]
-    class CookingIngredientPatches
-    {
-        //[HarmonyPrepare]
-        //static bool Prepare()
-        //{
-        //    return true;
-        //}
-
-        [HarmonyPrefix]
-        [HarmonyPatch("GetMatchingStack")]
-        static bool displayFix(ItemStack inputStack, ref CookingRecipeStack __result, CookingRecipeIngredient __instance)
-        {
-            if (inputStack == null)
-            { __result = null; return false; }
-
-            for (int i = 0; i < __instance.ValidStacks.Length; i++)
-            {
-                bool isWildCard = __instance.ValidStacks[i].Code.Path.Contains("*");
-                bool found =
-                    (isWildCard && inputStack.Collectible.WildCardMatch(__instance.ValidStacks[i].Code))
-                    || (!isWildCard && inputStack.Equals(__instance.world, __instance.ValidStacks[i].ResolvedItemstack, GlobalConstants.IgnoredStackAttributes.Concat(new string[] { "madeWith", "expandedSats" }).ToArray()))
-                    || (__instance.ValidStacks[i].CookedStack?.ResolvedItemstack != null && inputStack.Equals(__instance.world, __instance.ValidStacks[i].ResolvedItemstack, GlobalConstants.IgnoredStackAttributes.Concat(new string[] { "madeWith", "expandedSats" }).ToArray()))
-                ;
-
-                if (found)
-                { __result = __instance.ValidStacks[i]; return false; }
+                return matcher.InstructionEnumeration();
             }
 
-
-            __result = null;
-            return false;
-        }
-    }
-
-    [HarmonyPatch(typeof(BlockEntityShelf))]
-    class ShelfPatches
-    {
-        static MethodBase miBlockEntityShelf_GetBlockInfo = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.GetBlockInfo));
-        static MethodInfo miBlockEntityShelf_CrockInfoCompact = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.CrockInfoCompact));
-        //[HarmonyPrepare]
-        //static bool Prepare()
-        //{
-        //    return true;
-        //}
-
-
-        [HarmonyTranspiler]
-        [HarmonyPatch(nameof(BlockEntityShelf.GetBlockInfo))]
-        /// <summary>
-        /// Modifes parts of the <see cref="BlockEntityShelf.GetBlockInfo" /> method:
-        /// Turns 
-        /// <code>
-        ///     ...
-        ///     if (stack.Collectible is BlockCrock) {
-        ///         sb.Append(this.CrockInfoCompact(this.inv[j]));
-        ///     } else if (...) {
-        ///         ...
-        ///     } 
-        ///     ...
-        /// </code>
-        /// into
-        /// <code>
-        ///     ...
-        ///     if (stack.Collectible is BlockCrock) {
-        ///         sb.Append(this.CrockInfoCompact(this.inv[j]));
-        ///     } else if (stack.Collectible is BlockLiquidContainerBase) {
-        ///         sb.Append(LiquidInfoCompact(this, this.inv[j]));
-        ///     } else if (...) {
-        ///         ...
-        ///     } 
-        ///     ...
-        /// </code>
-        /// </summary>
-        /// <remarks>
-        /// Don't use Prefixes. Prefixes are evil. Prefixes don't play with others.
-        /// </remarks>
-        public static IEnumerable<CodeInstruction> AddLiquidContainerInfo(IEnumerable<CodeInstruction> instructions, ILGenerator ilGen) {
-            // methods & types used for finding code instructions (or building them)
-            MethodInfo miItemStackGetCollectible = AccessTools.PropertyGetter(typeof(ItemStack), nameof(ItemStack.Collectible));
-            MethodInfo miCrockInfoCompact = AccessTools.Method(typeof(BlockEntityShelf), nameof(BlockEntityShelf.CrockInfoCompact));
-
-            Type typeBlockCrock = typeof(BlockCrock);
-
-            const string jumpNoCrockBranch = "branchNotACrock";
-
-            var matcher = new CodeMatcher(instructions, ilGen);
-
-            // find the start of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block
-            try {
-                matcher
-                    .MatchStartForward(
-                        new CodeMatch(ci => Instruction.IsLdLoc(ci, typeof(ItemStack))),                                                            // <c>???</c>  - _technically_ this matches on using _any_ ItemStack typed local variable
-                        new CodeMatch(ci => Instruction.IsCallVirt(ci, miItemStackGetCollectible)),                                                 // <c>.Collectible</c>
-                        new CodeMatch(ci => Instruction.IsInst(ci, typeBlockCrock)),                                                                // <c>is BlockCrock</c>                                                     
-                        new CodeMatch(Instruction.IsBrFalse, jumpNoCrockBranch)                                                                     // <c>) {... </c>                                                                               
-                    )
-                    .ThrowIfInvalid("LiquidContainerInfo issue - Cannot find transpiler anchor")
-
-                    .RememberPositionIn(out var idxStart)                                                                                           // remember current instruction position
-                    .RememberNamedMatchIn(jumpNoCrockBranch, out var ciBranchNoCrock)                                                               // remember marked instruction
-
-                    .MatchEndForward(
-                        new CodeMatch(Instruction.IsBr)                                                                                             // <c>... }</c>
-                    )
-                    .ThrowIfInvalid("Cannot find branch block end")
-
-                    .RememberPositionIn(out var idxEnd)                                                                                             // remember current instruction position                                                                                                                                    
-
-                    .Advance(1)                                                                                                                     // insert our new "if" block *after* the "if" block for the crock
-                    .Insert(                        
-                        matcher
-                            .InstructionsInRange(idxStart, idxEnd)                                                                                  // create a copy of the <c>if (stack.Collectible is BlockCrock) { ... }</c> block but
-                            .MethodReplacer(miCrockInfoCompact, AccessTools.Method(typeof(ShelfPatches), nameof(ShelfPatches.LiquidInfoCompact)))   //   - replace <c>CrockInfoCompact(...)</c> call with <c>LiquidInfoCompact(...)</c> call
-                            .Manipulator(ci => ci.IsInst(typeBlockCrock), ci => ci.operand = typeof(BlockLiquidContainerBase))                      //   - replace <c>is BlockCrock</c> with <c>is BlockLiquidContainerBase</c>
-                    )
-                    .CreateLabel(out Label newBranchLabel);
-                
-                ciBranchNoCrock.operand = newBranchLabel;                                                                                           // make <c>(... is BlockCrock)</c> jump into our new branch on failure
-
-            } catch (InvalidOperationException ex) {
-                ACulinaryArtillery.LogError(ex.Message);
-                return instructions;
+            public static string LiquidInfoCompact(BlockEntityShelf f, ItemSlot slot) {
+                var sb = new StringBuilder();
+                (slot.Itemstack.Collectible as BlockLiquidContainerBase).GetContentInfo(slot, sb, f.Api.World);
+                return $"{slot.Itemstack.GetName()} ({sb.Replace(Environment.NewLine, " ").ToString().TrimEnd(' ')}){Environment.NewLine}";
             }
 
-            return matcher.InstructionEnumeration();
-        }
-
-        public static string LiquidInfoCompact(BlockEntityShelf f, ItemSlot slot) {
-            var sb = new StringBuilder();
-            (slot.Itemstack.Collectible as BlockLiquidContainerBase).GetContentInfo(slot, sb, f.Api.World);
-            return $"{slot.Itemstack.GetName()} ({sb.Replace(Environment.NewLine, " ").ToString().TrimEnd(' ')}){Environment.NewLine}";
-        }
-
-
+     */
     }
 
 
@@ -759,29 +778,29 @@ namespace ACulinaryArtillery
     ///         if (ings == null || ings.Length <= 0)
     ///             return true;
 
-     ///        //___nowTesselatingItem = stack.Item;
+    ///        //___nowTesselatingItem = stack.Item;
 
-     ///        __result = (stack.Collectible as ItemExpandedRawFood).GenMesh(__instance.Api as ICoreClientAPI, ings, stack, new Vec3f(0, __instance.Block.Shape.rotateY, 0));
-     ///        //__result = (stack.Collectible as ItemExpandedRawFood).GenMesh(__instance.Api as ICoreClientAPI, ings, __instance, new Vec3f(0, __instance.Block.Shape.rotateY, 0));
-     ///        if (__result != null)
-     ///            __result.RenderPassesAndExtraBits.Fill((short)EnumChunkRenderPass.BlendNoCull);
-     ///        else
-     ///            return true;
+    ///        __result = (stack.Collectible as ItemExpandedRawFood).GenMesh(__instance.Api as ICoreClientAPI, ings, stack, new Vec3f(0, __instance.Block.Shape.rotateY, 0));
+    ///        //__result = (stack.Collectible as ItemExpandedRawFood).GenMesh(__instance.Api as ICoreClientAPI, ings, __instance, new Vec3f(0, __instance.Block.Shape.rotateY, 0));
+    ///        if (__result != null)
+    ///            __result.RenderPassesAndExtraBits.Fill((short)EnumChunkRenderPass.BlendNoCull);
+    ///        else
+    ///            return true;
 
 
-     ///        if (stack.Collectible.Attributes?[__instance.AttributeTransformCode].Exists == true)
-     ///        {
-     ///            ModelTransform transform = stack.Collectible.Attributes?[__instance.AttributeTransformCode].AsObject<ModelTransform>();
-     ///            transform.EnsureDefaultValues();
-     ///            transform.Rotation.Y += __instance.Block.Shape.rotateY;
-     ///            __result.ModelTransform(transform);
-     ///        }
+    ///        if (stack.Collectible.Attributes?[__instance.AttributeTransformCode].Exists == true)
+    ///        {
+    ///            ModelTransform transform = stack.Collectible.Attributes?[__instance.AttributeTransformCode].AsObject<ModelTransform>();
+    ///            transform.EnsureDefaultValues();
+    ///            transform.Rotation.Y += __instance.Block.Shape.rotateY;
+    ///            __result.ModelTransform(transform);
+    ///        }
 
-     ///        //if (__instance.Block.Shape.rotateY == 90 || __instance.Block.Shape.rotateY == 270) __result.Rotate(new Vec3f(0f, 0f, 0f), 0f, 90 * GameMath.DEG2RAD, 0f);
+    ///        //if (__instance.Block.Shape.rotateY == 90 || __instance.Block.Shape.rotateY == 270) __result.Rotate(new Vec3f(0f, 0f, 0f), 0f, 90 * GameMath.DEG2RAD, 0f);
 
-     ///        return false;
-     ///    }
-     /// }
+    ///        return false;
+    ///    }
+    /// }
 
 
 

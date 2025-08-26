@@ -143,6 +143,7 @@ namespace ACulinaryArtillery
                 }
             }
         }
+        /*
         public override void AssetsFinalize(ICoreAPI api)
         {
             base.AssetsFinalize(api);
@@ -161,6 +162,7 @@ namespace ACulinaryArtillery
                 }
             });
         }
+        */
         internal static void LogError(string message) {
             logger?.Error("(ACulinaryArtillery): {0}", message);
         }
