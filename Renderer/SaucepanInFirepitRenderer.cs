@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
@@ -19,14 +15,13 @@ namespace ACulinaryArtillery
         public float origz;
 
         ICoreClientAPI capi;
-        ItemStack stack;
 
-        MultiTextureMeshRef saucepanRef;
-        MultiTextureMeshRef topRef;
+        MultiTextureMeshRef? saucepanRef;
+        MultiTextureMeshRef? topRef;
         BlockPos pos;
         float temp;
 
-        ILoadedSound cookingSound;
+        ILoadedSound? cookingSound;
 
         bool isInOutputSlot;
         Matrixf NewModelMat = new Matrixf();
@@ -34,24 +29,19 @@ namespace ACulinaryArtillery
         public SaucepanInFirepitRenderer(ICoreClientAPI capi, ItemStack stack, BlockPos pos, bool isInOutputSlot)
         {
             this.capi = capi;
-            this.stack = stack;
             this.pos = pos;
             this.isInOutputSlot = isInOutputSlot;
 
-            BlockSaucepan saucepanBlock = capi.World.GetBlock(stack.Collectible.CodeWithVariant("type", "burned")) as BlockSaucepan;
+            BlockSaucepan? saucepanBlock = capi.World.GetBlock(stack.Collectible.CodeWithVariant("type", "burned")) as BlockSaucepan;
+            saucepanBlock ??= capi.World.GetBlock(stack.Collectible.CodeWithVariant("metal", "")) as BlockSaucepan;
 
-            if (stack?.Collectible.CodeWithVariant("type", "burned") == null) { saucepanBlock = capi.World.GetBlock(stack.Collectible.CodeWithVariant("metal", "")) as BlockSaucepan; }
+            if (saucepanBlock == null) throw new Exception("Could not load the saucepan block to obtain the model");
 
-            MeshData saucepanMesh;
-            capi.Tesselator.TesselateShape(saucepanBlock, capi.Assets.TryGet("aculinaryartillery:shapes/block/" + saucepanBlock.FirstCodePart() + "/" + "empty.json").ToObject<Shape>(), out saucepanMesh); // Main Shape
-            //potMesh.Rgba2 = null;
+            capi.Tesselator.TesselateShape(saucepanBlock, capi.Assets.TryGet(saucepanBlock.Shape.Base.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")).ToObject<Shape>(), out MeshData saucepanMesh); // Main Shape
             saucepanRef = capi.Render.UploadMultiTextureMesh(saucepanMesh);
 
-            MeshData topMesh;
-            capi.Tesselator.TesselateShape(saucepanBlock, capi.Assets.TryGet("aculinaryartillery:shapes/block/" + saucepanBlock.FirstCodePart() + "/" + "lid-only.json").ToObject<Shape>(), out topMesh); // Lid
-            //lidMesh.Rgba2 = null;
+            capi.Tesselator.TesselateShape(saucepanBlock, capi.Assets.TryGet(saucepanBlock.Shape.Base.Clone().WithFilename("lid").WithPathPrefixOnce("shapes/").WithPathAppendixOnce(".json")).ToObject<Shape>(), out MeshData topMesh); // Lid
             topRef = capi.Render.UploadMultiTextureMesh(topMesh);
-        
         }
 
         public void Dispose()
@@ -86,7 +76,6 @@ namespace ACulinaryArtillery
             prog.AlphaTest = 0.05f;
             prog.OverlayOpacity = 0;
 
-
             prog.ModelMatrix = NewModelMat
                 .Identity()
                 .Translate(pos.X - camPos.X + 0.001f, pos.Y - camPos.Y, pos.Z - camPos.Z - 0.001f)
@@ -101,8 +90,8 @@ namespace ACulinaryArtillery
 
             if (!isInOutputSlot)
             {
-                 origx = GameMath.Sin(capi.World.ElapsedMilliseconds / 300f) * 8 / 16f;
-                 origz = GameMath.Cos(capi.World.ElapsedMilliseconds / 300f) * 8 / 16f;
+                origx = GameMath.Sin(capi.World.ElapsedMilliseconds / 300f) * 8 / 16f;
+                origz = GameMath.Cos(capi.World.ElapsedMilliseconds / 300f) * 8 / 16f;
 
                 float cookIntensity = GameMath.Clamp((temp - 50) / 50, 0, 1);
 
@@ -118,7 +107,6 @@ namespace ACulinaryArtillery
                 ;
                 prog.ViewMatrix = rpi.CameraMatrixOriginf;
                 prog.ProjectionMatrix = rpi.CurrentProjectionMatrix;
-
 
                 rpi.RenderMultiTextureMesh(topRef, "tex");
             }
@@ -139,12 +127,10 @@ namespace ACulinaryArtillery
             isInOutputSlot = true;
         }
 
-
         public void SetCookingSoundVolume(float volume)
         {
             if (volume > 0)
             {
-
                 if (cookingSound == null)
                 {
                     cookingSound = capi.World.LoadSound(new SoundParams()
@@ -157,24 +143,14 @@ namespace ACulinaryArtillery
                     });
                     cookingSound.Start();
                 }
-                else
-                {
-                    cookingSound.SetVolume(volume);
-                }
-
+                else cookingSound.SetVolume(volume);
             }
-            else
+            else if (cookingSound != null)
             {
-                if (cookingSound != null)
-                {
-                    cookingSound.Stop();
-                    cookingSound.Dispose();
-                    cookingSound = null;
-                }
-
+                cookingSound.Stop();
+                cookingSound.Dispose();
+                cookingSound = null;
             }
-
         }
     }
 }
-

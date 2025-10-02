@@ -1,51 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Vintagestory.API.Common;
 
 namespace ACulinaryArtillery
 {
     public static class ShapeUtilExtensions
     {
-
-        public static Shape RemoveReflective(this Shape shape)
+        public static Shape FlattenElementHierarchy(this Shape shape)
         {
-            foreach (var element in shape.Elements)
-            {
-                foreach (var face in element.FacesResolved)
-                {
-                    face.ReflectiveMode = 0;
-                }
-            }
+            shape.Elements = [.. shape.Elements.FlattenHierarchy()];
             return shape;
         }
 
-        public static Shape FlattenHierarchy(this Shape shape)
+        private static IEnumerable<ShapeElement> FlattenHierarchy(this IEnumerable<ShapeElement> source)
         {
-            shape.Elements = FlattenHierarchy(shape.Elements).ToArray();
-            return shape;
-        }
-
-        public static List<ShapeElement> FlattenHierarchy(ShapeElement[] rootElements)
-        {
-            var flatList = new List<ShapeElement>();
-            foreach (var element in rootElements)
+            foreach (var element in source)
             {
-                FlattenHierarchyHelper(element, flatList);
-            }
-            return flatList;
-        }
+                yield return element;
 
-        private static void FlattenHierarchyHelper(ShapeElement element, List<ShapeElement> flatList)
-        {
-            flatList.Add(element);
-            if (element.Children != null)
-            {
-                foreach (var child in element.Children)
+                if (element.Children == null) continue;
+
+                foreach (var child in element.Children.FlattenHierarchy())
                 {
-                    FlattenHierarchyHelper(child, flatList);
+                    yield return child;
                 }
             }
         }

@@ -2,12 +2,12 @@
   "type": "code",
   "texturesize": 32,
   "name": "A Culinary Artillery Experimental",
-  "version": "1.2.3",
-  "networkVersion": null,
+  "version": "2.0.0-dev.1",
+  "networkVersion": "2.0.0",
   "description": "An armory of tools for food-based mods and modpack makers",
   "modID": "aculinaryartillery",
-  "authors": ["l33tmaan", "jakecool19", "SpearAndFang", "Mister_Andy_Dandy", "Vinter Nacht", "Philippe", "Pursec"],
-  "contributors": ["Dmitry221060"],
+  "authors": ["l33tmaan", "jakecool19", "SpearAndFang", "Mister_Andy_Dandy", "Vinter Nacht", "Philippe", "Pursec", "pizza2004"],
+  "contributors": ["Dmitry221060", "jayu"],
 
-  "dependencies": {}
+  "dependencies": { "game": "1.21.0" }
 }

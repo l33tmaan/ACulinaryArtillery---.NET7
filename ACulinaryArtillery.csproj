@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <LangVersion>11</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
     <AutoGenerateBindingRedirects></AutoGenerateBindingRedirects>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

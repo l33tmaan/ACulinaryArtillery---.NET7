@@ -1,0 +1,101 @@
+{
+	"code": "bottle",
+	"variantgroups": [
+		{ "code": "material", "states": [ "glass" ] },
+		{ "code": "color", "states": [ "green", "blue", "brown", "pink", "plain", "quartz", "red", "smoky", "vintage", "violet", "yellow" ] },
+		{ "code": "type", "states": [ "fired", "corked" ] }
+	],
+	"class": "BlockBottle",
+	"creativeinventory": { "general": [ "*" ], "aculinaryartillery": ["*"] },
+	"attributes": {
+		"shelvable": true,
+		"handbook": { "groupBy": [ "bottle-glass-*-{type}" ] },
+		"minFill": 0.21,
+		"maxFill": 3.81,
+		"minFillSideways": 6.7,
+		"maxFillSideways": 9.3,
+		"isClear": true
+	},
+	"attributesByType": {
+		"*-corked": {
+			"canDrinkFrom": false,
+			"isTopOpened": false,
+			"allowHeldLiquidTransfer": false,
+			"bottlerackable": true,
+			"perishRate": 0.1,
+			"liquidContainerProps": {
+				"capacityLitres": 1,
+				"transferSizeLitres": 0.1,
+				"emptyShapeLoc": "aculinaryartillery:shapes/block/bottle/corkedbottleglass",
+				"opaqueContentShapeLoc": "aculinaryartillery:shapes/block/bottle/contents",
+				"liquidContentShapeLoc": "aculinaryartillery:shapes/block/bottle/liquidcontents",
+				"liquidMaxYTranslate": 0.05
+			}
+		},
+		"*-fired": {
+			"canDrinkFrom": true,
+			"isTopOpened": true,
+			"bottlerackable": true,
+			"allowHeldLiquidTransfer": true,
+			"perishRate": 1,
+			"liquidContainerProps": {
+				"capacityLitres": 1,
+				"transferSizeLitres": 0.1,
+				"emptyShapeLoc": "aculinaryartillery:shapes/block/bottle/openedbottleglass",
+				"opaqueContentShapeLoc": "aculinaryartillery:shapes/block/bottle/contents",
+				"liquidContentShapeLoc": "aculinaryartillery:shapes/block/bottle/contents",
+				"liquidMaxYTranslate": 0.05
+			}
+		}
+	},
+	"drawtype": "JSON",
+	"replaceable": 1,
+	"behaviors": [
+		{ "name": "GroundStorable", "properties": { "layout": "Quadrants", "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 } } },
+		{ "name": "Unplaceable", "__comment": "The ground storable obsoletes this being a block. Should be an item, but is kept a block for backwards compatibility"},
+	],
+	"maxstacksize":  16,
+	"blockmaterial": "Glass",
+	"shapeByType": {
+		"*-corked": { "base": "aculinaryartillery:block/bottle/corkedbottleglass" },
+		"*": { "base": "aculinaryartillery:block/bottle/openedbottleglass" }
+	},
+	"lightAbsorption": 0,
+	"sideopaque": { "all": false },
+	"sideao": { "all": true },
+	"emitsideao": { "all": false },
+	"sidesolid": { "all": false },
+	"renderpass": "transparent",
+	"collisionbox": {
+		"x1": 0.4, "y1": 0, "z1": 0.4,
+		"x2": 0.6, "y2": 0.375, "z2": 0.6
+	},
+	"selectionbox": {
+		"x1": 0.35, "y1": 0, "z1": 0.35,
+		"x2": 0.65, "y2": 0.375, "z2": 0.65
+	},
+	"textures": {
+		"glass": { "base": "block/bottle/{color}" },
+		"map": { "base": "game:item/utility/map" }
+	},
+	"resistance": 0.5,
+	"guiTransform": {
+		"rotation": { "x": -22.6, "y": -125, "z": 0 },
+		"origin": { "x": 0.5, "y": 0.18, "z": 0.5 },
+		"scale": 3.09
+	},
+	"groundTransform": {
+		"scale": 5
+	},
+	"fpHandTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0.5 },
+		"origin": { "x": 0.5, "y": -0.5, "z": 0.8 },
+		"scale": 2
+	},
+	"tpHandTransform": {
+		"translation": { "x": -0.66, "y": -0.03, "z": -0.65 },
+		"rotation": { "x": -139, "y": 9, "z": -118 },
+		"origin": { "x": 0.5, "y": 0.01, "z": 0.5 },
+		"scale": 0.81
+	}
+}

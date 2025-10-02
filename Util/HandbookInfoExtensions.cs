@@ -1,293 +1,180 @@
-﻿using Cairo;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
+using Vintagestory.API.Datastructures;
 using Vintagestory.GameContent;
-using Vintagestory.API.Util;
-using System.Runtime.CompilerServices;
-
 
 namespace ACulinaryArtillery.Util
 {
     public static class HandbookInfoExtensions
     {
-        public static void addCreatedByMixingInfo(this List<RichTextComponentBase> components, ItemSlot inSlot, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor)
+        public static List<RichTextComponentBase> ACAHandbookIngredientForComponents(ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack, Dictionary<string, Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>?> cachedValidStacks)
         {
-            List<DoughRecipe> doughRecipes = new List<DoughRecipe>();
-            foreach (DoughRecipe doughRecipe in capi.GetKneadingRecipes())
+            ItemStack maxstack = stack.Clone();
+            maxstack.StackSize = maxstack.Collectible.MaxStackSize * 10; // because SatisfiesAsIngredient() tests for stacksize. Times 10 because liquid portion oddities
+
+            List<ItemStack> recipestacks = [.. new HashSet<ItemStack>(capi.GetKneadingRecipes().Where(rec => rec.Ingredients.Any(ing => ing.GetMatch(maxstack) != null)).Select(rec => rec.Output.ResolvedItemstack).Where(stack => stack != null)),
+                                            .. new HashSet<ItemStack>(capi.GetSimmerRecipes().Where(rec => rec.Ingredients.Any(ing => ing.SatisfiesAsIngredient(maxstack))).Select(rec => rec.Simmering.SmeltedStack.ResolvedItemstack).Where(stack => stack != null))];
+
+            List<CookingRecipe> mixingrecipes = [.. capi.GetMixingRecipes().Where(recipe => recipe.CooksInto?.ResolvedItemstack == null && recipe.Ingredients!.Any(ingred => ingred.GetMatchingStack(stack) != null))];
+
+            if (recipestacks.Count == 0 && mixingrecipes.Count == 0) return [];
+            List<RichTextComponentBase> components = [];
+
+            while (recipestacks.Count > 0)
             {
-                if (doughRecipe.Output.ResolvedItemstack.Satisfies(inSlot.Itemstack))
-                {
-                    doughRecipes.Add(doughRecipe);
-                }
+                ItemStack dstack = recipestacks[0];
+                recipestacks.RemoveAt(0);
+                if (dstack == null) continue;
+
+                components.Add(new SlideshowItemstackTextComponent(capi, dstack, recipestacks, 40, EnumFloat.Inline, (cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs))));
             }
-            if (doughRecipes.Count > 0)
+
+            while (mixingrecipes.Count > 0)
             {
-                ClearFloatTextComponent verticalSpaceSmall = new ClearFloatTextComponent(capi, 7f);
-                ClearFloatTextComponent verticalSpace = new ClearFloatTextComponent(capi, 3f);
-                components.Add(verticalSpaceSmall);
-                RichTextComponent headc = new RichTextComponent(capi, Lang.Get("Created in: ") + "\n", CairoFont.WhiteSmallText().WithWeight(FontWeight.Bold));
-                components.Add(headc);
-                ItemstackTextComponent minimixingcomp = new ItemstackTextComponent(capi, new ItemStack(capi.World.GetBlock(new AssetLocation("aculinaryartillery:mixingbowlmini"))), 80.0, 10, EnumFloat.Inline, delegate (ItemStack cs)
-                {
-                    openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                });
-                minimixingcomp.VerticalAlign = EnumVerticalAlign.Top;
-                minimixingcomp.PaddingRight = 8.0;
-                minimixingcomp.UnscaledMarginTop = 8.0;
-                components.Add(minimixingcomp);
-                Block[] poweredMixingBowlVariants = capi.World.SearchBlocks(new AssetLocation("aculinaryartillery:mixingbowl-*"));
-                ItemStack[] poweredMixingBowlStacks = new ItemStack[0];
-                Array.ForEach<Block>(poweredMixingBowlVariants, (Block block) => { poweredMixingBowlStacks = poweredMixingBowlStacks.Append(new ItemStack(block)); });
-                SlideshowItemstackTextComponent poweredmixingcomp = new SlideshowItemstackTextComponent(capi, poweredMixingBowlStacks, 80.0, EnumFloat.Inline, delegate (ItemStack cs)
-                {
-                    openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                });
-                components.Add(poweredmixingcomp);
-                /*
-                components.Add(verticalSpace);
-                components.Add(new LinkTextComponent(capi, Lang.Get("Mixing") + "\n", CairoFont.WhiteSmallText(), delegate
-                {
-                    openDetailPageFor("expandedfoodsguide2");
-                }));
-                */
-                //OrderedDictionary<int, List<DoughRecipe>> grouped = new OrderedDictionary<int, List<DoughRecipe>>();
-                ItemStack[] outputStacks = new ItemStack[doughRecipes.Count];
+                CookingRecipe recipe;
+                recipe = mixingrecipes[0];
+                mixingrecipes.RemoveAt(0);
+                if (recipe == null) continue;
 
-                int j = 0;
-                foreach (DoughRecipe recipe in doughRecipes)
-                {
-                    outputStacks[j] = recipe.Output.ResolvedItemstack;
+                ItemStack mealBlock = new ItemStack(BlockMeal.RandomMealBowl(capi));
+#nullable disable // This bit of the code will need to be changed once the proper caching is in vanilla
+                var validStacks = cachedValidStacks.GetValueOrDefault(recipe.Code);
+                components.Add(new MealstackTextComponent(capi, ref validStacks, mealBlock, recipe, 40, EnumFloat.Inline, allStacks, (cs) => openDetailPageFor("handbook-mealrecipe-" + recipe.Code), 6, false, maxstack));
+                cachedValidStacks[recipe.Code] = validStacks;
+#nullable restore
+            }
 
+            return components;
+        }
+
+        public static List<RichTextComponentBase> ACAHandbookCreatedByComponents(ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack)
+        {
+            DoughRecipe[] kneadingRecipes = [.. capi.GetKneadingRecipes().Where(rec => rec.Output.ResolvedItemstack.Satisfies(stack))];
+            SimmerRecipe[] simmeringRecipes = [.. capi.GetSimmerRecipes().Where(rec => rec.Simmering.SmeltedStack.ResolvedItemstack.Satisfies(stack))];
+
+            if (kneadingRecipes.Length == 0 && simmeringRecipes.Length == 0) return [];
+
+            List<RichTextComponentBase> components = [];
+            var verticalSpace = new ClearFloatTextComponent(capi, 7);
+
+            if (kneadingRecipes.Length > 0)
+            {
+                CollectibleBehaviorHandbookTextAndExtraInfo.AddSubHeading(components, capi, openDetailPageFor, "Mixing", "craftinginfo-knapping");
+
+                bool firstRecipe = true;
+                foreach (var recipe in kneadingRecipes)
+                {
                     if (recipe.Ingredients == null) continue;
-                    components.Add(verticalSpaceSmall);
-                    components.Add(new RichTextComponent(capi, Lang.Get("Inputs: "), CairoFont.WhiteSmallText().WithWeight(FontWeight.Bold)));
-                    foreach (DoughIngredient ding in recipe.Ingredients)
+                    if (!firstRecipe) components.Add(verticalSpace);
+                    firstRecipe = false;
+
+                    bool firstItem = true;
+                    foreach (DoughIngredient ing in recipe.Ingredients)
                     {
-                        ItemStack[] inputs = new ItemStack[0];
-                        foreach (CraftingRecipeIngredient ting in ding.Inputs)
+                        ItemStack[] inputs = [.. ing.Inputs.Where(input => input.IsWildCard)
+                                                           .SelectMany(input => capi.World.SearchItems(input.Code).Select(item => new ItemStack(item, input.Quantity))
+                                                                                                                  .Where(stack => stack != null && ing.GetMatch(stack, false) != null)),
+                                              .. ing.Inputs.Where(input => !input.IsWildCard && input.ResolvedItemstack != null)
+                                                           .Select(input => new ItemStack(input.ResolvedItemstack.Id, input.ResolvedItemstack.Class, input.Quantity, (TreeAttribute)input.ResolvedItemstack.Attributes, capi.World))
+                                                           .Where(stack => stack != null)
+                                             ];
+
+                        if (inputs.Length > 0)
                         {
-                            if (ting.IsWildCard)
-                            {
-                                Item[] matches = capi.World.SearchItems(ting.Code);
-
-                                for (int i = 0; i < matches.Length; i++)
-                                {
-                                    ItemStack matchedStack = new ItemStack(matches[i]);
-
-                                    if (matchedStack != null && ding.GetMatch(matchedStack, false) != null)
-                                    {
-                                        matchedStack.StackSize = ting.Quantity;
-                                        inputs = inputs.Append(matchedStack.Clone());
-                                    }
-                                }
-                            }
-                            else if (ting.ResolvedItemstack != null)
-                            {
-                                ItemStack matchedStack = ting.ResolvedItemstack;
-                                matchedStack.StackSize = ting.Quantity;
-                                inputs = inputs.Append(matchedStack.Clone());
-                            }
-
+                            if (!firstItem) components.Add(new RichTextComponent(capi, " + ", CairoFont.WhiteMediumText()) { VerticalAlign = EnumVerticalAlign.Middle });
+                            components.Add(new SlideshowItemstackTextComponent(capi, inputs, 40, EnumFloat.Inline, (ItemStack cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs))) { ShowStackSize = true, PaddingRight = 0 });
+                            firstItem = false;
                         }
-                        if (inputs.Length <= 0) { continue; }
-                        SlideshowItemstackTextComponent incomp = new SlideshowItemstackTextComponent(capi, inputs, 40.0, EnumFloat.Inline, delegate (ItemStack cs)
-                        {
-                            openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                        });
-                        incomp.ShowStackSize = true;
-                        incomp.PaddingRight = 5;
-                        incomp.VerticalAlign = EnumVerticalAlign.FixedOffset;
-                        incomp.UnscaledMarginTop = 10;
-                        components.Add(incomp);
                     }
-                }
-                components.Add(new ClearFloatTextComponent(capi, 3f));
-            }
 
-        }
-        public static void addMixingIngredientForInfo(this List<RichTextComponentBase> components, ItemSlot inSlot, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor)
-        {
-            List<ItemStack> recipeOutputs = new List<ItemStack>();
+                    components.Add(new RichTextComponent(capi, " = ", CairoFont.WhiteMediumText()) { VerticalAlign = EnumVerticalAlign.Middle });
+                    components.Add(new ItemstackTextComponent(capi, recipe.Output.ResolvedItemstack, 40, 10, EnumFloat.Inline) { ShowStacksize = true });
+                }
 
-            ItemStack maxstack = inSlot.Itemstack.Clone();
-            maxstack.StackSize = maxstack.Collectible.MaxStackSize * 10;
-            foreach (DoughRecipe doughRecipe in capi.GetKneadingRecipes())
-            {
-                foreach (DoughIngredient ing in doughRecipe.Ingredients)
-                {
-                    if (!recipeOutputs.Any((ItemStack s) => s.Equals(capi.World, doughRecipe.Output.ResolvedItemstack, GlobalConstants.IgnoredStackAttributes)) && ing.GetMatch(maxstack) != null)
-                    {
-                        recipeOutputs.Add(doughRecipe.Output.ResolvedItemstack);
-                    }
-                }
-            }
-            if (recipeOutputs.Count() > 0)
-            {
-                ClearFloatTextComponent verticalSpaceSmall = new ClearFloatTextComponent(capi, 7f);
-                ClearFloatTextComponent verticalSpace = new ClearFloatTextComponent(capi, 3f);
-                components.Add(verticalSpaceSmall);
-                RichTextComponent headc = new RichTextComponent(capi, Lang.Get("Kneading Ingredient for: ") + "\n", CairoFont.WhiteSmallText().WithWeight(FontWeight.Bold));
-                components.Add(headc);
-                components.Add(new ClearFloatTextComponent(capi, 2f));
-                while (recipeOutputs.Count() > 0)
-                {
-                    ItemStack dstack = recipeOutputs[0];
-                    recipeOutputs.RemoveAt(0);
-                    if (dstack != null)
-                    {
-                        SlideshowItemstackTextComponent comp = new SlideshowItemstackTextComponent(capi, dstack, recipeOutputs, 40.0, EnumFloat.Inline, delegate (ItemStack cs)
-                        {
-                            openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                        });
-                        components.Add(comp);
-                    }
-                }
-                components.Add(new ClearFloatTextComponent(capi, 3f));
-            }
-        }
-        public static void addSimmerIngredientForInfo(this List<RichTextComponentBase> components, ItemSlot inSlot, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor)
-        {
-            List<ItemStack> recipeOutputs = new List<ItemStack>();
-            ItemStack maxstack = inSlot.Itemstack.Clone();
-            maxstack.StackSize = maxstack.Collectible.MaxStackSize * 10;
-            foreach (SimmerRecipe simmerRecipe in capi.GetSimmerRecipes())
-            {
-                foreach (CraftingRecipeIngredient ing in simmerRecipe.Ingredients)
-                {
-                    if (!recipeOutputs.Any((ItemStack s) => s.Equals(capi.World, simmerRecipe.Simmering.SmeltedStack.ResolvedItemstack, GlobalConstants.IgnoredStackAttributes)) && ing.SatisfiesAsIngredient(maxstack))
-                    {
-                        recipeOutputs.Add(simmerRecipe.Simmering.SmeltedStack.ResolvedItemstack);
-                    }
-                }
-            }
-            if (recipeOutputs.Count() > 0)
-            {
-                ClearFloatTextComponent verticalSpaceSmall = new ClearFloatTextComponent(capi, 7f);
-                ClearFloatTextComponent verticalSpace = new ClearFloatTextComponent(capi, 3f);
-                components.Add(verticalSpaceSmall);
-                RichTextComponent headc = new RichTextComponent(capi, Lang.Get("Simmering Ingredient for: ") + "\n", CairoFont.WhiteSmallText().WithWeight(FontWeight.Bold));
-                components.Add(headc);
-                components.Add(new ClearFloatTextComponent(capi, 2f));
-                while (recipeOutputs.Count() > 0)
-                {
-                    ItemStack dstack = recipeOutputs[0];
-                    recipeOutputs.RemoveAt(0);
-                    if (dstack != null)
-                    {
-                        SlideshowItemstackTextComponent comp = new SlideshowItemstackTextComponent(capi, dstack, recipeOutputs, 40.0, EnumFloat.Inline, delegate (ItemStack cs)
-                        {
-                            openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                        });
-                        components.Add(comp);
-                    }
-                }
-                components.Add(new ClearFloatTextComponent(capi, 3f));
-            }
-        }
-        public static void addCreatedBySimmeringInfo(this List<RichTextComponentBase> components, ItemSlot inSlot, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor)
-        {
-            List<SimmerRecipe> simmerRecipes = new List<SimmerRecipe>();
-            foreach (SimmerRecipe simmerRecipe in capi.GetSimmerRecipes())
-            {
-                if (simmerRecipe.Simmering.SmeltedStack.ResolvedItemstack.Satisfies(inSlot.Itemstack))
-                {
-                    simmerRecipes.Add(simmerRecipe);
-                }
-            }
-            if (simmerRecipes.Count > 0)
-            {
-                ClearFloatTextComponent verticalSpaceSmall = new ClearFloatTextComponent(capi, 7f);
-                ClearFloatTextComponent verticalSpace = new ClearFloatTextComponent(capi, 3f);
-                components.Add(verticalSpaceSmall);
-                RichTextComponent headc = new RichTextComponent(capi, Lang.Get("Created in: ") + "\n", CairoFont.WhiteSmallText().WithWeight(FontWeight.Bold));
-                components.Add(headc);
-                ItemstackTextComponent saucepancomp = new ItemstackTextComponent(capi, new ItemStack(capi.World.GetBlock(new AssetLocation("aculinaryartillery:saucepan-burned"))), 80.0, 10, EnumFloat.Inline, delegate (ItemStack cs)
-                {
-                    openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                });
-                saucepancomp.VerticalAlign = EnumVerticalAlign.Top;
-                saucepancomp.PaddingRight = 8.0;
-                saucepancomp.UnscaledMarginTop = 8.0;
-                components.Add(saucepancomp);
-                Block[] minicauldronVariants = capi.World.SearchBlocks(new AssetLocation("aculinaryartillery:cauldronmini-*"));
-                ItemStack[] minicauldronStacks = new ItemStack[0];
-                Array.ForEach<Block>(minicauldronVariants, (Block block) => { minicauldronStacks = minicauldronStacks.Append(new ItemStack(block)); });
-                SlideshowItemstackTextComponent minicauldroncomp = new SlideshowItemstackTextComponent(capi, minicauldronStacks, 80.0, EnumFloat.Inline, delegate (ItemStack cs)
-                {
-                    openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                });
-                components.Add(minicauldroncomp);
-                Block[] cauldronVariants = capi.World.SearchBlocks(new AssetLocation("aculinaryartillery:cauldron-*"));
-                ItemStack[] cauldronStacks = new ItemStack[0];
-                Array.ForEach<Block>(cauldronVariants, (Block block) => { cauldronStacks = cauldronStacks.Append(new ItemStack(block)); });
-                SlideshowItemstackTextComponent cauldroncomp = new SlideshowItemstackTextComponent(capi, cauldronStacks, 80.0, EnumFloat.Inline, delegate (ItemStack cs)
-                {
-                    openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                });
-                components.Add(cauldroncomp);
-
-                /*
                 components.Add(verticalSpace);
-                components.Add(new LinkTextComponent(capi, Lang.Get("Mixing") + "\n", CairoFont.WhiteSmallText(), delegate
-                {
-                    openDetailPageFor("expandedfoodsguide2");
-                }));
-                */
-                //OrderedDictionary<int, List<DoughRecipe>> grouped = new OrderedDictionary<int, List<DoughRecipe>>();
-                ItemStack[] outputStacks = new ItemStack[simmerRecipes.Count];
-
-                int j = 0;
-                foreach (SimmerRecipe recipe in simmerRecipes)
-                {
-                    outputStacks[j] = recipe.Simmering.SmeltedStack.ResolvedItemstack;
-
-                    if (recipe.Ingredients == null) continue;
-                    components.Add(verticalSpaceSmall);
-                    components.Add(new RichTextComponent(capi, Lang.Get("Inputs: "), CairoFont.WhiteSmallText().WithWeight(FontWeight.Bold)));
-                    
-                    foreach (CraftingRecipeIngredient ing in recipe.Ingredients)
-                    {
-                        ItemStack[] inputs = new ItemStack[0];
-                        if (ing.IsWildCard)
-                        {
-                            Item[] matches = capi.World.SearchItems(ing.Code);
-
-                            for (int i = 0; i < matches.Length; i++)
-                            {
-                                ItemStack matchedStack = new ItemStack(matches[i]);
-                                if (matchedStack != null && ing.SatisfiesAsIngredient(matchedStack, false))
-                                {
-                                    matchedStack.StackSize = ing.Quantity;
-                                    inputs = inputs.Append(matchedStack.Clone());
-                                }
-                            }
-                        }
-                        else if (ing.ResolvedItemstack != null)
-                        {
-                            ItemStack matchedStack = ing.ResolvedItemstack;
-                            matchedStack.StackSize = ing.Quantity;
-                            inputs = inputs.Append(matchedStack.Clone());
-                        }
-                        if(inputs.Length <= 0) { continue; }
-                        SlideshowItemstackTextComponent incomp = new SlideshowItemstackTextComponent(capi, inputs, 40.0, EnumFloat.Inline, delegate (ItemStack cs)
-                        {
-                            openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs));
-                        });
-                        incomp.ShowStackSize = true;
-                        incomp.PaddingRight = 5;
-                        incomp.VerticalAlign = EnumVerticalAlign.FixedOffset;
-                        incomp.UnscaledMarginTop = 10;
-                        components.Add(incomp);
-                    }
-                }
-                components.Add(new ClearFloatTextComponent(capi, 3f));
             }
+
+            if (simmeringRecipes.Length > 0)
+            {
+                CollectibleBehaviorHandbookTextAndExtraInfo.AddSubHeading(components, capi, openDetailPageFor, "Simmering", "craftinginfo-knapping");
+
+                bool firstRecipe = true;
+                foreach (var recipe in simmeringRecipes)
+                {
+                    if (recipe.Ingredients == null) continue;
+                    if (!firstRecipe) components.Add(verticalSpace);
+                    firstRecipe = false;
+
+                    bool firstItem = true;
+                    foreach (CraftingRecipeIngredient ing in recipe.Ingredients.Where(ing => ing.IsWildCard || ing.ResolvedItemstack != null))
+                    {
+                        ItemStack[] inputs = [.. ing.IsWildCard ? capi.World.SearchItems(ing.Code).Select(item => new ItemStack(item, ing.Quantity))
+                                                                                                  .Where(stack => stack != null && ing.SatisfiesAsIngredient(stack, false)) :
+                                              (ing.ResolvedItemstack != null ? [new ItemStack(ing.ResolvedItemstack.Id, ing.ResolvedItemstack.Class, ing.Quantity, (TreeAttribute)ing.ResolvedItemstack.Attributes, capi.World)] : [])
+                                             ];
+
+                        if (inputs.Length > 0)
+                        {
+                            if (!firstItem) components.Add(new RichTextComponent(capi, " + ", CairoFont.WhiteMediumText()) { VerticalAlign = EnumVerticalAlign.Middle });
+                            components.Add(new SlideshowItemstackTextComponent(capi, inputs, 40, EnumFloat.Inline, (ItemStack cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs))) { ShowStackSize = true, PaddingRight = 0 });
+                            firstItem = false;
+                        }
+                    }
+
+                    components.Add(new RichTextComponent(capi, " = ", CairoFont.WhiteMediumText()) { VerticalAlign = EnumVerticalAlign.Middle });
+                    components.Add(new ItemstackTextComponent(capi, recipe.Simmering.SmeltedStack.ResolvedItemstack, 40, 10, EnumFloat.Inline) { ShowStacksize = true });
+                }
+
+                components.Add(verticalSpace);
+            }
+
+            return components;
+        }
+
+        public static List<RichTextComponentBase> ACAHandbookStorableComponents(ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack)
+        {
+            if (stack.ItemAttributes?["bottlerackable"].AsBool() != true) return [];
+            List<ItemStack> displayStorables = [.. allStacks.Where(val => val.Collectible is BlockBottleRack)];
+
+            if (displayStorables.Count == 0) return [];
+
+            List<RichTextComponentBase> components = [];
+            while (displayStorables.Count > 0)
+            {
+                ItemStack dstack = displayStorables[0];
+                displayStorables.RemoveAt(0);
+                if (dstack == null) continue;
+
+                components.Add(new SlideshowItemstackTextComponent(capi, dstack, displayStorables, 40, EnumFloat.Inline, (cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs))) { PaddingLeft = 0 });
+            }
+
+            return components;
+        }
+
+        public static List<RichTextComponentBase> ACAHandbookStoredInComponents(ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack)
+        {
+            if (stack.Collectible is not BlockBottleRack) return [];
+            List<ItemStack> storables = [.. allStacks.Where(val => val.ItemAttributes?["bottlerackable"].AsBool() == true)];
+
+            if (storables.Count == 0) return [];
+
+            List<RichTextComponentBase> components = [];
+            while (storables.Count > 0)
+            {
+                ItemStack dstack = storables[0];
+                storables.RemoveAt(0);
+                if (dstack == null) continue;
+
+                SlideshowItemstackTextComponent comp = new SlideshowItemstackTextComponent(capi, dstack, storables, 40, EnumFloat.Inline, (cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs)));
+                if (BlockLiquidContainerBase.GetContainableProps(dstack) is not WaterTightContainableProps) comp.ShowStackSize = true;
+                comp.PaddingLeft = 0;
+                components.Add(comp);
+            }
+
+
+            return components;
         }
     }
 }

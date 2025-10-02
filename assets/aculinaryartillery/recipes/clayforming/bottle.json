@@ -1,5 +1,5 @@
 {
-	ingredient: { type: "item", code: "game:clay-*", name: "type", allowedVariants: ["blue", "fire", "red"] },
+	ingredient: { type: "item", code: "game:clay-*", name: "color", allowedVariants: ["blue", "fire", "red"] },
 	pattern: [[
 		"###",
 		"###",
@@ -24,12 +24,7 @@
 		"___",
 		"_#_",
 		"___",
-	],
-	[
-		"___",
-		"_#_",
-		"___",
 	]],
 	name: "bottle",
-	output: { type: "block", code: "aculinaryartillery:bottle-clay-raw" }
+	output: { type: "block", code: "aculinaryartillery:bottle-clay-{color}-raw" }
 }

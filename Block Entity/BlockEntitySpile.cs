@@ -8,6 +8,15 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
+    public class SapProperties
+    {
+        public double dripChance = 1;
+        public double dripTime = 12;
+        public int[] seasons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        public string sap = "game:waterportion";
+        public int dripCount = 1;
+    }
+
     public class BlockEntitySpile : BlockEntity
     {
         public double timer;
@@ -15,25 +24,23 @@ namespace ACulinaryArtillery
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
+
             RegisterGameTickListener(SapDrip, 5000);
             if (timer == -1000) timer = Api.World.Calendar.TotalHours;
         }
 
-        public override void OnBlockPlaced(ItemStack byItemStack = null)
+        public override void OnBlockPlaced(ItemStack? byItemStack = null)
         {
             base.OnBlockPlaced(byItemStack);
+
             timer = Api.World.Calendar.TotalHours;
         }
 
         public void SapDrip(float dt)
         {
             BlockPos containerpos = posForward(0, -1, 0);
-            BlockLiquidContainerBase container = Api.World.BlockAccessor.GetBlock(containerpos) as BlockLiquidContainerBase;
-            Block log = Api.World.BlockAccessor.GetBlock(posForward(1, 0, 0));
-            if (container == null || log == null) return;
-            
-            SapProperties xylem = log.Attributes?["sapProperties"]?.AsObject<SapProperties>();
-            if (xylem == null) return;
+            if (Api.World.BlockAccessor.GetBlock(containerpos) is not BlockLiquidContainerBase container) return;
+            if (Api.World.BlockAccessor.GetBlock(posForward(1, 0, 0))?.Attributes?["sapProperties"]?.AsObject<SapProperties>() is not SapProperties xylem) return;
 
             while (Api.World.Calendar.TotalHours - timer >= xylem.dripTime)
             {
@@ -41,9 +48,7 @@ namespace ACulinaryArtillery
 
                 if (Api.World.Rand.NextDouble() > xylem.dripChance || !xylem.seasons.Contains(GetMonth(timer))) return;
 
-                ItemStack drip = new ItemStack(Api.World.GetItem(new AssetLocation(xylem.sap)));
-
-                container.TryPutLiquid(containerpos, drip, xylem.dripCount);
+                container.TryPutLiquid(containerpos, new(Api.World.GetItem(xylem.sap)), xylem.dripCount);
             }
         }
 
@@ -61,37 +66,22 @@ namespace ACulinaryArtillery
 
         public int GetMonth(double pastTime)
         {
-            double past = (Api.World.Calendar.TotalHours - pastTime)/Api.World.Calendar.HoursPerDay;
-            int pastDay = Api.World.Calendar.DayOfYear - (int)past;
+            int pastDay = Api.World.Calendar.DayOfYear - (int)((Api.World.Calendar.TotalHours - pastTime) / Api.World.Calendar.HoursPerDay);
             if (pastDay < 0) pastDay += Api.World.Calendar.DaysPerYear;
-            
+
             return (pastDay / Api.World.Calendar.DaysPerMonth) + 1;
         }
 
         public BlockPos posForward(int offset, int height, int otheraxis)
         {
-            switch (Block.Shape.rotateY)
+            return Block.Shape.rotateY switch
             {
-                case 0:
-                    return Pos.AddCopy(otheraxis, height, -offset);
-                case 180:
-                    return Pos.AddCopy(otheraxis, height, offset);
-                case 90:
-                    return Pos.AddCopy(-offset, height, otheraxis);
-                case 270:
-                    return Pos.AddCopy(offset, height, otheraxis);
-            }
-
-            return Pos;
+                0 => Pos.AddCopy(otheraxis, height, -offset),
+                90 => Pos.AddCopy(-offset, height, otheraxis),
+                180 => Pos.AddCopy(otheraxis, height, offset),
+                270 => Pos.AddCopy(offset, height, otheraxis),
+                _ => Pos
+            };
         }
-    }
-
-    public class SapProperties
-    {
-        public double dripChance = 1;
-        public double dripTime = 12;
-        public int[] seasons = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        public string sap = "game:waterportion";
-        public int dripCount = 1;
     }
 }

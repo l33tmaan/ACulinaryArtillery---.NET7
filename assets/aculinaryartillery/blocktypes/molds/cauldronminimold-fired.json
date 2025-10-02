@@ -1,0 +1,67 @@
+{
+	"code": "cauldronminimold",
+	"class": "BlockToolMold",
+	"behaviors": [{ name: "Lockable" }, { "name": "UnstableFalling" }],
+	entityBehaviors: [{ name: "TemperatureSensitive" }],
+	"variantgroups": [
+		{ "code": "color", "states": ["blue", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan" ] },
+		{ "code": "materialtype", "states": ["fired"] }
+	],
+	"attributes": {
+		reinforcable: true,
+		shatteredShape: { base: "block/clay/mold/shattered-ingot" },
+		"requiredUnits": 250,
+		"moldrackable": false,
+		"fillHeight": 8,
+		"drop": { "type": "block", "code": "aculinaryartillery:cauldronmini-{metal}", "quantity": 1 }
+	},
+	"entityClass": "ToolMold",
+	"blockmaterial": "Ceramic",
+	"creativeinventory": { "general": ["*"], "construction": ["*"], "aculinaryartillery": [ "*" ] },
+	"replaceable": 700,
+	"resistance": 1.5,
+	"maxStackSize": 8,
+	"lightAbsorption": 0,
+	heldTpIdleAnimation: "holdunderarm",
+	"textures": {
+		"floor": { "base": "game:block/clay/hardened/{color}" },
+		"ceramic": { "base": "game:block/clay/hardened/{color}" }
+	},
+	"shape": {
+		"base": "block/cauldronminimold"
+	},
+	"sounds": {
+		"walk": "walk/stone"
+	},
+	"collisionbox": {
+	"x1": 0.075,
+	"y1": 0,
+	"z1": 0.125,
+	"x2": 0.9,
+	"y2": 0.65,
+			"z2": 0.875
+	},
+	"selectionbox": {
+			"x1": 0.075,
+			"y1": 0,
+			"z1": 0.125,
+			"x2": 0.9,
+			"y2": 0.65,
+			"z2": 0.875
+	},
+	"sideopaque": {
+		"all": false
+	},
+	"sidesolid": {
+		"all": false
+	},
+	"guiTransform": {"scale": 0.9	},
+	tpHandTransform: {
+	translation: { x: -1.5, y: -1.1, z: -1.05 },
+	rotation: { x: 0, y: 0, z: -20 }
+	},	
+	"groundTransform": {
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 5
+	}
+}

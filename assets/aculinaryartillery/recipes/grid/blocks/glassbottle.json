@@ -15,5 +15,5 @@
 	width: 1,
 	height: 2,
 	name: "glassbottle",
-	output: { type: "block", code: "bottle-{color}-burned", quantity: 4  }
+	output: { type: "block", code: "bottle-glass-{color}-fired", quantity: 4  }
 }

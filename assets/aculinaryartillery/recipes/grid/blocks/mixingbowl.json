@@ -4,7 +4,8 @@
 	ingredients: {
 		"B": { 
 			type: "block", 
-			code: "saucepan-burned"
+			code: "saucepan-*-fired",
+			name: "color"
 		},
 		"I": { 
 			type: "item", 
@@ -13,14 +14,15 @@
 	},
 	width: 1,
 	height: 2,
-	output: { type: "block", code: "mixingbowlmini"  }
+	output: { type: "block", code: "mixingbowlmini-{color}"  }
 },
 {
 	ingredientPattern: "M_,TS,A_",
 	ingredients: {
 		"M": { 
 			type: "block", 
-			code: "mixingbowlmini"
+			code: "mixingbowlmini-*",
+			name: "color"
 		},
 		"T": { 
 			type: "block", 
@@ -39,6 +41,6 @@
 	},
 	width: 2,
 	height: 3,
-	output: { type: "block", code: "mixingbowl-{material}"  }
+	output: { type: "block", code: "mixingbowl-{color}-{material}"  }
 },
 ]

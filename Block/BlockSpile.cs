@@ -5,31 +5,31 @@ namespace ACulinaryArtillery
 {
     public class BlockSpile : Block
     {
-        public override void OnBlockPlaced(IWorldAccessor world, BlockPos blockPos, ItemStack byItemStack = null)
+        public override bool CanPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ref string failureCode)
         {
-            base.OnBlockPlaced(world, blockPos, byItemStack);
-
-            if (world.BlockAccessor.GetBlock(posForward(blockPos, 2, 0, 0)) is BlockSpile) world.BlockAccessor.BreakBlock(blockPos, null);
-            if (world.BlockAccessor.GetBlock(posForward(blockPos, 1, 0, 1)) is BlockSpile) world.BlockAccessor.BreakBlock(blockPos, null);
-            if (world.BlockAccessor.GetBlock(posForward(blockPos, 1, 0, -1)) is BlockSpile) world.BlockAccessor.BreakBlock(blockPos, null);
-
-        }
-
-        public BlockPos posForward(BlockPos Pos, int offset, int height, int otheraxis)
-        {
-            switch (Shape.rotateY)
+            if (blockSel.Face.IsHorizontal && hasSpile(world.BlockAccessor, blockSel.Position.Copy(), blockSel.Face))
             {
-                case 0:
-                    return Pos.AddCopy(otheraxis, height, -offset);
-                case 180:
-                    return Pos.AddCopy(otheraxis, height, offset);
-                case 90:
-                    return Pos.AddCopy(-offset, height, otheraxis);
-                case 270:
-                    return Pos.AddCopy(offset, height, otheraxis);
+                failureCode = "alreadyhasspile";
+                return false;
             }
 
-            return Pos;
+            return base.CanPlaceBlock(world, byPlayer, blockSel, ref failureCode);
+        }
+
+        bool hasSpile(IBlockAccessor blockAccess, BlockPos pos, BlockFacing face)
+        {
+            pos.Add(face, 2); // check the opposite side of the log
+            if (blockAccess.GetBlock(pos) is BlockSpile) return true;
+
+            pos.Add(face, -1); // move back into the log
+            face = face.GetCW(); // turn 90° clockwise
+            pos.Add(face); // move to the next side
+            if (blockAccess.GetBlock(pos) is BlockSpile) return true;
+
+            pos.Add(face, -2); // and finally move back through the log to the third side
+            if (blockAccess.GetBlock(pos) is BlockSpile) return true;
+
+            return false;
         }
     }
 }
