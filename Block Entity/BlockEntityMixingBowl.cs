@@ -201,11 +201,10 @@ namespace ACulinaryArtillery
             ItemStack[] stacks = IngredStacks;
             if (mrecipe != null)
             {
-                var loc = InputStack.ItemAttributes?["mealBlockCode"].AsObject<AssetLocation?>(null, InputStack.Collectible.Code.Domain);
-                loc ??= InputStack.Collectible.CodeWithVariant("type", "cooked");
-                if (loc == null) return;
+                string? mealBlockCode = InputStack.ItemAttributes?["mealBlockCode"].AsString();
+                if (mealBlockCode == null) return;
 
-                Block mealBlock = Api.World.GetBlock(loc);
+                Block mealBlock = Api.World.GetBlock(new AssetLocation(mealBlockCode));
                 mixedStack = new ItemStack(mealBlock);
                 servings = mrecipe.GetQuantityServings(stacks);
 

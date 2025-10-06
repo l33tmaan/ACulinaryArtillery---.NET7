@@ -240,16 +240,19 @@ namespace ACulinaryArtillery
 
         public override void OnHeldInteractStart(ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
+            //if (api.Side == EnumAppSide.Client) return;
             if ((byEntity as EntityPlayer)?.Player is IPlayer plr && blockSel == null && entitySel == null && Variant["type"] == "corked")
             {
                 if (plr.InventoryManager?.OffhandHotbarSlot is ItemSlot offSlot && (offSlot.Empty || offSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
                 {
+                    
                     ItemStack newBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
 
                     if (itemslot.StackSize == 1) itemslot.Itemstack = newBottle;
                     else
-                    {
+                    {   
                         itemslot.TakeOut(1);
+                        itemslot.MarkDirty();
                         if (!plr.InventoryManager.TryGiveItemstack(newBottle, true))
                         {
                             byEntity.World.SpawnItemEntity(newBottle, byEntity.Pos.AsBlockPos);
@@ -261,6 +264,9 @@ namespace ACulinaryArtillery
                     {
                         byEntity.World.SpawnItemEntity(cork, byEntity.Pos.AsBlockPos);
                     }
+                    //plr.InventoryManager.OffhandHotbarSlot.MarkDirty();
+                    handHandling = EnumHandHandling.PreventDefault;
+                    return;
                 }
                 else (api as ICoreClientAPI)?.TriggerIngameError(this, "fulloffhandslot", Lang.Get("aculinaryartillery:bottle-fulloffhandslot"));
             }

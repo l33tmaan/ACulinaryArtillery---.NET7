@@ -30,8 +30,9 @@ namespace ACulinaryArtillery
             {
                 var colObj = playerSlot.Itemstack.Collectible;
 
-                float fullness = (colObj as BlockBottle)?.GetCurrentLitres(playerSlot.Itemstack) ?? 0;
-                if (fullness > 0.2f)
+                BlockBottle bottle = colObj as BlockBottle;
+                float fullness = bottle?.GetCurrentLitres(playerSlot.Itemstack) ?? 0;
+                if (bottle?.IsTopOpened == true && fullness > 0.2f)
                 {
                     (Api as ICoreClientAPI)?.TriggerIngameError(this, "bottletoofull", Lang.Get("aculinaryartillery:bottle-toofullforrack"));
                     return false;

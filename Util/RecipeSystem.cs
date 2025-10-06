@@ -8,6 +8,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.Server;
 using Vintagestory.API.Util;
+using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
@@ -552,7 +553,8 @@ namespace ACulinaryArtillery
             foreach (ItemStack input in Inputs)
             {
                 // First check if we have a matching ingredient, and whether we've already matched that ingredient before
-                var match = Ingredients.FirstOrDefault(ing => (ing.ResolvedItemstack != null || ing.IsWildCard) && matched.Contains(ing) && ing.SatisfiesAsIngredient(input));
+
+                var match = Ingredients.FirstOrDefault(ing => (ing.ResolvedItemstack != null || ing.IsWildCard) && !matched.Contains(ing) && ing.SatisfiesAsIngredient(input));
 
                 if (match == null) return 0; // didn't find a match for the input in previous step
                 if (input.StackSize % match.Quantity != 0) return 0; //this particular ingredient is not in enough quantity for full portions

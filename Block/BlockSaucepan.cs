@@ -98,7 +98,7 @@ namespace ACulinaryArtillery
                 }
             }
 
-            return stacks.Count != 0 && api.GetSimmerRecipes().Any(rec => rec.Match(stacks) >= 1);
+                return stacks.Count != 0 && api.GetSimmerRecipes().Any(rec => rec.Match(stacks) >= 1);
         }
 
         public override void DoSmelt(IWorldAccessor world, ISlotProvider cookingSlotsProvider, ItemSlot inputSlot, ItemSlot outputSlot)

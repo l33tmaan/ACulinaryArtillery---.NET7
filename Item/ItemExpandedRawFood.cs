@@ -240,7 +240,8 @@ namespace ACulinaryArtillery
             nowTesselatingShape = null;
             tesselator ??= capi.Tesselator;
 
-            var renderIngs = Attributes?["renderIngredients"]?.AsObject<TreeAttribute>();
+            TreeAttribute? renderIngs = Attributes?["renderIngredients"].ToAttribute() as TreeAttribute;
+            //TreeAttribute? renderIngs = Attributes?["renderIngredients"]?.AsObject<TreeAttribute>();
             if (renderIngs == null) return null;
 
             List<AssetLocation> addShapes = [];
