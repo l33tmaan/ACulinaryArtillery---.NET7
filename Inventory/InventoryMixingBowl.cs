@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection.PortableExecutable;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
@@ -15,6 +17,7 @@ namespace ACulinaryArtillery
     {
         ItemSlot[] slots;
         public ItemSlot[] Slots => slots;
+
         BlockEntityMixingBowl machine;
 
         public InventoryMixingBowl(string? inventoryID, ICoreAPI? api, BlockEntityMixingBowl bowl) : base(inventoryID, api)
@@ -22,7 +25,7 @@ namespace ACulinaryArtillery
             // slot 0 = pot
             // slot 1 = output
             //slots 2-7 = ingredients
-            machine = bowl;
+            machine = bowl;;
             slots = GenEmptySlots(8);
         }
 
@@ -52,7 +55,6 @@ namespace ACulinaryArtillery
             {
                 for (int i = 2; i < Count; i++)
                 {
-                    this[i].MaxSlotStackSize = 6;
                     (this[i] as ItemSlotMixingBowl)?.Set(machine, i - 2);
                 }
             }
@@ -86,11 +88,11 @@ namespace ACulinaryArtillery
     public class ItemSlotMixingBowl : ItemSlot
     {
         BlockEntityMixingBowl machine;
+
         int stackNum;
 
         public ItemSlotMixingBowl(InventoryBase inventory, BlockEntityMixingBowl bowl, int itemNumber) : base(inventory)
         {
-            MaxSlotStackSize = 6;
             machine = bowl;
             stackNum = itemNumber;
         }

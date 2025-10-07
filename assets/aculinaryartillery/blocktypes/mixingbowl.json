@@ -6,9 +6,10 @@
 	"behaviors": [ { "name": "Container" } ],
 	"attributes": {
 		"capacityLitres": 3,
+		"stackCapacity": 12,
 		"handbook": {
 			"groupBy": [ "mixingbowl-*" ]
-		},
+		}
 	},
 	"variantgroups": [
 		{ "code": "color", "states": ["blue", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan"] },

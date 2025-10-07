@@ -9,11 +9,14 @@ namespace ACulinaryArtillery
     {
         public int CapacityLitres { get; set; }
 
+        public int StackCapacity { get; set; }
+
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
             
             CapacityLitres = Attributes?["capacityLitres"]?.AsInt(CapacityLitres) ?? CapacityLitres;
+            StackCapacity = Attributes?["stackCapacity"]?.AsInt() ?? StackCapacity;
         }
 
         public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode)
