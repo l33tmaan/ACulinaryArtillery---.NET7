@@ -4,6 +4,16 @@
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
+- Rolling pin can be hung from meat hooks; holes added to handle
+
+~1.21_v2.0.0~
+-Pizza did so much oh my god forreal
+-like 1000 lines of code removed
+Goose Things:
+-Fixed corking and uncorking interaction
+-Fixed simmering recipes not finding matches for their ingredients
+-Fixed mixing bowl meals failing due to incorrect assetlocation for the mealblock
+-Added support for customizable stackCapacity to mixing bowl (thanks MisterAndyDandy!)
 
 ~1.20_v1.2.6~
 - Frying pan added?

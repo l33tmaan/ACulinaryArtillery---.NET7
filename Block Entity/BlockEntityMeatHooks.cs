@@ -149,7 +149,7 @@ namespace ACulinaryArtillery
         {
             return Block.Shape.rotateY switch
             {
-                0 => index % 2 == 0 ? 180 : 0,
+                0 => index < 2 ? 180 : 0,
                 90 => index % 2 == 0 ? 270 : 90,
                 180 => index < 2 ? 180 : 360,
                 270 => index % 2 == 0 ? 270 : 450,
