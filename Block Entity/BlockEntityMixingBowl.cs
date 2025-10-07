@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
+using System.Xml.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using Vintagestory.GameContent.Mechanics;
 
@@ -21,7 +24,10 @@ namespace ACulinaryArtillery
         // For how long the current ore has been mixing
         public float inputMixTime;
         public float prevInputMixTime;
+
         public int CapacityLitres { get; set; }
+
+        public int StackCapacity { get; set; } = 6;
 
         //For automation
         public bool invLocked;
@@ -98,12 +104,16 @@ namespace ACulinaryArtillery
         {
             base.Initialize(api);
 
+            //Move them up.
+            CapacityLitres = Block.Attributes["capacityLitres"]?.AsInt(CapacityLitres) ?? CapacityLitres;
+            StackCapacity = Block.Attributes["stackCapacity"]?.AsInt(StackCapacity) ?? StackCapacity;
+
             inventory.LateInitialize(Block.FirstCodePart() + "-" + Pos.X + "/" + Pos.Y + "/" + Pos.Z, api);
+
+            ApplyStackCapacityToSlots();
 
             RegisterGameTickListener(Every100ms, 100);
             RegisterGameTickListener(Every500ms, 500);
-
-            CapacityLitres = Block.Attributes["capacityLitres"]?.AsInt(CapacityLitres) ?? CapacityLitres;
 
             if (api is ICoreClientAPI capi)
             {
@@ -116,7 +126,7 @@ namespace ACulinaryArtillery
                     Volume = 0.75f
                 });
 
-                renderer = new (capi, Pos, GenMesh("top") ?? new()) { mechPowerPart = mpc };
+                renderer = new(capi, Pos, GenMesh("top") ?? new()) { mechPowerPart = mpc };
                 if (automated)
                 {
                     renderer.ShouldRender = true;
@@ -128,6 +138,23 @@ namespace ACulinaryArtillery
                 mixingBowlBaseMesh ??= GenMesh("base");
                 mixingBowlTopMesh ??= GenMesh("top");
             }
+        }
+
+        private void ApplyStackCapacityToSlots()
+        {
+            inventory.Foreach(slot =>
+            {
+                if (slot is ItemSlotPotInput or ItemSlotWatertight or ItemSlotOutput)
+                {
+                    return;
+                }
+
+                if (StackCapacity > 0)
+                {
+                    slot.MaxSlotStackSize = StackCapacity;
+                    slot.MarkDirty();
+                }
+            });
         }
 
         public override void CreateBehaviors(Block block, IWorldAccessor worldForResolve)
@@ -509,6 +536,7 @@ namespace ACulinaryArtillery
         }
 
         public ItemSlot[] IngredSlots => [ inventory[2], inventory[3], inventory[4], inventory[5], inventory[6], inventory[7] ];
+
         public ItemStack[] IngredStacks => [.. IngredSlots.Select(slot => slot.Itemstack).Where(stack => stack != null)];
 
         public ItemStack OutputStack
