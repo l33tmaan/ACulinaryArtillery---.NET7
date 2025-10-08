@@ -22,6 +22,7 @@ namespace ACulinaryArtillery
         public float inputMixTime;
         public float prevInputMixTime;
         public int CapacityLitres { get; set; }
+        public int StackCapcity { get; set; }
 
         //For automation
         public bool invLocked;
@@ -97,13 +98,14 @@ namespace ACulinaryArtillery
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
-
+            CapacityLitres = Block.Attributes?["capacityLitres"]?.AsInt(CapacityLitres) ?? CapacityLitres;
+            StackCapcity = Block.Attributes?["maxSlotStackSize"]?.AsInt(24) ?? StackCapcity;
             inventory.LateInitialize(Block.FirstCodePart() + "-" + Pos.X + "/" + Pos.Y + "/" + Pos.Z, api);
 
             RegisterGameTickListener(Every100ms, 100);
             RegisterGameTickListener(Every500ms, 500);
 
-            CapacityLitres = Block.Attributes["capacityLitres"]?.AsInt(CapacityLitres) ?? CapacityLitres;
+
 
             if (api is ICoreClientAPI capi)
             {

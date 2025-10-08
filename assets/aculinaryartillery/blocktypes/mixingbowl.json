@@ -2,125 +2,64 @@
 	"code": "mixingbowl",
 	"class": "BlockMixingBowl",
 	"entityClass": "MixingBowl",
-	"entityBehaviors": [ { "name": "MPConsumer" } ],
-	"behaviors": [ { "name": "Container" } ],
+	"behaviors": [ { "name": "Container" }, { "name": "UnstableFalling" } ],
+	variantgroups: [
+		{ "code": "color", "states": ["blue", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan"] }
+	],
 	"attributes": {
 		"capacityLitres": 3,
-		"handbook": {
-			"groupBy": [ "mixingbowl-*" ]
-		},
+		"maxSlotStackSize": 6
 	},
-	"variantgroups": [
-		{ "code": "color", "states": ["blue", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan"] },
-		{ "code": "material", "states": [ "normal", "aged", "whitemarble", "redmarble", "greenmarble" ] }
-	],
 	"creativeinventory": {
 		"general": [ "*" ],
 		"terrain": [ "*" ],
 		"aculinaryartillery": [ "*" ]
 	},
-	"shape": { "base": "aculinaryartillery:block/mixingbowl/complete" },
+	"shape": { "base": "aculinaryartillery:block/mixingbowlmini/complete" },
 	"blockmaterial": "Wood",
-	"texturesByType": {
-		"*-whitemarble": {
-			"top": { "base": "game:block/stone/polishedrock/whitemarble-inside" },
-			"sides": { "base": "game:block/wood/table/normal/sides-whitemarble" },
-			"sides2": { "base": "game:block/wood/table/normal/sides-whitemarble" },
-			"legs": { "base": "game:block/wood/table/normal/legs" },
-			"bottom": { "base": "game:block/wood/table/normal/bottom" },
-			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
-			"churnsides2": { "base": "game:block/wood/churnsides2" },
-			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
-		},
-		"*-redmarble": {
-			"top": { "base": "game:block/stone/polishedrock/redmarble-inside" },
-			"sides": { "base": "game:block/wood/table/normal/sides-redmarble" },
-			"sides2": { "base": "game:block/wood/table/normal/sides-redmarble" },
-			"legs": { "base": "game:block/wood/table/normal/legs" },
-			"bottom": { "base": "game:block/wood/table/normal/bottom" },
-			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
-			"churnsides2": { "base": "game:block/wood/churnsides2" },
-			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
-		},
-		"*-greenmarble": {
-			"top": { "base": "game:block/stone/polishedrock/greenmarble-inside" },
-			"sides": { "base": "game:block/wood/table/normal/sides-greenmarble" },
-			"sides2": { "base": "game:block/wood/table/normal/sides-greenmarble" },
-			"legs": { "base": "game:block/wood/table/normal/legs" },
-			"bottom": { "base": "game:block/wood/table/normal/bottom" },
-			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
-			"churnsides2": { "base": "game:block/wood/churnsides2" },
-			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
-		},
-		"*-aged": {
-			"top": { "base": "game:block/wood/table/aged/top" },
-			"sides": { "base": "game:block/wood/table/aged/sides" },
-			"sides2": { "base": "game:block/wood/table/aged/sides" },
-			"legs": { "base": "game:block/wood/table/aged/legs" },
-			"bottom": { "base": "game:block/wood/table/aged/bottom" },
-			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
-			"churnsides2": { "base": "game:block/wood/churnsides2" },
-			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
-		},
-		"*-normal": {
-			"top": { "base": "game:block/wood/table/normal/top" },
-			"sides": { "base": "game:block/wood/table/normal/sides" },
-			"sides2": { "base": "game:block/wood/table/normal/sides" },
-			"legs": { "base": "game:block/wood/table/normal/legs" },
-			"bottom": { "base": "game:block/wood/table/normal/bottom" },
-			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
-			"churnsides2": { "base": "game:block/wood/churnsides2" },
-			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
-		}
+	"textures": {
+		"material": { "base": "game:block/wood/planks/generic" },
+		"generic": { "base": "game:block/wood/planks/generic" },
+		"ceramic": { base: "game:block/clay/hardened/{color}" },
+		"burned": { base: "game:block/clay/hardened/{color}" },
+		"ceramic-dark": { base: "game:block/clay/hardened/{color}" },
+		"sidesbucket": { "base": "game:block/wood/bucket/sides" },
 	},
 	"sidesolid": {
-		"down": true,
 		"all": false
 	},
 	"sideopaque": {
-		"down": true,
 		"all": false
 	},
-	"lightAbsorption": 1,
+	heldTpIdleAnimation: "holdbothhandsmedium", heldTpUseAnimation: "twohandplaceblock", 
+	"lightAbsorption": 0,
 	"replaceable": 600,
 	"resistance": 1.5,
-	heldTpIdleAnimation: "holdbothhandsverylarge", 
-	heldTpUseAnimation: "twohandplaceblock", 
 	"collisionSelectionBoxes": [
 		{
-			"x1": 0.05,
-			"y1": 0.0,
-			"z1": 0.05,
-			"x2": 0.95,
-			"y2": 0.9,
-			"z2": 0.95
+			"x1": 0,
+			"y1": 0,
+			"z1": 0,
+			"x2": 1,
+			"y2": 0.25,
+			"z2": 1
 		},
 		{
 			"x1": 0.25,
-			"y1": 0.9,
+			"y1": 0.25,
 			"z1": 0.25,
 			"x2": 0.75,
-			"y2": 1.1,
+			"y2": 0.5,
 			"z2": 0.75
 		}
 	],
 	guiTransform: {
-		scale: 1.15
+		origin: {
+			x: 0.5,
+			y: 0.2,
+			z: 0.5
+		},
+		scale: 2
 	},
 	fpHandTransform: {
 		translation: {
@@ -131,13 +70,13 @@
 		scale: 2
 	},
 	tpHandTransform: {
-		translation: { x: -1.2, y: -0.7, z: -0.25 },
-		rotation: { x: -83, y: 29, z: -66 },
-		scale: 0.75
+		translation: { x: -1.2, y: -0.6, z: -0.35 },
+		rotation: { x: 96, y: -13, z: -105 },
+		scale: 0.8
 	},
 	groundTransform: {
 		rotation: { x: 0, y: -45, z: 0 },
 		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 3
+		scale: 5
 	}
 }

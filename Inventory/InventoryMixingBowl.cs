@@ -16,7 +16,25 @@ namespace ACulinaryArtillery
         ItemSlot[] slots;
         public ItemSlot[] Slots => slots;
         BlockEntityMixingBowl machine;
+        public int InputSlotStackCapacity
+        {
+            get
+            {
+                return machine.StackCapcity;
+            }
+        }
+        public override void LateInitialize(string inventoryID, ICoreAPI api)
+        {
+            base.LateInitialize(inventoryID, api);
+            foreach (var slot in slots)
+            {
+                if (slot is ItemSlotMixingBowl)
+                {
+                    slot.MaxSlotStackSize = InputSlotStackCapacity;
+                }
+            }
 
+        }
         public InventoryMixingBowl(string? inventoryID, ICoreAPI? api, BlockEntityMixingBowl bowl) : base(inventoryID, api)
         {
             // slot 0 = pot
@@ -47,15 +65,16 @@ namespace ACulinaryArtillery
         public override void FromTreeAttributes(ITreeAttribute tree)
         {
             slots = SlotsFromTreeAttributes(tree, slots);
-
+            
             if (Api != null)
             {
                 for (int i = 2; i < Count; i++)
                 {
-                    this[i].MaxSlotStackSize = 6;
+                    this[i].MaxSlotStackSize = InputSlotStackCapacity;
                     (this[i] as ItemSlotMixingBowl)?.Set(machine, i - 2);
                 }
             }
+            
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
@@ -90,7 +109,6 @@ namespace ACulinaryArtillery
 
         public ItemSlotMixingBowl(InventoryBase inventory, BlockEntityMixingBowl bowl, int itemNumber) : base(inventory)
         {
-            MaxSlotStackSize = 6;
             machine = bowl;
             stackNum = itemNumber;
         }
