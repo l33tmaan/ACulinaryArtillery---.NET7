@@ -360,27 +360,20 @@ namespace ACulinaryArtillery
 
         Dictionary<ItemSlot, CraftingRecipeIngredient>? pairInput(ItemSlot[] inputStacks)
         {
-            Queue<ItemSlot> inputSlotsList = new();
-            List<int> foundSlots = new();
-            foreach (var val in inputStacks) if (!val.Empty) inputSlotsList.Enqueue(val);
-
-            if (inputSlotsList.Count != Ingredients.Length) return null;
+            List<ItemSlot> inputSlots = [.. inputStacks.Where(slot => !slot.Empty)];
+            if (inputSlots.Count != Ingredients.Length) return null;
 
             Dictionary<ItemSlot, CraftingRecipeIngredient> matched = [];
-
-            while (inputSlotsList.Count > 0)
+            foreach (var ingred in Ingredients)
             {
-                ItemSlot inputSlot = inputSlotsList.Dequeue();
                 bool found = false;
 
-                for (int i = 0; i < Ingredients.Length; i++)
+                for (int i = 0; i < inputSlots.Count; i++)
                 {
-                    CraftingRecipeIngredient? ingred = Ingredients[i].GetMatch(inputSlot.Itemstack);
-
-                    if (ingred != null && !foundSlots.Contains(i))
+                    if (ingred.GetMatch(inputSlots[i].Itemstack) is CraftingRecipeIngredient input)
                     {
-                        matched[inputSlot] = ingred;
-                        foundSlots.Add(i);
+                        matched[inputSlots[i]] = input;
+                        inputSlots.RemoveAt(i);
                         found = true;
                         break;
                     }
@@ -388,9 +381,6 @@ namespace ACulinaryArtillery
 
                 if (!found) return null;
             }
-
-            // We're missing ingredients
-            if (matched.Count != Ingredients.Length) return null;
 
             return matched;
         }

@@ -84,6 +84,10 @@ namespace ACulinaryArtillery
             }
 
             outputSlot.Itemstack.Attributes["madeWith"] = new StringArrayAttribute([.. ingredients.Order()]);
+            if (outputSlot.Itemstack.Collectible is not ItemExpandedLiquid)
+            {
+                sat = Array.ConvertAll(sat, i => i / outputSlot.StackSize);
+            }
             outputSlot.Itemstack.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
         }
 
@@ -112,6 +116,10 @@ namespace ACulinaryArtillery
             }
 
             output.Attributes["madeWith"] = new StringArrayAttribute([.. ingredients.Order()]);
+            if (output.Collectible is not ItemExpandedLiquid)
+            {
+                sat = Array.ConvertAll(sat, i => i / output.StackSize);
+            }
             output.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
         }
 
