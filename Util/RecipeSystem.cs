@@ -361,6 +361,7 @@ namespace ACulinaryArtillery
         Dictionary<ItemSlot, CraftingRecipeIngredient>? pairInput(ItemSlot[] inputStacks)
         {
             Queue<ItemSlot> inputSlotsList = new();
+            List<int> foundSlots = new();
             foreach (var val in inputStacks) if (!val.Empty) inputSlotsList.Enqueue(val);
 
             if (inputSlotsList.Count != Ingredients.Length) return null;
@@ -376,9 +377,10 @@ namespace ACulinaryArtillery
                 {
                     CraftingRecipeIngredient? ingred = Ingredients[i].GetMatch(inputSlot.Itemstack);
 
-                    if (ingred != null && !matched.ContainsValue(ingred))
+                    if (ingred != null && !foundSlots.Contains(i))
                     {
                         matched[inputSlot] = ingred;
+                        foundSlots.Add(i);
                         found = true;
                         break;
                     }
@@ -901,7 +903,7 @@ namespace ACulinaryArtillery
                 foreach (var variant in nameToCodeMapping.Values) qCombs *= variant.Length;
 
                 SimmerRecipe[] subRecipes = new SimmerRecipe[qCombs];
-                subRecipes.Fill(recipe.Clone());
+                for (int j = 0; j < qCombs; j++) subRecipes[j] = recipe.Clone();
                 foreach (var val in nameToCodeMapping)
                 {
                     string[] variants = val.Value;
@@ -954,7 +956,7 @@ namespace ACulinaryArtillery
                 foreach (var variant in nameToCodeMapping.Values) qCombs *= variant.Length;
 
                 DoughRecipe[] subRecipes = new DoughRecipe[qCombs];
-                subRecipes.Fill(recipe.Clone());
+                for (int j = 0; j < qCombs; j++) subRecipes[j] = recipe.Clone();
                 foreach (var val in nameToCodeMapping)
                 {
                     string[] variants = val.Value;
