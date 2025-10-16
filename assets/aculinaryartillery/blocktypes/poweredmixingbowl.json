@@ -20,7 +20,7 @@
 		"terrain": [ "*" ],
 		"aculinaryartillery": [ "*" ]
 	},
-	"shape": { "base": "aculinaryartillery:block/mixingbowl/complete" },
+	"shape": { "base": "aculinaryartillery:block/poweredmixingbowl/complete" },
 	"blockmaterial": "Wood",
 	"texturesByType": {
 		"*-whitemarble": {

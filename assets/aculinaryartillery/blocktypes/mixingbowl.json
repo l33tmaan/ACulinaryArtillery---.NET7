@@ -15,7 +15,7 @@
 		"terrain": [ "*" ],
 		"aculinaryartillery": [ "*" ]
 	},
-	"shape": { "base": "aculinaryartillery:block/mixingbowlmini/complete" },
+	"shape": { "base": "aculinaryartillery:block/mixingbowl/complete" },
 	"blockmaterial": "Wood",
 	"textures": {
 		"material": { "base": "game:block/wood/planks/generic" },
