@@ -1,0 +1,23 @@
+{
+  "ingredientPattern": "K,L",
+  "ingredients": {
+    "K": {
+      "type": "item",
+      "code": "game:knife-*",
+      "istool": "true"
+    },
+    "L": {
+      "type": "block",
+      "code": "game:debarkedlog-*",
+      "name": "color"
+    }
+  },
+  "width": 1,
+  "height": 2,
+  "name": "cork",
+  "output": {
+    "type": "item",
+    "code": "cork-generic",
+    "quantity": 16
+  }
+}
