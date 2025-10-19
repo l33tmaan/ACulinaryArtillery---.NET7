@@ -14,14 +14,14 @@
 	},
 	width: 1,
 	height: 2,
-	output: { type: "block", code: "mixingbowlmini-{color}"  }
+	output: { type: "block", code: "mixingbowl-{color}"  }
 },
 {
 	ingredientPattern: "M_,TS,A_",
 	ingredients: {
 		"M": { 
 			type: "block", 
-			code: "mixingbowlmini-*",
+			code: "mixingbowl-*",
 			name: "color"
 		},
 		"T": { 
@@ -41,6 +41,6 @@
 	},
 	width: 2,
 	height: 3,
-	output: { type: "block", code: "mixingbowl-{color}-{material}"  }
+	output: { type: "block", code: "poweredmixingbowl-{color}-{material}"  }
 },
 ]

@@ -188,9 +188,9 @@ namespace ACulinaryArtillery
                     // spawn particles above ellipses covering top plane of target block collision box:
                     //  - at the edge, on a line facing the aiming point
                     block
-                        .GetCollisionBoxes(blockAccessor, null)
-                        .OrderByDescending(cf => cf.MaxY)
-                        .FirstOrDefault() switch
+                        ?.GetCollisionBoxes(blockAccessor, blockSel.Position)
+                        ?.OrderByDescending(cf => cf.MaxY)
+                        ?.FirstOrDefault() switch
                     {
                         null => new Vec3d(0.35, 0.1, 0.35),
                         var b => b.TopFaceEllipsesLineIntersection(blockSel.HitPosition.ToVec3f())

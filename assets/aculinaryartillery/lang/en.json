@@ -23,7 +23,7 @@
     "block-bighookmold-red-raw": "Raw red clay hook mold",
     "block-bighookmold-fire-raw": "Raw  fire clay hook mold",
 
-    "block-mixingbowl-*" : "Powered mixing bowl",
+    "block-poweredmixingbowl-*" : "Powered mixing bowl",
     "blockdesc-mixingbowl-*": "Creation, distilled into a bowl - powered by locomotion.",
 
     "block-spile-copper-*" : "Copper spile",
@@ -113,15 +113,15 @@
   "blockhelp-mixingbowl-autolock": "Lock",
   "blockhelp-mixingbowl-autounlock": "Unlock",
 
-  "block-mixingbowlmini-blue": "Dark brown ceramic mixing bowl",
-  "block-mixingbowlmini-black": "Black ceramic mixing bowl",
-  "block-mixingbowlmini-brown": "Brown ceramic mixing bowl",
-  "block-mixingbowlmini-cream": "Cream ceramic mixing bowl",
-  "block-mixingbowlmini-fire": "Fireclay ceramic mixing bowl",
-  "block-mixingbowlmini-gray": "Gray ceramic mixing bowl",
-  "block-mixingbowlmini-orange": "Orange ceramic mixing bowl",
-  "block-mixingbowlmini-red": "Red ceramic mixing bowl",
-  "block-mixingbowlmini-tan": "Tan ceramic mixing bowl",
+  "block-mixingbowl-blue": "Dark brown ceramic mixing bowl",
+  "block-mixingbowl-black": "Black ceramic mixing bowl",
+  "block-mixingbowl-brown": "Brown ceramic mixing bowl",
+  "block-mixingbowl-cream": "Cream ceramic mixing bowl",
+  "block-mixingbowl-fire": "Fireclay ceramic mixing bowl",
+  "block-mixingbowl-gray": "Gray ceramic mixing bowl",
+  "block-mixingbowl-orange": "Orange ceramic mixing bowl",
+  "block-mixingbowl-red": "Red ceramic mixing bowl",
+  "block-mixingbowl-tan": "Tan ceramic mixing bowl",
   "blockdesc-mixingbowlmini-*": "Creation, distilled into a bowl - powered by weary hands.",
 
   "aculinaryartillery:Liquid Info:": "Liquid info:",

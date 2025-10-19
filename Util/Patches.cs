@@ -12,6 +12,16 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
+    
+    [HarmonyPatch(typeof(BlockPie), "CreateRecipe")]
+    public static class BlockPieLiquidRecipeFix
+    {
+        public static void Postfix(ref CookingRecipe __result, IWorldAccessor world, string code, List<ItemStack> doughs, List<ItemStack> fillings, List<ItemStack> crusts)
+        {
+            __result.Ingredients[1].PortionSizeLitres = 0.1f;
+        }
+    }
+    
     [HarmonyPatch(typeof(CollectibleBehaviorHandbookTextAndExtraInfo), "addIngredientForInfo")]
     public static class GetHandbookIngredientForPatch
     {
@@ -428,10 +438,10 @@ namespace ACulinaryArtillery
                 return false;
             }
 
-            float totalPortions = contentStack.StackSize / (container != null ? 2 : 20);
+            float totalPortions = contentStack.StackSize / (container != null ? 20 : 2);
             if (totalPortions < 1)
             {
-                if (byPlayer != null) capi?.TriggerIngameError(__instance, "notpieable", Lang.Get(container != null ? "Need at least 2 items each" : "Need at least 0.2L liquid"));
+                if (byPlayer != null) capi?.TriggerIngameError(__instance, "notpieable", Lang.Get(container != null ? "Need at least 0.2L liquid" : "Need at least 2 items each"));
                 __result = false;
                 return false;
             }
