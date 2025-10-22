@@ -7,13 +7,20 @@
 - Rolling pin can be hung from meat hooks; holes added to handle
 
 ~1.21_v2.0.0~
--Pizza did so much oh my god forreal
+-Complete update/refactor of codebase; updated to .net8 (both thanks to pizza2004)
 -like 1000 lines of code removed
+-Added new corking and uncorking mechanic for bottles, including new bottles
 Goose Things:
--Fixed corking and uncorking interaction
--Fixed simmering recipes not finding matches for their ingredients
--Fixed mixing bowl meals failing due to incorrect assetlocation for the mealblock
+--Fixed corking and uncorking interaction
+--Fixed simmering recipes not finding matches for their ingredients
+--Fixed mixing bowl meals failing due to incorrect assetlocation for the mealblock
+--Added ability to specify input stack amount for the mixing bowl(s) via json
+--Fixed molds not being fireable
+--Fixed egg cracking behaviour not working
+--Fixed cork transmutation into empty bottle bug via dodgy prefix patch, hopefully will be rewritable later
+
 -Added support for customizable stackCapacity to mixing bowl (thanks MisterAndyDandy!)
+-More Animals egg compatibility updated
 
 ~1.20_v1.2.6~
 - Frying pan added?
