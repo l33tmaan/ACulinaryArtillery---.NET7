@@ -114,10 +114,21 @@ namespace ACulinaryArtillery
         }
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
-            handling = EnumHandling.PreventDefault;
-            handHandling = EnumHandHandling.PreventDefault;
-            IWorldAccessor world = byEntity.World;
-            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling, ref handling);
+            Block block = byEntity.World.BlockAccessor.GetBlock(blockSel.Position);
+            if (block != null && CanSqueezeInto(byEntity.World, block, blockSel) && byEntity.Controls.ShiftKey)
+            {
+                handling = EnumHandling.PreventSubsequent;
+                handHandling = EnumHandHandling.PreventDefault;
+                if (byEntity.World.Side == EnumAppSide.Client)
+                {
+                    byEntity.World.PlaySoundAt(SqueezingSound, byEntity, null, randomizePitch: true, 16f, 0.5f);
+                }
+            }
+            else
+            {
+                base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling, ref handling);
+            }
+
         }
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
