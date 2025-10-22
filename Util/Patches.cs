@@ -120,9 +120,11 @@ namespace ACulinaryArtillery
                 }
                 else
                 {
-                    var gridRecipeSubheading = components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "• " + Lang.Get("Crafting") + "\n");
+                    var beforeSubheading = components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "• " + Lang.Get("Baking (in oven)") + "\n");
+                    beforeSubheading ??= components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "• " + Lang.Get("handbook-createdby-potcooking") + "\n");
+                    beforeSubheading ??= components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "• " + Lang.Get("Crafting") + "\n");
                     int insertIndex = components.Count - 1;
-                    if (gridRecipeSubheading != null) insertIndex = components.IndexOf(gridRecipeSubheading);
+                    if (beforeSubheading != null) insertIndex = components.IndexOf(beforeSubheading);
                     components.InsertRange(insertIndex, newComponents);
                 }
             }
