@@ -1,10 +1,10 @@
 ﻿[
  {
     "file": "aculinaryartillery:itemtypes/liquid/eggyolk.json",
-    op: "add",
-    path: "/skipVariants",
-    value: [ "eggyolkportion-pheasant", "eggyolkportion-goldenpheasant", "eggyolkportion-capercaillie", "eggyolkportion-wildturkey" ],
-    side: "server",
-    dependsOn: [ { "modid": "moreanimals", "invert": true } ]
+    "op": "add",
+    "path": "/skipVariants",
+    "value": [ "eggyolkportion-pheasant", "eggyolkportion-goldenpheasant", "eggyolkportion-capercaillie", "eggyolkportion-wildturkey" ],
+    "side": "server",
+    "dependsOn": [ { "modid": "moreanimals", "invert": true } ]
  }
 ]

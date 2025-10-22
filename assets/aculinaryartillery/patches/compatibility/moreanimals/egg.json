@@ -34,6 +34,6 @@
       }
     ],
     "side": "server",
-    "file": "moreanimals:itemtypes/egg.json"
+    "file": "moreanimals:blocktypes/egg.json"
   }
 ]
