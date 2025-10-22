@@ -18,6 +18,7 @@ Goose Things:
 --Fixed molds not being fireable
 --Fixed egg cracking behaviour not working
 --Fixed cork transmutation into empty bottle bug via dodgy prefix patch, hopefully will be rewritable later
+--Quick fix for egg cracking into bowls stored in ground storage corners (thanks Agamand!)
 
 -Added support for customizable stackCapacity to mixing bowl (thanks MisterAndyDandy!)
 -More Animals egg compatibility updated
