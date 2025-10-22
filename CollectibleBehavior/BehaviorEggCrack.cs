@@ -112,16 +112,24 @@ namespace ACulinaryArtillery
                 ];
             });
         }
-
+        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
+        {
+            handling = EnumHandling.PreventDefault;
+            handHandling = EnumHandHandling.PreventDefault;
+            IWorldAccessor world = byEntity.World;
+            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling, ref handling);
+        }
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
-            if (blockSel?.Block != null && CanSqueezeInto(byEntity.World, blockSel.Block, blockSel))
-            {
+            Block block = byEntity.World.BlockAccessor.GetBlock(blockSel.Position);
+            if (block != null && CanSqueezeInto(byEntity.World, block, blockSel))
+            { 
                 handling = EnumHandling.PreventDefault;
-
-                if (!byEntity.Controls.ShiftKey) return false;
-                if (byEntity.World is IClientWorldAccessor)
+                if (!byEntity.Controls.ShiftKey) { return false; }
+                
+                if (byEntity.World.Side == EnumAppSide.Client)
                 {
+                    
                     byEntity.StartAnimation(AnimationCode);
 
                     ModelTransform tf = new ModelTransform();
@@ -139,23 +147,21 @@ namespace ACulinaryArtillery
                     {
                         tf.Translation.X += (float)Math.Sin(Math.Min(1.0, secondsUsed) * 5) * 0.75f;
                     }
-
                     if (secondsUsed > SqueezeTime - 0.01f)
                     {
                         byEntity.AnimManager.StopAnimation(AnimationCode);
                     }
+
                 }
-
+                
                 return secondsUsed < SqueezeTime;
-            }
-
+           }
             return base.OnHeldInteractStep(secondsUsed, slot, byEntity, blockSel, entitySel, ref handling);
         }
 
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             byEntity.AnimManager.StopAnimation(AnimationCode);
-
             if (blockSel == null) return;
             if (secondsUsed < SqueezeTime - 0.02f) return;
 
@@ -174,11 +180,10 @@ namespace ACulinaryArtillery
             ItemStack? liquid = liquidItem == null ? null : new(liquidItem, 99999);
 
             if (liquid == null || !CanSqueezeInto(world, block, blockSel)) return;
-
             if (world.Side == EnumAppSide.Client)
             {
                 world.PlaySoundAt(SqueezingSound, byEntity, null, true, 16, 0.5f);
-
+                handling = EnumHandling.PreventDefault;
                 // Primary Particles
                 var color = ColorUtil.ToRgba(255, 219, 206, 164);
 
@@ -213,6 +218,7 @@ namespace ACulinaryArtillery
                 particles.MinPos.Add(block.TopMiddlePos); // add sub block selection position
                 particles.AddPos.Set(new Vec3d(0, 0, 0)); //add position
                 world.SpawnParticles(particles);
+                return;
             }
 
             if (block is BlockLiquidContainerTopOpened blockCnt)

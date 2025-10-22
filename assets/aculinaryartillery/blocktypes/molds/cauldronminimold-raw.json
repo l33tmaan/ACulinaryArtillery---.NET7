@@ -43,7 +43,7 @@
 			"smeltedStack": { "type": "block", "code": "cauldronminimold-blue-fired" },
 			"requiresContainer": false
 		},
-		"*": {
+		"cauldronminimold-*-raw": {
 			"meltingPoint": 600,
 			"meltingDuration": 45,
 			"smeltedRatio": 1,

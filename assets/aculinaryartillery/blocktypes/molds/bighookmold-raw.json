@@ -34,7 +34,7 @@
 			}
 		}
 	},
-	"combustibleProps": {
+	"combustiblePropsByType": {
 		"*-red-raw": {
 			"meltingPoint": 600,
 			"meltingDuration": 45,
@@ -43,7 +43,7 @@
 			"smeltedStack": { "type": "block", "code": "bighookmold-blue-fired" },
 			"requiresContainer": false
 		},
-		"*": {
+		"bighookmold-*-raw": {
 			"meltingPoint": 600,
 			"meltingDuration": 45,
 			"smeltedRatio": 1,
