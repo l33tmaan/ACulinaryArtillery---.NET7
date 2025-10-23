@@ -18,11 +18,16 @@ namespace ACulinaryArtillery
     {
         [HarmonyPrefix]
         [HarmonyPatch(nameof(BlockLiquidContainerBase.SplitStackAndPerformAction))]
-        public static bool TransmutationFix(ref int __result, Entity byEntity, ItemSlot slot, System.Func<ItemStack, int> action)
+        public static bool TransmutationFix(ref BlockLiquidContainerBase __instance, ref int __result, Entity byEntity, ItemSlot slot, System.Func<ItemStack, int> action)
+        {
+            __result = BottleSplitStackAndPerformAction(byEntity, slot, action);
+            return false;
+        }
+        public static int BottleSplitStackAndPerformAction(Entity byEntity, ItemSlot slot, System.Func<ItemStack, int> action)
         {
             if (slot.Itemstack == null)
             {
-                __result = 0;
+                return 0;
             }
 
             if (slot.Itemstack.StackSize == 1)
@@ -34,7 +39,7 @@ namespace ACulinaryArtillery
                     EntityPlayer obj = byEntity as EntityPlayer;
                     if (obj == null)
                     {
-                        __result = num;
+                        return num;
                     }
 
                     obj.WalkInventory(delegate (ItemSlot pslot)
@@ -63,10 +68,27 @@ namespace ACulinaryArtillery
                         pslot.MarkDirty();
                         return true;
                     });
-                    return true;
                 }
+
+                return num;
             }
-            return true;
+
+            ItemStack itemStack = slot.Itemstack.Clone();
+            itemStack.StackSize = 1;
+            int num2 = action(itemStack);
+            if (num2 > 0)
+            {
+                slot.TakeOut(1);
+                EntityPlayer obj2 = byEntity as EntityPlayer;
+                if (obj2 == null || !obj2.Player.InventoryManager.TryGiveItemstack(itemStack, slotNotifyEffect: true))
+                {
+                    obj2.World.SpawnItemEntity(itemStack, byEntity.SidedPos.XYZ);
+                }
+
+                slot.MarkDirty();
+            }
+
+            return num2;
         }
 
         [HarmonyPatch(typeof(BlockPie), "CreateRecipe")]
