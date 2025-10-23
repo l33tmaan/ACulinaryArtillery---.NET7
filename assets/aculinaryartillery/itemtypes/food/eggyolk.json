@@ -16,12 +16,12 @@
 	"shape": { "base": "item/egg/eggyolk" },
 	"texturesByType": {
       "*-pheasant": {
-        "yolk": { "base": "game:item/liquid/eggyolk/{source}" },
-        "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/pheasant-color", "blendMode": "Overlay" } ] }
+        "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/pheasant-color", "blendMode": "Overlay" } ] },
+        "yolk": { "base": "game:item/liquid/eggyolk/{source}" }
       },
       "*-goldenpheasant": {
-        "yolk": { "base": "game:item/liquid/eggyolk/{source}" },
-        "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/goldenpheasant-color", "blendMode": "Overlay" } ] }
+        "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/goldenpheasant-color", "blendMode": "Overlay" } ] },
+        "yolk": { "base": "game:item/liquid/eggyolk/{source}" }
       },
       "*-capercaillie": {
         "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/capercaillie-speckles", "blendMode": "Normal" } ] },
