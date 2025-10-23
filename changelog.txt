@@ -16,12 +16,13 @@ Goose Things:
 --Fixed mixing bowl meals failing due to incorrect assetlocation for the mealblock
 --Added ability to specify input stack amount for the mixing bowl(s) via json
 --Fixed molds not being fireable
---Fixed egg cracking behaviour not working
 --Fixed cork transmutation into empty bottle bug via dodgy prefix patch, hopefully will be rewritable later
+--Fixed egg cracking behaviour not working
 --Quick fix for egg cracking into bowls stored in ground storage corners (thanks Agamand!)
-
 -Added support for customizable stackCapacity to mixing bowl (thanks MisterAndyDandy!)
 -More Animals egg compatibility updated
+
+-- No really, cracked egg textures match their More Animals counterparts now (requires MoreAnimals to update with new overlay textures too) - DONE!!!
 
 ~1.20_v1.2.6~
 - Frying pan added?

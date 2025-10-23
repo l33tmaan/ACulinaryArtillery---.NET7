@@ -1,49 +1,67 @@
 {
-	code: "eggyolk",
-	maxstacksize: 32,
-	variantgroups: [
-		{ code: "source", states: ["chicken", "pheasant", "goldenpheasant", "capercaillie", "wildturkey"] },
+	"code": "eggyolk",
+	"maxstacksize": 32,
+	"variantgroups": [
+		{ "code": "source", "states": ["chicken", "pheasant", "goldenpheasant", "capercaillie", "wildturkey"] }
 	],
-	behaviors: [
+	"behaviors": [
 			{
-        name: "EggCrack",
-				properties: {
-					isEggYolk: true,
-					partialLiquidCode: "aculinaryartillery:eggyolkportion-{source}",
+        "name": "EggCrack",
+				"properties": {
+					"isEggYolk": true,
+					"partialLiquidCode": "aculinaryartillery:eggyolkportion-{source}"
 				}
       }
 	],
-	shape: { base: "item/egg/eggyolk" },
-	textures: {
-		"egg": { "base": "game:block/wood/henbox/egg" },
-		"yolk": { base: "game:item/liquid/eggyolk/{source}" },
+	"shape": { "base": "item/egg/eggyolk" },
+	"texturesByType": {
+      "*-pheasant": {
+        "yolk": { "base": "game:item/liquid/eggyolk/{source}" },
+        "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/pheasant-color", "blendMode": "Overlay" } ] }
+      },
+      "*-goldenpheasant": {
+        "yolk": { "base": "game:item/liquid/eggyolk/{source}" },
+        "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/goldenpheasant-color", "blendMode": "Overlay" } ] }
+      },
+      "*-capercaillie": {
+        "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/capercaillie-speckles", "blendMode": "Normal" } ] },
+        "yolk": { "base": "game:item/liquid/eggyolk/{source}" }
+      },
+      "*-wildturkey": {
+        "egg": { "base": "game:block/wood/henbox/egg", "blendedOverlays": [ { "base": "moreanimals:item/egg/turkey-speckles", "blendMode": "Normal" } ] },
+        "yolk": { "base": "game:item/liquid/eggyolk/{source}" }
+      },
+      "*-chicken": {
+        "egg": { "base": "game:block/wood/henbox/egg" },
+        "yolk": { "base": "game:item/liquid/eggyolk/{source}" }
+      }
 	},
-	creativeinventory: { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },
-	guiTransform: {
-		translation: { x: 0, y: 0, z: 0 },
-		rotation: { x: -30, y: -20, z: 0 },
-		origin: { x: 0.5, y: 0.0, z: 0.5 },
-		scale: 5
+	"creativeinventory": { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"] },
+	"guiTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": -30, "y": -20, "z": 0 },
+		"origin": { "x": 0.5, "y": 0.0, "z": 0.5 },
+		"scale": 5
 	},
-	tpHandTransform: {
-		translation: { x: -0.8, y: -0.25, z: -0.6 },
-		scale: 0.71
+	"tpHandTransform": {
+		"translation": { "x": -0.8, "y": -0.25, "z": -0.6 },
+		"scale": 0.71
 	},
-	fpHandTransform: {
-		translation: { x: 0, y: -0.1, z: 0 },
-		rotation: { x: 180, y: 90, z: 22 }
+	"fpHandTransform": {
+		"translation": { "x": 0, "y": -0.1, "z": 0 },
+		"rotation": { "x": 180, "y": 90, "z": 22 }
 	},
-	groundTransform: {
-		translation: { x: 0, y: 0, z: 0 },
-		rotation: { x: 0, y: 0, z: 0 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 5
+	"groundTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 0, "y": 0, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 5
 	},
-	transitionableProps: [{
-		type: "Perish",
-		freshHours: { avg: 24 },
-		transitionHours: { avg: 6 },
-		transitionedStack: { type: "item", code: "game:rot" },
-		transitionRatio: 0.5
+	"transitionableProps": [{
+		"type": "Perish",
+		"freshHours": { "avg": 24 },
+		"transitionHours": { "avg": 6 },
+		"transitionedStack": { "type": "item", "code": "game:rot" },
+		"transitionRatio": 0.5
 	}]
 }
