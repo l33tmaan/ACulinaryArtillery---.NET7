@@ -27,9 +27,17 @@
         }
     },
 	"attributes": {
-		"cureRate": 3,
+        "cureRate": 3,
 		"dryRate": 10,
-		"handbook": { "groupBy": ["meathooks-*"] }
+		"handbook": { 
+            "groupBy": ["meathooks-*"],
+            "extraSections": [
+                {
+                  "title": "aculinaryartillery:block-handbooktitle-meathooks",
+                  "text": "aculinaryartillery:block-handbooktext-meathooks"
+                }
+            ]
+        }
 	},
 	"drawtype": "json",
 	"blockmaterial": "Wood",

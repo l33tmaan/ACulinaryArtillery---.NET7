@@ -23,6 +23,12 @@ Goose Things:
 -More Animals egg compatibility updated
 
 -- No really, cracked egg textures match their More Animals counterparts now (requires MoreAnimals to update with new overlay textures too) - DONE!!!
+- Chef hat + saddle makes Chef Saddle
+- Cookware trader spawns near initial spawn location
+- Simmer and Mixing guides added; now items correctly link to the guides - DONE!!!
+- handbook tips updated for ACA blocks
+- Purely metal items can be smelted down?
+- Rolling pin updated so it can be hung from meat rack
 
 ~1.20_v1.2.6~
 - Frying pan added?

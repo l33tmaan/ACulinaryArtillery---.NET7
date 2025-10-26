@@ -61,7 +61,7 @@ namespace ACulinaryArtillery.Util
 
             if (kneadingRecipes.Length > 0)
             {
-                CollectibleBehaviorHandbookTextAndExtraInfo.AddSubHeading(components, capi, openDetailPageFor, "Mixing", "craftinginfo-knapping");
+                CollectibleBehaviorHandbookTextAndExtraInfo.AddSubHeading(components, capi, openDetailPageFor, "aculinaryartillery:handbook-createdby-mixingbowl", "kneadingmixingguide");
 
                 bool firstRecipe = true;
                 foreach (var recipe in kneadingRecipes)
@@ -98,7 +98,7 @@ namespace ACulinaryArtillery.Util
 
             if (simmeringRecipes.Length > 0)
             {
-                CollectibleBehaviorHandbookTextAndExtraInfo.AddSubHeading(components, capi, openDetailPageFor, "Simmering", "craftinginfo-knapping");
+                CollectibleBehaviorHandbookTextAndExtraInfo.AddSubHeading(components, capi, openDetailPageFor, "aculinaryartillery:handbook-createdby-simmering", "simmeringguide");
 
                 bool firstRecipe = true;
                 foreach (var recipe in simmeringRecipes)
