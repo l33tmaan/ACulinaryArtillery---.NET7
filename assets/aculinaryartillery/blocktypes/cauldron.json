@@ -12,7 +12,15 @@
 		"*": {
 			"lidSound": "game:sounds/block/metaldoor-place",
 			"canSeal": true,
-		    "handbook": { "groupBy": ["cauldron-*"] },
+		    "handbook": { 
+              "groupBy": ["cauldron-*"],
+              "extraSections": [
+                {
+                  "title": "aculinaryartillery:block-handbooktitle-cauldron",
+                  "text": "aculinaryartillery:block-handbooktext-cauldron"
+                }
+              ]
+            },
 			"lidPerishRate": 0.75,
 			"maxTemperature": 900,
 			"storageType": 1,

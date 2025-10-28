@@ -5,14 +5,25 @@
 		{ "code": "source", "states": ["chicken", "pheasant", "goldenpheasant", "capercaillie", "wildturkey"] }
 	],
 	"behaviors": [
-			{
+      {
         "name": "EggCrack",
-				"properties": {
-					"isEggYolk": true,
-					"partialLiquidCode": "aculinaryartillery:eggyolkportion-{source}"
-				}
+          "properties": {
+            "isEggYolk": true,
+            "partialLiquidCode": "aculinaryartillery:eggyolkportion-{source}"
+          }
       }
 	],
+    "attributes": {
+      "handbook": {
+        "ignoreCreativeInvStacks": true,
+        "extraSections": [
+          {
+            "title": "aculinaryartillery:item-handbooktitle-eggyolk",
+            "text": "aculinaryartillery:item-handbooktext-eggyolk"
+          }
+        ]
+      }
+    },
 	"shape": { "base": "item/egg/eggyolk" },
 	"texturesByType": {
       "*-pheasant": {

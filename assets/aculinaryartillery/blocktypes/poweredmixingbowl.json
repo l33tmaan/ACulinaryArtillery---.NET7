@@ -8,7 +8,13 @@
 		"capacityLitres": 3,
 		"maxSlotStackSize": 6,
 		"handbook": {
-			"groupBy": [ "mixingbowl-*" ]
+			"groupBy": [ "poweredmixingbowl-*" ],
+            "extraSections": [
+                {
+                    "title": "aculinaryartillery:block-handbooktitle-poweredmixingbowl",
+                    "text": "aculinaryartillery:block-handbooktext-poweredmixingbowl"
+                }
+            ]
 		}
 	},
 	"variantgroups": [
@@ -32,9 +38,9 @@
 			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
 			"churnsides2": { "base": "game:block/wood/churnsides2" },
 			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
+			"ceramic": { "base": "game:block/clay/hardened/{color}" },
+			"burned": { "base": "game:block/clay/hardened/{color}" },
+			"ceramic-dark": { "base": "game:block/clay/hardened/{color}" }
 		},
 		"*-redmarble": {
 			"top": { "base": "game:block/stone/polishedrock/redmarble-inside" },
@@ -45,9 +51,9 @@
 			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
 			"churnsides2": { "base": "game:block/wood/churnsides2" },
 			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
+			"ceramic": { "base": "game:block/clay/hardened/{color}" },
+			"burned": { "base": "game:block/clay/hardened/{color}" },
+			"ceramic-dark": { "base": "game:block/clay/hardened/{color}" }
 		},
 		"*-greenmarble": {
 			"top": { "base": "game:block/stone/polishedrock/greenmarble-inside" },
@@ -58,9 +64,9 @@
 			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
 			"churnsides2": { "base": "game:block/wood/churnsides2" },
 			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
+			"ceramic": { "base": "game:block/clay/hardened/{color}" },
+			"burned": { "base": "game:block/clay/hardened/{color}" },
+			"ceramic-dark": { "base": "game:block/clay/hardened/{color}" }
 		},
 		"*-aged": {
 			"top": { "base": "game:block/wood/table/aged/top" },
@@ -71,9 +77,9 @@
 			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
 			"churnsides2": { "base": "game:block/wood/churnsides2" },
 			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
+			"ceramic": { "base": "game:block/clay/hardened/{color}" },
+			"burned": { "base": "game:block/clay/hardened/{color}" },
+			"ceramic-dark": { "base": "game:block/clay/hardened/{color}" }
 		},
 		"*-normal": {
 			"top": { "base": "game:block/wood/table/normal/top" },
@@ -84,9 +90,9 @@
 			"sidesbarrel": { "base": "game:block/wood/barrel/sides" },
 			"churnsides2": { "base": "game:block/wood/churnsides2" },
 			"sidesbucket": { "base": "game:block/wood/bucket/sides" },
-			"ceramic": { base: "game:block/clay/hardened/{color}" },
-			"burned": { base: "game:block/clay/hardened/{color}" },
-			"ceramic-dark": { base: "game:block/clay/hardened/{color}" }
+			"ceramic": { "base": "game:block/clay/hardened/{color}" },
+			"burned": { "base": "game:block/clay/hardened/{color}" },
+			"ceramic-dark": { "base": "game:block/clay/hardened/{color}" }
 		}
 	},
 	"sidesolid": {
@@ -100,8 +106,8 @@
 	"lightAbsorption": 1,
 	"replaceable": 600,
 	"resistance": 1.5,
-	heldTpIdleAnimation: "holdbothhandsverylarge", 
-	heldTpUseAnimation: "twohandplaceblock", 
+	"heldTpIdleAnimation": "holdbothhandsverylarge", 
+	"heldTpUseAnimation": "twohandplaceblock", 
 	"collisionSelectionBoxes": [
 		{
 			"x1": 0.05,
@@ -120,25 +126,25 @@
 			"z2": 0.75
 		}
 	],
-	guiTransform: {
-		scale: 1.15
+	"guiTransform": {
+		"scale": 1.15
 	},
-	fpHandTransform: {
-		translation: {
-			x: 0,
-			y: 0,
-			z: 0
+	"fpHandTransform": {
+		"translation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
 		},
-		scale: 2
+		"scale": 2
 	},
-	tpHandTransform: {
-		translation: { x: -1.2, y: -0.7, z: -0.25 },
-		rotation: { x: -83, y: 29, z: -66 },
-		scale: 0.75
+	"tpHandTransform": {
+		"translation": { "x": -1.2, "y": -0.7, "z": -0.25 },
+		"rotation": { "x": -83, "y": 29, "z": -66 },
+		"scale": 0.75
 	},
-	groundTransform: {
-		rotation: { x: 0, y: -45, z: 0 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 3
+	"groundTransform": {
+		"rotation": { "x": 0, "y": -45, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 3
 	}
 }

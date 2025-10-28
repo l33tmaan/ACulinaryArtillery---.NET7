@@ -1,86 +1,94 @@
 {
-	code: "spile",
-	behaviors: [
+	"code": "spile",
+	"behaviors": [
 		{
-			name: "GroundStorable",
-			properties: {
-				layout: 'Quadrants',
-				collisionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.125, z2: 1 },
-			},
+			"name": "GroundStorable",
+			"properties": {
+				"layout": "Quadrants",
+				"collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 }
+			}
 		},
 		{
-			name: "HorizontalAttachable" 
+			"name": "HorizontalAttachable" 
 		} 	
 	],
-	attributes: {
-		handbook: { "groupBy": ["spile-*"] },
-		groundStorageTransform: {
-			translation: { x: -0.175, y: -0.4, z: 0.375 },
-			rotation: { x: 0, y: 0, z: 90 },
-			scale: 0.8,
-		},	
+	"attributes": {
+		"handbook": { 
+          "groupBy": ["spile-*"],
+          "extraSections": [
+            {
+              "title": "aculinaryartillery:block-handbooktitle-spile",
+              "text": "aculinaryartillery:block-handbooktext-spile"
+            }
+          ]
+        },
+		"groundStorageTransform": {
+			"translation": { "x": -0.175, "y": -0.4, "z": 0.375 },
+			"rotation": { "x": 0, "y": 0, "z": 90 },
+			"scale": 0.8
+		}
 	},
-	entityclass: "Spile",
-	class: "BlockSpile",
-	variantgroups: [
-		{ code:"metal", states: ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] },
-		{ code:"side", loadFromProperties: "abstract/horizontalorientation" }
+	"entityclass": "Spile",
+	"class": "BlockSpile",
+	"variantgroups": [
+		{ "code":"metal", "states": ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] },
+		{ "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
 	],
-	texture: { base: "game:block/metal/ingot/{metal}" },
-	creativeinventory: { "general": ["*-north"], "decorative": ["*-north"], "aculinaryartillery": ["*-north"] },
-	shapebytype: {
-		"*-north": { base: "block/spile", rotateY: 0 },
-		"*-east": { base: "block/spile", rotateY: 270 },
-		"*-south": { base: "block/spile", rotateY: 180 },
-		"*-west": { base: "block/spile", rotateY: 90 }
+	"texture": { "base": "game:block/metal/ingot/{metal}" },
+	"creativeinventory": { "general": ["*-north"], "decorative": ["*-north"], "aculinaryartillery": ["*-north"] },
+	"shapebytype": {
+		"*-north": { "base": "block/spile", "rotateY": 0 },
+		"*-east": { "base": "block/spile", "rotateY": 270 },
+		"*-south": { "base": "block/spile", "rotateY": 180 },
+		"*-west": { "base": "block/spile", "rotateY": 90 }
 	},
-	blockmaterial: "Metal",
-	replaceable: 500,
-	lightAbsorption: 0,
-	rainPermeable: true,
-	sidesolid: {
-		all: false
+	"blockmaterial": "Metal",
+	"replaceable": 500,
+	"lightAbsorption": 0,
+	"rainPermeable": true,
+	"sidesolid": {
+		"all": false
 	},
-	sideopaque: {
-		all: false
+	"sideopaque": {
+		"all": false
 	},
-	sideAO: {
-		all: false
+	"sideAO": {
+		"all": false
 	},
-	resistance: 1.25,
-	sounds: {
+	"resistance": 1.25,
+	"sounds": {
 		"place": "game:block/planks",
 		"hit": "game:block/planks",
 		"break": "game:block/planks",
 		"walk": "game:walk/wood"
 	},
-	collisionselectionbox: {
-		x1: 0.375, y1: 0, z1: 0,
-		x2: 0.625, y2: 0.5, z2: 0.3,
-		rotateYByType: {
+	"collisionselectionbox": {
+		"x1": 0.375, "y1": 0, "z1": 0,
+		"x2": 0.625, "y2": 0.5, "z2": 0.3,
+		"rotateYByType": {
 			"*-east": 270,
 			"*-south": 180,
 			"*-west": 90,
 			"*-north": 0
 		}
 	},
-	tpHandTransform: {
-		translation: { x: -1.6, y: -1.8, z: -2 },
-		rotation: { x: -120, y: -120, z: 0 }
+	"tpHandTransform": {
+		"translation": { "x": -1.6, "y": -1.8, "z": -2 },
+		"rotation": { "x": -120, "y": -120, "z": 0 }
 	},
-	groundTransform: {
-		translation: { x: 0, y: 0.08, z: 0 },
-		rotation: { x: -50, y: 0, z: 0 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 1.5
+	"groundTransform": {
+		"translation": { "x": 0, "y": 0.08, "z": 0 },
+		"rotation": { "x": -50, "y": 0, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 1.5
 	},
-	fpHandTransform: {
-		translation: { x: 0, y: 0.06, z: 0.5 }
+	"fpHandTransform": {
+		"translation": { "x": 0, "y": 0.06, "z": 0.5 }
 	},
-	guiTransform: {
-		rotation: { x: 0, y: -125, z: 0 },
-		origin: { x: 0.5, y: 0.3, z: 0 },
-		scale: 2
+	"guiTransform": {
+		"rotation": { "x": 0, "y": -125, "z": 0 },
+		"origin": { "x": 0.5, "y": 0.3, "z": 0 },
+		"scale": 2
 	},
-	materialDensity: 600
+	"materialDensity": 600
 }

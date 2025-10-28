@@ -9,7 +9,15 @@
 	"creativeinventory": { "general": [ "*" ], "aculinaryartillery": ["*"] },
 	"attributes": {
 		"shelvable": true,
-		"handbook": { "groupBy": [ "bottle-clay-*-{type}" ] },
+		"handbook": { 
+          "groupBy": [ "bottle-clay-*-{type}" ],
+          "extraSections": [
+            {
+              "title": "aculinaryartillery:block-handbooktitle-bottle",
+              "text": "aculinaryartillery:block-handbooktext-bottle"
+            }
+          ]
+        },
 		"minFill": 0.21,
 		"maxFill": 3.81,
 		"minFillSideways": 6.7,

@@ -26,9 +26,11 @@ Goose Things:
 - Chef hat + saddle makes Chef Saddle
 - Cookware trader spawns near initial spawn location
 - Simmer and Mixing guides added; now items correctly link to the guides - DONE!!!
-- handbook tips updated for ACA blocks
+- Handbook tips updated for ACA blocks and items - DONE!!!
+- Recipe notes added to meals in the handbook
 - Purely metal items can be smelted down?
 - Rolling pin updated so it can be hung from meat rack
+- Cork .tfedit stuff fixed
 
 ~1.20_v1.2.6~
 - Frying pan added?

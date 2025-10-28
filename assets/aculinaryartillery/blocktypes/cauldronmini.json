@@ -12,7 +12,15 @@
 		"*": {
 			"lidSound": "game:sounds/block/metaldoor-place",
 			"canSeal": true,
-		    "handbook": { "groupBy": ["cauldronmini-*"] },
+            "handbook": {
+              "groupBy": ["cauldronmini-*"],
+              "extraSections": [
+                {
+                  "title": "aculinaryartillery:block-handbooktitle-cauldronmini",
+                  "text": "aculinaryartillery:block-handbooktext-cauldronmini"
+                }
+              ]
+            },
 			"lidPerishRate": 0.75,
 			"maxTemperature": 900,
 			"storageType": 1,
@@ -37,14 +45,14 @@
 				},
 				"useFirepitModel": "Wide"
 			},
-			meathookable: true,
-			meatHookTransform: {
-  				translation: { x: 0.0, y: -0.725, z: 0.26 },
-  				rotation: { x: -93, y: 45, z: 0 },
-  				origin: { x: 0.5, y: 0, z: 0.5 },
-  				scale: 0.75
+			"meathookable": true,
+			"meatHookTransform": {
+  				"translation": { "x": 0.0, "y": -0.725, "z": 0.26 },
+  				"rotation": { "x": -93, "y": 45, "z": 0 },
+  				"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+  				"scale": 0.75
 			},
-			shelvable: true,
+			"shelvable": true
 		}
 	},
 	"variantgroups": [

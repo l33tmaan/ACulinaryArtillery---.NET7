@@ -3,12 +3,21 @@
 	"class": "BlockMixingBowl",
 	"entityClass": "MixingBowl",
 	"behaviors": [ { "name": "Container" }, { "name": "UnstableFalling" } ],
-	variantgroups: [
+	"variantgroups": [
 		{ "code": "color", "states": ["blue", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan"] }
 	],
 	"attributes": {
 		"capacityLitres": 3,
-		"maxSlotStackSize": 6
+		"maxSlotStackSize": 6,
+        "handbook": {
+            "groupBy": [ "mixingbowl-*" ],
+            "extraSections": [
+                {
+                    "title": "aculinaryartillery:block-handbooktitle-mixingbowl",
+                    "text": "aculinaryartillery:block-handbooktext-mixingbowl"
+                }
+            ]
+        }
 	},
 	"creativeinventory": {
 		"general": [ "*" ],
@@ -20,9 +29,9 @@
 	"textures": {
 		"material": { "base": "game:block/wood/planks/generic" },
 		"generic": { "base": "game:block/wood/planks/generic" },
-		"ceramic": { base: "game:block/clay/hardened/{color}" },
-		"burned": { base: "game:block/clay/hardened/{color}" },
-		"ceramic-dark": { base: "game:block/clay/hardened/{color}" },
+		"ceramic": { "base": "game:block/clay/hardened/{color}" },
+		"burned": { "base": "game:block/clay/hardened/{color}" },
+		"ceramic-dark": { "base": "game:block/clay/hardened/{color}" },
 		"sidesbucket": { "base": "game:block/wood/bucket/sides" },
 	},
 	"sidesolid": {
@@ -31,7 +40,7 @@
 	"sideopaque": {
 		"all": false
 	},
-	heldTpIdleAnimation: "holdbothhandsmedium", heldTpUseAnimation: "twohandplaceblock", 
+	"heldTpIdleAnimation": "holdbothhandsmedium", "heldTpUseAnimation": "twohandplaceblock", 
 	"lightAbsorption": 0,
 	"replaceable": 600,
 	"resistance": 1.5,
@@ -53,30 +62,30 @@
 			"z2": 0.75
 		}
 	],
-	guiTransform: {
-		origin: {
-			x: 0.5,
-			y: 0.2,
-			z: 0.5
+	"guiTransform": {
+		"origin": {
+			"x": 0.5,
+			"y": 0.2,
+			"z": 0.5
 		},
-		scale: 2
+		"scale": 2
 	},
-	fpHandTransform: {
-		translation: {
-			x: 0,
-			y: 0,
-			z: 0
+	"fpHandTransform": {
+		"translation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
 		},
-		scale: 2
+		"scale": 2
 	},
-	tpHandTransform: {
-		translation: { x: -1.2, y: -0.6, z: -0.35 },
-		rotation: { x: 96, y: -13, z: -105 },
-		scale: 0.8
+	"tpHandTransform": {
+		"translation": { "x": -1.2, "y": -0.6, "z": -0.35 },
+		"rotation": { "x": 96, "y": -13, "z": -105 },
+		"scale": 0.8
 	},
-	groundTransform: {
-		rotation: { x: 0, y: -45, z: 0 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 5
+	"groundTransform": {
+		"rotation": { "x": 0, "y": -45, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 5
 	}
 }

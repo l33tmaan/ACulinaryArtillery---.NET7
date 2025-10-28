@@ -1,45 +1,53 @@
 {
-	code: "eggshell",
-	maxstacksize: 64,
-	variantgroups: [
-		{ code: "source", states: ["" ] },
+	"code": "eggshell",
+	"maxstacksize": 64,
+	"variantgroups": [
+		{ "code": "source", "states": ["" ] }
 	],
-	attributes: {
+	"attributes": {
 		"fertilizerProps": {
 			"n": 2,
 			"p": 1,
 			"k": 0
 		},
-		"foodTags": [ "eggshell"]
+		"foodTags": [ "eggshell"],
+        "handbook": {
+            "extraSections": [
+                {
+                    "title": "aculinaryartillery:item-handbooktitle-eggshell",
+                    "text": "aculinaryartillery:item-handbooktext-eggshell"
+                }
+            ]
+        }
 	},
-	shape: { base: "item/egg/eggshell" },
-	texture: { base: "game:block/wood/henbox/egg" },
-	creativeinventory: { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },
-	guiTransform: {
-		translation: { x: 0, y: 0, z: 0 },
-		rotation: { x: -30, y: -20, z: 0 },
-		origin: { x: 0.5, y: 0.0, z: 0.5 },
-		scale: 5
+	"shape": { "base": "item/egg/eggshell" },
+	"texture": { "base": "game:block/wood/henbox/egg" },
+	"creativeinventory": { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },
+	"guiTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": -30, "y": -20, "z": 0 },
+		"origin": { "x": 0.5, "y": 0.0, "z": 0.5 },
+		"scale": 5
 	},
-	tpHandTransform: {
-		translation: { x: -0.8, y: -0.25, z: -0.6 },
-		scale: 0.71
+	"tpHandTransform": {
+		"translation": { "x": -0.8, "y": -0.25, "z": -0.6 },
+		"scale": 0.71
 	},
-	fpHandTransform: {
-		translation: { x: 0, y: -0.1, z: 0 },
-		rotation: { x: 180, y: 90, z: 22 }
+	"fpHandTransform": {
+		"translation": { "x": 0, "y": -0.1, "z": 0 },
+		"rotation": { "x": 180, "y": 90, "z": 22 }
 	},
-	groundTransform: {
-		translation: { x: 0, y: 0, z: 0 },
-		rotation: { x: 0, y: 0, z: 0 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 5
+	"groundTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 0, "y": 0, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 5
 	},
-	transitionableProps: [{
-		type: "Perish",
-		freshHours: { avg: 240 },
-		transitionHours: { avg: 48 },
-		transitionedStack: { type: "item", code: "game:rot" },
-		transitionRatio: 0.5
+	"transitionableProps": [{
+		"type": "Perish",
+		"freshHours": { "avg": 240 },
+		"transitionHours": { "avg": 48 },
+		"transitionedStack": { "type": "item", "code": "game:rot" },
+		"transitionRatio": 0.5
 	}]
 }
