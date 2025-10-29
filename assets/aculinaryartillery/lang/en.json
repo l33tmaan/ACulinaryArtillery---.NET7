@@ -403,6 +403,9 @@
   "game:recipeingredient-item-eggyolkfullportion-wildturkey": "liquid wild turkey egg",
   "recipeingredient-item-eggyolkfullportion-wildturkey-insturmentalcase": "liquid wild turkey egg",
   "incontainer-item-eggyolkfullportion-wildturkey": "Liquid wild turkey egg",
-  "game:incontainer-item-eggyolkfullportion-wildturkey": "Liquid wild turkey egg"
+  "game:incontainer-item-eggyolkfullportion-wildturkey": "Liquid wild turkey egg",
+  
+  "handbook-crackinghelp-title": "Egg Cracking Tips",
+  "handbook-crackinghelp-text": "To crack eggs into a bowl or bucket, equip an egg and target the container, then hold <hk>Shift</hk>+<icon name='rightmousebutton'></icon> to 'partially' crack it, resulting in an <a href=\"handbook://item-aculinaryartillery:eggyolk-chicken\">cracked egg</a> in your hand and <a href=\"handbook://item-aculinaryartillery:eggwhiteportion\">egg white</a> in the container. Cracked eggs can be further cracked with <hk>Shift</hk>+<icon name='rightmousebutton'></icon> to leave an <a href=\"handbook://item-aculinaryartillery:eggshell\">egg shell</a> in your hand and <a href=\"handbook://item-aculinaryartillery:eggyolkportion-chicken\">egg yolk</a> in the container.<br>Alternately, hold <hk>Shift</hk>+<hk>Ctrl</hk>+<icon name='rightmousebutton'></icon> to 'fully' crack the egg, resulting in an <a href=\"handbook://item-aculinaryartillery:eggshell\">egg shell</a> in your hand and <a href=\"handbook://item-aculinaryartillery:eggyolkfullportion-chicken\">liquid egg</a> in the container."
   
 }
