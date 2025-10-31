@@ -97,8 +97,13 @@
 
   "item-cork-generic": "Cork",
   "block-handbooktitle-cork": "Cork",
-  "block-handbooktext-cork": "These are inserted into a bottle to act as a seal and preserve liquids for extended periods of time. Created from tree bark, corks are moisture-resistant, slow to deteriorate, easily compressible, and biodegradable.",
+  "block-handbooktext-cork": "These are inserted into a bottle to act as a seal and preserve liquids for extended periods of time. Created from <a href=\"handbook://item-aculinaryartillery:bark-oak-boiled\">boiled oak bark</a>, corks are moisture-resistant, slow to deteriorate, easily compressible, and biodegradable.",
 
+  "item-bark-oak-dry": "Oak bark",
+  "item-bark-oak-boiled": "Boiled oak bark",
+  "item-handbooktitle-bark": "Oak bark",
+  "item-handbooktext-bark": "After bark is separated from an oak tree, it is boiled to sterilize and soften it. During this cleaning process, the bark is made easier to work with and can be cut into workable <a href=\"handbook://item-aculinaryartillery:cork-generic\">cork</a> pieces. The density of the bark affects the resulting cork's quality.",
+  
   "efrecipes:Will make {0}" : "Will make {0}",
   "efrecipes:Squeezing x{0} {1}" : "Squeezing x{0} {1}",
   "efrecipes:x{0} {1} inserted" : "x{0} {1} inserted",

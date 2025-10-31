@@ -30,6 +30,8 @@ Goose Things:
 - Egg cracking help text added to handbook - DONE!!!
 - Rolling pin updated so it can be hung from meat rack
 - Cork .tfedit numbers fixed - DONE!!!
+- Cork recipe made more complex (and integrated with Ancient Tools and In Dappled Groves bark) [thanks to Taska for the bark shape!] - DONE!!!
+- Cauldrons can be made by soldering metal sheets
 
 ~1.20_v1.2.6~
 - Frying pan added?

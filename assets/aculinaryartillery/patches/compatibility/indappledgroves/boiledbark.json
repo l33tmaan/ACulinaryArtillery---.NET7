@@ -1,0 +1,18 @@
+[
+  {
+    "file": "aculinaryartillery:itemtypes/bark.json",
+    "op": "add",
+    "path": "/skipVariants",
+    "value": [ "bark-oak-dry"],
+    "side": "server",
+    "dependsOn": [{ "modid": "indappledgroves"}]
+  },
+  {
+    "file": "aculinaryartillery:recipes/simmering/indappledgroves/boiledbark.json",
+    "op": "addmerge",
+    "path": "/enabled",
+    "value": "false",
+    "side": "server",
+    "dependsOn": [{ "modid": "indappledgroves", "invert": true }]
+  }  
+]

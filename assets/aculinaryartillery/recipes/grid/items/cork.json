@@ -7,9 +7,8 @@
       "istool": "true"
     },
     "L": {
-      "type": "block",
-      "code": "game:debarkedlog-*",
-      "name": "color"
+      "type": "item",
+      "code": "aculinaryartillery:bark-*-boiled"
     }
   },
   "width": 1,

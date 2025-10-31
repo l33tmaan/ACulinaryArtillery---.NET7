@@ -2,13 +2,13 @@
 	"code": "cork",
 	"maxstacksize": 64,
 	"variantgroups": [
-		{ "code": "material", "states": ["generic"] },
+		{ "code": "material", "states": ["generic"] }
 	],
 	"storageFlags": 257,
 	"attributes": {
 		"canSealBottle": true,
         "handbook": {
-            "groupBy": ["meathooks-*"],
+            "groupBy": ["cork-*"],
             "extraSections": [
                 {
                     "title": "aculinaryartillery:block-handbooktitle-cork",
