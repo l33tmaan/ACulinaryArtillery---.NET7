@@ -2,7 +2,9 @@
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery.Util
@@ -49,12 +51,48 @@ namespace ACulinaryArtillery.Util
             return components;
         }
 
-        public static List<RichTextComponentBase> ACAHandbookCreatedByComponents(ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack)
+        public static List<RichTextComponentBase> ACAHandbookProcessesIntoComponents(ICoreClientAPI capi, ActionConsumable<string> openDetailPageFor, ItemStack stack, float marginBottom, List<ItemStack> fuels, bool haveText)
+        {
+            List<RichTextComponentBase> components = [];
+            var collObj = stack.Collectible;
+
+            // Simmers into
+            if (collObj.CombustibleProps?.SmeltedStack?.ResolvedItemstack != null && !collObj.CombustibleProps.SmeltedStack.ResolvedItemstack.Equals(capi.World, stack, GlobalConstants.IgnoredStackAttributes))
+            {
+                if (getCanSimmer(fuels, stack) && collObj.CombustibleProps.SmeltedStack?.ResolvedItemstack is ItemStack smeltedStack)
+                {
+                    string smelttype = collObj.CombustibleProps.SmeltingType.ToString().ToLowerInvariant();
+                    CollectibleBehaviorHandbookTextAndExtraInfo.AddHeading(components, capi, "aculinaryartillery:smeltdesc-simmer-title", ref haveText);
+
+
+                    var cmp = new ItemstackTextComponent(capi, smeltedStack, 40, 10, EnumFloat.Inline, (cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs)));
+                    cmp.ShowStacksize = true;
+                    cmp.PaddingLeft = 2;
+                    components.Add(cmp);
+                    components.Add(new ClearFloatTextComponent(capi, marginBottom));  //nice margin below the item graphic
+                }
+            }
+
+            return components;
+        }
+
+        public static List<RichTextComponentBase> ACAHandbookCreatedByComponents(ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack, List<ItemStack> fuels)
         {
             DoughRecipe[] kneadingRecipes = [.. capi.GetKneadingRecipes().Where(rec => rec.Output.ResolvedItemstack.Satisfies(stack))];
             SimmerRecipe[] simmeringRecipes = [.. capi.GetSimmerRecipes().Where(rec => rec.Simmering.SmeltedStack.ResolvedItemstack.Satisfies(stack))];
+            List<ItemStack> simmeringStacks = [];
 
-            if (kneadingRecipes.Length == 0 && simmeringRecipes.Length == 0) return [];
+            foreach (var val in ObjectCacheUtil.TryGet<List<ItemStack>>(capi, "ACAhandbooksimmerStacks"))
+            {
+                if (val.Collectible.CombustibleProps.SmeltedStack?.ResolvedItemstack?.Equals(capi.World, stack, GlobalConstants.IgnoredStackAttributes) == true && !simmeringStacks.Any(s => s.Equals(capi.World, val, GlobalConstants.IgnoredStackAttributes)))
+                {
+                    var simmerStack = val.Clone();
+                    simmerStack.StackSize = val.Collectible.CombustibleProps.SmeltedRatio;
+                    simmeringStacks.Add(val);
+                }
+            }
+
+            if (kneadingRecipes.Length == 0 && simmeringRecipes.Length == 0 && simmeringStacks.Count == 0) return [];
 
             List<RichTextComponentBase> components = [];
             var verticalSpace = new ClearFloatTextComponent(capi, 7);
@@ -96,9 +134,23 @@ namespace ACulinaryArtillery.Util
                 components.Add(verticalSpace);
             }
 
-            if (simmeringRecipes.Length > 0)
+            if (simmeringRecipes.Length > 0 || simmeringStacks.Count > 0)
             {
                 CollectibleBehaviorHandbookTextAndExtraInfo.AddSubHeading(components, capi, openDetailPageFor, "aculinaryartillery:handbook-createdby-simmering", "simmeringguide");
+
+                int firstPadding = 2;
+                while (simmeringStacks.Count > 0)
+                {
+                    ItemStack dstack = simmeringStacks[0];
+                    simmeringStacks.RemoveAt(0);
+                    if (dstack == null) continue;
+
+                    SlideshowItemstackTextComponent comp = new SlideshowItemstackTextComponent(capi, dstack, simmeringStacks, 40, EnumFloat.Inline, (cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs)));
+                    comp.ShowStackSize = true;
+                    comp.PaddingLeft = firstPadding;
+                    firstPadding = 0;
+                    components.Add(comp);
+                }
 
                 bool firstRecipe = true;
                 foreach (var recipe in simmeringRecipes)
@@ -176,5 +228,53 @@ namespace ACulinaryArtillery.Util
 
             return components;
         }
+
+        internal static bool getCanSimmer(List<ItemStack> fuels, ItemStack stack)
+        {
+            if (stack.Collectible.CombustibleProps is not CombustibleProperties combustProps) return false;
+            int maxFuelTemp = fuels.OrderBy(fuel => fuel.Collectible.CombustibleProps.BurnTemperature).Select(fuel => fuel.Collectible.CombustibleProps.BurnTemperature).LastOrDefault();
+            if (combustProps.MeltingPoint > maxFuelTemp) return false;
+            if (combustProps.SmeltingType is not EnumSmeltType.Cook or EnumSmeltType.Convert) return false;
+            if (combustProps.RequiresContainer == true) return true;
+
+            return false;
+        }
+
+        public static Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? CreateCachedMealRecipeStacks(ICoreClientAPI capi, CookingRecipe recipe, ItemStack[] allstacks)
+        {
+            return ObjectCacheUtil.GetOrCreate(capi, "valstacksbying-" + recipe.Code, () =>
+            {
+                Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? valStacksByIng = [];
+
+                foreach (var ingredient in recipe.Ingredients!)
+                {
+                    HashSet<ItemStack?> ingredientStacks = [];
+
+                    CookingRecipeIngredientPatcher.Resolve(ingredient, capi.World, "handbook meal recipes");
+                    foreach (var astack in allstacks)
+                    {
+                        if (ingredient.GetMatchingStack(astack) is not CookingRecipeStack vstack) continue;
+
+                        ItemStack stack = astack.Clone();
+                        stack.StackSize = vstack.StackSize;
+
+                        if (BlockLiquidContainerBase.GetContainableProps(stack) is WaterTightContainableProps props)
+                        {
+                            stack.StackSize *= (int)(props.ItemsPerLitre * ingredient.PortionSizeLitres);
+                        }
+
+                        ingredientStacks.Add(stack);
+                    }
+
+                    if (ingredient.MinQuantity <= 0) ingredientStacks.Add(null);
+
+                    valStacksByIng.Add(ingredient.Clone(), ingredientStacks);
+                }
+
+                return valStacksByIng;
+            });
+        }
+
+
     }
 }
