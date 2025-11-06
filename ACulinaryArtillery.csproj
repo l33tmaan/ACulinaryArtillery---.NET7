@@ -54,6 +54,7 @@
     <Folder Include="bin\Debug\net7.0\" />
     <Folder Include="obj\Debug\net7.0\refint\" />
     <Folder Include="obj\Debug\net7.0\ref\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,9 +81,6 @@
       <HintPath>$(VINTAGE_STORY)\Lib\protobuf-net.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Vintagestory">
-        <HintPath>$(VINTAGE_STORY)\Vintagestory.dll</HintPath>
-    </Reference>
     <Reference Include="VintagestoryAPI">
       <HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
       <Private>false</Private>
@@ -90,9 +88,6 @@
     <Reference Include="VintagestoryLib">
       <HintPath>$(VINTAGE_STORY)\VintagestoryLib.dll</HintPath>
       <Private>false</Private>
-    </Reference>
-    <Reference Include="VintagestoryServer">
-      <HintPath>..\..\GAMES\PC\vintagestory\VintagestoryServer.dll</HintPath>
     </Reference>
     <Reference Include="VSCreativeMod">
       <HintPath>$(VINTAGE_STORY)\Mods\VSCreativeMod.dll</HintPath>
