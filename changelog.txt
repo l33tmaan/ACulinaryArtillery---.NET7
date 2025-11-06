@@ -21,17 +21,22 @@ Goose Things:
 --Quick fix for egg cracking into bowls stored in ground storage corners (thanks Agamand!)
 -Added support for customizable stackCapacity to mixing bowl (thanks MisterAndyDandy!)
 -More Animals egg compatibility updated
+- No really, cracked egg textures match their More Animals counterparts now
+- Simmer and Mixing guides added; now items correctly link to the guides 
+- Handbook tips updated for ACA blocks and items
+- Egg cracking help text added to handbook
+- Cork .tfedit numbers fixed 
+- Cork recipe made more complex (and integrated with Ancient Tools and In Dappled Groves bark) [thanks to Taska for the bark shape!]
+Pizza updates for -dev.5:
+Feature - Show fruit syrup simmering in the handbook
+Fixed - Improved caching for meal recipes to reduce lag in handbook
 
--- No really, cracked egg textures match their More Animals counterparts now (requires MoreAnimals to update with new overlay textures too) - DONE!!!
+
+- Large cauldrons can be made by soldering metal sheets; casting mold removed - DONE!!!
 - Chef hat + saddle makes Chef Saddle
-- Cookware trader spawns near initial spawn location
-- Simmer and Mixing guides added; now items correctly link to the guides - DONE!!!
-- Handbook tips updated for ACA blocks and items - DONE!!!
-- Egg cracking help text added to handbook - DONE!!!
-- Rolling pin updated so it can be hung from meat rack
-- Cork .tfedit numbers fixed - DONE!!!
-- Cork recipe made more complex (and integrated with Ancient Tools and In Dappled Groves bark) [thanks to Taska for the bark shape!] - DONE!!!
-- Cauldrons can be made by soldering metal sheets
+- Cookware trader spawns near initial spawn location - DONE!!!
+- Rolling pin model updated so it can be hung from meat rack
+
 
 ~1.20_v1.2.6~
 - Frying pan added?

@@ -3,7 +3,7 @@
 	"damagedby": ["blockbreaking", "attacking"],
 	"variantgroups": [
 		{ "code": "type", "states": ["acacia", "aged", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut",
-																				"blackbronze", "copper", "iron", "meteoriciron", "steel", "tinbronze" ] },
+																				"blackbronze", "copper", "iron", "meteoriciron", "steel", "tinbronze" ] }
 	],
 	"shape": { "base": "item/rollingpinshape" }, 
 	"heldTpHitAnimation": "breaktool",
@@ -14,12 +14,17 @@
 		"*-meteoriciron": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
 		"*-steel": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
 		"*-tinbronze": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
-		"*": { "pin": { "base": "game:block/wood/debarked/{type}" } },
+		"*": { "pin": { "base": "game:block/wood/debarked/{type}" } }
 	},
 	"attackRange": 2,
 	"attributes": {
 		"scrollrackable": true,
 		"shelvable": "Halves",
+        "meathookable": true,
+        "meatHookTransform": {
+          
+        },
+        "randomizeInDisplayCase": false,
         "handbook": {
           "groupBy": [ "rollingpin-*}" ],
           "extraSections": [
@@ -44,7 +49,7 @@
 		"name": "GroundStorable",
 		"properties": {
 			"layout": "Halves",
-			"collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 },
+			"collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 }
 		}
 	}],
 	"durabilitybytype": {
@@ -54,7 +59,7 @@
 		"rollingpin-blackbronze": 1300,
 		"rollingpin-tinbronze": 900,
 		"rollingpin-copper": 600,
-		"rollingpin-*": 100,
+		"rollingpin-*": 100
 	},
 	"attackpowerbytype": {
 		"rollingpin-steel": 3,
@@ -63,7 +68,7 @@
 		"rollingpin-blackbronze": 2.5,
 		"rollingpin-tinbronze": 2.25,
 		"rollingpin-copper": 2,
-		"rollingpin-*": 1.5,
+		"rollingpin-*": 1.5
 	},
 	"tooltierbytype": {
 		"*-copper": 2,
@@ -71,58 +76,58 @@
 		"*-iron": 4,
 		"*-meteoriciron": 4,
 		"*-steel": 5,
-		"*": 1,
+		"*": 1
 	},
 	"creativeinventory": { "general": ["*"], "items": ["*"], "tools": ["*"], "aculinaryartillery": ["*"] },
 	"combustiblePropsByType": {
 		"*-acacia": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-baldcypress": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-birch": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-ebony": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-kapok": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-larch": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-maple": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-oak": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-pine": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-purpleheart": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-redwood": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
+			"burnDuration": 24
 		},
 		"*-walnut": {
 			"burnTemperature": 600,
-			"burnDuration": 24,
-		},
+			"burnDuration": 24
+		}
 	},	
 	"fpHandTransformByType": {
 		"*":
