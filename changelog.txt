@@ -35,7 +35,9 @@ Fixed - Improved caching for meal recipes to reduce lag in handbook
 - Large cauldrons can be made by soldering metal sheets; casting mold removed - DONE!!!
 - Chef hat + saddle makes Chef Saddle
 - Cookware trader spawns near initial spawn location - DONE!!!
-- Rolling pin model updated so it can be hung from meat rack
+- Rolling pin model updated so it can be hung from meat rack - DONE!!!
+- Rolling pin aligned properly onto meat rack
+- Remapping done for clay items - DONE!!!
 
 
 ~1.20_v1.2.6~
