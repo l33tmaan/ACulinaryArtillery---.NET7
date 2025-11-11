@@ -23,6 +23,7 @@
 	"shape": { "base": "item/egg/eggshell" },
 	"texture": { "base": "game:block/wood/henbox/egg" },
 	"creativeinventory": { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"], },
+    "nutritionProps": { "saturation": 0, "foodcategory": "Grain" },
 	"guiTransform": {
 		"translation": { "x": 0, "y": 0, "z": 0 },
 		"rotation": { "x": -30, "y": -20, "z": 0 },

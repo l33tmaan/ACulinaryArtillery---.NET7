@@ -4,9 +4,48 @@
 - Bottles can go into scroll racks?
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
-- Rolling pin can be hung from meat hooks; holes added to handle
 
-~1.21_v2.0.0~
+~1.21_v2.0.0-dev.8~
+- Chef hat + saddle makes Chef Saddle
+- Various items can be secured on an elk/boat
+- Rolling pin aligned properly onto meat rack
+- Eggshells give 0 Grain nutrition so animals will eat them properly - DONE!!!
+
+
+~1.21_v2.0.0-dev.7
+- Large cauldrons can be made by soldering metal sheets; casting mold removed
+- Cookware trader spawns near initial spawn location
+- Rolling pin model updated so it can be hung from meat rack
+- Remapping done for clay items
+
+~1.21_v2.0.0-dev.6
+- No really, cracked egg textures match their More Animals counterparts now
+- Simmer and Mixing guides added; now items correctly link to the guides 
+- Handbook tips updated for ACA blocks and items
+- Egg cracking help text added to handbook
+- Cork .tfedit numbers fixed 
+- Cork recipe made more complex (and integrated with Ancient Tools and In Dappled Groves bark) [thanks to Taska for the bark shape!]
+
+~1.21_v2.0.0-dev.5
+Show fruit syrup simmering in the handbook (thanks pizza2004!)
+Improved caching for meal recipes to reduce lag in handbook thanks pizza2004!)
+
+~1.21_v2.0.0-dev.4
+--Fixed egg cracking behaviour not working
+--Quick fix for egg cracking into bowls stored in ground storage corners (thanks Agamand!)
+-More Animals egg compatibility updated
+
+~1.21_v2.0.0-dev.3
+-Mixing bowl lang files in english fixed(?)
+-Fixed missing recipes for mixing bowl and powered mixing bowl
+-Fixed freeze when looking at liquids or pies in the handbook
+-Fixed issues with trying to fill pies giving the wrong error message and refusing to let you fill in batches of <20 (whoops)
+-Fixed crash when trying to crack eggs into a bowl (Egg cracking is still broken, still working that one out, sorry!) 
+
+~1.21_v2.0.0-dev.2
+-Quick hotfix with a temp recipe for corks using debarked logs and a knife
+
+~1.21_v2.0.0-dev.1
 -Complete update/refactor of codebase; updated to .net8 (both thanks to pizza2004)
 -like 1000 lines of code removed
 -Added new corking and uncorking mechanic for bottles, including new bottles
@@ -17,31 +56,8 @@ Goose Things:
 --Added ability to specify input stack amount for the mixing bowl(s) via json
 --Fixed molds not being fireable
 --Fixed cork transmutation into empty bottle bug via dodgy prefix patch, hopefully will be rewritable later
---Fixed egg cracking behaviour not working
---Quick fix for egg cracking into bowls stored in ground storage corners (thanks Agamand!)
 -Added support for customizable stackCapacity to mixing bowl (thanks MisterAndyDandy!)
--More Animals egg compatibility updated
-- No really, cracked egg textures match their More Animals counterparts now
-- Simmer and Mixing guides added; now items correctly link to the guides 
-- Handbook tips updated for ACA blocks and items
-- Egg cracking help text added to handbook
-- Cork .tfedit numbers fixed 
-- Cork recipe made more complex (and integrated with Ancient Tools and In Dappled Groves bark) [thanks to Taska for the bark shape!]
-Pizza updates for -dev.5:
-Feature - Show fruit syrup simmering in the handbook
-Fixed - Improved caching for meal recipes to reduce lag in handbook
 
-
-- Large cauldrons can be made by soldering metal sheets; casting mold removed - DONE!!!
-- Chef hat + saddle makes Chef Saddle
-- Cookware trader spawns near initial spawn location - DONE!!!
-- Rolling pin model updated so it can be hung from meat rack - DONE!!!
-- Rolling pin aligned properly onto meat rack
-- Remapping done for clay items - DONE!!!
-
-
-~1.20_v1.2.6~
-- Frying pan added?
 
 ~1.20_v1.2.5~
 - Japanese translation updated (thanks to macoto_hino)
