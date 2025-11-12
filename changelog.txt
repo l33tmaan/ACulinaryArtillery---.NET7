@@ -10,6 +10,7 @@
 - Various items can be secured on an elk/boat
 - Rolling pin aligned properly onto meat rack
 - Eggshells give 0 Grain nutrition so animals will eat them properly - DONE!!!
+- Cauldron mold clayforming recipe removed - DONE!!!
 
 
 ~1.21_v2.0.0-dev.7
