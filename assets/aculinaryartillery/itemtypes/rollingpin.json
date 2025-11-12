@@ -27,7 +27,7 @@
         },
         "randomizeInDisplayCase": false,
         "handbook": {
-          "groupBy": [ "rollingpin-*}" ],
+          "groupBy": [ "rollingpin-*" ],
           "extraSections": [
             {
               "title": "aculinaryartillery:item-handbooktitle-rollingpin",
