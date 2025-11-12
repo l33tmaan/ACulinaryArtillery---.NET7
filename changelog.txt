@@ -11,6 +11,7 @@
 - Rolling pin aligned properly onto meat rack
 - Eggshells give 0 Grain nutrition so animals will eat them properly - DONE!!!
 - Cauldron mold clayforming recipe removed - DONE!!!
+- Rolling pin groups correctly in handbook now (thanks actioninja) - DONE!!!
 
 
 ~1.21_v2.0.0-dev.7
