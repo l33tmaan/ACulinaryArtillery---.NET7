@@ -4,13 +4,13 @@
     "path": "/attributes/creatureDiet/weightedFoodTags/-",
     "value": { "weight": 0.5, "code": "eggshell" },
     "side": "server",
-    "file": "game:entities/animal/mammal/raccoon-adult.json"
+    "file": "game:entities/animal/mammal/fox-adult.json"
   },
   {
     "op": "addmerge",
     "path": "/attributes/creatureDiet/weightedFoodTags/-",
     "value": { "weight": 0.5, "code": "eggshell" },
     "side": "server",
-    "file": "game:entities/animal/mammal/raccoon-baby.json"
+    "file": "game:entities/animal/mammal/fox-baby.json"
   }
 ]

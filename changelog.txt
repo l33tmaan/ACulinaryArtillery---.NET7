@@ -14,6 +14,7 @@
 - Rolling pin groups correctly in handbook now (thanks actioninja) - DONE!!!
 - Entity patches reviewed and updated so animals eat eggshells - DONE!!!
 - Egg stuff grouped in handbook properly - DONE!!!
+- Birds can't eat eggshells - DONE!!!
 
 
 ~1.21_v2.0.0-dev.7
