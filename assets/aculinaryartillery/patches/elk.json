@@ -1,0 +1,9 @@
+[
+  {
+    "op": "addmerge",
+    "path": "/attributes/creatureDiet/weightedFoodTags/-",
+    "value": { "weight": 0.2, "code": "eggshell" },
+    "side": "server",
+    "file": "game:entities/animal/mammal/hooved/elk-tamed.json"
+  }
+]

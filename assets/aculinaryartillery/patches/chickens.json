@@ -1,23 +1,18 @@
 [
   {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
+    "op": "addmerge",
+    "path": "/attributes/creatureDiet/weightedFoodTags",
+    "value": [
+      { "weight": 0.8, "code": "eggshell" }
+    ],
     "side": "server",
-    "file": "game:entities/land/chicken-rooster.json"
+    "file": "game:entities/animal/bird/chicken-adult.json"
   },
   {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
+    "op": "addmerge",
+    "path": "/attributes/creatureDiet/weightedFoodTags/-",
+    "value": { "weight": 0.8, "code": "eggshell" },
     "side": "server",
-    "file": "game:entities/land/chicken-hen.json"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
-    "side": "server",
-    "file": "game:entities/land/chicken-baby.json"
+    "file": "game:entities/animal/bird/chicken-baby.json"
   }
 ]

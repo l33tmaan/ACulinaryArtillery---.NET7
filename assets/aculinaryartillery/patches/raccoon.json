@@ -1,23 +1,16 @@
 [
   {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
+    "op": "addmerge",
+    "path": "/attributes/creatureDiet/weightedFoodTags/-",
+    "value": { "weight": 0.5, "code": "eggshell" },
     "side": "server",
-    "file": "game:entities/land/raccoon-female.json"
+    "file": "game:entities/animal/mammal/raccoon-adult.json"
   },
   {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
+    "op": "addmerge",
+    "path": "/attributes/creatureDiet/weightedFoodTags/-",
+    "value": { "weight": 0.5, "code": "eggshell" },
     "side": "server",
-    "file": "game:entities/land/raccoon-male.json"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
-    "side": "server",
-    "file": "game:entities/land/raccoon-pup.json"
+    "file": "game:entities/land/raccoon-baby.json"
   }
 ]

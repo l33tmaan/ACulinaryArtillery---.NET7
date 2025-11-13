@@ -12,7 +12,7 @@
 - Eggshells give 0 Grain nutrition so animals will eat them properly - DONE!!!
 - Cauldron mold clayforming recipe removed - DONE!!!
 - Rolling pin groups correctly in handbook now (thanks actioninja) - DONE!!!
-- Entity patches reviewed and updated 
+- Entity patches reviewed and updated so animals eat eggshells - DONE!!!
 - Egg stuff grouped in handbook properly - DONE!!!
 
 

@@ -1,23 +1,16 @@
 [
   {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
+    "op": "addmerge",
+    "path": "/attributes/creatureDiet/weightedFoodTags/-",
+    "value": { "weight": 0.4, "code": "eggshell" },
     "side": "server",
-    "file": "game:entities/land/pig-wild-female.json"
+    "file": "game:entities/animal/mammal/hooved/pig-adult.json"
   },
   {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
+    "op": "addmerge",
+    "path": "/attributes/creatureDiet/weightedFoodTags/-",
+    "value": { "weight": 0.4, "code": "eggshell" },
     "side": "server",
-    "file": "game:entities/land/pig-wild-male.json"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/creatureDiet/foodTags/-",
-    "value": "eggshell",
-    "side": "server",
-    "file": "game:entities/land/pig-wild-piglet.json"
+    "file": "game:entities/animal/mammal/hooved/pig-baby.json"
   }
 ]
