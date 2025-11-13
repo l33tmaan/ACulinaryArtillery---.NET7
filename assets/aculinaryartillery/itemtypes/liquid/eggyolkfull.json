@@ -8,6 +8,7 @@
 	"attributes": {
 		"handbook": {
 			"ignoreCreativeInvStacks": true,
+            "groupBy": ["eggyolkfullportion-*"],
             "extraSections": [
                 {
                   "title": "aculinaryartillery:item-handbooktitle-eggyolkfullportion",
