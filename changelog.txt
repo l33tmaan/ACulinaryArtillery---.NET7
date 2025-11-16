@@ -5,17 +5,19 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.21_v2.0.0-dev.8~
+~1.21_v2.0.0-dev.9~
 - Chef hat + saddle makes Chef Saddle
 - Various items can be secured on an elk/boat
 - Rolling pin aligned properly onto meat rack
-- Eggshells give 0 Grain nutrition so animals will eat them properly - DONE!!!
-- Cauldron mold clayforming recipe removed - DONE!!!
-- Rolling pin groups correctly in handbook now (thanks actioninja) - DONE!!!
-- Entity patches reviewed and updated so animals eat eggshells - DONE!!!
-- Egg stuff grouped in handbook properly - DONE!!!
-- Birds can't eat eggshells - DONE!!!
+- Chickens can eat eggshells again - DONE!!!
 
+
+~1.21_v2.0.0-dev.8~
+- Cauldron mold clayforming recipe removed
+- Rolling pin groups correctly in handbook now (thanks actioninja)
+- Entity patches reviewed and updated so animals eat eggshells
+- Egg stuff grouped in handbook properly
+- Birds can't eat eggshells
 
 ~1.21_v2.0.0-dev.7
 - Large cauldrons can be made by soldering metal sheets; casting mold removed
