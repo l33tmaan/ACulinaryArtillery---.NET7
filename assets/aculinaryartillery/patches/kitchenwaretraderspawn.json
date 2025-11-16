@@ -5,9 +5,10 @@
     "value":   {
       "code": "tradercavaran",
       "group": "trader",
-      "minGroupDistance": 2000,
+      "minGroupDistance": 2500,
+      "minSpawnDistance": 2000,
       "name": "Kitchenware Trader Home",
-      "chance": 0.1,
+      "chance": 0.075,
       "schematics": [ "overground/tradeoutposts/settlement/kitchenwarespawnhouse" ],
       "buildProtected": true,
       "buildProtectionName": "Trader",
@@ -23,8 +24,10 @@
       "minTemp": -14,
       "postPass": true,
       "suppressTrees": true,
+      "suppressWaterfalls": true,
       "placement": "surface",
-      "offsetY": -2
+      "offsetY": -2,
+      "MaxBelowSealevel": 1
     },
     "file": "game:worldgen/structures.json",
     "side": "Server"
@@ -47,15 +50,18 @@
       "UseWorldgenHeight": true,
       "generateGrass": true,
       "dependsOnStructure": "spawn",
-      "minSpawnDistX": -900,
-      "maxSpawnDistX": 900,
-      "minSpawnDistZ": -1100,
-      "maxSpawnDistZ": 1000,
+      "minSpawnDistX": -500,
+      "maxSpawnDistX": 500,
+      "minSpawnDistZ": -500,
+      "maxSpawnDistZ": 500,
       "requireLandform": "veryflat",
       "landformRadius": 50,
+      "suppressTrees": true,
+      "suppressWaterfalls": true,
       "replacewithblocklayers": ["soil-medium-normal","soil-medium-none","soil-medium-verysparse","soil-medium-sparse","soil-low-normal","soil-low-none","soil-low-verysparse","soil-low-sparse"],
       "skipGenerationCategories": {"trees": 10, "shrubs": 10, "structures": 100,"rivulets": 10, "stalag": 0, "hotsprings": 200, "patches": 10},
-      "offsetY": -2
+      "offsetY": -2,
+      "MaxBelowSealevel": 1
     },
     "file": "game:worldgen/structures.json",
     "side": "Server"
