@@ -12,6 +12,7 @@
 - Chickens can eat eggshells again - DONE!!!
 - Trader spawns adjusted to hopefully not appear underwater anymore and made more rare; kitchenware trader should be found closer to spawn now - DONE!!!
 - Spile fixed so it operates based on season, rather than month
+- Russian translation updated (thanks to Mafroz!) - DONE!!!
 
 ~1.21_v2.0.0-dev.8~
 - Cauldron mold clayforming recipe removed

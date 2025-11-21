@@ -18,7 +18,8 @@
                     "text": "aculinaryartillery:item-handbooktext-eggshell"
                 }
             ]
-        }
+        },
+        "inContainerTexture": {"base": "block/wood/barrel/eggshell" }
 	},
 	"shape": { "base": "item/egg/eggshell" },
 	"texture": { "base": "game:block/wood/henbox/egg" },
