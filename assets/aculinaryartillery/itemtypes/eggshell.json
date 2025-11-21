@@ -30,7 +30,7 @@
 		"scale": 5
 	},
 	"tpHandTransform": {
-		"translation": { "x": -0.8, "y": -0.25, "z": -0.6 },
+		"translation": { "x": -0.725, "y": -0.35, "z": -0.575 },
 		"scale": 0.71
 	},
 	"fpHandTransform": {
