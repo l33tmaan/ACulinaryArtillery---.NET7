@@ -5,15 +5,23 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.21_v2.0.0-dev.9~
+~1.21_v2.0.0-dev.10~
 - Chef hat + saddle makes Chef Saddle
 - Various items can be secured on an elk/boat
 - Rolling pin aligned properly onto meat rack
-- Chickens can eat eggshells again - DONE!!!
-- Eggshell in barrel textures added - DONE!!!
-- Trader spawns adjusted to hopefully not appear underwater anymore and made more rare; kitchenware trader should be found closer to spawn now - DONE!!!
 - Spile fixed so it operates based on season, rather than month
-- Russian translation updated (thanks to Mafroz!) - DONE!!!
+- Meat/bottle racks now indicate wood/metal type in item description
+- Traders no longer sell bottle rack corners; only sells meat hooks, not entire rack
+- Egg cracking no longer crashes when targeting nothing - DONE???
+- Space correctly added between ingredient strings and the "and" text string - DONE???
+- Kitchenware trader item spawns adjusted for more even distribution (ie. less bottle racks and meat hooks, more everything else) [thanks to Whiskey Sunshine!] - DONE!!!
+
+
+~1.21_v2.0.0-dev.9~
+- Chickens can eat eggshells again
+- Eggshell in barrel textures added
+- Trader spawns adjusted to hopefully not appear underwater anymore and made more rare; kitchenware trader should be found closer to spawn now
+- Russian translation updated (thanks to Mafroz!)
 
 ~1.21_v2.0.0-dev.8~
 - Cauldron mold clayforming recipe removed

@@ -112,7 +112,7 @@
   "efrecipes:- {0} {2} sat, {1} hp" : "- {0} {2} sat, {1} hp",
   "efrecipes:- {0} {1} sat" : "- {0} {1} sat",
   "efrecipes:made with " : "made with ",
-  "efrecipes:and " : "and ",
+  "efrecipes:and " : " and ",
   "efrecipes:Made with ": "Made with ",
   "efrecipes:Squeezing x{0} {1} for {2} hours": "Squeezing x{0} {1} for {2} hours",
 

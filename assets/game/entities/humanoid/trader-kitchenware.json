@@ -1,48 +1,152 @@
 ﻿{
-	code: "humanoid-trader-kitchenware",
-	class: "EntityTrader",
-	canClimb: true,
-	hitboxSize: { x: 0.6, y: 1.75 },
-	deadHitboxSize: { x: 0.75, y: 0.5 },
-	client: {
-		renderer: "Shape",
-		shape: { base: "game:entity/humanoid/trader" },
-		texture: { base: "game:entity/humanoid/traderclothes/set7" },
-		behaviors: [
-			{ code: "nametag", "showtagonlywhentargeted": true },
-			{ code: "repulseagents" },
-			{ code: "controlledphysics", stepHeight: 1.01 },
-			{ code: "interpolateposition" },
-            { code: "conversable", dialogue: "aculinaryartillery:config/dialogue/trader-kitchenware" }
+	"code": "humanoid-trader-kitchenware",
+	"class": "EntityTrader",
+	"canClimb": true,
+	"hitboxSize": { "x": 0.6, "y": 1.75 },
+	"deadHitboxSize": { "x": 0.75, "y": 0.5 },
+	"client": {
+		"renderer": "Shape",
+		"shape": { "base": "game:entity/humanoid/trader" },
+		"texture": { "base": "game:entity/humanoid/traderclothes/set7" },
+		"behaviors": [
+			{ "code": "nametag", "showtagonlywhentargeted": true },
+			{ "code": "repulseagents" },
+			{ "code": "controlledphysics", "stepHeight": 1.01 },
+			{ "code": "interpolateposition" },
+            { "code": "conversable", "dialogue": "aculinaryartillery:config/dialogue/trader-kitchenware" }
 		],
-		animations: [
+		"animations": [
 			{
-				code: "die",
-				animation: "die",
-				animationSpeed: 1.75,
-				weight: 10,
-				blendMode: "AddAverage"
+				"code": "die",
+				"animation": "die",
+				"animationSpeed": 1.75,
+				"weight": 10,
+				"blendMode": "AddAverage"
 			},
 			{
-				code: "hurt",
-				animation: "hurt",
-				animationSpeed: 2,
-				blendMode: "AddAverage"
+				"code": "hurt",
+				"animation": "hurt",
+				"animationSpeed": 2,
+				"blendMode": "AddAverage"
 			},
-            { code: "rowdywelcome", animation: "rowdywelcome", blendMode: "AddAverage" },
-            { code: "lazywelcome", animation: "lazywelcome", blendMode: "AddAverage" },
-            { code: "lazynod", animation: "lazynod", blendMode: "AddAverage" }
+            { "code": "rowdywelcome", "animation": "rowdywelcome", "blendMode": "AddAverage" },
+            { "code": "lazywelcome", "animation": "lazywelcome", "blendMode": "AddAverage" },
+            { "code": "lazynod", "animation": "lazynod", "blendMode": "AddAverage" }
 		]
 	},
-    attributes: {
-		tradeProps: {
-			money: { avg: 30, var: 10 },
+    "attributes": {
+		"tradeProps": {
+			"money": { "avg": 30, "var": 10 },
 
     "selling": {
         "maxItems": 16,
         "list": [
     {
-      "code": "aculinaryartillery:saucepan-burned",
+      "code": "aculinaryartillery:saucepan-blue-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-black-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-brown-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-cream-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-fire-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-gray-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-orange-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-red-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-tan-fired",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -211,7 +315,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-clay-burned",
+      "code": "aculinaryartillery:bottle-clay-blue-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -224,7 +328,111 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-green-burned",
+      "code": "aculinaryartillery:bottle-clay-black-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-brown-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-cream-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-fire-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-gray-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-orange-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-red-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-tan-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-glass-green-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -237,7 +445,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-blue-burned",
+      "code": "aculinaryartillery:bottle-glass-blue-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -250,7 +458,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-brown-burned",
+      "code": "aculinaryartillery:bottle-glass-brown-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -263,7 +471,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-pink-burned",
+      "code": "aculinaryartillery:bottle-glass-pink-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -276,7 +484,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-plain-burned",
+      "code": "aculinaryartillery:bottle-glass-plain-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -289,7 +497,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-quartz-burned",
+      "code": "aculinaryartillery:bottle-glass-quartz-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -302,7 +510,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-red-burned",
+      "code": "aculinaryartillery:bottle-glass-red-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -315,7 +523,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-smoky-burned",
+      "code": "aculinaryartillery:bottle-glass-smoky-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -328,7 +536,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-vintage-burned",
+      "code": "aculinaryartillery:bottle-glass-vintage-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -341,7 +549,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-violet-burned",
+      "code": "aculinaryartillery:bottle-glass-violet-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -354,7 +562,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-yellow-burned",
+      "code": "aculinaryartillery:bottle-glass-yellow-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -364,6 +572,19 @@
       "price": {
         "avg": 4,
         "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:cork-generic",
+      "type": "item",
+      "stacksize": 8,
+      "stock": {
+        "avg": 5,
+        "var": 2
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
       }
     },
     {
@@ -445,7 +666,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowlmini",
+      "code": "aculinaryartillery:mixingbowl-blue",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -458,7 +679,111 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-normal",
+      "code": "aculinaryartillery:mixingbowl-black",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-brown",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-cream",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-fire",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-gray",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-orange",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-red",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-tan",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:poweredmixingbowl-blue-normal",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -471,7 +796,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-aged",
+      "code": "aculinaryartillery:poweredmixingbowl-red-aged",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -484,7 +809,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-whitemarble",
+      "code": "aculinaryartillery:poweredmixingbowl-tan-aged",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -492,12 +817,12 @@
         "var": 1
       },
       "price": {
-        "avg": 8,
-        "var": 2
+        "avg": 4,
+        "var": 1
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-redmarble",
+      "code": "aculinaryartillery:poweredmixingbowl-black-whitemarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -505,12 +830,12 @@
         "var": 1
       },
       "price": {
-        "avg": 8,
-        "var": 2
+        "avg": 4,
+        "var": 1
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-greenmarble",
+      "code": "aculinaryartillery:poweredmixingbowl-fire-whitemarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -518,25 +843,64 @@
         "var": 1
       },
       "price": {
-        "avg": 8,
-        "var": 2
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:poweredmixingbowl-cream-redmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:poweredmixingbowl-brown-redmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:poweredmixingbowl-gray-greenmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:poweredmixingbowl-orange-greenmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 4,
+        "var": 1
       }
     },
     {
       "code": "aculinaryartillery:bottlerack-acacia-acacia-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-acacia-acacia-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -562,33 +926,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-baldcypress-baldcypress-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-birch-birch-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-birch-birch-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -614,33 +952,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-ebony-ebony-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-kapok-kapok-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-kapok-kapok-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -666,33 +978,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-larch-larch-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-maple-maple-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-maple-maple-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -718,33 +1004,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-oak-oak-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-pine-pine-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-pine-pine-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -770,33 +1030,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-purpleheart-purpleheart-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-redwood-redwood-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-redwood-redwood-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -822,19 +1056,6 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-walnut-walnut-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-aged-aged-north",
       "type": "block",
       "stacksize": 1,
@@ -848,20 +1069,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-aged-aged-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-acacia-copper-north",
+      "code": "aculinaryartillery:meathooks-acacia-copper-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -874,20 +1082,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-acacia-copper-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 6,
-        "var": 1.5
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-baldcypress-brass-north",
+      "code": "aculinaryartillery:meathooks-baldcypress-brass-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -900,7 +1095,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-baldcypress-brass-north",
+      "code": "aculinaryartillery:meathooks-kapok-tinbronze-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -913,33 +1108,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-kapok-tinbronze-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-kapok-tinbronze-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 8,
-        "var": 2
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-ebony-blackbronze-north",
+      "code": "aculinaryartillery:meathooks-ebony-blackbronze-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -952,20 +1121,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-ebony-blackbronze-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 10,
-        "var": 2.5
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-walnut-titanium-north",
+      "code": "aculinaryartillery:meathooks-walnut-titanium-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -978,7 +1134,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-walnut-titanium-north",
+      "code": "aculinaryartillery:meathooks-oak-steel-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -989,40 +1145,118 @@
         "avg": 12,
         "var": 3
       }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-oak-steel-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 12,
-        "var": 3
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-oak-steel-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 12,
-        "var": 3
-      }
-    },
+    }
         ]
     },
     "buying": {
         "maxItems": 16,
         "list": [
     {
-      "code": "aculinaryartillery:saucepan-burned",
+      "code": "aculinaryartillery:saucepan-blue-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-black-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-brown-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-cream-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-fire-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-gray-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-orange-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-red-fired",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:saucepan-tan-fired",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1113,7 +1347,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-clay-burned",
+      "code": "aculinaryartillery:bottle-clay-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1126,7 +1360,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-green-burned",
+      "code": "aculinaryartillery:bottle-glass-green-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1139,7 +1373,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-blue-burned",
+      "code": "aculinaryartillery:bottle-glass-blue-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1152,7 +1386,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-brown-burned",
+      "code": "aculinaryartillery:bottle-glass-brown-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1165,7 +1399,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-pink-burned",
+      "code": "aculinaryartillery:bottle-glass-pink-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1178,7 +1412,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-plain-burned",
+      "code": "aculinaryartillery:bottle-glass-plain-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1191,7 +1425,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-quartz-burned",
+      "code": "aculinaryartillery:bottle-glass-quartz-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1204,7 +1438,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-red-burned",
+      "code": "aculinaryartillery:bottle-glass-red-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1217,7 +1451,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-smoky-burned",
+      "code": "aculinaryartillery:bottle-glass-smoky-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1230,7 +1464,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-vintage-burned",
+      "code": "aculinaryartillery:bottle-glass-vintage-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1243,7 +1477,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-violet-burned",
+      "code": "aculinaryartillery:bottle-glass-violet-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1256,7 +1490,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-yellow-burned",
+      "code": "aculinaryartillery:bottle-glass-yellow-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1266,6 +1500,19 @@
       "price": {
         "avg": 2,
         "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:cork-generic",
+      "type": "item",
+      "stacksize": 8,
+      "stock": {
+        "avg": 3,
+        "var": 1.5
+      },
+      "price": {
+        "avg": 1,
+        "var": 0
       }
     },
     {
@@ -1347,7 +1594,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowlmini",
+      "code": "aculinaryartillery:mixingbowl-blue",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1360,7 +1607,111 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-normal",
+      "code": "aculinaryartillery:mixingbowl-black",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-brown",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-cream",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-fire",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-gray",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-orange",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-red",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-tan",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 1,
+        "var": 0.25
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-blue-normal",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1373,7 +1724,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-aged",
+      "code": "aculinaryartillery:mixingbowl-red-aged",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1386,7 +1737,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-greenmarble",
+      "code": "aculinaryartillery:mixingbowl-tan-aged",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1394,12 +1745,12 @@
         "var": 1
       },
       "price": {
-        "avg": 4,
-        "var": 1
+        "avg": 2,
+        "var": 0.5
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-whitemarble",
+      "code": "aculinaryartillery:mixingbowl-black-whitemarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1407,12 +1758,12 @@
         "var": 1
       },
       "price": {
-        "avg": 4,
-        "var": 1
+        "avg": 2,
+        "var": 0.5
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-redmarble",
+      "code": "aculinaryartillery:mixingbowl-fire-whitemarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1420,25 +1771,64 @@
         "var": 1
       },
       "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-cream-redmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
         "avg": 4,
         "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-brown-redmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-gray-greenmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:mixingbowl-orange-greenmarble",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
       }
     },
     {
       "code": "aculinaryartillery:bottlerack-acacia-acacia-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-acacia-acacia-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1464,33 +1854,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-baldcypress-baldcypress-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-birch-birch-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-birch-birch-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1516,33 +1880,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-ebony-ebony-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-kapok-kapok-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-kapok-kapok-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1568,33 +1906,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-larch-larch-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-maple-maple-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-maple-maple-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1620,33 +1932,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-oak-oak-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-pine-pine-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-pine-pine-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1672,33 +1958,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-purpleheart-purpleheart-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-redwood-redwood-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:bottlerackcorner-redwood-redwood-north",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1724,19 +1984,6 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-walnut-walnut-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
       "code": "aculinaryartillery:bottlerack-aged-aged-north",
       "type": "block",
       "stacksize": 1,
@@ -1750,20 +1997,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottlerackcorner-aged-aged-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-acacia-copper-north",
+      "code": "aculinaryartillery:meathooks-acacia-copper-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1776,20 +2010,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-acacia-copper-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 3,
-        "var": 0.75
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-baldcypress-brass-north",
+      "code": "aculinaryartillery:meathooks-baldcypress-brass-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1802,7 +2023,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-baldcypress-brass-north",
+      "code": "aculinaryartillery:meathooks-kapok-tinbronze-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1815,33 +2036,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-kapok-tinbronze-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-kapok-tinbronze-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 4,
-        "var": 1
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-ebony-blackbronze-north",
+      "code": "aculinaryartillery:meathooks-ebony-blackbronze-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1854,20 +2049,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-ebony-blackbronze-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 5,
-        "var": 1.25
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-walnut-titanium-north",
+      "code": "aculinaryartillery:meathooks-walnut-titanium-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1880,7 +2062,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:meathooks-walnut-titanium-north",
+      "code": "aculinaryartillery:meathooks-oak-steel-east",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1891,134 +2073,108 @@
         "avg": 6,
         "var": 1.5
       }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-oak-steel-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 6,
-        "var": 1.5
-      }
-    },
-    {
-      "code": "aculinaryartillery:meathooks-oak-steel-north",
-      "type": "block",
-      "stacksize": 1,
-      "stock": {
-        "avg": 1,
-        "var": 0
-      },
-      "price": {
-        "avg": 6,
-        "var": 1.5
-      }
-    },
+    }
         ]
     }
         }
     },
-	server: {
-		attributes: {
-			pathfinder: {
-				minTurnAnglePerSec: 720,
-				maxTurnAnglePerSec: 1440
+	"server": {
+		"attributes": {
+			"pathfinder": {
+				"minTurnAnglePerSec": 720,
+				"maxTurnAnglePerSec": 1440
 			}
 		},
-		behaviors: [
-			{ code: "nametag", "showtagonlywhentargeted": true, selectFromRandomName: ["Guillaume", "Bartolomeo", "Stanisław", "Childe", "Emeril", "Charmaine", "Holger", "Puck", "Guy", "Ray"] },
-			{ code: "repulseagents" },
-			{ code: "controlledphysics", stepHeight: 1.01 },
-			{ code: "reviveondeath", minHours: 24, maxHours: 72 },
-			{ code: "health", currenthealth: 25, maxhealth: 25 },
+		"behaviors": [
+			{ "code": "nametag", "showtagonlywhentargeted": true, "selectFromRandomName": ["Guillaume", "Bartolomeo", "Stanisław", "Childe", "Emeril", "Charmaine", "Holger", "Puck", "Guy", "Ray"] },
+			{ "code": "repulseagents" },
+			{ "code": "controlledphysics", "stepHeight": 1.01 },
+			{ "code": "reviveondeath", "minHours": 24, "maxHours": 72 },
+			{ "code": "health", "currenthealth": 25, "maxhealth": 25 },
 			{
-				code: "emotionstates",
-				states: [
-					{ code: "aggressiveondamage", duration: 6, chance: 0.6, slot: 0, priority: 2, accumType: "noaccum" },
-					{ code: "fleeondamage", duration: 10, chance: 0.4, slot: 0, priority: 1, accumType: "max" }
+				"code": "emotionstates",
+				"states": [
+					{ "code": "aggressiveondamage", "duration": 6, "chance": 0.6, "slot": 0, "priority": 2, "accumType": "noaccum" },
+					{ "code": "fleeondamage", "duration": 10, "chance": 0.4, "slot": 0, "priority": 1, "accumType": "max" }
 				],
 			},
 			{
-				code: "taskai",
-				aitasks: [
+				"code": "taskai",
+				"aitasks": [
 					{
-						code: "meleeattack",
-						entityCodes: ["player"],
-						priority: 2,
-						damage: 5,
-						mincooldown: 2500,
-						maxcooldown: 3500,
-						attackDurationMs: 900,
-						damagePlayerAtMs: 300,
-						animation: "Attack",
-						animationSpeed: 2,
-						whenInEmotionState: "aggressiveondamage",
+						"code": "meleeattack",
+						"entityCodes": ["player"],
+						"priority": 2,
+						"damage": 5,
+						"mincooldown": 2500,
+						"maxcooldown": 3500,
+						"attackDurationMs": 900,
+						"damagePlayerAtMs": 300,
+						"animation": "Attack",
+						"animationSpeed": 2,
+						"whenInEmotionState": "aggressiveondamage"
 					},
 					{
-						code: "seekentity",
-						entityCodes: ["player"],
-						priority: 1.5,
-						mincooldown: 1000,
-						maxcooldown: 1500,
-						seekingRange: 20,
-						movespeed: 0.035,
-						animation: "Run",
-						animationSpeed: 1.75,
-						whenInEmotionState: "aggressiveondamage"
+						"code": "seekentity",
+						"entityCodes": ["player"],
+						"priority": 1.5,
+						"mincooldown": 1000,
+						"maxcooldown": 1500,
+						"seekingRange": 20,
+						"movespeed": 0.035,
+						"animation": "Run",
+						"animationSpeed": 1.75,
+						"whenInEmotionState": "aggressiveondamage"
 					},
 					{
-						code: "fleeentity",
-						entityCodes: ["player"],
-						priority: 1.5,
-						movespeed: 0.035,
-						seekingRange: 12,
-						animation: "Run",
-						animationSpeed: 1.75,
-						whenInEmotionState: "fleeondamage"
+						"code": "fleeentity",
+						"entityCodes": ["player"],
+						"priority": 1.5,
+						"movespeed": 0.035,
+						"seekingRange": 12,
+						"animation": "Run",
+						"animationSpeed": 1.75,
+						"whenInEmotionState": "fleeondamage"
 					},
 					{
-						code: "idle",
-						priority: 1.2,
-						minduration: 2500,
-						maxduration: 2500,
-						mincooldown: 2000,
-						maxcooldown: 10000,
-						animation: "laugh"
+						"code": "idle",
+						"priority": 1.2,
+						"minduration": 2500,
+						"maxduration": 2500,
+						"mincooldown": 2000,
+						"maxcooldown": 10000,
+						"animation": "laugh"
 					},
 					{
-						code: "idle",
-						priority: 1.2,
-						minduration: 2500,
-						maxduration: 2500,
-						mincooldown: 5000,
-						maxcooldown: 30000,
-						animation: "idle2"
+						"code": "idle",
+						"priority": 1.2,
+						"minduration": 2500,
+						"maxduration": 2500,
+						"mincooldown": 5000,
+						"maxcooldown": 30000,
+						"animation": "idle2"
 					},
 					{
-						code: "wander",
-						priority: 1.0,
-						movespeed: 0.01,
-						animation: "Walk",
-						wanderChance: 0.005,
-						maxDistanceToSpawn: 4,
-						wanderRangeMin: 1,
-						wanderRangeMax: 3,
-						teleportWhenOutOfRange: true,
-						teleportInGameHours: 1
+						"code": "wander",
+						"priority": 1.0,
+						"movespeed": 0.01,
+						"animation": "Walk",
+						"wanderChance": 0.005,
+						"maxDistanceToSpawn": 4,
+						"wanderRangeMin": 1,
+						"wanderRangeMax": 3,
+						"teleportWhenOutOfRange": true,
+						"teleportInGameHours": 1
 					},
 					{
-						code: "lookaround",
-						priority: 0.5
+						"code": "lookaround",
+						"priority": 0.5
 					}
 				]
 			},
-            { code: "conversable", dialogue: "aculinaryartillery:config/dialogue/trader-kitchenware" }
-		],
+            { "code": "conversable", "dialogue": "aculinaryartillery:config/dialogue/trader-kitchenware" }
+		]
 	},
-	sounds: {
+	"sounds": {
 	}
 }
