@@ -114,6 +114,7 @@ namespace ACulinaryArtillery
         }
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
+            if (blockSel == null) return;
             Block block = byEntity.World.BlockAccessor.GetBlock(blockSel.Position);
             if (block != null && CanSqueezeInto(byEntity.World, block, blockSel) && byEntity.Controls.ShiftKey)
             {
