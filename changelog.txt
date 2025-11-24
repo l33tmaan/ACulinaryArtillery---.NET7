@@ -14,8 +14,16 @@
 - Traders no longer sell bottle rack corners; only sells meat hooks, not entire rack
 - Egg cracking no longer crashes when targeting nothing - DONE???
 - Space correctly added between ingredient strings and the "and" text string - DONE???
-- Kitchenware trader item spawns adjusted for more even distribution (ie. less bottle racks and meat hooks, more everything else) [thanks to Whiskey Sunshine!] - DONE!!!
 
+Kitchenware trader item spawns adjusted (thanks to Whiskey Sunshine!) - DONE!!!
+- re-oriented meathooks to match creative menu and dropped block orientation (north -> east)
+- removed duplicate meathooks entries
+- all saucepan variants added to buy/sell list
+- removed bottle rack corner variants from buy/sell list
+- all bottle variants added to buy/sell list
+- all mixing bowl variants added to buy/sell list
+- 9 assorted powered mixing bowl variants added to buy/sell list
+- added corks to buy/sell list
 
 ~1.21_v2.0.0-dev.9~
 - Chickens can eat eggshells again
