@@ -5,17 +5,21 @@
 - Bottle racks no longer have weird shadows when multiple are placed
 - Bricklayers integration?
 
-~1.21_v2.0.0-dev.10~
+~1.21_v2.0.0-dev.11~
 - Chef hat + saddle makes Chef Saddle
 - Various items can be secured on an elk/boat
 - Rolling pin aligned properly onto meat rack
 - Spile fixed so it operates based on season, rather than month
 - Meat/bottle racks now indicate wood/metal type in item description
-- Traders no longer sell bottle rack corners; only sells meat hooks, not entire rack
-- Egg cracking no longer crashes when targeting nothing - DONE???
-- Space correctly added between ingredient strings and the "and" text string - DONE???
+- Oak bark can now be used as fuel - DONE!!!
+- Steel cauldron requires fresh steel chisel to destroy - DONE!!!
 
-Kitchenware trader item spawns adjusted (thanks to Whiskey Sunshine!) - DONE!!!
+
+~1.21_v2.0.0-dev.10~
+- Egg cracking no longer crashes when targeting nothing (thanks pizza2004!)
+- Space correctly added between ingredient strings and the "and" text string
+
+Kitchenware trader item spawns adjusted (thanks to Whiskey Sunshine!)
 - re-oriented meathooks to match creative menu and dropped block orientation (north -> east)
 - removed duplicate meathooks entries
 - all saucepan variants added to buy/sell list

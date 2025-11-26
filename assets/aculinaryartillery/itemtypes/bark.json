@@ -16,6 +16,10 @@
     { "code": "bark", "states":["oak"] },
     { "code": "state", "states":["dry", "boiled"] }
   ],
+  "combustibleProps": {
+    "burnTemperature": 800,
+    "burnDuration": 49
+  },
   "shape": { "base": "item/bark/{state}" },
   "textures": { "bark": { "base": "game:block/wood/bark/{bark}" } },
   "maxstacksize": 64,
