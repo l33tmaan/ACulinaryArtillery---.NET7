@@ -13,6 +13,11 @@
 - Meat/bottle racks now indicate wood/metal type in item description
 - Oak bark can now be used as fuel - DONE!!!
 - Steel cauldron requires fresh steel chisel to destroy - DONE!!!
+- Spiles no longer float in water (check other blocks)
+- French translation updated (thanks to Laerinok!) - DONE!!!
+- Handbook links fixed (thanks to Laerinok!) - DONE!!!
+- Spanish Spain (es-es) translation added (thanks to C4BR4R4) - DONE!!!
+- Kitchenware trader spawn fixed and moved from game patches to mod domain folder (thanks to NiclAss himself!) - DONE!!!
 
 
 ~1.21_v2.0.0-dev.10~
