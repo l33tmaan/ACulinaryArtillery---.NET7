@@ -1,0 +1,55 @@
+{
+	"chanceMultiplier": 0.46,
+	"rocktypeRemapGroups": {},
+	"schematicYOffsets": {},
+	"structures": [
+		{
+			"code": "tradercavaran",
+			"group": "trader",
+			"minGroupDistance": 600,
+			"name": "ACulinaryArtillery Trader Wagon",
+			"chance": 0.3,
+			"offsetY": -2,
+			"MaxBelowSealevel": 1,
+			"MinSpawnDistance": 1200,
+			"schematics": [
+				"overground/tradeoutposts/settlement/kitchenwarespawnhouse"
+			],
+			"buildProtected": true,
+			"buildProtectionName": "Trader",
+			"buildProtectionDesc": "Trader Perimenter",
+			"replacewithblocklayers": [
+				"game:packeddirt",
+				"game:cob-none"
+			],
+			"postPass": true,
+			"suppressTrees": true,
+			"minTemp": -14,
+			"placement": "surface"
+		},
+		{
+			"code": "tradercavaran",
+			"group": "acatraderclosetospawn",
+			"minGroupDistance": 40000,
+			"name": "ACulinaryArtillery Trader Wagon Close to Spawn",
+			"chance": 0.3,
+			"offsetY": -2,
+			"MaxBelowSealevel": 1,
+			"MinSpawnDistance": 300,
+			"schematics": [
+				"overground/tradeoutposts/settlement/kitchenwarespawnhouse"
+			],
+			"buildProtected": true,
+			"buildProtectionName": "Trader",
+			"buildProtectionDesc": "Trader Perimenter",
+			"replacewithblocklayers": [
+				"game:packeddirt",
+				"game:cob-none"
+			],
+			"postPass": true,
+			"suppressTrees": true,
+			"minTemp": -14,
+			"placement": "surface"
+		}
+	]
+}
