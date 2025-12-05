@@ -14,13 +14,13 @@
 - Spiles no longer float in water (check other blocks)
 
 ~1.21_v2.0.0-dev.11~
-- Oak bark can now be used as fuel - DONE!!!
-- Steel cauldron requires fresh steel chisel to destroy - DONE!!!
-- French translation updated (thanks to Laerinok!) - DONE!!!
-- Handbook links fixed (thanks to Laerinok!) - DONE!!!
-- Spanish Spain (es-es) translation added (thanks to C4BR4R4) - DONE!!!
-- Kitchenware trader spawn fixed and moved from game patches to mod domain folder (thanks to NiclAss himself!) - DONE!!!
+- Kitchenware trader spawn fixed and moved from game patches to mod domain folder (thanks to NiclAss himself!)
+- Oak bark can now be used as fuel 
+- Steel cauldron requires fresh steel chisel to destroy
 - Handbook guide updated
+- French translation updated (thanks to Laerinok!)
+- Handbook links fixed (thanks to Laerinok!)
+- Spanish Spain (es-es) translation added (thanks to C4BR4R4)
 
 
 ~1.21_v2.0.0-dev.10~
