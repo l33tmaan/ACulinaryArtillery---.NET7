@@ -6,7 +6,7 @@
 		{
 			"code": "tradercavaran",
 			"group": "trader",
-			"minGroupDistance": 600,
+			"minGroupDistance": 1200,
 			"name": "ACulinaryArtillery Trader Wagon",
 			"chance": 0.3,
 			"offsetY": -2,
