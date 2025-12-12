@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +7,6 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.Server;
 using Vintagestory.API.Util;
-using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
@@ -364,22 +362,24 @@ namespace ACulinaryArtillery
             if (inputSlots.Count != Ingredients.Length) return null;
 
             Dictionary<ItemSlot, CraftingRecipeIngredient> matched = [];
-            foreach (var ingred in Ingredients)
+
+            // Slots with ingredients that fit them, with the most narrow slots first
+            var compatSlots = inputSlots.ToDictionary(s => s, s => Ingredients.Select(i => i.GetMatch(s.Itemstack)).OfType<CraftingRecipeIngredient>().ToList()).OrderBy(kvp => kvp.Value.Count).ToDictionary();
+
+            foreach ((ItemSlot slot, List<CraftingRecipeIngredient> matches) in compatSlots)
             {
-                bool found = false;
+                if (!matches.Any()) return null;
 
-                for (int i = 0; i < inputSlots.Count; i++)
+                // Match the ingredient that fits the least slots
+                var match = matches.OrderBy(m => compatSlots.Count(c => c.Value.Contains(m))).ToList().First();
+
+                matched[slot] = match;
+
+                // Remove the matched ingredient from possible choices for any of the remaining slots
+                foreach ((ItemSlot _, List<CraftingRecipeIngredient> ingredients) in compatSlots)
                 {
-                    if (ingred.GetMatch(inputSlots[i].Itemstack) is CraftingRecipeIngredient input)
-                    {
-                        matched[inputSlots[i]] = input;
-                        inputSlots.RemoveAt(i);
-                        found = true;
-                        break;
-                    }
+                    ingredients.Remove(match);
                 }
-
-                if (!found) return null;
             }
 
             return matched;
