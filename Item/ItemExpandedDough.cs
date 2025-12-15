@@ -47,7 +47,7 @@ namespace ACulinaryArtillery
             return [ new() {
                 ActionLangCode = "heldhelp-makepie",
                 Itemstacks = tableStacks,
-                HotKeyCode = "sneak",
+                HotKeyCode = "shift",
                 MouseButton = EnumMouseButton.Right,
             }, .. base.GetHeldInteractionHelp(inSlot)];
         }

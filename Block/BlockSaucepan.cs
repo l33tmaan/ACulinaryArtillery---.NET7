@@ -66,12 +66,12 @@ namespace ACulinaryArtillery
                 Itemstacks = liquidContainerStacks
             }, new () {
                 ActionLangCode = "aculinaryartillery:blockhelp-open", // json lang file. 
-                HotKeyCodes = ["sneak", "sprint"],
+                HotKeyCodes = ["shift", "ctrl"],
                 MouseButton = EnumMouseButton.Right,
                 ShouldApply = (wi, bs, es) => GetBlockEntity<BlockEntitySaucepan>(bs.Position)?.isSealed == true
             }, new () {
                 ActionLangCode = "aculinaryartillery:blockhelp-close", // json lang file. 
-                HotKeyCodes = ["sneak", "sprint"],
+                HotKeyCodes = ["shift", "ctrl"],
                 MouseButton = EnumMouseButton.Right,
                 ShouldApply = (wi, bs, es) => GetBlockEntity<BlockEntitySaucepan>(bs.Position)?.isSealed == false
             }];
@@ -196,7 +196,7 @@ namespace ACulinaryArtillery
             BlockEntitySaucepan? sp = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntitySaucepan;
             BlockPos pos = blockSel.Position;
 
-            if (byPlayer.WorldData.EntityControls.Sneak && byPlayer.WorldData.EntityControls.Sprint)
+            if (byPlayer.WorldData.EntityControls.ShiftKey && byPlayer.WorldData.EntityControls.CtrlKey)
             {
                 if (sp != null && Attributes.IsTrue("canSeal"))
                 {
