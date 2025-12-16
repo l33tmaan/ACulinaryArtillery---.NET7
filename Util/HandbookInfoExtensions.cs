@@ -16,9 +16,10 @@ namespace ACulinaryArtillery.Util
             ItemStack maxstack = stack.Clone();
             maxstack.StackSize = maxstack.Collectible.MaxStackSize * 10; // because SatisfiesAsIngredient() tests for stacksize. Times 10 because liquid portion oddities
 
-            List<ItemStack> recipestacks = [.. new HashSet<ItemStack>(capi.GetKneadingRecipes().Where(rec => rec.Ingredients.Any(ing => ing.GetMatch(maxstack) != null)).Select(rec => rec.Output.ResolvedItemstack).Where(stack => stack != null)),
-                                            .. new HashSet<ItemStack>(capi.GetSimmerRecipes().Where(rec => rec.Ingredients.Any(ing => ing.SatisfiesAsIngredient(maxstack))).Select(rec => rec.Simmering.SmeltedStack.ResolvedItemstack).Where(stack => stack != null))];
+            ItemStack[] resolvedStacks = [.. capi.GetKneadingRecipes().Where(rec => rec.Ingredients.Any(ing => ing.GetMatch(maxstack) != null)).Select(rec => rec.Output.ResolvedItemstack),
+                                          .. capi.GetSimmerRecipes().Where(rec => rec.Ingredients.Any(ing => ing.SatisfiesAsIngredient(maxstack))).Select(rec => rec.Simmering.SmeltedStack.ResolvedItemstack)];
 
+            List<ItemStack> recipestacks = [..allStacks.Where(stack => resolvedStacks.Where(rstack => rstack != null).Any(rstack => stack.Equals(capi.World, rstack, GlobalConstants.IgnoredStackAttributes)))];
             List<CookingRecipe> mixingrecipes = [.. capi.GetMixingRecipes().Where(recipe => recipe.CooksInto?.ResolvedItemstack == null && recipe.Ingredients!.Any(ingred => ingred.GetMatchingStack(stack) != null))];
 
             if (recipestacks.Count == 0 && mixingrecipes.Count == 0) return [];
