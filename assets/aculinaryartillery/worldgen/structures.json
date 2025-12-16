@@ -8,7 +8,7 @@
 			"group": "trader",
 			"minGroupDistance": 1200,
 			"name": "ACulinaryArtillery Trader Wagon",
-			"chance": 0.3,
+			"chance": 0.2,
 			"offsetY": -2,
 			"MaxBelowSealevel": 1,
 			"MinSpawnDistance": 1200,
