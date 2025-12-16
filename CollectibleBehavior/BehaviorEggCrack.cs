@@ -98,14 +98,14 @@ namespace ACulinaryArtillery
                     new()
                     {
                         ActionLangCode = "heldhelp-crack",
-                        HotKeyCode = "sneak",
+                        HotKeyCode = "shift",
                         MouseButton = EnumMouseButton.Right,
                         Itemstacks = stacks,
                     },
                     new()
                     {
                         ActionLangCode = "heldhelp-crack2",
-                        HotKeyCodes = ["sneak", "sprint"],
+                        HotKeyCodes = ["shift", "ctrl"],
                         MouseButton = EnumMouseButton.Right,
                         Itemstacks = stacks,
                     }
@@ -181,7 +181,7 @@ namespace ACulinaryArtillery
             IBlockAccessor blockAccessor = world.BlockAccessor;
             Block block = blockAccessor.GetBlock(blockSel.Position);
 
-            (Item? liquidItem, bool giveYolk) = byEntity.Controls.Sprint switch
+            (Item? liquidItem, bool giveYolk) = byEntity.Controls.CtrlKey switch
             {
                 _ when IsEggYolk => (world.GetItem(partialLiquidCode), false),
                 true when IsCrackableEggType => (world.GetItem(fullLiquidCode ?? partialLiquidCode), false),

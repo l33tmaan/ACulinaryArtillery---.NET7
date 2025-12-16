@@ -40,7 +40,7 @@ namespace ACulinaryArtillery
         {
             if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityMixingBowl beBowl)
             {
-                if (byPlayer.Entity.Controls.Sprint && (blockSel.SelectionBoxIndex == 1 || beBowl.Inventory.openedByPlayerGUIds.Contains(byPlayer.PlayerUID)))
+                if (byPlayer.Entity.Controls.CtrlKey && (blockSel.SelectionBoxIndex == 1 || beBowl.Inventory.openedByPlayerGUIds.Contains(byPlayer.PlayerUID)))
                 {
                     beBowl.ToggleLock(byPlayer);
                     return true;
@@ -95,12 +95,12 @@ namespace ACulinaryArtillery
                 }, new() {
                     ActionLangCode = "aculinaryartillery:blockhelp-mixingbowl-autounlock",
                     MouseButton = EnumMouseButton.Right,
-                    HotKeyCode = "sprint",
+                    HotKeyCode = "ctrl",
                     ShouldApply = (wi, bs, es) => GetBlockEntity<BlockEntityMixingBowl>(bs.Position)?.invLocked == true
                 }, new() {
                     ActionLangCode = "aculinaryartillery:blockhelp-mixingbowl-autolock",
                     MouseButton = EnumMouseButton.Right,
-                    HotKeyCode = "sprint",
+                    HotKeyCode = "ctrl",
                     ShouldApply = (wi, bs, es) => GetBlockEntity<BlockEntityMixingBowl>(bs.Position)?.invLocked == false
                 }, .. base.GetPlacedBlockInteractionHelp(world, selection, forPlayer)]
             };

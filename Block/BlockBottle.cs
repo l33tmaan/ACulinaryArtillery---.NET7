@@ -433,7 +433,7 @@ namespace ACulinaryArtillery
                 new()
                 {
                     ActionLangCode = "heldhelp-empty",
-                    HotKeyCode = "sprint",
+                    HotKeyCode = "ctrl",
                     MouseButton = EnumMouseButton.Right,
                     ShouldApply = (wi, bs, es) => GetCurrentLitres(inSlot.Itemstack) > 0,
                 },
@@ -452,7 +452,7 @@ namespace ACulinaryArtillery
                 new()
                 {
                     ActionLangCode = "heldhelp-place",
-                    HotKeyCode = "sneak",
+                    HotKeyCode = "shift",
                     MouseButton = EnumMouseButton.Right,
                     ShouldApply = (wi, bs, es) => true
                 }
