@@ -370,7 +370,7 @@ namespace ACulinaryArtillery
             {
                 if (!matches.Any()) return null;
 
-                // Match the ingredient that fits the least slots
+                // Match the ingredient that fits the fewest slots
                 var match = matches.OrderBy(m => compatSlots.Count(c => c.Value.Contains(m))).ToList().First();
 
                 matched[slot] = match;
