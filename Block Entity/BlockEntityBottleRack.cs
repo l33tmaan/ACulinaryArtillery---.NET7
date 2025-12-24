@@ -30,7 +30,7 @@ namespace ACulinaryArtillery
             {
                 var colObj = playerSlot.Itemstack.Collectible;
 
-                BlockBottle bottle = colObj as BlockBottle;
+                BlockBottle? bottle = colObj as BlockBottle;
                 float fullness = bottle?.GetCurrentLitres(playerSlot.Itemstack) ?? 0;
                 if (bottle?.IsTopOpened == true && fullness > 0.2f)
                 {
@@ -50,6 +50,7 @@ namespace ACulinaryArtillery
         private bool TryPut(ItemSlot slot, BlockSelection blockSel)
         {
             var index = blockSel.SelectionBoxIndex;
+            if (index < 0 || index >= inventory.Count) return false;
 
             if (inventory[index].Empty && slot.TryPutInto(Api.World, inventory[index]) > 0)
             {
@@ -64,6 +65,7 @@ namespace ACulinaryArtillery
         private bool TryTake(IPlayer byPlayer, BlockSelection blockSel)
         {
             var index = blockSel.SelectionBoxIndex;
+            if (index < 0 || index >= inventory.Count) return false;
 
             if (!inventory[index].Empty)
             {
@@ -125,6 +127,7 @@ namespace ACulinaryArtillery
             if (forPlayer?.CurrentBlockSelection == null) return;
 
             var index = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
+            if (index < 0 || index >= inventory.Count) return;
             if (!inventory[index].Empty)
             {
                 var slot = inventory[index];

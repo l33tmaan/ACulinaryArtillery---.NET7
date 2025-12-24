@@ -48,7 +48,9 @@ namespace ACulinaryArtillery
 
                 if (Api.World.Rand.NextDouble() > xylem.dripChance || !xylem.seasons.Contains(GetMonth(timer))) return;
 
-                container.TryPutLiquid(containerpos, new(Api.World.GetItem(xylem.sap)), xylem.dripCount);
+                Item? sapItem = Api.World.GetItem(xylem.sap);
+                if (sapItem == null) return;
+                container.TryPutLiquid(containerpos, new(sapItem), xylem.dripCount);
             }
         }
 

@@ -304,12 +304,16 @@ namespace ACulinaryArtillery
 
         public MeshData? GenRightMesh(ICoreClientAPI capi, ItemStack contentStack, BlockPos? forBlockPos = null, bool isSealed = false)
         {
-            Shape shape = capi.Assets.TryGet(emptyShapeLoc.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")).ToObject<Shape>();
+            IAsset? baseAsset = capi.Assets.TryGet(emptyShapeLoc.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json"));
+            if (baseAsset == null) return null;
+            Shape shape = baseAsset.ToObject<Shape>();
             capi.Tesselator.TesselateShape(this, shape, out MeshData mesh);
 
             if (isSealed && Attributes.IsTrue("canSeal"))
             {
-                shape = capi.Assets.TryGet(emptyShapeLoc.Clone().WithFilename("lid").WithPathPrefixOnce("shapes/").WithPathAppendixOnce(".json")).ToObject<Shape>();
+                IAsset? lidAsset = capi.Assets.TryGet(emptyShapeLoc.Clone().WithFilename("lid").WithPathPrefixOnce("shapes/").WithPathAppendixOnce(".json"));
+                if (lidAsset == null) return mesh;
+                shape = lidAsset.ToObject<Shape>();
                 capi.Tesselator.TesselateShape(this, shape, out MeshData lidmesh);
                 mesh.AddMeshData(lidmesh);
             }
@@ -319,7 +323,9 @@ namespace ACulinaryArtillery
 
                 string fullness = Math.Round(contentStack.StackSize / (props.ItemsPerLitre * CapacityLitres), 1, MidpointRounding.ToPositiveInfinity).ToString().Replace(",", ".");
 
-                shape = capi.Assets.TryGet((props.IsOpaque ? contentShapeLoc : liquidContentShapeLoc).CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")).ToObject<Shape>();
+                IAsset? contentAsset = capi.Assets.TryGet((props.IsOpaque ? contentShapeLoc : liquidContentShapeLoc).CopyWithPathPrefixAndAppendixOnce("shapes/", ".json"));
+                if (contentAsset == null) return mesh;
+                shape = contentAsset.ToObject<Shape>();
 
                 capi.Tesselator.TesselateShape("saucepan", shape, out MeshData contentMesh, new ContainerTextureSource(capi, contentStack, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ), props.GlowLevel);
 

@@ -217,15 +217,22 @@ namespace ACulinaryArtillery
             if (Variant["type"] != "corked" && op.CurrentPriority == EnumMergePriority.DirectMerge && sourceSlot.Itemstack.ItemAttributes?["canSealBottle"]?.AsBool() == true)
             {
                 ItemSlot sinkSlot = op.SinkSlot;
-                ItemStack newBottle = new(op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "corked"))) { Attributes = sinkSlot.Itemstack.Attributes };
+                Block? corkedBlock = op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "corked"));
+                if (corkedBlock == null)
+                {
+                    base.TryMergeStacks(op);
+                    return;
+                }
+                ItemStack newBottle = new(corkedBlock) { Attributes = sinkSlot.Itemstack.Attributes };
 
                 if (sinkSlot.StackSize == 1) sinkSlot.Itemstack = newBottle;
                 else
                 {
                     sinkSlot.TakeOut(1);
-                    if (!op.ActingPlayer.InventoryManager.TryGiveItemstack(newBottle, true))
+                    if (op.ActingPlayer?.InventoryManager.TryGiveItemstack(newBottle, true) != true)
                     {
-                        op.World.SpawnItemEntity(newBottle, op.ActingPlayer.Entity.Pos.AsBlockPos);
+                        Vec3d dropPos = op.ActingPlayer?.Entity?.Pos.XYZ ?? op.World.DefaultSpawnPosition.XYZ;
+                        op.World.SpawnItemEntity(newBottle, dropPos);
                     }
                 }
                 op.MovedQuantity = 1;
@@ -246,7 +253,13 @@ namespace ACulinaryArtillery
                 if (plr.InventoryManager?.OffhandHotbarSlot is ItemSlot offSlot && (offSlot.Empty || offSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
                 {
                     
-                    ItemStack newBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
+                    Block? firedBlock = byEntity.World.GetBlock(CodeWithVariant("type", "fired"));
+                    if (firedBlock == null)
+                    {
+                        base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
+                        return;
+                    }
+                    ItemStack newBottle = new(firedBlock) { Attributes = itemslot.Itemstack.Attributes };
 
                     if (itemslot.StackSize == 1) itemslot.Itemstack = newBottle;
                     else
@@ -259,10 +272,14 @@ namespace ACulinaryArtillery
                         }
                     }
 
-                    ItemStack cork = new(byEntity.World.GetItem("aculinaryartillery:cork-generic"));
-                    if (new DummySlot(cork).TryPutInto(byEntity.World, offSlot) <= 0)
+                    Item? corkItem = byEntity.World.GetItem("aculinaryartillery:cork-generic");
+                    if (corkItem != null)
                     {
-                        byEntity.World.SpawnItemEntity(cork, byEntity.Pos.AsBlockPos);
+                        ItemStack cork = new(corkItem);
+                        if (new DummySlot(cork).TryPutInto(byEntity.World, offSlot) <= 0)
+                        {
+                            byEntity.World.SpawnItemEntity(cork, byEntity.Pos.AsBlockPos);
+                        }
                     }
                     //plr.InventoryManager.OffhandHotbarSlot.MarkDirty();
                     handHandling = EnumHandHandling.PreventDefault;

@@ -37,10 +37,14 @@ namespace ACulinaryArtillery
 
             if (saucepanBlock == null) throw new Exception("Could not load the saucepan block to obtain the model");
 
-            capi.Tesselator.TesselateShape(saucepanBlock, capi.Assets.TryGet(saucepanBlock.Shape.Base.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")).ToObject<Shape>(), out MeshData saucepanMesh); // Main Shape
+            IAsset? baseAsset = capi.Assets.TryGet(saucepanBlock.Shape.Base.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json"));
+            if (baseAsset == null) return;
+            capi.Tesselator.TesselateShape(saucepanBlock, baseAsset.ToObject<Shape>(), out MeshData saucepanMesh); // Main Shape
             saucepanRef = capi.Render.UploadMultiTextureMesh(saucepanMesh);
 
-            capi.Tesselator.TesselateShape(saucepanBlock, capi.Assets.TryGet(saucepanBlock.Shape.Base.Clone().WithFilename("lid").WithPathPrefixOnce("shapes/").WithPathAppendixOnce(".json")).ToObject<Shape>(), out MeshData topMesh); // Lid
+            IAsset? lidAsset = capi.Assets.TryGet(saucepanBlock.Shape.Base.Clone().WithFilename("lid").WithPathPrefixOnce("shapes/").WithPathAppendixOnce(".json"));
+            if (lidAsset == null) return;
+            capi.Tesselator.TesselateShape(saucepanBlock, lidAsset.ToObject<Shape>(), out MeshData topMesh); // Lid
             topRef = capi.Render.UploadMultiTextureMesh(topMesh);
         }
 
@@ -55,6 +59,7 @@ namespace ACulinaryArtillery
 
         public void OnRenderFrame(float deltaTime, EnumRenderStage stage)
         {
+            if (saucepanRef == null) return;
             IRenderAPI rpi = capi.Render;
             Vec3d camPos = capi.World.Player.Entity.CameraPos;
 
@@ -88,7 +93,7 @@ namespace ACulinaryArtillery
 
             rpi.RenderMultiTextureMesh(saucepanRef, "tex");
 
-            if (!isInOutputSlot)
+            if (!isInOutputSlot && topRef != null)
             {
                 origx = GameMath.Sin(capi.World.ElapsedMilliseconds / 300f) * 8 / 16f;
                 origz = GameMath.Cos(capi.World.ElapsedMilliseconds / 300f) * 8 / 16f;

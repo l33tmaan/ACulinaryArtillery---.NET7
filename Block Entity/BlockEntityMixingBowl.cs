@@ -207,7 +207,8 @@ namespace ACulinaryArtillery
                 if (mealBlockCode == null) return;
 
                 Block mealBlock = Api.World.GetBlock(new AssetLocation(mealBlockCode));
-                mixedStack = new ItemStack(mealBlock);
+                if (mealBlock is not BlockCookedContainer cookedContainer) return;
+                mixedStack = new ItemStack(cookedContainer);
                 servings = mrecipe.GetQuantityServings(stacks);
 
                 for (int i = 0; i < stacks.Length; i++)
@@ -228,7 +229,7 @@ namespace ACulinaryArtillery
                     stacks[i].StackSize /= servings; // This makes sure that there's only one serving worth of items in the pot, which is needed for rot
                 }
 
-                ((BlockCookedContainer)mealBlock).SetContents(mrecipe.Code, servings, mixedStack, stacks);
+                cookedContainer.SetContents(mrecipe.Code, servings, mixedStack, stacks);
 
                 inventory[0].TakeOut(1);
                 inventory[0].MarkDirty();
@@ -276,15 +277,17 @@ namespace ACulinaryArtillery
 
             prevInputMixTime = inputMixTime;
 
+            string? staleKey = null;
             foreach (var val in playersMixing)
             {
                 long ellapsedMs = Api.World.ElapsedMilliseconds;
                 if (ellapsedMs - val.Value > 1000)
                 {
-                    playersMixing.Remove(val.Key);
+                    staleKey = val.Key;
                     break;
                 }
             }
+            if (staleKey != null) playersMixing.Remove(staleKey);
         }
 
         public void SetPlayerMixing(IPlayer player, bool playerMixing)
@@ -402,11 +405,11 @@ namespace ACulinaryArtillery
 
                 quantityPlayersMixing = clientIds.Count;
 
-                foreach (var uid in playersMixing.Keys)
+                foreach (var uid in playersMixing.Keys.ToArray())
                 {
-                    IPlayer plr = worldForResolving.PlayerByUid(uid);
+                    IPlayer? plr = worldForResolving.PlayerByUid(uid);
 
-                    if (!clientIds.Contains(plr.ClientId)) playersMixing.Remove(uid);
+                    if (plr == null || !clientIds.Contains(plr.ClientId)) playersMixing.Remove(uid);
                     else clientIds.Remove(plr.ClientId);
                 }
 
@@ -466,7 +469,8 @@ namespace ACulinaryArtillery
                 Inventory.InvNetworkUtil.HandleClientPacket(player, packetid, data);
 
                 // Tell server to save this chunk to disk again
-                Api.World.BlockAccessor.GetChunkAtBlockPos(Pos).MarkModified();
+                var chunk = Api.World.BlockAccessor.GetChunkAtBlockPos(Pos);
+                chunk?.MarkModified();
 
                 return;
             }
@@ -548,7 +552,7 @@ namespace ACulinaryArtillery
 
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
         {
-            if (Block == null || mixingBowlTopMesh == null || renderer == null) return false;
+            if (Block == null || mixingBowlBaseMesh == null || mixingBowlTopMesh == null || renderer == null) return false;
 
             mesher.AddMeshData(mixingBowlBaseMesh);
             if (quantityPlayersMixing == 0 && !automated)

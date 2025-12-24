@@ -59,6 +59,7 @@ namespace ACulinaryArtillery
         private bool TryPut(ItemSlot slot, BlockSelection blockSel)
         {
             int index = blockSel.SelectionBoxIndex;
+            if (index < 0 || index >= inventory.Count) return false;
 
             if (inventory[index].Empty && slot.TryPutInto(Api.World, inventory[index]) > 0)
             {
@@ -73,6 +74,7 @@ namespace ACulinaryArtillery
         private bool TryTake(IPlayer byPlayer, BlockSelection blockSel)
         {
             int index = blockSel.SelectionBoxIndex;
+            if (index < 0 || index >= inventory.Count) return false;
 
             if (!inventory[index].Empty)
             {
@@ -103,6 +105,7 @@ namespace ACulinaryArtillery
             if (forPlayer?.CurrentBlockSelection == null) return;
 
             int index = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
+            if (index < 0 || index >= inventory.Count) return;
 
             if (!inventory[index].Empty)
             {

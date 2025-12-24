@@ -189,7 +189,9 @@ namespace ACulinaryArtillery
             if (contentItemCode != null && !machine.invLocked)
             {
                 ItemSlot mixingSlot = inventory[1];
-                ItemStack contentStack = new ItemStack(world.GetItem(AssetLocation.Create(contentItemCode, sourceSlot.Itemstack!.Collectible.Code.Domain)));
+                Item? contentItem = world.GetItem(AssetLocation.Create(contentItemCode, sourceSlot.Itemstack!.Collectible.Code.Domain));
+                if (contentItem == null) return;
+                ItemStack contentStack = new ItemStack(contentItem);
                 bool stackable = !mixingSlot.Empty && mixingSlot.Itemstack.Equals(world, contentStack, GlobalConstants.IgnoredStackAttributes);
 
                 if ((mixingSlot.Empty || stackable) && contentStack != null)
@@ -198,7 +200,9 @@ namespace ACulinaryArtillery
                     else mixingSlot.Itemstack = contentStack;
 
                     mixingSlot.MarkDirty();
-                    ItemStack bowlStack = new ItemStack(world.GetBlock(AssetLocation.Create(sourceSlot.Itemstack?.ItemAttributes["emptiedBlockCode"].AsString(), sourceSlot.Itemstack?.Collectible.Code.Domain)));
+                    Block? bowlBlock = world.GetBlock(AssetLocation.Create(sourceSlot.Itemstack?.ItemAttributes["emptiedBlockCode"].AsString(), sourceSlot.Itemstack?.Collectible.Code.Domain));
+                    if (bowlBlock == null) return;
+                    ItemStack bowlStack = new ItemStack(bowlBlock);
                     if (sourceSlot.StackSize == 1)
                     {
                         sourceSlot.Itemstack = bowlStack;
@@ -206,9 +210,10 @@ namespace ACulinaryArtillery
                     else
                     {
                         sourceSlot.Itemstack!.StackSize--;
-                        if (!op.ActingPlayer.InventoryManager.TryGiveItemstack(bowlStack))
+                        if (op.ActingPlayer?.InventoryManager.TryGiveItemstack(bowlStack) != true)
                         {
-                            world.SpawnItemEntity(bowlStack, op.ActingPlayer.Entity.Pos.XYZ);
+                            Vec3d dropPos = op.ActingPlayer?.Entity?.Pos.XYZ ?? machine.Pos.ToVec3d().Add(0.5, 0.5, 0.5);
+                            world.SpawnItemEntity(bowlStack, dropPos);
                         }
                     }
                     sourceSlot.MarkDirty();
@@ -270,7 +275,9 @@ namespace ACulinaryArtillery
 
                 if (outBlockCode != null)
                 {
-                    ItemStack outBlockStack = new ItemStack(world.GetBlock(AssetLocation.Create(outBlockCode, sourceSlot.Itemstack.Collectible.Code.Domain)));
+                    Block? outBlock = world.GetBlock(AssetLocation.Create(outBlockCode, sourceSlot.Itemstack.Collectible.Code.Domain));
+                    if (outBlock == null) return;
+                    ItemStack outBlockStack = new ItemStack(outBlock);
 
                     if (sourceSlot.StackSize == 1)
                     {
@@ -279,9 +286,10 @@ namespace ACulinaryArtillery
                     else
                     {
                         sourceSlot.Itemstack.StackSize--;
-                        if (!op.ActingPlayer.InventoryManager.TryGiveItemstack(outBlockStack))
+                        if (op.ActingPlayer?.InventoryManager.TryGiveItemstack(outBlockStack) != true)
                         {
-                            world.SpawnItemEntity(outBlockStack, op.ActingPlayer.Entity.Pos.XYZ);
+                            Vec3d dropPos = op.ActingPlayer?.Entity?.Pos.XYZ ?? machine.Pos.ToVec3d().Add(0.5, 0.5, 0.5);
+                            world.SpawnItemEntity(outBlockStack, dropPos);
                         }
                     }
 
