@@ -290,6 +290,12 @@ namespace ACulinaryArtillery
 
             MeshData? mesh = null;
             float uvoffset = 0;
+            Dictionary<AssetLocation, int> shapeCounts = [];
+            for (int i = 0; i < addShapes.Count; i++)
+            {
+                if (shapeCounts.TryGetValue(addShapes[i], out int count)) shapeCounts[addShapes[i]] = count + 1;
+                else shapeCounts[addShapes[i]] = 1;
+            }
             for (int i = 0; i < addShapes.Count; i++)
             {
                 if (!addShapes[i].Valid) continue;
@@ -312,7 +318,7 @@ namespace ACulinaryArtillery
 
                     ShapeTextureSource textureSource = new(capi, clonedAddShape, addShapes[i].ToString());
 
-                    if (addShapes.Where(x => x != null && x == addShapes[i]).Count() > 1)
+                    if (shapeCounts.TryGetValue(addShapes[i], out int shapeCount) && shapeCount > 1)
                     {
                         int texHeight = clonedAddShape.TextureHeight;
                         int texWidth = clonedAddShape.TextureWidth;

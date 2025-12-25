@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ACulinaryArtillery.Util;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -12,6 +13,14 @@ namespace ACulinaryArtillery
 {
     public class BlockSaucepan : BlockLiquidContainerBase, ILiquidSource, ILiquidSink, IInFirepitRendererSupplier
     {
+        private sealed class LiquidContainerStackCache
+        {
+            public int CollectibleListVersion = -1;
+            public bool CanUseVersion;
+            public object? CollectibleListRef;
+            public ItemStack[] Stacks = Array.Empty<ItemStack>();
+        }
+
         LiquidTopOpenContainerProps Props = new();
         protected virtual string meshRefsCacheKey => Code.ToShortString() + "meshRefs";
         protected virtual AssetLocation emptyShapeLoc => Props.EmptyShapeLoc;
@@ -50,11 +59,48 @@ namespace ACulinaryArtillery
 
         public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
         {
-            ItemStack[] liquidContainerStacks = [.. api.World.Collectibles.Where(obj => obj is BlockLiquidContainerTopOpened or ILiquidSource or ILiquidSink)?
-                                                                          .Select(obj => obj?.GetHandBookStacks((ICoreClientAPI)api))?
-                                                                          .SelectMany(stacks => stacks ?? [])?
-                                                                          .Where(stack => stack != null) ?? []
-                                                ];
+            ItemStack[] liquidContainerStacks = Array.Empty<ItemStack>();
+            if (api is ICoreClientAPI capi)
+            {
+                var collectibles = api.World.Collectibles;
+                ItemStack[] BuildLiquidContainerStacks()
+                {
+                    List<ItemStack> stacks = [];
+                    foreach (CollectibleObject? obj in collectibles)
+                    {
+                        if (obj == null) continue;
+                        if (obj is BlockLiquidContainerTopOpened or ILiquidSource or ILiquidSink)
+                        {
+                            IEnumerable<ItemStack>? handStacks = obj.GetHandBookStacks(capi);
+                            if (handStacks == null) continue;
+                            foreach (ItemStack? stack in handStacks)
+                            {
+                                if (stack != null) stacks.Add(stack);
+                            }
+                        }
+                    }
+
+                    return [.. stacks];
+                }
+
+                LiquidContainerStackCache cache = ObjectCacheUtil.GetOrCreate(api, "aca-saucepan-liquidcontainer-stacks", () => new LiquidContainerStackCache());
+                if (ListVersionUtil.TryGetListVersion(collectibles, out int version))
+                {
+                    if (!cache.CanUseVersion || !ReferenceEquals(cache.CollectibleListRef, collectibles) || cache.CollectibleListVersion != version)
+                    {
+                        cache.CanUseVersion = true;
+                        cache.CollectibleListVersion = version;
+                        cache.CollectibleListRef = collectibles;
+                        cache.Stacks = BuildLiquidContainerStacks();
+                    }
+
+                    liquidContainerStacks = cache.Stacks;
+                }
+                else
+                {
+                    liquidContainerStacks = BuildLiquidContainerStacks();
+                }
+            }
 
             return [ new () {
                 ActionLangCode = "game:blockhelp-behavior-rightclickpickup",

@@ -233,7 +233,12 @@ namespace ACulinaryArtillery.Util
         internal static bool getCanSimmer(List<ItemStack> fuels, ItemStack stack)
         {
             if (stack.Collectible.CombustibleProps is not CombustibleProperties combustProps) return false;
-            int maxFuelTemp = fuels.OrderBy(fuel => fuel.Collectible.CombustibleProps.BurnTemperature).Select(fuel => fuel.Collectible.CombustibleProps.BurnTemperature).LastOrDefault();
+            int maxFuelTemp = 0;
+            for (int i = 0; i < fuels.Count; i++)
+            {
+                int burnTemperature = fuels[i].Collectible.CombustibleProps.BurnTemperature;
+                if (burnTemperature > maxFuelTemp) maxFuelTemp = burnTemperature;
+            }
             if (combustProps.MeltingPoint > maxFuelTemp) return false;
             if (combustProps.SmeltingType is not EnumSmeltType.Cook or EnumSmeltType.Convert) return false;
             if (combustProps.RequiresContainer == true) return true;
