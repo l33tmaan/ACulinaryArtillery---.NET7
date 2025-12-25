@@ -38,17 +38,22 @@ namespace ACulinaryArtillery
 
         public void SapDrip(float dt)
         {
+            IWorldAccessor world = Api.World;
+            var calendar = world.Calendar;
             BlockPos containerpos = posForward(0, -1, 0);
-            if (Api.World.BlockAccessor.GetBlock(containerpos) is not BlockLiquidContainerBase container) return;
-            if (Api.World.BlockAccessor.GetBlock(posForward(1, 0, 0))?.Attributes?["sapProperties"]?.AsObject<SapProperties>() is not SapProperties xylem) return;
+            if (world.BlockAccessor.GetBlock(containerpos) is not BlockLiquidContainerBase container) return;
+            if (world.BlockAccessor.GetBlock(posForward(1, 0, 0))?.Attributes?["sapProperties"]?.AsObject<SapProperties>() is not SapProperties xylem) return;
 
-            while (Api.World.Calendar.TotalHours - timer >= xylem.dripTime)
+            double nowHours = calendar.TotalHours;
+            while (nowHours - timer >= xylem.dripTime)
             {
                 timer += xylem.dripTime;
 
-                if (Api.World.Rand.NextDouble() > xylem.dripChance || !xylem.seasons.Contains(GetMonth(timer))) return;
+                if (world.Rand.NextDouble() > xylem.dripChance || !xylem.seasons.Contains(GetMonth(timer))) return;
 
-                container.TryPutLiquid(containerpos, new(Api.World.GetItem(xylem.sap)), xylem.dripCount);
+                Item? sapItem = world.GetItem(xylem.sap);
+                if (sapItem == null) return;
+                container.TryPutLiquid(containerpos, new(sapItem), xylem.dripCount);
             }
         }
 

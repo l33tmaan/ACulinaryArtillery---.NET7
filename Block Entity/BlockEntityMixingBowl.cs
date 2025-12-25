@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ACulinaryArtillery.Util;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -41,6 +42,13 @@ namespace ACulinaryArtillery
         int quantityPlayersMixing;
 
         int nowOutputFace;
+        bool recipeCacheDirty = true;
+        CookingRecipe? cachedMixingRecipe;
+        DoughRecipe? cachedDoughRecipe;
+        int cachedMixingRecipeVersion = -1;
+        int cachedDoughRecipeVersion = -1;
+        List<CookingRecipe>? cachedMixingRecipeListRef;
+        List<DoughRecipe>? cachedDoughRecipeListRef;
 
         #region Getters
 
@@ -194,8 +202,8 @@ namespace ACulinaryArtillery
 
         private void mixInput()
         {
-            CookingRecipe? mrecipe = GetMatchingMixingRecipe(Api.World, IngredStacks);
-            DoughRecipe? drecipe = GetMatchingDoughRecipe(Api.World, IngredSlots);
+            CookingRecipe? mrecipe = GetCachedMixingRecipe();
+            DoughRecipe? drecipe = GetCachedDoughRecipe();
             if (mrecipe == null && drecipe == null) return;
 
             ItemStack? mixedStack = null;
@@ -207,7 +215,8 @@ namespace ACulinaryArtillery
                 if (mealBlockCode == null) return;
 
                 Block mealBlock = Api.World.GetBlock(new AssetLocation(mealBlockCode));
-                mixedStack = new ItemStack(mealBlock);
+                if (mealBlock is not BlockCookedContainer cookedContainer) return;
+                mixedStack = new ItemStack(cookedContainer);
                 servings = mrecipe.GetQuantityServings(stacks);
 
                 for (int i = 0; i < stacks.Length; i++)
@@ -228,7 +237,7 @@ namespace ACulinaryArtillery
                     stacks[i].StackSize /= servings; // This makes sure that there's only one serving worth of items in the pot, which is needed for rot
                 }
 
-                ((BlockCookedContainer)mealBlock).SetContents(mrecipe.Code, servings, mixedStack, stacks);
+                cookedContainer.SetContents(mrecipe.Code, servings, mixedStack, stacks);
 
                 inventory[0].TakeOut(1);
                 inventory[0].MarkDirty();
@@ -276,15 +285,17 @@ namespace ACulinaryArtillery
 
             prevInputMixTime = inputMixTime;
 
+            string? staleKey = null;
             foreach (var val in playersMixing)
             {
                 long ellapsedMs = Api.World.ElapsedMilliseconds;
                 if (ellapsedMs - val.Value > 1000)
                 {
-                    playersMixing.Remove(val.Key);
+                    staleKey = val.Key;
                     break;
                 }
             }
+            if (staleKey != null) playersMixing.Remove(staleKey);
         }
 
         public void SetPlayerMixing(IPlayer player, bool playerMixing)
@@ -328,6 +339,7 @@ namespace ACulinaryArtillery
 
             if (slotid != 1) // Anything that isn't the output slot
             {
+                recipeCacheDirty = true;
                 inputMixTime = 0.0f; // Reset the progress to 0 if any input slot changes
                 MarkDirty();
 
@@ -342,17 +354,84 @@ namespace ACulinaryArtillery
             renderer.ShouldRender = quantityPlayersMixing > 0 || automated;
         }
 
+        private void EnsureRecipeCache()
+        {
+            if (Api == null) return;
+
+            List<CookingRecipe>? mixingRecipes = Api.GetMixingRecipes();
+            List<DoughRecipe>? doughRecipes = Api.GetKneadingRecipes();
+
+            int mixingVersion = -1;
+            int doughVersion = -1;
+            bool canCache =
+                ListVersionUtil.TryGetListVersion(mixingRecipes, out mixingVersion) &&
+                ListVersionUtil.TryGetListVersion(doughRecipes, out doughVersion);
+
+            if (!recipeCacheDirty && canCache &&
+                mixingVersion == cachedMixingRecipeVersion && doughVersion == cachedDoughRecipeVersion &&
+                ReferenceEquals(cachedMixingRecipeListRef, mixingRecipes) &&
+                ReferenceEquals(cachedDoughRecipeListRef, doughRecipes))
+            {
+                return;
+            }
+
+            cachedMixingRecipe = null;
+            cachedDoughRecipe = null;
+
+            if (canCache)
+            {
+                recipeCacheDirty = false;
+                cachedMixingRecipeVersion = mixingVersion;
+                cachedDoughRecipeVersion = doughVersion;
+                cachedMixingRecipeListRef = mixingRecipes;
+                cachedDoughRecipeListRef = doughRecipes;
+            }
+            else
+            {
+                recipeCacheDirty = true;
+                cachedMixingRecipeVersion = -1;
+                cachedDoughRecipeVersion = -1;
+                cachedMixingRecipeListRef = null;
+                cachedDoughRecipeListRef = null;
+            }
+
+            if (Pot != null)
+            {
+                ItemStack[] stacks = IngredStacks;
+                cachedMixingRecipe = mixingRecipes?.FirstOrDefault(rec => rec.Matches(stacks) && rec.GetQuantityServings(stacks) <= Pot.MaxServingSize);
+            }
+            else
+            {
+                cachedDoughRecipe = doughRecipes?.FirstOrDefault(rec => rec.Matches(Api.World, IngredSlots));
+            }
+        }
+
+        private CookingRecipe? GetCachedMixingRecipe()
+        {
+            EnsureRecipeCache();
+            return cachedMixingRecipe;
+        }
+
+        private DoughRecipe? GetCachedDoughRecipe()
+        {
+            EnsureRecipeCache();
+            return cachedDoughRecipe;
+        }
+
         internal MeshData? GenMesh(string type = "base")
         {
             Block block = Api.World.BlockAccessor.GetBlock(Pos);
             if (block.BlockId == 0 || Api is not ICoreClientAPI capi) return null;
 
-            capi.Tesselator.TesselateShape(block, Api.Assets.TryGet("aculinaryartillery:shapes/block/" + Block.FirstCodePart() + "/" + type + ".json").ToObject<Shape>(), out var mesh);
+            AssetLocation shapeLoc = new("aculinaryartillery:shapes/block/" + Block.FirstCodePart() + "/" + type + ".json");
+            Shape? shape = capi.TesselatorManager.GetCachedShape(shapeLoc);
+            shape ??= Api.Assets.TryGet(shapeLoc).ToObject<Shape>();
+            capi.Tesselator.TesselateShape(block, shape, out var mesh);
 
             return mesh;
         }
 
-        public bool CanMix => GetMatchingMixingRecipe(Api.World, IngredStacks) != null || GetMatchingDoughRecipe(Api.World, IngredSlots) != null;
+        public bool CanMix => GetCachedMixingRecipe() != null || GetCachedDoughRecipe() != null;
 
         #region Events
         public override bool OnPlayerRightClick(IPlayer byPlayer, BlockSelection blockSel)
@@ -402,11 +481,11 @@ namespace ACulinaryArtillery
 
                 quantityPlayersMixing = clientIds.Count;
 
-                foreach (var uid in playersMixing.Keys)
+                foreach (var uid in playersMixing.Keys.ToArray())
                 {
-                    IPlayer plr = worldForResolving.PlayerByUid(uid);
+                    IPlayer? plr = worldForResolving.PlayerByUid(uid);
 
-                    if (!clientIds.Contains(plr.ClientId)) playersMixing.Remove(uid);
+                    if (plr == null || !clientIds.Contains(plr.ClientId)) playersMixing.Remove(uid);
                     else clientIds.Remove(plr.ClientId);
                 }
 
@@ -421,6 +500,7 @@ namespace ACulinaryArtillery
 
 
             if (Api?.Side == EnumAppSide.Client) clientDialog?.Update(inputMixTime, MaxMixingTime, GetOutputText());
+            recipeCacheDirty = true;
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
@@ -466,7 +546,8 @@ namespace ACulinaryArtillery
                 Inventory.InvNetworkUtil.HandleClientPacket(player, packetid, data);
 
                 // Tell server to save this chunk to disk again
-                Api.World.BlockAccessor.GetChunkAtBlockPos(Pos).MarkModified();
+                var chunk = Api.World.BlockAccessor.GetChunkAtBlockPos(Pos);
+                chunk?.MarkModified();
 
                 return;
             }
@@ -548,7 +629,7 @@ namespace ACulinaryArtillery
 
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
         {
-            if (Block == null || mixingBowlTopMesh == null || renderer == null) return false;
+            if (Block == null || mixingBowlBaseMesh == null || mixingBowlTopMesh == null || renderer == null) return false;
 
             mesher.AddMeshData(mixingBowlBaseMesh);
             if (quantityPlayersMixing == 0 && !automated)
@@ -586,8 +667,8 @@ namespace ACulinaryArtillery
 
         public string GetOutputText()
         {
-            CookingRecipe? mrecipe = GetMatchingMixingRecipe(Api.World, IngredStacks);
-            DoughRecipe? drecipe = GetMatchingDoughRecipe(Api.World, IngredSlots);
+            CookingRecipe? mrecipe = GetCachedMixingRecipe();
+            DoughRecipe? drecipe = GetCachedDoughRecipe();
             string locked = invLocked ? Lang.Get("aculinaryartillery:(Locked) ") : "";
 
             if (mrecipe != null)

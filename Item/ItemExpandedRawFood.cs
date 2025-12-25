@@ -290,10 +290,17 @@ namespace ACulinaryArtillery
 
             MeshData? mesh = null;
             float uvoffset = 0;
+            Dictionary<AssetLocation, int> shapeCounts = [];
+            for (int i = 0; i < addShapes.Count; i++)
+            {
+                if (shapeCounts.TryGetValue(addShapes[i], out int count)) shapeCounts[addShapes[i]] = count + 1;
+                else shapeCounts[addShapes[i]] = 1;
+            }
             for (int i = 0; i < addShapes.Count; i++)
             {
                 if (!addShapes[i].Valid) continue;
-                Shape? addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>();
+                IAsset? shapeAsset = capi.Assets.TryGet(addShapes[i]);
+                Shape? addShape = shapeAsset?.ToObject<Shape>();
                 if (addShape == null) continue;
 
                 Shape clonedAddShape = addShape.Clone();
@@ -311,7 +318,7 @@ namespace ACulinaryArtillery
 
                     ShapeTextureSource textureSource = new(capi, clonedAddShape, addShapes[i].ToString());
 
-                    if (addShapes.Where(x => x != null && x == addShapes[i]).Count() > 1)
+                    if (shapeCounts.TryGetValue(addShapes[i], out int shapeCount) && shapeCount > 1)
                     {
                         int texHeight = clonedAddShape.TextureHeight;
                         int texWidth = clonedAddShape.TextureWidth;
@@ -353,10 +360,18 @@ namespace ACulinaryArtillery
 
             this.targetAtlas = targetAtlas;
             nowTesselatingShape = null;
-            var be = api.World.BlockAccessor.GetBlockEntity(atBlockPos);
+            BlockEntity? be = null;
+            if (atBlockPos != null)
+            {
+                be = api.World.BlockAccessor.GetBlockEntity(atBlockPos);
+            }
 
             string[]? ings = (stack.Attributes?["madeWith"] as StringArrayAttribute)?.value;
-            if (ings?.Length > 0) return GenMesh(targetAtlas, ings, new Vec3f(0, be.Block.Shape.rotateY, 0), capi.Tesselator);
+            if (ings?.Length > 0)
+            {
+                float rotY = be?.Block?.Shape?.rotateY ?? 0f;
+                return GenMesh(targetAtlas, ings, new Vec3f(0, rotY, 0), capi.Tesselator);
+            }
 
             if (stack.Item?.Shape?.Base is AssetLocation loc) nowTesselatingShape = (api as ICoreClientAPI)?.TesselatorManager.GetCachedShape(loc);
             capi.Tesselator.TesselateItem(stack.Item, out MeshData mesh, this);
@@ -392,8 +407,9 @@ namespace ACulinaryArtillery
             MeshData? mesh = null;
             for (int i = 0; i < addShapes.Count; i++)
             {
-                Shape addShape;
-                if (!addShapes[i].Valid || (addShape = capi.Assets.TryGet(addShapes[i]).ToObject<Shape>()) == null)
+                IAsset? shapeAsset = addShapes[i].Valid ? capi.Assets.TryGet(addShapes[i]) : null;
+                Shape? addShape = shapeAsset?.ToObject<Shape>();
+                if (!addShapes[i].Valid || addShape == null)
                     continue;
 
                 if (addShape.Textures != null)

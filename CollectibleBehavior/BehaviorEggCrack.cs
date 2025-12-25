@@ -91,7 +91,7 @@ namespace ACulinaryArtillery
 
             interactions = ObjectCacheUtil.GetOrCreate<WorldInteraction[]>(api, "eggInteractions", () =>
             {
-                ItemStack[] stacks = [.. api.World.Blocks.Where(block => block.Code != null && (block is BlockBarrel || CanSqueezeInto(capi.World, block, null))).Select(block => new ItemStack(block))];
+                ItemStack[] stacks = [.. api.World.Blocks.Where(block => block != null && block.Code != null && (block is BlockBarrel || CanSqueezeInto(capi.World, block, null))).Select(block => new ItemStack(block))];
 
                 return
                 [
@@ -133,6 +133,7 @@ namespace ACulinaryArtillery
         }
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
+            if (blockSel == null) return base.OnHeldInteractStep(secondsUsed, slot, byEntity, blockSel!, entitySel, ref handling);
             Block block = byEntity.World.BlockAccessor.GetBlock(blockSel.Position);
             if (block != null && CanSqueezeInto(byEntity.World, block, blockSel))
             { 
@@ -227,7 +228,7 @@ namespace ACulinaryArtillery
                 Vec3d pos = blockSel.Position.ToVec3d().Add(blockSel.HitPosition);
 
                 particles.MinPos.Add(blockSel.Position);                            // add selection position
-                particles.MinPos.Add(block.TopMiddlePos); // add sub block selection position
+                particles.MinPos.Add(block?.TopMiddlePos.ToVec3d() ?? blockSel.Position.ToVec3d()); // add sub block selection position
                 particles.AddPos.Set(new Vec3d(0, 0, 0)); //add position
                 world.SpawnParticles(particles);
                 return;
@@ -255,7 +256,9 @@ namespace ACulinaryArtillery
             slot.MarkDirty();
 
             IPlayer? byPlayer = world.PlayerByUid((byEntity as EntityPlayer)?.PlayerUID);
-            ItemStack returnStack = new(world.GetItem(!giveYolk ? eggShellCode : (eggYolkCode ?? eggShellCode)));
+            Item? returnItem = world.GetItem(!giveYolk ? eggShellCode : (eggYolkCode ?? eggShellCode));
+            if (returnItem == null) return;
+            ItemStack returnStack = new(returnItem);
             if (byPlayer?.InventoryManager.TryGiveItemstack(returnStack) == false)
             {
                 byEntity.World.SpawnItemEntity(returnStack, byEntity.SidedPos.XYZ);

@@ -354,6 +354,7 @@ namespace ACulinaryArtillery
             ItemSlot sourceSlot, ItemSlot targetSlot, ItemSlot[] ___slots, ref float __result)
         {
             var stack = sourceSlot.Itemstack;
+            if (stack == null) return true;
             if (targetSlot == ___slots[1] && stack.Collectible is BlockSaucepan)
             {
                 __result = 2.2f;

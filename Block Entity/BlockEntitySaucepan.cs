@@ -103,6 +103,7 @@ namespace ACulinaryArtillery
 
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
         {
+            if (currentRightMesh == null) return false;
             mesher.AddMeshData(currentRightMesh);
             return true;
         }
