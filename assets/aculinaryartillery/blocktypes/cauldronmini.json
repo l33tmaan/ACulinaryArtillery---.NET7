@@ -58,7 +58,7 @@
 	"variantgroups": [
 		{
 			"code": "metal",
-			"states": [ "copper", "tinbronze", "blackbronze", "iron", "steel", "meteoriciron" ]
+			"states": [ "copper", "tinbronze", "bismuthbronze", "blackbronze", "iron", "steel", "meteoriciron" ]
 		}
 	],
 	"creativeinventory": {
@@ -99,6 +99,18 @@
 			},
 			"metalgradient": {
 				"base": "game:block/metal/sheet/tinbronze1",
+				"overlays": [ "block/cauldron/metaloverlaygradient" ]
+			}
+		},
+		"*-bismuthbronze": {
+            "metal": { "base": "game:block/metal/sheet/bismuthbronze1" },
+			"metal2": { "base": "game:block/metal/sheet/tin1" },
+			"metaldark": {
+				"base": "game:block/metal/sheet/bismuthbronze1",
+				"overlays": [ "block/cauldron/metaloverlay" ]
+			},
+			"metalgradient": {
+				"base": "game:block/metal/sheet/bismuthbronze1",
 				"overlays": [ "block/cauldron/metaloverlaygradient" ]
 			}
 		},

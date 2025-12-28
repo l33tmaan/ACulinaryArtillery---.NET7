@@ -31,7 +31,7 @@
 	"entityclass": "Spile",
 	"class": "BlockSpile",
 	"variantgroups": [
-		{ "code":"metal", "states": ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] },
+		{ "code":"metal", "states": ["copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "titanium", "steel"] },
 		{ "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
 	],
 	"texture": { "base": "game:block/metal/ingot/{metal}" },
