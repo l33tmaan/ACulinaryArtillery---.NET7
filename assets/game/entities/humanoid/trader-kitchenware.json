@@ -185,6 +185,19 @@
       }
     },
     {
+      "code": "aculinaryartillery:cauldron-bismuthbronze",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 14,
+        "var": 3.5
+      }
+    },
+    {
       "code": "aculinaryartillery:cauldron-blackbronze",
       "type": "block",
       "stacksize": 1,
@@ -260,6 +273,19 @@
       "price": {
         "avg": 6,
         "var": 1.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:cauldronmini-bismuthbronze",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 7,
+        "var": 2
       }
     },
     {
@@ -624,6 +650,19 @@
       "price": {
         "avg": 4,
         "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:spile-bismuthbronze-north",
+      "type": "block",
+      "stacksize": 2,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 5,
+        "var": 1.25
       }
     },
     {
@@ -1108,6 +1147,19 @@
       }
     },
     {
+      "code": "aculinaryartillery:meathooks-kapok-bismuthbronze-east",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 8.5,
+        "var": 2.5
+      }
+    },
+    {
       "code": "aculinaryartillery:meathooks-ebony-blackbronze-east",
       "type": "block",
       "stacksize": 1,
@@ -1295,6 +1347,19 @@
       }
     },
     {
+      "code": "aculinaryartillery:cauldron-bismuthbronze",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 7,
+        "var": 2
+      }
+    },
+    {
       "code": "aculinaryartillery:cauldron-blackbronze",
       "type": "block",
       "stacksize": 1,
@@ -1331,6 +1396,19 @@
       "price": {
         "avg": 3,
         "var": 0.75
+      }
+    },
+    {
+      "code": "aculinaryartillery:cauldronmini-bismuthbronze",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 4,
+        "var": 1
+      },
+      "price": {
+        "avg": 3.5,
+        "var": 1
       }
     },
     {
@@ -1552,6 +1630,19 @@
       "price": {
         "avg": 2,
         "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:spile-bismuthbronze-north",
+      "type": "block",
+      "stacksize": 2,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2.5,
+        "var": 1
       }
     },
     {
@@ -2032,6 +2123,19 @@
       },
       "price": {
         "avg": 4,
+        "var": 1
+      }
+    },
+    {
+      "code": "aculinaryartillery:meathooks-kapok-bismuthbronze-east",
+      "type": "block",
+      "stacksize": 1,
+      "stock": {
+        "avg": 1,
+        "var": 0
+      },
+      "price": {
+        "avg": 4.5,
         "var": 1
       }
     },

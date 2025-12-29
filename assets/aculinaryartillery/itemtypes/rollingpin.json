@@ -3,17 +3,12 @@
 	"damagedby": ["blockbreaking", "attacking"],
 	"variantgroups": [
 		{ "code": "type", "states": ["acacia", "aged", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut",
-																				"blackbronze", "copper", "iron", "meteoriciron", "steel", "tinbronze" ] }
+																				"bismuthbronze", "blackbronze", "copper", "iron", "meteoriciron", "steel", "tinbronze" ] }
 	],
 	"shape": { "base": "item/rollingpinshape" }, 
 	"heldTpHitAnimation": "breaktool",
 	"texturesByType": {
-		"*-blackbronze": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
-		"*-copper": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
-		"*-iron": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
-		"*-meteoriciron": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
-		"*-steel": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
-		"*-tinbronze": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
+		"@*-(copper|.*bronze|.*iron|steel)": { "pin": { "base": "game:block/metal/sheet/{type}1" } },
 		"*": { "pin": { "base": "game:block/wood/debarked/{type}" } }
 	},
 	"attackRange": 2,
@@ -58,6 +53,7 @@
 		"rollingpin-meteoriciron": 2500,
 		"rollingpin-iron": 2100,
 		"rollingpin-blackbronze": 1300,
+		"rollingpin-bismuthbronze": 1000,
 		"rollingpin-tinbronze": 900,
 		"rollingpin-copper": 600,
 		"rollingpin-*": 100
@@ -67,15 +63,15 @@
 		"rollingpin-meteoriciron": 3,
 		"rollingpin-iron": 2.75,
 		"rollingpin-blackbronze": 2.5,
+		"rollingpin-bismuthbronze": 2.25,
 		"rollingpin-tinbronze": 2.25,
 		"rollingpin-copper": 2,
 		"rollingpin-*": 1.5
 	},
 	"tooltierbytype": {
 		"*-copper": 2,
-		"*-tinbronze": 3,
-		"*-iron": 4,
-		"*-meteoriciron": 4,
+		"*-*bronze": 3,
+		"*-*iron": 4,
 		"*-steel": 5,
 		"*": 1
 	},

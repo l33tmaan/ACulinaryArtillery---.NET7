@@ -5,7 +5,7 @@
 	"behaviors": [{"name": "HorizontalOrientable"}],
 	"variantgroups": [
 		{ "code": "wood", "states": ["acacia", "birch", "kapok", "maple", "oak", "pine", "aged", "baldcypress", "larch", "redwood", "ebony", "walnut", "purpleheart"] },
-		{ "code": "metal", "states": ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] },
+		{ "code": "metal", "states": ["copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "titanium", "steel"] },
 		{ "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
 	],
 	"skipVariants": ["*-{wood}-{metal}-west", "*-{wood}-{metal}-north", "*-{wood}-{metal}-south"],
@@ -17,7 +17,7 @@
 	},
 	"creativeinventory": { "general": ["*-east"], "terrain": ["*-east"], "aculinaryartillery": ["*-east"] },
     "texturesByType": {
-        "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(copper|brass|tinbronze|blackbronze|titanium|steel)-(north|east|south|west)": {
+        "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(copper|brass|tinbronze|bismuthbronze|blackbronze|titanium|steel)-(north|east|south|west)": {
             "wood": { "base": "wildcrafttree:block/wood/planks/{wood}1" },
 			"metal": { "base": "game:block/metal/ingot/{metal}" }
         },

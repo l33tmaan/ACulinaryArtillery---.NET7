@@ -25,6 +25,17 @@
     "ingredientPattern": "CA",
     "ingredients": {
       "C": { "type": "item", "code": "game:chisel-*", "name": "metal", "isTool": true, "toolDurabilityCost": 1400 },
+      "A": { "type": "block", "code": "cauldron-bismuthbronze" }
+    },
+    "width": 1,
+    "height": 2,
+    "shapeless": true,
+    "output": { "type": "item", "code": "game:ingot-bismuthbronze", "quantity": 5 }
+  },
+  {
+    "ingredientPattern": "CA",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:chisel-*", "name": "metal", "isTool": true, "toolDurabilityCost": 1400 },
       "A": { "type": "block", "code": "cauldron-blackbronze" }
     },
     "width": 1,

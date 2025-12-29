@@ -2,7 +2,7 @@
     "code": "fryingpan",
     "damagedby": [ "blockbreaking", "attacking" ],
     "variantgroups": [
-        { "code": "type", "states": ["copper", "tinbronze", "blackbronze", "iron", "steel", "meteoriciron"] }
+        { "code": "type", "states": ["copper", "tinbronze", "bismuthbronze", "blackbronze", "iron", "steel", "meteoriciron"] }
     ],
     "shape": { "base": "item/fryingpan" },
     "heldTpHitAnimation": "breaktool",
@@ -21,7 +21,7 @@
             "metalclean": { "base": "game:block/metal/sheet/{type}1" },
 			"metal": { "base": "game:block/metal/sheet/{type}1", "overlays": [ "block/cauldron/metaloverlay" ] },
 			"metalgradient": { "base": "game:block/metal/sheet/{type}1", "overlays": [ "block/cauldron/metaloverlaygradient" ] },
-        },
+        }
     },
     "attackRange": 2,
     "attributes": {
@@ -79,6 +79,7 @@
         "*-meteoriciron": 2500,
         "*-iron": 2100,
         "*-blackbronze": 1300,
+        "*-bismuthbronze": 1100,
         "*-tinbronze": 900,
         "*-copper": 600
     },
@@ -88,17 +89,18 @@
         "*-iron": 4.5	,
         "*-blackbronze": 4.25,
         "*-tinbronze": 4,
-        "*-copper": 3.5,
+        "*-bismuthbronze": 3.75,
+        "*-copper": 3.5
     },
     "tooltierbytype": {
         "*-copper": 2,
-        "@*-(tinbronze|blackbronze)": 3,
+        "@*-(tinbronze|blackbronze|bismuthbronze)": 3,
         "@*-(iron|meteoriciron)": 4,
-        "*-steel": 5,
+        "*-steel": 5
     },
     "creativeinventory": { "general": [ "*" ], "items": [ "*" ], "tools": [ "*" ], "aculinaryartillery": [ "*" ] },
 	"sounds": {
-		"hit": "game:block/metaldoor-place",
+		"hit": "game:block/metaldoor-place"
 	},
 	"guiTransform": {
 		translation: { x: 5, y: -15, z: 0 },

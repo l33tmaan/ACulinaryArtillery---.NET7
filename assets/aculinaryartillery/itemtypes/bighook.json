@@ -16,7 +16,7 @@
         }
     },
     "variantgroups": [
-        { "code": "metal", "states": ["copper", "brass", "tinbronze", "blackbronze", "titanium", "steel"] }
+        { "code": "metal", "states": ["copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "titanium", "steel"] }
     ],
     "shape": { "base": "item/bighook" },
     "textures": {
