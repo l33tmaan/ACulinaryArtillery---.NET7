@@ -167,8 +167,10 @@ namespace ACulinaryArtillery
             return partialShape;
         }
 
-        public MeshData? GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos? forBlockPos = null)
+        //public MeshData? GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos? forBlockPos = null)
+        public MeshData? GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos? forBlockPos = null)
         {
+            ItemStack itemstack = slot.Itemstack;
             if (forBlockPos != null && GetBlockEntity<BlockEntityBottleRack>(forBlockPos) != null)
             {
                 return GenMesh(api as ICoreClientAPI, GetContent(itemstack), true, forBlockPos);
@@ -176,8 +178,10 @@ namespace ACulinaryArtillery
             return GenMesh(api as ICoreClientAPI, GetContent(itemstack), false, forBlockPos);
         }
 
-        public string GetMeshCacheKey(ItemStack itemstack)
+        //public string GetMeshCacheKey(ItemStack itemstack)
+        public string GetMeshCacheKey(ItemSlot slot)
         {
+            ItemStack itemstack = slot.Itemstack;
             var contentStack = GetContent(itemstack);
             return itemstack.Collectible.Code.ToShortString() + "-" + contentStack?.StackSize + "x" + contentStack?.Collectible.Code.ToShortString();
         }

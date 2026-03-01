@@ -115,9 +115,9 @@ namespace ACulinaryArtillery
     [HarmonyPatch(typeof(CollectibleBehaviorHandbookTextAndExtraInfo), "addIngredientForInfo")]
     public static class GetHandbookIngredientForPatch
     {
-        public static void Postfix(ref bool __result, ref Dictionary<string, Dictionary<CookingRecipeIngredient, HashSet<ItemStack>>> ___cachedValidStacks, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack, List<RichTextComponentBase> components, float marginTop, List<ItemStack> containers, List<ItemStack> fuels, List<ItemStack> molds, bool haveText)
+        public static void Postfix(ref bool __result, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack, List<RichTextComponentBase> components, float marginTop, List<ItemStack> containers, List<ItemStack> fuels, List<ItemStack> molds, bool haveText)
         {
-            var newComponents = HandbookInfoExtensions.ACAHandbookIngredientForComponents(capi, allStacks, openDetailPageFor, stack, ___cachedValidStacks!);
+            var newComponents = HandbookInfoExtensions.ACAHandbookIngredientForComponents(capi, allStacks, openDetailPageFor, stack);
             if (newComponents.Count == 0) return;
 
             if (!components.Any(comp => (comp as RichTextComponent)?.DisplayText == Lang.Get("Ingredient for") + "\n"))
@@ -252,7 +252,7 @@ namespace ACulinaryArtillery
     [HarmonyPatch(typeof(ModSystemSurvivalHandbook), "onCreatePagesAsync")]
     public static class HandbookCreatePagesPatch
     {
-        public static void Postfix(ref List<GuiHandbookPage> __result, ModSystemSurvivalHandbook __instance, ref ICoreClientAPI ___capi, ref ItemStack[] ___allstacks)
+        public static void Postfix(ref List<GuiHandbookPage> __result, ModSystemSurvivalHandbook __instance, ref ICoreClientAPI ___capi)
         {
             var firstPie = __result.FirstOrDefault(comp => comp.PageCode.Contains("handbook-mealrecipe-") && comp.PageCode.Contains("-pie"));
             int insertIndex = __result.Count;
@@ -263,27 +263,27 @@ namespace ACulinaryArtillery
                 if (___capi.IsShuttingDown) break;
                 if (recipe.CooksInto == null)
                 {
-                    GuiHandbookMealRecipePage elem = new GuiHandbookMealRecipePage(___capi, recipe, ___allstacks, 6)
+                    GuiHandbookMealRecipePage elem = new GuiHandbookMealRecipePage(___capi, recipe, 6, firstPie != null)
                     {
                         Visible = true
                     };
 
-                    HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe, ___allstacks);
+                    //HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe);
 
                     __result.Insert(insertIndex, elem);
                     insertIndex++;
                 }
             }
 
-            foreach (var recipe in ___capi.GetCookingRecipes())
-            {
-                HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe, ___allstacks);
-            }
+            //foreach (var recipe in ___capi.GetCookingRecipes())
+            //{
+            //    HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe, ___allstacks);
+            //}
 
-            foreach (var recipe in BlockPie.GetHandbookRecipes(___capi, ___allstacks))
-            {
-                HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe, ___allstacks);
-            }
+            //foreach (var recipe in BlockPie.GetHandbookRecipes(___capi, ___allstacks))
+            //{
+            //    HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe, ___allstacks);
+            //}
         }
     }
 

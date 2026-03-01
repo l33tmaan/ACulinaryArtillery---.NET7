@@ -31,7 +31,7 @@ namespace ACulinaryArtillery
             return false;
         }
 
-        public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos)
+        public override bool DoPartialSelection(IWorldAccessor world, BlockPos pos)
         {
             return true;
         }
@@ -111,7 +111,7 @@ namespace ACulinaryArtillery
 
         }
 
-        public override bool HasMechPowerConnectorAt(IWorldAccessor world, BlockPos pos, BlockFacing face)
+        public override bool HasMechPowerConnectorAt(IWorldAccessor world, BlockPos pos, BlockFacing face, BlockMPBase mpbase)
         {
             return face == BlockFacing.UP || face == BlockFacing.DOWN;
         }
