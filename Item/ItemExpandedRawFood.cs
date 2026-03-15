@@ -63,11 +63,14 @@ namespace ACulinaryArtillery
 
             foreach (ItemSlot slot in allInputslots)
             {
-                if (slot.Itemstack == null) continue;
+                var stack = slot.Itemstack;
+                if (stack == null) continue;
+                var collObj = stack.Collectible;
+                var callObjId = $"{collObj.Code.Domain}:{collObj.Code.Path}";
 
                 CraftingRecipeIngredient? match = byRecipe?.Ingredients?.Values.FirstOrDefault(ing => ing.SatisfiesAsIngredient(slot.Itemstack));
 
-                if (slot.Itemstack.Collectible is ItemExpandedRawFood)
+                if (collObj is ItemExpandedRawFood)
                 {
                     string[]? addIngs = (slot.Itemstack.Attributes["madeWith"] as StringArrayAttribute)?.value;
                     float[]? addSat = (slot.Itemstack.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
@@ -77,9 +80,14 @@ namespace ACulinaryArtillery
                 }
                 else
                 {
-                    var collObj = slot.Itemstack.Collectible;
-                    GetNutrientsFromIngredient(ref sat, collObj, match?.Quantity ?? 1);
-                    ingredients.Add(collObj.Code.Domain + ":" + collObj.Code.Path);
+                    float[] addSat = new float[6];
+                    GetNutrientsFromIngredient(ref addSat, collObj, match?.Quantity ?? 1);
+                    // If no nutrition is added then we should skip adding it to the 'madeWith' attribute
+                    // so outputs with otherwise identical 'nutritional' ingredients will stack together.
+                    if (addSat.Any((x) => x > 0.0f)) {
+                        ingredients.Add(collObjId);
+                        sat = [.. sat.Zip(addSat, (x, y) => x + y)];
+                    }
                 }
             }
 
@@ -98,20 +106,28 @@ namespace ACulinaryArtillery
 
             foreach (var val in input)
             {
-                if (val.Key.Itemstack.Collectible is ItemExpandedRawFood)
+                var stack = val.Key.Itemstack;
+                var collObj = stack.Collectible;
+                var collObjId = $"{collObj.Code.Domain}:{collObj.Code.Path}";
+
+                if (collObj is ItemExpandedRawFood)
                 {
-                    var stack = val.Key.Itemstack;
                     string[]? addIngs = (stack.Attributes["madeWith"] as StringArrayAttribute)?.value;
                     float[]? addSat = (stack.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
 
-                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * (val.Value.Quantity / (stack.Collectible is ItemExpandedLiquid ? 10 : 1))))];
+                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * (val.Value.Quantity / (collObj is ItemExpandedLiquid ? 10 : 1))))];
                     if (addIngs?.Length > 0) ingredients.AddRange(addIngs);
                 }
                 else
                 {
-                    var collObj = val.Key.Itemstack.Collectible;
-                    GetNutrientsFromIngredient(ref sat, collObj, val.Value.Quantity);
-                    ingredients.Add(collObj.Code.Domain + ":" + collObj.Code.Path);
+                    float[] addSat = new float[6];
+                    GetNutrientsFromIngredient(ref addSat, collObj, val.Value.Quantity);
+                    // If no nutrition is added then we should skip adding it to the 'madeWith' attribute
+                    // so outputs with otherwise identical 'nutritional' ingredients will stack together.
+                    if (addSat.Any((x) => x > 0.0f)) {
+                      sat = [.. sat.Zip(addSat, (x, y) => x + y)];
+                      ingredients.Add(collObjId);
+                    }
                 }
             }
 
