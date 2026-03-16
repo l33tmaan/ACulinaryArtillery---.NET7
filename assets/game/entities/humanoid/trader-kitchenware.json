@@ -349,8 +349,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -362,8 +362,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -375,8 +375,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -388,8 +388,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -401,8 +401,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -414,8 +414,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -427,8 +427,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -440,8 +440,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -453,8 +453,8 @@
         "var": 1
       },
       "price": {
-        "avg": 2,
-        "var": 0.5
+        "avg": 4,
+        "var": 1
       }
     },
     {
@@ -1425,7 +1425,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:bottle-clay-fired",
+      "code": "aculinaryartillery:bottle-clay-blue-fired",
       "type": "block",
       "stacksize": 4,
       "stock": {
@@ -1433,8 +1433,112 @@
         "var": 1
       },
       "price": {
-        "avg": 1,
-        "var": 0.25
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-black-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-brown-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-cream-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-fire-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-gray-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-orange-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-red-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
+      }
+    },
+    {
+      "code": "aculinaryartillery:bottle-clay-tan-fired",
+      "type": "block",
+      "stacksize": 4,
+      "stock": {
+        "avg": 2,
+        "var": 1
+      },
+      "price": {
+        "avg": 2,
+        "var": 0.5
       }
     },
     {
@@ -1802,7 +1906,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-blue-normal",
+      "code": "aculinaryartillery:poweredmixingbowl-blue-normal",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1815,7 +1919,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-red-aged",
+      "code": "aculinaryartillery:poweredmixingbowl-red-aged",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1828,7 +1932,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-tan-aged",
+      "code": "aculinaryartillery:poweredmixingbowl-tan-aged",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1841,7 +1945,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-black-whitemarble",
+      "code": "aculinaryartillery:poweredmixingbowl-black-whitemarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1854,7 +1958,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-fire-whitemarble",
+      "code": "aculinaryartillery:poweredmixingbowl-fire-whitemarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1867,7 +1971,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-cream-redmarble",
+      "code": "aculinaryartillery:poweredmixingbowl-cream-redmarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1880,7 +1984,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-brown-redmarble",
+      "code": "aculinaryartillery:poweredmixingbowl-brown-redmarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1893,7 +1997,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-gray-greenmarble",
+      "code": "aculinaryartillery:poweredmixingbowl-gray-greenmarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -1906,7 +2010,7 @@
       }
     },
     {
-      "code": "aculinaryartillery:mixingbowl-orange-greenmarble",
+      "code": "aculinaryartillery:poweredmixingbowl-orange-greenmarble",
       "type": "block",
       "stacksize": 1,
       "stock": {
@@ -2200,7 +2304,7 @@
 				"states": [
 					{ "code": "aggressiveondamage", "duration": 6, "chance": 0.6, "slot": 0, "priority": 2, "accumType": "noaccum" },
 					{ "code": "fleeondamage", "duration": 10, "chance": 0.4, "slot": 0, "priority": 1, "accumType": "max" }
-				],
+				]
 			},
 			{
 				"code": "taskai",
