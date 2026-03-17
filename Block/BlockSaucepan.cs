@@ -65,12 +65,12 @@ namespace ACulinaryArtillery
                 MouseButton = EnumMouseButton.Right,
                 Itemstacks = liquidContainerStacks
             }, new () {
-                ActionLangCode = "aculinaryartillery:blockhelp-open", // json lang file. 
+                ActionLangCode = "aculinaryartillery:blockhelp-open", // json lang file.
                 HotKeyCodes = ["shift", "ctrl"],
                 MouseButton = EnumMouseButton.Right,
                 ShouldApply = (wi, bs, es) => GetBlockEntity<BlockEntitySaucepan>(bs.Position)?.isSealed == true
             }, new () {
-                ActionLangCode = "aculinaryartillery:blockhelp-close", // json lang file. 
+                ActionLangCode = "aculinaryartillery:blockhelp-close", // json lang file.
                 HotKeyCodes = ["shift", "ctrl"],
                 MouseButton = EnumMouseButton.Right,
                 ShouldApply = (wi, bs, es) => GetBlockEntity<BlockEntitySaucepan>(bs.Position)?.isSealed == false
@@ -85,7 +85,7 @@ namespace ACulinaryArtillery
             //the cookingSlots are not necessarily filled in order. We just want the ones that are.
             List<ItemStack> stacks = [.. cookingSlotsProvider.Slots.Where(slot => !slot.Empty).Select(slot => slot.Itemstack.Clone())];
 
-            //if it's just one stack, no need for an actual recipe, but we need to check the CombustibleProps 
+            //if it's just one stack, no need for an actual recipe, but we need to check the CombustibleProps
             if (stacks.Count == 1)
             {
                 var combustProps = stacks[0].Collectible?.CombustibleProps;
@@ -115,8 +115,8 @@ namespace ACulinaryArtillery
             else if (contents.Count > 1)
             {
                 if (api.GetSimmerRecipes().FirstOrDefault(rec => rec.Match(contents) > 0) is not SimmerRecipe match) return; // Make sure a recipe matches
-                int amountForTheseIngredients = match.Match(contents); 
-                
+                int amountForTheseIngredients = match.Match(contents);
+
                 match.Simmering.SmeltedStack.Resolve(world, "Saucepansimmerrecipesmeltstack");
                 product = match.Simmering.SmeltedStack.ResolvedItemstack.Clone();
 
@@ -143,7 +143,7 @@ namespace ACulinaryArtillery
                         }
                     }
 
-                    prodObj.OnCreatedByKneading(input, product);
+                    prodObj.OnCreatedBySimmering(input, product);
                 }
             }
 

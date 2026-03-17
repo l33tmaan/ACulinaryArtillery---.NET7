@@ -123,6 +123,41 @@ namespace ACulinaryArtillery
             output.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
         }
 
+        public void OnCreatedBySimmering(Dictionary<ItemSlot, CraftingRecipeIngredient> input, ItemStack output)
+        {
+            HashSet<string> ingredients = [];
+            float[] sat = new float[6];
+
+            foreach (var val in input)
+            {
+                var stack = val.Key.Itemstack;
+                var collObj = stack.Collectible;
+                var collObjId = $"{collObj.Code.Domain}:{collObj.Code.Path}";
+                if (collObj is ItemExpandedRawFood)
+                {
+                    string[]? addIngs = (stack.Attributes["madeWith"] as StringArrayAttribute)?.value;
+                    float[]? addSat = (stack.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
+
+                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * (val.Value.Quantity / (collObj is ItemExpandedLiquid ? 10 : 1))))];
+                    if (addIngs?.Length > 0) ingredients.AddRange(addIngs);
+                }
+                else
+                {
+                    float[] addSat = new float[6];
+                    GetNutrientsFromIngredient(ref addSat, collObj, val.Value.Quantity);
+                    // If no nutrition is added then we should skip adding it to the 'madeWith' attribute
+                    // so outputs with otherwise identical 'nutritional' ingredients will stack together.
+                    if (addSat.Any((x) => x > 0.0f)) {
+                      sat = [.. sat.Zip(addSat, (x, y) => x + y)];
+                      ingredients.Add(collObjId);
+                    }
+                }
+            }
+
+            output.Attributes["madeWith"] = new StringArrayAttribute([.. ingredients.Order()]);
+            output.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
+        }
+
         public override bool CanSmelt(IWorldAccessor world, ISlotProvider cookingSlotsProvider, ItemStack inputStack, ItemStack outputStack)
         {
             if (inputStack.Collectible.CombustibleProps == null) return false;
@@ -531,6 +566,7 @@ namespace ACulinaryArtillery
     public interface IExpandedFood
     {
         void OnCreatedByKneading(Dictionary<ItemSlot, CraftingRecipeIngredient> input, ItemStack output);
+        void OnCreatedBySimmering(Dictionary<ItemSlot, CraftingRecipeIngredient> input, ItemStack output);
         void OnCreatedByGrinding(ItemStack input, ItemStack output);
     }
 
