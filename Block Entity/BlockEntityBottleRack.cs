@@ -40,9 +40,6 @@ namespace ACulinaryArtillery
 
                 if (colObj.Attributes?["bottlerackable"].AsBool() == true && TryPut(playerSlot, blockSel))
                 {
-                    //int PlaySoundAt(SoundAttributes sound, IPlayer atPlayer, IPlayer? dualCallByPlayer = null, float volumeMultiplier = 1f);
-                    //void PlaySoundAt(AssetLocation? location, IPlayer atPlayer, IPlayer? dualCallByPlayer = null, bool randomizePitch = true, float range = 32, float volume = 1f);
-
                     if (Block?.Sounds?.Place != null)
                     {
                         Api.World.PlaySoundAt(Block.Sounds.Place, byPlayer.Entity, byPlayer);
@@ -81,9 +78,6 @@ namespace ACulinaryArtillery
 
                 if (byPlayer.InventoryManager.TryGiveItemstack(stack))
                 {
-                    //int PlaySoundAt(SoundAttributes sound, IPlayer atPlayer, IPlayer? dualCallByPlayer = null, float volumeMultiplier = 1f);
-                    //void PlaySoundAt(AssetLocation? location, IPlayer atPlayer, IPlayer? dualCallByPlayer = null, bool randomizePitch = true, float range = 32, float volume = 1f);
-
                     if (stack.Block?.Sounds?.Place != null)
                     {
                         Api.World.PlaySoundAt(stack.Block.Sounds.Place, byPlayer.Entity, byPlayer);

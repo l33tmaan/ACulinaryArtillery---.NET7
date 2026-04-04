@@ -304,15 +304,13 @@ namespace ACulinaryArtillery
     [HarmonyPatch(typeof(BlockPie), "GenerateRandomPie")]
     public static class PieRandomPatch
     {
-        public static bool Prefix(ref BlockPie __instance, ICoreClientAPI api, ref CookingRecipe recipe, ref Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? cachedValidStacksByIngredient, ItemStack? ingredientStack, ref ItemStack[]? __result)
+        public static bool Prefix(ref BlockPie __instance, ICoreClientAPI api, ref CookingRecipe recipe, ref Dictionary<CookingRecipeIngredient, ref HashSet<ItemStack?>>? cachedValidStacksByIngredient, ItemStack? ingredientStack, ref ItemStack[]? __result)
         {
             if (recipe.Ingredients == null) return false;
-            //cachedValidStacksByIngredient ??= HandbookInfoExtensions.CreateCachedMealRecipeStacks(api, recipe);
             cachedValidStacksByIngredient ??= HandbookInfoExtensions.CreateCachedMealRecipeStacks(api, recipe);
-            api?.Logger?.Warning($"number of cached valid stacks for {recipe.Code}: {cachedValidStacksByIngredient.Count}");
 
-            //return true;
-
+            return true;
+/*
             //debug: insert original method body
             try
             {
@@ -471,6 +469,7 @@ namespace ACulinaryArtillery
             __result = new List<ItemStack?>().ToArray();
             return false;
         }
+        */
     }
 
     [HarmonyPatch(typeof(InventorySmelting))]

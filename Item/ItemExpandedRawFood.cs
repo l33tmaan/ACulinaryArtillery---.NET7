@@ -88,11 +88,6 @@ namespace ACulinaryArtillery
             {
                 sat = Array.ConvertAll(sat, i => i / outputSlot.StackSize);
                 outputSlot.Itemstack.Attributes.RemoveAttribute("waterTightContainerProps");
-                (api as ICoreClientAPI)?.World.Logger.Warning("Deleted waterTightContainerProps attribute on output stack");
-            }
-            else
-            {
-                (api as ICoreClientAPI)?.World.Logger.Warning("sanity check");
             }
 
             outputSlot.Itemstack.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
@@ -127,11 +122,6 @@ namespace ACulinaryArtillery
             {
                 sat = Array.ConvertAll(sat, i => i / output.StackSize);
                 output.Attributes.RemoveAttribute("waterTightContainerProps");
-                (api as ICoreClientAPI)?.World.Logger.Warning("Deleted waterTightContainerProps attribute on output stack");
-            }
-            else
-            {
-                (api as ICoreClientAPI)?.World.Logger.Warning("sanity check");
             }
             output.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
         }

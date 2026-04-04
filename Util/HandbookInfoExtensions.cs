@@ -43,8 +43,6 @@ namespace ACulinaryArtillery.Util
 
                 ItemStack mealBlock = new ItemStack(BlockMeal.RandomMealBowl(capi));
 #nullable disable // This bit of the code will need to be changed once the proper caching is in vanilla
-                // components.Add(new MealstackTextComponent(capi, ref validStacks, mealBlock, recipe, 40, EnumFloat.Inline, allStacks, (cs) => openDetailPageFor("handbook-mealrecipe-" + recipe.Code), 6, false, maxstack));
-                //public MealstackTextComponent(ICoreClientAPI capi, ItemStack mealBlock, CookingRecipe recipe, double unscaledSize, EnumFloat floatType, Action<CookingRecipe>? onMealClicked = null, int slots = 4, bool isPie = false, ItemStack? ingredient = null)
                 var comp = new MealstackTextComponent(capi, mealBlock, recipe, 40, EnumFloat.Inline, (cs) => openDetailPageFor("handbook-mealrecipe-" + recipe.Code), 6, false, maxstack);
                 components.Add(comp);
 #nullable restore
@@ -243,7 +241,6 @@ namespace ACulinaryArtillery.Util
         }
 
         public static Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? CreateCachedMealRecipeStacks(ICoreClientAPI capi, CookingRecipe recipe)
-        //public static Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? CreateCachedMealRecipeStacks(ICoreClientAPI capi, CookingRecipe recipe)
         {
             capi.Logger?.Warning($"creating cached meal recipe stacks for recipe: {recipe.Code}.");
 
