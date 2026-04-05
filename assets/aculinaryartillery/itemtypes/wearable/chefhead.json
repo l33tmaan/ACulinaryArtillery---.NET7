@@ -1,6 +1,5 @@
 {
 	code: "clothes",
-	class: "ItemWearable",
 	variantgroups: [
 		{ code: "category",  states: ["head"] },
 		{ code: "head", combine: "SelectiveMultiply", onVariant: "category", states: [ "c-hat", "c-hat1", "c-hat2" ] },
@@ -29,7 +28,7 @@
 		"*-c-hat1": { "seraph": { base: "game:block/transparent" } },
 		"*-c-hat2": { "seraph": { base: "game:block/transparent" } }
 	},
-	creativeinventory: { "general": ["*"], "items": ["*"], "clothing": ["*"], "aculinaryartillery": [ "*" ], },
+	creativeinventory: { "general": ["*"], "items": ["*"], "clothing": ["*"], "aculinaryartillery": [ "*" ] },
 	renderAlphaTest: 0.25,
 	fpHandTransformByType: {
 		"*": {

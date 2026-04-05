@@ -19,7 +19,8 @@
         }]
     },
     "side": "server",
-    "file": "moreanimals:itemtypes/egg.json"
+    "file": "moreanimals:itemtypes/egg.json",
+    "dependsOn": [ { "modid": "moreanimals" } ]
   },
   {
     "op": "add",
@@ -34,6 +35,7 @@
       }
     ],
     "side": "server",
-    "file": "moreanimals:blocktypes/egg.json"
+    "file": "moreanimals:blocktypes/egg.json",
+    "dependsOn": [ { "modid": "moreanimals" } ]
   }
 ]

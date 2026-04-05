@@ -7,7 +7,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -34,7 +33,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -61,7 +59,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -88,7 +85,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -115,7 +111,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -142,7 +137,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -169,7 +163,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -196,7 +189,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -223,7 +215,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -250,7 +241,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -277,7 +267,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -304,7 +293,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
@@ -331,7 +319,6 @@
 				type: "item",
 				code: "game:plank-*",
 				name: "woodframe",
-                skipVariants: [ "veryaged-*" ]
 			},
 			"L": {
 				type: "item",
