@@ -1,9 +1,9 @@
 ﻿[
   {
-    "file": "aculinaryartillery:blocktypes/saucepan",
+    "file": "aculinaryartillery:blocktypes/saucepan-fired",
     "side": "Server",
     "op": "add",
-    "path": "/behaviorsByType/*/-",
+    "path": "/behaviors/-",
     "value": {
       "name": "Carryable",
       "properties": {

@@ -41,7 +41,14 @@ namespace ACulinaryArtillery
             if (slot.Empty) return TryTake(byPlayer, blockSel);
             else if (slot.Itemstack.Collectible.Attributes?["meathookable"].AsBool() == true && TryPut(slot, blockSel))
             {
-                Api.World.PlaySoundAt(slot.Itemstack?.Block?.Sounds?.Place ?? "sounds/player/build", byPlayer.Entity, byPlayer, true, 16);
+                if (slot.Itemstack?.Block?.Sounds?.Place != null)
+                {
+                    Api.World.PlaySoundAt(slot.Itemstack.Block.Sounds.Place, byPlayer.Entity, byPlayer);
+                }
+                else
+                {
+                    Api.World.PlaySoundAt("sounds/player/build", byPlayer.Entity, byPlayer, true, 16, 1f);
+                }
                 return true;
             }
 
@@ -80,7 +87,14 @@ namespace ACulinaryArtillery
 
                 if (byPlayer.InventoryManager.TryGiveItemstack(stack))
                 {
-                    Api.World.PlaySoundAt(stack.Block?.Sounds?.Place ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+                    if (stack?.Block?.Sounds?.Place != null)
+                    {
+                        Api.World.PlaySoundAt(stack.Block.Sounds.Place, byPlayer.Entity, byPlayer);
+                    }
+                    else
+                    {
+                        Api.World.PlaySoundAt("sounds/player/build", byPlayer.Entity, byPlayer, true, 16, 1f);
+                    }
                 }
 
                 if (stack.StackSize > 0)

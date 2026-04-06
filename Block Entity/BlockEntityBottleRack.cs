@@ -40,7 +40,14 @@ namespace ACulinaryArtillery
 
                 if (colObj.Attributes?["bottlerackable"].AsBool() == true && TryPut(playerSlot, blockSel))
                 {
-                    Api.World.PlaySoundAt(Block?.Sounds?.Place ?? new AssetLocation("game:sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+                    if (Block?.Sounds?.Place != null)
+                    {
+                        Api.World.PlaySoundAt(Block.Sounds.Place, byPlayer.Entity, byPlayer);
+                    }
+                    else
+                    {
+                        Api.World.PlaySoundAt(new AssetLocation("game:sounds/player/build"), byPlayer.Entity, byPlayer, true, 16, 1f);
+                    }
                     return true;
                 }
             }
@@ -71,7 +78,14 @@ namespace ACulinaryArtillery
 
                 if (byPlayer.InventoryManager.TryGiveItemstack(stack))
                 {
-                    Api.World.PlaySoundAt(stack.Block?.Sounds?.Place ?? new AssetLocation("game:sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+                    if (stack.Block?.Sounds?.Place != null)
+                    {
+                        Api.World.PlaySoundAt(stack.Block.Sounds.Place, byPlayer.Entity, byPlayer);
+                    }
+                    else
+                    {
+                        Api.World.PlaySoundAt(new AssetLocation("game:sounds/player/build"), byPlayer.Entity, byPlayer, true, 16, 1f);
+                    }
                 }
                 else Api.World.SpawnItemEntity(stack, Pos.ToVec3d().Add(0.5, 0.5, 0.5));
 

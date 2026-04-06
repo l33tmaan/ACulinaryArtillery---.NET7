@@ -1,6 +1,6 @@
 ﻿[
   {
-    "file": "aculinaryartillery:blocktypes/bottlerack",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerack",
     "side": "Server",
     "op": "add",
     "path": "/behaviors/-",

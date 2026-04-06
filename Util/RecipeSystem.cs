@@ -26,7 +26,7 @@ namespace ACulinaryArtillery
             return GetNameForMergedIngredients(worldForResolve, recipe, quantitiesByStack);
         }
 
-        protected override string GetNameForMergedIngredients(IWorldAccessor worldForResolve, CookingRecipe recipe, OrderedDictionary<ItemStack, int> quantitiesByStack)
+        protected override string GetNameForMergedIngredients(IWorldAccessor worldForResolve, CookingRecipe recipe, Vintagestory.API.Datastructures.OrderedDictionary<ItemStack, int> quantitiesByStack)
         {
             string recipeCode = recipe.Code!;
 
@@ -546,7 +546,7 @@ namespace ACulinaryArtillery
             {
                 // First check if we have a matching ingredient, and whether we've already matched that ingredient before
 
-                var match = Ingredients.FirstOrDefault(ing => (ing.ResolvedItemstack != null || ing.IsWildCard) && !matched.Contains(ing) && ing.SatisfiesAsIngredient(input));
+                var match = Ingredients.FirstOrDefault(ing => (ing.ResolvedItemStack != null || ing.IsWildCard) && !matched.Contains(ing) && ing.SatisfiesAsIngredient(input));
 
                 if (match == null) return 0; // didn't find a match for the input in previous step
                 if (input.StackSize % match.Quantity != 0) return 0; //this particular ingredient is not in enough quantity for full portions

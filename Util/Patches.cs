@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
@@ -115,9 +116,9 @@ namespace ACulinaryArtillery
     [HarmonyPatch(typeof(CollectibleBehaviorHandbookTextAndExtraInfo), "addIngredientForInfo")]
     public static class GetHandbookIngredientForPatch
     {
-        public static void Postfix(ref bool __result, ref Dictionary<string, Dictionary<CookingRecipeIngredient, HashSet<ItemStack>>> ___cachedValidStacks, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack, List<RichTextComponentBase> components, float marginTop, List<ItemStack> containers, List<ItemStack> fuels, List<ItemStack> molds, bool haveText)
+        public static void Postfix(ref bool __result, ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack, List<RichTextComponentBase> components, float marginTop, List<ItemStack> containers, List<ItemStack> fuels, List<ItemStack> molds, bool haveText)
         {
-            var newComponents = HandbookInfoExtensions.ACAHandbookIngredientForComponents(capi, allStacks, openDetailPageFor, stack, ___cachedValidStacks!);
+            var newComponents = HandbookInfoExtensions.ACAHandbookIngredientForComponents(capi, allStacks, openDetailPageFor, stack);
             if (newComponents.Count == 0) return;
 
             if (!components.Any(comp => (comp as RichTextComponent)?.DisplayText == Lang.Get("Ingredient for") + "\n"))
@@ -252,23 +253,25 @@ namespace ACulinaryArtillery
     [HarmonyPatch(typeof(ModSystemSurvivalHandbook), "onCreatePagesAsync")]
     public static class HandbookCreatePagesPatch
     {
-        public static void Postfix(ref List<GuiHandbookPage> __result, ModSystemSurvivalHandbook __instance, ref ICoreClientAPI ___capi, ref ItemStack[] ___allstacks)
+        public static void Postfix(ref List<GuiHandbookPage> __result, ModSystemSurvivalHandbook __instance, ref ICoreClientAPI ___capi)
         {
             var firstPie = __result.FirstOrDefault(comp => comp.PageCode.Contains("handbook-mealrecipe-") && comp.PageCode.Contains("-pie"));
             int insertIndex = __result.Count;
             if (firstPie != null) insertIndex = __result.IndexOf(firstPie);
+
+            var allstacks = ObjectCacheUtil.TryGet<ItemStack[]>(___capi, "handbookallstacks");
 
             foreach (var recipe in ___capi.GetMixingRecipes())
             {
                 if (___capi.IsShuttingDown) break;
                 if (recipe.CooksInto == null)
                 {
-                    GuiHandbookMealRecipePage elem = new GuiHandbookMealRecipePage(___capi, recipe, ___allstacks, 6)
+                    GuiHandbookMealRecipePage elem = new GuiHandbookMealRecipePage(___capi, recipe, 6, false)
                     {
                         Visible = true
                     };
 
-                    HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe, ___allstacks);
+                    HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe);
 
                     __result.Insert(insertIndex, elem);
                     insertIndex++;
@@ -277,12 +280,12 @@ namespace ACulinaryArtillery
 
             foreach (var recipe in ___capi.GetCookingRecipes())
             {
-                HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe, ___allstacks);
+                HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe);
             }
 
-            foreach (var recipe in BlockPie.GetHandbookRecipes(___capi, ___allstacks))
+            foreach (var recipe in BlockPie.GetHandbookRecipes(___capi, allstacks))
             {
-                HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe, ___allstacks);
+                HandbookInfoExtensions.CreateCachedMealRecipeStacks(___capi, recipe);
             }
         }
     }
@@ -290,10 +293,10 @@ namespace ACulinaryArtillery
     [HarmonyPatch(typeof(CookingRecipe), "GenerateRandomMeal")]
     public static class CookingRecipeRandomPatch
     {
-        public static bool Prefix(ref CookingRecipe __instance, ref ICoreClientAPI api, ref ItemStack[] allstacks, ref Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? cachedValidStacksByIngredient)
+        public static bool Prefix(ref CookingRecipe __instance, ref ICoreClientAPI api, ref Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? cachedValidStacksByIngredient)
         {
             if (__instance.Ingredients == null) return false;
-            cachedValidStacksByIngredient ??= HandbookInfoExtensions.CreateCachedMealRecipeStacks(api, __instance, allstacks);
+            cachedValidStacksByIngredient ??= HandbookInfoExtensions.CreateCachedMealRecipeStacks(api, __instance);
             return true;
         }
     }
@@ -301,11 +304,11 @@ namespace ACulinaryArtillery
     [HarmonyPatch(typeof(BlockPie), "GenerateRandomPie")]
     public static class PieRandomPatch
     {
-        public static bool Prefix(ref BlockPie __instance, ref ICoreClientAPI api, ref CookingRecipe recipe, ref Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? cachedValidStacksByIngredient)
+        public static bool Prefix(ref BlockPie __instance, ICoreClientAPI api, ref CookingRecipe recipe, ref Dictionary<CookingRecipeIngredient, HashSet<ItemStack?>>? cachedValidStacksByIngredient, ItemStack? ingredientStack, ref ItemStack[]? __result)
         {
             if (recipe.Ingredients == null) return false;
-            ItemStack[] allstacks = [.. recipe.Ingredients.SelectMany(ingred => ingred.ValidStacks.Select(vstack => vstack.ResolvedItemstack))];
-            cachedValidStacksByIngredient ??= HandbookInfoExtensions.CreateCachedMealRecipeStacks(api, recipe, allstacks);
+            cachedValidStacksByIngredient ??= HandbookInfoExtensions.CreateCachedMealRecipeStacks(api, recipe);
+
             return true;
         }
     }
@@ -408,8 +411,8 @@ namespace ACulinaryArtillery
                 bool isWildCard = __instance.ValidStacks[i].Code.Path.Contains("*");
                 bool found =
                     (isWildCard && inputStack.Collectible.WildCardMatch(__instance.ValidStacks[i].Code))
-                    || (!isWildCard && inputStack.Equals(__instance.world, __instance.ValidStacks[i].ResolvedItemstack, ignoredStackAttributes))
-                    || (__instance.ValidStacks[i].CookedStack?.ResolvedItemstack is ItemStack cookedStack && inputStack.Equals(__instance.world, cookedStack, ignoredStackAttributes))
+                    || (!isWildCard && inputStack.Equals(__instance.world, __instance.ValidStacks[i].ResolvedItemStack, ignoredStackAttributes))
+                    || (__instance.ValidStacks[i].CookedStack?.ResolvedItemStack is ItemStack cookedStack && inputStack.Equals(__instance.world, cookedStack, ignoredStackAttributes))
                 ;
 
                 if (found)
@@ -539,7 +542,7 @@ namespace ACulinaryArtillery
         public static bool grindInputWIthInheritedAttributes(ref int ___nowOutputFace, BlockEntityQuern __instance)
         {
 
-            ItemStack grindedStack = __instance.InputGrindProps.GroundStack.ResolvedItemstack.Clone();
+            ItemStack grindedStack = __instance.InputGrindProps.GroundStack.ResolvedItemStack.Clone();
             if (grindedStack.Collectible is IExpandedFood food) food.OnCreatedByGrinding(__instance.InputStack, grindedStack);
             else return true;
 
