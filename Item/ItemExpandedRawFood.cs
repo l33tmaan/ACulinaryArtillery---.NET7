@@ -72,7 +72,7 @@ namespace ACulinaryArtillery
                     string[]? addIngs = (slot.Itemstack.Attributes["madeWith"] as StringArrayAttribute)?.value;
                     float[]? addSat = (slot.Itemstack.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
 
-                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * match?.Quantity ?? 1))];
+                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * (match?.Quantity ?? 1)))];
                     if (addIngs?.Length > 0) ingredients.AddRange(addIngs);
                 }
                 else
