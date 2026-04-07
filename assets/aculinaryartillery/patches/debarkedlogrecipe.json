@@ -25,8 +25,16 @@
   },
   {
     "file": "game:recipes/grid/debarkedlog.json",
-    "op": "addmerge",
-    "path": "/1",
+    "op": "add",
+    "path": "/0/enabled",
+    "value": false,
+    "side": "server",
+    "dependsOn": [{ "modid": "indappledgroves", "invert": true }, { "modid": "ancienttools" }]
+  },
+  {
+    "file": "game:recipes/grid/debarkedlog.json",
+    "op": "add",
+    "path": "/-",
     "value": {
       "ingredientPattern": "AHL",
       "ingredients": {
@@ -40,6 +48,26 @@
       "output": { "type": "block", "code": "debarkedlog-{wood}-ud", "quantity": 1  }
     },
     "side": "server",
-    "dependsOn": [{ "modid": "indappledgroves", "invert": true }]
+    "dependsOn": [{ "modid": "indappledgroves", "invert": true }, { "modid": "ancienttools", "invert": true }, { "modid": "stringsense", "invert": true }]
+  },
+  {
+    "file": "game:recipes/grid/debarkedlog.json",
+    "op": "add",
+    "path": "/-",
+    "condition": { "when": "AdzeStrippingOnly", "isValue": "false" },
+    "value": {
+      "ingredientPattern": "AHL",
+      "ingredients": {
+        "A": { "type": "item", "code": "axe-*", "isTool": true  },
+        "H": { "type": "item", "code": "hammer-*", "isTool": true  },
+        "L": { "type": "block", "code": "log-placed-*-ud", "name": "wood" }
+      },
+      "width": 3,
+      "height": 1,
+      "shapeless": true,
+      "output": { "type": "block", "code": "debarkedlog-{wood}-ud", "quantity": 1  }
+    },
+    "side": "server",
+    "dependsOn": [{ "modid": "ancienttools" }, { "modid": "indappledgroves", "invert": true }, { "modid": "stringsense", "invert": true }]
   }
 ]
