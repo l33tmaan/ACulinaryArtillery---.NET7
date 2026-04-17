@@ -1,0 +1,2252 @@
+{
+  "money": {
+    "avg": 35,
+    "var": 7
+  },
+  "selling": {
+    "maxItems": 16,
+    "list": [
+      {
+        "code": "aculinaryartillery:saucepan-blue-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-black-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-brown-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-cream-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-fire-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-gray-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-orange-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-red-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-tan-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-copper",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 6,
+          "var": 1.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-tinbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 12,
+          "var": 3
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-bismuthbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 14,
+          "var": 3.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-blackbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 18,
+          "var": 4.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-iron",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 24,
+          "var": 6
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-steel",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 30,
+          "var": 7.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-meteoriciron",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 36,
+          "var": 9
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-copper",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 3,
+          "var": 0.75
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-tinbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 6,
+          "var": 1.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-bismuthbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 7,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-blackbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 9,
+          "var": 2.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-iron",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 12,
+          "var": 3
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-steel",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 15,
+          "var": 3.75
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-meteoriciron",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 18,
+          "var": 4.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-blue-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-black-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-brown-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-cream-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-fire-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-gray-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-orange-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-red-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-tan-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-green-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-blue-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-brown-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-pink-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-plain-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-quartz-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-red-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-smoky-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-vintage-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-violet-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-yellow-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:cork-generic",
+        "type": "item",
+        "stacksize": 8,
+        "stock": {
+          "avg": 5,
+          "var": 2
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-copper-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-brass-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-tinbronze-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-bismuthbronze-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 5,
+          "var": 1.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-blackbronze-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 6,
+          "var": 1.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-titanium-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-steel-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 10,
+          "var": 2.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-blue",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-black",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-brown",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-cream",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-fire",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-gray",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-orange",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-red",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-tan",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-blue-normal",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-red-aged",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-tan-aged",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-black-whitemarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-fire-whitemarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-cream-redmarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-brown-redmarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-gray-greenmarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-orange-greenmarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-acacia-acacia-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-baldcypress-baldcypress-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-birch-birch-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-ebony-ebony-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-kapok-kapok-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-larch-larch-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-maple-maple-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-oak-oak-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-pine-pine-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-purpleheart-purpleheart-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-redwood-redwood-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-walnut-walnut-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-aged-aged-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-acacia-copper-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 6,
+          "var": 1.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-baldcypress-brass-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-kapok-tinbronze-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-kapok-bismuthbronze-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 8.5,
+          "var": 2.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-ebony-blackbronze-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 10,
+          "var": 2.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-walnut-titanium-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 12,
+          "var": 3
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-oak-steel-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 12,
+          "var": 3
+        }
+      }
+    ]
+  },
+  "buying": {
+    "maxItems": 16,
+    "list": [
+      {
+        "code": "aculinaryartillery:saucepan-blue-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-black-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-brown-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-cream-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-fire-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-gray-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-orange-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-red-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:saucepan-tan-fired",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-copper",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 3,
+          "var": 0.75
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-tinbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 6,
+          "var": 1.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-bismuthbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 7,
+          "var": 2
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldron-blackbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 9,
+          "var": 2.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-copper",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1.5,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-tinbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 3,
+          "var": 0.75
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-bismuthbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 3.5,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:cauldronmini-blackbronze",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 4.5,
+          "var": 1.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-blue-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-black-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-brown-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-cream-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-fire-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-gray-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-orange-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-red-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-clay-tan-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-green-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-blue-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-brown-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-pink-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-plain-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-quartz-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-red-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-smoky-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-vintage-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-violet-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottle-glass-yellow-fired",
+        "type": "block",
+        "stacksize": 4,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:cork-generic",
+        "type": "item",
+        "stacksize": 8,
+        "stock": {
+          "avg": 3,
+          "var": 1.5
+        },
+        "price": {
+          "avg": 1,
+          "var": 0
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-copper-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-brass-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-tinbronze-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-bismuthbronze-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 2.5,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-blackbronze-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 3,
+          "var": 1.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-titanium-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:spile-steel-north",
+        "type": "block",
+        "stacksize": 2,
+        "stock": {
+          "avg": 2,
+          "var": 1
+        },
+        "price": {
+          "avg": 5,
+          "var": 1.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-blue",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-black",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-brown",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-cream",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-fire",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-gray",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-orange",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-red",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:mixingbowl-tan",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 1,
+          "var": 0.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-blue-normal",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-red-aged",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-tan-aged",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-black-whitemarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-fire-whitemarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-cream-redmarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-brown-redmarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-gray-greenmarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:poweredmixingbowl-orange-greenmarble",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 4,
+          "var": 1
+        },
+        "price": {
+          "avg": 2,
+          "var": 0.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-acacia-acacia-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-baldcypress-baldcypress-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-birch-birch-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-ebony-ebony-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-kapok-kapok-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-larch-larch-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-maple-maple-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-oak-oak-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-pine-pine-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-purpleheart-purpleheart-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-redwood-redwood-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-walnut-walnut-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:bottlerack-aged-aged-north",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-acacia-copper-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 3,
+          "var": 0.75
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-baldcypress-brass-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-kapok-tinbronze-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-kapok-bismuthbronze-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 4.5,
+          "var": 1
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-ebony-blackbronze-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 5,
+          "var": 1.25
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-walnut-titanium-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 6,
+          "var": 1.5
+        }
+      },
+      {
+        "code": "aculinaryartillery:meathooks-oak-steel-east",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 6,
+          "var": 1.5
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "code": "cuttingboard",
+  "behaviors": [
+    { "name": "HorizontalOrientable" },
+    { "name": "UnstableFalling" },
+    { "name": "RightClickPickup" }
+  ],
+  "attributes": {
+    "handbook": {
+      "extraSections": [ { "title": "aculinaryartillery:block-handbooktitle-cuttingboard", "text": "aculinaryartillery:block-handbooktext-cuttingboard" }]
+    }
+  },
+  "texture": { "base": "game:block/metal/ingot/{metal}" },
+  "creativeinventory": { "general": ["*"], "decorative": ["*"], "aculinaryartillery": ["*"] },
+  "shape": { "base": "aculinaryartillery:block/cuttingboard" },
+  "textures": {
+      "wood1": { "base": "game:block/wood/planks/redwood1" },
+      "wood2": { "base": "game:block/wood/planks/acacia1" },
+      "wood3": { "base": "game:block/wood/planks/ebony1" }
+  },
+  "blockmaterial": "Wood",
+  "replaceable": 500,
+  "lightAbsorption": 0,
+  "rainPermeable": true,
+  "sidesolid": {
+    "all": false
+  },
+  "sideopaque": {
+    "all": false
+  },
+  "sideAO": {
+    "all": false
+  },
+  "resistance": 1.25,
+  "sounds": {
+    "place": "game:block/planks",
+    "hit": "game:block/planks",
+    "break": "game:block/planks",
+    "walk": "game:walk/wood"
+  },
+  "collisionselectionbox": {
+    "x1": 0, "y1": 0, "z1": 0.275,
+    "x2": 1, "y2": 0.0625, "z2": 0.765
+  },
+  "tpHandTransform": {
+    "translation": { "x": -1, "y": -0, "z": -0.575 },
+    "rotation": { "x": -0, "y": -180, "z": 0 },
+    "scale": 0.9
+  },
+  "groundTransform": {
+    "translation": { "x": 0, "y": 0.08, "z": 0 },
+    "rotation": { "x": -50, "y": 0, "z": 0 },
+    "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+    "scale": 1.5
+  },
+  "guiTransform": {
+    "translation": { "x": -3, "y": 0.0, "z": 0 },
+    "rotation": { "x": -34, "y": -128, "z": 14 },
+    "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+    "scale": 2
+  },
+  "materialDensity": 600
+}

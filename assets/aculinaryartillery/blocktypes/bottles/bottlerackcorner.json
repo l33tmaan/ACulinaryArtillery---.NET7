@@ -17,11 +17,11 @@
   "variantgroups": [
     {
       "code": "woodframe",
-      "states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut", "aged" ]
+      "states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut", "aged", "veryaged" ]
     },
     {
       "code": "woodinterior",
-      "states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut", "aged" ]
+      "states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut", "aged", "veryaged" ]
     },
     {
       "code": "side",
@@ -49,6 +49,10 @@
     "aculinaryartillery": ["*-north"]
   },
     "texturesByType": {
+        "@*-veryaged-veryaged-(north|east|south|west)": {
+          "woodframe": { "base": "game:block/wood/planks/aged/veryaged1" },
+          "woodinterior": { "base": "game:block/wood/planks/aged/veryaged1" }
+        },
         "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(north|east|south|west)": {
             "woodframe": { "base": "wildcrafttree:block/wood/planks/{woodframe}1" },
             "woodinterior": { "base": "wildcrafttree:block/wood/planks/{woodinterior}1" }
@@ -60,6 +64,14 @@
         "@*-(aged|birch|oak|maple|pine|acacia|kapok|baldcypress|larch|redwood|ebony|walnut|purpleheart)-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(north|east|south|west)": {
             "woodframe": { "base": "game:block/wood/planks/{woodframe}1" },
             "woodinterior": { "base": "wildcrafttree:block/wood/planks/{woodinterior}1" }
+        },
+        "@*-veryaged-(aged|birch|oak|maple|pine|acacia|kapok|baldcypress|larch|redwood|ebony|walnut|purpleheart)-(north|east|south|west)": {
+          "woodframe": { "base": "game:block/wood/planks/aged/veryaged1" },
+          "woodinterior": { "base": "game:block/wood/planks/{woodinterior}1" }
+        },
+        "@*-(aged|birch|oak|maple|pine|acacia|kapok|baldcypress|larch|redwood|ebony|walnut|purpleheart)-veryaged-(north|east|south|west)": {
+          "woodframe": { "base": "game:block/wood/planks/{woodframe}1" },
+          "woodinterior": { "base": "game:block/wood/planks/aged/veryaged1" }
         },
         "*": {
             "woodframe": { "base": "game:block/wood/planks/{woodframe}1" },

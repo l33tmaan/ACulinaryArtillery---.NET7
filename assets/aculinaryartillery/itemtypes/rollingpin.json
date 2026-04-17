@@ -2,7 +2,7 @@
 	"code": "rollingpin",
 	"damagedby": ["blockbreaking", "attacking"],
 	"variantgroups": [
-		{ "code": "type", "states": ["acacia", "aged", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut",
+		{ "code": "type", "states": ["acacia", "aged", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut", "veryaged",
 																				"bismuthbronze", "blackbronze", "copper", "iron", "meteoriciron", "steel", "tinbronze" ] }
 	],
 	"shape": { "base": "item/rollingpinshape" }, 
@@ -77,51 +77,7 @@
 	},
 	"creativeinventory": { "general": ["*"], "items": ["*"], "tools": ["*"], "aculinaryartillery": ["*"] },
 	"combustiblePropsByType": {
-		"*-acacia": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-baldcypress": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-birch": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-ebony": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-kapok": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-larch": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-maple": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-oak": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-pine": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-purpleheart": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-redwood": {
-			"burnTemperature": 600,
-			"burnDuration": 24
-		},
-		"*-walnut": {
+		"@*-(acacia|baldcypress|birch|ebony|kapok|larch|maple|oak|pine|purpleheart|redwood|walnut|aged|veryaged)": {
 			"burnTemperature": 600,
 			"burnDuration": 24
 		}

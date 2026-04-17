@@ -1,9 +1,23 @@
 ﻿[
   {
-    "op": "add",
+    "op": "addeach",
     "path": "/variantgroups/0/states/-",
-    "value": "humanoid-trader-kitchenware",
-    "file": "game:itemtypes/creature.json",
+    "value": ["trader-male-kitchenware-cold", "trader-male-kitchenware-temperate", "trader-male-kitchenware-desert", "trader-female-kitchenware-cold", "trader-female-kitchenware-temperate", "trader-female-kitchenware-desert"],
+    "file": "game:itemtypes/creature/creature.json",
+    "side": "Server"
+  },
+  {
+    "op": "addmerge",
+    "path": "/texturesByType",
+    "value": [
+      { "creature-trader-male-kitchenware-temperate": { "skin1": { "base": "entity/humanoid/villagerbody/skin/normal14" }, "hair": { "base": "entity/humanoid/seraphskinparts/hair/pinegreen"}}},
+      { "creature-trader-male-kitchenware-cold": { "skin1": { "base": "entity/humanoid/villagerbody/skin/normal1" }, "hair": { "base": "entity/humanoid/seraphskinparts/hair/pinegreen"}}},
+      { "creature-trader-male-kitchenware-desert": { "skin1": { "base": "entity/humanoid/villagerbody/skin/normal22" }, "hair": { "base": "entity/humanoid/seraphskinparts/hair/pinegreen"}}},
+      { "creature-trader-female-kitchenware-temperate": { "skin1": { "base": "entity/humanoid/villagerbody/skin/normal14" }, "hair": { "base": "entity/humanoid/seraphskinparts/hair/seagreen"}}},
+      { "creature-trader-female-kitchenware-cold": { "skin1": { "base": "entity/humanoid/villagerbody/skin/normal1" }, "hair": { "base": "entity/humanoid/seraphskinparts/hair/seagreen"}}},
+      { "creature-trader-female-kitchenware-desert": { "skin1": { "base": "entity/humanoid/villagerbody/skin/normal22" }, "hair": { "base": "entity/humanoid/seraphskinparts/hair/seagreen"}}}
+    ],
+    "file": "game:itemtypes/creature/creature.json",
     "side": "Server"
   }
 ]

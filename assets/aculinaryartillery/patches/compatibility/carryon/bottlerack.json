@@ -1,6 +1,6 @@
 ﻿[
   {
-    "file": "aculinaryartillery:blocktypes/bottlerack",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerack.json",
     "side": "Server",
     "op": "add",
     "path": "/behaviors/-",
@@ -26,6 +26,6 @@
         }
       }
     },
-    dependsOn: [{ "modid": "carryon" }]
+    "dependsOn": [{ "modid": "carryon" }]
   }
 ]

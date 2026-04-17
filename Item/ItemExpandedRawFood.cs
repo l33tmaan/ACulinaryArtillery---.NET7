@@ -54,7 +54,7 @@ namespace ACulinaryArtillery
             return targetAtlas.UnknownTexturePosition;
         }
 
-        public override void OnCreatedByCrafting(ItemSlot[] allInputslots, ItemSlot outputSlot, GridRecipe byRecipe)
+        public override void OnCreatedByCrafting(ItemSlot[] allInputslots, ItemSlot outputSlot, IRecipeBase byRecipe)
         {
             base.OnCreatedByCrafting(allInputslots, outputSlot, byRecipe);
 
@@ -63,31 +63,23 @@ namespace ACulinaryArtillery
 
             foreach (ItemSlot slot in allInputslots)
             {
-                var stack = slot.Itemstack;
-                if (stack == null) continue;
-                var collObj = stack.Collectible;
-                var callObjId = $"{collObj.Code.Domain}:{collObj.Code.Path}";
+                if (slot.Itemstack == null) continue;
 
-                CraftingRecipeIngredient? match = byRecipe?.Ingredients?.Values.FirstOrDefault(ing => ing.SatisfiesAsIngredient(slot.Itemstack));
+                IRecipeIngredient? match = byRecipe?.RecipeIngredients?.FirstOrDefault(ing => ing.SatisfiesAsIngredient(slot.Itemstack));
 
-                if (collObj is ItemExpandedRawFood)
+                if (slot.Itemstack.Collectible is ItemExpandedRawFood)
                 {
                     string[]? addIngs = (slot.Itemstack.Attributes["madeWith"] as StringArrayAttribute)?.value;
                     float[]? addSat = (slot.Itemstack.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
 
-                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * (match?.Quantity ?? 1)))];
+                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * match?.Quantity ?? 1))];
                     if (addIngs?.Length > 0) ingredients.AddRange(addIngs);
                 }
                 else
                 {
-                    float[] addSat = new float[6];
-                    GetNutrientsFromIngredient(ref addSat, collObj, match?.Quantity ?? 1);
-                    // If no nutrition is added then we should skip adding it to the 'madeWith' attribute
-                    // so outputs with otherwise identical 'nutritional' ingredients will stack together.
-                    if (addSat.Any((x) => x > 0.0f)) {
-                        ingredients.Add(collObjId);
-                        sat = [.. sat.Zip(addSat, (x, y) => x + y)];
-                    }
+                    var collObj = slot.Itemstack.Collectible;
+                    GetNutrientsFromIngredient(ref sat, collObj, match?.Quantity ?? 1);
+                    ingredients.Add(collObj.Code.Domain + ":" + collObj.Code.Path);
                 }
             }
 
@@ -95,7 +87,9 @@ namespace ACulinaryArtillery
             if (outputSlot.Itemstack.Collectible is not ItemExpandedLiquid)
             {
                 sat = Array.ConvertAll(sat, i => i / outputSlot.StackSize);
+                outputSlot.Itemstack.Attributes.RemoveAttribute("waterTightContainerProps");
             }
+
             outputSlot.Itemstack.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
         }
 
@@ -106,28 +100,20 @@ namespace ACulinaryArtillery
 
             foreach (var val in input)
             {
-                var stack = val.Key.Itemstack;
-                var collObj = stack.Collectible;
-                var collObjId = $"{collObj.Code.Domain}:{collObj.Code.Path}";
-
-                if (collObj is ItemExpandedRawFood)
+                if (val.Key.Itemstack.Collectible is ItemExpandedRawFood)
                 {
+                    var stack = val.Key.Itemstack;
                     string[]? addIngs = (stack.Attributes["madeWith"] as StringArrayAttribute)?.value;
                     float[]? addSat = (stack.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
 
-                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * (val.Value.Quantity / (collObj is ItemExpandedLiquid ? 10 : 1))))];
+                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * (val.Value.Quantity / (stack.Collectible is ItemExpandedLiquid ? 10 : 1))))];
                     if (addIngs?.Length > 0) ingredients.AddRange(addIngs);
                 }
                 else
                 {
-                    float[] addSat = new float[6];
-                    GetNutrientsFromIngredient(ref addSat, collObj, val.Value.Quantity);
-                    // If no nutrition is added then we should skip adding it to the 'madeWith' attribute
-                    // so outputs with otherwise identical 'nutritional' ingredients will stack together.
-                    if (addSat.Any((x) => x > 0.0f)) {
-                      sat = [.. sat.Zip(addSat, (x, y) => x + y)];
-                      ingredients.Add(collObjId);
-                    }
+                    var collObj = val.Key.Itemstack.Collectible;
+                    GetNutrientsFromIngredient(ref sat, collObj, val.Value.Quantity);
+                    ingredients.Add(collObj.Code.Domain + ":" + collObj.Code.Path);
                 }
             }
 
@@ -135,42 +121,8 @@ namespace ACulinaryArtillery
             if (output.Collectible is not ItemExpandedLiquid)
             {
                 sat = Array.ConvertAll(sat, i => i / output.StackSize);
+                output.Attributes.RemoveAttribute("waterTightContainerProps");
             }
-            output.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
-        }
-
-        public void OnCreatedBySimmering(Dictionary<ItemSlot, CraftingRecipeIngredient> input, ItemStack output)
-        {
-            HashSet<string> ingredients = [];
-            float[] sat = new float[6];
-
-            foreach (var val in input)
-            {
-                var stack = val.Key.Itemstack;
-                var collObj = stack.Collectible;
-                var collObjId = $"{collObj.Code.Domain}:{collObj.Code.Path}";
-                if (collObj is ItemExpandedRawFood)
-                {
-                    string[]? addIngs = (stack.Attributes["madeWith"] as StringArrayAttribute)?.value;
-                    float[]? addSat = (stack.Attributes["expandedSats"] as FloatArrayAttribute)?.value;
-
-                    if (addSat?.Length == 6) sat = [.. sat.Zip(addSat, (x, y) => x + (y * (val.Value.Quantity / (collObj is ItemExpandedLiquid ? 10 : 1))))];
-                    if (addIngs?.Length > 0) ingredients.AddRange(addIngs);
-                }
-                else
-                {
-                    float[] addSat = new float[6];
-                    GetNutrientsFromIngredient(ref addSat, collObj, val.Value.Quantity);
-                    // If no nutrition is added then we should skip adding it to the 'madeWith' attribute
-                    // so outputs with otherwise identical 'nutritional' ingredients will stack together.
-                    if (addSat.Any((x) => x > 0.0f)) {
-                      sat = [.. sat.Zip(addSat, (x, y) => x + y)];
-                      ingredients.Add(collObjId);
-                    }
-                }
-            }
-
-            output.Attributes["madeWith"] = new StringArrayAttribute([.. ingredients.Order()]);
             output.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
         }
 
@@ -398,10 +350,11 @@ namespace ACulinaryArtillery
             return mesh;
         }
 
-        public virtual MeshData? GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas, BlockPos? atBlockPos = null)
+        public virtual MeshData? GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos? atBlockPos = null)
         {
             if (api is not ICoreClientAPI capi) return null;
 
+            ItemStack stack = slot.Itemstack;
             this.targetAtlas = targetAtlas;
             nowTesselatingShape = null;
             var be = api.World.BlockAccessor.GetBlockEntity(atBlockPos);
@@ -415,8 +368,9 @@ namespace ACulinaryArtillery
             return mesh;
         }
 
-        public string GetMeshCacheKey(ItemStack stack)
+        public string GetMeshCacheKey(ItemSlot slot)
         {
+            ItemStack stack = slot.Itemstack;
             string[]? ings = (stack.Attributes?["madeWith"] as StringArrayAttribute)?.value;
             if (ings == null) return Code.ToShortString();
 
@@ -582,7 +536,6 @@ namespace ACulinaryArtillery
     public interface IExpandedFood
     {
         void OnCreatedByKneading(Dictionary<ItemSlot, CraftingRecipeIngredient> input, ItemStack output);
-        void OnCreatedBySimmering(Dictionary<ItemSlot, CraftingRecipeIngredient> input, ItemStack output);
         void OnCreatedByGrinding(ItemStack input, ItemStack output);
     }
 

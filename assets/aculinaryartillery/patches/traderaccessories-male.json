@@ -1,0 +1,14 @@
+[
+  {
+    "op": "addmerge",
+    "path": "/variants",
+    "value": { "head-c-hat": { "base": "aculinaryartillery:entity/humanoid/seraph/clothing/head/c-hat", "weight": 1, "disableElements": [ "hair-base-Hair-Upper", "hair-base-Ponytail-High" ]}},
+    "file": "game:config/traderaccessories-male.json"
+  },
+  {
+    "op": "addmerge",
+    "path": "/byslot/24/variants",
+    "value": [ "head-c-hat" ],
+    "file": "game:config/traderaccessories-male.json"
+  }
+]

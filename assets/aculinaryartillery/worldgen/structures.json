@@ -17,7 +17,9 @@
 			],
 			"buildProtected": true,
 			"buildProtectionName": "Trader",
-			"buildProtectionDesc": "Trader Perimenter",
+			"buildProtectionDesc": "Trader Perimeter",
+            "AllowUseEveryone": false,
+            "AllowTraverseEveryone": true,
 			"replacewithblocklayers": [
 				"game:packeddirt",
 				"game:cob-none"
@@ -41,7 +43,9 @@
 			],
 			"buildProtected": true,
 			"buildProtectionName": "Trader",
-			"buildProtectionDesc": "Trader Perimenter",
+			"buildProtectionDesc": "Trader Perimeter",
+            "AllowUseEveryone": false,
+            "AllowTraverseEveryone": true,
 			"replacewithblocklayers": [
 				"game:packeddirt",
 				"game:cob-none"

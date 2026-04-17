@@ -6,6 +6,18 @@
 - Bricklayers integration?
 
 ~1.21_v2.0.0-dev.12~
+- Mechanized Mixer & Cutting Board partially added; no they don't work yet stop asking me
+- Kitchenware trader spawn tweaked to be slightly more rare - DONE!!!
+- Kitchenware trader fixed so his food can't be stolen - DONE!!!
+- Kitchenware trader buy list updated for bottles & new blocks (thank you Whiskey Sunshine!) - DONE!!!
+- Fixed: Kneading and simmering recipes in the handbook could show duplicate outputs (thank you pizza2004!) - DONE!!!
+- Bismuth bronze support for metal objects (thanks to ividyon!) - DONE!!!
+- Adjust cauldron recycle result & make small cauldrons recycleable (thanks to ividyon!) - DONE!!!
+- Latin American Spanish translation added (thanks to Gloo_57) - DONE!!!
+- Nutrition bug fixed; foods like pasta shouldn't have Extra Nutrition values of 1 (thanks to deathrat!) - DONE!!!
+- Nutrition values averaging out when bulk simmering fixed (thanks to deathrat!) - DONE!!!
+- Inedible items no longer included in "made with" text (thanks to deathrat!) - DONE!!!
+- Very aged wood variants added to bottle racks, meat hooks, and rolling pins
 - Chef hat + saddle makes Chef Saddle
 - Various items can be secured on an elk/boat
 - Rolling pin aligned properly onto meat rack
