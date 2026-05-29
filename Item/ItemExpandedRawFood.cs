@@ -201,7 +201,7 @@ namespace ACulinaryArtillery
             outputSlot.Itemstack?.Collectible.TryMergeStacks(new(world, EnumMouseButton.Left, 0, EnumMergePriority.ConfirmedMerge, smeltedStack.StackSize)
             {
                 SourceSlot = new DummySlot(smeltedStack),
-                SinkSlot = outputSlot
+                SinkSlot = new DummySlot(outputSlot.Itemstack)
             });
             outputSlot.Itemstack ??= smeltedStack; // Otherwise put the smelted stack into the output slot
 
