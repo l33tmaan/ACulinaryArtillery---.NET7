@@ -583,6 +583,10 @@ namespace ACulinaryArtillery
         public static bool mulitPie(ref bool __result, ref InventoryBase ___inv, BlockEntityPie __instance, ItemSlot slot, IPlayer? byPlayer = null)
         {
             ICoreClientAPI? capi = __instance.Api as ICoreClientAPI;
+            if (slot.Itemstack.Collectible is BlockLiquidContainerBase liquidContainer && !liquidContainer.AllowHeldLiquidTransfer) { 
+                __result = false;
+                return false;
+            }
             ILiquidSource? container = slot.Itemstack.Collectible as ILiquidSource;
             ItemStack contentStack = container?.GetContent(slot.Itemstack) ?? slot.Itemstack;
             InPieProperties? pieProps = contentStack.ItemAttributes?["inPieProperties"]?.AsObject<InPieProperties?>(null, contentStack.Collectible.Code.Domain);
