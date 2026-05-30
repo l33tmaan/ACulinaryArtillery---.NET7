@@ -11,6 +11,7 @@
 - Meat racks can have dedicated shapes like elks
 - Bottles fixed so they can get water from source blocks properly 
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
+- Bottle crate added; holds 6 bottles and can be stacked up to 6 times, then placed on elk
 
 
 ~1.21_v2.0.0-dev.19~
