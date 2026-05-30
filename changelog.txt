@@ -15,7 +15,8 @@
 
 ~1.21_v2.0.0-dev.19~
 - Wildcraft Trees bottlerack mappings fixed (thanks to Cypher!)
-- Corked bottles and buckets can no longer put liquids in pies (thanks to xboxnoob)
+- Corked bottles and buckets can no longer put liquids in pies (thanks to xboxnoob!)
+- Raw food no longer vanishes when a stack is cooked in the firepit (thanks to hafnerf!)
 
 ~1.21_v2.0.0-dev.18~
 - Saucepans and mini-cauldrons can only fit onto shelves one at a time
