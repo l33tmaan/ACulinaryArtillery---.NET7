@@ -14,7 +14,7 @@
 - Material Needs wood compatibility added - DONE!!!
 - Wildcraft Trees wood compatibility updated
 - Japanese translation updated (thanks to macoto_hino!) - DONE!!!
-- recipes updated to use tool tags
+- Grid recipes updated to use tool tags, generally cleaned up - DONE!!!
 
 
 ~1.21_v2.0.0-dev.19~

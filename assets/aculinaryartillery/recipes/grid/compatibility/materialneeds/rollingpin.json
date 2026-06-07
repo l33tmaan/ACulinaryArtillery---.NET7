@@ -1,24 +1,13 @@
 [
-  {
-    "ingredientPattern": "_K_,SLS",
-    "ingredients": {
-      "K": {
-        "type": "item",
-        "code": "game:knife-*",
-        "isTool": true
-      },
-      "S": {
-        "type": "item",
-        "code": "game:stick"
-      },
-      "L": {
-        "type": "block",
-        "code": "game:log-placed-darkaged-ud",
-        "name": "wood"
-      }
-    },
-    "width": 3,
-    "height": 2,
-    "output": { "type": "item", "code": "rollingpin-veryaged"  }
-  }
+    {
+        "ingredientPattern": "_K_,SLS",
+        "ingredients": {
+            "K": { "type": "item", "tags": ["tool-knife"], "isTool": true  },
+            "S": { "type": "item", "code": "game:stick" },
+            "L": { "type": "block", "code": "game:log-placed-darkaged-ud", "name": "wood" }
+        },
+        "width": 3,
+        "height": 2,
+        "output": { "type": "item", "code": "rollingpin-veryaged"  }
+    }
 ]

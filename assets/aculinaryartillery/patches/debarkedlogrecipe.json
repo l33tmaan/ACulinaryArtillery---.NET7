@@ -38,8 +38,8 @@
     "value": {
       "ingredientPattern": "AHL",
       "ingredients": {
-        "A": { "type": "item", "code": "axe-*", "isTool": true  },
-        "H": { "type": "item", "code": "hammer-*", "isTool": true  },
+        "A": { "type": "item", "tags": ["tool-axe"], "isTool": true  },
+        "H": { "type": "item", "tags": ["tool-hammer"], "isTool": true  },
         "L": { "type": "block", "code": "log-placed-*-ud", "name": "wood" }
       },
       "width": 3,
@@ -58,8 +58,8 @@
     "value": {
       "ingredientPattern": "AHL",
       "ingredients": {
-        "A": { "type": "item", "code": "axe-*", "isTool": true  },
-        "H": { "type": "item", "code": "hammer-*", "isTool": true  },
+        "A": { "type": "item", "tags": ["tool-axe"], "isTool": true  },
+        "H": { "type": "item", "tags": ["tool-hammer"], "isTool": true  },
         "L": { "type": "block", "code": "log-placed-*-ud", "name": "wood" }
       },
       "width": 3,

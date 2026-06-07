@@ -1,19 +1,11 @@
 {
-	ingredientPattern: "S,G",
-	ingredients: {
-		"S": { 
-			type: "item", 
-			code: "game:saw-*",
-			istool: "true",
-		},
-		"G": { 
-			type: "block", 
-			code: "game:glassslab-*-down-free", 
-			name: "color"
-		}
+	"ingredientPattern": "S,G",
+	"ingredients": {
+        "S": { "type": "item", "tags": ["tool-saw"], "isTool": true },
+		"G": { "type": "block", "code": "game:glassslab-*-down-free", "name": "color" }
 	},
-	width: 1,
-	height: 2,
-	name: "glassbottle",
-	output: { type: "block", code: "bottle-glass-{color}-fired", quantity: 4  }
+	"width": 1,
+	"height": 2,
+	"name": "glassbottle",
+	"output": { "type": "block", "code": "bottle-glass-{color}-fired", "quantity": 4  }
 }

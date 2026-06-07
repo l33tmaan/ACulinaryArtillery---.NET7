@@ -3,17 +3,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 1,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-acacia",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-acacia", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -23,17 +14,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 2,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-aged",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": {  "type": "item", "code": "game:plank-aged", "name": "wood" },
+		"H": {  "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -43,17 +25,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 3,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-birch",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-birch", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -63,17 +36,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 4,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-oak",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-oak", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -83,17 +47,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 5,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-maple",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-maple", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -103,17 +58,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 6,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-pine",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-pine", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -123,17 +69,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 7,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-kapok",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-kapok", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -143,17 +80,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 8,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-baldcypress",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-baldcypress", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -163,17 +91,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 9,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-larch",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-larch", "name": "wood" },
+		"H": {  "type": "item",  "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -183,17 +102,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 10,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-redwood",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-redwood", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -203,17 +113,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 11,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-ebony",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-ebony", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -223,17 +124,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 12,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-walnut",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-walnut", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -243,17 +135,8 @@
 	"ingredientPattern": "PP,HH",
 	"recipeGroup": 13,
 	"ingredients": {
-		"P": { 
-			"type": "item", 
-			"code": "game:plank-purpleheart",
-			"name": "wood"
-		},
-		"H": { 
-			"type": "item", 
-			"code": "bighook-*",
-			"name": "metal",
-			"quantity": 2
-		}
+		"P": { "type": "item", "code": "game:plank-purpleheart", "name": "wood" },
+		"H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
 	},
 	"width": 2,
 	"height": 2,
@@ -263,17 +146,8 @@
     "ingredientPattern": "PP,HH",
     "recipeGroup": 14,
     "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "game:plank-veryaged",
-        "name": "wood"
-      },
-      "H": {
-        "type": "item",
-        "code": "bighook-*",
-        "name": "metal",
-        "quantity": 2
-      }
+        "P": { "type": "item", "code": "game:plank-veryaged", "name": "wood" },
+        "H": { "type": "item", "code": "bighook-*", "name": "metal", "quantity": 2 }
     },
     "width": 2,
     "height": 2,
