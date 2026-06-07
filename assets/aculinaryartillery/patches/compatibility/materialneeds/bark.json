@@ -1,0 +1,23 @@
+[
+  {
+    "file": "materialneeds:recipes/grid/wood/mn-debarked-oak-drops.json",
+    "op": "addmerge",
+    "path": "/0/enabled",
+    "value": false,
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "file": "game:itemtypes/resource/oakbark.json",
+    "op": "replace",
+    "path": "/attributes/handbook/exclude",
+    "value": true,
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "file": "materialneeds:recipes/barrel/dye/browndark.json",
+    "op": "replace",
+    "path": "/0/ingredients/1/code",
+    "value": "aculinaryartillery:bark-oak-dry",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  }
+]

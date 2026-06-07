@@ -69,5 +69,29 @@
     },
     "side": "server",
     "dependsOn": [{ "modid": "ancienttools" }, { "modid": "indappledgroves", "invert": true }, { "modid": "stringsense", "invert": true }]
+  },
+  {
+    "file": "game:recipes/grid/debarkedlog.json",
+    "op": "addmerge",
+    "path": "/1/ingredients/L/skipVariants",
+    "value": [ "darkaged" ],
+    "side": "server",
+    "dependsOn": [ { "modid": "materialneeds" }, { "modid": "indappledgroves", "invert": true  } ]
+  },
+  {
+    "file": "game:recipes/grid/debarkedlog.json",
+    "op": "addmerge",
+    "path": "/1/ingredients/L/skipVariants",
+    "value": [ "darkaged" ],
+    "side": "server",
+    "dependsOn": [ { "modid": "materialneeds" }, { "modid": "indappledgroves", "invert": true  }, { "modid": "ancienttools", "invert": true }, { "modid": "stringsense", "invert": true } ]
+  },
+  {
+    "file": "game:recipes/grid/debarkedlog.json",
+    "op": "addmerge",
+    "path": "/1/ingredients/L/skipVariants",
+    "value": [ "darkaged" ],
+    "side": "server",
+    "dependsOn": [ { "modid": "materialneeds" }, { "modid": "ancienttools"  }, { "modid": "indappledgroves", "invert": true  }, { "modid": "stringsense", "invert": true } ]
   }
 ]

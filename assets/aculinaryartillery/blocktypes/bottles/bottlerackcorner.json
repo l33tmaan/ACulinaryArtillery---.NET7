@@ -51,8 +51,8 @@
   },
     "texturesByType": {
         "@*-veryaged-veryaged-(north|east|south|west)": {
-          "woodframe": { "base": "game:block/wood/planks/aged/veryaged1" },
-          "woodinterior": { "base": "game:block/wood/planks/aged/veryaged1" }
+            "woodframe": { "base": "game:block/wood/planks/aged/veryaged1" },
+            "woodinterior": { "base": "game:block/wood/planks/aged/veryaged1" }
         },
         "@*-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(douglasfir|willow|honeylocust|bearnut|poplar|catalpa|mahogany|sal|saxaul|spruce|sycamore|elm|beech|eucalyptus|cedar|tuja|redcedar|yew|kauri|ginkgo|dalbergia|umnini|banyan|guajacum|ghostgum|ohia|satinash|bluemahoe|jacaranda|empresstree|chlorociboria|petrified|fir|tamanu|spurgetree|azobe|leadwood|linden|horsechestnut|tigerwood|sapele|ash|mangrove|charred)-(north|east|south|west)": {
             "woodframe": { "base": "wildcrafttree:block/wood/planks/{woodframe}1" },

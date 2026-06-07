@@ -1,0 +1,102 @@
+[
+  {
+    "op": "addmerge",
+    "path": "/variantgroups/0/states/-",
+    "value": "lightaged",
+    "side": "server",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerack.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "addmerge",
+    "path": "/variantgroups/1/states/-",
+    "value": "lightaged",
+    "side": "server",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerack.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "move",
+    "frompath": "/texturesByType/*",
+    "path": "/temp",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerack.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "addmerge",
+    "path": "/texturesByType/@*-veryaged-lightaged-(north|east|south|west)",
+    "value": {
+      "woodframe": { "base": "game:block/wood/planks/aged/veryaged1" },
+      "woodinterior": { "base": "materialneeds:block/wood/planks/lightaged/lightaged1" }
+    },
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerack.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "addmerge",
+    "path": "/texturesByType/@*-lightaged-veryaged-(north|east|south|west)",
+    "value": {
+      "woodframe": { "base": "materialneeds:block/wood/planks/lightaged/lightaged1" },
+      "woodinterior": { "base": "game:block/wood/planks/aged/veryaged1" }
+    },
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerack.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "move",
+    "frompath": "/temp",
+    "path": "/texturesByType/*",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerack.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "addmerge",
+    "path": "/variantgroups/0/states/-",
+    "value": "lightaged",
+    "side": "server",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerackcorner.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "addmerge",
+    "path": "/variantgroups/1/states/-",
+    "value": "lightaged",
+    "side": "server",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerackcorner.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "move",
+    "frompath": "/texturesByType/*",
+    "path": "/temp",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerackcorner.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "addmerge",
+    "path": "/texturesByType/@*-veryaged-lightaged-(north|east|south|west)",
+    "value": {
+      "woodframe": { "base": "game:block/wood/planks/aged/veryaged1" },
+      "woodinterior": { "base": "materialneeds:block/wood/planks/lightaged/lightaged1" }
+    },
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerackcorner.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "addmerge",
+    "path": "/texturesByType/@*-lightaged-veryaged-(north|east|south|west)",
+    "value": {
+      "woodframe": { "base": "materialneeds:block/wood/planks/lightaged/lightaged1" },
+      "woodinterior": { "base": "game:block/wood/planks/aged/veryaged1" }
+    },
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerackcorner.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  },
+  {
+    "op": "move",
+    "frompath": "/temp",
+    "path": "/texturesByType/*",
+    "file": "aculinaryartillery:blocktypes/bottles/bottlerackcorner.json",
+    "dependsOn": [{ "modid": "materialneeds" }]
+  }
+]

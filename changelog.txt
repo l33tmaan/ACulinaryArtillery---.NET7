@@ -11,6 +11,10 @@
 - Meat racks can have dedicated shapes like elks
 - Bottles fixed so they can get water from source blocks properly 
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
+- Material Needs wood compatibility added - DONE!!!
+- Wildcraft Trees wood compatibility updated
+- Japanese translation updated (thanks to macoto_hino!) - DONE!!!
+- recipes updated to use tool tags
 
 
 ~1.21_v2.0.0-dev.19~
