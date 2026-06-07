@@ -1,18 +1,19 @@
 ﻿TO-DO WHENEVER:
 - Mixing recipes actually use their own perish timer instead of the first ingredient used
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
-- Bottles can go into scroll racks?
 - Place on Slabs integration?
 
-~1.21_v2.0.0-dev.20~
+~1.21_v2.0.0-dev.21~
 - Mechanized Mixer & Cutting Board partially added; no they don't work yet stop asking me
 - Meat/bottle racks now indicate wood/metal type in item description
 - Dedicated cork/uncork button?
 - Meat racks can have dedicated shapes like elks
 - Bottles fixed so they can get water from source blocks properly 
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
+
+
+~1.21_v2.0.0-dev.20~
 - Material Needs wood compatibility added - DONE!!!
-- Wildcraft Trees wood compatibility updated
 - Japanese translation updated (thanks to macoto_hino!) - DONE!!!
 - Grid recipes updated to use tool tags, generally cleaned up - DONE!!!
 
