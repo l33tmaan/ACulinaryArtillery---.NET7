@@ -19,11 +19,11 @@
 			"____####_"
 		]
 	],
-	"name": "4 Bighooks",
-	"code": "bighook4-{metal}",
+	"name": "8 Bighooks",
+	"code": "bighook8-{metal}",
 	"output": {
 		"type": "item",
 		"code": "aculinaryartillery:bighook-{metal}",
-		"stacksize": 4
+		"stacksize": 8
 	}
 }

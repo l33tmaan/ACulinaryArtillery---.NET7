@@ -10,13 +10,13 @@
 - Meat racks can have dedicated shapes like elks
 - Bottles fixed so they can get water from source blocks properly 
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
-
+- Hook smithing recipe output doubled to match mold output, singular hook smithing recipe removed - DONE!!!
+- Singular spile recipe also removed - DONE!!!
 
 ~1.21_v2.0.0-dev.20~
-- Material Needs wood compatibility added - DONE!!!
-- Japanese translation updated (thanks to macoto_hino!) - DONE!!!
-- Grid recipes updated to use tool tags, generally cleaned up - DONE!!!
-
+- Material Needs wood compatibility added
+- Japanese translation updated (thanks to macoto_hino!)
+- Grid recipes updated to use tool tags, generally cleaned up
 
 ~1.21_v2.0.0-dev.19~
 - Wildcraft Trees bottlerack mappings fixed (thanks to Cypher!)
