@@ -12,6 +12,7 @@
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
 - Hook smithing recipe output doubled to match mold output, singular hook smithing recipe removed - DONE!!!
 - Singular spile recipe also removed - DONE!!!
+- Polish translation updated (thanks to Regerett!) - DONE!!!
 
 ~1.21_v2.0.0-dev.20~
 - Material Needs wood compatibility added
