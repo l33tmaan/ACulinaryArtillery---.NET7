@@ -332,7 +332,7 @@ namespace ACulinaryArtillery
                 if (addShape == null) continue;
 
                 Shape clonedAddShape = addShape.Clone();
-                if (addShape.Textures != null) clonedAddShape.Textures = new (addShape.Textures);
+                if (addShape.Textures != null) clonedAddShape.Textures = new(addShape.Textures);
 
                 MeshData addIng;
                 if (addShape.Textures?.Keys is not null && texureMappingsPerShape[i].Count > 0)
