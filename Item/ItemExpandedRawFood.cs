@@ -479,32 +479,52 @@ namespace ACulinaryArtillery
             List<FoodNutritionProperties> foodProps = [];
 
             CollectibleObject obj = contentStack.Collectible;
-            FoodNutritionProperties? stackProps;
+            CombustibleProperties? cprops = obj.GetCombustibleProperties(world, contentStack, null);
+            WaterTightContainableProps? liquidProps = BlockLiquidContainerBase.GetContainableProps(contentStack);
+            FoodNutritionProperties? nutriProps;
 
-            if (obj.CombustibleProps != null && obj.CombustibleProps.SmeltedStack != null)
+            nutriProps = obj.Attributes?["nutritionPropsWhenInMeal"].AsObject<FoodNutritionProperties>();
+            nutriProps ??= cprops?.SmeltedStack.ResolvedItemstack?.Collectible.GetNutritionProperties(world, cprops.SmeltedStack.ResolvedItemstack, forEntity);
+            nutriProps ??= liquidProps?.NutritionPropsPerLitreWhenInMeal;
+
+            if (liquidProps != null && nutriProps == null)
             {
-                stackProps = obj.CombustibleProps.SmeltedStack.ResolvedItemstack.Collectible.GetNutritionProperties(world, obj.CombustibleProps.SmeltedStack.ResolvedItemstack, forEntity);
-            }
-            else
-            {
-                stackProps = obj.GetNutritionProperties(world, contentStack, forEntity);
+                nutriProps = liquidProps.NutritionPropsPerLitre?.Clone();
+                if (nutriProps != null)
+                {
+                    nutriProps.Satiety *= 1.3f;
+                    float litre = contentStack.StackSize / liquidProps.ItemsPerLitre;
+                    nutriProps.Health *= litre;
+                    nutriProps.Satiety *= litre;
+                    nutriProps.Intoxication *= litre;
+                    nutriProps.Psychedelic *= litre;
+                }
             }
 
-            if (obj.Attributes?["nutritionPropsWhenInMeal"].Exists == true)
-            {
-                stackProps = obj.Attributes?["nutritionPropsWhenInMeal"].AsObject<FoodNutritionProperties>();
-            }
-            if (obj.Attributes?["nutritionPropsWhenInPie"].Exists == true && mulWithStacksize)
-            {
-                stackProps = obj.Attributes?["nutritionPropsWhenInPie"].AsObject<FoodNutritionProperties>();
-            }
+            nutriProps ??= obj.GetNutritionProperties(world, contentStack, forEntity);
+
             float satLossMul = 1.0f;
             float healthLoss = 1.0f;
-            float mul = mulWithStacksize ? contentStack.StackSize : 1;
-            if (BlockLiquidContainerBase.GetContainableProps(contentStack) != null && mulWithStacksize)
+            float mul = contentStack.StackSize;
+            // Create a stack that we can test for the proper amount of nutrition regardless of the actual stack size in the container
+            ItemStack nutriStack = contentStack.Clone();
+            nutriStack.StackSize = 1;
+            if (!mulWithStacksize)
             {
-                mul /= 10;
+                nutriStack.StackSize = (int)(BlockLiquidContainerBase.GetContainableProps(nutriStack)?.ItemsPerLitre ?? 1);
+                var cookingIngreds = world.Api.GetCookingRecipe(inSlot.Itemstack!.Attributes.GetString("recipeCode"))?.Ingredients?.Select(ingred => ingred.Clone()).ToList();
+                if (cookingIngreds?.FirstOrDefault(ing => ing.Matches(nutriStack)) is CookingRecipeIngredient ingred)
+                {
+                    mul = ingred.GetMatchingStack(nutriStack)?.StackSize ?? 1;
+                    nutriStack.StackSize = (int)(nutriStack.StackSize * ingred.PortionSizeLitres);
+                }
+                else mul = 1;
             }
+
+            if (BlockMeal.GetIngredientStackNutritionProperties(world, nutriStack, forEntity) is not FoodNutritionProperties stackProps) return [];
+
+            nutriProps = stackProps.Clone();
+
             if (obj is ItemExpandedRawFood && (contentStack.Attributes["expandedSats"] as FloatArrayAttribute)?.value?.Length == 6)
             {
                 FoodNutritionProperties[]? exProps = (obj as ItemExpandedRawFood)?.GetPropsFromArray((contentStack.Attributes["expandedSats"] as FloatArrayAttribute)?.value);
@@ -513,23 +533,27 @@ namespace ACulinaryArtillery
                 {
                     foreach (FoodNutritionProperties exProp in exProps)
                     {
-                        exProp.Satiety *= satLossMul * nutritionMul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1 * mul);
-                        exProp.Health *= healthLoss * healthMul * (obj is ItemExpandedLiquid ? contentStack.StackSize / 10 : 1 * mul);
+                        exProp.Satiety *= satLossMul * nutritionMul * mul;
+                        exProp.Health *= healthLoss * healthMul * mul;
+                        exProp.Intoxication *= mul;
+                        exProp.Psychedelic *= mul;
 
                         foodProps.Add(exProp);
                     }
                 }
-                if (stackProps != null)
+                if (nutriProps != null)
                 {
-                    FoodNutritionProperties props = stackProps.Clone();
+                    FoodNutritionProperties props = nutriProps.Clone();
                     props.Satiety *= satLossMul * nutritionMul * mul;
                     props.Health *= healthLoss * healthMul * mul;
+                    props.Intoxication *= mul;
+                    props.Psychedelic *= mul;
                     foodProps.Add(props);
                 }
             }
-            else if (stackProps != null)
+            else if (nutriProps != null)
             {
-                FoodNutritionProperties props = stackProps.Clone();
+                FoodNutritionProperties props = nutriProps.Clone();
 
                 DummySlot slot = new DummySlot(contentStack, inSlot.Inventory);
                 TransitionState state = contentStack.Collectible.UpdateAndGetTransitionState(world, slot, EnumTransitionType.Perish);
@@ -539,6 +563,8 @@ namespace ACulinaryArtillery
                 healthLoss = GlobalConstants.FoodSpoilageHealthLossMul(spoilState, slot.Itemstack, forEntity);
                 props.Satiety *= satLossMul * nutritionMul * mul;
                 props.Health *= healthLoss * healthMul * mul;
+                props.Intoxication *= mul;
+                props.Psychedelic *= mul;
                 foodProps.Add(props);
             }
             return [.. foodProps];
