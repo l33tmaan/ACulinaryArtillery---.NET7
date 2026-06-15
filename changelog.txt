@@ -3,16 +3,20 @@
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
 - Place on Slabs integration?
 
-~1.21_v2.0.0-dev.21~
+~1.22_v2.0.0-dev.22~
 - Mechanized Mixer & Cutting Board partially added; no they don't work yet stop asking me
 - Meat/bottle racks now indicate wood/metal type in item description
 - Dedicated cork/uncork button?
 - Meat racks can have dedicated shapes like elks
 - Bottles fixed so they can get water from source blocks properly 
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
-- Hook smithing recipe output doubled to match mold output, singular hook smithing recipe removed - DONE!!!
-- Singular spile recipe also removed - DONE!!!
-- Polish translation updated (thanks to Regerett!) - DONE!!!
+
+
+~1.22_v2.0.0-dev.21~
+- Hook smithing recipe output doubled to match mold output, singular hook smithing recipe removed
+- Singular spile recipe also removed
+- Polish translation updated (thanks to Regerett!)
+- Material Needs rolling pin patch fixed
 
 ~1.21_v2.0.0-dev.20~
 - Material Needs wood compatibility added

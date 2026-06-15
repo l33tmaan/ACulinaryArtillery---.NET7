@@ -9,9 +9,9 @@
   },
   {
     "op": "addmerge",
-    "path": "/enabled",
+    "path": "/0/enabled",
     "value": false,
-    "file": "aculinaryartillery:recipes/grid/rollingpin.json",
+    "file": "aculinaryartillery:recipes/grid/compatibility/materialneeds/rollingpin.json",
     "dependsOn": [ { "modid": "materialneeds", "invert": true } ],
     "side": "server"
   }
