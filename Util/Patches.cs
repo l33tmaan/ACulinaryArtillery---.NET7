@@ -854,6 +854,20 @@ namespace ACulinaryArtillery
                 if (firstMealstack != null) insertIndex = components.IndexOf(firstMealstack);
                 components.InsertRange(insertIndex, newComponents);
             }
+
+            // Toppings need to have the default crust type because they have only one shape.
+            foreach (MealstackTextComponent comp in components)
+            {
+                ItemStack? mealBlock = Traverse.Create(comp).Field("dummySlot").GetValue<DummySlot>()?.Itemstack;
+                if (mealBlock?.Block is not BlockPie pieBlock) continue;
+
+                ItemStack? topCrustStack = pieBlock.GetContents(capi.World, mealBlock).ElementAtOrDefault(5);
+
+                if (ExpandedInPieProperties.ReadFrom(topCrustStack)?.PartType == EnumPiePartType.Topping)
+                {
+                    mealBlock.Attributes.SetString("topCrustType", "full");
+                }
+            }
         }
     }
 
@@ -966,6 +980,19 @@ namespace ACulinaryArtillery
                 components.Add(new RichTextComponent(capi, "\n", CairoFont.WhiteSmallText()));
             }
             else components.InsertRange(components.Count - 1, newComponents);
+
+            foreach (MealstackTextComponent comp in components)
+            {
+                ItemStack? mealBlock = Traverse.Create(comp).Field("dummySlot").GetValue<DummySlot>()?.Itemstack;
+                if (mealBlock?.Block is not BlockPie pieBlock) continue;
+
+                ItemStack? topCrustStack = pieBlock.GetContents(capi.World, mealBlock).ElementAtOrDefault(5);
+
+                if (ExpandedInPieProperties.ReadFrom(topCrustStack)?.PartType == EnumPiePartType.Topping)
+                {
+                    mealBlock.Attributes.SetString("topCrustType", "full");
+                }
+            }
         }
     }
 
@@ -1008,6 +1035,27 @@ namespace ACulinaryArtillery
             }
         }
     }
+
+    [HarmonyPatch(typeof(GuiHandbookMealRecipePage), MethodType.Constructor)]
+    [HarmonyPatch([typeof(ICoreClientAPI), typeof(CookingRecipe), typeof(int), typeof(bool)])]
+    public static class GuiHandbookMealRecipePagePatch
+    {
+        public static void Postfix(ref GuiHandbookMealRecipePage __instance, ICoreClientAPI capi, CookingRecipe recipe, int slots = 4, bool isPie = false)
+        {
+            if (!isPie) return;
+
+            ItemStack? mealBlock = __instance.dummySlot.Itemstack;
+            if (mealBlock?.Block is not BlockPie pieBlock) return;
+
+            ItemStack? topCrustStack = pieBlock.GetContents(capi.World, mealBlock).ElementAtOrDefault(5);
+
+            if (ExpandedInPieProperties.ReadFrom(topCrustStack)?.PartType == EnumPiePartType.Topping)
+            {
+                mealBlock.Attributes.SetString("topCrustType", "full");
+            }
+        }
+    }
+
 
     [HarmonyPatch(typeof(CookingRecipe), "GenerateRandomMeal")]
     public static class CookingRecipeRandomPatch
