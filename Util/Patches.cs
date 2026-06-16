@@ -258,7 +258,7 @@ namespace ACulinaryArtillery
 
             if (mixCode == "missing")
             {
-                ___api.Logger.Error($"Pie does not have any valid mixing codes! They were liked removed from one of these ingredients: [\n{string.Join("\n    ", (object?[])cStacks)}\n]");
+                ___api.Logger.Error($"Pie does not have any valid mixing codes! They were likely removed from one of the ingredients: [\n    {string.Join("\n    ", (object?[])cStacks)}\n]");
             }
 
             string pieName = Lang.Get(singleIngredient

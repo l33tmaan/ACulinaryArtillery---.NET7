@@ -309,7 +309,7 @@ namespace ACulinaryArtillery.Util
                 return false;
             }
 
-            float totalPortions = contentStack.StackSize / pieProps.GetPortionSize();
+            float totalPortions = contentStack.StackSize / pieProps.ItemsPerPortion();
             if (totalPortions < 1)
             {
                 errCode = "notenoughingredients";
@@ -454,9 +454,9 @@ namespace ACulinaryArtillery.Util
             return EnumFoodCategory.NoNutrition;
         }
 
-        public static bool BEPieTryAddIngredientFrom(ref BlockEntityPie bep, ref InventoryGeneric inv, ItemSlot slot, IPlayer? byPlayer = null)
+        public static bool BEPieTryAddIngredientFrom(ref BlockEntityPie bep, ref InventoryGeneric inv, ItemSlot slot, IPlayer byPlayer)
         {
-            ICoreClientAPI? capi = byPlayer != null ? bep.Api as ICoreClientAPI : null;
+            ICoreClientAPI? capi = bep.Api as ICoreClientAPI;
 
             if ((inv[0].Itemstack?.Block as BlockPie) == null || slot.Itemstack == null) return false;
 
@@ -498,10 +498,18 @@ namespace ACulinaryArtillery.Util
                 DummySlot dummySlot = new(slot.Itemstack.Clone());
                 ILiquidSource? dummySource = dummySlot.Itemstack!.Collectible.GetCollectibleInterface<ILiquidSource>();
 
-                if (dummySource != null && contentStack != null && dummySource.TryTakeContent(dummySlot.Itemstack, pieProps.ItemsPerPortion()).StackSize >= pieProps.ItemsPerPortion())
+                if (dummySource != null)
                 {
-                    ingStack = contentStack.Clone();
-                    ingStack.StackSize = pieProps.ItemsPerPortion();
+                    if (dummySource.TryTakeContent(dummySlot.Itemstack, pieProps.ItemsPerPortion()).StackSize >= pieProps.ItemsPerPortion())
+                    {
+                        ingStack = contentStack.Clone();
+                        ingStack.StackSize = pieProps.ItemsPerPortion();
+                    }
+                    else
+                    {
+                        bep.Api.Logger.Error($"BEPie.TryAddIngredientFrom expected at least {pieProps.ItemsPerPortion()} liquid items, but there weren't enough. There is likely a bug either here or in CanAddIngredient.");
+                        return false;
+                    }
                 }
                 else
                 {
@@ -510,10 +518,18 @@ namespace ACulinaryArtillery.Util
             }
             else
             {
-                if (container != null && contentStack != null && container.TryTakeContent(slot.Itemstack, pieProps.ItemsPerPortion()).StackSize >= pieProps.ItemsPerPortion())
+                if (container != null)
                 {
-                    ingStack = contentStack.Clone();
-                    ingStack.StackSize = pieProps.ItemsPerPortion();
+                    if (container.TryTakeContent(slot.Itemstack, pieProps.ItemsPerPortion()).StackSize >= pieProps.ItemsPerPortion())
+                    {
+                        ingStack = contentStack.Clone();
+                        ingStack.StackSize = pieProps.ItemsPerPortion();
+                    }
+                    else
+                    {
+                        bep.Api.Logger.Error($"BEPie.TryAddIngredientFrom expected at least {pieProps.ItemsPerPortion()} liquid items, but there weren't enough. There is likely a bug either here or in CanAddIngredient.");
+                        return false;
+                    }
                 }
                 else
                 {
