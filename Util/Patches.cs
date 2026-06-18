@@ -256,7 +256,7 @@ namespace ACulinaryArtillery
 
             string mixCode = mixCodes.FirstOrDefault() ?? "missing";
 
-            if (mixCode == "missing")
+            if (!singleIngredient && mixCode == "missing")
             {
                 ___api.Logger.Error($"Pie does not have any valid mixing codes! They were likely removed from one of the ingredients: [\n    {string.Join("\n    ", (object?[])cStacks)}\n]");
             }
@@ -267,13 +267,10 @@ namespace ACulinaryArtillery
 
             if (cStacks[5] != null && ExpandedInPieProperties.ReadFrom(cStacks[5])?.PartType != EnumPiePartType.Crust)
             {
-                __result = Lang.Get("meal-topping-ingredient-format", cStacks[5]?.Collectible.GetHeldItemName(cStacks[5]), pieName.ToLowerInvariant());
-            }
-            else
-            {
-                __result = Lang.Get("pie-mixed-" + mixCode + "-" + state);
+                pieName = Lang.Get("meal-topping-ingredient-format", cStacks[5]?.Collectible.GetHeldItemName(cStacks[5]), pieName.ToLowerInvariant());
             }
 
+            __result = pieName;
             return false;
         }
 

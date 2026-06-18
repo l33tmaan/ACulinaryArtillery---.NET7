@@ -83,14 +83,14 @@ namespace ACulinaryArtillery.Util
         /// <br/><br/>
         /// An ingredient of the NoNutrition category cannot be added to pies unless
         /// it has at least one explicit mixing code. A NoNutrition ingredient
-        /// with no mixing codes is an error. NoNutrition may be used explicitly,
-        /// skipping the process below.
+        /// with no mixing codes is an error unless it is non-mixable. NoNutrition
+        /// may be used explicitly, skipping the process below.
         /// <br/><br/>
         /// Checks in order, stopping once a value is found:
         /// <br/><br/>
         ///   1. inPieProperties["foodCategory"]
         /// <br/>
-        ///   2. If stack has ContainableProps:
+        ///   2. If stack has WaterTightContainableProps:
         /// <br/>
         ///     2a. NutritionPropsPerLitreWhenInMeal.FoodCategory
         /// <br/>
@@ -110,7 +110,7 @@ namespace ACulinaryArtillery.Util
         /// <summary>
         /// Convenience property to check if the ingredient is malformed and thus unusable.
         /// </summary>
-        public bool CanBeUsed { get => MixingCodes.Length > 0 || FoodCategory != EnumFoodCategory.NoNutrition; }
+        public bool CanBeUsed => MixingCodes.Length > 0 || FoodCategory != EnumFoodCategory.NoNutrition || !AllowMixing;
 
         /// <summary>
         /// A list of mixing codes that are allowed for this ingredient. When
@@ -131,11 +131,12 @@ namespace ACulinaryArtillery.Util
         /// <br/><br/>
         /// An ingredient may have multiple food category mixing codes. It will be
         /// allowed in any of those mixed pies and will not affect mixing codes.
-        /// If it is the only ingredient, its first mixing code will determine the
-        /// pie type.
+        /// If it is the only ingredient, the pie will be named after it instead
+        /// of a mixing code.
         /// <br/><br/>
         /// If MixingCodes is empty, the food category code will always be added.
-        /// It is an error for MixingCodes to be empty with NoNutrition.
+        /// It is an error for MixingCodes to be empty with NoNutrition, unless
+        /// the ingredient cannot be mixed.
         /// </summary>
         [DocumentAsJson("Optional", "[]")]
         public string[] MixingCodes = [];
@@ -157,10 +158,7 @@ namespace ACulinaryArtillery.Util
         /// <summary>
         /// The appropriate portion size based on whether the ingredient is an item or liquid.
         /// </summary>
-        public float GetPortionSize()
-        {
-            return IsLiquid ? PortionSizeLitres : PortionSize;
-        }
+        public float GetPortionSize() => IsLiquid ? PortionSizeLitres : PortionSize;
 
         /// <summary>
         /// Cached from WaterTightContainableProperties
@@ -171,10 +169,7 @@ namespace ACulinaryArtillery.Util
         /// The number of actual content items per portion.
         /// </summary>
         /// <returns></returns>
-        public int ItemsPerPortion()
-        {
-            return IsLiquid ? (int)(PortionSizeLitres * ItemsPerLitre) : PortionSize;
-        }
+        public int ItemsPerPortion() => IsLiquid ? (int)(PortionSizeLitres * ItemsPerLitre) : PortionSize;
 
         /// <summary>
         /// Read pie properties from Attributes.
@@ -401,7 +396,14 @@ namespace ACulinaryArtillery.Util
                 if (!singleIngredient && !mixCodes.Any()) break;
             }
 
-            if (!mixCodes.Any())
+
+            if (!singleIngredient && !allowMixing)
+            {
+                errCode = "pienonmixable";
+                errMessage = Lang.Get("piemaking-mixingnotallowed");
+                return false;
+            }
+            else if (!singleIngredient && !mixCodes.Any())
             {
                 if (pieProps.PartType == EnumPiePartType.Filling)
                 {
@@ -413,12 +415,6 @@ namespace ACulinaryArtillery.Util
                     errCode = "piemismatchedtopping";
                     errMessage = Lang.Get("piemaking-unabletoaddtopping");
                 }
-                return false;
-            }
-            else if (!singleIngredient && !allowMixing)
-            {
-                errCode = "pienonmixable";
-                errMessage = Lang.Get("piemaking-mixingnotallowed");
                 return false;
             }
 
