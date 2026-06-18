@@ -1,0 +1,8 @@
+[
+    {
+        "file": "game:itemtypes/food/dough.json",
+        "path": "/class",
+        "op": "replace",
+        "value": "ExpandedDough"
+    }
+]

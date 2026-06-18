@@ -1,0 +1,18 @@
+[
+    {
+        "op": "addmerge",
+        "path": "/attributes",
+        "value": {
+            "inPieProperties": {
+                "texture": "game:block/liquid/milkportion",
+                "partType": "Filling",
+                "portionSizeLitres": 1,
+                "foodCategory": "NoNutrition",
+                "mixingCodes": [
+                    "fruit"
+                ]
+            }
+        },
+        "file": "game:itemtypes/liquid/dairy/milkportion.json"
+    }
+]

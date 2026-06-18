@@ -437,5 +437,9 @@
   "itemdesc-hoovedwearables-head-*-bridle1": "Useful for precise, short distance travel.",
   "item-hoovedwearables-head-white-bridle2": "Bridle with curb bit (Chef's hat)",
   "item-hoovedwearables-head-l33t-bridle2": "Bridle with curb bit (l33t chef's hat)",
-  "itemdesc-hoovedwearables-head-*-bridle2": "Useful for long distance travel."
+  "itemdesc-hoovedwearables-head-*-bridle2": "Useful for long distance travel.",
+
+  "piemaking-alreadycomplete": "This pie is already finished!",
+  "piemaking-unabletoaddtopping": "You can't use this topping with the other ingredients in the pie.",
+  "blockhelp-pie-addcrustortopping": "Add crust or topping"
 }

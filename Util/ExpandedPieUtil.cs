@@ -319,20 +319,20 @@ namespace ACulinaryArtillery.Util
             // Special case:
             // Using a knife or crust on a pie with a crust topping should succeed without an error,
             // but the emptySlotIndex is still null because we aren't actually adding anything.
-            if (BEPieGetToppingType(bep) != null)
+            if (BEPieGetToppingType(bep) is EnumPiePartType toppingType)
             {
                 bool addingCrust = pieProps.PartType == EnumPiePartType.Crust;
                 EnumTool? tool = stack?.Collectible.GetTool(new DummySlot(stack));
                 bool usingCuttingTool = tool == EnumTool.Knife || tool == EnumTool.Sword;
 
-                if (BEPieGetToppingType(bep) == EnumPiePartType.Crust && (addingCrust || usingCuttingTool))
+                if (toppingType == EnumPiePartType.Crust && (addingCrust || usingCuttingTool))
                 {
                     return true;
                 }
                 else
                 {
                     errCode = "piefinished";
-                    errMessage = Lang.Get("piemaking-alreadycomplete");
+                    errMessage = Lang.Get("aculinaryartillery:piemaking-alreadycomplete");
                     return false;
                 }
             }
@@ -413,7 +413,7 @@ namespace ACulinaryArtillery.Util
                 else
                 {
                     errCode = "piemismatchedtopping";
-                    errMessage = Lang.Get("piemaking-unabletoaddtopping");
+                    errMessage = Lang.Get("aculinaryartillery:piemaking-unabletoaddtopping");
                 }
                 return false;
             }

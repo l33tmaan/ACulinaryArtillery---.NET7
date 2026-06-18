@@ -187,7 +187,7 @@ namespace ACulinaryArtillery
                         }
                     },
                     new() {
-                        ActionLangCode = "blockhelp-pie-addcrustortopping",
+                        ActionLangCode = "aculinaryartillery:blockhelp-pie-addcrustortopping",
                         MouseButton = EnumMouseButton.Right,
                         Itemstacks = toppingStacks.ToArray(),
                         GetMatchingStacks = (wi, bs, _) => {
@@ -254,7 +254,7 @@ namespace ACulinaryArtillery
 
             string state = __instance.Variant["state"];
 
-            string mixCode = mixCodes.FirstOrDefault() ?? "missing";
+            string mixCode = mixCodes.FirstOrDefault("missing");
 
             if (!singleIngredient && mixCode == "missing")
             {
