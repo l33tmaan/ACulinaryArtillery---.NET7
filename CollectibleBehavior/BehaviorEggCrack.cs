@@ -133,15 +133,14 @@ namespace ACulinaryArtillery
         }
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
-            Block block = byEntity.World.BlockAccessor.GetBlock(blockSel.Position);
-            if (block != null && CanSqueezeInto(byEntity.World, block, blockSel))
-            { 
+            if (blockSel?.Block != null && CanSqueezeInto(byEntity.World, blockSel.Block, blockSel))
+            {
                 handling = EnumHandling.PreventDefault;
                 if (!byEntity.Controls.ShiftKey) { return false; }
-                
+
                 if (byEntity.World.Side == EnumAppSide.Client)
                 {
-                    
+
                     byEntity.StartAnimation(AnimationCode);
 
                     ModelTransform tf = new ModelTransform();
@@ -165,9 +164,9 @@ namespace ACulinaryArtillery
                     }
 
                 }
-                
+
                 return secondsUsed < SqueezeTime;
-           }
+            }
             return base.OnHeldInteractStep(secondsUsed, slot, byEntity, blockSel, entitySel, ref handling);
         }
 
