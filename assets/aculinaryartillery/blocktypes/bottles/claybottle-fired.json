@@ -83,6 +83,7 @@
       "place": "game:block/ceramicplace"
     },
 	"lightAbsorption": 0,
+	"liquidSelectable": 1,
 	"sideopaque": { "all": false },
 	"sideao": { "all": true },
 	"emitsideao": { "all": false },
