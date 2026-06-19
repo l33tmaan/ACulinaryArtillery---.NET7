@@ -688,7 +688,7 @@ namespace ACulinaryArtillery
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(BlockEntityPie.OnInteract))]
-        public static bool OnInteract(ref BlockEntityPie __instance, ref bool __result, ref InventoryGeneric ___inv, ref MealMeshCache ___ms, ref MeshData ___mesh, IPlayer byPlayer)
+        public static bool OnInteractPrefix(ref BlockEntityPie __instance, ref bool __result, ref InventoryGeneric ___inv, ref MealMeshCache ___ms, ref MeshData ___mesh, IPlayer byPlayer)
         {
             if (___inv[0].Itemstack?.Block is not BlockPie pieBlock) return false;
 
@@ -771,6 +771,7 @@ namespace ACulinaryArtillery
 
             if (__instance.Api.Side == EnumAppSide.Server)
             {
+                ___inv[0].Itemstack?.Attributes.SetBool("bakeable", __instance.HasAllFilling);
                 if (!byPlayer.InventoryManager.TryGiveItemstack(___inv[0].Itemstack))
                 {
                     __instance.Api.World.SpawnItemEntity(___inv[0].Itemstack, __instance.Pos.ToVec3d().Add(0.5, 0.25, 0.5));
