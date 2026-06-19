@@ -1379,7 +1379,7 @@ namespace ACulinaryArtillery
             // By mixing code: "block/food/pie/fill-mixed<tag>.png"
 
             int bakeLevel = pieStack?.Attributes.GetAsInt("bakeLevel", 0) ?? 0;
-            ExpandedInPieProperties[] stackPieProps = ___contentStacks.Select(ExpandedInPieProperties.ReadFrom).ToArray()!;
+            ExpandedInPieProperties?[] stackPieProps = ___contentStacks.Select(ExpandedInPieProperties.ReadFrom).ToArray();
 
             bool singleIngredient = true;
             IEnumerable<string> mixCodes = stackPieProps[1]?.MixingCodes ?? [];
@@ -1388,14 +1388,14 @@ namespace ACulinaryArtillery
                 if (___contentStacks[i] == null) continue;
 
                 singleIngredient &= ___contentStacks[1]!.Equals(___capi.World, ___contentStacks[i], GlobalConstants.IgnoredStackAttributes);
-                mixCodes = stackPieProps[i].MixingCodes.Intersect(mixCodes) ?? [];
+                mixCodes = stackPieProps[i]?.MixingCodes.Intersect(mixCodes) ?? [];
 
                 if (!singleIngredient && !mixCodes.Any()) break;
             }
 
-            if (stackPieProps[0]?.Texture != null)
+            if (stackPieProps[0]?.Texture is AssetLocation crustTexture)
             {
-                ___crustTextureLoc = stackPieProps[0].Texture.Clone();
+                ___crustTextureLoc = crustTexture.Clone();
                 ___crustTextureLoc.Path = ___crustTextureLoc.Path.Replace("{bakelevel}", "" + (bakeLevel + 1));
                 ___fillingTextureLoc = new AssetLocation("block/transparent");
             }
@@ -1405,9 +1405,9 @@ namespace ACulinaryArtillery
             }
 
             ___topCrustTextureLoc = new AssetLocation("block/transparent");
-            if (stackPieProps[5]?.Texture != null)
+            if (stackPieProps[5]?.Texture is AssetLocation topCrustTexture)
             {
-                ___topCrustTextureLoc = stackPieProps[5]!.Texture.Clone();
+                ___topCrustTextureLoc = topCrustTexture.Clone();
                 ___topCrustTextureLoc.Path = ___topCrustTextureLoc.Path.Replace("{bakelevel}", "" + (bakeLevel + 1));
             }
             else if (stackPieProps[5] != null)
@@ -1432,7 +1432,7 @@ namespace ACulinaryArtillery
             string topCrustShapeElement;
             if (stackPieProps[5]?.PartType == EnumPiePartType.Topping)
             {
-                topCrustShapeElement = stackPieProps[5].ToppingShapeElement;
+                topCrustShapeElement = stackPieProps[5]!.ToppingShapeElement;
             }
             else
             {
