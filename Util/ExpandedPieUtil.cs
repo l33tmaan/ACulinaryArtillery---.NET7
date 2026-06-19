@@ -150,8 +150,8 @@ namespace ACulinaryArtillery.Util
         /// <summary>
         /// For liquids; The number of liters used for one layer.
         /// </summary>
-        [DocumentAsJson("Optional", "1")]
-        public float PortionSizeLitres = 1;
+        [DocumentAsJson("Optional", "0.4")]
+        public float PortionSizeLitres = 0.4f;
 
         public bool IsLiquid = false;
 
