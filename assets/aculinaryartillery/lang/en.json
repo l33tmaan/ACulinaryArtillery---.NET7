@@ -441,5 +441,9 @@
 
   "piemaking-alreadycomplete": "This pie is already finished!",
   "piemaking-unabletoaddtopping": "You can't use this topping with the other ingredients in the pie.",
-  "blockhelp-pie-addcrustortopping": "Add crust or topping"
+  "blockhelp-pie-addcrustortopping": "Add crust or topping",
+  "pie-single-aculinaryartillery:eggyolkfullportion-chicken-raw": "Liquid chicken egg pie (raw)",
+  "pie-single-aculinaryartillery:eggyolkfullportion-chicken-partbaked": "Liquid chicken egg pie (part-baked)",
+  "pie-single-aculinaryartillery:eggyolkfullportion-chicken-perfect": "Liquid chicken egg pie",
+  "pie-single-aculinaryartillery:eggyolkfullportion-chicken-charred": "Liquid chicken egg pie (charred)"
 }
