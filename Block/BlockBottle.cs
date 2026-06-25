@@ -30,6 +30,8 @@ namespace ACulinaryArtillery
         public virtual float MinFillZ => Attributes["minFillSideways"].AsFloat();
         public virtual float MaxFillZ => Attributes["maxFillSideways"].AsFloat();
 
+        public ItemStack[] corkStacks = null!;
+
         public override byte[]? GetLightHsv(IBlockAccessor blockAccessor, BlockPos pos, ItemStack? stack = null)
         {
             return GetContent(stack)?.Item?.LightHsv ?? base.GetLightHsv(blockAccessor, pos, stack);
@@ -39,6 +41,18 @@ namespace ACulinaryArtillery
         {
             base.OnLoaded(api);
             props = Attributes?["liquidContainerProps"]?.AsObject(props, Code.Domain) ?? props;
+
+            List<ItemStack> corkstacks = [];
+
+            foreach (CollectibleObject obj in api.World.Collectibles)
+            {
+                if (obj.FirstCodePart() == "cork")
+                {
+                    corkstacks.Add(new ItemStack(obj));
+                }
+            }
+
+            corkStacks = [.. corkstacks];
         }
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
@@ -169,7 +183,7 @@ namespace ACulinaryArtillery
 
         public MeshData? GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos? forBlockPos = null)
         {
-            ItemStack itemstack =  slot.Itemstack;
+            ItemStack itemstack = slot.Itemstack;
             if (forBlockPos != null && GetBlockEntity<BlockEntityBottleRack>(forBlockPos) != null)
             {
                 return GenMesh(api as ICoreClientAPI, GetContent(itemstack), true, forBlockPos);
@@ -242,23 +256,26 @@ namespace ACulinaryArtillery
 
         public override void OnHeldInteractStart(ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
-            //if (api.Side == EnumAppSide.Client) return;
             if (entitySel != null) return;
-            if ((byEntity as EntityPlayer)?.Player is IPlayer plr && blockSel == null && entitySel == null && Variant["type"] == "corked")
+
+            IPlayer? plr = (byEntity as EntityPlayer)?.Player;
+            if (plr != null && blockSel == null && Variant["type"] == "corked")
             {
                 if (plr.InventoryManager?.OffhandHotbarSlot is ItemSlot offSlot && (offSlot.Empty || offSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
                 {
-                    
-                    ItemStack newBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
+                    ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
 
-                    if (itemslot.StackSize == 1) itemslot.Itemstack = newBottle;
+                    if (itemslot.StackSize == 1)
+                    {
+                        itemslot.Itemstack = uncorkedBottle;
+                    }
                     else
-                    {   
+                    {
                         itemslot.TakeOut(1);
                         itemslot.MarkDirty();
-                        if (!plr.InventoryManager.TryGiveItemstack(newBottle, true))
+                        if (!plr.InventoryManager.TryGiveItemstack(uncorkedBottle, true))
                         {
-                            byEntity.World.SpawnItemEntity(newBottle, byEntity.Pos.AsBlockPos);
+                            byEntity.World.SpawnItemEntity(uncorkedBottle, byEntity.Pos.AsBlockPos);
                         }
                     }
 
@@ -267,11 +284,33 @@ namespace ACulinaryArtillery
                     {
                         byEntity.World.SpawnItemEntity(cork, byEntity.Pos.AsBlockPos);
                     }
-                    //plr.InventoryManager.OffhandHotbarSlot.MarkDirty();
+
                     handHandling = EnumHandHandling.PreventDefault;
                     return;
                 }
                 else (api as ICoreClientAPI)?.TriggerIngameError(this, "fulloffhandslot", Lang.Get("aculinaryartillery:bottle-fulloffhandslot"));
+            }
+
+            if (blockSel == null && byEntity.Controls.ShiftKey && plr != null
+                && plr.InventoryManager?.OffhandHotbarSlot is ItemSlot offhandSlot
+                && offhandSlot.Itemstack?.Collectible.FirstCodePart() == "cork")
+            {
+                ItemStack corkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack?.Attributes };
+                offhandSlot.TakeOut(1);
+
+                if (itemslot.StackSize == 1)
+                {
+                    itemslot.Itemstack = corkedBottle;
+                }
+                else
+                {
+                    itemslot.TakeOut(1);
+                    itemslot.MarkDirty();
+                    if (!plr.InventoryManager.TryGiveItemstack(corkedBottle, true))
+                    {
+                        byEntity.World.SpawnItemEntity(corkedBottle, byEntity.Pos.AsBlockPos);
+                    }
+                }
             }
 
             base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
@@ -350,7 +389,7 @@ namespace ACulinaryArtillery
             return Attributes[transType == EnumTransitionType.Perish ? "perishRate" : "cureRate"].AsFloat(1);
         }
 
-        public float SatMult=> Attributes?["satMult"].AsFloat(1f) ?? 1f;
+        public float SatMult => Attributes?["satMult"].AsFloat(1f) ?? 1f;
 
         public FoodNutritionProperties[]? GetPropsFromArray(float[]? satieties)
         {
@@ -438,9 +477,9 @@ namespace ACulinaryArtillery
                     ActionLangCode = "heldhelp-empty",
                     HotKeyCode = "ctrl",
                     MouseButton = EnumMouseButton.Right,
-                    ShouldApply = (wi, bs, es) => GetCurrentLitres(inSlot.Itemstack) > 0,
+                    ShouldApply = (wi, bs, es) => bs != null && GetCurrentLitres(inSlot.Itemstack) > 0,
                 },
-                 new()
+                new()
                 {
                     ActionLangCode = "aculinaryartillery:heldhelp-drink",
                     MouseButton = EnumMouseButton.Right,
@@ -458,7 +497,22 @@ namespace ACulinaryArtillery
                     HotKeyCode = "shift",
                     MouseButton = EnumMouseButton.Right,
                     ShouldApply = (wi, bs, es) => true
-                }
+                },
+
+                new()
+                {
+                    ActionLangCode = "aculinaryartillery:heldhelp-uncork",
+                    MouseButton = EnumMouseButton.Right,
+                    ShouldApply = (wi, bs, es) => bs == null && es == null && Variant["type"] == "corked"
+                },
+                new()
+                {
+                    ActionLangCode = "aculinaryartillery:heldhelp-cork",
+                    HotKeyCode = "shift",
+                    MouseButton = EnumMouseButton.Right,
+                    Itemstacks = corkStacks,
+                    GetMatchingStacks = (wi, bs, es) => bs == null && es == null && Variant["type"] == "fired" ? wi.Itemstacks : null
+                },
             ];
         }
     }
