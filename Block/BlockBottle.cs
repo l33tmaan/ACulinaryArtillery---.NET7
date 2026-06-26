@@ -32,6 +32,9 @@ namespace ACulinaryArtillery
 
         public ItemStack[] corkStacks = null!;
 
+        public static AssetLocation? corkSound = null;
+        public static AssetLocation? uncorkSound = null;
+
         public override byte[]? GetLightHsv(IBlockAccessor blockAccessor, BlockPos pos, ItemStack? stack = null)
         {
             return GetContent(stack)?.Item?.LightHsv ?? base.GetLightHsv(blockAccessor, pos, stack);
@@ -53,6 +56,9 @@ namespace ACulinaryArtillery
             }
 
             corkStacks = [.. corkstacks];
+
+            corkSound ??= new AssetLocation("aculinaryartillery:sounds/player/bottle/cork*");
+            uncorkSound ??= new AssetLocation("aculinaryartillery:sounds/player/bottle/uncork*");
         }
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
@@ -248,6 +254,8 @@ namespace ACulinaryArtillery
                 sourceSlot.TakeOut(1);
                 sinkSlot.MarkDirty();
 
+                api.World.PlaySoundAt(corkSound, op.ActingPlayer);
+
                 return;
             }
 
@@ -285,6 +293,8 @@ namespace ACulinaryArtillery
                         byEntity.World.SpawnItemEntity(cork, byEntity.Pos.AsBlockPos);
                     }
 
+                    api.World.PlaySoundAt(uncorkSound, byEntity);
+
                     handHandling = EnumHandHandling.PreventDefault;
                     return;
                 }
@@ -311,6 +321,8 @@ namespace ACulinaryArtillery
                         byEntity.World.SpawnItemEntity(corkedBottle, byEntity.Pos.AsBlockPos);
                     }
                 }
+
+                api.World.PlaySoundAt(corkSound, byEntity);
             }
 
             base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
