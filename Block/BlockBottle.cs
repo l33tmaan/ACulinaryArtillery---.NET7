@@ -267,11 +267,13 @@ namespace ACulinaryArtillery
             if (entitySel != null) return;
 
             IPlayer? plr = (byEntity as EntityPlayer)?.Player;
-            if (plr != null && blockSel == null && Variant["type"] == "corked")
+            ItemSlot? offhandSlot = plr?.InventoryManager?.OffhandHotbarSlot;
+
+            if (plr != null && blockSel == null && Variant["type"] == "corked" && !byEntity.Controls.ShiftKey)
             {
-                if (plr.InventoryManager?.OffhandHotbarSlot is ItemSlot offSlot && (offSlot.Empty || offSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
+                if (offhandSlot != null && (offhandSlot.Empty || offhandSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
                 {
-                    ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
+                    ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack?.Attributes };
 
                     if (itemslot.StackSize == 1)
                     {
@@ -280,7 +282,6 @@ namespace ACulinaryArtillery
                     else
                     {
                         itemslot.TakeOut(1);
-                        itemslot.MarkDirty();
                         if (!plr.InventoryManager.TryGiveItemstack(uncorkedBottle, true))
                         {
                             byEntity.World.SpawnItemEntity(uncorkedBottle, byEntity.Pos.AsBlockPos);
@@ -288,11 +289,15 @@ namespace ACulinaryArtillery
                     }
 
                     ItemStack cork = new(byEntity.World.GetItem("aculinaryartillery:cork-generic"));
-                    if (new DummySlot(cork).TryPutInto(byEntity.World, offSlot) <= 0)
+                    if (new DummySlot(cork).TryPutInto(byEntity.World, offhandSlot) <= 0)
                     {
                         byEntity.World.SpawnItemEntity(cork, byEntity.Pos.AsBlockPos);
                     }
 
+
+                    itemslot.MarkDirty();
+                    offhandSlot.MarkDirty();
+                    plr.InventoryManager.BroadcastHotbarSlot();
                     api.World.PlaySoundAt(uncorkSound, byEntity);
 
                     handHandling = EnumHandHandling.PreventDefault;
@@ -301,8 +306,8 @@ namespace ACulinaryArtillery
                 else (api as ICoreClientAPI)?.TriggerIngameError(this, "fulloffhandslot", Lang.Get("aculinaryartillery:bottle-fulloffhandslot"));
             }
 
-            if (blockSel == null && byEntity.Controls.ShiftKey && plr != null
-                && plr.InventoryManager?.OffhandHotbarSlot is ItemSlot offhandSlot
+            if (blockSel == null && byEntity.Controls.ShiftKey && plr != null && offhandSlot != null
+                && Variant["type"] == "fired"
                 && offhandSlot.Itemstack?.Collectible.FirstCodePart() == "cork")
             {
                 ItemStack corkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack?.Attributes };
@@ -315,14 +320,19 @@ namespace ACulinaryArtillery
                 else
                 {
                     itemslot.TakeOut(1);
-                    itemslot.MarkDirty();
                     if (!plr.InventoryManager.TryGiveItemstack(corkedBottle, true))
                     {
                         byEntity.World.SpawnItemEntity(corkedBottle, byEntity.Pos.AsBlockPos);
                     }
                 }
 
+                itemslot.MarkDirty();
+                offhandSlot.MarkDirty();
+                plr.InventoryManager.BroadcastHotbarSlot();
                 api.World.PlaySoundAt(corkSound, byEntity);
+
+                handHandling = EnumHandHandling.PreventDefault;
+                return;
             }
 
             base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
