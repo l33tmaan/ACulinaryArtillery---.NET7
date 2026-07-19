@@ -108,11 +108,6 @@ namespace ACulinaryArtillery.Util
         public EnumFoodCategory FoodCategory = EnumFoodCategory.NoNutrition;
 
         /// <summary>
-        /// Convenience property to check if the ingredient is malformed and thus unusable.
-        /// </summary>
-        public bool CanBeUsed => MixingCodes.Length > 0 || FoodCategory != EnumFoodCategory.NoNutrition || !AllowMixing;
-
-        /// <summary>
         /// A list of mixing codes that are allowed for this ingredient. When
         /// checking for mixing codes, the first mixing code present in all
         /// ingredients is used for the pie type.
@@ -174,12 +169,15 @@ namespace ACulinaryArtillery.Util
         /// <summary>
         /// Read pie properties from Attributes.
         /// </summary>
-        /// <returns>Null if "inPieProperties" is malformed or does not
-        /// exist, or in the case that no food category is given and the
-        /// object does not have any category from nutrition properties.</returns>
-        public static ExpandedInPieProperties? ReadFrom(CollectibleObject? obj)
+        /// <returns>Null if the ingredient is unusable or "inPieProperties" does not exist.</returns>
+        public static ExpandedInPieProperties? ReadFrom(CollectibleObject obj, out string? errMessage)
         {
-            if (obj?.Attributes?["inPieProperties"]?.AsObject<ExpandedInPieProperties>(null, obj.Code.Domain) is not ExpandedInPieProperties props) return null;
+            errMessage = null;
+
+            if (obj?.Attributes?["inPieProperties"]?.AsObject<ExpandedInPieProperties>(null, obj.Code.Domain) is not ExpandedInPieProperties props)
+            {
+                return null;
+            }
 
             WaterTightContainableProps? liquidProps = BlockLiquidContainerBase.GetContainableProps(new ItemStack(obj));
 
@@ -197,16 +195,20 @@ namespace ACulinaryArtillery.Util
                     foodCat ??= liquidProps.NutritionPropsPerLitre?.FoodCategory;
                 }
 
-                foodCat ??= obj.Attributes?["nutritionPropsWhenInMeal"]?.AsObject<FoodNutritionProperties>()?.FoodCategory;
-                foodCat ??= obj.GetNutritionProperties(null, null, null)?.FoodCategory;
+                FoodNutritionProperties? nutriPropsInMeal = obj.Attributes?["nutritionPropsWhenInMeal"]?.AsObject<FoodNutritionProperties>();
+                foodCat ??= nutriPropsInMeal?.FoodCategory;
 
-                props.FoodCategory = foodCat ?? EnumFoodCategory.NoNutrition;
+                FoodNutritionProperties? nutriProps = obj.GetNutritionProperties(null, null, null);
+                foodCat ??= nutriProps?.FoodCategory;
 
                 // This ingredient has no nutrition properties at all, so it would do nothing in a pie.
-                if (props.FoodCategory == EnumFoodCategory.NoNutrition)
+                if (foodCat == null && liquidProps?.NutritionPropsPerLitreWhenInMeal == null && liquidProps?.NutritionPropsPerLitre == null && nutriPropsInMeal == null && nutriProps == null)
                 {
+                    errMessage = $"{obj.Code} has inPieProperties, but no nutrition properties. It cannot be used in pies.";
                     return null;
                 }
+
+                props.FoodCategory = foodCat ?? EnumFoodCategory.NoNutrition;
             }
 
             if (liquidProps != null)
@@ -226,13 +228,37 @@ namespace ACulinaryArtillery.Util
                 }
             }
 
+            // Nonsensical quantity.
+            if (props.GetPortionSize() <= 0)
+            {
+                errMessage = $"inPieProperties for {obj.Code} has a portion size of 0 or less. It cannot be used in pies.";
+                return null;
+            }
+
+            // Ingredient can be mixed, but nothing is compatible.
+            if ((props.PartType == EnumPiePartType.Filling || props.PartType == EnumPiePartType.Topping)
+                && props.AllowMixing && props.MixingCodes.Length == 0 && props.FoodCategory == EnumFoodCategory.NoNutrition)
+            {
+                errMessage = $"InPieProperties for {(props.PartType == EnumPiePartType.Filling ? "filling" : "topping")} {obj.Code} has no mixing codes and the food category NoNutrition. It cannot be added to pies unless you explicitly disable mixing.";
+                return null;
+            }
+
             return props;
+        }
+
+        /// <summary>
+        /// Read pie properties from Attributes.
+        /// </summary>
+        /// <returns>Null if the ingredient is unusable or "inPieProperties" does not exist.</returns>
+        public static ExpandedInPieProperties? ReadFrom(CollectibleObject? obj)
+        {
+            return obj != null ? ReadFrom(obj, out _) : null;
         }
 
         /// <summary>
         /// Read pie properties from ItemAttributes.
         /// </summary>
-        /// <returns>Null if "inPieProperties" is malformed or does not exist.</returns>
+        /// <returns>Null if the ingredient is unusable or "inPieProperties" does not exist.</returns>
         public static ExpandedInPieProperties? ReadFrom(ItemStack? stack)
         {
             return ReadFrom(stack?.Collectible);
@@ -296,8 +322,7 @@ namespace ACulinaryArtillery.Util
                 }
             }
 
-            ExpandedInPieProperties? pieProps = ExpandedInPieProperties.ReadFrom(contentStack);
-            if (pieProps == null || !pieProps.CanBeUsed)
+            if (ExpandedInPieProperties.ReadFrom(contentStack) is not ExpandedInPieProperties pieProps)
             {
                 errCode = "notpieable";
                 errMessage = Lang.Get("This item can not be added to pies");
@@ -308,7 +333,7 @@ namespace ACulinaryArtillery.Util
             if (totalPortions < 1)
             {
                 errCode = "notenoughingredients";
-                errMessage = Lang.Get(container != null ? "Need at least {0:0.#}L liquid" : "Need at least {0} items each", pieProps.GetPortionSize());
+                errMessage = Lang.Get(container != null ? "piemaking-notenoughliquid" : "piemaking-notenoughitems", pieProps.GetPortionSize());
                 return false;
             }
 
@@ -332,7 +357,7 @@ namespace ACulinaryArtillery.Util
                 else
                 {
                     errCode = "piefinished";
-                    errMessage = Lang.Get("aculinaryartillery:piemaking-alreadycomplete");
+                    errMessage = Lang.Get("piemaking-alreadycomplete");
                     return false;
                 }
             }
@@ -342,7 +367,7 @@ namespace ACulinaryArtillery.Util
                 if (pieProps.PartType == EnumPiePartType.Filling)
                 {
                     errCode = "piefullfilling";
-                    errMessage = Lang.Get("Can't add more filling - already completely filled pie");
+                    errMessage = Lang.Get("piemaking-alreadycomplete");
                     return false;
                 }
                 else if (pieProps.PartType == EnumPiePartType.Crust)
@@ -413,7 +438,7 @@ namespace ACulinaryArtillery.Util
                 else
                 {
                     errCode = "piemismatchedtopping";
-                    errMessage = Lang.Get("aculinaryartillery:piemaking-unabletoaddtopping");
+                    errMessage = Lang.Get("piemaking-unabletoaddtopping");
                 }
                 return false;
             }
@@ -464,7 +489,7 @@ namespace ACulinaryArtillery.Util
 
             ILiquidSource? container = slot.Itemstack.Collectible.GetCollectibleInterface<ILiquidSource>();
             ItemStack contentStack = slot.Itemstack;
-            if (container != null && container.GetContent(slot.Itemstack) is ItemStack cStack)
+            if (container?.GetContent(slot.Itemstack) is ItemStack cStack)
             {
                 contentStack = cStack;
             }
@@ -496,14 +521,13 @@ namespace ACulinaryArtillery.Util
 
                 if (dummySource != null)
                 {
-                    if (dummySource.TryTakeContent(dummySlot.Itemstack, pieProps.ItemsPerPortion()).StackSize >= pieProps.ItemsPerPortion())
+                    if (dummySource.TryTakeContent(dummySlot.Itemstack, pieProps.ItemsPerPortion()) is ItemStack taken && taken.StackSize >= pieProps.ItemsPerPortion())
                     {
-                        ingStack = contentStack.Clone();
-                        ingStack.StackSize = pieProps.ItemsPerPortion();
+                        ingStack = taken;
                     }
                     else
                     {
-                        bep.Api.Logger.Error($"BEPie.TryAddIngredientFrom expected at least {pieProps.ItemsPerPortion()} liquid items, but there weren't enough. There is likely a bug either here or in CanAddIngredient.");
+                        bep.Api.Logger.Error($"BEPie.TryAddIngredientFrom expected at least {pieProps.ItemsPerPortion()} liquid items, but there were only {dummySlot.Itemstack.StackSize}. There is likely a bug either here or in CanAddIngredient.");
                         return false;
                     }
                 }
@@ -516,14 +540,13 @@ namespace ACulinaryArtillery.Util
             {
                 if (container != null)
                 {
-                    if (container.TryTakeContent(slot.Itemstack, pieProps.ItemsPerPortion()).StackSize >= pieProps.ItemsPerPortion())
+                    if (container.TryTakeContent(slot.Itemstack, pieProps.ItemsPerPortion()) is ItemStack taken && taken.StackSize >= pieProps.ItemsPerPortion())
                     {
-                        ingStack = contentStack.Clone();
-                        ingStack.StackSize = pieProps.ItemsPerPortion();
+                        ingStack = taken;
                     }
                     else
                     {
-                        bep.Api.Logger.Error($"BEPie.TryAddIngredientFrom expected at least {pieProps.ItemsPerPortion()} liquid items, but there weren't enough. There is likely a bug either here or in CanAddIngredient.");
+                        bep.Api.Logger.Error($"BEPie.TryAddIngredientFrom expected at least {pieProps.ItemsPerPortion()} liquid items, but there were only {slot.Itemstack.StackSize}. There is likely a bug either here or in CanAddIngredient.");
                         return false;
                     }
                 }
@@ -547,7 +570,7 @@ namespace ACulinaryArtillery.Util
                 float scaledIngTransitionedHours = ingState.TransitionedHours / (totalIngHours / totalPieHours);
 
                 var avgTransitionedHours = scaledIngTransitionedHours * t + pieState.TransitionedHours * (1 - t);
-                if (bep.Api.Side.IsServer()) bep.Api.Logger.Debug($"Averaged new ingredient perish time: {ingState.TransitionedHours / (totalIngHours / totalPieHours)} * {t} + {pieState.TransitionedHours} * {1 - t}");
+                //if (bep.Api.Side.IsServer()) bep.Api.Logger.Debug($"Averaged new ingredient perish time: {ingState.TransitionedHours / (totalIngHours / totalPieHours)} * {t} + {pieState.TransitionedHours} * {1 - t}");
                 (inv[0].Itemstack!.Block as BlockPie)!.SetTransitionState(inv[0].Itemstack, ingState.Props.Type, avgTransitionedHours);
             }
 

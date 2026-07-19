@@ -46,7 +46,7 @@ namespace ACulinaryArtillery
 
                     obj.WalkInventory(delegate (ItemSlot pslot)
                     {
-                        if (pslot.Empty || pslot is ItemSlotCreative || pslot.StackSize == pslot.Itemstack.Collectible.MaxStackSize || pslot.Itemstack.Item == byEntity.World.GetItem("aculinaryartillery:cork-generic"))
+                        if (pslot.Empty || pslot is ItemSlotCreative || pslot.StackSize == pslot.Itemstack.Collectible.MaxStackSize || pslot.Itemstack.ItemAttributes["canSealBottle"].AsBool())
                         {
                             return true;
                         }
@@ -130,7 +130,13 @@ namespace ACulinaryArtillery
 
                 foreach (CollectibleObject obj in api.World.Collectibles)
                 {
-                    if (ExpandedInPieProperties.ReadFrom(obj) is not ExpandedInPieProperties pieProps || !pieProps.CanBeUsed) continue;
+                    string? piePropsErr = null;
+                    if (ExpandedInPieProperties.ReadFrom(obj, out piePropsErr) is not ExpandedInPieProperties pieProps)
+                    {
+                        if (piePropsErr != null) api.World.Logger.Error(piePropsErr);
+                        continue;
+                    }
+
                     EnumPiePartType partType = pieProps.PartType;
 
                     if (obj is ItemDough || partType == EnumPiePartType.Crust)
@@ -187,7 +193,7 @@ namespace ACulinaryArtillery
                         }
                     },
                     new() {
-                        ActionLangCode = "aculinaryartillery:blockhelp-pie-addcrustortopping",
+                        ActionLangCode = "game:blockhelp-pie-addcrustortopping",
                         MouseButton = EnumMouseButton.Right,
                         Itemstacks = toppingStacks.ToArray(),
                         GetMatchingStacks = (wi, bs, _) => {
@@ -290,9 +296,10 @@ namespace ACulinaryArtillery
             Dictionary<string, List<ItemStack>> mixedFillings = [];
             Dictionary<string, List<ItemStack>> toppingsByCode = [];
 
-            foreach (ItemStack stack in allStacks)
+            foreach (ItemStack s in allStacks)
             {
-                if (ExpandedInPieProperties.ReadFrom(stack) is not ExpandedInPieProperties pieProps || !pieProps.CanBeUsed) continue;
+                if (ExpandedInPieProperties.ReadFrom(s) is not ExpandedInPieProperties pieProps) continue;
+                ItemStack stack = s.Clone();
 
                 stack.StackSize = pieProps.ItemsPerPortion();
 
@@ -446,7 +453,7 @@ namespace ACulinaryArtillery
                     CookingRecipeIngredientPatcher.Resolve(ingredient, api.World, "handbook meal recipes");
                     foreach (ItemStack? stack in ingredient.ValidStacks.Select(stack => stack.ResolvedItemstack))
                     {
-                        if (ingredient.GetMatchingStack(stack) is not CookingRecipeStack recipeStack) continue;
+                        if (ingredient.GetMatchingStack(stack)?.Clone() is not CookingRecipeStack recipeStack) continue;
 
                         if (stack != null && BlockLiquidContainerBase.GetContainableProps(stack) is WaterTightContainableProps props)
                         {
@@ -543,8 +550,6 @@ namespace ACulinaryArtillery
                 return false;
             }
 
-            while (randomPie.Count < 6) randomPie.Add(null);
-
             if (!recipe.Matches([.. randomPie]))
             {
                 api.Logger.Error($"Random pie [ {string.Join(", ", randomPie)} ] is invalid or does not match recipe {recipe.Code}. Making it completely empty to prevent worse issues. This is a coding error, so please report it.");
@@ -592,7 +597,7 @@ namespace ACulinaryArtillery
             }
 
             // Use null-forgiving in this method in case the pie is malformed,
-            // e.g. an ingredient lost its pie props. Report it because its
+            // e.g. an ingredient lost its pie props. Report it because it's
             // a content error.
             for (int i = 0; i < 6; i++)
             {
@@ -654,22 +659,19 @@ namespace ACulinaryArtillery
 
                 for (int i = 0; i < doughStates.Length; i++)
                 {
+                    float scaledHours;
                     if (doughStates[i].TransitionLevel > 0)
                     {
-                        float scaledHours = pieStates[i].FreshHours + pieStates[i].TransitionHours * doughStates[i].TransitionLevel;
-
-                        if (__instance.Api.Side.IsServer()) __instance.Api.Logger.Debug($"Scaled spoiling dough lifetime to pie; {pieStates[i].FreshHours} + {pieStates[i].TransitionHours} * {doughStates[i].TransitionLevel}");
-
-                        pie.Collectible.SetTransitionState(pie, doughStates[i].Props.Type, scaledHours);
+                        scaledHours = pieStates[i].FreshHours + pieStates[i].TransitionHours * doughStates[i].TransitionLevel;
+                        //if (__instance.Api.Side.IsServer()) __instance.Api.Logger.Debug($"Scaled spoiling dough lifetime to pie; {pieStates[i].FreshHours} + {pieStates[i].TransitionHours} * {doughStates[i].TransitionLevel} = {scaledHours}");
                     }
                     else
                     {
-                        float scaledHours = doughStates[i].TransitionedHours / (pieStates[i].TransitionHours / doughStates[i].TransitionHours);
-
-                        if (__instance.Api.Side.IsServer()) __instance.Api.Logger.Debug($"Scaled fresh dough lifetime to pie; {doughStates[i].TransitionedHours} / ({pieStates[i].TransitionHours} / {doughStates[i].TransitionHours}) = {scaledHours}");
-
-                        pie.Collectible.SetTransitionState(pie, doughStates[i].Props.Type, scaledHours);
+                        scaledHours = doughStates[i].TransitionedHours / (pieStates[i].TransitionHours / doughStates[i].TransitionHours);
+                        //if (__instance.Api.Side.IsServer()) __instance.Api.Logger.Debug($"Scaled fresh dough lifetime to pie; {doughStates[i].TransitionedHours} / ({pieStates[i].TransitionHours} / {doughStates[i].TransitionHours}) = {scaledHours}");
                     }
+
+                    pie.Collectible.SetTransitionState(pie, doughStates[i].Props.Type, scaledHours);
                 }
             }
 
@@ -693,14 +695,15 @@ namespace ACulinaryArtillery
             if (___inv[0].Itemstack?.Block is not BlockPie pieBlock) return false;
 
             ItemSlot? hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+            EnumTool? tool = byPlayer.InventoryManager.ActiveTool;
 
-            if (hotbarSlot?.Itemstack?.Collectible.GetTool(hotbarSlot) is EnumTool tool && (tool is EnumTool.Knife || tool is EnumTool.Sword))
+            if (tool is EnumTool.Knife || tool is EnumTool.Sword)
             {
                 if (pieBlock.State != "raw")
                 {
                     if (__instance.Api.Side == EnumAppSide.Server && __instance.TakeSlice() is ItemStack slicestack)
                     {
-                        hotbarSlot.Itemstack.Collectible.DamageItem(byPlayer.Entity.World, byPlayer.Entity, hotbarSlot);
+                        hotbarSlot.Itemstack?.Collectible.DamageItem(byPlayer.Entity.World, byPlayer.Entity, hotbarSlot);
                         if (!byPlayer.InventoryManager.TryGiveItemstack(slicestack))
                         {
                             __instance.Api.World.SpawnItemEntity(slicestack, __instance.Pos);

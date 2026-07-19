@@ -47,7 +47,7 @@ namespace ACulinaryArtillery
                     }
                     else
                     {
-                        capi?.TriggerIngameError(this, "notenoughingredients", Lang.Get("Need at least {0} dough", pieProps.PortionSize));
+                        capi?.TriggerIngameError(this, "notenoughingredients", Lang.Get("piemaking-notenoughdough", pieProps.PortionSize));
                     }
 
                     handling = EnumHandHandling.PreventDefault;
