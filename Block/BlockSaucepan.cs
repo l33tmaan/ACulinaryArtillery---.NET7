@@ -294,9 +294,9 @@ namespace ACulinaryArtillery
 
             if (GetContainableProps(product) is WaterTightContainableProps props)
             {
-                float litres = amount * (product.StackSize / props.ItemsPerLitre);
+                float millilitres = (float) Math.Round((float)amount * product.StackSize * 1000 / props.ItemsPerLitre);
 
-                return Lang.Get("mealcreation-nonfood-liquid", litres < 0.1 ? Lang.Get("{0} mL", (int)(litres * 1000)) : Lang.Get("{0:0.##} L", litres), product.GetName());
+                return Lang.Get("mealcreation-nonfood-liquid", millilitres < 100 ? Lang.Get("{0} mL", millilitres) : Lang.Get("{0:0.##} L", millilitres / 1000), product.GetName());
             }
 
             return Lang.Get("firepit-gui-willcreate", amount, product.GetName());
