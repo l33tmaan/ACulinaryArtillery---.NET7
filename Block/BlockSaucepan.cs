@@ -92,7 +92,7 @@ namespace ACulinaryArtillery
                 if ((combustProps?.SmeltedStack?.ResolvedItemstack != null) &&                  //there is an output item defined and correctly resolved
                     combustProps.SmeltingType is EnumSmeltType.Cook or EnumSmeltType.Convert && //it's an item you cook rather than smelting
                     combustProps.RequiresContainer &&                                           //it requires a container
-                    (stacks[0].StackSize % combustProps.SmeltedRatio == 0))                     //there is a round number of items to smelt
+                    (stacks[0].StackSize >= combustProps.SmeltedRatio))                         //there is at least one whole portion to smelt (partial amounts cook too; DoSmelt throws the extra away)
                 {
                     return true;
                 }
