@@ -292,6 +292,8 @@ namespace ACulinaryArtillery
             }
             else return null;
 
+            if (amount <= 0) return null; // nothing to show for a sub-portion dribble that won't cook
+
             if (GetContainableProps(product) is WaterTightContainableProps props)
             {
                 float millilitres = (float) Math.Round((float)amount * product.StackSize * 1000 / props.ItemsPerLitre);
