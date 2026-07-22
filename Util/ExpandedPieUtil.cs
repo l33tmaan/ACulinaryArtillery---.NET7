@@ -182,7 +182,7 @@ namespace ACulinaryArtillery.Util
             WaterTightContainableProps? liquidProps = BlockLiquidContainerBase.GetContainableProps(new ItemStack(obj));
 
             // Do not attempt to overwrite NoNutrition if it was set manually, only if it was defaulted to.
-            if (!obj.Attributes["inPieProperties"]["foodCategory"].Exists && props.FoodCategory == EnumFoodCategory.NoNutrition)
+            if (!obj.Attributes["inPieProperties"]["foodCategory"].Exists)
             {
                 // Get the food category manually. It doesn't need to be present in the pie properties.
                 // We do this handling here to avoid making the field unnecessarily nullable.
