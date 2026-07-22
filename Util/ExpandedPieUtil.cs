@@ -180,6 +180,15 @@ namespace ACulinaryArtillery.Util
             }
 
             WaterTightContainableProps? liquidProps = BlockLiquidContainerBase.GetContainableProps(new ItemStack(obj));
+            FoodNutritionProperties? nutriProps = obj.GetNutritionProperties(null, null, null);
+            FoodNutritionProperties? nutriPropsInMeal = obj.Attributes["nutritionPropsWhenInMeal"]?.AsObject<FoodNutritionProperties>();
+
+            // This ingredient has no nutrition properties at all, so it would do nothing in a pie.
+            if (nutriProps == null && nutriPropsInMeal == null && (liquidProps == null || (liquidProps.NutritionPropsPerLitre == null && liquidProps.NutritionPropsPerLitreWhenInMeal == null)))
+            {
+                errMessage = $"{obj.Code} has inPieProperties, but no nutrition properties. It cannot be used in pies.";
+                return null;
+            }
 
             // Do not attempt to overwrite NoNutrition if it was set manually, only if it was defaulted to.
             if (!obj.Attributes["inPieProperties"]["foodCategory"].Exists)
@@ -195,20 +204,17 @@ namespace ACulinaryArtillery.Util
                     foodCat ??= liquidProps.NutritionPropsPerLitre?.FoodCategory;
                 }
 
-                FoodNutritionProperties? nutriPropsInMeal = obj.Attributes?["nutritionPropsWhenInMeal"]?.AsObject<FoodNutritionProperties>();
                 foodCat ??= nutriPropsInMeal?.FoodCategory;
-
-                FoodNutritionProperties? nutriProps = obj.GetNutritionProperties(null, null, null);
                 foodCat ??= nutriProps?.FoodCategory;
 
-                // This ingredient has no nutrition properties at all, so it would do nothing in a pie.
-                if (foodCat == null && liquidProps?.NutritionPropsPerLitreWhenInMeal == null && liquidProps?.NutritionPropsPerLitre == null && nutriPropsInMeal == null && nutriProps == null)
+                // This ingredient has no food category at all, so it would do nothing in a pie.
+                if (foodCat == null)
                 {
-                    errMessage = $"{obj.Code} has inPieProperties, but no nutrition properties. It cannot be used in pies.";
+                    errMessage = $"{obj.Code} has inPieProperties and nutrition properties, but no food category. It cannot be used in pies.";
                     return null;
                 }
 
-                props.FoodCategory = foodCat ?? EnumFoodCategory.NoNutrition;
+                props.FoodCategory = foodCat.Value;
             }
 
             if (liquidProps != null)
