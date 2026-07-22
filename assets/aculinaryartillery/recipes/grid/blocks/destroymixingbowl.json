@@ -1,0 +1,47 @@
+[
+  {
+    "ingredientPattern": "M",
+    "ingredients": {
+      "M": { "type": "block", "code": "mixingbowl-*", "name": "color", "returnedStack": { "type": "item", "code": "game:stick" } }
+    },
+    "width": 1,
+    "height": 1,
+    "output": { "type": "block", "code": "saucepan-{color}-fired"  }
+  },
+  {
+    "ingredientPattern": "M",
+    "ingredients": {
+      "M": { "type": "block", "code": "poweredmixingbowl-*-normal", "name": "color", "returnedStack": { "type": "block", "code": "game:table-normal"} }
+    },
+    "width": 1,
+    "height": 1,
+    "output": { "type": "block", "code": "mixingbowl-{color}"  }
+  },
+  {
+    "ingredientPattern": "M",
+    "ingredients": {
+      "M": { "type": "block", "code": "poweredmixingbowl-*-whitemarble", "name": "color", "returnedStack": { "type": "block", "code": "game:table-whitemarble"} }
+    },
+    "width": 1,
+    "height": 1,
+    "output": { "type": "block", "code": "mixingbowl-{color}"  }
+  },
+  {
+    "ingredientPattern": "M",
+    "ingredients": {
+      "M": { "type": "block", "code": "poweredmixingbowl-*-redmarble", "name": "color", "returnedStack": { "type": "block", "code": "game:table-redmarble"} }
+    },
+    "width": 1,
+    "height": 1,
+    "output": { "type": "block", "code": "mixingbowl-{color}"  }
+  },
+  {
+    "ingredientPattern": "M",
+    "ingredients": {
+      "M": { "type": "block", "code": "poweredmixingbowl-*-greenmarble", "name": "color", "returnedStack": { "type": "block", "code": "game:table-greenmarble"} }
+    },
+    "width": 1,
+    "height": 1,
+    "output": { "type": "block", "code": "mixingbowl-{color}"  }
+  }
+]

@@ -10,6 +10,20 @@
 - Meat racks can have dedicated shapes like elks
 - Bottles fixed so they can get water from source blocks properly 
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
+- Bottle racks, mixing bowl & meathooks can be deconstructed - DONE!!!
+- Material Needs patches updated
+
+- Add support for bottle corking and uncorking sounds (thanks to Lazula!)
+- Fix desync in bottle heldinteract (thanks to Lazula!)
+- Add mixing-code based system and toppings for pies (thanks to Lazula!):
+-- API Feature: Add InPieProperties.ReadFrom instead of using manual attribute checking everywhere. Added detailed documentation.
+-- API Feature: Move from using ingredient food categories in pies to a fully mixing code-based system that automatically prepends the category as a mixing code if it isn't in the list. Fixes a lot of code annoyances and allows modders to prioritize certain mixing codes over the food category codes in JSON. Previous behavior is unchanged for old JSON content.
+-- API Feature: If not provided, the default food category for pie ingredients is checked in all nutrition properties first. NoNutrition can be provided explicitly to prevent the nutritional food category from being used as a code. For example, a fruit can be marked as NoNutrition, but have a protein mixing code to indicate it only goes in meat pies. If no nutrition properties can be found and no food category is provided, the ingredient is marked as NoNutrition to prevent it from being used in pies and an error will be logged. An ingredient that cannot be mixed doesn't need to have mixing codes or a food category, since these only affect mixing.
+-- API Feature: Add unique pie toppings. Toppings are limited by mixing codes like fillings. Dough can always be used as a topping and is not affected by mixing codes. Individual toppings can have unique shapes.
+-- API Feature: Add support for liquid pie ingredients.
+-- API Feature: Pie ingredients can have custom amounts.
+-- API Tweak: Add significantly more error logging for pies for players and modders.
+- Conflict between ACA and Variations on a meal egg patches resolved
 
 
 ~1.22_v2.0.0-dev.21~
