@@ -17,17 +17,15 @@
             ]
 		},
 		"inBowlShape": { "base": "game:block/food/meal/liquid" },
-		"nutritionPropsWhenInMealByType": {
-			"@*-(pheasant|goldenpheasant|capercaillie|wildturkey)": {
-				"saturation": 250,
+		"waterTightContainerProps": {
+			"nutritionPropsPerLitreWhenInMeal": {
+				"satietyByType":
+				{
+					"@*-(pheasant|goldenpheasant|capercaillie|wildturkey)": 2500,
+					"*-chicken": 1700
+				},
 				"foodcategory": "Protein"
 			},
-			"*-chicken": {
-				"saturation": 170,
-				"foodcategory": "Protein"
-			}
-		},
-		"waterTightContainerProps": {
 			"containable": true,
 			"itemsPerLitre": 100,
 			"texture": { "base": "game:item/liquid/eggyolk/{type}" },

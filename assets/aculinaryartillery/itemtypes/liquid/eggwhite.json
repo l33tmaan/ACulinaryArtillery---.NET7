@@ -17,11 +17,11 @@
             ]
 		},
 		"inBowlShape": { "base": "game:block/food/meal/liquid" },
-		"nutritionPropsWhenInMeal": {
-			"satiety": 30,
-			"foodcategory": "Protein"
-		},
 		"waterTightContainerProps": {
+			"nutritionPropsPerLitreWhenInMeal": {
+				"satiety": 300,
+				"foodcategory": "Protein"
+			},
 			"containable": true,
 			"itemsPerLitre": 100,
 			"texture": { "base": "game:item/liquid/eggwhite" },

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using ACulinaryArtillery.Util;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -28,11 +29,26 @@ namespace ACulinaryArtillery
         {
             if (blockSel != null)
             {
-                var block = api.World.BlockAccessor.GetBlock(blockSel.Position);
+                Block block = api.World.BlockAccessor.GetBlock(blockSel.Position);
                 if (block.Attributes?.IsTrue("pieFormingSurface") == true)
                 {
-                    if (slot.StackSize >= 2) (api.World.GetBlock(new AssetLocation("game:pie-raw")) as BlockPie)?.TryPlacePie(byEntity, blockSel);
-                    else (api as ICoreClientAPI)?.TriggerIngameError(this, "notpieable", Lang.Get("Need at least 2 dough"));
+                    ICoreClientAPI? capi = api as ICoreClientAPI;
+                    ExpandedInPieProperties? pieProps = ExpandedInPieProperties.ReadFrom(slot.Itemstack);
+                    if (pieProps == null)
+                    {
+                        capi?.TriggerIngameError(this, "notpieable", Lang.Get("This item can not be added to pies"));
+                        api.Logger.Error($"Dough item {slot.Itemstack?.Collectible.Code} does not have inPieProperties. Cannot create the pie.");
+                        return;
+                    }
+
+                    if (slot.StackSize >= pieProps.PortionSize)
+                    {
+                        (api.World.GetBlock(new AssetLocation("game:pie-raw")) as BlockPie)?.TryPlacePie(byEntity, blockSel);
+                    }
+                    else
+                    {
+                        capi?.TriggerIngameError(this, "notenoughingredients", Lang.Get("piemaking-notenoughdough", pieProps.PortionSize));
+                    }
 
                     handling = EnumHandHandling.PreventDefault;
                     return;

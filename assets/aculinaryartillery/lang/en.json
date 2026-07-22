@@ -437,5 +437,16 @@
   "itemdesc-hoovedwearables-head-*-bridle1": "Useful for precise, short distance travel.",
   "item-hoovedwearables-head-white-bridle2": "Bridle with curb bit (Chef's hat)",
   "item-hoovedwearables-head-l33t-bridle2": "Bridle with curb bit (l33t chef's hat)",
-  "itemdesc-hoovedwearables-head-*-bridle2": "Useful for long distance travel."
+  "itemdesc-hoovedwearables-head-*-bridle2": "Useful for long distance travel.",
+
+  "game:piemaking-alreadycomplete": "This pie is already finished!",
+  "game:piemaking-unabletoaddtopping": "You can't mix this topping with the other ingredients in the pie.",
+  "game:piemaking-notenoughdough": "Need at least {0} of this dough to create a pie.",
+  "game:piemaking-notenoughliquid": "Need at least {0:0.#}L liquid for this filling.",
+  "game:piemaking-notenoughitems": "Need at least {0} items for this filling.",
+  "game:blockhelp-pie-addcrustortopping": "Add crust or topping",
+  "pie-single-aculinaryartillery:eggyolkfullportion-chicken-raw": "Liquid chicken egg pie (raw)",
+  "pie-single-aculinaryartillery:eggyolkfullportion-chicken-partbaked": "Liquid chicken egg pie (part-baked)",
+  "pie-single-aculinaryartillery:eggyolkfullportion-chicken-perfect": "Liquid chicken egg pie",
+  "pie-single-aculinaryartillery:eggyolkfullportion-chicken-charred": "Liquid chicken egg pie (charred)"
 }
