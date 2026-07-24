@@ -200,7 +200,10 @@ namespace ACulinaryArtillery
 
             ItemStack? mixedStack = null;
             int servings = 0;
-            ItemStack[] stacks = IngredStacks;
+            // Clone, don't alias: IngredStacks hands back the live inventory stacks, and the meal path
+            // below mutates them. We may still bail out before consuming anything, so that work has to
+            // happen on copies for now.
+            ItemStack[] stacks = [.. IngredStacks.Select(stack => stack.Clone())];
             if (mrecipe != null)
             {
                 string? mealBlockCode = InputStack.ItemAttributes?["mealBlockCode"].AsString();
@@ -229,23 +232,15 @@ namespace ACulinaryArtillery
                 }
 
                 ((BlockCookedContainer)mealBlock).SetContents(mrecipe.Code, servings, mixedStack, stacks);
-
-                inventory[0].TakeOut(1);
-                inventory[0].MarkDirty();
-                for (var i = 0; i < IngredSlots.Length; i++)
-                {
-                    //the recipe must be valid at this point, so can't we just take out everything? Like so
-                    if (IngredSlots[i].Itemstack != null)
-                    {
-                        IngredSlots[i].TakeOut(IngredSlots[i].Itemstack.StackSize);
-                        IngredSlots[i].MarkDirty();
-                    }
-                }
             }
-            else if (drecipe != null) mixedStack = drecipe.TryCraftNow(Api, IngredSlots);
+            else if (drecipe != null) mixedStack = drecipe.TryGetOutput(IngredSlots);
 
             if (mixedStack == null) return;
 
+            // Work out where the result goes BEFORE consuming anything. Everything above only built
+            // the output stack; the ingredients are still untouched at this point, so bailing out here
+            // costs nothing but the mixing cycle. This mirrors the vanilla quern: if the output slot is
+            // full and the side we'd eject onto is blocked, the cycle is wasted rather than the food.
             if (OutputSlot.Itemstack == null) OutputSlot.Itemstack = mixedStack;
             else
             {
@@ -258,10 +253,27 @@ namespace ACulinaryArtillery
                     nowOutputFace = (nowOutputFace + 1) % 4;
 
                     Block block = Api.World.BlockAccessor.GetBlock(Pos.AddCopy(face));
-                    if (block.Replaceable < 6000) return;
+                    if (block.Replaceable < 6000) return; // Blocked side: keep the ingredients, waste the cycle
                     Api.World.SpawnItemEntity(mixedStack, Pos.ToVec3d().Add(0.5 + face.Normalf.X * 0.7, 0.75, 0.5 + face.Normalf.Z * 0.7), new Vec3d(face.Normalf.X * 0.02f, 0, face.Normalf.Z * 0.02f));
                 }
             }
+
+            // The output is committed, so it's safe to consume the ingredients
+            if (mrecipe != null)
+            {
+                inventory[0].TakeOut(1);
+                inventory[0].MarkDirty();
+                for (var i = 0; i < IngredSlots.Length; i++)
+                {
+                    //the recipe must be valid at this point, so can't we just take out everything? Like so
+                    if (IngredSlots[i].Itemstack != null)
+                    {
+                        IngredSlots[i].TakeOut(IngredSlots[i].Itemstack.StackSize);
+                        IngredSlots[i].MarkDirty();
+                    }
+                }
+            }
+            else drecipe!.ConsumeIngredients(IngredSlots, mixedStack);
 
             OutputSlot.MarkDirty();
         }

@@ -332,6 +332,20 @@ namespace ACulinaryArtillery
 
         public ItemStack? TryCraftNow(ICoreAPI api, ItemSlot[] inputslots)
         {
+            ItemStack? mixedStack = TryGetOutput(inputslots);
+            if (mixedStack == null) return null;
+
+            ConsumeIngredients(inputslots, mixedStack);
+
+            return mixedStack;
+        }
+
+        /// <summary>
+        /// Builds what this recipe would produce from the given input WITHOUT consuming anything, so a
+        /// caller can check it has somewhere to put the result before committing to the craft.
+        /// </summary>
+        public ItemStack? TryGetOutput(ItemSlot[] inputslots)
+        {
             var matched = pairInput(inputslots);
             if (matched == null) return null;
             
@@ -342,13 +356,23 @@ namespace ACulinaryArtillery
 
             if (mixedStack.Collectible is IExpandedFood food) food.OnCreatedByKneading(matched, mixedStack);
 
+            return mixedStack;
+        }
+
+        /// <summary>
+        /// Consumes the ingredients for a craft that has already been committed. <paramref name="craftedStack"/>
+        /// must be the stack returned by <see cref="TryGetOutput"/>, so the amounts taken match its size.
+        /// </summary>
+        public void ConsumeIngredients(ItemSlot[] inputslots, ItemStack craftedStack)
+        {
+            var matched = pairInput(inputslots);
+            if (matched == null) return;
+
             foreach (var val in matched)
             {
-                val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Output.StackSize));
+                val.Key.TakeOut(val.Value.Quantity * (craftedStack.StackSize / Output.StackSize));
                 val.Key.MarkDirty();
             }
-            
-            return mixedStack;
         }
 
         public bool Matches(IWorldAccessor worldForResolve, ItemSlot[] inputSlots)
