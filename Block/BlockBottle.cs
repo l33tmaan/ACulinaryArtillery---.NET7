@@ -33,7 +33,7 @@ namespace ACulinaryArtillery
         public ItemStack[] corkStacks = null!;
 
         public static AssetLocation? corkSound = null;
-        public static AssetLocation? uncorkSound = null;
+
 
         public override byte[]? GetLightHsv(IBlockAccessor blockAccessor, BlockPos pos, ItemStack? stack = null)
         {
@@ -58,7 +58,6 @@ namespace ACulinaryArtillery
             corkStacks = [.. corkstacks];
 
             corkSound ??= new AssetLocation("aculinaryartillery:sounds/player/bottle/cork*");
-            uncorkSound ??= new AssetLocation("aculinaryartillery:sounds/player/bottle/uncork*");
         }
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
@@ -254,7 +253,7 @@ namespace ACulinaryArtillery
                 sourceSlot.TakeOut(1);
                 sinkSlot.MarkDirty();
 
-                api.World.PlaySoundAt(corkSound, op.ActingPlayer);
+                (api as ICoreServerAPI)?.World.PlaySoundAt(corkSound, op.ActingPlayer);
 
                 return;
             }
@@ -269,11 +268,11 @@ namespace ACulinaryArtillery
             IPlayer? plr = (byEntity as EntityPlayer)?.Player;
             ItemSlot? offhandSlot = plr?.InventoryManager?.OffhandHotbarSlot;
 
-            if (plr != null && blockSel == null && Variant["type"] == "corked" && !byEntity.Controls.ShiftKey)
+            if (plr != null && blockSel == null && Variant["type"] == "corked" && !byEntity.Controls.ShiftKey && itemslot.Itemstack != null)
             {
                 if (offhandSlot != null && (offhandSlot.Empty || offhandSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
                 {
-                    ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack?.Attributes };
+                    ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
 
                     if (itemslot.StackSize == 1)
                     {
@@ -298,7 +297,25 @@ namespace ACulinaryArtillery
                     itemslot.MarkDirty();
                     offhandSlot.MarkDirty();
                     plr.InventoryManager.BroadcastHotbarSlot();
-                    api.World.PlaySoundAt(uncorkSound, byEntity);
+
+                    if (api is ICoreServerAPI sapi)
+                    {
+                        float fullness = 0;
+                        if (GetContent(itemslot.Itemstack) is ItemStack contentStack
+                            && GetContainableProps(contentStack) is WaterTightContainableProps liquidProps)
+                        {
+                            fullness = contentStack.StackSize / liquidProps.ItemsPerLitre;
+                        }
+
+                        string suffix = fullness switch
+                        {
+                            0 => "empty",
+                            <= 0.5f => "partial",
+                            _ => "full"
+                        };
+                        AssetLocation uncorkSound = new($"aculinaryartillery:sounds/player/bottle/uncork{suffix}*");
+                        sapi.World.PlaySoundAt(uncorkSound, byEntity);
+                    }
 
                     handHandling = EnumHandHandling.PreventDefault;
                     return;
@@ -306,7 +323,7 @@ namespace ACulinaryArtillery
                 else (api as ICoreClientAPI)?.TriggerIngameError(this, "fulloffhandslot", Lang.Get("aculinaryartillery:bottle-fulloffhandslot"));
             }
 
-            if (blockSel == null && byEntity.Controls.ShiftKey && plr != null && offhandSlot != null
+            if (blockSel == null && byEntity.Controls.ShiftKey && plr != null && offhandSlot != null && itemslot.Itemstack != null
                 && Variant["type"] == "fired"
                 && offhandSlot.Itemstack?.Collectible.FirstCodePart() == "cork")
             {
@@ -329,7 +346,8 @@ namespace ACulinaryArtillery
                 itemslot.MarkDirty();
                 offhandSlot.MarkDirty();
                 plr.InventoryManager.BroadcastHotbarSlot();
-                api.World.PlaySoundAt(corkSound, byEntity);
+
+                (api as ICoreServerAPI)?.World.PlaySoundAt(corkSound, byEntity);
 
                 handHandling = EnumHandHandling.PreventDefault;
                 return;
