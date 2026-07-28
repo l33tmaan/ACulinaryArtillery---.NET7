@@ -253,19 +253,23 @@ namespace ACulinaryArtillery
         public override void TryMergeStacks(ItemStackMergeOperation op)
         {
             ItemSlot sourceSlot = op.SourceSlot;
+            ItemSlot sinkSlot = op.SinkSlot;
 
-            if (Variant["type"] != "corked" && op.CurrentPriority == EnumMergePriority.DirectMerge && sourceSlot.Itemstack.ItemAttributes?["canSealBottle"]?.AsBool() == true)
+            if (Variant["type"] != "corked" && op.CurrentPriority == EnumMergePriority.DirectMerge && sinkSlot.Itemstack != null && sourceSlot.Itemstack?.ItemAttributes?["canSealBottle"]?.AsBool() == true)
             {
-                ItemSlot sinkSlot = op.SinkSlot;
-                ItemStack newBottle = new(op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "corked"))) { Attributes = sinkSlot.Itemstack.Attributes };
+                ItemStack corkedBottle = new(op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "corked"))) { Attributes = sinkSlot.Itemstack?.Attributes };
+                corkedBottle.Attributes?.SetString("cork", sourceSlot.Itemstack.Collectible.Code);
 
-                if (sinkSlot.StackSize == 1) sinkSlot.Itemstack = newBottle;
+                if (sinkSlot.StackSize == 1)
+                {
+                    sinkSlot.Itemstack = corkedBottle;
+                }
                 else
                 {
                     sinkSlot.TakeOut(1);
-                    if (!op.ActingPlayer.InventoryManager.TryGiveItemstack(newBottle, true))
+                    if (!op.ActingPlayer.InventoryManager.TryGiveItemstack(corkedBottle, true))
                     {
-                        op.World.SpawnItemEntity(newBottle, op.ActingPlayer.Entity.Pos.AsBlockPos);
+                        op.World.SpawnItemEntity(corkedBottle, op.ActingPlayer.Entity.Pos.AsBlockPos);
                     }
                 }
                 op.MovedQuantity = 1;
@@ -292,6 +296,7 @@ namespace ACulinaryArtillery
                 if (offhandSlot != null && (offhandSlot.Empty || offhandSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
                 {
                     ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
+                    uncorkedBottle.Attributes.RemoveAttribute("cork");
 
                     if (itemslot.StackSize == 1)
                     {
@@ -329,7 +334,8 @@ namespace ACulinaryArtillery
                 && Variant["type"] == "fired"
                 && offhandSlot.Itemstack?.Collectible.FirstCodePart() == "cork")
             {
-                ItemStack corkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack?.Attributes };
+                ItemStack corkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack.Attributes };
+                corkedBottle.Attributes.SetString("cork", offhandSlot.Itemstack.Collectible.Code);
                 offhandSlot.TakeOut(1);
 
                 if (itemslot.StackSize == 1)
