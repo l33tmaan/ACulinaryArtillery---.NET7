@@ -67,15 +67,34 @@ namespace ACulinaryArtillery
             {
                 meshrefs = obj as Dictionary<int, MultiTextureMeshRef> ?? [];
             }
-            else capi.ObjectCache[MeshRefsCacheKey] = meshrefs = [];
+            else
+            {
+                capi.ObjectCache[MeshRefsCacheKey] = meshrefs = [];
+            }
 
-            if (GetContent(itemstack) is not ItemStack contentStack) return;
+            string key = itemstack.Collectible.Code.ToShortString();
 
-            var hashcode = (contentStack.StackSize + "x" + contentStack.Collectible.Code.ToShortString()).GetHashCode();
+            ItemStack? contentStack = GetContent(itemstack);
+            if (contentStack != null)
+            {
+                key += "-" + contentStack?.StackSize + "x" + contentStack?.Collectible.Code.ToShortString();
+            }
+
+            string? corkString = itemstack.Attributes?.GetAsString("cork");
+            if (corkString != null)
+            {
+                key += "-" + corkString;
+            }
+
+            if (contentStack == null && corkString == null) return;
+
+            int hashcode = key.GetHashCode();
             if (!meshrefs.TryGetValue(hashcode, out var meshRef))
             {
-                meshrefs[hashcode] = meshRef = capi.Render.UploadMultiTextureMesh(GenMesh(capi, contentStack));
+                meshrefs[hashcode] = meshRef = capi.Render.UploadMultiTextureMesh(GenMesh(capi, itemstack));
             }
+
+            ACulinaryArtillery.logger?.Debug($"Got meshref from code for key {key}");
 
             renderinfo.ModelRef = meshRef;
         }
@@ -92,35 +111,40 @@ namespace ACulinaryArtillery
             }
         }
 
-        public MeshData? GenMesh(ICoreClientAPI? capi, ItemStack? contentStack, bool isSideways = false, BlockPos? forBlockPos = null)
+        public MeshData? GenMesh(ICoreClientAPI? capi, ItemStack stack, bool isSideways = false, BlockPos? atBlockPos = null)
         {
             if (capi?.Assets.TryGet(EmptyShapeLoc.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")) is not IAsset asset) return new MeshData();
 
-            capi.Tesselator.TesselateShape(this, asset.ToObject<Shape>(), out var mesh, new(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
-            if (contentStack != null && (IsClear || IsTopOpened))
+            BottleTextureSource textureSource = new(capi, stack, null, null);
+
+            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, textureSource, new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+
+            if (GetContent(stack) is ItemStack contentStack && (IsClear || IsTopOpened))
             {
-                if (GetContainableProps(contentStack) is WaterTightContainableProps props)
+                if (GetContainableProps(contentStack) is not WaterTightContainableProps props)
                 {
-                    float fullness = contentStack.StackSize / props.ItemsPerLitre;
-                    Shape? shape = capi.Assets.TryGet((props.IsOpaque ? ContentShapeLoc : LiquidContentShapeLoc).CopyWithPathPrefixAndAppendixOnce("shapes/", ".json"))?.ToObject<Shape>();
-                    if (shape == null) return mesh;
-                    shape = SliceFlattenedShape(shape.FlattenElementHierarchy(), fullness, isSideways);
-
-                    var bottleMesh = mesh;
-                    capi.Tesselator.TesselateShape("bottle", shape, out mesh, new BottleTextureSource(capi, contentStack, props.Texture, this), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
-                    for (int i = 0; i < mesh.Flags.Length; i++) mesh.Flags[i] = mesh.Flags[i] & ~(1 << 12); // Remove water waving flag
-
-                    mesh.AddMeshData(bottleMesh);
-
-                    // Water flags
-                    if (forBlockPos != null)
-                    {
-                        mesh.CustomInts = new CustomMeshDataPartInt(mesh.FlagsCount) { Count = mesh.FlagsCount };
-                        mesh.CustomInts.Values.Fill(0x4000000); // light foam only
-                        mesh.CustomFloats = new CustomMeshDataPartFloat(mesh.FlagsCount * 2) { Count = mesh.FlagsCount * 2 };
-                    }
+                    ACulinaryArtillery.logger?.Error($"Bottle content stack {contentStack.Item.Code} does not have waterTightContainerProps and will not render any liquid.");
+                    return mesh;
                 }
-                else ACulinaryArtillery.logger?.Error($"Bottle with Item {contentStack.Item.Code} does not have waterTightProps and will not render any liquid inside it.");
+
+                float fullness = contentStack.StackSize / props.ItemsPerLitre;
+                Shape? shape = capi.Assets.TryGet((props.IsOpaque ? ContentShapeLoc : LiquidContentShapeLoc).CopyWithPathPrefixAndAppendixOnce("shapes/", ".json"))?.ToObject<Shape>();
+                if (shape == null) return mesh;
+                shape = SliceFlattenedShape(shape.FlattenElementHierarchy(), fullness, isSideways);
+
+                MeshData bottleMesh = mesh;
+                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, contentStack, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+                for (int i = 0; i < mesh.Flags.Length; i++) mesh.Flags[i] = mesh.Flags[i] & ~(1 << 12); // Remove water waving flag
+
+                mesh.AddMeshData(bottleMesh);
+
+                // Water flags
+                if (atBlockPos != null)
+                {
+                    mesh.CustomInts = new CustomMeshDataPartInt(mesh.FlagsCount) { Count = mesh.FlagsCount };
+                    mesh.CustomInts.Values.Fill(0x4000000); // light foam only
+                    mesh.CustomFloats = new CustomMeshDataPartFloat(mesh.FlagsCount * 2) { Count = mesh.FlagsCount * 2 };
+                }
             }
             return mesh;
         }
@@ -184,21 +208,32 @@ namespace ACulinaryArtillery
             return partialShape;
         }
 
-        public MeshData? GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos? forBlockPos = null)
+        public MeshData? GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos? atBlockPos = null)
         {
-            ItemStack itemstack = slot.Itemstack;
-            if (forBlockPos != null && GetBlockEntity<BlockEntityBottleRack>(forBlockPos) != null)
-            {
-                return GenMesh(api as ICoreClientAPI, GetContent(itemstack), true, forBlockPos);
-            }
-            return GenMesh(api as ICoreClientAPI, GetContent(itemstack), false, forBlockPos);
+            if (slot.Itemstack is not ItemStack stack) return new MeshData();
+
+            bool isSideways = atBlockPos != null && GetBlockEntity<BlockEntityBottleRack>(atBlockPos) != null;
+            return GenMesh(api as ICoreClientAPI, stack, isSideways, atBlockPos);
         }
 
         public string GetMeshCacheKey(ItemSlot slot)
         {
-            ItemStack itemstack = slot.Itemstack;
-            var contentStack = GetContent(itemstack);
-            return itemstack.Collectible.Code.ToShortString() + "-" + contentStack?.StackSize + "x" + contentStack?.Collectible.Code.ToShortString();
+            if (slot.Itemstack is not ItemStack stack) return "";
+
+            ItemStack? contentStack = GetContent(stack);
+            string key = stack.Collectible.Code.ToShortString();
+
+            if (contentStack != null)
+            {
+                key += "-" + contentStack?.StackSize + "x" + contentStack?.Collectible.Code.ToShortString();
+            }
+
+            if (stack.Attributes?.GetAsString("cork") is string corkString)
+            {
+                key += "-" + corkString;
+            }
+
+            return key;
         }
 
         public string GetContainedInfo(ItemSlot inSlot)
@@ -539,20 +574,27 @@ namespace ACulinaryArtillery
     /*************************************************************************************************************/
     public class BottleTextureSource : ITexPositionSource
     {
-        public ItemStack forContents;
+        public ItemStack? forContents;
         private readonly ICoreClientAPI capi;
         private TextureAtlasPosition? contentTextPos;
         private readonly TextureAtlasPosition blockTextPos;
         private readonly TextureAtlasPosition corkTextPos;
-        private readonly CompositeTexture contentTexture;
+        private readonly CompositeTexture? contentTexture;
 
-        public BottleTextureSource(ICoreClientAPI capi, ItemStack forContents, CompositeTexture contentTexture, Block bottle)
+        public BottleTextureSource(ICoreClientAPI capi, ItemStack stack, ItemStack? contentStack, CompositeTexture? contentTexture)
         {
             this.capi = capi;
-            this.forContents = forContents;
+            this.forContents = contentStack;
             this.contentTexture = contentTexture;
-            this.corkTextPos = capi.BlockTextureAtlas.GetPosition(bottle, "map");
-            this.blockTextPos = capi.BlockTextureAtlas.GetPosition(bottle, "material");
+
+            this.corkTextPos = capi.BlockTextureAtlas.GetPosition(stack.Block, "map");
+            if (stack.Attributes?.GetAsString("cork") is string corkCode
+                && capi.World.GetItem(corkCode) is Item cork)
+            {
+                this.corkTextPos = capi.ItemTextureAtlas.GetPosition(cork, "base");
+            }
+
+            this.blockTextPos = capi.BlockTextureAtlas.GetPosition(stack.Block, "material");
         }
 
         public TextureAtlasPosition this[string textureCode]
