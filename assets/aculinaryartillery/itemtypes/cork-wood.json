@@ -4,7 +4,7 @@
 	"variantgroups": [
 		{
 			"code": "material",
-			"states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut" ]
+			"states": [ "aged", "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut" ]
 		}
 	],
 	"storageFlags": 257,
