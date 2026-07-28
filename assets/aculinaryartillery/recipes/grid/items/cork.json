@@ -6,6 +6,6 @@
     },
     "width": 1,
     "height": 2,
-    "name": "cork",
+    "name": "cork-wood",
     "output": { "type": "item", "code": "cork-wood-{bark}", "quantity": 16 }
 }
