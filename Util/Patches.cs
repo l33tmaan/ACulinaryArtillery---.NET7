@@ -857,7 +857,7 @@ namespace ACulinaryArtillery
             }
 
             // Toppings need to have the default crust type because they have only one shape.
-            foreach (MealstackTextComponent? comp in components.Select(comp => comp as MealstackTextComponent))
+            foreach (MealstackTextComponent? comp in components.OfType<MealstackTextComponent>())
             {
                 if (comp == null) continue;
 
@@ -984,7 +984,8 @@ namespace ACulinaryArtillery
             }
             else components.InsertRange(components.Count - 1, newComponents);
 
-            foreach (MealstackTextComponent comp in components)
+            // Toppings need to have the default crust type because they have only one shape.
+            foreach (MealstackTextComponent? comp in components.OfType<MealstackTextComponent>())
             {
                 ItemStack? mealBlock = Traverse.Create(comp).Field("dummySlot").GetValue<DummySlot>()?.Itemstack;
                 if (mealBlock?.Block is not BlockPie pieBlock) continue;
