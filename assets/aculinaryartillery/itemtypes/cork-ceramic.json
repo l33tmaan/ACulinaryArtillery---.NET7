@@ -1,0 +1,11 @@
+{
+	"code": "cork-ceramic",
+	"inheritFrom": "itemtypes/cork-wood",
+	"variantgroups": [
+		{
+			"code": "material",
+			"states": [ "blue", "fire", "black", "brown", "cream", "earthyorange", "gray", "orange", "red", "tan" ]
+		}
+	],
+	"texture": { "base": "game:block/clay/hardened/{material}" }
+}

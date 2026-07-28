@@ -1,0 +1,11 @@
+{
+	"code": "cork-metal",
+	"inheritFrom": "itemtypes/cork-wood",
+	"variantgroups": [
+		{
+			"code": "material",
+			"states": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "lead", "electrum", "molybdochalkos" ]
+		}
+	],
+	"texture": { "base": "game:block/metal/ingot/{material}" }
+}

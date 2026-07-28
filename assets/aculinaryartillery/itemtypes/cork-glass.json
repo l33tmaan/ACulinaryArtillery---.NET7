@@ -1,0 +1,11 @@
+{
+	"code": "cork-glass",
+	"inheritFrom": "itemtypes/cork-wood",
+	"variantgroups": [
+		{
+			"code": "material",
+			"states": [ "blue", "brown", "green", "pink", "plain", "quartzglass", "quartz", "red", "smoky", "vintage", "violet", "yellow" ]
+		}
+	],
+	"texture": { "base": "game:block/glass/{material}" }
+}

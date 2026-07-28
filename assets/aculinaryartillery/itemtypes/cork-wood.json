@@ -1,14 +1,10 @@
 {
-	"code": "cork",
+	"code": "cork-wood",
 	"maxstacksize": 64,
 	"variantgroups": [
 		{
 			"code": "material",
-			"states": [
-				"generic",
-				"wood-oak",
-				"metal-copper"
-			]
+			"states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut" ]
 		}
 	],
 	"storageFlags": 257,
@@ -26,11 +22,7 @@
 	},
     "materialDensity": 100,
 	"shape": { "base": "item/cork" },
-	"textureByType": {
-		"cork-wood-oak": { "base": "game:block/wood/bark/oak" },
-		"cork-metal-copper": { "base": "game:block/metal/ingot/copper" },
-		"cork-generic": { "base": "game:item/utility/map" }
-	},
+	"texture": { "base": "game:block/wood/bark/{material}" },
 	"creativeinventory": { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"] },
 	"guiTransform": {
 		"translation": { "x": 0, "y": 0, "z": 0 },
