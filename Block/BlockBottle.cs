@@ -94,8 +94,6 @@ namespace ACulinaryArtillery
                 meshrefs[hashcode] = meshRef = capi.Render.UploadMultiTextureMesh(GenMesh(capi, itemstack));
             }
 
-            ACulinaryArtillery.logger?.Debug($"Got meshref from code for key {key}");
-
             renderinfo.ModelRef = meshRef;
         }
 
@@ -115,9 +113,7 @@ namespace ACulinaryArtillery
         {
             if (capi?.Assets.TryGet(EmptyShapeLoc.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")) is not IAsset asset) return new MeshData();
 
-            BottleTextureSource textureSource = new(capi, stack, null, null);
-
-            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, textureSource, new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, new BottleTextureSource(capi, stack, null), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
 
             if (GetContent(stack) is ItemStack contentStack && (IsClear || IsTopOpened))
             {
@@ -133,7 +129,7 @@ namespace ACulinaryArtillery
                 shape = SliceFlattenedShape(shape.FlattenElementHierarchy(), fullness, isSideways);
 
                 MeshData bottleMesh = mesh;
-                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, contentStack, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
                 for (int i = 0; i < mesh.Flags.Length; i++) mesh.Flags[i] = mesh.Flags[i] & ~(1 << 12); // Remove water waving flag
 
                 mesh.AddMeshData(bottleMesh);
@@ -577,14 +573,13 @@ namespace ACulinaryArtillery
         public ItemStack? forContents;
         private readonly ICoreClientAPI capi;
         private TextureAtlasPosition? contentTextPos;
+        private readonly CompositeTexture? contentTexture;
         private readonly TextureAtlasPosition blockTextPos;
         private readonly TextureAtlasPosition corkTextPos;
-        private readonly CompositeTexture? contentTexture;
 
-        public BottleTextureSource(ICoreClientAPI capi, ItemStack stack, ItemStack? contentStack, CompositeTexture? contentTexture)
+        public BottleTextureSource(ICoreClientAPI capi, ItemStack stack, CompositeTexture? contentTexture)
         {
             this.capi = capi;
-            this.forContents = contentStack;
             this.contentTexture = contentTexture;
 
             this.corkTextPos = capi.BlockTextureAtlas.GetPosition(stack.Block, "map");
@@ -601,12 +596,12 @@ namespace ACulinaryArtillery
         {
             get
             {
-                if (textureCode == "map" && corkTextPos != null) return corkTextPos;
-                if (textureCode == "material" && blockTextPos != null) return blockTextPos;
+                if (textureCode == "map") return corkTextPos;
+                if (textureCode == "material") return blockTextPos;
 
-                if (contentTextPos == null)
+                if (contentTextPos == null && contentTexture != null)
                 {
-                    int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "contenttexture-" + contentTexture?.ToString() ?? "unknowncontent", () =>
+                    int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "contenttexture-" + contentTexture.ToString() ?? "unknowncontent", () =>
                     {
                         capi.BlockTextureAtlas.GetOrInsertTexture(
                             contentTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"),
