@@ -562,30 +562,6 @@ namespace ACulinaryArtillery
         }
 
         [HarmonyPrefix]
-        [HarmonyPatch(nameof(BlockPie.CycleTopCrustType))]
-        public static bool CycleTopCrustTypePrefix(ref BlockPie __instance, ItemStack? __result, ItemStack? pieStack)
-        {
-            if (pieStack == null)
-            {
-                __result = null;
-                return false;
-            }
-
-            string topCrustType = BlockPie.GetTopCrustType(pieStack);
-
-            if (ExpandedInPieProperties.ReadFrom(pieStack)!.PartType == EnumPiePartType.Topping)
-            {
-                __result = pieStack;
-                return false;
-            }
-
-            pieStack.Attributes.SetString("topCrustType", BlockPie.TopCrustTypes[(BlockPie.TopCrustTypes.IndexOf(type => type.Code.EqualsFast(topCrustType)) + 1) % BlockPie.TopCrustTypes.Length].Code);
-            __result = pieStack;
-
-            return false;
-        }
-
-        [HarmonyPrefix]
         [HarmonyPatch(nameof(BlockPie.HandbookPageCodeForStack))]
         public static bool HandbookPageCodeForStackPrefix(ref BlockPie __instance, ref string __result, ref ICoreAPI ___api, IWorldAccessor world, ItemStack stack)
         {
