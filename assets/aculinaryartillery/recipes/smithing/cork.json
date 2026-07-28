@@ -1,0 +1,28 @@
+{
+	"ingredient": {
+		"type": "item",
+		"code": "game:ingot-*",
+		"name": "metal",
+		"allowedVariants": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "electrum", "molybdochalkos" ]
+	},
+	"pattern": [
+		[
+			"__####__",
+			"__####__",
+			"__####__",
+            "__####__"
+		],
+		[
+			"________",
+			"___##___",
+            "___##___",
+            "________"
+		]
+	],
+	"name": "cork-metal",
+	"code": "cork-metal-{metal}",
+	"output": {
+		"type": "item",
+		"code": "cork-metal-{metal}"
+	}
+}
