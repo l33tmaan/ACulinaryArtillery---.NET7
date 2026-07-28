@@ -295,6 +295,11 @@ namespace ACulinaryArtillery
             {
                 if (offhandSlot != null && (offhandSlot.Empty || offhandSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
                 {
+                    if (itemslot.Itemstack.Attributes.GetAsString("cork") is not string corkCode || corkCode == "aculinaryartillery:cork-generic")
+                    {
+                        corkCode = "aculinaryartillery:cork-wood-oak";
+                    }
+                    ItemStack cork = new(byEntity.World.GetItem(corkCode));
                     ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
                     uncorkedBottle.Attributes.RemoveAttribute("cork");
 
@@ -311,7 +316,7 @@ namespace ACulinaryArtillery
                         }
                     }
 
-                    ItemStack cork = new(byEntity.World.GetItem("aculinaryartillery:cork-generic"));
+
                     if (new DummySlot(cork).TryPutInto(byEntity.World, offhandSlot) <= 0)
                     {
                         byEntity.World.SpawnItemEntity(cork, byEntity.Pos.AsBlockPos);
