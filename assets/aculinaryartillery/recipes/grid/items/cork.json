@@ -2,7 +2,7 @@
     "ingredientPattern": "K,L",
     "ingredients": {
         "K": { "type": "item", "tags": ["tool-knife"], "isTool": true  },
-        "L": { "type": "item", "code": "aculinaryartillery:bark-*-boiled", "name": "bark" }
+        "L": { "type": "item", "code": "bark-*-boiled", "name": "bark" }
     },
     "width": 1,
     "height": 2,
