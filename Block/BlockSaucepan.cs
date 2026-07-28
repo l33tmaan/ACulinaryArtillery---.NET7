@@ -270,6 +270,7 @@ namespace ACulinaryArtillery
             List<ItemStack> contents = [.. inv.Skip(3).Select(slot => slot.Itemstack).Where(stack => stack != null)];
             ItemStack? product = null;
             int amount = 0;
+            string wasteText = "";  //a warning about leftovers we'll throw away, if there are any
 
             if (contents.Count == 1)
             {
@@ -281,9 +282,20 @@ namespace ACulinaryArtillery
                 if (product == null) return null;
 
                 amount = contents[0].StackSize / contents[0].Collectible.CombustibleProps.SmeltedRatio;
+
+                //anything left over after the last whole batch gets discarded when it cooks, so warn about it up front
+                int wastedItems = contents[0].StackSize % contents[0].Collectible.CombustibleProps.SmeltedRatio;
+
+                if (wastedItems > 0)
+                {
+                    wasteText = " " + (GetContainableProps(contents[0]) is WaterTightContainableProps wasteProps ?
+                                       Lang.Get("aculinaryartillery:firepit-gui-willwaste-liquid", VolumeText(wastedItems, wasteProps), contents[0].GetName()) :
+                                       Lang.Get("aculinaryartillery:firepit-gui-willwaste", wastedItems, contents[0].GetName()));
+                }
             }
             else if (contents.Count > 1 && api.GetSimmerRecipes().FirstOrDefault(rec => rec.Match(contents) > 0) is SimmerRecipe match)
             {
+                //simmer recipes only match exact multiples of their ingredients, so nothing is ever left over here
                 product = match.Simmering.SmeltedStack.ResolvedItemstack;
 
                 if (product == null) return null;
@@ -294,14 +306,21 @@ namespace ACulinaryArtillery
 
             if (amount <= 0) return null; // nothing to show for a sub-portion dribble that won't cook
 
-            if (GetContainableProps(product) is WaterTightContainableProps props)
-            {
-                float millilitres = (float) Math.Round((float)amount * product.StackSize * 1000 / props.ItemsPerLitre);
+            string text = GetContainableProps(product) is WaterTightContainableProps props ?
+                          Lang.Get("mealcreation-nonfood-liquid", VolumeText(amount * product.StackSize, props), product.GetName()) :
+                          Lang.Get("firepit-gui-willcreate", amount, product.GetName());
 
-                return Lang.Get("mealcreation-nonfood-liquid", millilitres < 100 ? Lang.Get("{0} mL", millilitres) : Lang.Get("{0:0.##} L", millilitres / 1000), product.GetName());
-            }
+            return text + wasteText;
+        }
 
-            return Lang.Get("firepit-gui-willcreate", amount, product.GetName());
+        /// <summary>
+        /// Renders a number of containable items as millilitres or litres, whichever reads better.
+        /// </summary>
+        static string VolumeText(int items, WaterTightContainableProps props)
+        {
+            float millilitres = (float) Math.Round((float)items * 1000 / props.ItemsPerLitre);
+
+            return millilitres < 100 ? Lang.Get("{0} mL", millilitres) : Lang.Get("{0:0.##} L", millilitres / 1000);
         }
 
         public MeshData? GenRightMesh(ICoreClientAPI capi, ItemStack contentStack, BlockPos? forBlockPos = null, bool isSealed = false)
