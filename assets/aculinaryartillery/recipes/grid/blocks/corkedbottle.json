@@ -2,33 +2,34 @@
 	{
 		"ingredientPattern": "C,G",
 		"ingredients": {
-			"C": { "type": "item", "code": "cork-generic" },
+			"C": { "type": "item", "code": "cork-*", "name": "cork" },
 			"G": { "type": "block", "code": "bottle-clay-*-fired", "name": "color" }
 		},
 		"width": 1,
 		"height": 2,
         "recipeGroup": 1,
 		"name": "corkedclaybottle",
-		"output": { "type": "block", "code": "bottle-clay-{color}-corked" },
+		"output": { "type": "block", "code": "bottle-clay-{color}-corked", "attributes": { "cork": "aculinaryartillery:cork-{cork}" } },
 		"copyAttributesFrom": "G"
 	},
 	{
 		"ingredientPattern": "C,G",
 		"ingredients": {
-			"C": { "type": "item", "code": "cork-generic" },
+			"C": { "type": "item", "code": "cork-*", "name": "cork" },
 			"G": { "type": "block", "code": "bottle-glass-*-fired", "name": "color" }
 		},
 		"width": 1,
 		"height": 2,
         "recipeGroup": 1,
 		"name": "corkedglassbottle",
-		"output": { "type": "block", "code": "bottle-glass-{color}-corked" },
+		"output": { "type": "block", "code": "bottle-glass-{color}-corked", "attributes": { "cork": "aculinaryartillery:cork-{cork}" } },
 		"copyAttributesFrom": "G"
 	},
 	{
+		"___comment": "Returning the cork from the attributes is handled in code",
 		"ingredientPattern": "G",
 		"ingredients": {
-			"G": { "type": "block", "code": "bottle-clay-*-corked", "name": "color", "returnedStack": { "type": "item", "code": "cork-generic" } }
+			"G": { "type": "block", "code": "bottle-clay-*-corked", "name": "color" }
 		},
 		"width": 1,
 		"height": 1,
@@ -38,9 +39,10 @@
 		"copyAttributesFrom": "G"
 	},
 	{
+		"___comment": "Returning the cork from the attributes is handled in code",
 		"ingredientPattern": "G",
 		"ingredients": {
-			"G": { "type": "block", "code": "bottle-glass-*-corked", "name": "color", "returnedStack": { "type": "item", "code": "cork-generic" } }
+			"G": { "type": "block", "code": "bottle-glass-*-corked", "name": "color" }
 		},
 		"width": 1,
 		"height": 1,

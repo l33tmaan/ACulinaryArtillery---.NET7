@@ -315,6 +315,37 @@ namespace ACulinaryArtillery
             base.TryMergeStacks(op);
         }
 
+        public override void OnCreatedByCrafting(ItemSlot[] allInputslots, ItemSlot outputSlot, IRecipeBase byRecipe)
+        {
+            if (byRecipe.Name != "aculinaryartillery:uncorkedclaybottle" && byRecipe.Name != "aculinaryartillery:uncorkedglassbottle")
+            {
+                base.OnCreatedByCrafting(allInputslots, outputSlot, byRecipe);
+                return;
+            }
+
+            outputSlot.Itemstack?.Attributes.RemoveAttribute("cork");
+        }
+
+        public override void OnConsumedByCrafting(ItemSlot[] allInputSlots, ItemSlot stackInSlot, IRecipeBase recipe, IRecipeIngredient fromIngredient, IPlayer byPlayer, int quantity)
+        {
+            if (recipe.Name != "aculinaryartillery:uncorkedclaybottle" && recipe.Name != "aculinaryartillery:uncorkedglassbottle")
+            {
+                base.OnConsumedByCrafting(allInputSlots, stackInSlot, recipe, fromIngredient, byPlayer, quantity);
+                return;
+            }
+
+            string corkCode = stackInSlot.Itemstack?.Attributes.GetAsString("cork") ?? "aculinaryartillery:cork-wood-oak";
+            stackInSlot.Itemstack?.Attributes.RemoveAttribute("cork");
+            ItemStack cork = new(byPlayer.Entity.World.GetItem(corkCode));
+
+            if (!byPlayer.InventoryManager.TryGiveItemstack(cork, true))
+            {
+                byPlayer.Entity.World.SpawnItemEntity(cork, byPlayer.Entity.Pos.AsBlockPos);
+            }
+
+            base.OnConsumedByCrafting(allInputSlots, stackInSlot, recipe, fromIngredient, byPlayer, quantity);
+        }
+
         public override void OnHeldInteractStart(ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
             if (entitySel != null) return;
