@@ -4,7 +4,7 @@
 	"variantgroups": [
 		{
 			"code": "material",
-			"states": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "lead", "electrum", "molybdochalkos" ]
+			"states": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "electrum", "molybdochalkos" ]
 		}
 	],
 	"texture": { "base": "game:block/metal/ingot/{material}" }
