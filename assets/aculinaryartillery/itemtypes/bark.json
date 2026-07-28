@@ -13,7 +13,7 @@
         }
     },
     "variantgroups": [
-        { "code": "bark", "states": [ "oak" ] },
+        { "code": "bark", "states": [ "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut" ] },
         { "code": "state", "states": [ "dry", "boiled" ] }
     ],
     "combustibleProps": {
