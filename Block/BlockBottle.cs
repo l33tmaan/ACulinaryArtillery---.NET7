@@ -51,7 +51,7 @@ namespace ACulinaryArtillery
 
             foreach (CollectibleObject obj in api.World.Collectibles)
             {
-                if (obj.FirstCodePart() == "cork")
+                if (obj.Attributes["canSealBottle"].AsBool() == true)
                 {
                     corkstacks.Add(new ItemStack(obj));
                 }
@@ -244,6 +244,9 @@ namespace ACulinaryArtillery
             return DefaultCork;
         }
 
+        /// <summary>
+        /// Check canSealBottle before calling this.
+        /// </summary>
         public void SetCork(ItemStack bottleStack, ItemStack? corkStack)
         {
             List<ItemStack?> contentStacks = [.. GetContents(api.World, bottleStack)];
@@ -348,7 +351,7 @@ namespace ACulinaryArtillery
                 ItemStack? cork = null;
                 foreach (ItemSlot slot in allInputslots)
                 {
-                    if (slot.Itemstack?.ItemAttributes["canSealBottle"].AsBool(false) ?? false)
+                    if (slot.Itemstack?.ItemAttributes["canSealBottle"].AsBool() ?? false)
                     {
                         cork = slot.Itemstack.Clone();
                         cork.StackSize = 1;
@@ -381,7 +384,7 @@ namespace ACulinaryArtillery
                 ItemStack? cork = null;
                 foreach (ItemSlot slot in allInputSlots)
                 {
-                    if (slot.Itemstack?.ItemAttributes["canSealBottle"].AsBool(false) ?? false)
+                    if (slot.Itemstack?.ItemAttributes["canSealBottle"].AsBool() ?? false)
                     {
                         cork = slot.Itemstack.Clone();
                         cork.StackSize = 1;
@@ -403,7 +406,7 @@ namespace ACulinaryArtillery
 
             if (plr != null && blockSel == null && Variant["type"] == "corked" && !byEntity.Controls.ShiftKey && itemslot.Itemstack != null)
             {
-                if (offhandSlot != null && (offhandSlot.Empty || offhandSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
+                if (offhandSlot != null && (offhandSlot.Empty || offhandSlot.Itemstack.Collectible == GetCork(itemslot.Itemstack)?.Collectible))
                 {
                     ItemStack? cork = GetCork(itemslot.Itemstack);
                     ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
@@ -443,7 +446,7 @@ namespace ACulinaryArtillery
 
             if (blockSel == null && byEntity.Controls.ShiftKey && plr != null && offhandSlot != null && itemslot.Itemstack != null
                 && Variant["type"] == "fired"
-                && offhandSlot.Itemstack?.Collectible.FirstCodePart() == "cork")
+                && offhandSlot.Itemstack?.ItemAttributes["canSealBottle"].AsBool() == true)
             {
                 ItemStack corkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack.Attributes };
                 ItemStack cork = offhandSlot.Itemstack.Clone();
