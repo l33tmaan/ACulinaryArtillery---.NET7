@@ -13,7 +13,8 @@
 		"requiredUnits": 250,
 		"moldrackable": false,
 		"fillHeight": 8,
-		"drop": { "type": "block", "code": "aculinaryartillery:cauldronmini-{metal}", "quantity": 1 }
+		"drop": { "type": "block", "code": "aculinaryartillery:cauldronmini-{metal}", "quantity": 1 },
+        "breaksWhenFilled": true
 	},
 	"entityClass": "ToolMold",
 	"blockmaterial": "Ceramic",

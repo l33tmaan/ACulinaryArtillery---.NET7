@@ -13,7 +13,8 @@
 		"requiredUnits": 100,
 		"fillHeight": 3,
 		"drop": { "type": "block", "code": "aculinaryartillery:spile-{metal}-north", "quantity": 3},
-        "shelvable": "SingleCenter"
+        "shelvable": "SingleCenter",
+        "breaksWhenFilled": true
     },
 	"entityClass": "ToolMold",
 	"blockmaterial": "Ceramic",

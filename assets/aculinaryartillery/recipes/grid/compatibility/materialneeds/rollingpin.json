@@ -4,7 +4,7 @@
         "ingredients": {
             "K": { "type": "item", "tags": ["tool-knife"], "isTool": true  },
             "S": { "type": "item", "code": "game:stick" },
-            "L": { "type": "block", "code": "game:log-placed-darkaged-ud", "name": "wood" }
+            "L": { "type": "block", "code": "materialneeds:log-placed-darkaged-ud", "name": "wood" }
         },
         "width": 3,
         "height": 2,

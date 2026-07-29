@@ -8,12 +8,14 @@
 - Meat/bottle racks now indicate wood/metal type in item description
 - Dedicated cork/uncork button?
 - Meat racks can have dedicated shapes like elks
-- Bottles fixed so they can get water from source blocks properly 
+- Bottles fixed so they can get water from source blocks properly - DONE!!!
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
 - Bottle racks, mixing bowl & meathooks can be deconstructed - DONE!!!
-- Material Needs patches updated
+- Material Needs patches updated - DONE???
+- Spile and cauldron molds break upon use - DONE!!!
+- New, larger spile mold shape
 
-- Add support for bottle corking and uncorking sounds (thanks to Lazula!)
+- Add support for multiple bottle corking and uncorking sounds based on fullness (thanks to Lazula!)
 - Fix desync in bottle heldinteract (thanks to Lazula!)
 - Add mixing-code based system and toppings for pies (thanks to Lazula!):
 -- API Feature: Add InPieProperties.ReadFrom instead of using manual attribute checking everywhere. Added detailed documentation.
@@ -23,7 +25,11 @@
 -- API Feature: Add support for liquid pie ingredients.
 -- API Feature: Pie ingredients can have custom amounts.
 -- API Tweak: Add significantly more error logging for pies for players and modders.
-- Conflict between ACA and Variations on a meal egg patches resolved
+-- Conflict between ACA and Variations on a meal egg patches resolved
+- Number of liters in the firepit UI while simmering now rounds instead of truncates (thanks to orborde!)
+- Change mixing bowl to skip cycles when output sides are blocked instead of discarding ingredients (thanks to orborde!)
+- Egg cracking fixed (thanks to Aimli!)
+- Extra nutrition text now follows language localization instead of always being in English (thanks to Aimli!)
 
 
 ~1.22_v2.0.0-dev.21~
