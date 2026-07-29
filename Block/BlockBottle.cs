@@ -33,7 +33,7 @@ namespace ACulinaryArtillery
         public virtual float MaxFillZ => Attributes["maxFillSideways"].AsFloat();
         public virtual ItemStack DefaultCork => new(api.World.GetItem("aculinaryartillery:cork-wood-oak"));
 
-        public ItemStack[] corkStacks = null!;
+        public static ItemStack[] corkStacks = null!;
 
 
         public override byte[]? GetLightHsv(IBlockAccessor blockAccessor, BlockPos pos, ItemStack? stack = null)
@@ -47,17 +47,18 @@ namespace ACulinaryArtillery
             props = Attributes?["liquidContainerProps"]?.AsObject(props, Code.Domain) ?? props;
             drinkPortionSizeFromAttributes = Attributes?["drinkPortionSize"].AsFloat(0.25f) ?? 0.25f; //base game reads this as an integer
 
-            List<ItemStack> corkstacks = [];
-
-            foreach (CollectibleObject obj in api.World.Collectibles)
+            if (api.Side is EnumAppSide.Client && corkStacks == null)
             {
-                if (obj.Attributes["canSealBottle"].AsBool() == true)
+                List<ItemStack> corkStacks = [];
+                foreach (CollectibleObject obj in api.World.Collectibles)
                 {
-                    corkstacks.Add(new ItemStack(obj));
+                    if (obj.Attributes?["canSealBottle"]?.AsBool() == true)
+                    {
+                        corkStacks.Add(new ItemStack(obj));
+                    }
                 }
+                BlockBottle.corkStacks = [.. corkStacks];
             }
-
-            corkStacks = [.. corkstacks];
         }
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
