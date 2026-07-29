@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -60,8 +61,6 @@ namespace ACulinaryArtillery
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            if (!IsClear && !IsTopOpened) return;
-
             Dictionary<int, MultiTextureMeshRef> meshrefs;
             if (capi.ObjectCache.TryGetValue(MeshRefsCacheKey, out var obj))
             {
@@ -80,13 +79,11 @@ namespace ACulinaryArtillery
                 key += "-" + contentStack?.StackSize + "x" + contentStack?.Collectible.Code.ToShortString();
             }
 
-            string? corkString = itemstack.Attributes?.GetAsString("cork");
-            if (corkString != null)
+            ItemStack? corkStack = GetCork(itemstack);
+            if (corkStack != null)
             {
-                key += "-" + corkString;
+                key += "-" + corkStack.Collectible.Code;
             }
-
-            if (contentStack == null && corkString == null) return;
 
             int hashcode = key.GetHashCode();
             if (!meshrefs.TryGetValue(hashcode, out var meshRef))
@@ -113,7 +110,8 @@ namespace ACulinaryArtillery
         {
             if (capi?.Assets.TryGet(EmptyShapeLoc.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")) is not IAsset asset) return new MeshData();
 
-            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, new BottleTextureSource(capi, stack, null), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+            ItemStack? cork = stack.Collectible.LastCodePart() == "corked" ? GetCork(stack) : null;
+            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, new BottleTextureSource(capi, stack, cork, null), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
 
             if (GetContent(stack) is ItemStack contentStack && (IsClear || IsTopOpened))
             {
@@ -129,7 +127,7 @@ namespace ACulinaryArtillery
                 shape = SliceFlattenedShape(shape.FlattenElementHierarchy(), fullness, isSideways);
 
                 MeshData bottleMesh = mesh;
-                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, cork, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
                 for (int i = 0; i < mesh.Flags.Length; i++) mesh.Flags[i] = mesh.Flags[i] & ~(1 << 12); // Remove water waving flag
 
                 mesh.AddMeshData(bottleMesh);
@@ -224,12 +222,29 @@ namespace ACulinaryArtillery
                 key += "-" + contentStack?.StackSize + "x" + contentStack?.Collectible.Code.ToShortString();
             }
 
-            if (stack.Attributes?.GetAsString("cork") is string corkString)
+            ItemStack? corkStack = GetCork(stack);
+            if (corkStack != null)
             {
-                key += "-" + corkString;
+                key += "-" + corkStack.Collectible.Code;
             }
 
             return key;
+        }
+
+        public ItemStack? GetCork(ItemStack stack) => GetContents(api.World, stack).ElementAtOrDefault(1);
+
+        public void SetCork(ItemStack bottleStack, ItemStack? corkStack)
+        {
+            ItemStack?[] contentStacks = GetContents(api.World, bottleStack);
+            if (contentStacks.Length > 0)
+            {
+                contentStacks[1] = corkStack;
+            }
+            else
+            {
+                contentStacks = [null, corkStack];
+            }
+            SetContents(bottleStack, contentStacks);
         }
 
         public string GetContainedInfo(ItemSlot inSlot)
@@ -289,7 +304,8 @@ namespace ACulinaryArtillery
             if (Variant["type"] != "corked" && op.CurrentPriority == EnumMergePriority.DirectMerge && sinkSlot.Itemstack != null && sourceSlot.Itemstack?.ItemAttributes?["canSealBottle"]?.AsBool() == true)
             {
                 ItemStack corkedBottle = new(op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "corked"))) { Attributes = sinkSlot.Itemstack?.Attributes };
-                corkedBottle.Attributes?.SetString("cork", sourceSlot.Itemstack.Collectible.Code);
+                ItemStack cork = sourceSlot.Itemstack.Clone();
+                SetCork(corkedBottle, cork);
 
                 if (sinkSlot.StackSize == 1)
                 {
@@ -317,30 +333,58 @@ namespace ACulinaryArtillery
 
         public override void OnCreatedByCrafting(ItemSlot[] allInputslots, ItemSlot outputSlot, IRecipeBase byRecipe)
         {
-            if (byRecipe.Name != "aculinaryartillery:uncorkedclaybottle" && byRecipe.Name != "aculinaryartillery:uncorkedglassbottle")
+            if (byRecipe.Name?.FirstCodePart() == "uncork" && outputSlot.Itemstack != null)
             {
-                base.OnCreatedByCrafting(allInputslots, outputSlot, byRecipe);
-                return;
+                ItemStack? cork = GetCork(outputSlot.Itemstack);
+                SetCork(outputSlot.Itemstack, null);
             }
 
-            outputSlot.Itemstack?.Attributes.RemoveAttribute("cork");
+            if (byRecipe.Name?.FirstCodePart() == "cork" && outputSlot.Itemstack != null)
+            {
+                ItemStack? cork = null;
+                foreach (ItemSlot slot in allInputslots)
+                {
+                    if (slot.Itemstack?.ItemAttributes["canSealBottle"].AsBool(false) ?? false)
+                    {
+                        cork = slot.Itemstack.Clone();
+                        cork.StackSize = 1;
+                    }
+                }
+
+                if (cork == null) return;
+
+                SetCork(outputSlot.Itemstack, cork);
+            }
+
+            base.OnCreatedByCrafting(allInputslots, outputSlot, byRecipe);
         }
 
         public override void OnConsumedByCrafting(ItemSlot[] allInputSlots, ItemSlot stackInSlot, IRecipeBase recipe, IRecipeIngredient fromIngredient, IPlayer byPlayer, int quantity)
         {
-            if (recipe.Name != "aculinaryartillery:uncorkedclaybottle" && recipe.Name != "aculinaryartillery:uncorkedglassbottle")
+            if (recipe.Name?.FirstCodePart() == "uncork" && stackInSlot.Itemstack != null)
             {
-                base.OnConsumedByCrafting(allInputSlots, stackInSlot, recipe, fromIngredient, byPlayer, quantity);
-                return;
+                ItemStack? cork = GetCork(stackInSlot.Itemstack);
+                SetCork(stackInSlot.Itemstack, null);
+
+                if (!byPlayer.InventoryManager.TryGiveItemstack(cork, true))
+                {
+                    byPlayer.Entity.World.SpawnItemEntity(cork, byPlayer.Entity.Pos.AsBlockPos);
+                }
             }
 
-            string corkCode = stackInSlot.Itemstack?.Attributes.GetAsString("cork") ?? "aculinaryartillery:cork-wood-oak";
-            stackInSlot.Itemstack?.Attributes.RemoveAttribute("cork");
-            ItemStack cork = new(byPlayer.Entity.World.GetItem(corkCode));
-
-            if (!byPlayer.InventoryManager.TryGiveItemstack(cork, true))
+            if (recipe.Name?.FirstCodePart() == "cork" && stackInSlot.Itemstack != null)
             {
-                byPlayer.Entity.World.SpawnItemEntity(cork, byPlayer.Entity.Pos.AsBlockPos);
+                ItemStack? cork = null;
+                foreach (ItemSlot slot in allInputSlots)
+                {
+                    if (slot.Itemstack?.ItemAttributes["canSealBottle"].AsBool(false) ?? false)
+                    {
+                        cork = slot.Itemstack.Clone();
+                        cork.StackSize = 1;
+                    }
+                }
+
+                SetCork(stackInSlot.Itemstack, cork);
             }
 
             base.OnConsumedByCrafting(allInputSlots, stackInSlot, recipe, fromIngredient, byPlayer, quantity);
@@ -357,13 +401,9 @@ namespace ACulinaryArtillery
             {
                 if (offhandSlot != null && (offhandSlot.Empty || offhandSlot.Itemstack.Collectible.FirstCodePart() == "cork"))
                 {
-                    if (itemslot.Itemstack.Attributes.GetAsString("cork") is not string corkCode || corkCode == "aculinaryartillery:cork-generic")
-                    {
-                        corkCode = "aculinaryartillery:cork-wood-oak";
-                    }
-                    ItemStack cork = new(byEntity.World.GetItem(corkCode));
+                    ItemStack? cork = GetCork(itemslot.Itemstack);
                     ItemStack uncorkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "fired"))) { Attributes = itemslot.Itemstack.Attributes };
-                    uncorkedBottle.Attributes.RemoveAttribute("cork");
+                    SetCork(uncorkedBottle, null);
 
                     if (itemslot.StackSize == 1)
                     {
@@ -402,7 +442,9 @@ namespace ACulinaryArtillery
                 && offhandSlot.Itemstack?.Collectible.FirstCodePart() == "cork")
             {
                 ItemStack corkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack.Attributes };
-                corkedBottle.Attributes.SetString("cork", offhandSlot.Itemstack.Collectible.Code);
+                ItemStack cork = offhandSlot.Itemstack.Clone();
+                cork.StackSize = 1;
+                SetCork(corkedBottle, cork);
                 offhandSlot.TakeOut(1);
 
                 if (itemslot.StackSize == 1)
@@ -608,19 +650,13 @@ namespace ACulinaryArtillery
         private readonly TextureAtlasPosition blockTextPos;
         private readonly TextureAtlasPosition corkTextPos;
 
-        public BottleTextureSource(ICoreClientAPI capi, ItemStack stack, CompositeTexture? contentTexture)
+        public BottleTextureSource(ICoreClientAPI capi, ItemStack bottleStack, ItemStack? corkStack, CompositeTexture? contentTexture)
         {
             this.capi = capi;
             this.contentTexture = contentTexture;
 
-            this.corkTextPos = capi.BlockTextureAtlas.GetPosition(stack.Block, "map");
-            if (stack.Attributes?.GetAsString("cork") is string corkCode
-                && capi.World.GetItem(corkCode) is Item cork)
-            {
-                this.corkTextPos = capi.ItemTextureAtlas.GetPosition(cork, "base");
-            }
-
-            this.blockTextPos = capi.BlockTextureAtlas.GetPosition(stack.Block, "material");
+            corkTextPos = corkStack != null ? capi.ItemTextureAtlas.GetPosition(corkStack.Item, "base") : capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "map");
+            blockTextPos = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "material");
         }
 
         public TextureAtlasPosition this[string textureCode]

@@ -1,5 +1,6 @@
 [
 	{
+		"___comment": "Placing the cork in the content stacks is handled in code",
 		"ingredientPattern": "C,G",
 		"ingredients": {
 			"C": { "type": "item", "code": "cork-*", "name": "cork" },
@@ -8,11 +9,12 @@
 		"width": 1,
 		"height": 2,
         "recipeGroup": 1,
-		"name": "corkedclaybottle",
-		"output": { "type": "block", "code": "bottle-clay-{color}-corked", "attributes": { "cork": "aculinaryartillery:cork-{cork}" } },
+		"name": "cork-claybottle",
+		"output": { "type": "block", "code": "bottle-clay-{color}-corked" },
 		"copyAttributesFrom": "G"
 	},
 	{
+		"___comment": "Placing the cork in the content stacks is handled in code",
 		"ingredientPattern": "C,G",
 		"ingredients": {
 			"C": { "type": "item", "code": "cork-*", "name": "cork" },
@@ -21,12 +23,12 @@
 		"width": 1,
 		"height": 2,
         "recipeGroup": 1,
-		"name": "corkedglassbottle",
-		"output": { "type": "block", "code": "bottle-glass-{color}-corked", "attributes": { "cork": "aculinaryartillery:cork-{cork}" } },
+		"name": "cork-glassbottle",
+		"output": { "type": "block", "code": "bottle-glass-{color}-corked" },
 		"copyAttributesFrom": "G"
 	},
 	{
-		"___comment": "Returning the cork from the attributes is handled in code",
+		"___comment": "Returning the cork from the content stacks is handled in code",
 		"ingredientPattern": "G",
 		"ingredients": {
 			"G": { "type": "block", "code": "bottle-clay-*-corked", "name": "color" }
@@ -34,12 +36,12 @@
 		"width": 1,
 		"height": 1,
         "recipeGroup": 2,
-		"name": "uncorkedclaybottle",
+		"name": "uncork-claybottle",
 		"output": { "type": "block", "code": "bottle-clay-{color}-fired" },
 		"copyAttributesFrom": "G"
 	},
 	{
-		"___comment": "Returning the cork from the attributes is handled in code",
+		"___comment": "Returning the cork from the content stacks is handled in code",
 		"ingredientPattern": "G",
 		"ingredients": {
 			"G": { "type": "block", "code": "bottle-glass-*-corked", "name": "color" }
@@ -47,7 +49,7 @@
 		"width": 1,
 		"height": 1,
         "recipeGroup": 2,
-		"name": "uncorkedglassbottle",
+		"name": "uncork-glassbottle",
 		"output": { "type": "block", "code": "bottle-glass-{color}-fired" },
 		"copyAttributesFrom": "G"
 	}
