@@ -110,7 +110,7 @@ namespace ACulinaryArtillery
         {
             if (capi?.Assets.TryGet(EmptyShapeLoc.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")) is not IAsset asset) return new MeshData();
 
-            ItemStack? cork = stack.Collectible.LastCodePart() == "corked" ? GetCork(stack) : null;
+            ItemStack? cork = GetCork(stack);
             capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, new BottleTextureSource(capi, stack, cork, null), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
 
             if (GetContent(stack) is ItemStack contentStack && (IsClear || IsTopOpened))
@@ -231,20 +231,24 @@ namespace ACulinaryArtillery
             return key;
         }
 
-        public ItemStack? GetCork(ItemStack stack) => GetContents(api.World, stack).ElementAtOrDefault(1);
+        public ItemStack? GetCork(ItemStack stack)
+        {
+            if (stack.Collectible.LastCodePart() != "corked") return null;
+
+            if (GetContents(api.World, stack) is ItemStack[] contentStacks)
+            {
+                return contentStacks.ElementAtOrDefault(1);
+            }
+
+            return new(api.World.GetItem("aculinaryartillery:cork-wood-oak"));
+        }
 
         public void SetCork(ItemStack bottleStack, ItemStack? corkStack)
         {
-            ItemStack?[] contentStacks = GetContents(api.World, bottleStack);
-            if (contentStacks.Length > 0)
-            {
-                contentStacks[1] = corkStack;
-            }
-            else
-            {
-                contentStacks = [null, corkStack];
-            }
-            SetContents(bottleStack, contentStacks);
+            List<ItemStack?> contentStacks = [.. GetContents(api.World, bottleStack)];
+            while (contentStacks.Count() < 2) contentStacks.Add(null);
+            contentStacks[1] = corkStack;
+            SetContents(bottleStack, [.. contentStacks]);
         }
 
         public string GetContainedInfo(ItemSlot inSlot)
@@ -335,7 +339,6 @@ namespace ACulinaryArtillery
         {
             if (byRecipe.Name?.FirstCodePart() == "uncork" && outputSlot.Itemstack != null)
             {
-                ItemStack? cork = GetCork(outputSlot.Itemstack);
                 SetCork(outputSlot.Itemstack, null);
             }
 
@@ -509,7 +512,15 @@ namespace ACulinaryArtillery
 
         public override float GetContainingTransitionModifierContained(IWorldAccessor world, ItemSlot inSlot, EnumTransitionType transType)
         {
-            return Attributes[transType == EnumTransitionType.Perish ? "perishRate" : "cureRate"].AsFloat(1);
+            if (transType != EnumTransitionType.Perish && transType != EnumTransitionType.Cure) return 1;
+            string rateAttr = transType == EnumTransitionType.Perish ? "bottlePerishRate" : "bottleCureRate";
+
+            if (inSlot.Itemstack != null && GetCork(inSlot.Itemstack) is ItemStack corkStack)
+            {
+                return corkStack.ItemAttributes[rateAttr].AsFloat(1);
+            }
+
+            return 1;
         }
 
         public float SatMult => Attributes?["satMult"].AsFloat(1f) ?? 1f;

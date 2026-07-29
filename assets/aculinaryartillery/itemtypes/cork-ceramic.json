@@ -7,5 +7,8 @@
 			"states": [ "blue", "fire", "black", "brown", "cream", "earthyorange", "gray", "orange", "red", "tan" ]
 		}
 	],
+	"attributes": {
+		"bottlePerishRate": 0.1
+	},
 	"texture": { "base": "game:block/clay/hardened/{material}" }
 }

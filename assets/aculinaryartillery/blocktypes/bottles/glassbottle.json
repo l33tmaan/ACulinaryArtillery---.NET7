@@ -31,7 +31,6 @@
 			"isTopOpened": false,
 			"allowHeldLiquidTransfer": false,
 			"bottlerackable": true,
-			"perishRate": 0.1,
 			"liquidContainerProps": {
 				"capacityLitres": 1,
 				"transferSizeLitres": 0.1,
@@ -55,7 +54,6 @@
 			"isTopOpened": true,
 			"bottlerackable": true,
 			"allowHeldLiquidTransfer": true,
-			"perishRate": 1,
 			"liquidContainerProps": {
 				"capacityLitres": 1,
 				"transferSizeLitres": 0.1,
