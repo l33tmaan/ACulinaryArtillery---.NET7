@@ -484,7 +484,7 @@ namespace ACulinaryArtillery
             FoodNutritionProperties? nutriProps;
 
             nutriProps = obj.Attributes?["nutritionPropsWhenInMeal"].AsObject<FoodNutritionProperties>();
-            nutriProps ??= cprops?.SmeltedStack.ResolvedItemstack?.Collectible.GetNutritionProperties(world, cprops.SmeltedStack.ResolvedItemstack, forEntity);
+            nutriProps ??= cprops?.SmeltedStack?.ResolvedItemstack?.Collectible.GetNutritionProperties(world, cprops.SmeltedStack.ResolvedItemstack, forEntity);
             nutriProps ??= liquidProps?.NutritionPropsPerLitreWhenInMeal;
 
             if (liquidProps != null && nutriProps == null)
