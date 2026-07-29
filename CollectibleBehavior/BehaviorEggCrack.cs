@@ -133,7 +133,8 @@ namespace ACulinaryArtillery
         }
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
-            if (blockSel?.Block != null && CanSqueezeInto(byEntity.World, blockSel.Block, blockSel))
+            Block? block = blockSel == null ? null : byEntity.World.BlockAccessor.GetBlock(blockSel.Position);
+            if (block != null && CanSqueezeInto(byEntity.World, block, blockSel))
             {
                 handling = EnumHandling.PreventDefault;
                 if (!byEntity.Controls.ShiftKey) { return false; }

@@ -1221,11 +1221,12 @@ namespace ACulinaryArtillery
 
             foreach (var val in totalSaturation)
             {
-                sb.AppendLine("- " + Lang.Get("" + val.Key) + ": " + Math.Round(val.Value) + " sat.");
+                sb.AppendLine(Lang.Get("efrecipes:- {0} {1} sat", Math.Round(val.Value, 1), ItemExpandedFood.GetLocalizedFoodCategory(val.Key)));
             }
-            if (totalHealth != 0)
+            double roundedHealth = Math.Round(totalHealth, 1);
+            if (roundedHealth != 0)
             {
-                sb.AppendLine("- " + Lang.Get("Health: {0}{1} hp", totalHealth > 0 ? "+" : "", totalHealth));
+                sb.AppendLine("- " + Lang.Get("Health: {0}{1} hp", roundedHealth > 0 ? "+" : "", roundedHealth));
             }
 
             __result = sb.ToString();
