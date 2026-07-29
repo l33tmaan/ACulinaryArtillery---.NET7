@@ -661,28 +661,28 @@ namespace ACulinaryArtillery
     {
         public ItemStack? forContents;
         private readonly ICoreClientAPI capi;
-        private TextureAtlasPosition? contentTextPos;
+        private TextureAtlasPosition? contentTexPos;
         private readonly CompositeTexture? contentTexture;
-        private readonly TextureAtlasPosition blockTextPos;
-        private readonly TextureAtlasPosition corkTextPos;
+        private readonly TextureAtlasPosition blockTexPos;
+        private readonly TextureAtlasPosition corkTexPos;
 
         public BottleTextureSource(ICoreClientAPI capi, ItemStack bottleStack, ItemStack? corkStack, CompositeTexture? contentTexture)
         {
             this.capi = capi;
             this.contentTexture = contentTexture;
 
-            corkTextPos = corkStack != null ? capi.ItemTextureAtlas.GetPosition(corkStack.Item, "base") : capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "map");
-            blockTextPos = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "material");
+            corkTexPos = corkStack != null ? capi.ItemTextureAtlas.GetPosition(corkStack.Item, "base") : capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "map");
+            blockTexPos = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "material");
         }
 
         public TextureAtlasPosition this[string textureCode]
         {
             get
             {
-                if (textureCode == "map") return corkTextPos;
-                if (textureCode == "material") return blockTextPos;
+                if (textureCode == "map") return corkTexPos;
+                if (textureCode == "material") return blockTexPos;
 
-                if (contentTextPos == null && contentTexture != null)
+                if (contentTexPos == null && contentTexture != null)
                 {
                     int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "contenttexture-" + contentTexture.ToString() ?? "unknowncontent", () =>
                     {
@@ -700,10 +700,10 @@ namespace ACulinaryArtillery
                         return id;
                     });
 
-                    contentTextPos = capi.BlockTextureAtlas.Positions[textureSubId];
+                    contentTexPos = capi.BlockTextureAtlas.Positions[textureSubId];
                 }
 
-                return contentTextPos ?? blockTextPos;
+                return contentTexPos ?? blockTexPos;
             }
         }
         public Size2i AtlasSize => capi.BlockTextureAtlas.Size;
