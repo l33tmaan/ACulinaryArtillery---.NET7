@@ -1,0 +1,27 @@
+{
+	"ingredient": { "type": "item", "code": "game:clay-*", "name": "color", "allowedVariants": ["blue", "fire", "red"] },
+	"pattern": [[
+		"####_####",
+		"####_####",
+		"####_####",
+        "####_####",
+        "_________",
+        "####_####",
+		"####_####",
+		"####_####",
+        "####_####"
+	],
+    [
+        "_________",
+		"_##___##_",
+		"_##___##_",
+        "_________",
+        "_________",
+        "_________",
+		"_##___##_",
+		"_##___##_",
+        "_________"
+    ]],
+	"name": "cork-ceramic-4",
+	"output": { "type": "item", "code": "aculinaryartillery:cork-ceramic-raw-{color}", "quantity": 4 }
+}
