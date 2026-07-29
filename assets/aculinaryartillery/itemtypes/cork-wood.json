@@ -1,6 +1,7 @@
 {
     "code": "cork-wood",
     "maxstacksize": 64,
+    "behaviors": [ { "name": "GroundStorable", "properties": { "layout": "Quadrants" } } ],
     "variantgroups": [
         {
             "code": "material",
