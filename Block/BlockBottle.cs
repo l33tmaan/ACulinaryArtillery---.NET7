@@ -113,7 +113,8 @@ namespace ACulinaryArtillery
             if (capi?.Assets.TryGet(EmptyShapeLoc.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")) is not IAsset asset) return new MeshData();
 
             ItemStack? cork = GetCork(stack);
-            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, new BottleTextureSource(capi, stack, cork, null), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+            CompositeTexture? corkTexture = cork?.Item.FirstTexture;
+            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, new BottleTextureSource(capi, stack, corkTexture, null), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
 
             if (GetContent(stack) is ItemStack contentStack && (IsClear || IsTopOpened))
             {
@@ -129,7 +130,7 @@ namespace ACulinaryArtillery
                 shape = SliceFlattenedShape(shape.FlattenElementHierarchy(), fullness, isSideways);
 
                 MeshData bottleMesh = mesh;
-                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, cork, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, corkTexture, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
                 for (int i = 0; i < mesh.Flags.Length; i++) mesh.Flags[i] = mesh.Flags[i] & ~(1 << 12); // Remove water waving flag
 
                 mesh.AddMeshData(bottleMesh);
@@ -656,22 +657,25 @@ namespace ACulinaryArtillery
         }
     }
 
-    /*************************************************************************************************************/
     public class BottleTextureSource : ITexPositionSource
     {
         public ItemStack? forContents;
         private readonly ICoreClientAPI capi;
+
+        private readonly TextureAtlasPosition blockTexPos;
+
         private TextureAtlasPosition? contentTexPos;
         private readonly CompositeTexture? contentTexture;
-        private readonly TextureAtlasPosition blockTexPos;
-        private readonly TextureAtlasPosition corkTexPos;
 
-        public BottleTextureSource(ICoreClientAPI capi, ItemStack bottleStack, ItemStack? corkStack, CompositeTexture? contentTexture)
+        private TextureAtlasPosition? corkTexPos;
+        private readonly CompositeTexture? corkTexture;
+
+        public BottleTextureSource(ICoreClientAPI capi, ItemStack bottleStack, CompositeTexture? corkTexture, CompositeTexture? contentTexture)
         {
             this.capi = capi;
             this.contentTexture = contentTexture;
+            this.corkTexture = corkTexture;
 
-            corkTexPos = corkStack != null ? capi.ItemTextureAtlas.GetPosition(corkStack.Item, "base") : capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "map");
             blockTexPos = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "material");
         }
 
@@ -679,31 +683,61 @@ namespace ACulinaryArtillery
         {
             get
             {
-                if (textureCode == "map") return corkTexPos;
                 if (textureCode == "material") return blockTexPos;
 
-                if (contentTexPos == null && contentTexture != null)
+                if (textureCode == "map")
                 {
-                    int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "contenttexture-" + contentTexture.ToString() ?? "unknowncontent", () =>
+                    if (corkTexPos == null && corkTexture != null)
                     {
-                        capi.BlockTextureAtlas.GetOrInsertTexture(
-                            contentTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"),
-                            out var id,
-                            out _,
-                            new CreateTextureDelegate(() =>
+                        int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "corktexture-" + corkTexture.ToString() ?? "unknowncork", () =>
                             {
-                                var bmp = capi.Assets.TryGet(contentTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"))?.ToBitmap(capi);
-                                if (bmp != null && contentTexture.Alpha != 255) bmp.MulAlpha(contentTexture.Alpha);
-                                return bmp;
-                            })
-                        );
-                        return id;
-                    });
+                                capi.BlockTextureAtlas.GetOrInsertTexture(
+                                    corkTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"),
+                                    out var id,
+                                    out _,
+                                    new CreateTextureDelegate(() =>
+                                    {
+                                        var bmp = capi.Assets.TryGet(corkTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"))?.ToBitmap(capi);
+                                        if (bmp != null && corkTexture.Alpha != 255) bmp.MulAlpha(corkTexture.Alpha);
+                                        return bmp;
+                                    })
+                                );
+                                return id;
+                            });
 
-                    contentTexPos = capi.BlockTextureAtlas.Positions[textureSubId];
+                        corkTexPos = capi.BlockTextureAtlas.Positions[textureSubId];
+                    }
+
+                    return corkTexPos ?? blockTexPos;
                 }
 
-                return contentTexPos ?? blockTexPos;
+                if (textureCode == "content")
+                {
+                    if (contentTexPos == null && contentTexture != null)
+                    {
+                        int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "contenttexture-" + contentTexture.ToString() ?? "unknowncontent", () =>
+                        {
+                            capi.BlockTextureAtlas.GetOrInsertTexture(
+                                contentTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"),
+                                out var id,
+                                out _,
+                                new CreateTextureDelegate(() =>
+                                {
+                                    var bmp = capi.Assets.TryGet(contentTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"))?.ToBitmap(capi);
+                                    if (bmp != null && contentTexture.Alpha != 255) bmp.MulAlpha(contentTexture.Alpha);
+                                    return bmp;
+                                })
+                            );
+                            return id;
+                        });
+
+                        contentTexPos = capi.BlockTextureAtlas.Positions[textureSubId];
+                    }
+
+                    return contentTexPos ?? blockTexPos;
+                }
+
+                return blockTexPos;
             }
         }
         public Size2i AtlasSize => capi.BlockTextureAtlas.Size;
