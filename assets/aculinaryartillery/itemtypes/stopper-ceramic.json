@@ -1,6 +1,6 @@
 {
-	"code": "cork-ceramic",
-	"inheritFrom": "itemtypes/cork-wood",
+	"code": "stopper-ceramic",
+	"inheritFrom": "itemtypes/stopper-wood",
 	"variantgroups": [
 		{
 			"code": "material",

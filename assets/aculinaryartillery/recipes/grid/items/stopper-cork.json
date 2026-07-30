@@ -1,0 +1,11 @@
+{
+    "ingredientPattern": "K,L",
+    "ingredients": {
+        "K": { "type": "item", "tags": ["tool-knife"], "isTool": true  },
+        "L": { "type": "item", "code": "bark-oak-boiled" }
+    },
+    "width": 1,
+    "height": 2,
+    "name": "stopper-cork",
+    "output": { "type": "item", "code": "stopper-cork", "quantity": 16 }
+}

@@ -31,7 +31,7 @@ namespace ACulinaryArtillery
         public virtual float MaxFillY => Attributes["maxFill"].AsFloat();
         public virtual float MinFillZ => Attributes["minFillSideways"].AsFloat();
         public virtual float MaxFillZ => Attributes["maxFillSideways"].AsFloat();
-        public virtual ItemStack DefaultCork => new(api.World.GetItem("aculinaryartillery:cork-wood-oak"));
+        public virtual ItemStack DefaultCork => new(api.World.GetItem("aculinaryartillery:stopper-cork"));
 
         public static ItemStack[] corkStacks = null!;
 
@@ -523,7 +523,7 @@ namespace ACulinaryArtillery
 
             if (inSlot.Itemstack != null && GetCork(inSlot.Itemstack) is ItemStack corkStack)
             {
-                return corkStack.ItemAttributes[rateAttr].AsFloat(1);
+                return corkStack.ItemAttributes?[rateAttr]?.AsFloat(1) ?? 1;
             }
 
             return 1;

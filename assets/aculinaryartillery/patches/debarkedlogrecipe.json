@@ -3,7 +3,23 @@
     "file": "game:recipes/grid/debarkedlog.json",
     "op": "addmerge",
     "path": "/0/ingredients/L/returnedStack",
-    "value": { "type": "item", "code": "aculinaryartillery:bark-{wood}-dry" },
+    "value": { "type": "item", "code": "aculinaryartillery:bark-oak-dry" },
+    "side": "server",
+    "dependsOn": [{ "modid": "indappledgroves", "invert": true }]
+  },
+  {
+    "file": "game:recipes/grid/debarkedlog.json",
+    "op": "replace",
+    "path": "/0/ingredients/L/code",
+    "value": "log-placed-oak-ud",
+    "side": "server",
+    "dependsOn": [{ "modid": "indappledgroves", "invert": true }]
+  },
+  {
+    "file": "game:recipes/grid/debarkedlog.json",
+    "op": "replace",
+    "path": "/0/output/code",
+    "value": "debarkedlog-oak-ud",
     "side": "server",
     "dependsOn": [{ "modid": "indappledgroves", "invert": true }]
   },

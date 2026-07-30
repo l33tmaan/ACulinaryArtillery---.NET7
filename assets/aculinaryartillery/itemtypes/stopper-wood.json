@@ -1,0 +1,22 @@
+{
+    "code": "stopper-wood",
+    "inheritFrom": "itemtypes/stopper-cork",
+    "variantgroups": [
+        {
+            "code": "material",
+            "states": [ "aged", "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut" ]
+        }
+    ],
+    "attributes": {
+        "bottlePerishRate": 0.5,
+		"handbook": {
+			"extraSections": [
+                {
+                    "title": "aculinaryartillery:block-handbooktitle-stopper",
+                    "text": "aculinaryartillery:block-handbooktext-stopper"
+                }
+            ]
+		}
+    },
+    "texture": { "base": "game:block/wood/planks/{material}1" }
+}

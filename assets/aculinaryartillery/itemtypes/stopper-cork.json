@@ -1,19 +1,13 @@
 {
-    "code": "cork-wood",
+    "code": "stopper-cork",
     "maxstacksize": 64,
     "behaviors": [ { "name": "GroundStorable", "properties": { "layout": "Quadrants" } } ],
-    "variantgroups": [
-        {
-            "code": "material",
-            "states": [ "aged", "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut" ]
-        }
-    ],
     "storageFlags": 257,
     "attributes": {
         "canSealBottle": true,
-        "bottlePerishRate": 0.5,
+        "bottlePerishRate": 0.1,
         "handbook": {
-            "groupBy": ["cork-*"],
+            "groupBy": ["stopper-*"],
             "extraSections": [
                 {
                     "title": "aculinaryartillery:block-handbooktitle-cork",
@@ -23,8 +17,8 @@
         }
     },
     "materialDensity": 100,
-    "shape": { "base": "item/cork" },
-    "texture": { "base": "game:block/wood/bark/{material}" },
+    "shape": { "base": "item/stopper" },
+    "texture": { "base": "game:block/wood/bark/oak" },
     "creativeinventory": { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"] },
     "guiTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },

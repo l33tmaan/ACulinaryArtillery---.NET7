@@ -6,6 +6,6 @@
 	},
 	"width": 1,
 	"height": 2,
-	"name": "cork-glass",
-	"output": { "type": "item", "code": "cork-glass-{color}", "quantity": 16  }
+	"name": "stopper-glass",
+	"output": { "type": "item", "code": "stopper-glass-{color}", "quantity": 16  }
 }

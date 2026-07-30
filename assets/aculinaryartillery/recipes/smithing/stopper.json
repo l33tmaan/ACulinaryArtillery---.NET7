@@ -20,11 +20,11 @@
 				"________"
 			]
 		],
-		"name": "cork-metal",
-		"code": "cork-metal-{metal}",
+		"name": "stopper-metal",
+		"code": "stopper-metal-{metal}",
 		"output": {
 			"type": "item",
-			"code": "cork-metal-{metal}"
+			"code": "stopper-metal-{metal}"
 		}
 	},
 	{
@@ -48,11 +48,11 @@
 				"_________"
 			]
 		],
-		"name": "cork-metal-2",
-		"code": "cork-metal-{metal}-2",
+		"name": "stopper-metal-2",
+		"code": "stopper-metal-2-{metal}",
 		"output": {
 			"type": "item",
-			"code": "cork-metal-{metal}",
+			"code": "stopper-metal-{metal}",
 			"quantity": 2
 		}
 	}

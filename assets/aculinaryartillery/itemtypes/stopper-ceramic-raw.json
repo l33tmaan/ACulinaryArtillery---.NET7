@@ -1,0 +1,59 @@
+{
+	"code": "stopper-ceramic-raw",
+	"inheritFrom": "itemtypes/stopper-ceramic",
+	"variantgroups": [
+		{
+			"code": "material",
+			"states": [ "blue", "fire", "red" ]
+		}
+	],
+	"attributes": {
+        "canSealBottle": false,
+		"bottlePerishRate": 0.1
+	},
+	"texture": { "base": "game:block/clay/{material}clay" },
+    "attributesByType" : {
+		"stopper-ceramic-red-raw": {
+			"beehivekiln": {
+				"0": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-tan" },
+				"1": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-orange" },
+				"2": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-red" },
+				"3": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-brown" }
+			}
+		},
+		"stopper-ceramic-blue-raw": {
+			"beehivekiln": {
+				"0": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-cream"},
+				"1": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-gray"},
+				"2": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-black"},
+				"3": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-black"}
+			}
+		},
+		"stopper-ceramic-fire-raw": {
+			"beehivekiln": {
+				"0": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-fire"},
+				"1": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-fire"},
+				"2": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-fire"},
+				"3": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-fire"}
+			}
+		}
+	},
+	"combustiblePropsByType": {
+		"*-red-raw": {
+			"meltingPoint": 600,
+			"meltingDuration": 30,
+			"smeltedRatio": 1,
+			"smeltingType": "fire",
+			"smeltedStack": {"type": "item", "code": "aculinaryartillery:stopper-ceramic-earthyorange" },
+			"requiresContainer": false
+		},
+		"*": {
+			"meltingPoint": 600,
+			"meltingDuration": 30,
+			"smeltedRatio": 1,
+			"smeltingType": "fire",
+			"smeltedStack": {"type": "item", "code": "aculinaryartillery:stopper-ceramic-{material}" },
+			"requiresContainer": false
+		}
+	}
+}

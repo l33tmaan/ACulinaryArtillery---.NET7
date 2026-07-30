@@ -1,0 +1,22 @@
+{
+	"code": "stopper-metal",
+	"inheritFrom": "itemtypes/stopper-cork",
+	"variantgroups": [
+		{
+			"code": "material",
+			"states": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "electrum", "molybdochalkos" ]
+		}
+	],
+	"attributes": {
+		"bottlePerishRate": 0.1,
+		"handbook": {
+			"extraSections": [
+                {
+                    "title": "aculinaryartillery:block-handbooktitle-stopper",
+                    "text": "aculinaryartillery:block-handbooktext-stopper"
+                }
+            ]
+		}
+	},
+	"texture": { "base": "game:block/metal/ingot/{material}" }
+}

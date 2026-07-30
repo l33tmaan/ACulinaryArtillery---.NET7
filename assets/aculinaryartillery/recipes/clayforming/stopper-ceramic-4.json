@@ -22,6 +22,6 @@
 		"_##___##_",
         "_________"
     ]],
-	"name": "cork-ceramic-4",
-	"output": { "type": "item", "code": "aculinaryartillery:cork-ceramic-raw-{color}", "quantity": 4 }
+	"name": "stopper-ceramic-4",
+	"output": { "type": "item", "code": "aculinaryartillery:stopper-ceramic-raw-{color}", "quantity": 4 }
 }

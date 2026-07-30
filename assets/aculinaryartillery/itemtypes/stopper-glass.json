@@ -1,0 +1,22 @@
+{
+	"code": "stopper-glass",
+	"inheritFrom": "itemtypes/stopper-cork",
+	"variantgroups": [
+		{
+			"code": "material",
+			"states": [ "blue", "brown", "green", "pink", "plain", "quartz", "red", "smoky", "vintage", "violet", "yellow" ]
+		}
+	],
+	"attributes": {
+		"bottlePerishRate": 0.3,
+		"handbook": {
+			"extraSections": [
+                {
+                    "title": "aculinaryartillery:block-handbooktitle-stopper",
+                    "text": "aculinaryartillery:block-handbooktext-stopper"
+                }
+            ]
+		}
+	},
+	"texture": { "base": "game:block/glass/{material}" }
+}
