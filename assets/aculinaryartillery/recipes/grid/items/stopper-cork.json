@@ -6,6 +6,6 @@
     },
     "width": 1,
     "height": 2,
-    "name": "stopper-cork",
-    "output": { "type": "item", "code": "stopper-cork", "quantity": 16 }
+    "name": "stopper-bark-cork",
+    "output": { "type": "item", "code": "stopper-bark-cork", "quantity": 16 }
 }

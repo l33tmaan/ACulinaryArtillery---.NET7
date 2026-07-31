@@ -1,6 +1,6 @@
 {
 	"code": "stopper-metal",
-	"inheritFrom": "itemtypes/stopper-cork",
+	"inheritFrom": "itemtypes/stopper-bark",
 	"variantgroups": [
 		{
 			"code": "material",

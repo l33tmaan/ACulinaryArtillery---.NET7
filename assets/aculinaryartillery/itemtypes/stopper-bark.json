@@ -1,5 +1,5 @@
 {
-    "code": "stopper-cork",
+    "code": "stopper-bark-cork",
     "maxstacksize": 64,
     "behaviors": [ { "name": "GroundStorable", "properties": { "layout": "Quadrants" } } ],
     "storageFlags": 257,

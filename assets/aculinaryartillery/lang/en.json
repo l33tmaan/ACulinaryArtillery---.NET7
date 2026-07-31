@@ -97,12 +97,12 @@
   "blockdesc-bottle-*-raw": "Could probably use some heat.",
   "blockdesc-bottle-*-fired": "An empty bottle becomes desperate for purpose.",
   "block-handbooktitle-bottle": "Bottle",
-  "block-handbooktext-bottle": "A narrow-necked container used for storing and preserving liquids. When combined with a high-quality stopper, such as a <a href=\"handbook://item-aculinaryartillery:stopper-cork\">cork</a>, the aging of liquids becomes possible. Liquids placed into a bottle spoil at a slightly slower rate, but corking the bottle greatly extends the shelf life of any liquid inside it.",
+  "block-handbooktext-bottle": "A narrow-necked container used for storing and preserving liquids. When combined with a high-quality stopper, such as a <a href=\"handbook://item-aculinaryartillery:stopper-bark-cork\">cork</a>, the aging of liquids becomes possible. Liquids placed into a bottle spoil at a slightly slower rate, but corking the bottle greatly extends the shelf life of any liquid inside it.",
 
   "bottle-fulloffhandslot": "You must have an empty offhand slot to uncork a bottle.",
   "bottle-toofullforrack": "There's too much liquid in this bottle. It would spill if you put it on the rack.",
 
-  "item-stopper-cork": "Cork stopper",
+  "item-stopper-bark-cork": "Cork stopper",
   "item-stopper-wood-aged": "Aged stopper",
   "item-stopper-wood-acacia": "Acacia stopper",
   "item-stopper-wood-baldcypress": "Bald cypress stopper",
@@ -158,7 +158,7 @@
   "item-bark-oak-dry": "Oak bark",
   "item-bark-oak-boiled": "Boiled oak bark",
   "item-handbooktitle-bark": "Oak bark",
-  "item-handbooktext-bark": "After bark is separated from an oak tree, it is boiled to sterilize and soften it. During this cleaning process, the bark is made easier to work with and can be cut into workable <a href=\"handbook://item-aculinaryartillery:stopper-cork\">cork</a> pieces.",
+  "item-handbooktext-bark": "After bark is separated from an oak tree, it is boiled to sterilize and soften it. During this cleaning process, the bark is made easier to work with and can be cut into workable <a href=\"handbook://item-aculinaryartillery:stopper-bark-cork\">cork</a> pieces.",
   
   "efrecipes:Will make {0}" : "Will make {0}",
   "efrecipes:Squeezing x{0} {1}" : "Squeezing x{0} {1}",

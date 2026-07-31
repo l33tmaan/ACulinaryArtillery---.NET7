@@ -1,6 +1,6 @@
 {
 	"code": "stopper-ceramic",
-	"inheritFrom": "itemtypes/stopper-wood",
+	"inheritFrom": "itemtypes/stopper-bark",
 	"variantgroups": [
 		{
 			"code": "material",
