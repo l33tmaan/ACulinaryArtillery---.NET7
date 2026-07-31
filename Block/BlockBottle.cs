@@ -685,7 +685,7 @@ namespace ACulinaryArtillery
             {
                 if (textureCode == "material") return blockTexPos;
 
-                if (textureCode == "map")
+                if (textureCode == "stopper")
                 {
                     if (corkTexPos == null && corkTexture != null)
                     {
