@@ -19,7 +19,7 @@ namespace ACulinaryArtillery.Util
             ItemStack[] resolvedStacks = [.. capi.GetKneadingRecipes().Where(rec => rec.Ingredients.Any(ing => ing.GetMatch(maxstack) != null)).Select(rec => rec.Output.ResolvedItemStack),
                                           .. capi.GetSimmerRecipes().Where(rec => rec.Ingredients.Any(ing => ing.SatisfiesAsIngredient(maxstack))).Select(rec => rec.Simmering.SmeltedStack.ResolvedItemStack)];
 
-            List<ItemStack> recipestacks = [..allStacks.Where(stack => resolvedStacks.Where(rstack => rstack != null).Any(rstack => stack.Equals(capi.World, rstack, GlobalConstants.IgnoredStackAttributes)))];
+            List<ItemStack> recipestacks = [.. allStacks.Where(stack => resolvedStacks.Where(rstack => rstack != null).Any(rstack => stack.Equals(capi.World, rstack, GlobalConstants.IgnoredStackAttributes)))];
             List<CookingRecipe> mixingrecipes = [.. capi.GetMixingRecipes().Where(recipe => recipe.CooksInto?.ResolvedItemStack == null && recipe.Ingredients!.Any(ingred => ingred.GetMatchingStack(stack) != null))];
 
             if (recipestacks.Count == 0 && mixingrecipes.Count == 0) return [];
@@ -96,6 +96,7 @@ namespace ACulinaryArtillery.Util
 
             List<RichTextComponentBase> components = [];
             var verticalSpace = new ClearFloatTextComponent(capi, 7);
+            components.Add(verticalSpace);
 
             if (kneadingRecipes.Length > 0)
             {
