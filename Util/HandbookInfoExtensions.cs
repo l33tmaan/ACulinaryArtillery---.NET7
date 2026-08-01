@@ -11,6 +11,12 @@ namespace ACulinaryArtillery.Util
 {
     public static class HandbookInfoExtensions
     {
+
+        public static RichTextComponentBase? GetSubHeading(List<RichTextComponentBase> components, string code)
+        {
+            return components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "• " + Lang.Get(code) + "\n");
+        }
+
         public static List<RichTextComponentBase> ACAHandbookIngredientForComponents(ICoreClientAPI capi, ItemStack[] allStacks, ActionConsumable<string> openDetailPageFor, ItemStack stack)
         {
             ItemStack maxstack = stack.Clone();
@@ -96,7 +102,6 @@ namespace ACulinaryArtillery.Util
 
             List<RichTextComponentBase> components = [];
             var verticalSpace = new ClearFloatTextComponent(capi, 7);
-            components.Add(verticalSpace);
 
             if (kneadingRecipes.Length > 0)
             {
