@@ -18,7 +18,7 @@
     },
     "materialDensity": 100,
     "shape": { "base": "item/stopper" },
-    "texture": { "base": "game:block/wood/bark/oak" },
+    "texture": { "base": "game:item/utility/map" },
     "creativeinventory": { "general": ["*"], "items": ["*"], "aculinaryartillery": ["*"] },
     "guiTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },

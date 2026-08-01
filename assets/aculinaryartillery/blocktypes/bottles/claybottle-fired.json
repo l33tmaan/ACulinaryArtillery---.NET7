@@ -99,7 +99,7 @@
 	"textures": {
 		"material": { "base": "game:block/clay/hardened/{color}" },
         "sides": { "base": "game:block/clay/hardened/{color}","overlays": ["block/clay/overlay/bottle"] },
-		"stopper": { "base": "game:block/wood/bark/oak" }
+		"stopper": { "base": "game:item/utility/map" }
 	},
 	"resistance": 0.5,
 	"guiTransform": {

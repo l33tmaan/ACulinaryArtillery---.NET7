@@ -99,7 +99,7 @@
 	},
 	"textures": {
 		"material": { "base": "block/bottle/{color}" },
-		"stopper": { "base": "game:block/wood/bark/oak" }
+		"stopper": { "base": "game:item/utility/map" }
 	},
 	"resistance": 0.5,
 	"guiTransform": {
