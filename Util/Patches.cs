@@ -892,9 +892,9 @@ namespace ACulinaryArtillery
             }
             else
             {
-                var beforeSubheading = components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "� " + Lang.Get("Baking (in oven)") + "\n");
-                beforeSubheading ??= components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "� " + Lang.Get("handbook-createdby-potcooking") + "\n");
-                beforeSubheading ??= components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "� " + Lang.Get("Crafting") + "\n");
+                var beforeSubheading = HandbookInfoExtensions.GetSubHeading(components, "Baking (in oven)");
+                beforeSubheading ??= HandbookInfoExtensions.GetSubHeading(components, "handbook-createdby-potcooking");
+                beforeSubheading ??= HandbookInfoExtensions.GetSubHeading(components, "Crafting");
                 int insertIndex = components.Count;
                 if (beforeSubheading != null) insertIndex = components.IndexOf(beforeSubheading);
                 components.InsertRange(insertIndex, newComponents);
@@ -922,10 +922,10 @@ namespace ACulinaryArtillery
             }
             else
             {
-                var displaySubheading = components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "� " + Lang.Get("handbook-storable-displaycontainers") + "\n");
-                var beforeSubheading = components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "� " + Lang.Get("handbook-storable-liquidcontainers") + "\n");
-                beforeSubheading ??= components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "� " + Lang.Get("handbook-storable-foodcontainers") + "\n");
-                beforeSubheading ??= components.FirstOrDefault(comp => (comp as RichTextComponent)?.DisplayText == "� " + Lang.Get("handbook-storable-animalhusbandry") + "\n");
+                var displaySubheading = HandbookInfoExtensions.GetSubHeading(components, "handbook-storable-displaycontainers");
+                var beforeSubheading = HandbookInfoExtensions.GetSubHeading(components, "handbook-storable-liquidcontainers");
+                beforeSubheading ??= HandbookInfoExtensions.GetSubHeading(components, "handbook-storable-foodcontainers");
+                beforeSubheading ??= HandbookInfoExtensions.GetSubHeading(components, "handbook-storable-animalhusbandry");
                 int insertIndex = components.Count - 1;
                 if (beforeSubheading != null) insertIndex = components.IndexOf(beforeSubheading);
                 if (displaySubheading != null) components.InsertRange(insertIndex, newComponents);
