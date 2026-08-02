@@ -18,7 +18,6 @@ namespace ACulinaryArtillery
     {
         private LiquidTopOpenContainerProps props = new();
         protected virtual string MeshRefsCacheKey => Code.ToShortString() + "meshRefs";
-        protected virtual AssetLocation EmptyShapeLoc => props.EmptyShapeLoc ?? Shape.Base;
         protected virtual AssetLocation ContentShapeLoc => props.OpaqueContentShapeLoc;
         protected virtual AssetLocation LiquidContentShapeLoc => props.LiquidContentShapeLoc;
         public override float TransferSizeLitres => props.TransferSizeLitres;
@@ -34,6 +33,17 @@ namespace ACulinaryArtillery
         public virtual ItemStack DefaultCork => new(api.World.GetItem("aculinaryartillery:stopper-bark-cork"));
 
         public static ItemStack[] corkStacks = null!;
+
+
+        protected virtual AssetLocation EmptyShapeLoc(ItemStack stack)
+        {
+            if (GetCork(stack)?.Item?.Attributes?["isTransparent"]?.AsBool() == true)
+            {
+                return stack.ItemAttributes["transparentStopperShape"].AsString("missing-transparentStopperShape");
+            }
+
+            return props.EmptyShapeLoc ?? Shape.Base;
+        }
 
 
         public override byte[]? GetLightHsv(IBlockAccessor blockAccessor, BlockPos pos, ItemStack? stack = null)
@@ -52,7 +62,7 @@ namespace ACulinaryArtillery
                 List<ItemStack> corkStacks = [];
                 foreach (CollectibleObject obj in api.World.Collectibles)
                 {
-                    if (obj.Attributes?["canSealBottle"]?.AsBool() == true)
+                    if (obj.Attributes?["isBottleStopper"]?.AsBool() == true)
                     {
                         corkStacks.Add(new ItemStack(obj));
                     }
@@ -110,7 +120,7 @@ namespace ACulinaryArtillery
 
         public MeshData? GenMesh(ICoreClientAPI? capi, ItemStack stack, bool isSideways = false, BlockPos? atBlockPos = null)
         {
-            if (capi?.Assets.TryGet(EmptyShapeLoc.CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")) is not IAsset asset) return new MeshData();
+            if (capi?.Assets.TryGet(EmptyShapeLoc(stack).CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")) is not IAsset asset) return new MeshData();
 
             ItemStack? cork = GetCork(stack);
             CompositeTexture? corkTexture = cork?.Item.FirstTexture;
@@ -247,7 +257,7 @@ namespace ACulinaryArtillery
         }
 
         /// <summary>
-        /// Check canSealBottle before calling this.
+        /// Check isBottleStopper before calling this.
         /// </summary>
         public void SetCork(ItemStack bottleStack, ItemStack? corkStack)
         {
@@ -298,7 +308,7 @@ namespace ACulinaryArtillery
 
         public override int GetMergableQuantity(ItemStack sinkStack, ItemStack sourceStack, EnumMergePriority priority)
         {
-            if (priority == EnumMergePriority.DirectMerge && sourceStack.ItemAttributes?["canSealBottle"]?.AsBool() == true && Variant["type"] != "corked")
+            if (priority == EnumMergePriority.DirectMerge && sourceStack.ItemAttributes?["isBottleStopper"]?.AsBool() == true && Variant["type"] != "corked")
             {
                 return 1;
             }
@@ -311,7 +321,7 @@ namespace ACulinaryArtillery
             ItemSlot sourceSlot = op.SourceSlot;
             ItemSlot sinkSlot = op.SinkSlot;
 
-            if (Variant["type"] != "corked" && op.CurrentPriority == EnumMergePriority.DirectMerge && sinkSlot.Itemstack != null && sourceSlot.Itemstack?.ItemAttributes?["canSealBottle"]?.AsBool() == true)
+            if (Variant["type"] != "corked" && op.CurrentPriority == EnumMergePriority.DirectMerge && sinkSlot.Itemstack != null && sourceSlot.Itemstack?.ItemAttributes?["isBottleStopper"]?.AsBool() == true)
             {
                 ItemStack corkedBottle = new(op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "corked"))) { Attributes = sinkSlot.Itemstack?.Attributes };
                 ItemStack cork = sourceSlot.Itemstack.Clone();
@@ -353,7 +363,7 @@ namespace ACulinaryArtillery
                 ItemStack? cork = null;
                 foreach (ItemSlot slot in allInputslots)
                 {
-                    if (slot.Itemstack?.ItemAttributes["canSealBottle"].AsBool() ?? false)
+                    if (slot.Itemstack?.ItemAttributes["isBottleStopper"].AsBool() ?? false)
                     {
                         cork = slot.Itemstack.Clone();
                         cork.StackSize = 1;
@@ -386,7 +396,7 @@ namespace ACulinaryArtillery
                 ItemStack? cork = null;
                 foreach (ItemSlot slot in allInputSlots)
                 {
-                    if (slot.Itemstack?.ItemAttributes["canSealBottle"].AsBool() ?? false)
+                    if (slot.Itemstack?.ItemAttributes["isBottleStopper"].AsBool() ?? false)
                     {
                         cork = slot.Itemstack.Clone();
                         cork.StackSize = 1;
@@ -448,7 +458,7 @@ namespace ACulinaryArtillery
 
             if (blockSel == null && byEntity.Controls.ShiftKey && plr != null && offhandSlot != null && itemslot.Itemstack != null
                 && Variant["type"] == "fired"
-                && offhandSlot.Itemstack?.ItemAttributes["canSealBottle"].AsBool() == true)
+                && offhandSlot.Itemstack?.ItemAttributes["isBottleStopper"].AsBool() == true)
             {
                 ItemStack corkedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack.Attributes };
                 ItemStack cork = offhandSlot.Itemstack.Clone();

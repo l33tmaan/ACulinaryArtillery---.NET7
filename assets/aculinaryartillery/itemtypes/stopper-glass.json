@@ -1,14 +1,13 @@
 {
-	"code": "stopper-glass",
+	"code": "stopper",
 	"inheritFrom": "itemtypes/stopper-bark",
 	"variantgroups": [
-		{
-			"code": "material",
-			"states": [ "blue", "brown", "green", "pink", "plain", "quartz", "red", "smoky", "vintage", "violet", "yellow" ]
-		}
+		{ "code": "material", "states": [ "glass" ] },
+		{ "code": "color", "states": [ "blue", "brown", "green", "pink", "plain", "quartz", "red", "smoky", "vintage", "violet", "yellow" ] }
 	],
 	"attributes": {
 		"bottlePerishRate": 0.3,
+		"isTransparent": true,
 		"handbook": {
 			"extraSections": [
                 {
@@ -18,5 +17,5 @@
             ]
 		}
 	},
-	"texture": { "base": "game:block/glass/{material}" }
+	"texture": { "base": "game:block/glass/{color}" }
 }

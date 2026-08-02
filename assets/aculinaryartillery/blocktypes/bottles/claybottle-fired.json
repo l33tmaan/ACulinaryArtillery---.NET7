@@ -46,7 +46,8 @@
                     "gearback": { "base": "aculinaryartillery:item/wearable/hooved/elk/bottle2" },
                     "gearright": { "base": "aculinaryartillery:item/wearable/hooved/elk/bottle3" }
                 }
-            }
+            },
+			"transparentStopperShape": "aculinaryartillery:shapes/block/bottle/corkedbottle-transparentstopper"
         },
 		"*-fired": {
 			"canDrinkFrom": true,

@@ -1,11 +1,9 @@
 {
-	"code": "stopper-metal",
+	"code": "stopper",
 	"inheritFrom": "itemtypes/stopper-bark",
 	"variantgroups": [
-		{
-			"code": "material",
-			"states": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "electrum", "molybdochalkos" ]
-		}
+		{ "code": "material", "states": [ "metal" ] },
+		{ "code": "color", "states": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "electrum", "molybdochalkos" ] }
 	],
 	"attributes": {
 		"bottlePerishRate": 0.1,
@@ -18,5 +16,5 @@
             ]
 		}
 	},
-	"texture": { "base": "game:block/metal/ingot/{material}" }
+	"texture": { "base": "game:block/metal/ingot/{color}" }
 }

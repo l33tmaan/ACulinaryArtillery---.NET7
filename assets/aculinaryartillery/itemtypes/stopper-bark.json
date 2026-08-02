@@ -1,13 +1,18 @@
 {
-    "code": "stopper-bark-cork",
+    "code": "stopper",
     "maxstacksize": 64,
+    "variantgroups": [
+        { "code": "material", "states": [ "bark" ] },
+        { "code": "color", "states": [ "cork" ] }
+    ],
     "behaviors": [ { "name": "GroundStorable", "properties": { "layout": "Quadrants" } } ],
     "storageFlags": 257,
     "attributes": {
-        "canSealBottle": true,
+        "isBottleStopper": true,
         "bottlePerishRate": 0.1,
+        "isTransparent": false,
         "handbook": {
-            "groupBy": ["stopper-*"],
+            "groupBy": [ "stopper-*" ],
             "extraSections": [
                 {
                     "title": "aculinaryartillery:block-handbooktitle-cork",
