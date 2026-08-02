@@ -8,34 +8,6 @@
 		},
 		"pattern": [
 			[
-				"__####__",
-				"__####__",
-				"__####__",
-				"__####__"
-			],
-			[
-				"________",
-				"___##___",
-				"___##___",
-				"________"
-			]
-		],
-		"name": "stopper-metal",
-		"code": "stopper-metal-{metal}",
-		"output": {
-			"type": "item",
-			"code": "stopper-metal-{metal}"
-		}
-	},
-	{
-		"ingredient": {
-			"type": "item",
-			"code": "game:ingot-*",
-			"name": "metal",
-			"allowedVariants": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "electrum", "molybdochalkos" ]
-		},
-		"pattern": [
-			[
 				"####_####",
 				"####_####",
 				"####_####",
