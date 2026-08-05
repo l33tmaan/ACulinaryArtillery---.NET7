@@ -41,14 +41,14 @@
 			},
             "attachableToEntity": {
                 "categoryCode": "gear",
-                "texturePrefixCode": "bottle-glass-{color}-corked",
+				"texturePrefixCode": "glassbottle-corked",
                 "attachedShapeBySlotCode": {
-                    "gearleft": { "base": "aculinaryartillery:item/wearable/hooved/elk/bottleglass1" },
-                    "gearback": { "base": "aculinaryartillery:item/wearable/hooved/elk/bottleglass2" },
-                    "gearright": { "base": "aculinaryartillery:item/wearable/hooved/elk/bottleglass3" }
+                    "gearleft": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottleglass1" },
+                    "gearback": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottleglass2" },
+                    "gearright": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottleglass3" }
                 }
             },
-			"transparentStopperShape": "aculinaryartillery:shapes/block/bottle/corkedbottleglass-transparentstopper"
+			"transparentStopperShapeLoc": "aculinaryartillery:shapes/block/bottle/corkedbottleglass-transparentstopper"
 		},
 		"*-fired": {
 			"canDrinkFrom": true,
@@ -80,8 +80,8 @@
 	"maxstacksize":  16,
 	"blockmaterial": "Glass",
 	"shapeByType": {
-		"*-corked": { "base": "aculinaryartillery:block/bottle/corkedbottleglass" },
-		"*": { "base": "aculinaryartillery:block/bottle/openedbottleglass" }
+		"*-corked": { "base": "aculinaryartillery:shapes/block/bottle/corkedbottleglass" },
+		"*": { "base": "aculinaryartillery:shapes/block/bottle/openedbottleglass" }
 	},
 	"lightAbsorption": 0,
 	"liquidSelectable": 1,

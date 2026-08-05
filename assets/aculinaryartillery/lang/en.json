@@ -96,8 +96,10 @@
   "blockdesc-bottle-*-corked": "<font color=\"lightgreen\">Corked.</font>",
   "blockdesc-bottle-*-raw": "Could probably use some heat.",
   "blockdesc-bottle-*-fired": "An empty bottle becomes desperate for purpose.",
+  "mountfailure-transparentstopper": "Glass stoppers are too fragile to travel.",
   "block-handbooktitle-bottle": "Bottle",
   "block-handbooktext-bottle": "A narrow-necked container used for storing and preserving liquids. When combined with a high-quality stopper, such as a <a href=\"handbook://item-aculinaryartillery:stopper-bark-cork\">cork</a>, the aging of liquids becomes possible. Liquids placed into a bottle spoil at a slightly slower rate, but corking the bottle greatly extends the shelf life of any liquid inside it.",
+  
 
   "bottle-fulloffhandslot": "You must have an empty offhand slot to uncork a bottle.",
   "bottle-toofullforrack": "There's too much liquid in this bottle. It would spill if you put it on the rack.",

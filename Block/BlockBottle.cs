@@ -14,7 +14,7 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class BlockBottle : BlockLiquidContainerBase, IContainedMeshSource, IContainedCustomName
+    public class BlockBottle : BlockLiquidContainerBase, IContainedMeshSource, IContainedCustomName, IAttachableToEntity
     {
         private LiquidTopOpenContainerProps props = new();
         protected virtual string MeshRefsCacheKey => Code.ToShortString() + "meshRefs";
@@ -30,16 +30,21 @@ namespace ACulinaryArtillery
         public virtual float MaxFillY => Attributes["maxFill"].AsFloat();
         public virtual float MinFillZ => Attributes["minFillSideways"].AsFloat();
         public virtual float MaxFillZ => Attributes["maxFillSideways"].AsFloat();
+
+
         public virtual ItemStack DefaultCork => new(api.World.GetItem("aculinaryartillery:stopper-bark-cork"));
+        public bool HasTransparentStopper(ItemStack stack) => GetCork(stack)?.ItemAttributes?["isTransparent"].AsBool() == true;
+
+
 
         public static ItemStack[] corkStacks = null!;
 
 
         protected virtual AssetLocation EmptyShapeLoc(ItemStack stack)
         {
-            if (GetCork(stack)?.Item?.Attributes?["isTransparent"]?.AsBool() == true)
+            if (HasTransparentStopper(stack))
             {
-                return stack.ItemAttributes["transparentStopperShape"].AsString("missing-transparentStopperShape");
+                return stack.ItemAttributes["transparentStopperShapeLoc"].AsString("missing-transparentStopperShapeLoc");
             }
 
             return props.EmptyShapeLoc ?? Shape.Base;
@@ -54,6 +59,7 @@ namespace ACulinaryArtillery
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
+            attrAtta = IAttachableToEntity.FromAttributes(this);
             props = Attributes?["liquidContainerProps"]?.AsObject(props, Code.Domain) ?? props;
             drinkPortionSizeFromAttributes = Attributes?["drinkPortionSize"].AsFloat(0.25f) ?? 0.25f; //base game reads this as an integer
 
@@ -70,6 +76,20 @@ namespace ACulinaryArtillery
                 BlockBottle.corkStacks = [.. corkStacks];
             }
         }
+
+        public override void OnUnloaded(ICoreAPI api)
+        {
+            if (api is not ICoreClientAPI capi) return;
+
+            if (capi.ObjectCache.TryGetValue(MeshRefsCacheKey, out var obj))
+            {
+                foreach (var val in obj as Dictionary<int, MultiTextureMeshRef> ?? []) val.Value.Dispose();
+
+                capi.ObjectCache.Remove(MeshRefsCacheKey);
+            }
+        }
+
+        #region Rendering
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
@@ -104,18 +124,6 @@ namespace ACulinaryArtillery
             }
 
             renderinfo.ModelRef = meshRef;
-        }
-
-        public override void OnUnloaded(ICoreAPI api)
-        {
-            if (api is not ICoreClientAPI capi) return;
-
-            if (capi.ObjectCache.TryGetValue(MeshRefsCacheKey, out var obj))
-            {
-                foreach (var val in obj as Dictionary<int, MultiTextureMeshRef> ?? []) val.Value.Dispose();
-
-                capi.ObjectCache.Remove(MeshRefsCacheKey);
-            }
         }
 
         public MeshData? GenMesh(ICoreClientAPI? capi, ItemStack stack, bool isSideways = false, BlockPos? atBlockPos = null)
@@ -243,6 +251,68 @@ namespace ACulinaryArtillery
 
             return key;
         }
+
+        #endregion
+
+        #region IAttachableToEntity
+
+        protected IAttachableToEntity? attrAtta;
+        public int RequiresBehindSlots { get; set; } = 0;
+
+        public bool IsAttachable(Entity toEntity, ItemStack stack)
+        {
+            if (!HasTransparentStopper(stack)) return true;
+
+            (api as ICoreClientAPI)?.TriggerIngameError(this, "notransparentstopper", Lang.Get("aculinaryartillery:mountfailure-transparentstopper"));
+            return false;
+        }
+
+        public void CollectTextures(ItemStack stack, Shape shape, string texturePrefixCode, Dictionary<string, CompositeTexture> intoDict)
+        {
+            attrAtta?.CollectTextures(stack, shape, texturePrefixCode, intoDict);
+
+            if (GetCork(stack)?.Item is Item stopper)
+            {
+                shape.Textures["stopper"] = stopper.FirstTexture.Base;
+            }
+        }
+
+        public CompositeShape? GetAttachedShape(ItemStack stack, string slotCode)
+        {
+            if (attrAtta?.GetAttachedShape(stack, slotCode) is not CompositeShape baseShape)
+            {
+                return new();
+            }
+
+            CompositeShape shape = baseShape.Clone();
+
+            // This is currently broken. The stopper creates a transparent viewport through the entire mount shape.
+            // Current solution is to simply disallow transparent stoppers on mounts.
+            if (HasTransparentStopper(stack))
+            {
+                shape.Base = shape.Base.WithPathAppendixOnce("-transparentstopper");
+            }
+
+            return shape;
+        }
+
+        public string? GetTexturePrefixCode(ItemStack stack)
+        {
+            string? code = attrAtta?.GetTexturePrefixCode(stack);
+            if (code != null && GetCork(stack)?.Item is Item stopper)
+            {
+                code += "-" + stopper.Code;
+            }
+
+            return code;
+        }
+
+        public string? GetCategoryCode(ItemStack stack) => attrAtta?.GetCategoryCode(stack);
+
+        public string[]? GetDisableElements(ItemStack stack) => attrAtta?.GetDisableElements(stack);
+        public string[]? GetKeepElements(ItemStack stack) => attrAtta?.GetKeepElements(stack);
+
+        #endregion
 
         public ItemStack? GetCork(ItemStack stack)
         {
@@ -699,7 +769,7 @@ namespace ACulinaryArtillery
                 {
                     if (corkTexPos == null && corkTexture != null)
                     {
-                        int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "corktexture-" + corkTexture.ToString() ?? "unknowncork", () =>
+                        int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "stoppertexture-" + corkTexture.ToString() ?? "unknownstopper", () =>
                             {
                                 capi.BlockTextureAtlas.GetOrInsertTexture(
                                     corkTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"),
