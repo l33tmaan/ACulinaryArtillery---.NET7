@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
@@ -32,8 +33,6 @@ namespace ACulinaryArtillery
 
         public ItemStack[] corkStacks = null!;
 
-        public static AssetLocation? corkSound = null;
-
 
         public override byte[]? GetLightHsv(IBlockAccessor blockAccessor, BlockPos pos, ItemStack? stack = null)
         {
@@ -56,8 +55,6 @@ namespace ACulinaryArtillery
             }
 
             corkStacks = [.. corkstacks];
-
-            corkSound ??= new AssetLocation("aculinaryartillery:sounds/player/bottle/cork*");
         }
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
@@ -218,7 +215,28 @@ namespace ACulinaryArtillery
 
         public string GetContainedName(ItemSlot inSlot, int quantity)
         {
-            return inSlot.Itemstack.GetName();
+            return inSlot.Itemstack?.GetName() ?? "";
+        }
+
+        public void PlayCorkingSound(ICoreServerAPI? sapi, ItemStack bottle, Entity entity, bool isUncorking = false)
+        {
+            if (sapi == null) return;
+
+            float fullness = 0;
+            if (GetContent(bottle) is ItemStack contentStack
+                && GetContainableProps(contentStack) is WaterTightContainableProps liquidProps)
+            {
+                fullness = contentStack.StackSize / liquidProps.ItemsPerLitre;
+            }
+
+            string suffix = fullness switch
+            {
+                0 => "empty",
+                <= 0.5f => "partial",
+                _ => "full"
+            };
+            AssetLocation sound = new($"aculinaryartillery:sounds/player/bottle/{(isUncorking ? "uncork" : "cork")}{suffix}*");
+            sapi.World.PlaySoundAt(sound, entity);
         }
 
         public override int GetMergableQuantity(ItemStack sinkStack, ItemStack sourceStack, EnumMergePriority priority)
@@ -253,7 +271,7 @@ namespace ACulinaryArtillery
                 sourceSlot.TakeOut(1);
                 sinkSlot.MarkDirty();
 
-                (api as ICoreServerAPI)?.World.PlaySoundAt(corkSound, op.ActingPlayer);
+                PlayCorkingSound(api as ICoreServerAPI, sinkSlot.Itemstack, op.ActingPlayer.Entity);
 
                 return;
             }
@@ -298,24 +316,7 @@ namespace ACulinaryArtillery
                     offhandSlot.MarkDirty();
                     plr.InventoryManager.BroadcastHotbarSlot();
 
-                    if (api is ICoreServerAPI sapi)
-                    {
-                        float fullness = 0;
-                        if (GetContent(itemslot.Itemstack) is ItemStack contentStack
-                            && GetContainableProps(contentStack) is WaterTightContainableProps liquidProps)
-                        {
-                            fullness = contentStack.StackSize / liquidProps.ItemsPerLitre;
-                        }
-
-                        string suffix = fullness switch
-                        {
-                            0 => "empty",
-                            <= 0.5f => "partial",
-                            _ => "full"
-                        };
-                        AssetLocation uncorkSound = new($"aculinaryartillery:sounds/player/bottle/uncork{suffix}*");
-                        sapi.World.PlaySoundAt(uncorkSound, byEntity);
-                    }
+                    PlayCorkingSound(api as ICoreServerAPI, itemslot.Itemstack, byEntity, isUncorking: true);
 
                     handHandling = EnumHandHandling.PreventDefault;
                     return;
@@ -347,7 +348,7 @@ namespace ACulinaryArtillery
                 offhandSlot.MarkDirty();
                 plr.InventoryManager.BroadcastHotbarSlot();
 
-                (api as ICoreServerAPI)?.World.PlaySoundAt(corkSound, byEntity);
+                PlayCorkingSound(api as ICoreServerAPI, corkedBottle, byEntity);
 
                 handHandling = EnumHandHandling.PreventDefault;
                 return;
