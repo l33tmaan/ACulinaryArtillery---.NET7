@@ -46,7 +46,7 @@ namespace ACulinaryArtillery
 
                     obj.WalkInventory(delegate (ItemSlot pslot)
                     {
-                        if (pslot.Empty || pslot is ItemSlotCreative || pslot.StackSize == pslot.Itemstack.Collectible.MaxStackSize || pslot.Itemstack.ItemAttributes["canSealBottle"].AsBool())
+                        if (pslot.Empty || pslot is ItemSlotCreative || pslot.StackSize == pslot.Itemstack.Collectible.MaxStackSize || pslot.Itemstack.ItemAttributes?["canSealBottle"].AsBool() == true)
                         {
                             return true;
                         }
