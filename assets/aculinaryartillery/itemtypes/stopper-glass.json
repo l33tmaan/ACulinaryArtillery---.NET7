@@ -6,8 +6,8 @@
 		{ "code": "color", "states": [ "blue", "brown", "green", "pink", "plain", "quartz", "red", "smoky", "vintage", "violet", "yellow" ] }
 	],
 	"attributes": {
-		"bottlePerishRate": 0.3,
 		"isTransparent": true,
+		"bottlePerishRate": 1,
 		"handbook": {
 			"extraSections": [
                 {

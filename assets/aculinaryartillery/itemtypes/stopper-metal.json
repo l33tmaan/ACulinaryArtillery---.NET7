@@ -6,7 +6,6 @@
 		{ "code": "color", "states": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "electrum", "molybdochalkos" ] }
 	],
 	"attributes": {
-		"bottlePerishRate": 0.1,
 		"handbook": {
 			"extraSections": [
                 {

@@ -6,8 +6,5 @@
 		{ "code": "color", "states": [ "blue", "fire", "black", "brown", "cream", "earthyorange", "gray", "orange", "red", "tan" ] },
 		{ "code": "type", "states": [ "fired" ] }
 	],
-	"attributes": {
-		"bottlePerishRate": 0.1
-	},
 	"texture": { "base": "game:block/clay/hardened/{color}" }
 }

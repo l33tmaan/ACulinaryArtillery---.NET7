@@ -6,7 +6,6 @@
         { "code": "color", "states": [ "aged", "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut" ] }
     ],
     "attributes": {
-        "bottlePerishRate": 0.5,
 		"handbook": {
 			"extraSections": [
                 {
