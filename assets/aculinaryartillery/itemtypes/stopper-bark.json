@@ -18,8 +18,8 @@
             "groupBy": [ "stopper-*" ],
             "extraSections": [
                 {
-                    "title": "aculinaryartillery:block-handbooktitle-cork",
-                    "text": "aculinaryartillery:block-handbooktext-cork"
+                    "title": "aculinaryartillery:block-handbooktitle-stopper",
+                    "text": "aculinaryartillery:block-handbooktext-stopper"
                 }
             ]
         }

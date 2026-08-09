@@ -2,8 +2,8 @@
 	"code": "bottle",
 	"variantgroups": [
 		{ "code": "material", "states": [ "clay" ] },
-		{ "code": "color", "states": ["blue", "earthyorange", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan" ] },
-		{ "code": "type", "states": [ "fired", "corked"] }
+		{ "code": "color", "states": [ "blue", "earthyorange", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan" ] },
+		{ "code": "type", "states": [ "fired", "corked" ] }
 	],
 	"class": "BlockBottle",
 	"creativeinventory": { "general": [ "*" ], "aculinaryartillery": ["*"] },
@@ -99,7 +99,7 @@
 	},
 	"textures": {
 		"material": { "base": "game:block/clay/hardened/{color}" },
-        "sides": { "base": "game:block/clay/hardened/{color}","overlays": ["block/clay/overlay/bottle"] },
+        "sides": { "base": "game:block/clay/hardened/{color}","overlays": [ "block/clay/overlay/bottle" ] },
 		"stopper": { "base": "game:item/utility/map" }
 	},
 	"resistance": 0.5,
