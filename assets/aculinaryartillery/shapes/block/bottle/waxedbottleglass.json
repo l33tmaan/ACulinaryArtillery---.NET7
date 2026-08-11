@@ -10,7 +10,6 @@
 		"material": [16,16],
 		"stopper": [16,16],
 		"sides": [16,16],
-		"fire-red": [16,16],
 		"fire-blue": [16,16]
 	},
 	"textures": {
@@ -664,20 +663,6 @@
 								"west": { "texture": "#fire-blue", "uv": [ 12.5, 0.0, 13.0, 1.0 ], "rotation": 270 },
 								"up": { "texture": "#fire-blue", "uv": [ 12.5, 0.0, 13.5, 1.0 ] },
 								"down": { "texture": "#fire-blue", "uv": [ 12.5, 0.0, 13.5, 1.0 ] }
-							}
-						},
-						{
-							"name": "waxbottom",
-							"from": [ -0.63, -0.5, -0.63 ],
-							"to": [ 2.376, 0.001, 2.376 ],
-							"rotationOrigin": [ -0.63, -0.5, -0.63 ],
-							"faces": {
-								"north": { "texture": "#fire-blue", "uv": [ 13.5, 1.5, 14.0, 4.5 ], "rotation": 90 },
-								"east": { "texture": "#fire-blue", "uv": [ 13.5, 0.5, 14.0, 3.5 ], "rotation": 90 },
-								"south": { "texture": "#fire-blue", "uv": [ 12.5, 0.0, 13.0, 3.0 ], "rotation": 270 },
-								"west": { "texture": "#fire-blue", "uv": [ 12.5, 0.0, 13.0, 3.0 ], "rotation": 270 },
-								"up": { "texture": "#fire-blue", "uv": [ 12.5, 0.0, 15.5, 3.0 ] },
-								"down": { "texture": "#fire-blue", "uv": [ 12.5, 0.0, 15.5, 3.0 ] }
 							}
 						}
 					]

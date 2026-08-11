@@ -739,87 +739,52 @@ namespace ACulinaryArtillery
 
     public class BottleTextureSource : ITexPositionSource
     {
-        public ItemStack? forContents;
         private readonly ICoreClientAPI capi;
 
+        // Used for loading dynamic textures
+        private readonly Dictionary<string, TextureAtlasPosition?> texturePositions = [];
+
+        // Stored as a default to avoid a double lookup
         private readonly TextureAtlasPosition blockTexPos;
-
-        private TextureAtlasPosition? contentTexPos;
-        private readonly CompositeTexture? contentTexture;
-
-        private TextureAtlasPosition? stopperTexPos;
-        private readonly CompositeTexture? stopperTexture;
 
         public BottleTextureSource(ICoreClientAPI capi, ItemStack bottleStack, CompositeTexture? stopperTexture, CompositeTexture? contentTexture)
         {
             this.capi = capi;
-            this.contentTexture = contentTexture;
-            this.stopperTexture = stopperTexture;
+            if (contentTexture != null) texturePositions["content"] = GetOrInsertTexture(capi.BlockTextureAtlas, "content", contentTexture);
+            if (stopperTexture != null) texturePositions["stopper"] = GetOrInsertTexture(capi.BlockTextureAtlas, "stopper", stopperTexture);
+            texturePositions["fire-blue"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "fire-blue");
+            texturePositions["material"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "material");
+            texturePositions["sides"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "sides", true);
 
             blockTexPos = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "material");
         }
 
+        public TextureAtlasPosition GetOrInsertTexture(ITextureAtlasAPI atlas, string name, CompositeTexture texture)
+        {
+            int textureSubId = ObjectCacheUtil.GetOrCreate(capi, $"{name}texture-{texture}", () =>
+            {
+                capi.BlockTextureAtlas.GetOrInsertTexture(
+                    texture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"),
+                    out var id,
+                    out _,
+                    new CreateTextureDelegate(() =>
+                    {
+                        var bmp = capi.Assets.TryGet(texture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"))?.ToBitmap(capi);
+                        if (bmp != null && texture.Alpha != 255) bmp.MulAlpha(texture.Alpha);
+                        return bmp;
+                    })
+                );
+                return id;
+            });
+
+            return atlas.Positions[textureSubId];
+        }
+
         public TextureAtlasPosition this[string textureCode]
         {
-            get
-            {
-                if (textureCode == "material") return blockTexPos;
-
-                if (textureCode == "stopper")
-                {
-                    if (stopperTexPos == null && stopperTexture != null)
-                    {
-                        int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "stoppertexture-" + stopperTexture.ToString() ?? "unknownstopper", () =>
-                            {
-                                capi.BlockTextureAtlas.GetOrInsertTexture(
-                                    stopperTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"),
-                                    out var id,
-                                    out _,
-                                    new CreateTextureDelegate(() =>
-                                    {
-                                        var bmp = capi.Assets.TryGet(stopperTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"))?.ToBitmap(capi);
-                                        if (bmp != null && stopperTexture.Alpha != 255) bmp.MulAlpha(stopperTexture.Alpha);
-                                        return bmp;
-                                    })
-                                );
-                                return id;
-                            });
-
-                        stopperTexPos = capi.BlockTextureAtlas.Positions[textureSubId];
-                    }
-
-                    return stopperTexPos ?? blockTexPos;
-                }
-
-                if (textureCode == "content")
-                {
-                    if (contentTexPos == null && contentTexture != null)
-                    {
-                        int textureSubId = ObjectCacheUtil.GetOrCreate(capi, "contenttexture-" + contentTexture.ToString() ?? "unknowncontent", () =>
-                        {
-                            capi.BlockTextureAtlas.GetOrInsertTexture(
-                                contentTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"),
-                                out var id,
-                                out _,
-                                new CreateTextureDelegate(() =>
-                                {
-                                    var bmp = capi.Assets.TryGet(contentTexture.Base.CopyWithPathPrefixAndAppendixOnce("textures/", ".png"))?.ToBitmap(capi);
-                                    if (bmp != null && contentTexture.Alpha != 255) bmp.MulAlpha(contentTexture.Alpha);
-                                    return bmp;
-                                })
-                            );
-                            return id;
-                        });
-
-                        contentTexPos = capi.BlockTextureAtlas.Positions[textureSubId];
-                    }
-
-                    return contentTexPos ?? blockTexPos;
-                }
-
-                return blockTexPos;
-            }
+            get => texturePositions.GetValueOrDefault(textureCode) ?? blockTexPos;
         }
+
         public Size2i AtlasSize => capi.BlockTextureAtlas.Size;
     }
 }

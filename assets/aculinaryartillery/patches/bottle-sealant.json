@@ -1,0 +1,8 @@
+[
+    {
+        "file": "game:itemtypes/resource/beeswax.json",
+        "op": "addmerge",
+        "path": "/tags",
+        "value": [ "bottle-sealant" ]
+    }
+]

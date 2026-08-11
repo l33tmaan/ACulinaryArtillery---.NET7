@@ -3,7 +3,7 @@
 	"variantgroups": [
 		{ "code": "material", "states": [ "clay" ] },
 		{ "code": "color", "states": [ "blue", "earthyorange", "fire", "black", "brown", "cream", "gray", "orange", "red", "tan" ] },
-		{ "code": "type", "states": [ "fired", "corked" ] }
+		{ "code": "type", "states": [ "fired", "corked", "waxed" ] }
 	],
 	"class": "BlockBottle",
 	"creativeinventory": { "general": [ "*" ], "aculinaryartillery": ["*"] },
@@ -25,6 +25,30 @@
 		"maxFillSideways": 9.3
 	},
 	"attributesByType": {
+		"*-waxed": {
+			"canDrinkFrom": false,
+			"isTopOpened": false,
+			"allowHeldLiquidTransfer": false,
+			"bottlerackable": true,
+			"liquidContainerProps": {
+				"capacityLitres": 1,
+				"transferSizeLitres": 0.1,
+				"emptyShapeLoc": "aculinaryartillery:shapes/block/bottle/waxedbottle",
+				"opaqueContentShapeLoc": "aculinaryartillery:shapes/block/bottle/contents",
+				"liquidContentShapeLoc": "aculinaryartillery:shapes/block/bottle/liquidcontents",
+				"liquidMaxYTranslate": 0.05
+			},
+            "attachableToEntity": {
+                "categoryCode": "gear",
+				"texturePrefixCode": "claybottle-corked",
+                "attachedShapeBySlotCode": {
+                    "gearleft": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottle1" },
+                    "gearback": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottle2" },
+                    "gearright": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottle3" }
+                }
+            },
+			"transparentStopperShapeLoc": "aculinaryartillery:shapes/block/bottle/waxedbottle-transparentstopper"
+        },
 		"*-corked": {
 			"canDrinkFrom": false,
 			"isTopOpened": false,
@@ -100,7 +124,8 @@
 	"textures": {
 		"material": { "base": "game:block/clay/hardened/{color}" },
         "sides": { "base": "game:block/clay/hardened/{color}","overlays": [ "block/clay/overlay/bottle" ] },
-		"stopper": { "base": "game:item/utility/map" }
+		"stopper": { "base": "game:item/utility/map" },
+		"fire-blue": { "base": "game:block/fire-blue" }
 	},
 	"resistance": 0.5,
 	"guiTransform": {

@@ -3,7 +3,7 @@
 	"variantgroups": [
 		{ "code": "material", "states": [ "glass" ] },
 		{ "code": "color", "states": [ "green", "blue", "brown", "pink", "plain", "quartz", "red", "smoky", "vintage", "violet", "yellow" ] },
-		{ "code": "type", "states": [ "fired", "corked" ] }
+		{ "code": "type", "states": [ "fired", "corked", "waxed" ] }
 	],
 	"class": "BlockBottle",
 	"creativeinventory": { "general": [ "*" ], "aculinaryartillery": ["*"] },
@@ -26,6 +26,30 @@
 		"isClear": true
 	},
 	"attributesByType": {
+		"*-waxed": {
+			"canDrinkFrom": false,
+			"isTopOpened": false,
+			"allowHeldLiquidTransfer": false,
+			"bottlerackable": true,
+			"liquidContainerProps": {
+				"capacityLitres": 1,
+				"transferSizeLitres": 0.1,
+				"emptyShapeLoc": "aculinaryartillery:shapes/block/bottle/waxedbottleglass",
+				"opaqueContentShapeLoc": "aculinaryartillery:shapes/block/bottle/contents",
+				"liquidContentShapeLoc": "aculinaryartillery:shapes/block/bottle/liquidcontents",
+				"liquidMaxYTranslate": 0.05
+			},
+            "attachableToEntity": {
+                "categoryCode": "gear",
+				"texturePrefixCode": "glassbottle-waxed",
+                "attachedShapeBySlotCode": {
+                    "gearleft": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/waxedbottleglass1" },
+                    "gearback": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/waxedbottleglass2" },
+                    "gearright": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/waxedbottleglass3" }
+                }
+            },
+			"transparentStopperShapeLoc": "aculinaryartillery:shapes/block/bottle/waxedbottleglass-transparentstopper"
+		},
 		"*-corked": {
 			"canDrinkFrom": false,
 			"isTopOpened": false,
@@ -100,7 +124,8 @@
 	},
 	"textures": {
 		"material": { "base": "block/bottle/{color}" },
-		"stopper": { "base": "game:item/utility/map" }
+		"stopper": { "base": "game:item/utility/map" },
+		"fire-blue": { "base": "game:block/fire-blue" }
 	},
 	"resistance": 0.5,
 	"guiTransform": {
