@@ -3,7 +3,7 @@
 		"___comment": "Placing the cork in the content stacks is handled in code",
 		"ingredientPattern": "C,G",
 		"ingredients": {
-			"C": { "type": "item", "code": "stopper-*", "name": "cork", "attributes": { "isBottleStopper": true } },
+			"C": { "type": "item", "tags": [ "bottle-stopper" ], "name": "stopper" },
 			"G": { "type": "block", "code": "bottle-clay-*-fired", "name": "color" }
 		},
 		"width": 1,
@@ -17,7 +17,7 @@
 		"___comment": "Placing the cork in the content stacks is handled in code",
 		"ingredientPattern": "C,G",
 		"ingredients": {
-			"C": { "type": "item", "code": "stopper-*", "name": "cork", "attributes": { "isBottleStopper": true } },
+			"C": { "type": "item", "tags": [ "bottle-stopper" ], "name": "stopper" },
 			"G": { "type": "block", "code": "bottle-glass-*-fired", "name": "color" }
 		},
 		"width": 1,

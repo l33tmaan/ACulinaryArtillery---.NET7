@@ -5,15 +5,5 @@
 		{ "code": "material", "states": [ "metal" ] },
 		{ "code": "color", "states": [ "copper", "brass", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel", "silver", "gold", "electrum", "molybdochalkos" ] }
 	],
-	"attributes": {
-		"handbook": {
-			"extraSections": [
-                {
-                    "title": "aculinaryartillery:block-handbooktitle-stopper",
-                    "text": "aculinaryartillery:block-handbooktext-stopper"
-                }
-            ]
-		}
-	},
 	"texture": { "base": "game:block/metal/ingot/{color}" }
 }

@@ -125,7 +125,7 @@
 	"textures": {
 		"material": { "base": "block/bottle/{color}" },
 		"stopper": { "base": "game:item/utility/map" },
-		"fire-blue": { "base": "game:block/fire-blue" }
+		"wax": { "base": "game:block/fire-blue" }
 	},
 	"resistance": 0.5,
 	"guiTransform": {

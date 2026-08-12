@@ -123,9 +123,9 @@
 	},
 	"textures": {
 		"material": { "base": "game:block/clay/hardened/{color}" },
-        "sides": { "base": "game:block/clay/hardened/{color}","overlays": [ "block/clay/overlay/bottle" ] },
+        "sides": { "base": "game:block/clay/hardened/{color}", "overlays": [ "block/clay/overlay/bottle" ] },
 		"stopper": { "base": "game:item/utility/map" },
-		"fire-blue": { "base": "game:block/fire-blue" }
+		"wax": { "base": "game:block/fire-blue" }
 	},
 	"resistance": 0.5,
 	"guiTransform": {

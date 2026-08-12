@@ -32,12 +32,17 @@ namespace ACulinaryArtillery
         public virtual float MaxFillZ => Attributes["maxFillSideways"].AsFloat();
 
 
+        public static TagSet bottleStopperTag = TagSet.Empty;
+        public static TagSet bottleSealantTag = TagSet.Empty;
+
+
         public virtual ItemStack DefaultStopper => new(api.World.GetItem("aculinaryartillery:stopper-bark-cork"));
         public bool HasTransparentStopper(ItemStack stack) => GetStopper(stack)?.ItemAttributes?["isTransparent"].AsBool() == true;
-
+        public virtual ItemStack DefaultSealant => new(api.World.GetItem("game:beeswax"));
 
 
         public static ItemStack[] stopperStacks = null!;
+        public static ItemStack[] sealantStacks = null!;
 
 
         protected virtual AssetLocation EmptyShapeLoc(ItemStack stack)
@@ -49,7 +54,6 @@ namespace ACulinaryArtillery
 
             return props.EmptyShapeLoc ?? Shape.Base;
         }
-
 
         public override byte[]? GetLightHsv(IBlockAccessor blockAccessor, BlockPos pos, ItemStack? stack = null)
         {
@@ -63,17 +67,36 @@ namespace ACulinaryArtillery
             props = Attributes?["liquidContainerProps"]?.AsObject(props, Code.Domain) ?? props;
             drinkPortionSizeFromAttributes = Attributes?["drinkPortionSize"].AsFloat(0.25f) ?? 0.25f; //base game reads this as an integer
 
+            ReadOnlySpan<string> stopperTag = ["bottle-stopper"];
+            if (bottleSealantTag.IsEmpty) api.CollectibleTagRegistry.TryCreateTagSet(out bottleStopperTag, stopperTag);
+
+            ReadOnlySpan<string> sealantTag = ["bottle-sealant"];
+            if (bottleSealantTag.IsEmpty) api.CollectibleTagRegistry.TryCreateTagSet(out bottleSealantTag, sealantTag);
+
             if (api.Side is EnumAppSide.Client && stopperStacks == null)
             {
                 List<ItemStack> stopperStacks = [];
                 foreach (CollectibleObject obj in api.World.Collectibles)
                 {
-                    if (obj.Attributes?["isBottleStopper"]?.AsBool() == true)
+                    if (obj.StorageFlags.HasFlag(EnumItemStorageFlags.Offhand) && obj.GetTags(new ItemStack(obj)).Overlaps(bottleStopperTag))
                     {
                         stopperStacks.Add(new ItemStack(obj));
                     }
                 }
                 BlockBottle.stopperStacks = [.. stopperStacks];
+            }
+
+            if (api.Side is EnumAppSide.Client && sealantStacks == null)
+            {
+                List<ItemStack> sealantStacks = [];
+                foreach (CollectibleObject obj in api.World.Collectibles)
+                {
+                    if (obj.StorageFlags.HasFlag(EnumItemStorageFlags.Offhand) && obj.GetTags(new ItemStack(obj)).Overlaps(bottleSealantTag))
+                    {
+                        sealantStacks.Add(new ItemStack(obj));
+                    }
+                }
+                BlockBottle.sealantStacks = [.. sealantStacks];
             }
         }
 
@@ -314,11 +337,11 @@ namespace ACulinaryArtillery
 
         #endregion
 
-        public ItemStack? GetStopper(ItemStack stack)
+        public ItemStack? GetStopper(ItemStack bottleStack)
         {
-            if (stack.Collectible.LastCodePart() != "corked") return null;
+            if (bottleStack.Collectible.LastCodePart() != "corked") return null;
 
-            if (GetContents(api.World, stack) is ItemStack[] contentStacks)
+            if (GetContents(api.World, bottleStack) is ItemStack[] contentStacks)
             {
                 return contentStacks.ElementAtOrDefault(1) ?? DefaultStopper;
             }
@@ -326,14 +349,31 @@ namespace ACulinaryArtillery
             return DefaultStopper;
         }
 
-        /// <summary>
-        /// Check isBottleStopper before calling this.
-        /// </summary>
         public void SetStopper(ItemStack bottleStack, ItemStack? stopperStack)
         {
             List<ItemStack?> contentStacks = [.. GetContents(api.World, bottleStack)];
             while (contentStacks.Count() < 2) contentStacks.Add(null);
             contentStacks[1] = stopperStack;
+            SetContents(bottleStack, [.. contentStacks]);
+        }
+
+        public ItemStack? GetSealant(ItemStack bottleStack)
+        {
+            if (bottleStack.Collectible.LastCodePart() != "waxed") return null;
+
+            if (GetContents(api.World, bottleStack) is ItemStack[] contentStacks)
+            {
+                return contentStacks.ElementAtOrDefault(2) ?? DefaultSealant;
+            }
+
+            return DefaultSealant;
+        }
+
+        public void SetSealant(ItemStack bottleStack, ItemStack? sealantStack)
+        {
+            List<ItemStack?> contentStacks = [.. GetContents(api.World, bottleStack)];
+            while (contentStacks.Count() < 3) contentStacks.Add(null);
+            contentStacks[2] = sealantStack;
             SetContents(bottleStack, [.. contentStacks]);
         }
 
@@ -378,7 +418,10 @@ namespace ACulinaryArtillery
 
         public override int GetMergableQuantity(ItemStack sinkStack, ItemStack sourceStack, EnumMergePriority priority)
         {
-            if (priority == EnumMergePriority.DirectMerge && sourceStack.ItemAttributes?["isBottleStopper"]?.AsBool() == true && Variant["type"] != "corked")
+            bool isStopping = sourceStack.Collectible.GetTags(sourceStack).Overlaps(bottleStopperTag) && Variant["type"] == "fired";
+            bool isSealing = sourceStack.Collectible.GetTags(sourceStack).Overlaps(bottleSealantTag) && Variant["type"] == "corked";
+
+            if (priority == EnumMergePriority.DirectMerge && (isStopping || isSealing))
             {
                 return 1;
             }
@@ -391,9 +434,12 @@ namespace ACulinaryArtillery
             ItemSlot sourceSlot = op.SourceSlot;
             ItemSlot sinkSlot = op.SinkSlot;
 
-            if (Variant["type"] != "corked" && op.CurrentPriority == EnumMergePriority.DirectMerge && sinkSlot.Itemstack != null && sourceSlot.Itemstack?.ItemAttributes?["isBottleStopper"]?.AsBool() == true)
+            bool isStopping = sourceSlot.Itemstack?.Collectible.GetTags(sourceSlot.Itemstack).Overlaps(bottleStopperTag) == true && Variant["type"] == "fired";
+            bool isSealing = sourceSlot.Itemstack?.Collectible.GetTags(sourceSlot.Itemstack).Overlaps(bottleSealantTag) == true && Variant["type"] == "corked";
+
+            if (isStopping && op.CurrentPriority == EnumMergePriority.DirectMerge && sinkSlot.Itemstack != null && sourceSlot.Itemstack != null)
             {
-                ItemStack stopperedBottle = new(op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "corked"))) { Attributes = sinkSlot.Itemstack?.Attributes };
+                ItemStack stopperedBottle = new(op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "corked"))) { Attributes = sinkSlot.Itemstack.Attributes };
                 ItemStack stopper = sourceSlot.Itemstack.Clone();
                 SetStopper(stopperedBottle, stopper);
 
@@ -418,22 +464,45 @@ namespace ACulinaryArtillery
                 return;
             }
 
+            if (isSealing && op.CurrentPriority == EnumMergePriority.DirectMerge && sinkSlot.Itemstack != null && sourceSlot.Itemstack != null)
+            {
+                ItemStack sealedBottle = new(op.World.GetBlock(sinkSlot.Itemstack.Collectible.CodeWithVariant("type", "waxed"))) { Attributes = sinkSlot.Itemstack.Attributes };
+                ItemStack sealant = sourceSlot.Itemstack.Clone();
+                SetSealant(sealedBottle, sealant);
+
+                if (sinkSlot.StackSize == 1)
+                {
+                    sinkSlot.Itemstack = sealedBottle;
+                }
+                else
+                {
+                    sinkSlot.TakeOut(1);
+                    if (!op.ActingPlayer.InventoryManager.TryGiveItemstack(sealedBottle, true))
+                    {
+                        op.World.SpawnItemEntity(sealedBottle, op.ActingPlayer.Entity.Pos.AsBlockPos);
+                    }
+                }
+                op.MovedQuantity = 1;
+                sourceSlot.TakeOut(1);
+                sinkSlot.MarkDirty();
+            }
+
             base.TryMergeStacks(op);
         }
 
         public override void OnCreatedByCrafting(ItemSlot[] allInputslots, ItemSlot outputSlot, IRecipeBase byRecipe)
         {
-            if (byRecipe.Name?.FirstCodePart() == "unstopper" && outputSlot.Itemstack != null)
+            if (byRecipe.Name?.FirstCodePart() == "uncork" && outputSlot.Itemstack != null)
             {
                 SetStopper(outputSlot.Itemstack, null);
             }
 
-            if (byRecipe.Name?.FirstCodePart() == "stopper" && outputSlot.Itemstack != null)
+            if (byRecipe.Name?.FirstCodePart() == "cork" && outputSlot.Itemstack != null)
             {
                 ItemStack? stopper = null;
                 foreach (ItemSlot slot in allInputslots)
                 {
-                    if (slot.Itemstack?.ItemAttributes["isBottleStopper"].AsBool() ?? false)
+                    if (slot.Itemstack?.Collectible.GetTags(slot.Itemstack).Overlaps(bottleStopperTag) == true)
                     {
                         stopper = slot.Itemstack.Clone();
                         stopper.StackSize = 1;
@@ -445,12 +514,35 @@ namespace ACulinaryArtillery
                 SetStopper(outputSlot.Itemstack, stopper);
             }
 
+            if (byRecipe.Name?.FirstCodePart() == "unseal" && outputSlot.Itemstack != null)
+            {
+                SetSealant(outputSlot.Itemstack, null);
+            }
+
+            if (byRecipe.Name?.FirstCodePart() == "seal" && outputSlot.Itemstack != null)
+            {
+                ItemStack? sealant = null;
+                foreach (ItemSlot slot in allInputslots)
+                {
+                    if (slot.Itemstack?.Collectible.GetTags(slot.Itemstack).Overlaps(bottleSealantTag) == true)
+                    {
+                        sealant = slot.Itemstack.Clone();
+                        sealant.StackSize = 1;
+                    }
+                }
+
+                if (sealant == null) return;
+
+                SetSealant(outputSlot.Itemstack, sealant);
+            }
+
             base.OnCreatedByCrafting(allInputslots, outputSlot, byRecipe);
         }
 
         public override void OnConsumedByCrafting(ItemSlot[] allInputSlots, ItemSlot stackInSlot, IRecipeBase recipe, IRecipeIngredient fromIngredient, IPlayer byPlayer, int quantity)
         {
-            if (recipe.Name?.FirstCodePart() == "unstopper" && stackInSlot.Itemstack != null)
+            // Stoppers are returned. Sealants are not.
+            if (recipe.Name?.FirstCodePart() == "uncork" && stackInSlot.Itemstack != null)
             {
                 ItemStack? stopper = GetStopper(stackInSlot.Itemstack);
                 SetStopper(stackInSlot.Itemstack, null);
@@ -461,12 +553,12 @@ namespace ACulinaryArtillery
                 }
             }
 
-            if (recipe.Name?.FirstCodePart() == "stopper" && stackInSlot.Itemstack != null)
+            if (recipe.Name?.FirstCodePart() == "cork" && stackInSlot.Itemstack != null)
             {
                 ItemStack? stopper = null;
                 foreach (ItemSlot slot in allInputSlots)
                 {
-                    if (slot.Itemstack?.ItemAttributes["isBottleStopper"].AsBool() ?? false)
+                    if (slot.Itemstack?.Collectible.GetTags(slot.Itemstack).Overlaps(bottleStopperTag) == true)
                     {
                         stopper = slot.Itemstack.Clone();
                         stopper.StackSize = 1;
@@ -476,8 +568,25 @@ namespace ACulinaryArtillery
                 SetStopper(stackInSlot.Itemstack, stopper);
             }
 
+            if (recipe.Name?.FirstCodePart() == "seal" && stackInSlot.Itemstack != null)
+            {
+                ItemStack? sealant = null;
+                foreach (ItemSlot slot in allInputSlots)
+                {
+                    if (slot.Itemstack?.Collectible.GetTags(slot.Itemstack).Overlaps(bottleSealantTag) == true)
+                    {
+                        sealant = slot.Itemstack.Clone();
+                        sealant.StackSize = 1;
+                    }
+                }
+
+                SetSealant(stackInSlot.Itemstack, sealant);
+            }
+
             base.OnConsumedByCrafting(allInputSlots, stackInSlot, recipe, fromIngredient, byPlayer, quantity);
         }
+
+        #region HeldInteract
 
         public override void OnHeldInteractStart(ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
@@ -486,6 +595,7 @@ namespace ACulinaryArtillery
             IPlayer? plr = (byEntity as EntityPlayer)?.Player;
             ItemSlot? offhandSlot = plr?.InventoryManager?.OffhandHotbarSlot;
 
+            // Uncorking corked bottle
             if (plr != null && blockSel == null && Variant["type"] == "corked" && !byEntity.Controls.ShiftKey && itemslot.Itemstack != null)
             {
                 if (offhandSlot != null && (offhandSlot.Empty || offhandSlot.Itemstack.Collectible == GetStopper(itemslot.Itemstack)?.Collectible))
@@ -526,9 +636,10 @@ namespace ACulinaryArtillery
                 else (api as ICoreClientAPI)?.TriggerIngameError(this, "fulloffhandslot", Lang.Get("aculinaryartillery:bottle-fulloffhandslot"));
             }
 
+            // Corking open bottle
             if (blockSel == null && byEntity.Controls.ShiftKey && plr != null && offhandSlot != null && itemslot.Itemstack != null
                 && Variant["type"] == "fired"
-                && offhandSlot.Itemstack?.ItemAttributes["isBottleStopper"].AsBool() == true)
+                && offhandSlot.Itemstack?.Collectible.GetTags(offhandSlot.Itemstack).Overlaps(bottleStopperTag) == true)
             {
                 ItemStack stopperedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack.Attributes };
                 ItemStack stopper = offhandSlot.Itemstack.Clone();
@@ -554,6 +665,102 @@ namespace ACulinaryArtillery
                 plr.InventoryManager.BroadcastHotbarSlot();
 
                 PlayCorkingSound(api as ICoreServerAPI, stopperedBottle, byEntity);
+
+                handHandling = EnumHandHandling.PreventDefault;
+                return;
+            }
+
+            // Unsealing waxed bottle
+            if (plr != null && blockSel == null && Variant["type"] == "waxed" && !byEntity.Controls.ShiftKey && itemslot.Itemstack != null)
+            {
+                ItemStack unsealedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "corked"))) { Attributes = itemslot.Itemstack.Attributes };
+                SetSealant(unsealedBottle, null);
+
+                if (itemslot.StackSize == 1)
+                {
+                    itemslot.Itemstack = unsealedBottle;
+                }
+                else
+                {
+                    itemslot.TakeOut(1);
+                    if (!plr.InventoryManager.TryGiveItemstack(unsealedBottle, true))
+                    {
+                        byEntity.World.SpawnItemEntity(unsealedBottle, byEntity.Pos.AsBlockPos);
+                    }
+                }
+
+                itemslot.MarkDirty();
+                plr.InventoryManager.BroadcastHotbarSlot();
+
+                if (api is ICoreServerAPI sapi)
+                {
+                    float fullness = 0;
+                    if (GetContent(itemslot.Itemstack) is ItemStack contentStack
+                        && GetContainableProps(contentStack) is WaterTightContainableProps liquidProps)
+                    {
+                        fullness = contentStack.StackSize / liquidProps.ItemsPerLitre;
+                    }
+
+                    string suffix = fullness switch
+                    {
+                        0 => "empty",
+                        <= 0.5f => "partial",
+                        _ => "full"
+                    };
+                    AssetLocation unstopperSound = new($"aculinaryartillery:sounds/player/bottle/unseal{suffix}*");
+                    sapi.World.PlaySoundAt(unstopperSound, byEntity);
+                }
+
+                handHandling = EnumHandHandling.PreventDefault;
+                return;
+            }
+
+            // Sealing corked bottle
+            if (blockSel == null && byEntity.Controls.ShiftKey && plr != null && offhandSlot != null && itemslot.Itemstack != null
+                && Variant["type"] == "corked"
+                && offhandSlot.Itemstack?.Collectible.GetTags(offhandSlot.Itemstack).Overlaps(bottleSealantTag) == true)
+            {
+                ItemStack sealedBottle = new(byEntity.World.GetBlock(CodeWithVariant("type", "waxed"))) { Attributes = itemslot.Itemstack.Attributes };
+                ItemStack sealant = offhandSlot.Itemstack.Clone();
+                sealant.StackSize = 1;
+                SetSealant(sealedBottle, sealant);
+                offhandSlot.TakeOut(1);
+
+                if (itemslot.StackSize == 1)
+                {
+                    itemslot.Itemstack = sealedBottle;
+                }
+                else
+                {
+                    itemslot.TakeOut(1);
+                    if (!plr.InventoryManager.TryGiveItemstack(sealedBottle, true))
+                    {
+                        byEntity.World.SpawnItemEntity(sealedBottle, byEntity.Pos.AsBlockPos);
+                    }
+                }
+
+                itemslot.MarkDirty();
+                offhandSlot.MarkDirty();
+                plr.InventoryManager.BroadcastHotbarSlot();
+
+                if (api is ICoreServerAPI sapi)
+                {
+                    float fullness = 0;
+                    if (GetContent(itemslot.Itemstack) is ItemStack contentStack
+                        && GetContainableProps(contentStack) is WaterTightContainableProps liquidProps)
+                    {
+                        fullness = contentStack.StackSize / liquidProps.ItemsPerLitre;
+                    }
+
+                    string suffix = fullness switch
+                    {
+                        0 => "empty",
+                        <= 0.5f => "partial",
+                        _ => "full"
+                    };
+                    AssetLocation unstopperSound = new($"aculinaryartillery:sounds/player/bottle/seal{suffix}*");
+                    sapi.World.PlaySoundAt(unstopperSound, byEntity);
+                }
 
                 handHandling = EnumHandHandling.PreventDefault;
                 return;
@@ -598,15 +805,23 @@ namespace ACulinaryArtillery
 
         public override float GetContainingTransitionModifierContained(IWorldAccessor world, ItemSlot inSlot, EnumTransitionType transType)
         {
-            if (transType != EnumTransitionType.Perish && transType != EnumTransitionType.Cure) return 1;
-            string rateAttr = transType == EnumTransitionType.Perish ? "bottlePerishRate" : "bottleCureRate";
+            float mul = 1;
 
+            if (transType != EnumTransitionType.Perish && transType != EnumTransitionType.Cure) return 1;
+
+            string rateAttr = transType == EnumTransitionType.Perish ? "bottleStopperPerishRate" : "bottleStopperCureRate";
             if (inSlot.Itemstack != null && GetStopper(inSlot.Itemstack) is ItemStack stopperStack)
             {
-                return stopperStack.ItemAttributes?[rateAttr]?.AsFloat(1) ?? 1;
+                mul *= stopperStack.ItemAttributes?[rateAttr]?.AsFloat(1) ?? 1;
             }
 
-            return 1;
+            rateAttr = transType == EnumTransitionType.Perish ? "bottleSealantPerishRate" : "bottleSealantCureRate";
+            if (inSlot.Itemstack != null && GetSealant(inSlot.Itemstack) is ItemStack sealantStack)
+            {
+                mul *= sealantStack.ItemAttributes?[rateAttr]?.AsFloat(1) ?? 1;
+            }
+
+            return mul;
         }
 
         public float SatMult => Attributes?["satMult"].AsFloat(1f) ?? 1f;
@@ -733,6 +948,21 @@ namespace ACulinaryArtillery
                     Itemstacks = stopperStacks,
                     GetMatchingStacks = (wi, bs, es) => bs == null && es == null && Variant["type"] == "fired" ? wi.Itemstacks : null
                 },
+
+                new()
+                {
+                    ActionLangCode = "aculinaryartillery:heldhelp-unseal",
+                    MouseButton = EnumMouseButton.Right,
+                    ShouldApply = (wi, bs, es) => bs == null && es == null && Variant["type"] == "waxed"
+                },
+                new()
+                {
+                    ActionLangCode = "aculinaryartillery:heldhelp-seal",
+                    HotKeyCode = "shift",
+                    MouseButton = EnumMouseButton.Right,
+                    Itemstacks = sealantStacks,
+                    GetMatchingStacks = (wi, bs, es) => bs == null && es == null && Variant["type"] == "corked" ? wi.Itemstacks : null
+                },
             ];
         }
     }
@@ -752,7 +982,7 @@ namespace ACulinaryArtillery
             this.capi = capi;
             if (contentTexture != null) texturePositions["content"] = GetOrInsertTexture(capi.BlockTextureAtlas, "content", contentTexture);
             if (stopperTexture != null) texturePositions["stopper"] = GetOrInsertTexture(capi.BlockTextureAtlas, "stopper", stopperTexture);
-            texturePositions["fire-blue"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "fire-blue");
+            texturePositions["wax"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "wax");
             texturePositions["material"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "material");
             texturePositions["sides"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "sides", true);
 

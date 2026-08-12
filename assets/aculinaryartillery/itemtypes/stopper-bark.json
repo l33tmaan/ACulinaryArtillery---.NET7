@@ -1,5 +1,6 @@
 {
     "code": "stopper",
+    "tags": [ "bottle-stopper" ],
     "maxstacksize": 64,
     "variantgroups": [
         { "code": "material", "states": [ "bark" ] },
@@ -8,8 +9,7 @@
     "behaviors": [ { "name": "GroundStorable", "properties": { "layout": "Quadrants" } } ],
     "storageFlags": 257,
     "attributes": {
-        "isBottleStopper": true,
-        "bottlePerishRateByType": {
+        "bottleStopperPerishRateByType": {
             "*-cork": 0.5,
             "*": 0.9
         },
