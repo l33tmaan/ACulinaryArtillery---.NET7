@@ -154,8 +154,11 @@ namespace ACulinaryArtillery
             if (capi?.Assets.TryGet(EmptyShapeLoc(stack).CopyWithPathPrefixAndAppendixOnce("shapes/", ".json")) is not IAsset asset) return new MeshData();
 
             ItemStack? stopper = GetStopper(stack);
-            CompositeTexture? stopperTexture = stopper?.Item.FirstTexture;
-            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, new BottleTextureSource(capi, stack, stopperTexture, null), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+            CompositeTexture? stopperTexture = stopper?.ItemAttributes?["bottleStopperTexture"]?.AsObject<CompositeTexture>() ?? stopper?.Item.FirstTexture;
+            ItemStack? sealant = GetSealant(stack);
+            CompositeTexture? sealantTexture = sealant?.ItemAttributes?["bottleSealantTexture"]?.AsObject<CompositeTexture>() ?? sealant?.Item.FirstTexture;
+
+            capi.Tesselator.TesselateShape("bottle", asset.ToObject<Shape>(), out var mesh, new BottleTextureSource(capi, stack, stopperTexture, sealantTexture, null), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
 
             if (GetContent(stack) is ItemStack contentStack && (IsClear || IsTopOpened))
             {
@@ -171,7 +174,7 @@ namespace ACulinaryArtillery
                 shape = SliceFlattenedShape(shape.FlattenElementHierarchy(), fullness, isSideways);
 
                 MeshData bottleMesh = mesh;
-                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, stopperTexture, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
+                capi.Tesselator.TesselateShape("bottle contents", shape, out mesh, new BottleTextureSource(capi, stack, stopperTexture, sealantTexture, props.Texture), new Vec3f(Shape.rotateX, Shape.rotateY, Shape.rotateZ));
                 for (int i = 0; i < mesh.Flags.Length; i++) mesh.Flags[i] = mesh.Flags[i] & ~(1 << 12); // Remove water waving flag
 
                 mesh.AddMeshData(bottleMesh);
@@ -692,25 +695,6 @@ namespace ACulinaryArtillery
                 itemslot.MarkDirty();
                 plr.InventoryManager.BroadcastHotbarSlot();
 
-                if (api is ICoreServerAPI sapi)
-                {
-                    float fullness = 0;
-                    if (GetContent(itemslot.Itemstack) is ItemStack contentStack
-                        && GetContainableProps(contentStack) is WaterTightContainableProps liquidProps)
-                    {
-                        fullness = contentStack.StackSize / liquidProps.ItemsPerLitre;
-                    }
-
-                    string suffix = fullness switch
-                    {
-                        0 => "empty",
-                        <= 0.5f => "partial",
-                        _ => "full"
-                    };
-                    AssetLocation unstopperSound = new($"aculinaryartillery:sounds/player/bottle/unseal{suffix}*");
-                    sapi.World.PlaySoundAt(unstopperSound, byEntity);
-                }
-
                 handHandling = EnumHandHandling.PreventDefault;
                 return;
             }
@@ -742,25 +726,6 @@ namespace ACulinaryArtillery
                 itemslot.MarkDirty();
                 offhandSlot.MarkDirty();
                 plr.InventoryManager.BroadcastHotbarSlot();
-
-                if (api is ICoreServerAPI sapi)
-                {
-                    float fullness = 0;
-                    if (GetContent(itemslot.Itemstack) is ItemStack contentStack
-                        && GetContainableProps(contentStack) is WaterTightContainableProps liquidProps)
-                    {
-                        fullness = contentStack.StackSize / liquidProps.ItemsPerLitre;
-                    }
-
-                    string suffix = fullness switch
-                    {
-                        0 => "empty",
-                        <= 0.5f => "partial",
-                        _ => "full"
-                    };
-                    AssetLocation unstopperSound = new($"aculinaryartillery:sounds/player/bottle/seal{suffix}*");
-                    sapi.World.PlaySoundAt(unstopperSound, byEntity);
-                }
 
                 handHandling = EnumHandHandling.PreventDefault;
                 return;
@@ -977,12 +942,12 @@ namespace ACulinaryArtillery
         // Stored as a default to avoid a double lookup
         private readonly TextureAtlasPosition blockTexPos;
 
-        public BottleTextureSource(ICoreClientAPI capi, ItemStack bottleStack, CompositeTexture? stopperTexture, CompositeTexture? contentTexture)
+        public BottleTextureSource(ICoreClientAPI capi, ItemStack bottleStack, CompositeTexture? stopperTexture, CompositeTexture? sealantTexture, CompositeTexture? contentTexture)
         {
             this.capi = capi;
             if (contentTexture != null) texturePositions["content"] = GetOrInsertTexture(capi.BlockTextureAtlas, "content", contentTexture);
             if (stopperTexture != null) texturePositions["stopper"] = GetOrInsertTexture(capi.BlockTextureAtlas, "stopper", stopperTexture);
-            texturePositions["wax"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "wax");
+            if (sealantTexture != null) texturePositions["wax"] = GetOrInsertTexture(capi.BlockTextureAtlas, "wax", sealantTexture);
             texturePositions["material"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "material");
             texturePositions["sides"] = capi.BlockTextureAtlas.GetPosition(bottleStack.Block, "sides", true);
 
