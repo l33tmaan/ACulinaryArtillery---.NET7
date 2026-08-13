@@ -93,13 +93,13 @@
   "block-bottle-glass-vintage-*": "Vintage glass bottle",
   "block-bottle-glass-violet-*": "Violet glass bottle",
   "block-bottle-glass-yellow-*": "Yellow glass bottle",
-  "blockdesc-bottle-*-corked": "<font color=\"lightgreen\">Stoppered.</font>",
   "blockdesc-bottle-*-raw": "Could probably use some heat.",
   "blockdesc-bottle-*-fired": "An empty bottle becomes desperate for purpose.",
   "mountfailure-transparentstopper": "Glass stoppers are too fragile for travel.",
   "block-handbooktitle-bottle": "Bottle",
   "block-handbooktext-bottle": "A narrow-necked container used for storing and preserving liquids. When combined with a high-quality stopper, such as a <a href=\"handbook://item-aculinaryartillery:stopper-bark-cork\">cork</a>, the aging of liquids becomes possible. Liquids placed into a bottle spoil at a slightly slower rate, but stoppering the bottle greatly extends the shelf life of any liquid inside it.",
 
+  "waxedbottle-cumulative-speed-desc": "<font color=\"lightgreen\">{0}x perish speed\n{1}x curing speed</font>",
 
   "bottle-fulloffhandslot": "You must have an empty offhand slot to open a bottle.",
   "bottle-toofullforrack": "There's too much liquid in this bottle. It would spill if you put it on the rack.",

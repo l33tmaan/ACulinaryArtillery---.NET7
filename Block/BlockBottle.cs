@@ -852,6 +852,24 @@ namespace ACulinaryArtillery
                     }
                 }
             }
+
+            if (inSlot.Itemstack != null && GetStopper(inSlot.Itemstack) is ItemStack stopper)
+            {
+                float perishRate = stopper.ItemAttributes?["bottleStopperPerishRate"].AsFloat(1) ?? 1;
+                float cureRate = stopper.ItemAttributes?["bottleStopperCureRate"].AsFloat(1) ?? 1;
+
+                if (GetSealant(inSlot.Itemstack) is ItemStack sealant)
+                {
+                    perishRate *= sealant.ItemAttributes?["bottleSealantPerishRate"].AsFloat(1) ?? 1;
+                    cureRate *= sealant.ItemAttributes?["bottleSealantCureRate"].AsFloat(1) ?? 1;
+                }
+
+                dsc.AppendLine();
+                dsc.AppendLine(Lang.Get("aculinaryartillery:waxedbottle-cumulative-speed-desc",
+                    Math.Round(perishRate, 2),
+                    Math.Round(cureRate, 2)
+                ));
+            }
         }
 
         public override void OnGroundIdle(EntityItem entityItem)
