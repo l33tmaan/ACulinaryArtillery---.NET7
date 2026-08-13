@@ -865,10 +865,8 @@ namespace ACulinaryArtillery
                 }
 
                 dsc.AppendLine();
-                dsc.AppendLine(Lang.Get("aculinaryartillery:waxedbottle-cumulative-speed-desc",
-                    Math.Round(perishRate, 2),
-                    Math.Round(cureRate, 2)
-                ));
+                if (perishRate != 1) dsc.AppendLine(Lang.Get("aculinaryartillery:bottle-perish-rate-desc", Math.Round(perishRate, 2)));
+                if (cureRate != 1) dsc.AppendLine(Lang.Get("aculinaryartillery:bottle-cure-rate-desc", Math.Round(cureRate, 2)));
             }
         }
 
