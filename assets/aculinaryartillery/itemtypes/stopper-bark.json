@@ -10,8 +10,8 @@
     "storageFlags": 257,
     "attributes": {
         "bottleStopperPerishRateByType": {
-            "*-cork": 0.5,
-            "*": 0.9
+            "*-bark-cork": 0.5,
+            "*-bark-*": 0.9
         },
         "isTransparent": false,
         "handbook": {
