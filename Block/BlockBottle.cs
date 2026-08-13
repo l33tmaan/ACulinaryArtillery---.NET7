@@ -342,7 +342,7 @@ namespace ACulinaryArtillery
 
         public ItemStack? GetStopper(ItemStack bottleStack)
         {
-            if (bottleStack.Collectible.LastCodePart() != "corked") return null;
+            if (bottleStack.Collectible.LastCodePart() != "corked" && bottleStack.Collectible.LastCodePart() != "waxed") return null;
 
             if (GetContents(api.World, bottleStack) is ItemStack[] contentStacks)
             {
@@ -810,7 +810,7 @@ namespace ACulinaryArtillery
         {
             base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
-            if (GetContent(inSlot.Itemstack) is ItemStack content)
+            if (inSlot.Itemstack != null && GetContent(inSlot.Itemstack) is ItemStack content)
             {
                 string newDescription = content.Collectible.Code.Domain + ":itemdesc-" + content.Collectible.Code.Path;
                 string finalDescription = Lang.GetMatching(newDescription);
