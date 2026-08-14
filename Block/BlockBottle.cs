@@ -43,6 +43,7 @@ namespace ACulinaryArtillery
         {
             base.OnLoaded(api);
             props = Attributes?["liquidContainerProps"]?.AsObject(props, Code.Domain) ?? props;
+            drinkPortionSizeFromAttributes = Attributes?["drinkPortionSize"].AsFloat(0.25f) ?? 0.25f; //base game reads this as an integer
 
             List<ItemStack> corkstacks = [];
 
@@ -390,8 +391,6 @@ namespace ACulinaryArtillery
 
             return true;
         }
-
-        public override float DrinkPortionSize => 0.25f;
 
         public override float GetContainingTransitionModifierContained(IWorldAccessor world, ItemSlot inSlot, EnumTransitionType transType)
         {
