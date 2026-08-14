@@ -43,6 +43,7 @@ namespace ACulinaryArtillery
         {
             base.OnLoaded(api);
             props = Attributes?["liquidContainerProps"]?.AsObject(props, Code.Domain) ?? props;
+            drinkPortionSizeFromAttributes = Attributes?["drinkPortionSize"].AsFloat(0.25f) ?? 0.25f; //base game reads this as an integer
 
             List<ItemStack> corkstacks = [];
 
@@ -389,40 +390,6 @@ namespace ACulinaryArtillery
             }
 
             return true;
-        }
-
-        protected override void tryEatStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity)
-        {
-            if (secondsUsed < 0.95f || byEntity.World is not IServerWorldAccessor) return;
-            if (GetNutritionProperties(byEntity.World, slot.Itemstack, byEntity) is not FoodNutritionProperties nutriProps) return;
-
-            var litres = GetCurrentLitres(slot.Itemstack);
-            var litresToDrink = litres >= 0.25f ? 0.25f : litres;
-
-            var state = UpdateAndGetTransitionState(api.World, slot, EnumTransitionType.Perish);
-
-            var litresMult = litres == 1 ? 0.25f : (litres == 0.75 ? 0.3333f : (litres == 0.5 ? 0.5f : 1.0f));
-
-            byEntity.ReceiveSaturation(nutriProps.Satiety * litresMult * GlobalConstants.FoodSpoilageSatLossMul(state?.TransitionLevel ?? 0, slot.Itemstack, byEntity), nutriProps.FoodCategory);
-            IPlayer? player = (byEntity as EntityPlayer)?.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
-
-            SplitStackAndPerformAction(byEntity, slot, (stack) => TryTakeLiquid(stack, litresToDrink)?.StackSize ?? 0);
-
-            if (nutriProps.Intoxication > 0f)
-            {
-                var intox = byEntity.WatchedAttributes.GetFloat("intoxication");
-                byEntity.WatchedAttributes.SetFloat("intoxication", Math.Min(litresToDrink, intox + (nutriProps.Intoxication * litresMult)));
-            }
-
-            var healthMod = nutriProps.Health * litresMult * GlobalConstants.FoodSpoilageHealthLossMul(state?.TransitionLevel ?? 0, slot.Itemstack, byEntity);
-            if (healthMod != 0) byEntity.ReceiveDamage(new() { Source = EnumDamageSource.Internal, Type = healthMod > 0 ? EnumDamageType.Heal : EnumDamageType.Poison }, Math.Abs(healthMod));
-
-            slot.MarkDirty();
-            player?.InventoryManager.BroadcastHotbarSlot();
-
-            if (GetCurrentLitres(slot.Itemstack) == 0) SetContent(slot.Itemstack, null); //null it out
-
-            return;
         }
 
         public override float GetContainingTransitionModifierContained(IWorldAccessor world, ItemSlot inSlot, EnumTransitionType transType)
