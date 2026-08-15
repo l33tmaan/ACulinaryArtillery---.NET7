@@ -783,6 +783,8 @@ namespace ACulinaryArtillery
             return true;
         }
 
+        #endregion
+
         public override float GetContainingTransitionModifierContained(IWorldAccessor world, ItemSlot inSlot, EnumTransitionType transType)
         {
             float mul = 1;
