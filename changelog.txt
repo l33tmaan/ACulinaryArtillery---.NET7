@@ -37,6 +37,7 @@
 - Egg cracking fixed (thanks to Aimli!)
 - Extra nutrition text now follows language localization instead of always being in English (thanks to Aimli!)
 - New goopy liquid shape (thanks to Fuego Fish!) - DONE!!!
+- Replace custom tryEatStop override with standard usage of DrinkPortionSize (thanks to InsanityGod!)
 
 - Tags added to rolling pin - DONE!!!
 
