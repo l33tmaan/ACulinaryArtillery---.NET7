@@ -1,6 +1,6 @@
 {
 	"code": "rollingpin",
-    tags: ["weapon", "weapon-melee", "tool", "tool-rollingpin"],
+    "tags": ["weapon", "weapon-melee", "tool", "tool-rollingpin", "tool-smash"],
 	"damagedby": ["blockbreaking", "attacking"],
 	"variantgroups": [
 		{ "code": "type", "states": ["acacia", "aged", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "redwood", "walnut", "veryaged",
