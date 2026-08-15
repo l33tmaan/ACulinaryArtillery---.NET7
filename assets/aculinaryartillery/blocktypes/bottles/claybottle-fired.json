@@ -40,11 +40,11 @@
 			},
             "attachableToEntity": {
                 "categoryCode": "gear",
-				"texturePrefixCode": "claybottle-corked",
+				"texturePrefixCode": "claybottle-waxed",
                 "attachedShapeBySlotCode": {
-                    "gearleft": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottle1" },
-                    "gearback": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottle2" },
-                    "gearright": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottle3" }
+                    "gearleft": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottlewax1" },
+                    "gearback": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottlewax2" },
+                    "gearright": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottlewax3" }
                 }
             },
 			"transparentStopperShapeLoc": "aculinaryartillery:shapes/block/bottle/waxedbottle-transparentstopper"

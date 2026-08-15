@@ -299,7 +299,12 @@ namespace ACulinaryArtillery
 
             if (GetStopper(stack)?.Item is Item stopper)
             {
-                shape.Textures["stopper"] = stopper.FirstTexture.Base;
+                shape.Textures["stopper"] = new AssetLocation(stopper.Attributes?["bottleStopperTexture"]?.AsObject<CompositeTexture>()?.Base ?? stopper.FirstTexture.Base);
+            }
+
+            if (GetSealant(stack)?.Item is Item sealant)
+            {
+                shape.Textures["wax"] = new AssetLocation(sealant.Attributes?["bottleSealantTexture"]?.AsObject<CompositeTexture>()?.Base ?? sealant.FirstTexture.Base);
             }
         }
 
@@ -325,9 +330,19 @@ namespace ACulinaryArtillery
         public string? GetTexturePrefixCode(ItemStack stack)
         {
             string? code = attrAtta?.GetTexturePrefixCode(stack);
+            if (code != null)
+            {
+                code += stack.Collectible.Code;
+            }
+
             if (code != null && GetStopper(stack)?.Item is Item stopper)
             {
                 code += "-" + stopper.Code;
+            }
+
+            if (code != null && GetSealant(stack)?.Item is Item sealant)
+            {
+                code += "-" + sealant.Code;
             }
 
             return code;

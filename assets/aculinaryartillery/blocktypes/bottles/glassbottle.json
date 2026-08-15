@@ -43,9 +43,9 @@
                 "categoryCode": "gear",
 				"texturePrefixCode": "glassbottle-waxed",
                 "attachedShapeBySlotCode": {
-                    "gearleft": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/waxedbottleglass1" },
-                    "gearback": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/waxedbottleglass2" },
-                    "gearright": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/waxedbottleglass3" }
+                    "gearleft": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottlewaxglass1" },
+                    "gearback": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottlewaxglass2" },
+                    "gearright": { "base": "aculinaryartillery:shapes/item/wearable/hooved/elk/bottlewaxglass3" }
                 }
             },
 			"transparentStopperShapeLoc": "aculinaryartillery:shapes/block/bottle/waxedbottleglass-transparentstopper"
