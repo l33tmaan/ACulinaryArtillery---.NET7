@@ -3,7 +3,7 @@
 - Mixing bowl locking function should work with a liquid container and not block fluids when locked
 - Place on Slabs integration?
 
-~1.22_v2.0.0-dev.23~
+~1.22_v2.0.0-dev.24~
 - Mechanized Mixer & Cutting Board partially added; no they don't work yet stop asking me
 - Meat/bottle racks now indicate wood/metal type in item description
 - Dedicated cork/uncork button?
@@ -11,6 +11,9 @@
 - Current trader building changed to spawn in temperate climates; desert + cold trader buildings added
 - New, larger spile mold shape
 - Spiles passively drip when "in season", UI shows if tree is 'in season' or not
+
+~1.22_v2.0.0-dev.23~
+- Trader prices increased by 25% to reflect ability to deconstruct bottle racks, and cauldrons - DONE!!!
 
 ~1.22_v2.0.0-dev.22~
 - Bottles fixed so they can get water from source blocks properly - DONE!!!

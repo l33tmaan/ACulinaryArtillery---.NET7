@@ -132,8 +132,8 @@
           "var": 0
         },
         "price": {
-          "avg": 6,
-          "var": 1.5
+          "avg": 8,
+          "var": 2
         }
       },
       {
@@ -146,7 +146,7 @@
         },
         "price": {
           "avg": 12,
-          "var": 3
+          "var": 3.75
         }
       },
       {
@@ -158,8 +158,8 @@
           "var": 0
         },
         "price": {
-          "avg": 14,
-          "var": 3.5
+          "avg": 17.5,
+          "var": 4.5
         }
       },
       {
@@ -171,25 +171,12 @@
           "var": 0
         },
         "price": {
-          "avg": 18,
-          "var": 4.5
+          "avg": 22.5,
+          "var": 5.5
         }
       },
       {
         "code": "aculinaryartillery:cauldron-iron",
-        "type": "block",
-        "stacksize": 1,
-        "stock": {
-          "avg": 1,
-          "var": 0
-        },
-        "price": {
-          "avg": 24,
-          "var": 6
-        }
-      },
-      {
-        "code": "aculinaryartillery:cauldron-steel",
         "type": "block",
         "stacksize": 1,
         "stock": {
@@ -202,6 +189,19 @@
         }
       },
       {
+        "code": "aculinaryartillery:cauldron-steel",
+        "type": "block",
+        "stacksize": 1,
+        "stock": {
+          "avg": 1,
+          "var": 0
+        },
+        "price": {
+          "avg": 38,
+          "var": 9.5
+        }
+      },
+      {
         "code": "aculinaryartillery:cauldron-meteoriciron",
         "type": "block",
         "stacksize": 1,
@@ -210,8 +210,8 @@
           "var": 0
         },
         "price": {
-          "avg": 36,
-          "var": 9
+          "avg": 45,
+          "var": 11
         }
       },
       {
@@ -223,8 +223,8 @@
           "var": 0
         },
         "price": {
-          "avg": 3,
-          "var": 0.75
+          "avg": 4,
+          "var": 1
         }
       },
       {
@@ -912,8 +912,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -925,8 +925,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -938,8 +938,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -951,8 +951,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -964,8 +964,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -977,8 +977,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -990,8 +990,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -1003,8 +1003,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -1016,8 +1016,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -1029,8 +1029,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -1042,8 +1042,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -1055,8 +1055,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
@@ -1068,8 +1068,8 @@
           "var": 0
         },
         "price": {
-          "avg": 8,
-          "var": 2
+          "avg": 10,
+          "var": 2.5
         }
       },
       {
