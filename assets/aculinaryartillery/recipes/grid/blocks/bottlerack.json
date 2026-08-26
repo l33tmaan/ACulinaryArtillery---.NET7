@@ -1,6 +1,6 @@
 [
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 1,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -13,7 +13,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-acacia-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 2,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -26,7 +26,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-baldcypress-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 3,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -39,7 +39,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-birch-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 4,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -52,7 +52,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-ebony-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 5,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -65,7 +65,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-kapok-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 6,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -78,7 +78,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-larch-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 7,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -91,7 +91,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-maple-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 8,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -104,7 +104,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-oak-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 9,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -117,7 +117,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-pine-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 10,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -130,7 +130,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-purpleheart-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 11,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -143,7 +143,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-redwood-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 12,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -156,7 +156,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-walnut-north" }
 	},
 	{
-		"ingredientPattern": "PLP,PLP,PLN",
+		"ingredientPattern": "PLN,PLP,PLP",
 		"recipeGroup": 13,
 		"ingredients": {
 			"P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },
@@ -169,7 +169,7 @@
 		"output": { "type": "block", "code": "aculinaryartillery:bottlerack-{woodframe}-aged-north" }
 	},
     {
-      "ingredientPattern": "PLP,PLP,PLN",
+      "ingredientPattern": "PLN,PLP,PLP",
       "recipeGroup": 14,
       "ingredients": {
           "P": { "type": "item", "code": "game:plank-*", "name": "woodframe" },

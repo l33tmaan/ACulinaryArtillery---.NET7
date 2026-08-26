@@ -1,1246 +1,1246 @@
 ﻿[
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 1,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 1,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-douglasfir",
+				"type": "item",
+				"code": "wildcrafttree:plank-douglasfir",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-douglasfir-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-douglasfir-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 2,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 2,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-willow",
+				"type": "item",
+				"code": "wildcrafttree:plank-willow",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-willow-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-willow-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 3,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 3,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-honeylocust",
+				"type": "item",
+				"code": "wildcrafttree:plank-honeylocust",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-honeylocust-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-honeylocust-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 4,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 4,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-bearnut",
+				"type": "item",
+				"code": "wildcrafttree:plank-bearnut",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-bearnut-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-bearnut-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 5,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 5,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-poplar",
+				"type": "item",
+				"code": "wildcrafttree:plank-poplar",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-poplar-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-poplar-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 6,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 6,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-tuja",
+				"type": "item",
+				"code": "wildcrafttree:plank-tuja",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-tuja-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-tuja-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 7,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 7,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-catalpa",
+				"type": "item",
+				"code": "wildcrafttree:plank-catalpa",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-catalpa-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-catalpa-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 8,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 8,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-mahogany",
+				"type": "item",
+				"code": "wildcrafttree:plank-mahogany",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-mahogany-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-mahogany-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 9,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 9,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-sal",
+				"type": "item",
+				"code": "wildcrafttree:plank-sal",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-sal-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-sal-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 10,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 10,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-saxaul",
+				"type": "item",
+				"code": "wildcrafttree:plank-saxaul",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-saxaul-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-saxaul-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 11,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 11,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-spruce",
+				"type": "item",
+				"code": "wildcrafttree:plank-spruce",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-spruce-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-spruce-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 12,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 12,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-sycamore",
+				"type": "item",
+				"code": "wildcrafttree:plank-sycamore",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-sycamore-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-sycamore-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 13,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 13,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-elm",
+				"type": "item",
+				"code": "wildcrafttree:plank-elm",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-elm-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-elm-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 14,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 14,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-beech",
+				"type": "item",
+				"code": "wildcrafttree:plank-beech",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-beech-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-beech-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 15,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 15,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-eucalyptus",
+				"type": "item",
+				"code": "wildcrafttree:plank-eucalyptus",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-eucalyptus-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-eucalyptus-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 16,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 16,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-cedar",
+				"type": "item",
+				"code": "wildcrafttree:plank-cedar",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-cedar-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-cedar-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 17,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 17,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-redcedar",
+				"type": "item",
+				"code": "wildcrafttree:plank-redcedar",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-redcedar-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-redcedar-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 18,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 18,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-yew",
+				"type": "item",
+				"code": "wildcrafttree:plank-yew",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-yew-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-yew-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 19,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 19,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-kauri",
+				"type": "item",
+				"code": "wildcrafttree:plank-kauri",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-kauri-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-kauri-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 20,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 20,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-ginkgo",
+				"type": "item",
+				"code": "wildcrafttree:plank-ginkgo",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-ginkgo-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-ginkgo-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 21,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 21,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-dalbergia",
+				"type": "item",
+				"code": "wildcrafttree:plank-dalbergia",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-dalbergia-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-dalbergia-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 22,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 22,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-umnini",
+				"type": "item",
+				"code": "wildcrafttree:plank-umnini",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-umnini-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-umnini-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 23,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 23,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-banyan",
+				"type": "item",
+				"code": "wildcrafttree:plank-banyan",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-banyan-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-banyan-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 24,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 24,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-guajacum",
+				"type": "item",
+				"code": "wildcrafttree:plank-guajacum",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-guajacum-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-guajacum-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 25,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 25,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-ghostgum",
+				"type": "item",
+				"code": "wildcrafttree:plank-ghostgum",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-ghostgum-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-ghostgum-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 26,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 26,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-ohia",
+				"type": "item",
+				"code": "wildcrafttree:plank-ohia",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-ohia-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-ohia-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 27,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 27,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-satinash",
+				"type": "item",
+				"code": "wildcrafttree:plank-satinash",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-satinash-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-satinash-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 28,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 28,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-bluemahoe",
+				"type": "item",
+				"code": "wildcrafttree:plank-bluemahoe",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-bluemahoe-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-bluemahoe-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 29,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 29,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-jacaranda",
+				"type": "item",
+				"code": "wildcrafttree:plank-jacaranda",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-jacaranda-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-jacaranda-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 30,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 30,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-empresstree",
+				"type": "item",
+				"code": "wildcrafttree:plank-empresstree",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-empresstree-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-empresstree-north"
 		}
 	},
 	{
 		"enabled": false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 31,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 31,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-chlorociboria",
+				"type": "item",
+				"code": "wildcrafttree:plank-chlorociboria",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-chlorociboria-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-chlorociboria-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 32,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 32,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-petrified",
+				"type": "item",
+				"code": "wildcrafttree:plank-petrified",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-petrified-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-petrified-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 33,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 33,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-fir",
+				"type": "item",
+				"code": "wildcrafttree:plank-fir",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-fir-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-fir-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 34,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 34,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-tamanu",
+				"type": "item",
+				"code": "wildcrafttree:plank-tamanu",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-tamanu-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-tamanu-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 35,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 35,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-spurgetree",
+				"type": "item",
+				"code": "wildcrafttree:plank-spurgetree",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-spurgetree-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-spurgetree-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 36,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 36,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-azobe",
+				"type": "item",
+				"code": "wildcrafttree:plank-azobe",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-azobe-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-azobe-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 37,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 37,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-leadwood",
+				"type": "item",
+				"code": "wildcrafttree:plank-leadwood",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-leadwood-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-leadwood-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 38,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 38,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-linden",
+				"type": "item",
+				"code": "wildcrafttree:plank-linden",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-linden-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-linden-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 39,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 39,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-horsechestnut",
+				"type": "item",
+				"code": "wildcrafttree:plank-horsechestnut",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-horsechestnut-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-horsechestnut-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 40,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 40,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-tigerwood",
+				"type": "item",
+				"code": "wildcrafttree:plank-tigerwood",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-tigerwood-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-tigerwood-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 41,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 41,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-sapele",
+				"type": "item",
+				"code": "wildcrafttree:plank-sapele",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-sapele-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-sapele-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 42,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 42,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-ash",
+				"type": "item",
+				"code": "wildcrafttree:plank-ash",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-ash-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-ash-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 43,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 43,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-mangrove",
+				"type": "item",
+				"code": "wildcrafttree:plank-mangrove",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-mangrove-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-mangrove-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 44,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 44,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-charred",
+				"type": "item",
+				"code": "wildcrafttree:plank-charred",
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-charred-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-charred-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 45,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 45,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "game:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "game:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodinterior"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodinterior"
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-{woodinterior}-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-{woodinterior}-north"
 		}
 	},
 	{
 		"enabled":  false,
-		ingredientPattern: "PLP,PLP,PLN",
-		recipeGroup: 46,
-		ingredients: {
+		"ingredientPattern": "PLN,PLP,PLP",
+		"recipeGroup": 46,
+		"ingredients": {
 			"P": {
-				type: "item",
-				code: "wildcrafttree:plank-*",
-				name: "woodframe"
+				"type": "item",
+				"code": "wildcrafttree:plank-*",
+				"name": "woodframe"
 			},
 			"L": {
-				type: "item",
-				code: "game:plank-*",
-				name: "woodinterior"
+				"type": "item",
+				"code": "game:plank-*",
+				"name": "woodinterior"
 			},
 			"N": {
-				type: "item",
-				code: "game:metalnailsandstrips-*",
+				"type": "item",
+				"code": "game:metalnailsandstrips-*",
 			},
 		},
-		width: 3,
-		height: 3,
-		name: "bottlerackwildcrafttree",
-		output: {
-			type: "block",
-			code: "aculinaryartillery:bottlerack-{woodframe}-{woodinterior}-north"
+		"width": 3,
+		"height": 3,
+		"name": "bottlerackwildcrafttree",
+		"output": {
+			"type": "block",
+			"code": "aculinaryartillery:bottlerack-{woodframe}-{woodinterior}-north"
 		}
 	},
 ]

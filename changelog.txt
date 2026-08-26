@@ -15,6 +15,7 @@
 ~1.22_v2.0.0-dev.23~
 - Trader prices increased by 25% to reflect ability to deconstruct bottle racks, and cauldrons - DONE!!!
 - Egg yolk has proper text when in stew - DONE!!!
+- Bottle rack recipe updated so it does not conflict with gates - DONE!!!
 
 ~1.22_v2.0.0-dev.22~
 - Bottles fixed so they can get water from source blocks properly - DONE!!!
