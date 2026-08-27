@@ -30,8 +30,13 @@
 				"action": "DropContents",
 				"stack": { "type": "item", "code": "aculinaryartillery:eggwhiteportion" }
 			}
-		}
-	},
+		},
+        "inPieProperties": {
+          "texture": "game:item/liquid/eggwhite",
+          "partType": "Filling",
+          "mixingCodes": ["cheesequiche","bluequiche","vegquiche"]
+        }
+    },
 	"transitionableProps": [{
     		"type": "Perish",
     		"freshHours": { "avg": 96 },

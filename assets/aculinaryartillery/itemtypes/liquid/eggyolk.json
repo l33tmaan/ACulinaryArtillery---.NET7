@@ -34,8 +34,13 @@
 				"action": "DropContents",
 				"stack": { "type": "item", "code": "aculinaryartillery:eggyolkportion-{type}" }
 			}
-		}
-	},
+		},
+        "inPieProperties": {
+          "texture": "game:item/liquid/eggyolk/{type}",
+          "partType": "Filling",
+          "mixingCodes": ["cheesequiche","bluequiche","vegquiche"]
+        }
+    },
 	"transitionableProps": [{
         "type": "Perish",
         "freshHours": { "avg": 48 },

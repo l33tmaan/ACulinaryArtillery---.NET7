@@ -19,14 +19,15 @@
 		"inBowlShape": { "base": "game:block/food/meal/liquid" },
 		"inPieProperties": {
 			"texture": "game:item/liquid/eggyolkfull/{type}",
-			"partType": "Filling"
+			"partType": "Filling",
+            "mixingCodes": ["cheesequiche","bluequiche","vegquiche"]
 		},
 		"waterTightContainerProps": {
 			"nutritionPropsPerLitreWhenInMeal": {
 			        "satietyByType": {
 					"@*-(pheasant|goldenpheasant|capercaillie|wildturkey)": 2800,
 					"*-chicken": 2000
-			        },
+                 },
 				"foodcategory": "Protein"
 			},
 			"containable": true,
