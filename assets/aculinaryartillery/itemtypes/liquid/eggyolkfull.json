@@ -20,7 +20,7 @@
 		"inPieProperties": {
 			"texture": "game:item/liquid/eggyolkfull/{type}",
 			"partType": "Filling",
-            "mixingCodes": ["cheesequiche","bluequiche","vegquiche"]
+            "mixingCodes": ["cheesequiche","bluequiche","cottagequiche","vegquiche"]
 		},
 		"waterTightContainerProps": {
 			"nutritionPropsPerLitreWhenInMeal": {

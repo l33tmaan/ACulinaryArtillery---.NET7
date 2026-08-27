@@ -38,7 +38,7 @@
         "inPieProperties": {
           "texture": "game:item/liquid/eggyolk/{type}",
           "partType": "Filling",
-          "mixingCodes": ["cheesequiche","bluequiche","vegquiche"]
+          "mixingCodes": ["cheesequiche","bluequiche","cottagequiche","vegquiche"]
         }
     },
 	"transitionableProps": [{

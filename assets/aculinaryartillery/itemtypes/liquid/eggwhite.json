@@ -34,7 +34,7 @@
         "inPieProperties": {
           "texture": "game:item/liquid/eggwhite",
           "partType": "Filling",
-          "mixingCodes": ["cheesequiche","bluequiche","vegquiche"]
+          "mixingCodes": ["cheesequiche","bluequiche","cottagequiche","vegquiche"]
         }
     },
 	"transitionableProps": [{
