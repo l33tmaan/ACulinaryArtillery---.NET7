@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
@@ -20,6 +22,8 @@ namespace ACulinaryArtillery
     public class BlockEntitySpile : BlockEntity
     {
         public double timer;
+
+        public Item? sap = null;
 
         public override void Initialize(ICoreAPI api)
         {
@@ -49,19 +53,46 @@ namespace ACulinaryArtillery
                 if (Api.World.Rand.NextDouble() > xylem.dripChance || !xylem.seasons.Contains(GetMonth(timer))) return;
 
                 container.TryPutLiquid(containerpos, new(Api.World.GetItem(xylem.sap)), xylem.dripCount);
+
+                sap = Api.World.GetItem(xylem.sap);
             }
+        }
+
+        public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tessThreadTesselator)
+        {
+            mesher.AddMeshData(GetOrCreateMesh());
+            return false;
+        }
+
+        public MeshData? GetOrCreateMesh()
+        {
+            Dictionary<string, MeshData> meshes = ObjectCacheUtil.GetOrCreate(Api, "aculinaryartillery:blockspileMeshes", () => new Dictionary<string, MeshData>());
+
+            if (Api.World.BlockAccessor.GetBlock(Pos) is not BlockSpile spile) return null;
+
+            string key = Block.Code;
+            if (sap != null) key += "-" + sap.Code;
+
+            if (meshes.TryGetValue(key, out MeshData? mesh))
+            {
+                return mesh;
+            }
+
+            return meshes[key] = spile.GenMesh(Api as ICoreClientAPI, sap);
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
         {
             base.ToTreeAttributes(tree);
             tree.SetDouble("timer", timer);
+            tree.SetString("sap", sap?.Code);
         }
 
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
         {
             base.FromTreeAttributes(tree, worldAccessForResolve);
             timer = tree.GetDouble("timer", -1000);
+            sap = worldAccessForResolve.GetItem(tree.GetString("sap"));
         }
 
         public int GetMonth(double pastTime)
