@@ -5,6 +5,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
@@ -49,7 +50,7 @@ namespace ACulinaryArtillery
             base.Initialize(api);
 
             RegisterGameTickListener(SapDrip, 5000);
-            RegisterGameTickListener(sapDripParticle, 75);
+            RegisterGameTickListener(dripParticleAndSound, 75);
             if (sapDripTimer == -1000) sapDripTimer = Api.World.Calendar.TotalHours;
         }
 
@@ -80,22 +81,27 @@ namespace ACulinaryArtillery
                     return;
                 }
 
+                todoDripCount += Api.World.Rand.Next(1, 4);
 
-                todoDripCount = Api.World.Rand.Next(1, 4);
-                for (int i = 0; i < todoDripCount; i++)
-                {
-                    container.TryPutLiquid(containerpos, new(Api.World.GetItem(xylem.sap)), xylem.dripCount);
-                }
-
-                this.sap = Api.World.GetItem(xylem.sap);
+                this.sap = sap;
             }
+
+            ItemStack dripStack = new(Api.World.GetItem(xylem.sap));
+            dripStack.StackSize = todoDripCount;
+            container.TryPutLiquid(containerpos, dripStack, dripStack.StackSize);
+
+            // Avoid showing a ton of particles when fast forwarding
+            todoDripCount %= 4;
         }
 
 
-        private void sapDripParticle(float dt)
+        private void dripParticleAndSound(float dt)
         {
             if (todoDripCount == 0 || sap == null || Api is not ICoreClientAPI capi) return;
             if (capi.World.BlockAccessor.GetBlock(Pos) is not BlockSpile spile) return;
+
+            AssetLocation sound = new($"aculinaryartillery:sounds/block/spile/drip*");
+            Api.World.PlaySoundAt(sound, Pos.X, Pos.Y, Pos.Z, range: 5);
 
             sapParticle.Color = capi.ItemTextureAtlas.GetRandomColor(capi.ItemTextureAtlas.GetPosition(sap, sap.Code), Api.World.Rand.Next(TextureAtlasPosition.RndColorsLength));
 
