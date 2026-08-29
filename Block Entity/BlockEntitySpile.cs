@@ -24,8 +24,16 @@ namespace ACulinaryArtillery
     {
         public double sapDripTimer;
 
+        /// <summary>
+        /// Once the spile starts dripping, stores the sap item being produced.
+        /// </summary>
         public Item? sap = null;
 
+        /// <summary>
+        /// The number of drips left to generate particles for.
+        ///
+        /// Reflects the amount of sap actually generated.
+        /// </summary>
         private int todoDripCount = 0;
 
         static SimpleParticleProperties sapParticle;
@@ -85,6 +93,9 @@ namespace ACulinaryArtillery
 
                 this.sap = sap;
             }
+
+
+            if (todoDripCount == 0) return;
 
             ItemStack dripStack = new(Api.World.GetItem(xylem.sap));
             dripStack.StackSize = todoDripCount;
