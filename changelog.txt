@@ -17,6 +17,10 @@
 - Egg yolk has proper text when in stew - DONE!!!
 - Bottle rack recipe updated so it does not conflict with gates - DONE!!!
 - Egg liquids updated to have pie mixing codes - DONE!!!
+- Fixed crash when creating cached meal recipe stacks with no handbook stacks (thanks to Lazula!) 
+- Can no longer drink from corked bottles (thanks to Lazula!)
+- Oak bark can be used to make vanilla tannins - DONE!!!
+
 
 ~1.22_v2.0.0-dev.22~
 - Bottles fixed so they can get water from source blocks properly - DONE!!!

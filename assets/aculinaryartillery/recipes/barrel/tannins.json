@@ -1,0 +1,20 @@
+[
+  {
+    "code": "strongtannin",
+    "sealHours": 24,
+    "ingredients": [
+      { "type": "item", "code": "aculinaryartillery:bark-oak-dry",  "quantity": 1 },
+      { "type": "item", "code": "game:weaktanninportion",  "litres": 10 }
+    ],
+    "output": { "type": "item", "code": "game:strongtanninportion", "litres": 10 }
+  },
+  {
+    "code": "weaktannin",
+    "sealHours": 24,
+    "ingredients": [
+      { "type": "item", "code": "aculinaryartillery:bark-oak-dry",  "quantity": 1 },
+      { "type": "item", "code": "game:waterportion",  "litres": 10 }
+    ],
+    "output": { "type": "item", "code": "game:weaktanninportion", "litres": 10 }
+  }
+]
