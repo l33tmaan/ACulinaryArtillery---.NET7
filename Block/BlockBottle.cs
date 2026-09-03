@@ -358,10 +358,15 @@ namespace ACulinaryArtillery
             base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
         }
 
+        protected override void tryEatBegin(ItemSlot slot, EntityAgent byEntity, ref EnumHandHandling handling, string eatSound = "eat", int eatSoundRepeats = 1)
+        {
+            if (GetNutritionProperties(byEntity.World, slot.Itemstack, byEntity) == null || Variant["type"] != "fired") return;
+
+            base.tryEatBegin(slot, byEntity, ref handling, eatSound, eatSoundRepeats);
+        }
+
         protected override bool tryEatStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, ItemStack? content = null)
         {
-            if (GetNutritionProperties(byEntity.World, slot.Itemstack, byEntity) == null) return false;
-
             var pos = byEntity.Pos.AheadCopy(0.4f).XYZ;
             pos.X += byEntity.LocalEyePos.X;
             pos.Y += byEntity.LocalEyePos.Y - 0.4f;
