@@ -1,0 +1,31 @@
+{
+  "Configuration": [
+    {
+      "ConfigFile": "aculinaryartillery.json",
+      "ConfigLabel": "Oven Settings",
+      "Description": "Server-side tuning the behaviour of ovens.",
+      "ConfigSource": "ModConfig",
+      "ConfigSide": "Server",
+      "Settings": [
+        {
+          "Type": "Decimal",
+          "Label": "Oven heating, cooling, and baking rate",
+          "Description": "Modifies the rate at which the oven heats, cools, and bakes.",
+          "Map": "BEExpandedOvenDTMod"
+        },
+        {
+          "Type": "Decimal",
+          "Label": "Fuel burn rate multiplier",
+          "Description": "Multiplier applied to the burn rate of fuels.",
+          "Map": "BEExpandedOvenFuelBurnRateMod"
+        },
+        {
+          "Type": "Decimal",
+          "Label": "Bake rate multiplier",
+          "Description": "Additional direct modifier to the baking rate. This does not affect heating or cooling time.",
+          "Map": "BEExpandedOvenBakeTimeMod"
+        }
+      ]
+    }
+  ]
+}
