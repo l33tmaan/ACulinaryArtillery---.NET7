@@ -13,20 +13,20 @@
 - Spiles passively drip when "in season", UI shows if tree is 'in season' or not
 
 ~1.22_v2.0.0-dev.23~
-- Trader prices increased by 25% to reflect ability to deconstruct bottle racks, and cauldrons - DONE!!!
-- Egg yolk has proper text when in stew - DONE!!!
-- Bottle rack recipe updated so it does not conflict with gates - DONE!!!
-- Egg liquids updated to have pie mixing codes - DONE!!!
-- Fixed crash when creating cached meal recipe stacks with no handbook stacks (thanks to Lazula!) 
+- Trader prices increased by 25% to reflect ability to deconstruct bottle racks, and cauldrons
+- Egg yolk has proper text when in stew
+- Bottle rack recipe updated so it does not conflict with gates
+- Egg liquids updated to have pie mixing codes
+- Fixed crash when creating cached meal recipe stacks with no handbook stacks (thanks to Lazula & Tsu!) 
 - Can no longer drink from corked bottles (thanks to Lazula!)
-- Oak bark can be used to make vanilla tannins - DONE!!!
+- Oak bark can be used to make vanilla tannins
 
 
 ~1.22_v2.0.0-dev.22~
-- Bottles fixed so they can get water from source blocks properly - DONE!!!
-- Bottle racks, mixing bowl & meathooks can be deconstructed - DONE!!!
-- Material Needs patches updated - DONE???
-- Spile and cauldron molds break upon use - DONE!!!
+- Bottles fixed so they can get water from source blocks properly
+- Bottle racks, mixing bowl & meathooks can be deconstructed
+- Material Needs patches updated
+- Spile and cauldron molds break upon use
 
 - Many Lazula fixes:
 - Add support for multiple bottle corking and uncorking sounds based on fullness
@@ -46,10 +46,10 @@
 - Change mixing bowl to skip cycles when output sides are blocked instead of discarding ingredients (thanks to orborde!)
 - Egg cracking fixed (thanks to Aimli!)
 - Extra nutrition text now follows language localization instead of always being in English (thanks to Aimli!)
-- New goopy liquid shape (thanks to Fuego Fish!) - DONE!!!
+- New goopy liquid shape (thanks to Fuego Fish!)
 - Replace custom tryEatStop override with standard usage of DrinkPortionSize (thanks to InsanityGod!)
 
-- Tags added to rolling pin - DONE!!!
+- Tags added to rolling pin
 
 
 ~1.22_v2.0.0-dev.21~
